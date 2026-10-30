@@ -1,8 +1,23 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 54 | pruned: 1
+open path: none   | blocked: 0 | todo roots: 1 | done: 54 | pruned: 1
 
 ## Tree
+
+```text
+E-003         [todo]     The talk runs one loop: found documents, built counts, figures in one style, the believed line flipped
+  W-018  issue  [todo]     06-simple: the wounds close by name in a run built from incidents.csv -- T-037 [todo], T-038 [todo], T-039 [todo], T-040 [todo]
+  W-019  issue  [todo]     00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents -- T-041 [todo], T-042 [todo], T-043 [todo]
+  W-020  issue  [todo]     01-bits: the doubling with faces -- T-044 [todo], T-045 [todo], T-046 [todo]
+  W-021  issue  [todo]     lines: the believed / learned pair -- T-047 [todo], T-048 [todo], T-049 [todo]
+  W-022  issue  [todo]     01-bits: the two-if tree -- T-050 [todo], T-051 [todo], T-052 [todo]
+  W-023  issue  [todo]     00-frontmatter: the route on the map -- T-053 [todo], T-054 [todo], T-055 [todo]
+  W-024  issue  [todo]     03-chaos: what it felt like vs what it was -- T-056 [todo], T-057 [todo], T-058 [todo]
+  W-025  issue  [todo]     04-what: the bits move, none deleted -- T-059 [todo], T-060 [todo], T-061 [todo], T-062 [todo]
+  W-026  issue  [todo]     03-chaos: the example map before and after the room -- T-063 [todo], T-064 [todo], T-065 [todo]
+  W-027  issue  [todo]     05-how: the core and the shell with three ports -- T-066 [todo], T-067 [todo], T-068 [todo]
+  W-028  issue  [todo]     06-simple: the epilogue as stacked bars -- T-069 [todo], T-070 [todo]
+```
 
 ## Closed
 
@@ -114,9 +129,56 @@ closed 2026-10-30 -- outcome: Given docs/storyline.md, When the developer reads 
 ## Diagram
 ```mermaid
 flowchart TD
+  E003["E-003 todo: The talk runs one loop: found documents, built counts, figures in one style, the believed line flipped"]
+  E003 --> W018["W-018 issue todo: 06-simple: the wounds close by name in a run built from incidents.csv"]
+  W018 --> T037["T-037 todo: Add the incidents -> data/incidents.csv and load_incidents"]
+  W018 --> T038["T-038 todo: Select the wounds by name -> wounds_selector and scripts.paths wounds"]
+  W018 --> T039["T-039 todo: Run the wounds -> build/06-simple/wounds.txt"]
+  W018 --> T040["T-040 todo: Show the wounds -> 06-simple/index.md includes build/06-simple/wounds.txt"]
+  E003 --> W019["W-019 issue todo: 00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents"]
+  W019 --> T041["T-041 todo: Rewrite the I1 and I3 exhibits -> 01-bits/data/incident.txt, 05-how/data/incident.txt"]
+  W019 --> T042["T-042 todo: Write the message and the teaser -> 00-frontmatter/data/message.txt, 06-simple/data/teaser.txt"]
+  W019 --> T043["T-043 todo: Show the found documents -> 00-frontmatter/index.md, 01-bits/index.md, 06-simple/index.md"]
+  E003 --> W020["W-020 issue todo: 01-bits: the doubling with faces"]
+  W020 --> T044["T-044 todo: Add the week -> data/cast.csv week column and CastRow.week"]
+  W020 --> T045["T-045 todo: Render the doubling -> doubling_table and scripts.paths doubling"]
+  W020 --> T046["T-046 todo: Show the doubling -> build/01-bits/doubling.txt on Count along"]
+  E003 --> W021["W-021 issue todo: lines: the believed / learned pair"]
+  W021 --> T047["T-047 todo: Read the pair -> Line(section, believed, learned) and data/lines.csv"]
+  W021 --> T048["T-048 todo: Put the believed lines on the slides -> NN-*/index.md and 07-close/index.md"]
+  W021 --> T049["T-049 todo: Check the pair -> missing() names an absent believed line"]
+  E003 --> W022["W-022 issue todo: 01-bits: the two-if tree"]
+  W022 --> T050["T-050 todo: Pin the leaves -> TREE_LEAVES in scripts/utils/figures.py"]
+  W022 --> T051["T-051 todo: Draw the tree -> tree(out) and scripts.figures tree"]
+  W022 --> T052["T-052 todo: Show the tree -> build/01-bits/tree.png on Four paths"]
+  E003 --> W023["W-023 issue todo: 00-frontmatter: the route on the map"]
+  W023 --> T053["T-053 todo: Add the route -> data/route.csv and load_route"]
+  W023 --> T054["T-054 todo: Place the route on the map -> route_layout(stops)"]
+  W023 --> T055["T-055 todo: Show the map -> 00-frontmatter/section.mk and 02-stacey/index.md"]
+  E003 --> W024["W-024 issue todo: 03-chaos: what it felt like vs what it was"]
+  W024 --> T056["T-056 todo: Count the growth -> growth(cast)"]
+  W024 --> T057["T-057 todo: Draw the growth -> growth_chart(out, points) and scripts.paths growth"]
+  W024 --> T058["T-058 todo: Show the growth -> build/03-chaos/growth.png before The honest count"]
+  E003 --> W025["W-025 issue todo: 04-what: the bits move, none deleted"]
+  W025 --> T059["T-059 todo: Add the context palette -> context_colour(name) in scripts/utils/style.py"]
+  W025 --> T060["T-060 todo: Count the moves -> moves(rules)"]
+  W025 --> T061["T-061 todo: Draw the moves -> moves_figure(out, moves) and scripts.figures moves"]
+  W025 --> T062["T-062 todo: Show the moves -> build/04-what/moves.png on Bounded contexts"]
+  E003 --> W026["W-026 issue todo: 03-chaos: the example map before and after the room"]
+  W026 --> T063["T-063 todo: Count the cards -> card_counts in scripts/utils/examples.py"]
+  W026 --> T064["T-064 todo: Draw the map -> example_map(out, before, after) and scripts.figures example-map"]
+  W026 --> T065["T-065 todo: Show the map -> build/03-chaos/example_map.png on The six questions"]
+  E003 --> W027["W-027 issue todo: 05-how: the core and the shell with three ports"]
+  W027 --> T066["T-066 todo: Read the ports -> ports_of(rules)"]
+  W027 --> T067["T-067 todo: Draw the seam -> seam(out, ports) and scripts.figures seam"]
+  W027 --> T068["T-068 todo: Show the seam -> 05-how/section.mk and The ports"]
+  E003 --> W028["W-028 issue todo: 06-simple: the epilogue as stacked bars"]
+  W028 --> T069["T-069 todo: Build the two bars -> epilogue_bars(rules, seventh)"]
+  W028 --> T070["T-070 todo: Show the bars -> build/06-simple/epilogue.png on the epilogue"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E003,W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070 todo
 ```
