@@ -23,6 +23,8 @@ belongs to one section. It is the only directory allowed to know the list of sec
 The path is relative to the repo root. The snippet is delimited in the source by the
 comment lines `# [snippet: checkout]` and `# [/snippet]`. Prefer snippet names over
 line ranges: a line range rots on the first edit above it, a name does not.
+Add `.numberLines` (`{.python .numberLines include=... snippet=checkout}`) and the
+numbers are the file's own line numbers, starting at the first line shown.
 
 ## How a slide moves the footer counter
 

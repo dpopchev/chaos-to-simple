@@ -27,15 +27,15 @@ local function read_lines(path)
 end
 
 local function slice_snippet(lines, name, path)
-  local out, inside, found = {}, false, false
+  local out, inside, found, first = {}, false, false, 1
   local open_marker = "[snippet: " .. name .. "]"
-  for _, line in ipairs(lines) do
+  for number, line in ipairs(lines) do
     if inside and line:find("[/snippet]", 1, true) then
       inside = false
     elseif inside then
       out[#out + 1] = line
     elseif line:find(open_marker, 1, true) then
-      inside, found = true, true
+      inside, found, first = true, true, number + 1
     end
   end
   if not found then
@@ -44,7 +44,7 @@ local function slice_snippet(lines, name, path)
   if inside then
     error("include-code-files: snippet '" .. name .. "' in " .. path .. " is not closed")
   end
-  return out
+  return out, first
 end
 
 local function slice_lines(lines, first, last)
@@ -52,7 +52,7 @@ local function slice_lines(lines, first, last)
   for i = first, math.min(last, #lines) do
     out[#out + 1] = lines[i]
   end
-  return out
+  return out, first
 end
 
 local function dedent(lines)
@@ -73,14 +73,26 @@ local function dedent(lines)
   return out
 end
 
+-- Returns the trimmed lines and how many leading blank lines were dropped.
 local function trim_blank_edges(lines)
+  local dropped = 0
   while #lines > 0 and not lines[1]:match("%S") do
     table.remove(lines, 1)
+    dropped = dropped + 1
   end
   while #lines > 0 and not lines[#lines]:match("%S") do
     table.remove(lines)
   end
-  return lines
+  return lines, dropped
+end
+
+local function has_class(cb, class)
+  for _, c in ipairs(cb.classes) do
+    if c == class then
+      return true
+    end
+  end
+  return false
 end
 
 function CodeBlock(cb)
@@ -89,14 +101,19 @@ function CodeBlock(cb)
     return nil
   end
   local lines = read_lines(path)
+  local first = 1
   if cb.attributes["snippet"] then
-    lines = slice_snippet(lines, cb.attributes["snippet"], path)
+    lines, first = slice_snippet(lines, cb.attributes["snippet"], path)
   elseif cb.attributes["start-line"] or cb.attributes["end-line"] then
-    local first = tonumber(cb.attributes["start-line"] or 1)
+    local start = tonumber(cb.attributes["start-line"] or 1)
     local last = tonumber(cb.attributes["end-line"] or #lines)
-    lines = slice_lines(lines, first, last)
+    lines, first = slice_lines(lines, start, last)
   end
-  lines = dedent(trim_blank_edges(lines))
+  local trimmed, dropped = trim_blank_edges(lines)
+  lines = dedent(trimmed)
+  if has_class(cb, "numberLines") and cb.attributes["startFrom"] == nil then
+    cb.attributes["startFrom"] = tostring(first + dropped)
+  end
   cb.text = table.concat(lines, "\n")
   cb.attributes["include"] = nil
   cb.attributes["snippet"] = nil
