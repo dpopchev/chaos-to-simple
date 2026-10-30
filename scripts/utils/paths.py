@@ -29,6 +29,39 @@ def load_rules(path: Path) -> list[Rule]:
         return [Rule(**{name: row[name] for name in names}) for row in csv.DictReader(fh)]
 
 
+@dataclass(frozen=True)
+class CastRow:
+    bit: str
+    requested_by: str
+    words: str
+    fragment: str
+
+
+def load_cast(path: Path) -> list[CastRow]:
+    names = [f.name for f in fields(CastRow)]
+    with path.open(newline="", encoding="ascii") as fh:
+        return [CastRow(**{name: row[name] for name in names}) for row in csv.DictReader(fh)]
+
+
+def line_of(fragment: str, source: str) -> int:
+    """The 1-based line of source holding fragment; raises ValueError unless exactly one does."""
+    hits = [n for n, text in enumerate(source.splitlines(), start=1) if fragment in text]
+    if len(hits) != 1:
+        raise ValueError(f"fragment {fragment!r} matches {len(hits)} lines, want exactly 1")
+    return hits[0]
+
+
+def cast_table(cast: Sequence[CastRow], source: str) -> str:
+    """The cast of the ifs: the source line, the bit, who asked and their words."""
+    rows = [("line", "bit", "who", "words")]
+    rows += [(str(line_of(c.fragment, source)), c.bit, c.requested_by, c.words) for c in cast]
+    widths = [max(len(row[i]) for row in rows) for i in range(4)]
+    lines = [
+        "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def tangled(bits: int) -> int:
     """Decisions in one function multiply: n bits are 2**n paths."""
     return 2**bits

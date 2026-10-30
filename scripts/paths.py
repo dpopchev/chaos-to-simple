@@ -5,6 +5,8 @@
     python -m scripts.paths grid   --bits 6 --out build/01-bits/grid.txt
     python -m scripts.paths epilogue --rules data/rules.csv --seventh data/seventh.csv \\
         --out build/06-simple/epilogue.txt
+    python -m scripts.paths cast   --cast data/cast.csv --source 01-bits/s01_bits/chaos.py \\
+        --out build/01-bits/cast.txt
     python -m scripts.paths chart --rules data/rules.csv --out build/06-simple/paths.png
 """
 
@@ -17,9 +19,11 @@ from pathlib import Path
 
 from scripts.utils.paths import (
     bars_from_rules,
+    cast_table,
     count_report,
     epilogue_report,
     grid,
+    load_cast,
     load_rules,
     rules_table,
     stacked_bar,
@@ -30,7 +34,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("what", choices=["rules", "counts", "grid", "chart", "epilogue"])
+    parser.add_argument("what", choices=["rules", "counts", "grid", "chart", "epilogue", "cast"])
+    parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
+    parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"))
     parser.add_argument("--seventh", type=Path, default=Path("data/seventh.csv"))
     parser.add_argument("--bits", type=int, default=6, help="bits for the grid")
@@ -45,6 +51,8 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     if args.what == "rules":
         text = rules_table(load_rules(args.rules))
+    elif args.what == "cast":
+        text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])

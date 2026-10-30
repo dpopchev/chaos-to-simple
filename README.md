@@ -14,7 +14,7 @@ Makefile                 top-level build: check, artifacts, diagrams, slides
 pyproject.toml           uv environment, pytest/ruff/pyright config, section paths
 00-frontmatter/          deck configuration (meta, defaults, preamble, filters) and the agenda
 01-bits/ .. 07-close/    one directory per section, numbered in talk order
-data/                    data read by two or more sections (rules.csv, examples.csv)
+data/                    data read by two or more sections (rules.csv, cast.csv, examples.csv)
 scripts/                 tested helpers the build calls (paths, ascii check, examples)
 templates/section/       stubs for make new
 build/                   artifacts; make clean removes it; never tracked

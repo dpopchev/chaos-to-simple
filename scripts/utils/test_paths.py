@@ -7,12 +7,16 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.paths import (
+    CastRow,
     Rule,
     bars_from_rules,
     bits_by,
+    cast_table,
     count_report,
     epilogue_report,
     grid,
+    line_of,
+    load_cast,
     load_rules,
     rules_table,
     split,
@@ -180,6 +184,62 @@ class TestStackedBarWritesAPng:
     @pytest.mark.edge
     def test_the_file_is_not_empty(self, out: Path) -> None:
         assert out.stat().st_size > 0
+
+
+CAST_CSV = (
+    "bit,requested_by,words,fragment\n"
+    'b0,Marketing,"10 off, with the code",if a\n'
+    "s0,Nobody,nobody wrote it down,call(x)\n"
+)
+
+CAST_SOURCE = "first\nif a:\n    pass\ncall(x)\n"
+
+
+@pytest.fixture
+def cast_rows(tmp_path: Path) -> list[CastRow]:
+    path = tmp_path / "cast.csv"
+    path.write_text(CAST_CSV, encoding="ascii")
+    return load_cast(path)
+
+
+@pytest.mark.edge
+def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
+    assert cast_rows[0] == CastRow("b0", "Marketing", "10 off, with the code", "if a")
+
+
+@pytest.mark.model
+def test_cast_line_of_finds_the_one_line() -> None:
+    assert line_of("call(x)", CAST_SOURCE) == 4
+
+
+@pytest.mark.edge
+def test_cast_line_of_missing_fragment_fails_loud() -> None:
+    with pytest.raises(ValueError, match="matches 0 lines"):
+        line_of("absent", CAST_SOURCE)
+
+
+@pytest.mark.edge
+def test_cast_line_of_duplicated_fragment_fails_loud() -> None:
+    with pytest.raises(ValueError, match="2 lines"):
+        line_of("a", "a\nb a\n")
+
+
+class TestCastTableNamesTheRequester:
+    @pytest.fixture
+    def lines(self, cast_rows: list[CastRow]) -> list[str]:
+        return cast_table(cast_rows, CAST_SOURCE).splitlines()
+
+    @pytest.mark.model
+    def test_cast_header_is_line_bit_who_words(self, lines: list[str]) -> None:
+        assert lines[0].split() == ["line", "bit", "who", "words"]
+
+    @pytest.mark.model
+    def test_cast_row_gives_line_bit_who_and_words(self, lines: list[str]) -> None:
+        assert lines[1].split(None, 3) == ["2", "b0", "Marketing", "10 off, with the code"]
+
+    @pytest.mark.edge
+    def test_cast_table_has_no_trailing_spaces(self, lines: list[str]) -> None:
+        assert all(line == line.rstrip() for line in lines)
 
 
 SEVENTH_RULES = Path(__file__).resolve().parents[2] / "data" / "seventh.csv"
