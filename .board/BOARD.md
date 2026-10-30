@@ -1,11 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 12 | pruned: 0
+open path: none   | blocked: 0 | todo roots: 2 | done: 12 | pruned: 0
 
 ## Tree
 
 ```text
 W-004  bug    [todo]     (standalone) 00-frontmatter/README.md still names xelatex and the DejaVu fonts   (filed during T-004) -- T-007 [todo]
+W-006  issue  [todo]     (standalone) Slide pytest recipes repeat the pyproject addopts   (filed during T-008) -- T-009 [todo]
 ```
 
 ## Closed
@@ -42,10 +43,12 @@ closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, 
 flowchart TD
   W004["W-004 bug todo, standalone: 00-frontmatter/README.md still names xelatex and the DejaVu fonts"]
   W004 --> T007["T-007 todo: Update 00-frontmatter/README.md to lualatex and the Adwaita fonts -> grep counts 0 lines naming xelatex or DejaVu"]
+  W006["W-006 issue todo, standalone: Slide pytest recipes repeat the pyproject addopts"]
+  W006 --> T009["T-009 todo: Keep the pytest options in pyproject only -> grep counts 0 import-mode lines in 06-simple/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W004,T007 todo
+  class W004,T007,W006,T009 todo
 ```
