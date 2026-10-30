@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-007 > T-010   | blocked: 0 | todo roots: 0 | done: 26 | pruned: 0
+open path: E-002 > W-007 > T-011   | blocked: 0 | todo roots: 0 | done: 27 | pruned: 0
 
 ## Tree
 
 ```text
 E-002         [doing]    The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name
-  W-007  issue  [doing]    01-bits: the protagonist, the cast of the ifs and the count to 64 -- T-010 [doing]   <- ACTIVE LEAF, T-011 [todo], T-012 [todo], T-013 [todo]
+  W-007  issue  [doing]    01-bits: the protagonist, the cast of the ifs and the count to 64 -- T-010 [done], T-011 [doing]   <- ACTIVE LEAF, T-012 [todo], T-013 [todo]
   W-008  issue  [todo]     00-frontmatter: the message from past me and the route -- T-014 [todo], T-015 [todo]
   W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
@@ -64,8 +64,8 @@ closed 2026-10-30 -- outcome: Given the repository, When grep -c import-mode 01-
 flowchart TD
   E002["E-002 doing: The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name"]
   E002 --> W007["W-007 issue doing: 01-bits: the protagonist, the cast of the ifs and the count to 64"]
-  W007 --> T010["T-010 doing: Add the cast data and its renderer -> build/01-bits/cast.txt -- ACTIVE LEAF"]
-  W007 --> T011["T-011 todo: Rewrite the exhibit as past me left it -> test_chaos.py with his names, the I1 report"]
+  W007 --> T010["T-010 done: Add the cast data and its renderer -> build/01-bits/cast.txt"]
+  W007 --> T011["T-011 doing: Rewrite the exhibit as past me left it -> test_chaos.py with his names, the I1 report -- ACTIVE LEAF"]
   W007 --> T012["T-012 todo: Add the two-ifs zoom-in -> build/01-bits/two_ifs.txt"]
   W007 --> T013["T-013 todo: Rewrite the 01 slides to the nine-slide format -> 01-bits/index.md, nine slides"]
   E002 --> W008["W-008 issue todo: 00-frontmatter: the message from past me and the route"]
@@ -102,7 +102,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W007,T010 doing
-  class W012,T021,T022,W013,T023,T028,T029,W015,T026,T027 done
-  class T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W014,T024,T025,W016,T030,T031,T032,T033 todo
+  class E002,W007,T011 doing
+  class T010,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027 done
+  class T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W014,T024,T025,W016,T030,T031,T032,T033 todo
 ```
