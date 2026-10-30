@@ -4,7 +4,8 @@ ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt
 
 $(BUILD)/01-bits/coverage.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_chaos.py
 	@mkdir -p $(@D)
-	@$(RUN) pytest 01-bits/tests -q -k all_flags --cov=s01_bits --cov-branch \
+	@$(RUN) pytest 01-bits/tests -q -k all_flags \
+	  -o addopts="-ra --doctest-modules --import-mode=importlib --strict-markers" --cov=s01_bits --cov-branch \
 	  --cov-report=term-missing > $@
 	$(call log_done,$@ written)
 
