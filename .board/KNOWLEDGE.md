@@ -9,6 +9,7 @@
 
 ## Decisions
 - 2026-10-30 E-001: Exhibit code and tests under NN-*/sNN_*/ and NN-*/tests/ are talk content: linted, type-checked and run, but exempt from the one-assert and category-marker gates. scripts/ meets every gate. (developer, at the plan)
+- 2026-10-30 E-001: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 4 hours) (developer, 2026-10-30)
 
 ## Deviations
 - none recorded
