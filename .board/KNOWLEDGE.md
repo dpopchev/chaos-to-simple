@@ -10,7 +10,7 @@
 - 2026-10-30 W-015: open: make help on main at 26a2e26 already lists talk and test with K= -> T-026 may reduce to the lines target; its Check holds either way
 
 ## Decisions
-- none recorded
+- 2026-10-30 E-002: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-10-30)
 
 ## Deviations
 - none recorded
