@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002   | blocked: 0 | todo roots: 1 | done: 39 | pruned: 1
+open path: E-002 > W-008 > T-014   | blocked: 0 | todo roots: 1 | done: 39 | pruned: 1
 
 ## Tree
 
 ```text
 E-002         [doing]    The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name
   W-007  issue  [done]     01-bits: the protagonist, the cast of the ifs and the count to 64 -- T-010 [done], T-011 [done], T-012 [done], T-013 [done]
-  W-008  issue  [todo]     00-frontmatter: the message from past me and the route -- T-014 [todo], T-015 [todo]
+  W-008  issue  [doing]    00-frontmatter: the message from past me and the route -- T-014 [doing]   <- ACTIVE LEAF, T-015 [todo]
   W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
   W-011  issue  [done]     04-what: the words become homes -- T-019 [done], T-020 [done]
@@ -69,8 +69,8 @@ flowchart TD
   W007 --> T011["T-011 done: Rewrite the exhibit as past me left it -> test_chaos.py with his names, the I1 report"]
   W007 --> T012["T-012 done: Add the two-ifs zoom-in -> build/01-bits/two_ifs.txt"]
   W007 --> T013["T-013 done: Rewrite the 01 slides to the nine-slide format -> 01-bits/index.md, nine slides"]
-  E002 --> W008["W-008 issue todo: 00-frontmatter: the message from past me and the route"]
-  W008 --> T014["T-014 todo: Draw the route -> build/00-frontmatter/route.png in the deck style"]
+  E002 --> W008["W-008 issue doing: 00-frontmatter: the message from past me and the route"]
+  W008 --> T014["T-014 doing: Draw the route -> build/00-frontmatter/route.png in the deck style -- ACTIVE LEAF"]
   W008 --> T015["T-015 todo: Rewrite the opening -> 00-frontmatter/index.md: message, raw code, chat, route"]
   E002 --> W009["W-009 issue todo: 02-stacey: which problem do I have"]
   W009 --> T016["T-016 todo: Rewrite the 02 slides -> 02-stacey/index.md: instinct, matrix, map, route, the line"]
@@ -107,8 +107,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002 doing
+  class E002,W008,T014 doing
   class W007,T010,T011,T012,T013,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027,W016,T031,T032,T033,T034 done
-  class W008,T014,T015,W009,T016,W010,T017,T018,W014,T024,T025,W017,T035,T036 todo
+  class T015,W009,T016,W010,T017,T018,W014,T024,T025,W017,T035,T036 todo
   class T030 pruned
 ```
