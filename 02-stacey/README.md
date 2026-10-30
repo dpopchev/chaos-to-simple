@@ -5,17 +5,19 @@ two axes; each later section is one move on the map.
 
 | | |
 |---|---|
-| Minutes | 6 |
+| Minutes | 5 |
 | Footer counter | stays at `64` |
-| Owns | `diagrams/stacey.mmd` (Mermaid quadrant chart with the talk's route as points) |
+| Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk` |
 | Uses | nothing |
-| Produces | `build/02-stacey/diagrams/stacey.png` through the generic diagram rule in the Makefile |
+| Produces | `build/02-stacey/stacey.png` |
 
 ## Slides
 
-- [x] Two axes, four zones: the chart
+- [x] I wanted to write a test: the question, two answers
+- [x] Two axes, four zones: the matrix
 - [x] Bits on the map: the table
 - [x] The route of this talk
+- [x] The line: check whether the What is agreed
 
 ## Done when
 

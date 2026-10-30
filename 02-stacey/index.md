@@ -1,5 +1,19 @@
 # Stacey matrix: agreement on the What, certainty on the How
 
+## I wanted to write a test {paths=64}
+
+Free shipping from 50. Of what?
+
+- Marketing: the subtotal, so more customers qualify
+- Logistics: the discounted goods only
+
+Which test would you write? Neither answer is a How problem.
+
+::: notes
+Nothing is decided yet: section 03 decides it. The instinct to write a test arrives before
+anyone has agreed what the rule is.
+:::
+
 ## Two axes, four zones {paths=64}
 
 ![](build/02-stacey/stacey.png){height=80%}
@@ -23,6 +37,7 @@ when we cannot even count the questions.
 ## The route of this talk
 
 - 01: six ifs, unknown count: chaos
+- 02: the question is the What: nothing decided yet
 - 03: nine bits, 512 paths: complex
 - 04: one language, bounded contexts: the What agreed
 - 05: decoupling, CQS: the How settled
@@ -32,3 +47,7 @@ when we cannot even count the questions.
 A thinking tool, not a law. The matrix tells us which kind of work comes next, not how
 to do it. The next four sections are the four moves.
 :::
+
+## The line
+
+Before fixing the How, check whether the What is agreed.
