@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002   | blocked: 0 | todo roots: 1 | done: 42 | pruned: 1
+open path: E-002 > W-009 > T-016   | blocked: 0 | todo roots: 1 | done: 42 | pruned: 1
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-002   | blocked: 0 | todo roots: 1 | done: 42 | pruned: 1
 E-002         [doing]    The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name
   W-007  issue  [done]     01-bits: the protagonist, the cast of the ifs and the count to 64 -- T-010 [done], T-011 [done], T-012 [done], T-013 [done]
   W-008  issue  [done]     00-frontmatter: the message from past me and the route -- T-014 [done], T-015 [done]
-  W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
+  W-009  issue  [doing]    02-stacey: which problem do I have -- T-016 [doing]   <- ACTIVE LEAF
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
   W-011  issue  [done]     04-what: the words become homes -- T-019 [done], T-020 [done]
   W-012  issue  [done]     05-how: I3, the false victory and the seam -- T-021 [done], T-022 [done]
@@ -72,8 +72,8 @@ flowchart TD
   E002 --> W008["W-008 issue done: 00-frontmatter: the message from past me and the route"]
   W008 --> T014["T-014 done: Draw the route -> build/00-frontmatter/route.png in the deck style"]
   W008 --> T015["T-015 done: Rewrite the opening -> 00-frontmatter/index.md: message, raw code, chat, route"]
-  E002 --> W009["W-009 issue todo: 02-stacey: which problem do I have"]
-  W009 --> T016["T-016 todo: Rewrite the 02 slides -> 02-stacey/index.md: instinct, matrix, map, route, the line"]
+  E002 --> W009["W-009 issue doing: 02-stacey: which problem do I have"]
+  W009 --> T016["T-016 doing: Rewrite the 02 slides -> 02-stacey/index.md: instinct, matrix, map, route, the line -- ACTIVE LEAF"]
   E002 --> W010["W-010 issue todo: 03-chaos: the room, the dispute decided and the honest count"]
   W010 --> T017["T-017 todo: Rewrite the red cards -> 03-chaos/data/questions.md with question 3 decided"]
   W010 --> T018["T-018 todo: Rewrite the 03 slides -> 03-chaos/index.md: room, six questions, effects, 512, table, line"]
@@ -107,8 +107,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002 doing
+  class E002,W009,T016 doing
   class W007,T010,T011,T012,T013,W008,T014,T015,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027,W016,T031,T032,T033,T034 done
-  class W009,T016,W010,T017,T018,W014,T024,T025,W017,T035,T036 todo
+  class W010,T017,T018,W014,T024,T025,W017,T035,T036 todo
   class T030 pruned
 ```
