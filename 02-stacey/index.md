@@ -2,7 +2,7 @@
 
 ## Two axes, four zones {paths=64}
 
-![](build/02-stacey/diagrams/stacey.png){height=80%}
+![](build/02-stacey/stacey.png){height=80%}
 
 ::: notes
 Agreement on the What: do we agree what the system should do? Certainty on the How: do we
