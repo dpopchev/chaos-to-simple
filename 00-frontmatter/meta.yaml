@@ -5,13 +5,14 @@ author: "Dimitar Popchev"
 institute: "DEV.BG Python user group, online"
 date: "2026-11-05"
 # Slide language. Switch to bg-BG together with the slide text; the fonts below cover Cyrillic,
-# and `make ascii` then needs --skip-slides (see the Makefile ascii target).
+# and `make ascii` then needs --skip-slides (see the ascii target in mk/deck.mk).
 lang: en-US
 aspectratio: 169
 theme: default
 fontsize: 10pt
-mainfont: "DejaVu Sans"
-monofont: "DejaVu Sans Mono"
+mainfont: "Adwaita Sans"
+sansfont: "Adwaita Sans"
+monofont: "Adwaita Mono"
 monofontoptions:
   - Scale=0.85
 colorlinks: true

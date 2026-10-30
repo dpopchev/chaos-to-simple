@@ -1,0 +1,145 @@
+# mk/deck.mk -- the deck layer: one beamer PDF built by pandoc from one index.md
+# per NN-* section. Uses the base's UV, BUILD, log_done / log_warn / _log_line
+# and the python layer's RUN (read at recipe time, so the include order of
+# mk/*.mk does not matter); appends ascii to CHECKS and deliverable-talk to
+# DELIVERABLES. The slides name build/ paths literally, so BUILD stays build.
+
+# ------------------------------------------------------------------------------
+### Deck
+# ------------------------------------------------------------------------------
+
+# Toolchain -- override on the command line: make PANDOC=/opt/pandoc/bin/pandoc
+PANDOC ?= pandoc
+MMDC   ?= mmdc
+
+# Layout: the frontmatter owns the configuration, every other NN-* directory is
+# one section.
+FRONT     := 00-frontmatter
+DEFAULTS  := $(FRONT)/defaults.yaml
+META      := $(FRONT)/meta.yaml
+PREAMBLE  := $(FRONT)/preamble.tex
+FILTERS   := $(sort $(wildcard $(FRONT)/filters/*.lua))
+INDEXES   := $(sort $(wildcard [0-9][0-9]-*/index.md))
+MMD       := $(sort $(wildcard [0-9][0-9]-*/diagrams/*.mmd))
+DIAGRAMS  := $(patsubst %.mmd,$(BUILD)/%.png,$(MMD))
+RULES     := data/rules.csv
+SHARED    := $(BUILD)/data/rules.txt $(BUILD)/data/counts.txt
+ARTIFACTS := $(SHARED)
+PDF       := $(BUILD)/talk.pdf
+NOTES     := $(BUILD)/talk-notes.pdf
+
+# make new SECTION=08-name TITLE="Section title"
+SECTION ?=
+TITLE   ?=
+
+CHECKS       += ascii
+DELIVERABLES += deliverable-talk
+
+# A section that generates artifacts declares them in its own section.mk: it
+# appends to ARTIFACTS and writes only under build/<section>/. Included before
+# the deck rule, because make expands prerequisites when it reads a rule.
+include $(wildcard [0-9][0-9]-*/section.mk)
+
+DECK_INPUTS := $(INDEXES) $(META) $(DEFAULTS) $(PREAMBLE) $(FILTERS) $(DIAGRAMS) $(ARTIFACTS)
+
+$(PDF): $(DECK_INPUTS)
+	@mkdir -p $(@D)
+	@$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $@
+	$(call log_done,$@ built from $(words $(INDEXES)) index files)
+
+$(NOTES): $(DECK_INPUTS)
+	@mkdir -p $(@D)
+	@$(PANDOC) --defaults $(DEFAULTS) \
+	  --variable 'beameroption=show notes on second screen=right' $(INDEXES) -o $@
+	$(call log_done,$@ built with the speaker notes)
+
+.PHONY: slides
+slides: $(PDF) ## Build build/talk.pdf
+	$(call log_done,$(PDF) current)
+
+.PHONY: draft
+draft: $(DIAGRAMS) $(ARTIFACTS) ## Rebuild the deck now, snippets unchecked
+	@mkdir -p $(dir $(PDF))
+	@$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $(PDF)
+	$(call log_warn,draft deck -- the snippets were not checked; run make talk before presenting)
+	$(call log_done,$(PDF) built as a draft)
+
+.PHONY: notes
+notes: $(NOTES) ## Build build/talk-notes.pdf with the speaker notes
+	$(call log_done,$(NOTES) current)
+
+.PHONY: talk
+talk: check slides ## Run every check, then build the deck
+	$(call log_done,checked and built $(PDF))
+
+# Shared data renders once into build/data/; any section may include those files.
+$(BUILD)/data/rules.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths rules --rules $(RULES) --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/data/counts.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths counts --rules $(RULES) --out $@
+	$(call log_done,$@ written)
+
+# Mermaid sources sit next to the slides; mermaid-cli renders them into build/.
+# Without mmdc a warning placeholder stands in, so the deck still builds.
+$(BUILD)/%.png: %.mmd
+	@mkdir -p $(@D)
+	@if command -v $(MMDC) >/dev/null; then \
+	  $(MMDC) -i $< -o $@ -b white -s 2 >/dev/null; \
+	else \
+	  $(RUN) python scripts/utils/diagram.py --out $@ --message "mmdc missing -- $< not rendered"; \
+	  $(call _log_line,$(YELLOW),WARN,no mmdc -- npm install -g @mermaid-js/mermaid-cli; $@ is a placeholder) \
+	fi
+	$(call log_done,$@ written)
+
+.PHONY: diagrams
+diagrams: $(DIAGRAMS) ## Render every diagrams/*.mmd into build/
+	$(call log_done,$(words $(DIAGRAMS)) diagrams current)
+
+.PHONY: artifacts
+artifacts: $(ARTIFACTS) ## Generate every artifact the slides include
+	$(call log_done,$(words $(ARTIFACTS)) artifacts current)
+
+# Add --skip-slides once the slides are in Bulgarian.
+.PHONY: ascii
+ascii: ## Fail on a byte above 127 in code, config, data, prose
+	@$(RUN) python -m scripts.check_ascii --root .
+	$(call log_done,no byte above 127)
+
+.PHONY: doctor
+doctor: ## Report the deck toolchain and the fonts
+	@for tool in $(UV) $(PANDOC) lualatex $(MMDC); do \
+	  if command -v $$tool >/dev/null; then \
+	    $(call _log_line,$(CYAN),INFO,found $$tool) \
+	  else \
+	    $(call _log_line,$(YELLOW),WARN,$$tool missing -- see the README toolchain) \
+	  fi; \
+	done
+	@for font in "Adwaita Sans" "Adwaita Mono"; do \
+	  if fc-list "$$font" family | grep -q .; then \
+	    $(call _log_line,$(CYAN),INFO,found font $$font) \
+	  else \
+	    $(call _log_line,$(YELLOW),WARN,font $$font missing -- the deck needs it for Latin and Cyrillic) \
+	  fi; \
+	done
+	$(call log_done,toolchain reported)
+
+.PHONY: new
+new: ## Scaffold a section, SECTION=NN-name TITLE="Section title"
+	@if [ -z "$(SECTION)" ]; then \
+	  $(call _log_line,$(RED),FAIL,usage -- make new SECTION=NN-name TITLE=<title>) exit 1; \
+	fi
+	@if [ -e "$(SECTION)" ]; then \
+	  $(call _log_line,$(RED),FAIL,$(SECTION) exists) exit 1; \
+	fi
+	@mkdir -p $(SECTION)
+	@cp templates/section/README.md templates/section/index.md $(SECTION)/
+	@sed -i.bak 's/{{SECTION}}/$(SECTION)/g; s/{{TITLE}}/$(TITLE)/g' $(SECTION)/README.md $(SECTION)/index.md
+	@rm -f $(SECTION)/*.bak
+	$(call log_done,$(SECTION) scaffolded; register its tests dir in pyproject when it gets code)
+
+.PHONY: deliverable-talk
+deliverable-talk: $(PDF) ## Build the deck PDF and check it is not empty
+	@test -s $(PDF)
+	$(call log_done,$(PDF) built)

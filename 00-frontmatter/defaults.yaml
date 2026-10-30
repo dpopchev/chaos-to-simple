@@ -1,7 +1,7 @@
 # pandoc defaults for the deck. Every path is relative to the repo root: run make from there.
 from: markdown+raw_tex
 to: beamer
-pdf-engine: xelatex
+pdf-engine: lualatex
 slide-level: 2
 standalone: true
 metadata-files:
