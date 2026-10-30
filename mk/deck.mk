@@ -10,7 +10,6 @@
 
 # Toolchain -- override on the command line: make PANDOC=/opt/pandoc/bin/pandoc
 PANDOC ?= pandoc
-MMDC   ?= mmdc
 
 # Layout: the frontmatter owns the configuration, every other NN-* directory is
 # one section.
@@ -20,8 +19,6 @@ META      := $(FRONT)/meta.yaml
 PREAMBLE  := $(FRONT)/preamble.tex
 FILTERS   := $(sort $(wildcard $(FRONT)/filters/*.lua))
 INDEXES   := $(sort $(wildcard [0-9][0-9]-*/index.md))
-MMD       := $(sort $(wildcard [0-9][0-9]-*/diagrams/*.mmd))
-DIAGRAMS  := $(patsubst %.mmd,$(BUILD)/%.png,$(MMD))
 RULES     := data/rules.csv
 SHARED    := $(BUILD)/data/rules.txt $(BUILD)/data/counts.txt
 ARTIFACTS := $(SHARED)
@@ -40,7 +37,7 @@ DELIVERABLES += deliverable-talk
 # the deck rule, because make expands prerequisites when it reads a rule.
 include $(wildcard [0-9][0-9]-*/section.mk)
 
-DECK_INPUTS := $(INDEXES) $(META) $(DEFAULTS) $(PREAMBLE) $(FILTERS) $(DIAGRAMS) $(ARTIFACTS)
+DECK_INPUTS := $(INDEXES) $(META) $(DEFAULTS) $(PREAMBLE) $(FILTERS) $(ARTIFACTS)
 
 $(PDF): $(DECK_INPUTS)
 	@mkdir -p $(@D)
@@ -58,7 +55,7 @@ slides: $(PDF) ## Build build/talk.pdf
 	$(call log_done,$(PDF) current)
 
 .PHONY: draft
-draft: $(DIAGRAMS) $(ARTIFACTS) ## Rebuild the deck now, snippets unchecked
+draft: $(ARTIFACTS) ## Rebuild the deck now, snippets unchecked
 	@mkdir -p $(dir $(PDF))
 	@$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $(PDF)
 	$(call log_warn,draft deck -- the snippets were not checked; run make talk before presenting)
@@ -81,22 +78,6 @@ $(BUILD)/data/counts.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths counts --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
-# Mermaid sources sit next to the slides; mermaid-cli renders them into build/.
-# Without mmdc a warning placeholder stands in, so the deck still builds.
-$(BUILD)/%.png: %.mmd
-	@mkdir -p $(@D)
-	@if command -v $(MMDC) >/dev/null; then \
-	  $(MMDC) -i $< -o $@ -b white -s 2 >/dev/null; \
-	else \
-	  $(RUN) python scripts/utils/diagram.py --out $@ --message "mmdc missing -- $< not rendered"; \
-	  $(call _log_line,$(YELLOW),WARN,no mmdc -- npm install -g @mermaid-js/mermaid-cli; $@ is a placeholder) \
-	fi
-	$(call log_done,$@ written)
-
-.PHONY: diagrams
-diagrams: $(DIAGRAMS) ## Render every diagrams/*.mmd into build/
-	$(call log_done,$(words $(DIAGRAMS)) diagrams current)
-
 .PHONY: artifacts
 artifacts: $(ARTIFACTS) ## Generate every artifact the slides include
 	$(call log_done,$(words $(ARTIFACTS)) artifacts current)
@@ -118,7 +99,7 @@ lines: ## Fail on a slide line over the width limit
 
 .PHONY: doctor
 doctor: ## Report the deck toolchain and the fonts
-	@for tool in $(UV) $(PANDOC) lualatex $(MMDC); do \
+	@for tool in $(UV) $(PANDOC) lualatex; do \
 	  if command -v $$tool >/dev/null; then \
 	    $(call _log_line,$(CYAN),INFO,found $$tool) \
 	  else \

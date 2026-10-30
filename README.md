@@ -10,7 +10,7 @@ code snippet on a slide is included from a file that the tests run.
 ## Layout
 
 ```
-Makefile                 top-level build: check, artifacts, diagrams, slides
+Makefile                 top-level build: check, artifacts, slides
 pyproject.toml           uv environment, pytest/ruff/pyright config, section paths
 00-frontmatter/          deck configuration (meta, defaults, preamble, filters) and the agenda
 01-bits/ .. 07-close/    one directory per section, numbered in talk order
@@ -30,7 +30,6 @@ Each section directory holds:
 | `section.mk` | optional; artifact rules for this section, included by the top-level Makefile |
 | `sNN_name/` | optional; the code shown on the slides, a real package with a unique name |
 | `tests/` | optional; the tests that keep the snippets honest |
-| `diagrams/*.mmd` | optional; Mermaid sources rendered by the generic rule into `build/NN-name/diagrams/` |
 | `data/` | optional; data only this section reads |
 
 ## Rules that keep the sections cohesive and decoupled
@@ -73,14 +72,11 @@ make deliverable          every deliverable: build/talk.pdf, not empty
 make draft                the PDF without the checks, for layout work
 make notes                build/talk-notes.pdf with speaker notes on a second screen
 make artifacts            coverage report, counts, grid, chart
-make diagrams             Mermaid to PNG under build/
 make new SECTION=08-name TITLE="Section title"
 ```
 
 Toolchain: `uv`, `pandoc` (3.x), `lualatex`, and the Adwaita Sans and Adwaita Mono fonts,
-which cover Latin and Cyrillic. `make doctor` reports what is missing. `mmdc` from
-`@mermaid-js/mermaid-cli` (`npm install -g @mermaid-js/mermaid-cli`) is optional: without
-it each Mermaid diagram becomes a warning placeholder image, so the deck still builds.
+which cover Latin and Cyrillic. `make doctor` reports what is missing.
 
 Per-chapter loop: one board item per section, its brief the section's `README.md`. Scaffold
 the section with `make new`, write its `index.md` slides and code, run `make check`, then
@@ -92,8 +88,10 @@ Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pando
 
 - ASCII only in code, config, data and READMEs; `make ascii` enforces it. Slides are
   included in the check until they go Bulgarian, then the target gets `--skip-slides`.
-- Diagrams are Mermaid. Charts are stacked bars with exact counts on the segments, drawn
-  by code from `data/rules.csv`; never plain, grouped or pie.
+- Figures and diagrams are drawn by `scripts/figures.py` and `scripts/paths.py` with
+  matplotlib and seaborn in the one deck style of `scripts/utils/style.py`. Charts are
+  stacked bars with exact counts on the segments, drawn from `data/rules.csv`; never
+  plain, grouped or pie.
 - Snippet markers in Python: `# [snippet: name]` and `# [/snippet]`, no nesting.
 - A new section with code is registered in `pyproject.toml` (`testpaths`, `pythonpath`,
   ruff `src`, pyright `include`/`extraPaths`): the one place that lists sections with code.
