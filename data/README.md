@@ -9,6 +9,7 @@ that section (`03-chaos/data/` holds the red cards, nobody else needs them).
 | `seventh.csv` | `bit, scope, context, name, rule, code` | 06 (epilogue: the seventh core if, counted beside `rules.csv`), `scripts/paths.py` |
 | `cast.csv` | `bit, requested_by, words, fragment` | 01 (the cast table beside the checkout), 04 (who asked for each bit), `scripts/paths.py` |
 | `examples.csv` | `scope, bit, name, given, then` | 03 (green cards), 06 (every `name` must have a `test_<name>`) |
+| `lines.csv` | `section, line` | `make lines` (each line must stand in its section's `index.md` and in `07-close/index.md`) |
 
 ## Conventions
 

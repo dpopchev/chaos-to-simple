@@ -89,13 +89,9 @@ ascii: ## Fail on a byte above 127 in code, config, data, prose
 	$(call log_done,no byte above 127)
 
 .PHONY: lines
-lines: ## Fail on a slide line over the width limit
-	@if [ -f scripts/check_lines.py ]; then \
-	  $(RUN) python -m scripts.check_lines --root .; \
-	else \
-	  $(call _log_line,$(YELLOW),WARN,scripts/check_lines.py missing -- lines check skipped) \
-	fi
-	$(call log_done,lines checked)
+lines: ## Check the six should-have-known lines in their sections and in 07
+	@$(RUN) python -m scripts.check_lines --root .
+	$(call log_done,the six lines are in their sections and in 07)
 
 .PHONY: doctor
 doctor: ## Report the deck toolchain and the fonts
