@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 51 | pruned: 1
+open path: W-017 > T-035   | blocked: 0 | todo roots: 0 | done: 51 | pruned: 1
 
 ## Tree
 
 ```text
-W-017  spike  [todo]     (standalone) storyline: which of the developer's principles, data and ranked visuals the talk adopts   (filed during T-033) -- T-035 [todo], T-036 [todo]
+W-017  spike  [doing]    (standalone) storyline: which of the developer's principles, data and ranked visuals the talk adopts   (filed during T-033) -- T-035 [doing]   <- ACTIVE LEAF, T-036 [todo]
 ```
 
 ## Closed
@@ -111,13 +111,14 @@ closed 2026-10-30 -- outcome: Given the repository, When grep -c import-mode 01-
 ## Diagram
 ```mermaid
 flowchart TD
-  W017["W-017 spike todo, standalone: storyline: which of the developer's principles, data and ranked visuals the talk adopts"]
-  W017 --> T035["T-035 todo: Write the suggestions into the repository -> docs/storyline.md"]
+  W017["W-017 spike doing, standalone: storyline: which of the developer's principles, data and ranked visuals the talk adopts"]
+  W017 --> T035["T-035 doing: Write the suggestions into the repository -> docs/storyline.md -- ACTIVE LEAF"]
   W017 --> T036["T-036 todo: Draft the root from the suggestions -> docs/storyline.md Plan section"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W017,T035,T036 todo
+  class W017,T035 doing
+  class T036 todo
 ```
