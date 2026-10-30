@@ -13,7 +13,7 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `preamble.tex` | footer path counter, smaller code font, no navigation symbols | the footer or the look changes |
 | `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range | never, unless the marker syntax changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
-| `index.md` | the opening question and the agenda; the title slide comes from `meta.yaml` | the agenda changes |
+| `index.md` | the opening: the message from past me, the raw checkout, the chat question and the route as the agenda; the title slide comes from `meta.yaml` | the opening changes |
 
 ## How a slide pulls code
 
