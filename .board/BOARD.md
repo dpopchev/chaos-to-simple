@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002   | blocked: 0 | todo roots: 0 | done: 16 | pruned: 0
+open path: E-002 > W-012 > T-021   | blocked: 0 | todo roots: 0 | done: 16 | pruned: 0
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
   W-011  issue  [todo]     04-what: the words become homes -- T-019 [todo], T-020 [todo]
-  W-012  issue  [todo]     05-how: I3, the false victory and the seam -- T-021 [todo], T-022 [todo]
+  W-012  issue  [doing]    05-how: I3, the false victory and the seam -- T-021 [doing]   <- ACTIVE LEAF, T-022 [todo]
   W-013  issue  [todo]     06-simple: the run of 72 and the seventh if -- T-023 [todo], T-028 [todo], T-029 [todo]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
   W-015  issue  [todo]     build: the targets and filter behaviour the checks assume -- T-026 [todo], T-027 [todo]
@@ -79,8 +79,8 @@ flowchart TD
   E002 --> W011["W-011 issue todo: 04-what: the words become homes"]
   W011 --> T019["T-019 todo: Render the contexts with their faces -> build/04-what/contexts.txt"]
   W011 --> T020["T-020 todo: Rewrite the 04 slides -> 04-what/index.md: the sentence, homes with faces, the line"]
-  E002 --> W012["W-012 issue todo: 05-how: I3, the false victory and the seam"]
-  W012 --> T021["T-021 todo: Write the I3 report -> 05-how/data/incident.txt"]
+  E002 --> W012["W-012 issue doing: 05-how: I3, the false victory and the seam"]
+  W012 --> T021["T-021 doing: Write the I3 report -> 05-how/data/incident.txt -- ACTIVE LEAF"]
   W012 --> T022["T-022 todo: Rewrite the 05 slides -> 05-how/index.md: I3, the class, the hidden bit, CQS, seam, line"]
   E002 --> W013["W-013 issue todo: 06-simple: the run of 72 and the seventh if"]
   W013 --> T023["T-023 todo: Add the seventh if beside the core, not inside it -> 06-simple/s06_simple/seventh.py"]
@@ -102,6 +102,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002 doing
-  class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
+  class E002,W012,T021 doing
+  class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,T022,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
 ```
