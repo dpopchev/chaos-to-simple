@@ -7,7 +7,7 @@ csv = false
 
 [landing]
 mode = "main"
-approver = "developer"
+approver = "agent"
 branch_id = "local"
 tag = "epic-close"
 ci = "none"
