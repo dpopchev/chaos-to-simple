@@ -16,3 +16,4 @@
 
 ## Deviations
 - 2026-10-30 E-002: W-016 and AC11 added at the burn on the developer's request: one matplotlib and seaborn style for every figure; T-014 redrawn in Python; W-008, W-009, W-010 wait on W-016
+- 2026-10-30 E-002: W-017 (spike, standalone) filed from the developer's mid-burn inbox note: storyline principles, data, exhibits and ranked visuals; it conflicts with E-002's exhibit texts and lines spelling; ordered by the developer at the close
