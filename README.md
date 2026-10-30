@@ -62,20 +62,29 @@ list of files in the Makefile (a second place to keep in order), `slides.md` per
 ## Build
 
 ```
-make doctor      which tools are present
-make sync        uv environment with pytest, pytest-cov, ruff, pyright, matplotlib
-make             check (ruff, pyright, pytest, ascii) then build/talk.pdf
-make draft       the PDF without the checks, for layout work
-make notes       the PDF with speaker notes on a second screen
-make artifacts   coverage report, counts, grid, chart
-make diagrams    Mermaid to PNG
+make help                 every target with its description (the default goal)
+make doctor               which tools are present and the fonts found
+make sync                 uv environment with pytest, ruff, pyright, matplotlib
+make check                every check: board, ruff, pyright, pytest, ascii
+make talk                 check, then build build/talk.pdf
+make deliverable          every deliverable: build/talk.pdf, not empty
+make draft                the PDF without the checks, for layout work
+make notes                build/talk-notes.pdf with speaker notes on a second screen
+make artifacts            coverage report, counts, grid, chart
+make diagrams             Mermaid to PNG under build/
 make new SECTION=08-name TITLE="Section title"
-make help
 ```
 
-Toolchain: `uv`, `pandoc` (3.x), a TeX distribution with `xelatex` and the DejaVu fonts
-(Cyrillic), and `mmdc` from `@mermaid-js/mermaid-cli` (`npm install -g
-@mermaid-js/mermaid-cli`) for the diagrams.
+Toolchain: `uv`, `pandoc` (3.x), `lualatex`, and the Adwaita Sans and Adwaita Mono fonts,
+which cover Latin and Cyrillic. `make doctor` reports what is missing. `mmdc` from
+`@mermaid-js/mermaid-cli` (`npm install -g @mermaid-js/mermaid-cli`) is optional: without
+it each Mermaid diagram becomes a warning placeholder image, so the deck still builds.
+
+Per-chapter loop: one board item per section, its brief the section's `README.md`. Scaffold
+the section with `make new`, write its `index.md` slides and code, run `make check`, then
+`make deliverable` before the item closes.
+
+Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pandoc`.
 
 ## Conventions
 
