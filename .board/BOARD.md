@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-015 > T-027   | blocked: 0 | todo roots: 0 | done: 24 | pruned: 0
+open path: E-002 > W-015   | blocked: 0 | todo roots: 0 | done: 25 | pruned: 0
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-012  issue  [done]     05-how: I3, the false victory and the seam -- T-021 [done], T-022 [done]
   W-013  issue  [done]     06-simple: the run of 72 and the seventh if -- T-023 [done], T-028 [done], T-029 [done]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
-  W-015  issue  [doing]    build: the targets and filter behaviour the checks assume -- T-026 [done], T-027 [doing]   <- ACTIVE LEAF
+  W-015  issue  [doing]    build: the targets and filter behaviour the checks assume -- T-026 [done], T-027 [done]
   W-016  issue  [todo]     plots: one matplotlib and seaborn style for every chart and diagram -- T-030 [todo], T-031 [todo], T-032 [todo], T-033 [todo]
 ```
 
@@ -91,7 +91,7 @@ flowchart TD
   W014 --> T025["T-025 todo: Rewrite the close -> 07-close/index.md: the six lines, where to go, Q&A"]
   E002 --> W015["W-015 issue doing: build: the targets and filter behaviour the checks assume"]
   W015 --> T026["T-026 done: Rename slides to talk, add K= to test, add the lines target -> Makefile, README.md"]
-  W015 --> T027["T-027 doing: Number a snippet by its file line -> 00-frontmatter/filters/include-code-files.lua -- ACTIVE LEAF"]
+  W015 --> T027["T-027 done: Number a snippet by its file line -> 00-frontmatter/filters/include-code-files.lua"]
   E002 --> W016["W-016 issue todo: plots: one matplotlib and seaborn style for every chart and diagram"]
   W016 --> T030["T-030 todo: Add the deck style -> scripts/utils/style.py, applied by the stacked bar"]
   W016 --> T031["T-031 todo: Draw the Stacey matrix in Python -> build/02-stacey/stacey.png"]
@@ -102,7 +102,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W015,T027 doing
-  class W012,T021,T022,W013,T023,T028,T029,T026 done
+  class E002,W015 doing
+  class W012,T021,T022,W013,T023,T028,T029,T026,T027 done
   class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W014,T024,T025,W016,T030,T031,T032,T033 todo
 ```
