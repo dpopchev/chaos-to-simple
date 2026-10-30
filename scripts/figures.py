@@ -1,6 +1,7 @@
 """Draw the deck's diagrams: make artifacts calls this.
 
     python -m scripts.figures stacey --out build/02-stacey/stacey.png
+    python -m scripts.figures story --out build/03-chaos/story.png
 """
 
 from __future__ import annotations
@@ -9,18 +10,18 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.figures import stacey
+from scripts.utils.figures import stacey, story
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    parser.add_argument("what", choices=["stacey"])
+    parser.add_argument("what", choices=["stacey", "story"])
     parser.add_argument("--out", type=Path, required=True, help="PNG file to write")
     args = parser.parse_args(argv)
 
-    stacey(args.out)
+    {"stacey": stacey, "story": story}[args.what](args.out)
     return 0
 
 

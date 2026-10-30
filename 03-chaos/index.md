@@ -2,7 +2,7 @@
 
 ## One story, nine sentences {paths=64}
 
-![](build/03-chaos/diagrams/story.png){height=80%}
+![](build/03-chaos/story.png){height=80%}
 
 ::: notes
 Domain storytelling: actors, work objects, numbered sentences, one concrete case. Tell it
