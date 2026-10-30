@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-006 > T-009   | blocked: 0 | todo roots: 0 | done: 14 | pruned: 0
+open path: W-006   | blocked: 0 | todo roots: 0 | done: 15 | pruned: 0
 
 ## Tree
 
 ```text
-W-006  issue  [doing]    (standalone) Slide pytest recipes repeat the pyproject addopts   (filed during T-008) -- T-009 [doing]   <- ACTIVE LEAF
+W-006  issue  [doing]    (standalone) Slide pytest recipes repeat the pyproject addopts   (filed during T-008) -- T-009 [done]
 ```
 
 ## Closed
@@ -47,11 +47,12 @@ closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, 
 ```mermaid
 flowchart TD
   W006["W-006 issue doing, standalone: Slide pytest recipes repeat the pyproject addopts"]
-  W006 --> T009["T-009 doing: Keep the pytest options in pyproject only -> grep counts 0 import-mode lines in 06-simple/section.mk -- ACTIVE LEAF"]
+  W006 --> T009["T-009 done: Keep the pytest options in pyproject only -> grep counts 0 import-mode lines in 06-simple/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W006,T009 doing
+  class W006 doing
+  class T009 done
 ```
