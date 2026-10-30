@@ -1,8 +1,21 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 16 | pruned: 0
+open path: none   | blocked: 0 | todo roots: 1 | done: 16 | pruned: 0
 
 ## Tree
+
+```text
+E-002         [todo]     The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name
+  W-007  issue  [todo]     01-bits: the protagonist, the cast of the ifs and the count to 64 -- T-010 [todo], T-011 [todo], T-012 [todo], T-013 [todo]
+  W-008  issue  [todo]     00-frontmatter: the message from past me and the route -- T-014 [todo], T-015 [todo]
+  W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
+  W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
+  W-011  issue  [todo]     04-what: the words become homes -- T-019 [todo], T-020 [todo]
+  W-012  issue  [todo]     05-how: I3, the false victory and the seam -- T-021 [todo], T-022 [todo]
+  W-013  issue  [todo]     06-simple: the run of 72 and the seventh if -- T-023 [todo], T-028 [todo], T-029 [todo]
+  W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
+  W-015  issue  [todo]     build: the targets and filter behaviour the checks assume -- T-026 [todo], T-027 [todo]
+```
 
 ## Closed
 
@@ -48,9 +61,40 @@ closed 2026-10-30 -- outcome: Given the repository, When grep -c import-mode 01-
 ## Diagram
 ```mermaid
 flowchart TD
+  E002["E-002 todo: The deck tells the storyline: past me, the cast of the ifs, three incidents closed by name"]
+  E002 --> W007["W-007 issue todo: 01-bits: the protagonist, the cast of the ifs and the count to 64"]
+  W007 --> T010["T-010 todo: Add the cast data and its renderer -> build/01-bits/cast.txt"]
+  W007 --> T011["T-011 todo: Rewrite the exhibit as past me left it -> test_chaos.py with his names, the I1 report"]
+  W007 --> T012["T-012 todo: Add the two-ifs zoom-in -> build/01-bits/two_ifs.txt"]
+  W007 --> T013["T-013 todo: Rewrite the 01 slides to the nine-slide format -> 01-bits/index.md, nine slides"]
+  E002 --> W008["W-008 issue todo: 00-frontmatter: the message from past me and the route"]
+  W008 --> T014["T-014 todo: Draw the route -> 00-frontmatter/diagrams/route.mmd, rendered by the generic rule"]
+  W008 --> T015["T-015 todo: Rewrite the opening -> 00-frontmatter/index.md: message, raw code, chat, route"]
+  E002 --> W009["W-009 issue todo: 02-stacey: which problem do I have"]
+  W009 --> T016["T-016 todo: Rewrite the 02 slides -> 02-stacey/index.md: instinct, matrix, map, route, the line"]
+  E002 --> W010["W-010 issue todo: 03-chaos: the room, the dispute decided and the honest count"]
+  W010 --> T017["T-017 todo: Rewrite the red cards -> 03-chaos/data/questions.md with question 3 decided"]
+  W010 --> T018["T-018 todo: Rewrite the 03 slides -> 03-chaos/index.md: room, six questions, effects, 512, table, line"]
+  E002 --> W011["W-011 issue todo: 04-what: the words become homes"]
+  W011 --> T019["T-019 todo: Render the contexts with their faces -> build/04-what/contexts.txt"]
+  W011 --> T020["T-020 todo: Rewrite the 04 slides -> 04-what/index.md: the sentence, homes with faces, the line"]
+  E002 --> W012["W-012 issue todo: 05-how: I3, the false victory and the seam"]
+  W012 --> T021["T-021 todo: Write the I3 report -> 05-how/data/incident.txt"]
+  W012 --> T022["T-022 todo: Rewrite the 05 slides -> 05-how/index.md: I3, the class, the hidden bit, CQS, seam, line"]
+  E002 --> W013["W-013 issue todo: 06-simple: the run of 72 and the seventh if"]
+  W013 --> T023["T-023 todo: Add the seventh if beside the core, not inside it -> 06-simple/s06_simple/seventh.py"]
+  W013 --> T028["T-028 todo: Render the epilogue counts -> build/06-simple/epilogue.txt"]
+  W013 --> T029["T-029 todo: Rewrite the 06 slides -> 06-simple/index.md: core, 64, the wounds, 72, epilogue, line"]
+  E002 --> W014["W-014 issue todo: 07-close: the six lines"]
+  W014 --> T024["T-024 todo: Check the lines against the sections -> scripts/check_lines.py, make lines"]
+  W014 --> T025["T-025 todo: Rewrite the close -> 07-close/index.md: the six lines, where to go, Q&A"]
+  E002 --> W015["W-015 issue todo: build: the targets and filter behaviour the checks assume"]
+  W015 --> T026["T-026 todo: Rename slides to talk, add K= to test, add the lines target -> Makefile, README.md"]
+  W015 --> T027["T-027 todo: Number a snippet by its file line -> 00-frontmatter/filters/include-code-files.lua"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E002,W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027 todo
 ```
