@@ -1,0 +1,15 @@
+# .board/board.toml -- how this repository's board is kept (skills/board/local.md).
+# Written by `board bind` from the developer's answers (2026-10-30): local only.
+
+[views]
+kanban = false
+csv = false
+
+[landing]
+mode = "main"
+approver = "developer"
+branch_id = "local"
+tag = "epic-close"
+ci = "none"
+max_branch_days = 1
+gate = "make check"
