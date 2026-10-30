@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-013 > T-028   | blocked: 0 | todo roots: 0 | done: 20 | pruned: 0
+open path: E-002 > W-013 > T-029   | blocked: 0 | todo roots: 0 | done: 21 | pruned: 0
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
   W-011  issue  [todo]     04-what: the words become homes -- T-019 [todo], T-020 [todo]
   W-012  issue  [done]     05-how: I3, the false victory and the seam -- T-021 [done], T-022 [done]
-  W-013  issue  [doing]    06-simple: the run of 72 and the seventh if -- T-023 [done], T-028 [doing]   <- ACTIVE LEAF, T-029 [todo]
+  W-013  issue  [doing]    06-simple: the run of 72 and the seventh if -- T-023 [done], T-028 [done], T-029 [doing]   <- ACTIVE LEAF
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
   W-015  issue  [todo]     build: the targets and filter behaviour the checks assume -- T-026 [todo], T-027 [todo]
   W-016  issue  [todo]     plots: one matplotlib and seaborn style for every chart and diagram -- T-030 [todo], T-031 [todo], T-032 [todo], T-033 [todo]
@@ -84,8 +84,8 @@ flowchart TD
   W012 --> T022["T-022 done: Rewrite the 05 slides -> 05-how/index.md: I3, the class, the hidden bit, CQS, seam, line"]
   E002 --> W013["W-013 issue doing: 06-simple: the run of 72 and the seventh if"]
   W013 --> T023["T-023 done: Add the seventh if beside the core, not inside it -> 06-simple/s06_simple/seventh.py"]
-  W013 --> T028["T-028 doing: Render the epilogue counts -> build/06-simple/epilogue.txt -- ACTIVE LEAF"]
-  W013 --> T029["T-029 todo: Rewrite the 06 slides -> 06-simple/index.md: core, 64, the wounds, 72, epilogue, line"]
+  W013 --> T028["T-028 done: Render the epilogue counts -> build/06-simple/epilogue.txt"]
+  W013 --> T029["T-029 doing: Rewrite the 06 slides -> 06-simple/index.md: core, 64, the wounds, 72, epilogue, line -- ACTIVE LEAF"]
   E002 --> W014["W-014 issue todo: 07-close: the six lines"]
   W014 --> T024["T-024 todo: Check the lines against the sections -> scripts/check_lines.py, make lines"]
   W014 --> T025["T-025 todo: Rewrite the close -> 07-close/index.md: the six lines, where to go, Q&A"]
@@ -102,7 +102,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W013,T028 doing
-  class W012,T021,T022,T023 done
-  class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,T029,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
+  class E002,W013,T029 doing
+  class W012,T021,T022,T023,T028 done
+  class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
 ```
