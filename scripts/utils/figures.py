@@ -32,6 +32,79 @@ SENTENCES = (
 )
 
 
+# (short name, footer counter) of each section, left to right.
+SECTIONS = (
+    ("00 pride", "?"),
+    ("01 bits", "64"),
+    ("02 which problem", "64"),
+    ("03 the room", "512"),
+    ("04 homes", "512"),
+    ("05 the seam", "512"),
+    ("06 simple", "72"),
+    ("07 six lines", "72"),
+)
+
+# section index -> the incident on the arrow into it.
+INCIDENTS = {
+    1: "I1: free shipping under 50",
+    3: "I2: before or after the discount?",
+    5: "I3: charged, no parcel",
+}
+
+
+def route(out: Path) -> None:
+    """Draw the route of the talk: eight section boxes in two rows, the incidents on the arrows."""
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    colours = style.palette()
+    counter_colour = {"?": colours[3], "64": colours[0], "512": colours[1], "72": colours[2]}
+    per_row = 4
+    step, half_w, half_h = 3.4, 1.25, 0.55
+    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    spots = [(i % per_row * step, -(i // per_row) * 2.6) for i in range(len(SECTIONS))]
+    for i, (name, counter) in enumerate(SECTIONS):
+        x, y = spots[i]
+        ax.add_patch(
+            FancyBboxPatch(
+                (x - half_w, y - half_h),
+                2 * half_w,
+                2 * half_h,
+                boxstyle="round,pad=0.05,rounding_size=0.2",
+                facecolor=counter_colour[counter],
+                edgecolor="none",
+            )
+        )
+        ax.text(x, y, f"{name}\n{counter}", ha="center", va="center", fontsize=12, color="white")
+    for i in range(1, len(SECTIONS)):
+        (x0, y0), (x1, y1) = spots[i - 1], spots[i]
+        props = {"arrowstyle": "-|>", "color": "grey", "linewidth": 1.5}
+        if y1 != y0:
+            mid = (y0 + y1) / 2
+            ax.plot([x0, x0, x1], [y0 - half_h - 0.1, mid, mid], color="grey", linewidth=1.5)
+            start, end = (x1, mid), (x1, y1 + half_h + 0.1)
+        else:
+            start, end = (x0 + half_w + 0.15, y0), (x1 - half_w - 0.15, y1)
+        ax.annotate("", end, start, arrowprops=props)
+        if i in INCIDENTS:
+            head, tail = INCIDENTS[i].split(": ")
+            ax.text(
+                (start[0] + end[0]) / 2,
+                y1 + half_h + 0.2,
+                f"{head}\n{tail}",
+                ha="center",
+                va="bottom",
+                fontsize=10,
+                style="italic",
+            )
+    ax.set_xlim(-half_w - 0.2, 3 * step + half_w + 0.2)
+    ax.set_ylim(-3.2, 1.6)
+    ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+
+
 def story(out: Path) -> None:
     """Draw the domain story as a sequence: five lifelines, nine sentences top to bottom."""
     style.apply()
