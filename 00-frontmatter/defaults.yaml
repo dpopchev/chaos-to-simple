@@ -1,0 +1,17 @@
+# pandoc defaults for the deck. Every path is relative to the repo root: run make from there.
+from: markdown+raw_tex
+to: beamer
+pdf-engine: xelatex
+slide-level: 2
+standalone: true
+metadata-files:
+  - 00-frontmatter/meta.yaml
+include-in-header:
+  - 00-frontmatter/preamble.tex
+filters:
+  - 00-frontmatter/filters/include-code-files.lua
+  - 00-frontmatter/filters/paths-footer.lua
+resource-path:
+  - .
+  - build
+highlight-style: tango

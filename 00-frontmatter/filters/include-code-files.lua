@@ -1,0 +1,106 @@
+-- include-code-files.lua: fill a fenced code block from a file, so a slide never
+-- carries a pasted copy of code that the tests do not see.
+--
+--   ```{.python include=01-bits/s01_bits/chaos.py}                  whole file
+--   ```{.python include=01-bits/s01_bits/chaos.py snippet=checkout} between markers
+--   ```{.python include=path start-line=3 end-line=9}               by line numbers
+--
+-- Snippet markers are comment lines in the source:
+--   # [snippet: checkout]
+--   ...
+--   # [/snippet]
+-- Markers are dropped, the block is dedented, snippets do not nest, and a missing
+-- file or marker aborts the build (pandoc exits non-zero on error()).
+-- Paths are relative to the directory make runs from: the repo root.
+
+local function read_lines(path)
+  local fh = io.open(path, "r")
+  if not fh then
+    error("include-code-files: cannot open " .. path)
+  end
+  local lines = {}
+  for line in fh:lines() do
+    lines[#lines + 1] = line
+  end
+  fh:close()
+  return lines
+end
+
+local function slice_snippet(lines, name, path)
+  local out, inside, found = {}, false, false
+  local open_marker = "[snippet: " .. name .. "]"
+  for _, line in ipairs(lines) do
+    if inside and line:find("[/snippet]", 1, true) then
+      inside = false
+    elseif inside then
+      out[#out + 1] = line
+    elseif line:find(open_marker, 1, true) then
+      inside, found = true, true
+    end
+  end
+  if not found then
+    error("include-code-files: no snippet '" .. name .. "' in " .. path)
+  end
+  if inside then
+    error("include-code-files: snippet '" .. name .. "' in " .. path .. " is not closed")
+  end
+  return out
+end
+
+local function slice_lines(lines, first, last)
+  local out = {}
+  for i = first, math.min(last, #lines) do
+    out[#out + 1] = lines[i]
+  end
+  return out
+end
+
+local function dedent(lines)
+  local min
+  for _, line in ipairs(lines) do
+    if line:match("%S") then
+      local indent = #line:match("^%s*")
+      if min == nil or indent < min then
+        min = indent
+      end
+    end
+  end
+  min = min or 0
+  local out = {}
+  for _, line in ipairs(lines) do
+    out[#out + 1] = line:sub(min + 1)
+  end
+  return out
+end
+
+local function trim_blank_edges(lines)
+  while #lines > 0 and not lines[1]:match("%S") do
+    table.remove(lines, 1)
+  end
+  while #lines > 0 and not lines[#lines]:match("%S") do
+    table.remove(lines)
+  end
+  return lines
+end
+
+function CodeBlock(cb)
+  local path = cb.attributes["include"]
+  if path == nil then
+    return nil
+  end
+  local lines = read_lines(path)
+  if cb.attributes["snippet"] then
+    lines = slice_snippet(lines, cb.attributes["snippet"], path)
+  elseif cb.attributes["start-line"] or cb.attributes["end-line"] then
+    local first = tonumber(cb.attributes["start-line"] or 1)
+    local last = tonumber(cb.attributes["end-line"] or #lines)
+    lines = slice_lines(lines, first, last)
+  end
+  lines = dedent(trim_blank_edges(lines))
+  cb.text = table.concat(lines, "\n")
+  cb.attributes["include"] = nil
+  cb.attributes["snippet"] = nil
+  cb.attributes["start-line"] = nil
+  cb.attributes["end-line"] = nil
+  return cb
+end

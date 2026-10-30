@@ -1,0 +1,42 @@
+[project]
+name = "chaos-to-simple"
+version = "0.1.0"
+description = "Slides and tested snippets for the DEV.BG talk: Python, from chaos to simple, one bit at a time"
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+  "pytest>=8",
+  "pytest-cov>=5",
+  "ruff>=0.6",
+  "pyright>=1.1",
+  "matplotlib>=3.9",
+]
+
+[tool.uv]
+# A slides repo: nothing to build into a wheel, uv only manages the environment.
+package = false
+
+[tool.pytest.ini_options]
+addopts = "-q --import-mode=importlib --strict-markers"
+# One entry per section that carries code. Sections without code (02, 03, 07) are absent on purpose.
+testpaths = ["scripts/tests", "01-bits/tests", "04-what/tests", "05-how/tests", "06-simple/tests"]
+pythonpath = [".", "01-bits", "04-what", "05-how", "06-simple"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = [".", "01-bits", "04-what", "05-how", "06-simple"]
+extend-exclude = ["build", "local", "templates"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "standard"
+include = ["scripts", "01-bits", "04-what", "05-how", "06-simple"]
+extraPaths = [".", "01-bits", "04-what", "05-how", "06-simple"]
+venvPath = "."
+venv = ".venv"

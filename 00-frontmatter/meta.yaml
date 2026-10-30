@@ -1,0 +1,17 @@
+# Deck metadata. pandoc reads this through defaults.yaml; nothing here is section specific.
+title: "Python: From chaos to simple, one bit at a time"
+subtitle: "or what I should have known from the start"
+author: "Dimitar Popchev"
+institute: "DEV.BG Python user group, online"
+date: "2026-11-05"
+# Slide language. Switch to bg-BG together with the slide text; the fonts below cover Cyrillic,
+# and `make ascii` then needs --skip-slides (see the Makefile ascii target).
+lang: en-US
+aspectratio: 169
+theme: default
+fontsize: 10pt
+mainfont: "DejaVu Sans"
+monofont: "DejaVu Sans Mono"
+monofontoptions:
+  - Scale=0.85
+colorlinks: true

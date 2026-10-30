@@ -1,0 +1,15 @@
+scope,bit,name,given,then
+core,b0,coupon_valid_today,"goods 60, coupon valid until today",goods 50
+core,b0,coupon_expired_yesterday,"goods 60, coupon expired yesterday",goods 60
+core,b1,member_after_coupon,"goods 60, valid coupon, member",goods 45
+core,b0,coupon_never_below_zero,"goods 5, valid coupon",goods 0
+core,b2,free_shipping_after_discount,"goods 55, valid coupon, domestic",shipping 5
+core,b2,free_shipping_at_threshold,"goods 50, no coupon, domestic",shipping 0
+core,b3,international_zone,"goods 20, international",shipping 20
+core,b4,gift_wrap_on_free_shipping,"goods 100, gift wrap, domestic",shipping 3
+core,b5,vat_without_id,"goods 40, domestic, no VAT ID",total 54.00
+core,b5,vat_exempt_with_id,"goods 40, domestic, VAT ID",total 45.00
+shell,s1,out_of_stock_rejects_before_payment,"a priced order, warehouse out of stock",Rejected and nothing charged
+shell,s0,declined_payment_rejects,"stock reserved, provider declines",Rejected and no mail sent
+shell,s2,bounced_mail_still_accepts,"reserved and charged, mail bounces",Accepted with confirmed False
+shell,s0,happy_path_accepts,"reserved, charged, mail sent",Accepted with confirmed True

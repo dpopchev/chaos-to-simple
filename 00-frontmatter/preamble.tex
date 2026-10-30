@@ -1,0 +1,27 @@
+% Beamer additions for the deck. Kept small on purpose; the theme does the rest.
+
+% Footer path counter. A slide header carrying {paths=N} becomes \pathcount{N} through
+% filters/paths-footer.lua; the value persists until the next slide that sets it.
+\gdef\currentpaths{?}
+\newcommand{\pathcount}[1]{\gdef\currentpaths{#1}}
+\newcommand{\deckshort}{From chaos to simple}
+
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.55\paperwidth,ht=2.4ex,dp=1ex,left,leftskip=1em]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\deckshort
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.4ex,dp=1ex,right,rightskip=1em]{title in head/foot}%
+      \usebeamerfont{title in head/foot}paths to reason about: \currentpaths%
+      \hspace{1.5em}\insertframenumber/\inserttotalframenumber
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+
+% Code blocks a size smaller, so a twenty-line snippet fits a 16:9 frame.
+\usepackage{etoolbox}
+\AtBeginEnvironment{Shaded}{\footnotesize}
+\AtBeginEnvironment{verbatim}{\footnotesize}

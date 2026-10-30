@@ -1,0 +1,15 @@
+sequenceDiagram
+    actor Customer
+    participant Shop
+    participant Warehouse
+    participant Payment as Payment provider
+    participant Mailer
+    Customer->>Shop: 1. places an order: cart, coupon, address, VAT ID
+    Shop->>Shop: 2. prices the order: six rules
+    Shop->>Warehouse: 3. reserves the parcel
+    Warehouse-->>Shop: 4. Reserved or OutOfStock
+    Shop->>Payment: 5. charges the total
+    Payment-->>Shop: 6. Charged or Declined
+    Shop->>Mailer: 7. sends the confirmation
+    Mailer-->>Shop: 8. Sent or Bounced
+    Shop-->>Customer: 9. Accepted or Rejected

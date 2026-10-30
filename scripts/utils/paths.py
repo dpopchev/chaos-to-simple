@@ -1,0 +1,156 @@
+"""Path arithmetic for the talk.
+
+The bit inventory lives in data/rules.csv. This module turns it into the numbers
+and tables the slides include: how many paths one function has, how many the
+split has, the 64-path grid, and the stacked bar.
+"""
+
+from __future__ import annotations
+
+import csv
+from collections.abc import Iterable, Sequence
+from dataclasses import dataclass, fields
+from pathlib import Path
+
+
+@dataclass(frozen=True)
+class Rule:
+    bit: str
+    scope: str
+    context: str
+    name: str
+    rule: str
+    code: str
+
+
+def load_rules(path: Path) -> list[Rule]:
+    names = [f.name for f in fields(Rule)]
+    with path.open(newline="", encoding="ascii") as fh:
+        return [Rule(**{name: row[name] for name in names}) for row in csv.DictReader(fh)]
+
+
+def tangled(bits: int) -> int:
+    """Decisions in one function multiply: n bits are 2**n paths."""
+    return 2**bits
+
+
+def split(groups: Iterable[int]) -> int:
+    """Decisions behind a value boundary add: the sum of 2**bits per group."""
+    return sum(2**g for g in groups)
+
+
+def bits_by(rules: Sequence[Rule], key: str) -> dict[str, int]:
+    """Bits per value of a Rule field, in order of first appearance."""
+    counts: dict[str, int] = {}
+    for rule in rules:
+        value = getattr(rule, key)
+        counts[value] = counts.get(value, 0) + 1
+    return counts
+
+
+def rules_table(rules: Sequence[Rule]) -> str:
+    """The glossary: bit, context, name and the code that carries it."""
+    columns = ("bit", "context", "name", "code")
+    rows = [columns, *[tuple(getattr(r, c) for c in columns) for r in rules]]
+    widths = [max(len(row[i]) for row in rows) for i in range(len(columns))]
+    lines = [
+        "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def count_report(rules: Sequence[Rule]) -> str:
+    """Three ways to count the same bits: tangled, core | shell, contexts | shell."""
+    core = [r for r in rules if r.scope == "core"]
+    shell = [r for r in rules if r.scope == "shell"]
+    contexts = bits_by(core, "context")
+    lines = ["scope  context   bits        paths"]
+    for context, n in contexts.items():
+        names = " ".join(r.bit for r in core if r.context == context)
+        lines.append(f"core   {context:<9} {names:<11} {tangled(n):>5}")
+    shell_names = " ".join(r.bit for r in shell)
+    lines.append(f"shell  effects   {shell_names:<11} {tangled(len(shell)):>5}")
+    lines.append("")
+    n = len(rules)
+    lines.append(f"one function, {n} bits:  2^{n} = {tangled(n)}")
+    lines.append(
+        f"core | shell:           2^{len(core)} + 2^{len(shell)}"
+        f" = {tangled(len(core))} + {tangled(len(shell))} = {split([len(core), len(shell)])}"
+    )
+    parts = [tangled(n) for n in contexts.values()] + [tangled(len(shell))]
+    lines.append(f"contexts | shell:       {' + '.join(str(p) for p in parts)} = {sum(parts)}")
+    return "\n".join(lines) + "\n"
+
+
+def grid(bits: int, columns: int = 8) -> str:
+    """Every path as a bit string, so 64 stops being an abstraction."""
+    cells = [f"{n:0{bits}b}" for n in range(tangled(bits))]
+    rows = [" ".join(cells[i : i + columns]) for i in range(0, len(cells), columns)]
+    return "\n".join(rows) + "\n"
+
+
+Segment = tuple[str, int]
+Bar = tuple[str, Sequence[Segment]]
+
+
+def bars_from_rules(rules: Sequence[Rule]) -> list[Bar]:
+    """The three bars of the closing chart, derived from the inventory."""
+    core = [r for r in rules if r.scope == "core"]
+    shell = [r for r in rules if r.scope == "shell"]
+    contexts = bits_by(core, "context")
+    return [
+        ("one function", [(f"{len(rules)} bits tangled", tangled(len(rules)))]),
+        (
+            "core + shell",
+            [
+                (f"core {len(core)} bits", tangled(len(core))),
+                (f"shell {len(shell)} bits", tangled(len(shell))),
+            ],
+        ),
+        (
+            "contexts + shell",
+            [
+                *[(context, tangled(n)) for context, n in contexts.items()],
+                ("shell", tangled(len(shell))),
+            ],
+        ),
+    ]
+
+
+def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason about") -> None:
+    """A stacked bar per way of counting, every segment labelled with its exact count.
+
+    A segment too thin to carry its label inside gets it in a note beside the bar.
+    """
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    top = max(sum(value for _, value in segments) for _, segments in bars)
+    fig, ax = plt.subplots(figsize=(8, 4.5), dpi=150)
+    for x, (label, segments) in enumerate(bars):
+        bottom = 0
+        beside: list[str] = []
+        for name, value in segments:
+            ax.bar(x, value, bottom=bottom, width=0.6, edgecolor="white", linewidth=0.8)
+            if value >= 0.08 * top:
+                label_y = bottom + value / 2
+                ax.text(x, label_y, f"{name}: {value}", ha="center", va="center", fontsize=8)
+            else:
+                beside.append(f"{name}: {value}")
+            bottom += value
+        ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=11, fontweight="bold")
+        if beside:
+            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=8)
+        ax.text(x, -0.02 * top, label, ha="center", va="top")
+    ax.set_xticks([])
+    ax.set_xlim(-0.5, len(bars) - 0.2)
+    ax.set_ylabel(title)
+    ax.set_title(title)
+    for side in ("top", "right", "bottom"):
+        ax.spines[side].set_visible(False)
+    fig.tight_layout()
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out)
+    plt.close(fig)

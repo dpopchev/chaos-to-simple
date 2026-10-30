@@ -1,0 +1,10 @@
+bit,scope,context,name,rule,code
+b0,core,pricing,coupon,A coupon valid today takes 10 BGN off the goods,coupon.is_valid_on(today)
+b1,core,pricing,member,"A loyalty member gets 10% off, applied after the coupon",member
+b2,core,shipping,free_shipping,Shipping is free when the discounted goods come to 50 BGN or more,discounted_goods >= FREE_SHIPPING_FROM
+b3,core,shipping,zone,"Domestic shipping costs 5 BGN, international 20 BGN",Zone.DOMESTIC | Zone.INTERNATIONAL
+b4,core,shipping,gift_wrap,Gift wrap adds 3 BGN to the parcel,gift_wrap
+b5,core,tax,vat,"Orders with a VAT ID are exempt, all others pay 20% VAT on goods and shipping",vat_id is None
+s0,shell,payment,charge,The payment provider answers Charged or Declined,Charged | Declined
+s1,shell,warehouse,reserve,The warehouse answers Reserved or OutOfStock,Reserved | OutOfStock
+s2,shell,mail,confirm,The mailer answers Sent or Bounced,Sent | Bounced
