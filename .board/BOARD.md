@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-016 > T-032   | blocked: 0 | todo roots: 0 | done: 36 | pruned: 1
+open path: E-002 > W-016 > T-033   | blocked: 0 | todo roots: 0 | done: 37 | pruned: 1
 
 ## Tree
 
@@ -15,7 +15,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-013  issue  [done]     06-simple: the run of 72 and the seventh if -- T-023 [done], T-028 [done], T-029 [done]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
   W-015  issue  [done]     build: the targets and filter behaviour the checks assume -- T-026 [done], T-027 [done]
-  W-016  issue  [doing]    plots: one matplotlib and seaborn style for every chart and diagram -- T-030 [pruned]   [pruned: frozen Check '-> passes' compares the literal text and the run prints '4 passed'; the work stands in 734ef74 and closes under T-034], T-031 [done], T-032 [doing]   <- ACTIVE LEAF, T-033 [todo], T-034 [done]
+  W-016  issue  [doing]    plots: one matplotlib and seaborn style for every chart and diagram -- T-030 [pruned]   [pruned: frozen Check '-> passes' compares the literal text and the run prints '4 passed'; the work stands in 734ef74 and closes under T-034], T-031 [done], T-032 [done], T-033 [doing]   <- ACTIVE LEAF, T-034 [done]
 ```
 
 ## Closed
@@ -95,16 +95,16 @@ flowchart TD
   E002 --> W016["W-016 issue doing: plots: one matplotlib and seaborn style for every chart and diagram"]
   W016 --> T030["T-030 pruned: Add the deck style -> scripts/utils/style.py, applied by the stacked bar"]
   W016 --> T031["T-031 done: Draw the Stacey matrix in Python -> build/02-stacey/stacey.png"]
-  W016 --> T032["T-032 doing: Draw the story in Python -> build/03-chaos/story.png -- ACTIVE LEAF"]
-  W016 --> T033["T-033 todo: Drop the Mermaid rule -> mk/deck.mk, README.md, CLAUDE.md without mmdc"]
+  W016 --> T032["T-032 done: Draw the story in Python -> build/03-chaos/story.png"]
+  W016 --> T033["T-033 doing: Drop the Mermaid rule -> mk/deck.mk, README.md, CLAUDE.md without mmdc -- ACTIVE LEAF"]
   W016 --> T034["T-034 done: Close the deck style on an exit-status Check -> scripts/utils/style.py at 734ef74"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W016,T032 doing
-  class W007,T010,T011,T012,T013,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027,T031,T034 done
-  class W008,T014,T015,W009,T016,W010,T017,T018,W014,T024,T025,T033 todo
+  class E002,W016,T033 doing
+  class W007,T010,T011,T012,T013,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027,T031,T032,T034 done
+  class W008,T014,T015,W009,T016,W010,T017,T018,W014,T024,T025 todo
   class T030 pruned
 ```
