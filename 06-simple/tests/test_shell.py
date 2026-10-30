@@ -41,11 +41,15 @@ def test_every_shell_example_has_a_test() -> None:
     assert missing_tests(example_names(EXAMPLES, scope="shell"), globals()) == []
 
 
+# [snippet: wound-i3]
 def test_out_of_stock_rejects_before_payment(plain: Request, today: date) -> None:
     gateway = FakeGateway()
     outcome = checkout(plain, today, gateway, FakeInventory(out_of_stock=True), FakeMailer())
     assert outcome == Rejected("out of stock: book")
     assert gateway.charged == []
+
+
+# [/snippet]
 
 
 def test_declined_payment_rejects(plain: Request, today: date) -> None:

@@ -50,8 +50,12 @@ def test_coupon_never_below_zero(order: Order, today: date) -> None:
     assert price(order(goods=bgn(5), coupon=valid(today)), today).goods == 0
 
 
+# [snippet: wound-i1]
 def test_free_shipping_after_discount(order: Order, today: date) -> None:
     assert price(order(goods=bgn(55), coupon=valid(today)), today).shipping == 5
+
+
+# [/snippet]
 
 
 def test_free_shipping_at_threshold(order: Order, today: date) -> None:
