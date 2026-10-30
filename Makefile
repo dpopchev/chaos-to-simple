@@ -1,133 +1,181 @@
-### chaos-to-simple: one deck, built by pandoc from one index.md per section.
-### Run every target from the repo root; all paths inside the sections are root-relative.
-SHELL := bash
+.SUFFIXES:
+.DELETE_ON_ERROR:
+
+SHELL       := /usr/bin/env bash
 .SHELLFLAGS := -eu -o pipefail -c
-MAKEFLAGS += --no-builtin-rules --no-print-directory
-.DEFAULT_GOAL := all
 
-### Toolchain (override on the command line: make PANDOC=/opt/pandoc/bin/pandoc)
-UV     ?= uv
-PANDOC ?= pandoc
-MMDC   ?= mmdc
-PY     := $(UV) run python
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules --no-builtin-variables
+MAKEFLAGS += --output-sync=target
 
-### Layout: the frontmatter owns the configuration, every other NN-* directory is one section
-FRONT    := 00-frontmatter
-DEFAULTS := $(FRONT)/defaults.yaml
-META     := $(FRONT)/meta.yaml
-PREAMBLE := $(FRONT)/preamble.tex
-FILTERS  := $(sort $(wildcard $(FRONT)/filters/*.lua))
-SECTIONS := $(sort $(wildcard [0-9][0-9]-*))
-INDEXES  := $(sort $(wildcard [0-9][0-9]-*/index.md))
-MMD      := $(sort $(wildcard [0-9][0-9]-*/diagrams/*.mmd))
-DIAGRAMS := $(patsubst %.mmd,build/%.png,$(MMD))
-RULES    := data/rules.csv
-SHARED   := build/data/rules.txt build/data/counts.txt
-ARTIFACTS := $(SHARED)
-PDF      := build/talk.pdf
-NOTES    := build/talk-notes.pdf
+.DEFAULT_GOAL := help
 
-### Logging: log_ok closes every target, log_warn only when the reader must act
-log_ok   = printf 'ok    %s\n' '$(1)'
-log_warn = printf 'warn  %s\n' '$(1)'
+# ------------------------------------------------------------------------------
+# Logging
+# ------------------------------------------------------------------------------
 
-### Section rules: a section that generates artifacts declares them in its own section.mk
-### (it appends to ARTIFACTS and writes only under build/<section>/). Included before the
-### deck rule so the deck depends on every artifact.
--include $(wildcard [0-9][0-9]-*/section.mk)
+BOLD   := \033[1m
+CYAN   := \033[36m
+GREEN  := \033[32m
+YELLOW := \033[33m
+RED    := \033[31m
+RESET  := \033[0m
 
-.PHONY: all slides draft notes check lint type test ascii artifacts diagrams sync doctor clean new help
+# Suppress --warn-undefined-variables false positives for $(call) arguments
+1 :=
+2 :=
+3 :=
 
-all: check slides ## check the snippets, then build the deck (default)
+# The `@` lives inside the define: call log_done / log_warn WITHOUT a leading `@`.
+# A literal comma inside the message is $(comma) -- make splits $(call) on commas.
+comma := ,
 
-slides: $(PDF) ## build build/talk.pdf
+# _log_line is the one home of the log format: a shell body of ONE logical line,
+# no leading `@`, so another recipe's compound shell line can call it too.
+define _log_line
+	  _tag="[$(2)]"; \
+	  _msg="$(3)"; \
+	  if _c=$$(tput cols 2>/dev/null); then _cols=$$_c; else _cols=80; fi; \
+	  _max=$$(( _cols - $${#_tag} - 4 )); \
+	  if [ $${#_msg} -gt $$_max ] && [ $$_max -gt 0 ]; then \
+	    _msg="$${_msg:0:$$_max}..."; \
+	  fi; \
+	  printf "$(BOLD)$(1)%s$(RESET) %s\n" "$$_tag" "$$_msg" >&2;
+endef
 
-$(PDF): $(INDEXES) $(META) $(DEFAULTS) $(PREAMBLE) $(FILTERS) $(DIAGRAMS) $(ARTIFACTS) | build
-	$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $@
-	@$(call log_ok,$@ from $(words $(INDEXES)) index files)
+define _log_raw
+	@{ $(call _log_line,$(1),$(2),$(3)) }
+endef
 
-draft: $(DIAGRAMS) $(ARTIFACTS) | build ## build the deck without make check
-	$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $(PDF)
-	@$(call log_warn,draft deck: snippets were not checked; run make check before presenting)
-	@$(call log_ok,$(PDF))
+# [DONE] closes every target and names the artifact; [INFO] reports a step on the
+# way; [WARN] only for an actionable, handled condition. The tags are four letters
+# wide. There is no log_error: a failure breaks the recipe.
+log_done = $(call _log_raw,$(GREEN),DONE,$(1))
+log_info = $(call _log_raw,$(CYAN),INFO,$(1))
+log_warn = $(call _log_raw,$(YELLOW),WARN,$(1))
 
-notes: $(DIAGRAMS) $(ARTIFACTS) | build ## build build/talk-notes.pdf with the speaker notes shown
-	$(PANDOC) --defaults $(DEFAULTS) --variable 'beameroption=show notes on second screen=right' $(INDEXES) -o $(NOTES)
-	@$(call log_ok,$(NOTES))
+# ------------------------------------------------------------------------------
+### Help
+# ------------------------------------------------------------------------------
 
-### Shared data renders once into build/data/; any section may include those files
-build/data/rules.txt: $(RULES) scripts/paths.py scripts/utils/paths.py | build
-	@mkdir -p $(@D)
-	$(PY) -m scripts.paths rules --rules $(RULES) --out $@
-	@$(call log_ok,$@)
+# A `###` banner names a help section; a `## description` after a target lists it.
+# Every file in MAKEFILE_LIST is read (grep -h), so an included mk/*.mk shows too.
+# %-30s: the padded field holds 9 invisible color bytes, leaving 21 visible columns.
+.PHONY: help
+help: ## Show this help
+	@grep -hE '^(###[ ].+|[a-zA-Z0-9_%/-]+:.*##[^#])' $(MAKEFILE_LIST) \
+	  | sed -E \
+	      -e 's|^### (.+)|\x1b[1;36m\1\x1b[0m|' \
+	      -e 's|^([a-zA-Z0-9_%/-]+):.*## (.+)|  \x1b[32m\1\x1b[0m:\2|' \
+	  | awk -F: '{ \
+	      if ($$0 !~ /:/) { printf "\n%s\n", $$0 } \
+	      else { printf "  %-30s %s\n", $$1, $$2 } \
+	    }'
 
-build/data/counts.txt: $(RULES) scripts/paths.py scripts/utils/paths.py | build
-	@mkdir -p $(@D)
-	$(PY) -m scripts.paths counts --rules $(RULES) --out $@
-	@$(call log_ok,$@)
+# ------------------------------------------------------------------------------
+### Environment
+# ------------------------------------------------------------------------------
 
-### Diagrams: Mermaid sources next to the slides, rendered by mermaid-cli into build/
-build/%.png: %.mmd | build
-	@mkdir -p $(@D)
-	$(MMDC) -i $< -o $@ -b white -s 2 >/dev/null
-	@$(call log_ok,$@)
+# uv runs the board checker (a PEP 723 script) with no project of this repo.
+UV := uv
 
-diagrams: $(DIAGRAMS) ## render every diagrams/*.mmd
-	@$(call log_ok,diagrams)
+# Directory convention (rules/makefile.md -> Directories):
+#   $(BUILD) the end product -- `make clean` removes it whole
+#   $(LOCAL) machine-local and interim: inputs, state, keys, scratch, tool
+#            residuals -- never tracked; make clean removes only state/ and
+#            the layers' residuals
+#   $(STATE) interim results and artifacts of any step, when a step needs
+#            them -- written by explicit file targets
+BUILD ?= build
+LOCAL ?= local
+OUT     := $(BUILD)/outputs
+REPORTS := $(BUILD)/reports
+STATE   := $(LOCAL)/state
 
-artifacts: $(ARTIFACTS) ## generate every included artifact (coverage demo, counts, chart)
-	@$(call log_ok,artifacts)
+$(LOCAL):
+	@mkdir -p $(LOCAL)/keys $(LOCAL)/scratch $(LOCAL)/inputs $(STATE)
+	$(call log_warn,created $(LOCAL)/ -- inputs/$(comma) state/$(comma) keys/ and scratch/ live here; git-ignored$(comma) make clean removes only state/)
 
-### Checks: ruff + pyright + pytest + ascii. No board in this repo, so no board-check.
-check: lint type test ascii ## run every check
-	@$(call log_ok,check)
+$(OUT) $(REPORTS) $(STATE):
+	@mkdir -p $@
+	$(call log_warn,created $@/ -- an artifact directory$(comma) removed by make clean)
 
-lint: ## ruff check and ruff format --check
-	$(UV) run ruff check .
-	$(UV) run ruff format --check .
-	@$(call log_ok,lint)
+.PHONY: clean-build clean-state
+clean-build: ## Remove build/ -- the end products
+	@rm -rf $(BUILD)
+	$(call log_done,removed $(BUILD)/)
 
-type: ## pyright over scripts and every section with code
-	$(UV) run pyright
-	@$(call log_ok,type)
+clean-state: ## Remove local/state/ -- the interim results
+	@rm -rf $(STATE)
+	$(call log_done,removed $(STATE)/)
 
-test: ## pytest over scripts/tests and every section's tests
-	$(UV) run pytest
-	@$(call log_ok,test)
+# Layers (mk/python.mk, ...) add their targets and append to CHECKS, CLEANS and
+# DELIVERABLES. Included here, before `check`, `clean` and `deliverable`, because
+# make expands prerequisites when it reads a rule.
+CHECKS :=
+CLEANS := clean-build clean-state
+# Each entry builds one artifact (makefile.md, Deliverables).
+DELIVERABLES :=
+include $(wildcard mk/*.mk)
 
-ascii: ## no byte above 127 in code, config, data and prose (add --skip-slides once the slides are in Bulgarian)
-	$(PY) -m scripts.check_ascii --root .
-	@$(call log_ok,ascii)
+.PHONY: clean
+clean: $(CLEANS) ## Run every clean -- inputs, keys, settings, scratch, .board/ .venv/ untouched
+	$(call log_done,cleaned: $(CLEANS) -- inputs$(comma) keys$(comma) settings$(comma) scratch$(comma) .board/ and .venv/ untouched)
 
-### Housekeeping
-sync: ## create or update the environment
-	$(UV) sync
-	@$(call log_ok,sync)
+# ------------------------------------------------------------------------------
+### Quality
+# ------------------------------------------------------------------------------
 
-doctor: ## report which tools are present
-	@for tool in $(UV) $(PANDOC) xelatex $(MMDC); do \
-	  if command -v $$tool >/dev/null 2>&1; then printf 'ok    %s\n' "$$tool"; \
-	  else printf 'warn  %s missing, see README toolchain\n' "$$tool"; fi; \
-	done
-	@if fc-list 2>/dev/null | grep -qi 'DejaVu Sans'; then printf 'ok    font DejaVu Sans\n'; \
-	  else printf 'warn  font DejaVu Sans missing, needed for Cyrillic\n'; fi
-	@$(call log_ok,doctor)
+.PHONY: check
+check: board-check $(CHECKS) ## Run every check -- the board and each layer
+	$(call log_done,all checks passed)
 
-clean: ## remove build/
-	rm -rf build
-	@$(call log_ok,clean)
+.PHONY: deliverable
+deliverable: $(DELIVERABLES) ## Build every deliverable -- every Task close runs it
+ifeq ($(strip $(DELIVERABLES)),)
+	$(call log_warn,no deliverable declared -- append a build target to DELIVERABLES)
+else
+	$(call log_done,deliverables built: $(DELIVERABLES))
+endif
 
-new: ## scaffold a section: make new SECTION=08-name TITLE="Section title"
-	@test -n "$(SECTION)" || { printf 'usage: make new SECTION=NN-name TITLE="Section title"\n'; exit 1; }
-	@test ! -e "$(SECTION)" || { printf '%s exists\n' "$(SECTION)"; exit 1; }
-	@mkdir -p $(SECTION)
-	@cp templates/section/README.md templates/section/index.md $(SECTION)/
-	@sed -i.bak 's/{{SECTION}}/$(SECTION)/g; s/{{TITLE}}/$(TITLE)/g' $(SECTION)/README.md $(SECTION)/index.md
-	@rm -f $(SECTION)/*.bak
-	@$(call log_ok,$(SECTION) scaffolded; register its tests dir in pyproject when it gets code)
+# ------------------------------------------------------------------------------
+### Board
+# ------------------------------------------------------------------------------
 
-help: ## list targets
-	@grep -hE '^[a-zA-Z_-]+:.*## ' $(MAKEFILE_LIST) | sort | awk -F ':.*## ' '{ printf "  %-10s %s\n", $$1, $$2 }'
+# The work record lives in .board/ (rules/board.md); its checker is the board
+# skill's PEP 723 script, run through uv so no project dependency is needed.
+# Transitions take arguments a fixed target cannot carry -- run them ad hoc:
+#   $(BOARD) move T-032 done --evidence "commit abc1234; make check PASS"
+#   $(BOARD) block W-002 --reason "..." --waiting-on W-006
+#   $(BOARD) unblock W-002 --why "..." | note T-032 "..." | archive E-001
+BOARD ?= $(UV) run $(HOME)/.claude/skills/board/scripts/board.py
 
-build:
-	@mkdir -p build
+# .board/ may be tracked or gitignored (rules/board.md): a checkout without it --
+# a fresh clone, CI -- warns once and passes instead of failing every check.
+HAS_BOARD = $(wildcard .board/board.toml)
+NO_BOARD  := no board in this checkout -- .board/ is local or gitignored
+
+.PHONY: board-check
+board-check: ## Validate .board/ with the checker's rules
+	$(if $(HAS_BOARD),@$(BOARD) check)
+	$(if $(HAS_BOARD),$(call log_done,board well-typed),$(call log_warn,$(NO_BOARD)))
+
+.PHONY: board-status
+board-status: ## Show the open path and blocked items
+	$(if $(HAS_BOARD),@$(BOARD) status)
+	$(if $(HAS_BOARD),$(call log_done,board status shown),$(call log_warn,$(NO_BOARD)))
+
+.PHONY: board-next
+board-next: ## Show the current and next item per level
+	$(if $(HAS_BOARD),@$(BOARD) next)
+	$(if $(HAS_BOARD),$(call log_done,board next shown),$(call log_warn,$(NO_BOARD)))
+
+.PHONY: board-knowledge
+board-knowledge: ## List open questions and undistilled facts
+	$(if $(HAS_BOARD),@$(BOARD) knowledge)
+	$(if $(HAS_BOARD),$(call log_done,board knowledge listed),$(call log_warn,$(NO_BOARD)))
+
+.PHONY: board-render
+board-render: board-check ## Regenerate .board/BOARD.md and the optional views
+	$(if $(HAS_BOARD),@$(BOARD) render)
+	$(if $(HAS_BOARD),$(call log_done,board views rendered),$(call log_warn,$(NO_BOARD)))
