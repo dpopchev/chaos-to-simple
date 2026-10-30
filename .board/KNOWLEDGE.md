@@ -3,17 +3,13 @@
 ## Findings
 - 2026-10-30 E-001: standing: the draft was green on python 3.14.7 (ruff, pyright, 115 passed + 1 xfailed) before the move -> the exhibits need no code change for 3.14 supersedes: E-001#2
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
-- 2026-10-30 E-002: fact: ids follow filing order -- W-013 holds T-023, T-028, T-029; W-014 T-024, T-025; W-015 T-026, T-027 -> the WBS's T-026..T-029 read as the board ids
-- 2026-10-30 E-002: fact: the WBS chore is filed as an issue (no chore kind); W-013 and W-015 keep one Then (V14) -> the dropped facts are T-023's and T-027's checks
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 
 ## Open questions
-- 2026-10-30 W-015: open: make help on main at 26a2e26 already lists talk and test with K= -> T-026 may reduce to the lines target; its Check holds either way
+- none recorded
 
 ## Decisions
-- 2026-10-30 E-002: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-10-30)
-- 2026-10-30 E-002: figures: every plot and diagram of the deck is drawn with matplotlib and seaborn in one shared style; Mermaid leaves the build (W-016, AC11) (developer, at the burn)
+- none recorded
 
 ## Deviations
-- 2026-10-30 E-002: W-016 and AC11 added at the burn on the developer's request: one matplotlib and seaborn style for every figure; T-014 redrawn in Python; W-008, W-009, W-010 wait on W-016
-- 2026-10-30 E-002: W-017 (spike, standalone) filed from the developer's mid-burn inbox note: storyline principles, data, exhibits and ranked visuals; it conflicts with E-002's exhibit texts and lines spelling; ordered by the developer at the close
+- none recorded
