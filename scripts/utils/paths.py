@@ -229,6 +229,4 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()
-    out.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out)
-    plt.close(fig)
+    style.save(fig, out)

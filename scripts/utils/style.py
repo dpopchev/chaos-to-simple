@@ -9,8 +9,12 @@ import matplotlib
 
 matplotlib.use("Agg")
 
+from pathlib import Path
+
 import matplotlib.colors as mcolors
+import matplotlib.pyplot as plt
 import seaborn as sns
+from matplotlib.figure import Figure
 
 FONT = "Adwaita Sans"
 FALLBACK_FONT = "DejaVu Sans"
@@ -21,6 +25,13 @@ DPI = 150
 def palette() -> list[str]:
     """Six hex colours, seaborn's colorblind palette."""
     return [mcolors.to_hex(c) for c in sns.color_palette("colorblind", 6)]
+
+
+def save(fig: Figure, out: Path) -> None:
+    """Save fig to out at the deck dpi on white, creating parent folders, then close it."""
+    out.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(out, dpi=DPI, facecolor="white")
+    plt.close(fig)
 
 
 def apply() -> None:
