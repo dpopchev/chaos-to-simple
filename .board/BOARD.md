@@ -1,12 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-005   | blocked: 0 | todo roots: 1 | done: 11 | pruned: 0
+open path: none   | blocked: 0 | todo roots: 1 | done: 12 | pruned: 0
 
 ## Tree
 
 ```text
 W-004  bug    [todo]     (standalone) 00-frontmatter/README.md still names xelatex and the DejaVu fonts   (filed during T-004) -- T-007 [todo]
-W-005  bug    [doing]    (standalone) Slide artifacts carry the pytest slowest-durations block   (filed during T-006) -- T-008 [done]
 ```
 
 ## Closed
@@ -32,19 +31,21 @@ closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, 
 
 - T-006 [done] Register the pytest stats ini options for every run -> grep counts 0 PytestConfigWarning in build/06-simple/pytest.txt
 
+### W-005 bug [done] (standalone) Slide artifacts carry the pytest slowest-durations block
+
+closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no slowest durations line. -- ledger: ledgers/W-005.md
+
+- T-008 [done] Drop the durations report from the two slide pytest recipes -> grep counts 0 slowest durations lines in build/06-simple/pytest.txt
+
 ## Diagram
 ```mermaid
 flowchart TD
   W004["W-004 bug todo, standalone: 00-frontmatter/README.md still names xelatex and the DejaVu fonts"]
   W004 --> T007["T-007 todo: Update 00-frontmatter/README.md to lualatex and the Adwaita fonts -> grep counts 0 lines naming xelatex or DejaVu"]
-  W005["W-005 bug doing, standalone: Slide artifacts carry the pytest slowest-durations block"]
-  W005 --> T008["T-008 done: Drop the durations report from the two slide pytest recipes -> grep counts 0 slowest durations lines in build/06-simple/pytest.txt"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W005 doing
-  class T008 done
   class W004,T007 todo
 ```

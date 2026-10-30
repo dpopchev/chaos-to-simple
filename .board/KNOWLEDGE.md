@@ -8,7 +8,7 @@
 - none recorded
 
 ## Decisions
-- 2026-10-30 W-005: after W-005 lands, W-004 starts without a re-aim halt (developer: go do w5 and then w4)
+- none recorded
 
 ## Deviations
 - none recorded
