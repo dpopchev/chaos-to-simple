@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-011   | blocked: 0 | todo roots: 0 | done: 33 | pruned: 0
+open path: E-002   | blocked: 0 | todo roots: 0 | done: 34 | pruned: 0
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-008  issue  [todo]     00-frontmatter: the message from past me and the route -- T-014 [todo], T-015 [todo]
   W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
-  W-011  issue  [doing]    04-what: the words become homes -- T-019 [done], T-020 [done]
+  W-011  issue  [done]     04-what: the words become homes -- T-019 [done], T-020 [done]
   W-012  issue  [done]     05-how: I3, the false victory and the seam -- T-021 [done], T-022 [done]
   W-013  issue  [done]     06-simple: the run of 72 and the seventh if -- T-023 [done], T-028 [done], T-029 [done]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
@@ -76,7 +76,7 @@ flowchart TD
   E002 --> W010["W-010 issue todo: 03-chaos: the room, the dispute decided and the honest count"]
   W010 --> T017["T-017 todo: Rewrite the red cards -> 03-chaos/data/questions.md with question 3 decided"]
   W010 --> T018["T-018 todo: Rewrite the 03 slides -> 03-chaos/index.md: room, six questions, effects, 512, table, line"]
-  E002 --> W011["W-011 issue doing: 04-what: the words become homes"]
+  E002 --> W011["W-011 issue done: 04-what: the words become homes"]
   W011 --> T019["T-019 done: Render the contexts with their faces -> build/04-what/contexts.txt"]
   W011 --> T020["T-020 done: Rewrite the 04 slides -> 04-what/index.md: the sentence, homes with faces, the line"]
   E002 --> W012["W-012 issue done: 05-how: I3, the false victory and the seam"]
@@ -102,7 +102,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W011 doing
-  class W007,T010,T011,T012,T013,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027 done
+  class E002 doing
+  class W007,T010,T011,T012,T013,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W015,T026,T027 done
   class W008,T014,T015,W009,T016,W010,T017,T018,W014,T024,T025,W016,T030,T031,T032,T033 todo
 ```
