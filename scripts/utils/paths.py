@@ -191,18 +191,27 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
 
     A segment too thin to carry its label inside gets it in a note beside the bar.
     """
-    import matplotlib
+    from scripts.utils import style
 
-    matplotlib.use("Agg")
+    style.apply()
     import matplotlib.pyplot as plt
 
+    colours = style.palette()
     top = max(sum(value for _, value in segments) for _, segments in bars)
-    fig, ax = plt.subplots(figsize=(8, 4.5), dpi=150)
+    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for x, (label, segments) in enumerate(bars):
         bottom = 0
         beside: list[str] = []
-        for name, value in segments:
-            ax.bar(x, value, bottom=bottom, width=0.6, edgecolor="white", linewidth=0.8)
+        for i, (name, value) in enumerate(segments):
+            ax.bar(
+                x,
+                value,
+                bottom=bottom,
+                width=0.6,
+                color=colours[i % len(colours)],
+                edgecolor="white",
+                linewidth=0.8,
+            )
             if value >= 0.08 * top:
                 label_y = bottom + value / 2
                 ax.text(x, label_y, f"{name}: {value}", ha="center", va="center", fontsize=8)
