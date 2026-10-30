@@ -67,6 +67,8 @@ make doctor               which tools are present and the fonts found
 make sync                 uv environment with pytest, ruff, pyright, matplotlib
 make check                every check: board, ruff, pyright, pytest, ascii
 make talk                 check, then build build/talk.pdf
+make test K=<expression>  pytest -k: only the tests matching the expression
+make lines                fail on a slide line over the limit
 make deliverable          every deliverable: build/talk.pdf, not empty
 make draft                the PDF without the checks, for layout work
 make notes                build/talk-notes.pdf with speaker notes on a second screen

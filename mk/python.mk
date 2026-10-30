@@ -76,12 +76,12 @@ M ?=
 K ?=
 .PHONY: test
 test: ## Pytest with doctests (M=<marker> one category, K=<expression> matching tests)
-	$(call _pytest,--durations=10 -m "$(if $(M),$(M),not integration)" $(if $(K),-k "$(K)"))
+	$(call _pytest,--durations=10 -m "$(if $(M),$(M),not integration)" $(if $(K),-k '$(K)'))
 	$(call log_done,tests passed)
 
 .PHONY: test-quick
 test-quick: ## Pytest stopping at the first failure (M= and K= as for test)
-	$(call _pytest,-x -q -m "$(if $(M),$(M),not integration)" $(if $(K),-k "$(K)"))
+	$(call _pytest,-x -q -m "$(if $(M),$(M),not integration)" $(if $(K),-k '$(K)'))
 	$(call log_done,quick tests passed)
 
 .PHONY: test-integration

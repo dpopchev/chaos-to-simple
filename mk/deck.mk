@@ -32,7 +32,7 @@ NOTES     := $(BUILD)/talk-notes.pdf
 SECTION ?=
 TITLE   ?=
 
-CHECKS       += ascii
+CHECKS       += ascii lines
 DELIVERABLES += deliverable-talk
 
 # A section that generates artifacts declares them in its own section.mk: it
@@ -106,6 +106,15 @@ artifacts: $(ARTIFACTS) ## Generate every artifact the slides include
 ascii: ## Fail on a byte above 127 in code, config, data, prose
 	@$(RUN) python -m scripts.check_ascii --root .
 	$(call log_done,no byte above 127)
+
+.PHONY: lines
+lines: ## Fail on a slide line over the width limit
+	@if [ -f scripts/check_lines.py ]; then \
+	  $(RUN) python -m scripts.check_lines --root .; \
+	else \
+	  $(call _log_line,$(YELLOW),WARN,scripts/check_lines.py missing -- lines check skipped) \
+	fi
+	$(call log_done,lines checked)
 
 .PHONY: doctor
 doctor: ## Report the deck toolchain and the fonts
