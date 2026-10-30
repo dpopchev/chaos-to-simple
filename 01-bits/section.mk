@@ -9,7 +9,7 @@ $(BUILD)/01-bits/cast.txt: data/cast.csv 01-bits/s01_bits/chaos.py scripts/paths
 
 $(BUILD)/01-bits/coverage.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_chaos.py
 	@mkdir -p $(@D)
-	@$(RUN) pytest 01-bits/tests -q -k all_flags \
+	@$(RUN) pytest 01-bits/tests -q -k 'regular_order or order_with_everything' \
 	  --cov=s01_bits --cov-branch \
 	  --cov-report=term-missing > $@
 	$(call log_done,$@ written)

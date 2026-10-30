@@ -1,8 +1,9 @@
 """Two tests, 100% branch coverage, and the bug they never meet.
 
-make artifacts runs only the two all_flags tests under coverage and puts the
-report on the slide. The third test is the planted bug; it is expected to fail
-(xfail, strict) so the suite stays green while the bug stays visible.
+make artifacts runs only the regular order and the order with everything under
+coverage and puts the report on the slide. The third test is the bug; it is
+expected to fail (xfail, strict) so the suite stays green while the bug stays
+visible.
 """
 
 from __future__ import annotations
@@ -35,7 +36,7 @@ class Recorder:
 
 
 # [snippet: two-tests]
-def test_all_flags_off() -> None:
+def test_regular_order() -> None:
     order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")
     world = Recorder()
     total = checkout(order, TODAY, world.charge, world.reserve, world.send)
@@ -43,7 +44,7 @@ def test_all_flags_off() -> None:
     assert world.calls == ["charge 54.00", "reserve 1", "send a@example.com"]
 
 
-def test_all_flags_on() -> None:
+def test_order_with_everything() -> None:
     order = Order(
         lines=[Line("book", Decimal(60)), Line("pen", Decimal(40))],
         email="a@example.com",
@@ -63,7 +64,7 @@ def test_all_flags_on() -> None:
 
 # [snippet: bug]
 @pytest.mark.xfail(strict=True, reason="planted bug: the threshold reads the subtotal")
-def test_threshold_after_coupon_still_charges_shipping() -> None:
+def test_free_shipping_after_discount() -> None:
     order = Order(
         lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY
     )
