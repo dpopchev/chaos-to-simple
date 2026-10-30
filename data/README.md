@@ -6,6 +6,7 @@ that section (`03-chaos/data/` holds the red cards, nobody else needs them).
 | File | Columns | Read by |
 |---|---|---|
 | `rules.csv` | `bit, scope, context, name, rule, code` | 03 (example map, counts), 04 (glossary), 06 (chart), `scripts/paths.py` |
+| `seventh.csv` | `bit, scope, context, name, rule, code` | 06 (epilogue: the seventh core if, counted beside `rules.csv`), `scripts/paths.py` |
 | `examples.csv` | `scope, bit, name, given, then` | 03 (green cards), 06 (every `name` must have a `test_<name>`) |
 
 ## Conventions

@@ -103,3 +103,6 @@ Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pando
 | one function, 9 bits | 2^9 = 512 |
 | core 6 bits + shell 3 bits | 64 + 8 = 72 |
 | pricing 2 + shipping 3 + tax 1 + shell 3 | 4 + 8 + 2 + 8 = 22 |
+| epilogue, one function, 10 bits | 512 -> 1024 (+512) |
+| epilogue, core 7 bits + shell 3 bits | 72 -> 136 (+64) |
+| epilogue, shipping 4 bits joins the contexts | 22 -> 30 (+8) |

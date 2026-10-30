@@ -82,6 +82,27 @@ def count_report(rules: Sequence[Rule]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def path_counts(rules: Sequence[Rule]) -> tuple[int, int, int]:
+    """Paths by the three ways of counting: one function, core + shell, contexts + shell."""
+    core = [r for r in rules if r.scope == "core"]
+    shell = [r for r in rules if r.scope == "shell"]
+    contexts = bits_by(core, "context")
+    return (
+        tangled(len(rules)),
+        split([len(core), len(shell)]),
+        split(contexts.values()) + tangled(len(shell)),
+    )
+
+
+def epilogue_report(before: Sequence[Rule], after: Sequence[Rule]) -> str:
+    """One line per way of counting: paths before, after and the delta."""
+    labels = ("one function:", "core | shell:", "contexts | shell:")
+    lines = []
+    for label, old, new in zip(labels, path_counts(before), path_counts(after), strict=True):
+        lines.append(f"{label:<18}{old:>4} -> {new:>4}  ({new - old:+d})")
+    return "\n".join(lines) + "\n"
+
+
 def grid(bits: int, columns: int = 8) -> str:
     """Every path as a bit string, so 64 stops being an abstraction."""
     cells = [f"{n:0{bits}b}" for n in range(tangled(bits))]

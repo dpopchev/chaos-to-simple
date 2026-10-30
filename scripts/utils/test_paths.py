@@ -11,6 +11,7 @@ from scripts.utils.paths import (
     bars_from_rules,
     bits_by,
     count_report,
+    epilogue_report,
     grid,
     load_rules,
     rules_table,
@@ -179,3 +180,29 @@ class TestStackedBarWritesAPng:
     @pytest.mark.edge
     def test_the_file_is_not_empty(self, out: Path) -> None:
         assert out.stat().st_size > 0
+
+
+SEVENTH_RULES = Path(__file__).resolve().parents[2] / "data" / "seventh.csv"
+
+
+class TestEpilogueCountsTheSeventhIf:
+    @pytest.fixture
+    def lines(self, repo_rules: list[Rule]) -> list[str]:
+        after = [*repo_rules, *load_rules(SEVENTH_RULES)]
+        return epilogue_report(repo_rules, after).splitlines()
+
+    @pytest.mark.model
+    def test_epilogue_one_function_doubles_to_1024(self, lines: list[str]) -> None:
+        assert lines[0] == "one function:      512 -> 1024  (+512)"
+
+    @pytest.mark.model
+    def test_epilogue_core_and_shell_grow_to_136(self, lines: list[str]) -> None:
+        assert lines[1] == "core | shell:       72 ->  136  (+64)"
+
+    @pytest.mark.model
+    def test_epilogue_contexts_and_shell_grow_to_30(self, lines: list[str]) -> None:
+        assert lines[2] == "contexts | shell:   22 ->   30  (+8)"
+
+    @pytest.mark.edge
+    def test_epilogue_is_three_lines(self, lines: list[str]) -> None:
+        assert len(lines) == 3
