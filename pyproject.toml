@@ -32,7 +32,7 @@ testpaths = ["scripts", "01-bits/tests", "04-what/tests", "05-how/tests", "06-si
 pythonpath = [".", "01-bits", "04-what", "05-how", "06-simple"]
 # importlib: test basenames may repeat across directories; helpers still import
 # by module name through `pythonpath`.
-addopts = "-ra --doctest-modules --import-mode=importlib --durations=10 --strict-markers"
+addopts = "-ra --doctest-modules --import-mode=importlib --strict-markers"
 # Every test carries exactly one category marker (conftest.py, rules/python.md Tests).
 markers = [
   "edge: primitives to domain types and back; an adapter against a local resource",
