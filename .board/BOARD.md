@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-002 > W-012 > T-022   | blocked: 0 | todo roots: 0 | done: 17 | pruned: 0
+open path: E-002 > W-012   | blocked: 0 | todo roots: 0 | done: 18 | pruned: 0
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-002         [doing]    The deck tells the storyline: past me, the cast of the 
   W-009  issue  [todo]     02-stacey: which problem do I have -- T-016 [todo]
   W-010  issue  [todo]     03-chaos: the room, the dispute decided and the honest count -- T-017 [todo], T-018 [todo]
   W-011  issue  [todo]     04-what: the words become homes -- T-019 [todo], T-020 [todo]
-  W-012  issue  [doing]    05-how: I3, the false victory and the seam -- T-021 [done], T-022 [doing]   <- ACTIVE LEAF
+  W-012  issue  [doing]    05-how: I3, the false victory and the seam -- T-021 [done], T-022 [done]
   W-013  issue  [todo]     06-simple: the run of 72 and the seventh if -- T-023 [todo], T-028 [todo], T-029 [todo]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
   W-015  issue  [todo]     build: the targets and filter behaviour the checks assume -- T-026 [todo], T-027 [todo]
@@ -81,7 +81,7 @@ flowchart TD
   W011 --> T020["T-020 todo: Rewrite the 04 slides -> 04-what/index.md: the sentence, homes with faces, the line"]
   E002 --> W012["W-012 issue doing: 05-how: I3, the false victory and the seam"]
   W012 --> T021["T-021 done: Write the I3 report -> 05-how/data/incident.txt"]
-  W012 --> T022["T-022 doing: Rewrite the 05 slides -> 05-how/index.md: I3, the class, the hidden bit, CQS, seam, line -- ACTIVE LEAF"]
+  W012 --> T022["T-022 done: Rewrite the 05 slides -> 05-how/index.md: I3, the class, the hidden bit, CQS, seam, line"]
   E002 --> W013["W-013 issue todo: 06-simple: the run of 72 and the seventh if"]
   W013 --> T023["T-023 todo: Add the seventh if beside the core, not inside it -> 06-simple/s06_simple/seventh.py"]
   W013 --> T028["T-028 todo: Render the epilogue counts -> build/06-simple/epilogue.txt"]
@@ -102,7 +102,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W012,T022 doing
-  class T021 done
+  class E002,W012 doing
+  class T021,T022 done
   class W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
 ```
