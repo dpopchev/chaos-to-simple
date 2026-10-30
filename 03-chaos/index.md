@@ -1,37 +1,38 @@
 # From chaos to complex
 
-## One story, nine sentences {paths=64}
+## The room
 
 ![](build/03-chaos/story.png){height=80%}
 
 ::: notes
-Domain storytelling: actors, work objects, numbered sentences, one concrete case. Tell it
-as a story: Maria orders two books with a coupon to an address in Sofia. Stop at every
-sentence where the room has a question.
+Everyone in one room. One concrete order, told as a story: Maria orders two books with a
+coupon to an address in Sofia. Stop at every sentence where the room has a question.
 :::
 
-## The questions the story raised
+## The six questions
 
 1. What if the coupon expired yesterday?
-2. Does the member discount stack with the coupon, in which order?
-3. Is the threshold checked before or after the discounts?
-4. What if the payment is declined?
-5. What if the stock is gone after we priced the order?
-6. What if the confirmation bounces?
+2. Does the member discount stack with the coupon, and in which order?
+3. Is the free-shipping threshold checked before or after the discounts? Decided in the room: after the discount.
+4. What happens when the payment is declined?
+5. What happens when the stock is gone after we priced the order?
+6. What happens when the confirmation email bounces?
 
 ::: notes
-Six red cards. Three about rules we thought we had, three about effects the code calls
-without a decision around them. Each one is a bit nobody wrote down.
+Question 3 was a decision nobody made: marketing wanted before, logistics wanted after, and
+the code decided for them (incident I2). The room decided: after the discount.
+Chat: which question would you have asked?
 :::
 
-## Example mapping: the rules we can now count
+## Three effects nobody wrote down
 
-```{.text include=build/data/rules.txt}
-```
+- The provider answers: `Charged | Declined` (s0)
+- The warehouse answers: `Reserved | OutOfStock` (s1)
+- The mailer answers: `Sent | Bounced` (s2)
 
 ::: notes
-Yellow story, blue rules, green examples, red questions. The table is generated from
-data/rules.csv; the green cards are data/examples.csv and come back as test names in 06.
+Three effects the code calls without a decision around them. Each one is a bit nobody
+wrote down, and each one doubles the paths.
 :::
 
 ## The honest count {paths=512}
@@ -40,16 +41,28 @@ data/rules.csv; the green cards are data/examples.csv and come back as test name
 ```
 
 ::: notes
-Nine bits, 512 paths, in one function. We wrote no code in this section. Chaos to complex
-means the shape is known; nothing is smaller yet.
+Nine bits, 512 paths, in one function. Eight times worse than the 64 we counted for the
+core alone. That is the first good news: the number is now true.
 :::
 
 ## First change: a table, not a refactoring
+
+```{.text include=build/data/rules.txt}
+```
 
 - `data/rules.csv`: bit, scope, context, name, rule, code
 - `data/examples.csv`: one green card per rule, named like a test
 - Checked in next to the code, read by the build
 
 ::: notes
-The cheapest move in the talk. The counter went up, which is the point.
+The cheapest move in the talk. The table is generated from data/rules.csv; the green cards
+are data/examples.csv and come back as test names in 06. The counter went up, which is the point.
+:::
+
+## The line
+
+You cannot shrink a count you have not made. The bigger number is the first good news.
+
+::: notes
+Say it slowly, then move on. Chaos to complex starts with the count.
 :::
