@@ -9,8 +9,11 @@ also appends each test's duration to the `stats_file` ini path, warns over `suit
 reports the recorded history (W-115). Written by add-python as tests/conftest.py (package
 level) or scripts/conftest.py (helper level).
 
-Only tests under scripts/ are checked: the exhibit tests under NN-*/tests/ are talk content,
-exempt from the one-assert and category-marker gates by the Decision on E-001.
+It sits at the repository root, so pytest loads it for every run: the ini options
+`stats_file`, `suite_budget_s` and `suite_budget_fail` exist even for a run that collects only
+one section's tests, which no longer warns about an unknown config option (W-003). Only tests
+under scripts/ are checked: the exhibit tests under NN-*/tests/ are talk content, exempt from
+the one-assert and category-marker gates by the Decision on E-001.
 """
 
 import ast
