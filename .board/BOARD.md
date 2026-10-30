@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-004   | blocked: 0 | todo roots: 1 | done: 13 | pruned: 0
+open path: none   | blocked: 0 | todo roots: 1 | done: 14 | pruned: 0
 
 ## Tree
 
 ```text
-W-004  bug    [doing]    (standalone) 00-frontmatter/README.md still names xelatex and the DejaVu fonts   (filed during T-004) -- T-007 [done]
 W-006  issue  [todo]     (standalone) Slide pytest recipes repeat the pyproject addopts   (filed during T-008) -- T-009 [todo]
 ```
 
@@ -32,6 +31,12 @@ closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, 
 
 - T-006 [done] Register the pytest stats ini options for every run -> grep counts 0 PytestConfigWarning in build/06-simple/pytest.txt
 
+### W-004 bug [done] (standalone) 00-frontmatter/README.md still names xelatex and the DejaVu fonts
+
+closed 2026-10-30 -- outcome: Given 00-frontmatter/README.md, When grep -E 'xelatex|DejaVu' runs over it, Then it finds no line. -- ledger: ledgers/W-004.md
+
+- T-007 [done] Update 00-frontmatter/README.md to lualatex and the Adwaita fonts -> grep counts 0 lines naming xelatex or DejaVu
+
 ### W-005 bug [done] (standalone) Slide artifacts carry the pytest slowest-durations block
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no slowest durations line. -- ledger: ledgers/W-005.md
@@ -41,8 +46,6 @@ closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, 
 ## Diagram
 ```mermaid
 flowchart TD
-  W004["W-004 bug doing, standalone: 00-frontmatter/README.md still names xelatex and the DejaVu fonts"]
-  W004 --> T007["T-007 done: Update 00-frontmatter/README.md to lualatex and the Adwaita fonts -> grep counts 0 lines naming xelatex or DejaVu"]
   W006["W-006 issue todo, standalone: Slide pytest recipes repeat the pyproject addopts"]
   W006 --> T009["T-009 todo: Keep the pytest options in pyproject only -> grep counts 0 import-mode lines in 06-simple/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -50,7 +53,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W004 doing
-  class T007 done
   class W006,T009 todo
 ```
