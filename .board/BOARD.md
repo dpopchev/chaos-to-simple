@@ -15,6 +15,7 @@ E-002         [todo]     The deck tells the storyline: past me, the cast of the 
   W-013  issue  [todo]     06-simple: the run of 72 and the seventh if -- T-023 [todo], T-028 [todo], T-029 [todo]
   W-014  issue  [todo]     07-close: the six lines -- T-024 [todo], T-025 [todo]
   W-015  issue  [todo]     build: the targets and filter behaviour the checks assume -- T-026 [todo], T-027 [todo]
+  W-016  issue  [todo]     plots: one matplotlib and seaborn style for every chart and diagram -- T-030 [todo], T-031 [todo], T-032 [todo], T-033 [todo]
 ```
 
 ## Closed
@@ -68,7 +69,7 @@ flowchart TD
   W007 --> T012["T-012 todo: Add the two-ifs zoom-in -> build/01-bits/two_ifs.txt"]
   W007 --> T013["T-013 todo: Rewrite the 01 slides to the nine-slide format -> 01-bits/index.md, nine slides"]
   E002 --> W008["W-008 issue todo: 00-frontmatter: the message from past me and the route"]
-  W008 --> T014["T-014 todo: Draw the route -> 00-frontmatter/diagrams/route.mmd, rendered by the generic rule"]
+  W008 --> T014["T-014 todo: Draw the route -> build/00-frontmatter/route.png in the deck style"]
   W008 --> T015["T-015 todo: Rewrite the opening -> 00-frontmatter/index.md: message, raw code, chat, route"]
   E002 --> W009["W-009 issue todo: 02-stacey: which problem do I have"]
   W009 --> T016["T-016 todo: Rewrite the 02 slides -> 02-stacey/index.md: instinct, matrix, map, route, the line"]
@@ -91,10 +92,15 @@ flowchart TD
   E002 --> W015["W-015 issue todo: build: the targets and filter behaviour the checks assume"]
   W015 --> T026["T-026 todo: Rename slides to talk, add K= to test, add the lines target -> Makefile, README.md"]
   W015 --> T027["T-027 todo: Number a snippet by its file line -> 00-frontmatter/filters/include-code-files.lua"]
+  E002 --> W016["W-016 issue todo: plots: one matplotlib and seaborn style for every chart and diagram"]
+  W016 --> T030["T-030 todo: Add the deck style -> scripts/utils/style.py, applied by the stacked bar"]
+  W016 --> T031["T-031 todo: Draw the Stacey matrix in Python -> build/02-stacey/stacey.png"]
+  W016 --> T032["T-032 todo: Draw the story in Python -> build/03-chaos/story.png"]
+  W016 --> T033["T-033 todo: Drop the Mermaid rule -> mk/deck.mk, README.md, CLAUDE.md without mmdc"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E002,W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027 todo
+  class E002,W007,T010,T011,T012,T013,W008,T014,T015,W009,T016,W010,T017,T018,W011,T019,T020,W012,T021,T022,W013,T023,T028,T029,W014,T024,T025,W015,T026,T027,W016,T030,T031,T032,T033 todo
 ```

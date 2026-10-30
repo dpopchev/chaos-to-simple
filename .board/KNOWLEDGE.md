@@ -11,6 +11,7 @@
 
 ## Decisions
 - 2026-10-30 E-002: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-10-30)
+- 2026-10-30 E-002: figures: every plot and diagram of the deck is drawn with matplotlib and seaborn in one shared style; Mermaid leaves the build (W-016, AC11) (developer, at the burn)
 
 ## Deviations
-- none recorded
+- 2026-10-30 E-002: W-016 and AC11 added at the burn on the developer's request: one matplotlib and seaborn style for every figure; T-014 redrawn in Python; W-008, W-009, W-010 wait on W-016
