@@ -9,8 +9,7 @@
 - none recorded
 
 ## Decisions
-- 2026-10-30 W-017: E-003 from the Plan of docs/storyline.md, W-018..W-028, musts first; leading option on C1..C8: cast.csv gains week, keeps cells; lines.csv section,believed,learned, repo keys and commas; the note's I1 email, I3 numbers, 00 message; route.csv 8 rows, I2 into 02
-- 2026-10-30 W-017: E-003 from the Plan of docs/storyline.md, W-018..W-028, musts first; leading option on C1..C8: cast.csv gains week, keeps cells; lines.csv section,believed,learned, repo keys and commas; the note's I1 email, I3 numbers, 00 message; route.csv 8 rows, I2 into 02 (developer)
+- none recorded
 
 ## Deviations
 - none recorded

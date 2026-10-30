@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-017   | blocked: 0 | todo roots: 0 | done: 53 | pruned: 1
+open path: none   | blocked: 0 | todo roots: 0 | done: 54 | pruned: 1
 
 ## Tree
-
-```text
-W-017  spike  [doing]    (standalone) storyline: which of the developer's principles, data and ranked visuals the talk adopts   (filed during T-033) -- T-035 [done], T-036 [done]
-```
 
 ## Closed
 
@@ -108,17 +104,19 @@ closed 2026-10-30 -- outcome: Given the repository, When grep -c import-mode 01-
 
 - T-009 [done] Keep the pytest options in pyproject only -> grep counts 0 import-mode lines in 06-simple/section.mk
 
+### W-017 spike [done] (standalone) storyline: which of the developer's principles, data and ranked visuals the talk adopts
+
+closed 2026-10-30 -- outcome: Given docs/storyline.md, When the developer reads its Plan section, Then it names the root, its work items and the conflicts with E-002 to decide. -- ledger: ledgers/W-017.md
+
+- T-035 [done] Write the suggestions into the repository -> docs/storyline.md
+- T-036 [done] Draft the root from the suggestions -> docs/storyline.md Plan section
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W017["W-017 spike doing, standalone: storyline: which of the developer's principles, data and ranked visuals the talk adopts"]
-  W017 --> T035["T-035 done: Write the suggestions into the repository -> docs/storyline.md"]
-  W017 --> T036["T-036 done: Draft the root from the suggestions -> docs/storyline.md Plan section"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W017 doing
-  class T035,T036 done
 ```
