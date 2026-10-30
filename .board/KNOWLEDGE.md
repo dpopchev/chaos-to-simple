@@ -12,4 +12,4 @@
 - 2026-10-30 E-001: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 4 hours) (developer, 2026-10-30)
 
 ## Deviations
-- none recorded
+- 2026-10-30 E-001: W-003 and W-004 (bugs) filed standalone during T-004: a PytestConfigWarning in the slide artifacts and the frontmatter README naming xelatex and DejaVu -- not in the activated plan; the developer orders them at the close
