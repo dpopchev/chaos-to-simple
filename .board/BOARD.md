@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-003 > T-006   | blocked: 0 | todo roots: 1 | done: 8 | pruned: 0
+open path: W-003   | blocked: 0 | todo roots: 1 | done: 9 | pruned: 0
 
 ## Tree
 
 ```text
-W-003  bug    [doing]    (standalone) Slide artifacts carry a PytestConfigWarning about stats_file   (filed during T-004) -- T-006 [doing]   <- ACTIVE LEAF
+W-003  bug    [doing]    (standalone) Slide artifacts carry a PytestConfigWarning about stats_file   (filed during T-004) -- T-006 [done]
 W-004  bug    [todo]     (standalone) 00-frontmatter/README.md still names xelatex and the DejaVu fonts   (filed during T-004) -- T-007 [todo]
 ```
 
@@ -30,7 +30,7 @@ closed 2026-10-30 -- outcome: make check proves the repository (board, ruff, pyr
 ```mermaid
 flowchart TD
   W003["W-003 bug doing, standalone: Slide artifacts carry a PytestConfigWarning about stats_file"]
-  W003 --> T006["T-006 doing: Register the pytest stats ini options for every run -> grep counts 0 PytestConfigWarning in build/06-simple/pytest.txt -- ACTIVE LEAF"]
+  W003 --> T006["T-006 done: Register the pytest stats ini options for every run -> grep counts 0 PytestConfigWarning in build/06-simple/pytest.txt"]
   W004["W-004 bug todo, standalone: 00-frontmatter/README.md still names xelatex and the DejaVu fonts"]
   W004 --> T007["T-007 todo: Update 00-frontmatter/README.md to lualatex and the Adwaita fonts -> grep counts 0 lines naming xelatex or DejaVu"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -38,6 +38,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W003,T006 doing
+  class W003 doing
+  class T006 done
   class W004,T007 todo
 ```
