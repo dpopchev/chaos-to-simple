@@ -62,6 +62,21 @@ def cast_table(cast: Sequence[CastRow], source: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def contexts_table(rules: Sequence[Rule], cast: Sequence[CastRow]) -> str:
+    """Each context with its bits, its 2**n paths and who asked for them, in rules order."""
+    requester = {c.bit: c.requested_by for c in cast}
+    rows = [("context", "bits", "paths", "who")]
+    for context in bits_by(rules, "context"):
+        bits = [r.bit for r in rules if r.context == context]
+        who = list(dict.fromkeys(requester[b] for b in bits))
+        rows.append((context, " ".join(bits), str(tangled(len(bits))), ", ".join(who)))
+    widths = [max(len(row[i]) for row in rows) for i in range(4)]
+    lines = [
+        "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def tangled(bits: int) -> int:
     """Decisions in one function multiply: n bits are 2**n paths."""
     return 2**bits
