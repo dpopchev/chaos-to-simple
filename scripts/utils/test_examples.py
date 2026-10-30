@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+import pytest
+
 from scripts.utils.examples import example_names, missing_tests
 
 SAMPLE = (
@@ -11,13 +13,24 @@ SAMPLE = (
 )
 
 
-def test_example_names_filter_by_scope(tmp_path: Path) -> None:
+@pytest.fixture
+def examples_csv(tmp_path: Path) -> Path:
     path = tmp_path / "examples.csv"
     path.write_text(SAMPLE, encoding="ascii")
-    assert example_names(path, "core") == ["coupon_valid_today"]
-    assert example_names(path, "shell") == ["happy_path_accepts"]
+    return path
 
 
+@pytest.mark.edge
+def test_example_names_of_core(examples_csv: Path) -> None:
+    assert example_names(examples_csv, "core") == ["coupon_valid_today"]
+
+
+@pytest.mark.edge
+def test_example_names_of_shell(examples_csv: Path) -> None:
+    assert example_names(examples_csv, "shell") == ["happy_path_accepts"]
+
+
+@pytest.mark.model
 def test_missing_tests_names_the_gap() -> None:
     namespace = {"test_coupon_valid_today": object()}
     names = ["coupon_valid_today", "happy_path_accepts"]
