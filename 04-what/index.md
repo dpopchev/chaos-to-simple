@@ -59,15 +59,8 @@ same move: a Money crosses the boundary, a flag does not.
 
 ## Bounded contexts: every bit has a home
 
-:::: columns
-::: {.column width="55%"}
 ```{.text include=build/04-what/contexts.txt}
 ```
-:::
-::: {.column width="45%"}
-![](build/04-what/moves.png){width=100%}
-:::
-::::
 
 Marketing and loyalty are pricing, logistics is shipping, accounting is tax. The people
 who asked are the map of the contexts.
@@ -76,6 +69,10 @@ who asked are the map of the contexts.
 Still 512 in the function nobody has touched yet. But every bit has a name, a home and a
 test. The counter does not move in this section; that is honest.
 :::
+
+## Bounded contexts, the moves
+
+![](build/04-what/moves.png){height=80%}
 
 ## The line
 

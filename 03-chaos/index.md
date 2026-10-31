@@ -11,25 +11,22 @@ coupon to an address in Sofia. Stop at every sentence where the room has a quest
 
 ## The six questions
 
-:::: columns
-::: {.column width="55%"}
 1. What if the coupon expired yesterday?
 2. Does the member discount stack with the coupon, and in which order?
 3. Is the free-shipping threshold checked before or after the discounts? Decided in the room: after the discount.
 4. What happens when the payment is declined?
 5. What happens when the stock is gone after we priced the order?
 6. What happens when the confirmation email bounces?
-:::
-::: {.column width="45%"}
-![](build/03-chaos/example_map.png){width=100%}
-:::
-::::
 
 ::: notes
 Question 3 was a decision nobody made: marketing wanted before, logistics wanted after, and
 the code decided for them (incident I2). The room decided: after the discount.
 Chat: which question would you have asked?
 :::
+
+## The six questions, as a map
+
+![](build/03-chaos/example_map.png){height=80%}
 
 ## Three effects nobody wrote down
 
