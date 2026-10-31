@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003 > W-024 > T-056   | blocked: 0 | todo roots: 2 | done: 79 | pruned: 1
+open path: E-003 > W-024 > T-057   | blocked: 0 | todo roots: 2 | done: 80 | pruned: 1
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-021  issue  [done]     lines: the believed / learned pair -- T-047 [done], T-048 [done], T-049 [done]
   W-022  issue  [done]     01-bits: the two-if tree -- T-050 [done], T-051 [done], T-052 [done]
   W-023  issue  [done]     00-frontmatter: the route on the map -- T-053 [done], T-054 [done], T-055 [done]
-  W-024  issue  [doing]    03-chaos: what it felt like vs what it was -- T-056 [doing]   <- ACTIVE LEAF, T-057 [todo], T-058 [todo]
+  W-024  issue  [doing]    03-chaos: what it felt like vs what it was -- T-056 [done], T-057 [doing]   <- ACTIVE LEAF, T-058 [todo]
   W-025  issue  [todo]     04-what: the bits move, none deleted -- T-059 [todo], T-060 [todo], T-061 [todo], T-062 [todo]
   W-026  issue  [todo]     03-chaos: the example map before and after the room -- T-063 [todo], T-064 [todo], T-065 [todo]
   W-027  issue  [todo]     05-how: the core and the shell with three ports -- T-066 [todo], T-067 [todo], T-068 [todo]
@@ -158,8 +158,8 @@ flowchart TD
   W023 --> T054["T-054 done: Place the route on the map -> route_layout(stops)"]
   W023 --> T055["T-055 done: Show the map -> 00-frontmatter/section.mk and 02-stacey/index.md"]
   E003 --> W024["W-024 issue doing: 03-chaos: what it felt like vs what it was"]
-  W024 --> T056["T-056 doing: Count the growth -> growth(cast) -- ACTIVE LEAF"]
-  W024 --> T057["T-057 todo: Draw the growth -> growth_chart(out, points) and scripts.paths growth"]
+  W024 --> T056["T-056 done: Count the growth -> growth(cast)"]
+  W024 --> T057["T-057 doing: Draw the growth -> growth_chart(out, points) and scripts.paths growth -- ACTIVE LEAF"]
   W024 --> T058["T-058 todo: Show the growth -> build/03-chaos/growth.png before The honest count"]
   E003 --> W025["W-025 issue todo: 04-what: the bits move, none deleted"]
   W025 --> T059["T-059 todo: Add the context palette -> context_colour(name) in scripts/utils/style.py"]
@@ -189,7 +189,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003,W024,T056 doing
-  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055 done
-  class T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073,W030,T074,T075 todo
+  class E003,W024,T057 doing
+  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,T056 done
+  class T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073,W030,T074,T075 todo
 ```
