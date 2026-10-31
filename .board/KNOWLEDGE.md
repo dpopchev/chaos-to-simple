@@ -14,4 +14,4 @@
 - 2026-10-31 E-004: the developer gathered the standalone backlog W-029, W-030, W-031 under one Epic to burn it under one /goal
 
 ## Deviations
-- none recorded
+- 2026-10-31 E-004: T-071's Action amended to name scripts/overflow.py, the entry point it already described as python -m scripts.overflow; the scope gate refused the close without the literal path; Check unchanged
