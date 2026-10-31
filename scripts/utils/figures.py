@@ -370,6 +370,15 @@ def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
     return tuple(points)
 
 
+def route_box_half_width(stops: Sequence[Stop]) -> float:
+    """Return the half width of a route box: wide enough for the longest label line.
+
+    0.0095 per character at fontsize 12 keeps today's 0.085 for a nine-character line.
+    """
+    longest = max(len(line) for stop in stops for line in stop_label(stop).split("\n"))
+    return 0.0095 * longest
+
+
 def route(
     out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
 ) -> None:
@@ -383,7 +392,7 @@ def route(
     stops = load_route(route_csv)
     told_in = {incident.told_in: incident.id for incident in load_incidents(incidents_csv)}
     points = route_layout(stops)
-    half_w, half_h = 0.085, 0.07
+    half_w, half_h = route_box_half_width(stops), 0.07
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for i, (label, x0, y0) in enumerate(ZONES):
         ax.add_patch(

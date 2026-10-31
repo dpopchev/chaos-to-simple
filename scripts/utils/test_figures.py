@@ -19,6 +19,7 @@ from scripts.utils.figures import (
     moves_figure,
     ports_of,
     route,
+    route_box_half_width,
     route_layout,
     seam,
     stacey,
@@ -89,6 +90,13 @@ def test_load_route_reads_the_names() -> None:
 @pytest.mark.model
 def test_stop_label_reads_number_name_counter() -> None:
     assert stop_label(Stop("01", "bits", "chaos", "64", "count")) == "01 bits\n64"
+
+
+@pytest.mark.model
+def test_route_box_half_width_fits_the_longest_label() -> None:
+    wide = (Stop("00", "frontmatter", "", "?", ""), Stop("01", "bits", "chaos", "64", "count"))
+    narrow = (Stop("01", "bits", "chaos", "64", "count"),)
+    assert route_box_half_width(wide) > route_box_half_width(narrow)
 
 
 @pytest.mark.model
