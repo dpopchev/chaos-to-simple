@@ -17,6 +17,7 @@
 ## Deviations
 - 2026-10-31 E-004: T-071's Action amended to name scripts/overflow.py, the entry point it already described as python -m scripts.overflow; the scope gate refused the close without the literal path; Check unchanged
 - 2026-10-31 E-004: T-073's brief named 05-how/index.md alone, but 'The shell' frame lives in 06-simple/index.md:34; the Action, Output and title amended to name both files, Check unchanged; re-spawned one model up after the blocked hand-back
+- 2026-10-31 E-004: T-077's Action amended to name its four index.md files by path; the scope gate refused the close on the folder names alone, as with T-071; Check unchanged
 - 2026-10-31 E-004: W-030 gets T-079: T-075's route.png clipped box 00 ('00 frontmatter' read '0 frontmatt'), so W-030's Then failed for one box; the box width now grows with the longest label; criterion unchanged
 - 2026-10-31 E-004: W-030 verified, but its widened boxes hide six arrowheads of route.png; filed standalone W-032 (filed during T-079) per the burn's lane-finding rule, for the developer to order at the close
 - 2026-10-31 E-004: W-031 gains T-082: make widths found three clipped slides the bug report missed (one of them made worse by T-072's columns); T-078's Check narrowed to its named slides while todo, T-082 carries make widths -> exit 0; W-031's criterion unchanged
