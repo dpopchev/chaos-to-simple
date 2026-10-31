@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003   | blocked: 0 | todo roots: 1 | done: 71 | pruned: 1
+open path: E-003 > W-022 > T-050   | blocked: 0 | todo roots: 1 | done: 71 | pruned: 1
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-019  issue  [done]     00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents -- T-041 [done], T-042 [done], T-043 [done]
   W-020  issue  [done]     01-bits: the doubling with faces -- T-044 [done], T-045 [done], T-046 [done]
   W-021  issue  [done]     lines: the believed / learned pair -- T-047 [done], T-048 [done], T-049 [done]
-  W-022  issue  [todo]     01-bits: the two-if tree -- T-050 [todo], T-051 [todo], T-052 [todo]
+  W-022  issue  [doing]    01-bits: the two-if tree -- T-050 [doing]   <- ACTIVE LEAF, T-051 [todo], T-052 [todo]
   W-023  issue  [todo]     00-frontmatter: the route on the map -- T-053 [todo], T-054 [todo], T-055 [todo]
   W-024  issue  [todo]     03-chaos: what it felt like vs what it was -- T-056 [todo], T-057 [todo], T-058 [todo]
   W-025  issue  [todo]     04-what: the bits move, none deleted -- T-059 [todo], T-060 [todo], T-061 [todo], T-062 [todo]
@@ -148,8 +148,8 @@ flowchart TD
   W021 --> T047["T-047 done: Read the pair -> Line(section, believed, learned) and data/lines.csv"]
   W021 --> T048["T-048 done: Put the believed lines on the slides -> NN-*/index.md and 07-close/index.md"]
   W021 --> T049["T-049 done: Check the pair -> missing() names an absent believed line"]
-  E003 --> W022["W-022 issue todo: 01-bits: the two-if tree"]
-  W022 --> T050["T-050 todo: Pin the leaves -> TREE_LEAVES in scripts/utils/figures.py"]
+  E003 --> W022["W-022 issue doing: 01-bits: the two-if tree"]
+  W022 --> T050["T-050 doing: Pin the leaves -> TREE_LEAVES in scripts/utils/figures.py -- ACTIVE LEAF"]
   W022 --> T051["T-051 todo: Draw the tree -> tree(out) and scripts.figures tree"]
   W022 --> T052["T-052 todo: Show the tree -> build/01-bits/tree.png on Four paths"]
   E003 --> W023["W-023 issue todo: 00-frontmatter: the route on the map"]
@@ -185,7 +185,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003 doing
+  class E003,W022,T050 doing
   class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049 done
-  class W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
+  class T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
 ```
