@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003 > W-023 > T-054   | blocked: 0 | todo roots: 1 | done: 76 | pruned: 1
+open path: E-003 > W-023 > T-055   | blocked: 0 | todo roots: 1 | done: 77 | pruned: 1
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-020  issue  [done]     01-bits: the doubling with faces -- T-044 [done], T-045 [done], T-046 [done]
   W-021  issue  [done]     lines: the believed / learned pair -- T-047 [done], T-048 [done], T-049 [done]
   W-022  issue  [done]     01-bits: the two-if tree -- T-050 [done], T-051 [done], T-052 [done]
-  W-023  issue  [doing]    00-frontmatter: the route on the map -- T-053 [done], T-054 [doing]   <- ACTIVE LEAF, T-055 [todo]
+  W-023  issue  [doing]    00-frontmatter: the route on the map -- T-053 [done], T-054 [done], T-055 [doing]   <- ACTIVE LEAF
   W-024  issue  [todo]     03-chaos: what it felt like vs what it was -- T-056 [todo], T-057 [todo], T-058 [todo]
   W-025  issue  [todo]     04-what: the bits move, none deleted -- T-059 [todo], T-060 [todo], T-061 [todo], T-062 [todo]
   W-026  issue  [todo]     03-chaos: the example map before and after the room -- T-063 [todo], T-064 [todo], T-065 [todo]
@@ -154,8 +154,8 @@ flowchart TD
   W022 --> T052["T-052 done: Show the tree -> build/01-bits/tree.png on Four paths"]
   E003 --> W023["W-023 issue doing: 00-frontmatter: the route on the map"]
   W023 --> T053["T-053 done: Add the route -> data/route.csv and load_route"]
-  W023 --> T054["T-054 doing: Place the route on the map -> route_layout(stops) -- ACTIVE LEAF"]
-  W023 --> T055["T-055 todo: Show the map -> 00-frontmatter/section.mk and 02-stacey/index.md"]
+  W023 --> T054["T-054 done: Place the route on the map -> route_layout(stops)"]
+  W023 --> T055["T-055 doing: Show the map -> 00-frontmatter/section.mk and 02-stacey/index.md -- ACTIVE LEAF"]
   E003 --> W024["W-024 issue todo: 03-chaos: what it felt like vs what it was"]
   W024 --> T056["T-056 todo: Count the growth -> growth(cast)"]
   W024 --> T057["T-057 todo: Draw the growth -> growth_chart(out, points) and scripts.paths growth"]
@@ -185,7 +185,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003,W023,T054 doing
-  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,T053 done
-  class T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
+  class E003,W023,T055 doing
+  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,T053,T054 done
+  class W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
 ```
