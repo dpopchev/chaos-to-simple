@@ -51,8 +51,15 @@ business outcomes are sum types the caller must match.
 
 ## The ports
 
+:::: columns
+::: {.column width="55%"}
 ```{.python include=05-how/s05_how/ports.py snippet=ports}
 ```
+:::
+::: {.column width="45%"}
+![](build/05-how/ports.png){width=100%}
+:::
+::::
 
 ::: notes
 Three Protocols, three sum types, no exceptions for business outcomes. The seam is drawn;
