@@ -33,6 +33,8 @@ reach 50, VAT never reduces. The ten green cards are separate named tests.
 
 ## The shell
 
+\fvset{fontsize=\scriptsize}
+
 ```{.python include=06-simple/s06_simple/shell.py snippet=checkout}
 ```
 

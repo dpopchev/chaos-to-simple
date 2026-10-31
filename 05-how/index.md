@@ -41,6 +41,8 @@ expression, where it is one path.
 
 ## The answers the world may give
 
+\fvset{fontsize=\tiny,baselinestretch=0.9}
+
 ```{.python include=05-how/s05_how/ports.py snippet=results}
 ```
 
