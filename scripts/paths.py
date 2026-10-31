@@ -5,6 +5,8 @@
     python -m scripts.paths grid   --bits 6 --out build/01-bits/grid.txt
     python -m scripts.paths epilogue --rules data/rules.csv --seventh data/seventh.csv \\
         --out build/06-simple/epilogue.txt
+    python -m scripts.paths epilogue-chart --rules data/rules.csv --seventh data/seventh.csv \\
+        --out build/06-simple/epilogue.png
     python -m scripts.paths cast   --cast data/cast.csv --source 01-bits/s01_bits/chaos.py \\
         --out build/01-bits/cast.txt
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
@@ -28,6 +30,7 @@ from scripts.utils.paths import (
     contexts_table,
     count_report,
     doubling_table,
+    epilogue_bars,
     epilogue_report,
     grid,
     growth,
@@ -53,6 +56,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "grid",
             "chart",
             "epilogue",
+            "epilogue-chart",
             "cast",
             "contexts",
             "doubling",
@@ -73,6 +77,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.out is None:
             parser.error("chart needs --out")
         stacked_bar(args.out, bars_from_rules(load_rules(args.rules)))
+        return 0
+
+    if args.what == "epilogue-chart":
+        if args.out is None:
+            parser.error("epilogue-chart needs --out")
+        stacked_bar(
+            args.out,
+            epilogue_bars(load_rules(args.rules), load_rules(args.seventh)),
+            title="paths to reason about",
+        )
         return 0
 
     if args.what == "growth":

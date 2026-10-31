@@ -96,8 +96,15 @@ adds paths; one that passes flags multiplies them.
 :::
 :::
 
+::: columns
+::: {.column width="50%"}
+![](build/06-simple/epilogue.png){height=35%}
+:::
+::: {.column width="50%"}
 ```{.text include=build/06-simple/epilogue.txt}
 ```
+:::
+:::
 
 ```{.text include=06-simple/data/teaser.txt}
 ```

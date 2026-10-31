@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+from scripts.paths import main
 from scripts.utils.paths import (
     Bar,
     CastRow,
@@ -381,6 +382,23 @@ class TestEpilogueBarsGrowShippingOnly:
     @pytest.mark.model
     def test_epilogue_bars_total_22_and_30(self, bars: tuple[Bar, Bar]) -> None:
         assert [sum(value for _, value in segments) for _, segments in bars] == [22, 30]
+
+
+@pytest.mark.edge
+def test_epilogue_chart_writes_a_png(tmp_path: Path) -> None:
+    out = tmp_path / "charts" / "epilogue.png"
+    main(
+        [
+            "epilogue-chart",
+            "--rules",
+            str(REPO_RULES),
+            "--seventh",
+            str(SEVENTH_RULES),
+            "--out",
+            str(out),
+        ]
+    )
+    assert out.read_bytes().startswith(b"\x89PNG")
 
 
 DOUBLING_CAST = [

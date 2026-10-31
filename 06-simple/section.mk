@@ -1,6 +1,7 @@
 # 06-simple -- the test run and the closing chart are build artifacts.
 ARTIFACTS += $(BUILD)/06-simple/pytest.txt $(BUILD)/06-simple/paths.png \
-    $(BUILD)/06-simple/epilogue.txt $(BUILD)/06-simple/wounds.txt
+    $(BUILD)/06-simple/epilogue.txt $(BUILD)/06-simple/epilogue.png \
+    $(BUILD)/06-simple/wounds.txt
 
 $(BUILD)/06-simple/wounds.txt: data/incidents.csv $(wildcard 06-simple/tests/*.py) \
     scripts/paths.py scripts/utils/paths.py
@@ -20,4 +21,8 @@ $(BUILD)/06-simple/paths.png: $(RULES) scripts/paths.py scripts/utils/paths.py
 
 $(BUILD)/06-simple/epilogue.txt: $(RULES) data/seventh.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths epilogue --rules $(RULES) --seventh data/seventh.csv --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/epilogue.png: $(RULES) data/seventh.csv scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths epilogue-chart --rules $(RULES) --seventh data/seventh.csv --out $@
 	$(call log_done,$@ written)
