@@ -98,6 +98,11 @@ Five ifs: 32 paths.
 
 Six ifs: 64 paths.
 
+. . .
+
+```{.text include=build/01-bits/doubling.txt}
+```
+
 ::: notes
 Each if doubles the paths, one line per click. Before each click, ask the room for the
 count; the chat guesses are read from here, not put on the slide.
