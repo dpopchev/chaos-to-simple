@@ -12,15 +12,23 @@ from scripts.utils.figures import (
     TREE_LEAVES,
     ZONES,
     load_route,
+    moves,
     route,
     route_layout,
     stacey,
     story,
     tree,
 )
+from scripts.utils.paths import load_rules
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 ROUTE_CSV = Path(__file__).resolve().parents[2] / "data" / "route.csv"
+RULES_CSV = Path(__file__).resolve().parents[2] / "data" / "rules.csv"
+
+
+@pytest.mark.model
+def test_moves_sum_to_nine() -> None:
+    assert sum(move.bits for move in moves(load_rules(RULES_CSV))) == 9
 
 
 def inside(point: tuple[float, float], zone: str) -> bool:

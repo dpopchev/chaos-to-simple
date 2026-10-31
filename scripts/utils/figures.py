@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Literal
 
 from scripts.utils import style
-from scripts.utils.paths import load_incidents
+from scripts.utils.paths import Rule, load_incidents
 
 # (label, x0, y0) of each zone on the unit square; x is certainty on the How,
 # y is agreement on the What. Simple sits at the high-high corner.
@@ -152,6 +152,20 @@ def tree(out: Path) -> Path:
     fig.tight_layout()
     style.save(fig, out)
     return out
+
+
+@dataclass(frozen=True)
+class Move:
+    """One home of checkout()'s bits and how many bits moved into it."""
+
+    home: str
+    bits: int
+
+
+def moves(rules: Sequence[Rule]) -> tuple[Move, ...]:
+    """Count the bits per home in the order pricing, shipping, tax, shell; shell rows group."""
+    homes = [rule.context if rule.scope == "core" else "shell" for rule in rules]
+    return tuple(Move(home, homes.count(home)) for home in style.CONTEXTS[:4])
 
 
 def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
