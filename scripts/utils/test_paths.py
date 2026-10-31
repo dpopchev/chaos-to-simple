@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -224,6 +225,18 @@ def test_load_incidents_reads_every_column(tmp_path: Path) -> None:
     path.write_text(INCIDENTS_CSV, encoding="ascii")
     assert load_incidents(path)[0] == Incident(
         "I1", "14", "01", "06", "test_a", "rule", "1,000 orders"
+    )
+
+
+@pytest.mark.edge
+def test_exhibits_carry_the_incident_costs() -> None:
+    root = REPO_RULES.parents[1]
+    costs = {i.id: i.cost for i in load_incidents(root / "data" / "incidents.csv")}
+    exhibits = {"I1": "01-bits", "I3": "05-how"}
+    assert all(
+        number in (root / folder / "data" / "incident.txt").read_text(encoding="ascii")
+        for id_, folder in exhibits.items()
+        for number in re.findall(r"\d[\d,]*\d|\d", costs[id_])
     )
 
 

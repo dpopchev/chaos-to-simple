@@ -1,12 +1,6 @@
-Incident I3: cards charged for parcels we did not have
-Support summary, week of 2026-10-23, shop orders
+From: support
+To: engineering
+Subject: charged, no parcel
 
-What happened: customers were charged in full for orders the warehouse could
-not ship. The storefront said the item was in stock, the card was charged,
-and the parcel was never packed.
-Cause as far as we know: "out of stock" was written to a log line that
-nobody read. No alert, no dashboard, no one on the floor was told.
-Impact: 37 support tickets opened this week, all for the same pattern.
-A refund took about a week to reach the customer's card, so most people
-wrote in twice before they got their money back.
-Next step: the order must be refused before the card is charged.
+41 customers paid for books the warehouse did not have. The warehouse answered "out of
+stock"; it is in the log; nobody reads the log. Refunds take six working days.
