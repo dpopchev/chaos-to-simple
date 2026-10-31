@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003   | blocked: 0 | todo roots: 0 | done: 59 | pruned: 1
+open path: E-003   | blocked: 0 | todo roots: 1 | done: 59 | pruned: 1
 
 ## Tree
 
@@ -17,6 +17,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-026  issue  [todo]     03-chaos: the example map before and after the room -- T-063 [todo], T-064 [todo], T-065 [todo]
   W-027  issue  [todo]     05-how: the core and the shell with three ports -- T-066 [todo], T-067 [todo], T-068 [todo]
   W-028  issue  [todo]     06-simple: the epilogue as stacked bars -- T-069 [todo], T-070 [todo]
+W-029  bug    [todo]     (standalone) deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [todo], T-072 [todo], T-073 [todo]
 ```
 
 ## Closed
@@ -175,6 +176,10 @@ flowchart TD
   E003 --> W028["W-028 issue todo: 06-simple: the epilogue as stacked bars"]
   W028 --> T069["T-069 todo: Build the two bars -> epilogue_bars(rules, seventh)"]
   W028 --> T070["T-070 todo: Show the bars -> build/06-simple/epilogue.png on the epilogue"]
+  W029["W-029 bug todo, standalone: deck: four slides run past the frame bottom"]
+  W029 --> T071["T-071 todo: Name the overfull frames -> scripts/utils/overflow.py and make overflow"]
+  W029 --> T072["T-072 todo: Fit the 01-bits frames -> 01-bits/index.md"]
+  W029 --> T073["T-073 todo: Fit the 05-how frames -> 05-how/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -182,5 +187,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E003 doing
   class W018,T037,T038,T039,T040 done
-  class W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070 todo
+  class W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
 ```
