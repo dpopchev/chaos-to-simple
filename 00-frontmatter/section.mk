@@ -2,6 +2,6 @@
 # A plain `#` keeps it out of make help.
 ARTIFACTS += $(BUILD)/00-frontmatter/route.png
 
-$(BUILD)/00-frontmatter/route.png: scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
+$(BUILD)/00-frontmatter/route.png: scripts/figures.py scripts/utils/figures.py scripts/utils/style.py data/route.csv data/incidents.csv
 	@$(RUN) python -m scripts.figures route --out $@
 	$(call log_done,$@ written)
