@@ -35,6 +35,15 @@ Three effects the code calls without a decision around them. Each one is a bit n
 wrote down, and each one doubles the paths.
 :::
 
+## What it felt like, what it was
+
+![](build/03-chaos/growth.png){height=70%}
+
+::: notes
+Six asks in ten weeks, each one small. Bits went 1 to 6 in a line; the paths doubled
+each time and ended at 64.
+:::
+
 ## The honest count {paths=512}
 
 ```{.text include=build/data/counts.txt}
