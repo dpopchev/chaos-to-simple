@@ -9,6 +9,7 @@
         --out build/01-bits/cast.txt
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
         --out build/04-what/contexts.txt
+    python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
 
@@ -27,9 +28,11 @@ from scripts.utils.paths import (
     epilogue_report,
     grid,
     load_cast,
+    load_incidents,
     load_rules,
     rules_table,
     stacked_bar,
+    wounds_selector,
 )
 
 
@@ -38,8 +41,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
-        "what", choices=["rules", "counts", "grid", "chart", "epilogue", "cast", "contexts"]
+        "what",
+        choices=["rules", "counts", "grid", "chart", "epilogue", "cast", "contexts", "wounds"],
     )
+    parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
     parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"))
@@ -63,6 +68,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])
+    elif args.what == "wounds":
+        text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "counts":
         text = count_report(load_rules(args.rules))
     else:

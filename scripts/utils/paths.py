@@ -60,6 +60,11 @@ def load_incidents(path: Path) -> tuple[Incident, ...]:
         return tuple(Incident(**{name: row[name] for name in names}) for row in csv.DictReader(fh))
 
 
+def wounds_selector(incidents: Iterable[Incident]) -> str:
+    """The pytest -k selector of the incidents closed by a test, in csv order."""
+    return " or ".join(i.closed_by for i in incidents if i.closed_by.startswith("test_"))
+
+
 def line_of(fragment: str, source: str) -> int:
     """The 1-based line of source holding fragment; raises ValueError unless exactly one does."""
     hits = [n for n, text in enumerate(source.splitlines(), start=1) if fragment in text]
