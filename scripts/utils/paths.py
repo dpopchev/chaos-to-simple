@@ -244,6 +244,17 @@ def bars_from_rules(rules: Sequence[Rule]) -> list[Bar]:
     ]
 
 
+def epilogue_bars(rules: Sequence[Rule], seventh: Sequence[Rule]) -> tuple[Bar, Bar]:
+    """The contexts + shell bar before and after the seventh rule joins, shell segment last.
+
+    Segments follow the context order of the deck palette (style.CONTEXTS), so
+    stacked_bar's colours match context_colour.
+    """
+    before = bars_from_rules(rules)[2]
+    after = bars_from_rules([*rules, *seventh])[2]
+    return (("before", before[1]), ("after", after[1]))
+
+
 def growth_chart(out: Path, points: Sequence[Growth]) -> Path:
     """Draw bits and paths over the weeks as two lines, every point labelled with its count.
 

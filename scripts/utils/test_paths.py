@@ -8,6 +8,7 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.paths import (
+    Bar,
     CastRow,
     Incident,
     Rule,
@@ -17,6 +18,7 @@ from scripts.utils.paths import (
     contexts_table,
     count_report,
     doubling_table,
+    epilogue_bars,
     epilogue_report,
     grid,
     growth,
@@ -362,6 +364,23 @@ class TestEpilogueCountsTheSeventhIf:
     @pytest.mark.edge
     def test_epilogue_is_three_lines(self, lines: list[str]) -> None:
         assert len(lines) == 3
+
+
+class TestEpilogueBarsGrowShippingOnly:
+    @pytest.fixture
+    def bars(self, repo_rules: list[Rule]) -> tuple[Bar, Bar]:
+        return epilogue_bars(repo_rules, load_rules(SEVENTH_RULES))
+
+    @pytest.mark.model
+    def test_epilogue_bars_grow_shipping_only(self, bars: tuple[Bar, Bar]) -> None:
+        before, after = (dict(segments) for _, segments in bars)
+        assert {k: after[k] - before[k] for k in before if after[k] != before[k]} == {
+            "shipping": 8
+        }
+
+    @pytest.mark.model
+    def test_epilogue_bars_total_22_and_30(self, bars: tuple[Bar, Bar]) -> None:
+        assert [sum(value for _, value in segments) for _, segments in bars] == [22, 30]
 
 
 DOUBLING_CAST = [
