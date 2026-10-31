@@ -16,6 +16,7 @@ from scripts.utils.figures import (
     load_route,
     moves,
     moves_figure,
+    ports_of,
     route,
     route_layout,
     stacey,
@@ -32,6 +33,15 @@ RULES_CSV = Path(__file__).resolve().parents[2] / "data" / "rules.csv"
 @pytest.mark.model
 def test_moves_sum_to_nine() -> None:
     assert sum(move.bits for move in moves(load_rules(RULES_CSV))) == 9
+
+
+@pytest.mark.model
+def test_ports_of_reads_three_sum_types() -> None:
+    assert [(p.context, p.code) for p in ports_of(load_rules(RULES_CSV))] == [
+        ("payment", "Charged | Declined"),
+        ("warehouse", "Reserved | OutOfStock"),
+        ("mail", "Sent | Bounced"),
+    ]
 
 
 @pytest.mark.edge

@@ -169,6 +169,19 @@ def moves(rules: Sequence[Rule]) -> tuple[Move, ...]:
     return tuple(Move(home, homes.count(home)) for home in style.CONTEXTS[:4])
 
 
+@dataclass(frozen=True)
+class Port:
+    """One edge of the shell: the context it talks to and the sum type it answers with."""
+
+    context: str
+    code: str
+
+
+def ports_of(rules: Sequence[Rule]) -> tuple[Port, ...]:
+    """Read the shell rows in csv order as ports, their code column the sum type."""
+    return tuple(Port(rule.context, rule.code) for rule in rules if rule.scope == "shell")
+
+
 def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
     """Draw checkout() as one box and one band per home, its width by bits, its count on it."""
     style.apply()
