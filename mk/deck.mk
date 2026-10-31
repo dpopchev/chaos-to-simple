@@ -93,6 +93,16 @@ lines: ## Check the six should-have-known lines in their sections and in 07
 	@$(RUN) python -m scripts.check_lines --root .
 	$(call log_done,the six lines are in their sections and in 07)
 
+OVERFLOW := local/state/overflow
+
+.PHONY: overflow
+overflow: $(DECK_INPUTS) ## Fail naming each beamer frame that runs past the frame bottom
+	@mkdir -p $(OVERFLOW)
+	@$(PANDOC) --defaults $(DEFAULTS) -t beamer -s $(INDEXES) -o $(OVERFLOW)/talk.tex
+	@lualatex -interaction=nonstopmode -output-directory $(OVERFLOW) $(OVERFLOW)/talk.tex >/dev/null
+	@$(RUN) python -m scripts.overflow --tex $(OVERFLOW)/talk.tex --log $(OVERFLOW)/talk.log
+	$(call log_done,no overfull frame)
+
 .PHONY: doctor
 doctor: ## Report the deck toolchain and the fonts
 	@for tool in $(UV) $(PANDOC) lualatex; do \
