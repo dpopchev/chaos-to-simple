@@ -93,6 +93,11 @@ lines: ## Check the six should-have-known lines in their sections and in 07
 	@$(RUN) python -m scripts.check_lines --root .
 	$(call log_done,the six lines are in their sections and in 07)
 
+.PHONY: widths
+widths: $(ARTIFACTS) ## Fail naming each included line wider than its column
+	@$(RUN) python -m scripts.check_widths --root . --full 104
+	$(call log_done,every included line fits its column)
+
 OVERFLOW := local/state/overflow
 
 .PHONY: overflow
