@@ -72,6 +72,8 @@ test. The counter does not move in this section; that is honest.
 
 ## The line
 
+Naming is cosmetics
+
 Every if was somebody's sentence. Write it down, give it a home, pass values between homes.
 
 ::: notes

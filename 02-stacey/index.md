@@ -50,4 +50,6 @@ to do it. The next four sections are the four moves.
 
 ## The line
 
+A bug is fixed with a test
+
 Before fixing the How, check whether the What is agreed.

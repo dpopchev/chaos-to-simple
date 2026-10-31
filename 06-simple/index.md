@@ -109,4 +109,6 @@ context, and the counts show what it cost. Chat: where does the digital-books if
 
 ## The line
 
+One more if is cheap
+
 Decisions in the core, effects in the shell. The next if costs 8, not 512.

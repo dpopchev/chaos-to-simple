@@ -61,6 +61,8 @@ are data/examples.csv and come back as test names in 06. The counter went up, wh
 
 ## The line
 
+Counting makes it worse
+
 You cannot shrink a count you have not made. The bigger number is the first good news.
 
 ::: notes
