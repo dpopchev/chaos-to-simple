@@ -29,14 +29,16 @@ def _squeeze(text: str) -> str:
 
 
 def missing(lines: list[Line], texts: Mapping[str, str]) -> list[tuple[str, str]]:
-    """Return (section, where) for each line absent from its section or from 07-close.
+    """Return (section + column, where) for each line absent from its section or from 07-close.
 
+    The column (believed or learned) follows the section, so the message names it.
     Runs of whitespace are collapsed before comparing; a section with no text has none.
     """
     out: list[tuple[str, str]] = []
     for line in lines:
-        needle = _squeeze(line.learned)
-        for where in (line.section, CLOSE):
-            if needle not in _squeeze(texts.get(where, "")):
-                out.append((line.section, where))
+        for column, text in (("believed", line.believed), ("learned", line.learned)):
+            needle = _squeeze(text)
+            for where in (line.section, CLOSE):
+                if needle not in _squeeze(texts.get(where, "")):
+                    out.append((f"{line.section} {column}", where))
     return out
