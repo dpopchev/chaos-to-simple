@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003 > W-018 > T-037   | blocked: 0 | todo roots: 0 | done: 54 | pruned: 1
+open path: E-003 > W-018 > T-038   | blocked: 0 | todo roots: 0 | done: 55 | pruned: 1
 
 ## Tree
 
 ```text
 E-003         [doing]    The talk runs one loop: found documents, built counts, figures in one style, the believed line flipped
-  W-018  issue  [doing]    06-simple: the wounds close by name in a run built from incidents.csv -- T-037 [doing]   <- ACTIVE LEAF, T-038 [todo], T-039 [todo], T-040 [todo]
+  W-018  issue  [doing]    06-simple: the wounds close by name in a run built from incidents.csv -- T-037 [done], T-038 [doing]   <- ACTIVE LEAF, T-039 [todo], T-040 [todo]
   W-019  issue  [todo]     00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents -- T-041 [todo], T-042 [todo], T-043 [todo]
   W-020  issue  [todo]     01-bits: the doubling with faces -- T-044 [todo], T-045 [todo], T-046 [todo]
   W-021  issue  [todo]     lines: the believed / learned pair -- T-047 [todo], T-048 [todo], T-049 [todo]
@@ -131,8 +131,8 @@ closed 2026-10-30 -- outcome: Given docs/storyline.md, When the developer reads 
 flowchart TD
   E003["E-003 doing: The talk runs one loop: found documents, built counts, figures in one style, the believed line flipped"]
   E003 --> W018["W-018 issue doing: 06-simple: the wounds close by name in a run built from incidents.csv"]
-  W018 --> T037["T-037 doing: Add the incidents -> data/incidents.csv and load_incidents -- ACTIVE LEAF"]
-  W018 --> T038["T-038 todo: Select the wounds by name -> wounds_selector and scripts.paths wounds"]
+  W018 --> T037["T-037 done: Add the incidents -> data/incidents.csv and load_incidents"]
+  W018 --> T038["T-038 doing: Select the wounds by name -> wounds_selector and scripts.paths wounds -- ACTIVE LEAF"]
   W018 --> T039["T-039 todo: Run the wounds -> build/06-simple/wounds.txt"]
   W018 --> T040["T-040 todo: Show the wounds -> 06-simple/index.md includes build/06-simple/wounds.txt"]
   E003 --> W019["W-019 issue todo: 00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents"]
@@ -180,6 +180,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003,W018,T037 doing
-  class T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070 todo
+  class E003,W018,T038 doing
+  class T037 done
+  class T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070 todo
 ```
