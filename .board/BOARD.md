@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-004 > W-030 > T-075   | blocked: 0 | todo roots: 0 | done: 105 | pruned: 1
+open path: E-004 > W-030   | blocked: 0 | todo roots: 0 | done: 106 | pruned: 1
 
 ## Tree
 
 ```text
 E-004         [doing]    deck: the deck renders whole
   W-029  bug    [done]     deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [done], T-072 [done], T-073 [done]
-  W-030  issue  [doing]    00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [done], T-075 [doing]   <- ACTIVE LEAF
+  W-030  issue  [doing]    00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [done], T-075 [done]
   W-031  bug    [todo]     deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [todo], T-077 [todo], T-078 [todo]
 ```
 
@@ -199,7 +199,7 @@ flowchart TD
   W029 --> T073["T-073 done: Fit the 05-how and 06-simple frames -> 05-how/index.md and 06-simple/index.md"]
   E004 --> W030["W-030 issue doing: 00-frontmatter: the route boxes name their sections"]
   W030 --> T074["T-074 done: Add the names -> data/route.csv name column and Stop.name"]
-  W030 --> T075["T-075 doing: Label the boxes -> stop_label(stop) used by route(out) -- ACTIVE LEAF"]
+  W030 --> T075["T-075 done: Label the boxes -> stop_label(stop) used by route(out)"]
   E004 --> W031["W-031 bug todo: deck: code and tables clip at the right edge, column figures too small to read"]
   W031 --> T076["T-076 todo: Measure the widths -> scripts/utils/widths.py and make widths"]
   W031 --> T077["T-077 todo: Give the E-003 figures room -> 03-chaos, 04-what, 05-how, 06-simple index.md"]
@@ -209,7 +209,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E004,W030,T075 doing
-  class W029,T071,T072,T073,T074 done
+  class E004,W030 doing
+  class W029,T071,T072,T073,T074,T075 done
   class W031,T076,T077,T078 todo
 ```
