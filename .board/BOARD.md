@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003 > W-027   | blocked: 0 | todo roots: 2 | done: 95 | pruned: 1
+open path: E-003   | blocked: 0 | todo roots: 2 | done: 96 | pruned: 1
 
 ## Tree
 
@@ -15,7 +15,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-024  issue  [done]     03-chaos: what it felt like vs what it was -- T-056 [done], T-057 [done], T-058 [done]
   W-025  issue  [done]     04-what: the bits move, none deleted -- T-059 [done], T-060 [done], T-061 [done], T-062 [done]
   W-026  issue  [done]     03-chaos: the example map before and after the room -- T-063 [done], T-064 [done], T-065 [done]
-  W-027  issue  [doing]    05-how: the core and the shell with three ports -- T-066 [done], T-067 [done], T-068 [done]
+  W-027  issue  [done]     05-how: the core and the shell with three ports -- T-066 [done], T-067 [done], T-068 [done]
   W-028  issue  [todo]     06-simple: the epilogue as stacked bars -- T-069 [todo], T-070 [todo]
 W-029  bug    [todo]     (standalone) deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [todo], T-072 [todo], T-073 [todo]
 W-030  issue  [todo]     (standalone) 00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [todo], T-075 [todo]
@@ -170,7 +170,7 @@ flowchart TD
   W026 --> T063["T-063 done: Count the cards -> card_counts in scripts/utils/examples.py"]
   W026 --> T064["T-064 done: Draw the map -> example_map(out, before, after) and scripts.figures example-map"]
   W026 --> T065["T-065 done: Show the map -> build/03-chaos/example_map.png on The six questions"]
-  E003 --> W027["W-027 issue doing: 05-how: the core and the shell with three ports"]
+  E003 --> W027["W-027 issue done: 05-how: the core and the shell with three ports"]
   W027 --> T066["T-066 done: Read the ports -> ports_of(rules)"]
   W027 --> T067["T-067 done: Draw the seam -> seam(out, ports) and scripts.figures seam"]
   W027 --> T068["T-068 done: Show the seam -> 05-how/section.mk and The ports"]
@@ -189,7 +189,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003,W027 doing
-  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,T066,T067,T068 done
+  class E003 doing
+  class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068 done
   class W028,T069,T070,W029,T071,T072,T073,W030,T074,T075 todo
 ```
