@@ -43,6 +43,23 @@ def load_cast(path: Path) -> list[CastRow]:
         return [CastRow(**{name: row[name] for name in names}) for row in csv.DictReader(fh)]
 
 
+@dataclass(frozen=True)
+class Incident:
+    id: str
+    week: str
+    told_in: str
+    closed_in: str
+    closed_by: str
+    kind: str
+    cost: str
+
+
+def load_incidents(path: Path) -> tuple[Incident, ...]:
+    names = [f.name for f in fields(Incident)]
+    with path.open(newline="", encoding="ascii") as fh:
+        return tuple(Incident(**{name: row[name] for name in names}) for row in csv.DictReader(fh))
+
+
 def line_of(fragment: str, source: str) -> int:
     """The 1-based line of source holding fragment; raises ValueError unless exactly one does."""
     hits = [n for n, text in enumerate(source.splitlines(), start=1) if fragment in text]

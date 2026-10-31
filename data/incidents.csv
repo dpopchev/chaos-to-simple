@@ -1,0 +1,4 @@
+id,week,told_in,closed_in,closed_by,kind,cost
+I1,14,01,06,test_free_shipping_after_discount,rule,"1,214 orders, 6,070 BGN"
+I2,15,02,04,rules.csv b2,decision,one meeting nobody had called
+I3,18,05,06,test_out_of_stock_rejects_before_payment,effect,41 refunds in six working days

@@ -8,6 +8,7 @@ import pytest
 
 from scripts.utils.paths import (
     CastRow,
+    Incident,
     Rule,
     bars_from_rules,
     bits_by,
@@ -18,6 +19,7 @@ from scripts.utils.paths import (
     grid,
     line_of,
     load_cast,
+    load_incidents,
     load_rules,
     rules_table,
     split,
@@ -206,6 +208,22 @@ def cast_rows(tmp_path: Path) -> list[CastRow]:
 @pytest.mark.edge
 def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
     assert cast_rows[0] == CastRow("b0", "Marketing", "10 off, with the code", "if a")
+
+
+INCIDENTS_CSV = (
+    "id,week,told_in,closed_in,closed_by,kind,cost\n"
+    'I1,14,01,06,test_a,rule,"1,000 orders"\n'
+    "I2,15,02,04,rules.csv b2,decision,one meeting\n"
+)
+
+
+@pytest.mark.edge
+def test_load_incidents_reads_every_column(tmp_path: Path) -> None:
+    path = tmp_path / "incidents.csv"
+    path.write_text(INCIDENTS_CSV, encoding="ascii")
+    assert load_incidents(path)[0] == Incident(
+        "I1", "14", "01", "06", "test_a", "rule", "1,000 orders"
+    )
 
 
 @pytest.mark.model
