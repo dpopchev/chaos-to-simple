@@ -1,10 +1,10 @@
-bit,requested_by,words,fragment
-b0,Marketing,10 BGN off with the autumn code,coupon_valid_until >= today
-b1,Loyalty program,members get 10%; obviously after the coupon,if order.member
-b2,Logistics,free shipping from 50 (from what? nobody asked),if subtotal >=
-b3,Logistics,"abroad is 20, not 5",if order.international
-b4,"Marketing, two weeks before launch","just one more if",if order.gift_wrap
-b5,Accounting,companies with a VAT ID pay no VAT,if order.vat_id is None
-s0,Nobody,"the provider answers; nobody wrote the answer down",charge(total)
-s1,Nobody,"the warehouse answers; nobody wrote the answer down",reserve(order.lines)
-s2,Nobody,"the mailer answers; nobody wrote the answer down",send(order.email
+bit,week,requested_by,words,fragment
+b0,3,Marketing,10 BGN off with the autumn code,coupon_valid_until >= today
+b1,5,Loyalty program,members get 10%; obviously after the coupon,if order.member
+b2,6,Logistics,free shipping from 50 (from what? nobody asked),if subtotal >=
+b3,6,Logistics,"abroad is 20, not 5",if order.international
+b4,9,"Marketing, two weeks before launch","just one more if",if order.gift_wrap
+b5,10,Accounting,companies with a VAT ID pay no VAT,if order.vat_id is None
+s0,,Nobody,"the provider answers; nobody wrote the answer down",charge(total)
+s1,,Nobody,"the warehouse answers; nobody wrote the answer down",reserve(order.lines)
+s2,,Nobody,"the mailer answers; nobody wrote the answer down",send(order.email

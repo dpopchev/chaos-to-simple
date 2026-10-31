@@ -32,15 +32,25 @@ def load_rules(path: Path) -> list[Rule]:
 @dataclass(frozen=True)
 class CastRow:
     bit: str
+    week: int | None
     requested_by: str
     words: str
     fragment: str
 
 
 def load_cast(path: Path) -> list[CastRow]:
-    names = [f.name for f in fields(CastRow)]
+    """Read the cast; an empty week cell (a shell effect nobody asked for) is None."""
     with path.open(newline="", encoding="ascii") as fh:
-        return [CastRow(**{name: row[name] for name in names}) for row in csv.DictReader(fh)]
+        return [
+            CastRow(
+                row["bit"],
+                int(row["week"]) if row["week"] else None,
+                row["requested_by"],
+                row["words"],
+                row["fragment"],
+            )
+            for row in csv.DictReader(fh)
+        ]
 
 
 @dataclass(frozen=True)

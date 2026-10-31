@@ -192,9 +192,9 @@ class TestStackedBarWritesAPng:
 
 
 CAST_CSV = (
-    "bit,requested_by,words,fragment\n"
-    'b0,Marketing,"10 off, with the code",if a\n'
-    "s0,Nobody,nobody wrote it down,call(x)\n"
+    "bit,week,requested_by,words,fragment\n"
+    'b0,3,Marketing,"10 off, with the code",if a\n'
+    "s0,,Nobody,nobody wrote it down,call(x)\n"
 )
 
 CAST_SOURCE = "first\nif a:\n    pass\ncall(x)\n"
@@ -209,7 +209,7 @@ def cast_rows(tmp_path: Path) -> list[CastRow]:
 
 @pytest.mark.edge
 def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
-    assert cast_rows[0] == CastRow("b0", "Marketing", "10 off, with the code", "if a")
+    assert cast_rows[0] == CastRow("b0", 3, "Marketing", "10 off, with the code", "if a")
 
 
 INCIDENTS_CSV = (
@@ -294,11 +294,11 @@ CONTEXTS_RULES = (
 )
 
 CONTEXTS_CAST = (
-    "bit,requested_by,words,fragment\n"
-    "b0,Marketing,a,x\n"
-    "b1,Loyalty program,b,y\n"
-    "b2,Marketing,c,z\n"
-    "s0,Nobody,d,w\n"
+    "bit,week,requested_by,words,fragment\n"
+    "b0,3,Marketing,a,x\n"
+    "b1,5,Loyalty program,b,y\n"
+    "b2,6,Marketing,c,z\n"
+    "s0,,Nobody,d,w\n"
 )
 
 
