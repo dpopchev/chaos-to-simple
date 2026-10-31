@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import csv
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
@@ -52,6 +53,25 @@ INCIDENTS = {
     3: "I2: before or after the discount?",
     5: "I3: charged, no parcel",
 }
+
+
+@dataclass(frozen=True)
+class Stop:
+    """One section of the talk: its Stacey zone, footer counter and the move into it."""
+
+    section: str
+    zone: str
+    counter: str
+    move: str
+
+
+def load_route(path: Path) -> tuple[Stop, ...]:
+    """Read the stops of the route from data/route.csv, in section order."""
+    with path.open(newline="", encoding="ascii") as fh:
+        return tuple(
+            Stop(row["section"], row["zone"], row["counter"], row["move"])
+            for row in csv.DictReader(fh)
+        )
 
 
 @dataclass(frozen=True)

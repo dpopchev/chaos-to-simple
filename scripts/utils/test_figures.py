@@ -8,9 +8,15 @@ from pathlib import Path
 import pytest
 
 from s01_bits.two_ifs import ship
-from scripts.utils.figures import TREE_LEAVES, route, stacey, story, tree
+from scripts.utils.figures import TREE_LEAVES, load_route, route, stacey, story, tree
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+ROUTE_CSV = Path(__file__).resolve().parents[2] / "data" / "route.csv"
+
+
+@pytest.mark.edge
+def test_load_route_reads_eight_sections() -> None:
+    assert [stop.section for stop in load_route(ROUTE_CSV)] == [f"0{i}" for i in range(8)]
 
 
 @pytest.mark.model
