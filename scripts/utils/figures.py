@@ -177,7 +177,7 @@ def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
 def route(
     out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
 ) -> None:
-    """Draw the route of the talk on the Stacey square: a box per stop, the move and incident on each arrow."""
+    """Draw the route on the Stacey square: a box per stop, move and incident on each arrow."""
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch, Rectangle
