@@ -22,10 +22,10 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
     rules_table,
-    wounds_selector,
     split,
     stacked_bar,
     tangled,
+    wounds_selector,
 )
 
 REPO_RULES = Path(__file__).resolve().parents[2] / "data" / "rules.csv"
