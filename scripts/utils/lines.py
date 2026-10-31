@@ -13,12 +13,15 @@ CLOSE = "07-close"
 @dataclass(frozen=True)
 class Line:
     section: str
-    text: str
+    believed: str
+    learned: str
 
 
 def load_lines(path: Path) -> list[Line]:
     with path.open(newline="", encoding="ascii") as fh:
-        return [Line(row["section"], row["line"]) for row in csv.DictReader(fh)]
+        return [
+            Line(row["section"], row["believed"], row["learned"]) for row in csv.DictReader(fh)
+        ]
 
 
 def _squeeze(text: str) -> str:
@@ -32,7 +35,7 @@ def missing(lines: list[Line], texts: Mapping[str, str]) -> list[tuple[str, str]
     """
     out: list[tuple[str, str]] = []
     for line in lines:
-        needle = _squeeze(line.text)
+        needle = _squeeze(line.learned)
         for where in (line.section, CLOSE):
             if needle not in _squeeze(texts.get(where, "")):
                 out.append((line.section, where))

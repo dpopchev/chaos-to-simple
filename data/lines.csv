@@ -1,7 +1,7 @@
-section,line
-01-bits,"Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge."
-02-stacey,"Before fixing the How, check whether the What is agreed."
-03-chaos,"You cannot shrink a count you have not made. The bigger number is the first good news."
-04-what,"Every if was somebody's sentence. Write it down, give it a home, pass values between homes."
-05-how,"A method that does and tells hides a bit. Separate asking from doing; make every answer a value."
-06-simple,"Decisions in the core, effects in the shell. The next if costs 8, not 512."
+section,believed,learned
+01-bits,A green badge means tested,"Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge."
+02-stacey,A bug is fixed with a test,"Before fixing the How, check whether the What is agreed."
+03-chaos,Counting makes it worse,"You cannot shrink a count you have not made. The bigger number is the first good news."
+04-what,Naming is cosmetics,"Every if was somebody's sentence. Write it down, give it a home, pass values between homes."
+05-how,A class will keep it tidy,"A method that does and tells hides a bit. Separate asking from doing; make every answer a value."
+06-simple,One more if is cheap,"Decisions in the core, effects in the shell. The next if costs 8, not 512."

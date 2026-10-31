@@ -8,19 +8,34 @@ import pytest
 
 from scripts.utils.lines import Line, load_lines, missing
 
-LINES_CSV = 'section,line\n01-bits,"Count, then trust."\n02-stacey,Agree the What.\n'
+LINES_CSV = (
+    'section,believed,learned\n01-bits,B1,"Count, then trust."\n02-stacey,B2,Agree the What.\n'
+)
 
 
 @pytest.fixture
 def lines() -> list[Line]:
-    return [Line("01-bits", "Count, then trust."), Line("02-stacey", "Agree the What.")]
+    return [
+        Line("01-bits", "B1", "Count, then trust."),
+        Line("02-stacey", "B2", "Agree the What."),
+    ]
 
 
 @pytest.mark.edge
 def test_load_lines_reads_a_quoted_line_with_a_comma(tmp_path: Path) -> None:
     path = tmp_path / "lines.csv"
     path.write_text(LINES_CSV, encoding="ascii")
-    assert load_lines(path)[0] == Line("01-bits", "Count, then trust.")
+    assert load_lines(path)[0] == Line("01-bits", "B1", "Count, then trust.")
+
+
+@pytest.mark.model
+def test_load_lines_reads_believed_and_learned(tmp_path: Path) -> None:
+    path = tmp_path / "lines.csv"
+    path.write_text(
+        'section,believed,learned\n01-bits,A green badge means tested,"Count, then trust."\n',
+        encoding="ascii",
+    )
+    assert load_lines(path) == [Line("01-bits", "A green badge means tested", "Count, then trust.")]
 
 
 @pytest.mark.model
