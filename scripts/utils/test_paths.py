@@ -16,6 +16,7 @@ from scripts.utils.paths import (
     cast_table,
     contexts_table,
     count_report,
+    doubling_table,
     epilogue_report,
     grid,
     line_of,
@@ -359,3 +360,23 @@ class TestEpilogueCountsTheSeventhIf:
     @pytest.mark.edge
     def test_epilogue_is_three_lines(self, lines: list[str]) -> None:
         assert len(lines) == 3
+
+
+DOUBLING_CAST = [
+    *[CastRow(f"b{n}", 3 + n, f"Team {n}", f"ask {n}", f"if {n}") for n in range(6)],
+    CastRow("s0", None, "Nobody", "unwritten", "call(x)"),
+]
+
+
+class TestDoublingTableCountsAlong:
+    @pytest.fixture
+    def lines(self) -> list[str]:
+        return doubling_table(DOUBLING_CAST).splitlines()
+
+    @pytest.mark.model
+    def test_doubling_last_row_is_six_bits_64_paths(self, lines: list[str]) -> None:
+        assert lines[-1].split()[-2:] == ["6", "64"]
+
+    @pytest.mark.model
+    def test_doubling_has_one_row_per_core_bit(self, lines: list[str]) -> None:
+        assert len(lines) == 1 + 6

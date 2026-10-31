@@ -9,6 +9,7 @@
         --out build/01-bits/cast.txt
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
         --out build/04-what/contexts.txt
+    python -m scripts.paths doubling --cast data/cast.csv --out build/01-bits/doubling.txt
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -25,6 +26,7 @@ from scripts.utils.paths import (
     cast_table,
     contexts_table,
     count_report,
+    doubling_table,
     epilogue_report,
     grid,
     load_cast,
@@ -42,7 +44,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument(
         "what",
-        choices=["rules", "counts", "grid", "chart", "epilogue", "cast", "contexts", "wounds"],
+        choices=[
+            "rules",
+            "counts",
+            "grid",
+            "chart",
+            "epilogue",
+            "cast",
+            "contexts",
+            "doubling",
+            "wounds",
+        ],
     )
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
@@ -65,6 +77,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "contexts":
         text = contexts_table(load_rules(args.rules), load_cast(args.cast))
+    elif args.what == "doubling":
+        text = doubling_table(load_cast(args.cast))
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])

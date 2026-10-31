@@ -94,6 +94,19 @@ def cast_table(cast: Sequence[CastRow], source: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def doubling_table(cast: Sequence[CastRow]) -> str:
+    """Each core bit in csv order with its week, who asked, and the 2**bits paths it makes."""
+    core = [c for c in cast if c.bit.startswith("b")]
+    rows = [("week", "who", "asked for", "bits", "paths")]
+    for bits, c in enumerate(core, start=1):
+        rows.append((str(c.week), c.requested_by, c.words, str(bits), str(tangled(bits))))
+    widths = [max(len(row[i]) for row in rows) for i in range(5)]
+    lines = [
+        "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
+    ]
+    return "\n".join(lines) + "\n"
+
+
 def contexts_table(rules: Sequence[Rule], cast: Sequence[CastRow]) -> str:
     """Each context with its bits, its 2**n paths and who asked for them, in rules order."""
     requester = {c.bit: c.requested_by for c in cast}
