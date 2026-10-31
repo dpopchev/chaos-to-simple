@@ -19,3 +19,4 @@
 ## Deviations
 - 2026-10-31 E-003: W-029 filed standalone during T-040: four frames from before E-003 overflow (01-bits, 05-how); the developer orders it at the close
 - 2026-10-31 E-003: W-030 filed standalone during T-055: the route boxes lost their section names; the developer orders it at the close
+- 2026-10-31 E-003: W-031 filed standalone during T-070: code, tables and runs clip at the right edge on six slides, the column figures too small to read; LaTeX warns of none; the developer orders it at the close

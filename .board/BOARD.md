@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003   | blocked: 0 | todo roots: 2 | done: 99 | pruned: 1
+open path: E-003   | blocked: 0 | todo roots: 3 | done: 99 | pruned: 1
 
 ## Tree
 
@@ -19,6 +19,7 @@ E-003         [doing]    The talk runs one loop: found documents, built counts, 
   W-028  issue  [done]     06-simple: the epilogue as stacked bars -- T-069 [done], T-070 [done]
 W-029  bug    [todo]     (standalone) deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [todo], T-072 [todo], T-073 [todo]
 W-030  issue  [todo]     (standalone) 00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [todo], T-075 [todo]
+W-031  bug    [todo]     (standalone) deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [todo], T-077 [todo], T-078 [todo]
 ```
 
 ## Closed
@@ -184,6 +185,10 @@ flowchart TD
   W030["W-030 issue todo, standalone: 00-frontmatter: the route boxes name their sections"]
   W030 --> T074["T-074 todo: Add the names -> data/route.csv name column and Stop.name"]
   W030 --> T075["T-075 todo: Label the boxes -> stop_label(stop) used by route(out)"]
+  W031["W-031 bug todo, standalone: deck: code and tables clip at the right edge, column figures too small to read"]
+  W031 --> T076["T-076 todo: Measure the widths -> scripts/utils/widths.py and make widths"]
+  W031 --> T077["T-077 todo: Give the E-003 figures room -> 03-chaos, 04-what, 05-how, 06-simple index.md"]
+  W031 --> T078["T-078 todo: Fit the older clipped lines -> 01-bits, 06-simple index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -191,5 +196,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E003 doing
   class W018,T037,T038,T039,T040,W019,T041,T042,T043,W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070 done
-  class W029,T071,T072,T073,W030,T074,T075 todo
+  class W029,T071,T072,T073,W030,T074,T075,W031,T076,T077,T078 todo
 ```
