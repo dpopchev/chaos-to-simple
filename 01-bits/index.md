@@ -65,7 +65,7 @@ section 04, says the discounted goods. Branch coverage was 100% before and after
 
 ## Four paths, the same two tests {paths=?}
 
-\scriptsize
+\fvset{fontsize=\scriptsize}
 
 :::: columns
 ::: {.column width="50%"}
@@ -77,11 +77,11 @@ section 04, says the discounted goods. Branch coverage was 100% before and after
 :::
 ::: {.column width="50%"}
 ![](build/01-bits/tree.png){width=70%}
+:::
+::::
 
 ```{.text include=build/01-bits/two_ifs.txt}
 ```
-:::
-::::
 
 ::: notes
 Two ifs, four paths. The same two tests reach 100%. Path 01 never ran, and the badge

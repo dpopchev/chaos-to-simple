@@ -55,16 +55,13 @@ proves the collapse: no charge when the stock is gone, no mail when the card is 
 
 ## The wounds close by name
 
-::: columns
-::: {.column width="50%"}
+\fvset{fontsize=\scriptsize}
+
 ```{.python include=06-simple/tests/test_examples.py snippet=wound-i1}
 ```
-:::
-::: {.column width="50%"}
+
 ```{.python include=06-simple/tests/test_shell.py snippet=wound-i3}
 ```
-:::
-:::
 
 ```{.text include=build/06-simple/wounds.txt}
 ```
@@ -87,16 +84,13 @@ adds paths; one that passes flags multiplies them.
 
 ## Epilogue: marketing's seventh if
 
-::: columns
-::: {.column width="50%"}
+\fvset{fontsize=\scriptsize}
+
 ```{.python include=04-what/s04_what/shipping.py snippet=fee}
 ```
-:::
-::: {.column width="50%"}
+
 ```{.python include=06-simple/s06_simple/seventh.py snippet=fee-digital}
 ```
-:::
-:::
 
 ```{.text include=build/06-simple/epilogue.txt}
 ```
