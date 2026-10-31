@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-003 > W-019   | blocked: 0 | todo roots: 1 | done: 62 | pruned: 1
+open path: E-003   | blocked: 0 | todo roots: 1 | done: 63 | pruned: 1
 
 ## Tree
 
 ```text
 E-003         [doing]    The talk runs one loop: found documents, built counts, figures in one style, the believed line flipped
   W-018  issue  [done]     06-simple: the wounds close by name in a run built from incidents.csv -- T-037 [done], T-038 [done], T-039 [done], T-040 [done]
-  W-019  issue  [doing]    00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents -- T-041 [done], T-042 [done], T-043 [done]
+  W-019  issue  [done]     00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents -- T-041 [done], T-042 [done], T-043 [done]
   W-020  issue  [todo]     01-bits: the doubling with faces -- T-044 [todo], T-045 [todo], T-046 [todo]
   W-021  issue  [todo]     lines: the believed / learned pair -- T-047 [todo], T-048 [todo], T-049 [todo]
   W-022  issue  [todo]     01-bits: the two-if tree -- T-050 [todo], T-051 [todo], T-052 [todo]
@@ -136,7 +136,7 @@ flowchart TD
   W018 --> T038["T-038 done: Select the wounds by name -> wounds_selector and scripts.paths wounds"]
   W018 --> T039["T-039 done: Run the wounds -> build/06-simple/wounds.txt"]
   W018 --> T040["T-040 done: Show the wounds -> 06-simple/index.md includes build/06-simple/wounds.txt"]
-  E003 --> W019["W-019 issue doing: 00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents"]
+  E003 --> W019["W-019 issue done: 00-frontmatter, 01-bits, 05-how, 06-simple: the exhibits as found documents"]
   W019 --> T041["T-041 done: Rewrite the I1 and I3 exhibits -> 01-bits/data/incident.txt, 05-how/data/incident.txt"]
   W019 --> T042["T-042 done: Write the message and the teaser -> 00-frontmatter/data/message.txt, 06-simple/data/teaser.txt"]
   W019 --> T043["T-043 done: Show the found documents -> 00-frontmatter/index.md, 01-bits/index.md, 06-simple/index.md"]
@@ -185,7 +185,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E003,W019 doing
-  class W018,T037,T038,T039,T040,T041,T042,T043 done
+  class E003 doing
+  class W018,T037,T038,T039,T040,W019,T041,T042,T043 done
   class W020,T044,T045,T046,W021,T047,T048,T049,W022,T050,T051,T052,W023,T053,T054,T055,W024,T056,T057,T058,W025,T059,T060,T061,T062,W026,T063,T064,T065,W027,T066,T067,T068,W028,T069,T070,W029,T071,T072,T073 todo
 ```
