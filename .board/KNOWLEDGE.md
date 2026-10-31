@@ -10,7 +10,8 @@
 - none recorded
 
 ## Decisions
-- none recorded
+- 2026-10-31 E-004: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-10-31)
+- 2026-10-31 E-004: the developer gathered the standalone backlog W-029, W-030, W-031 under one Epic to burn it under one /goal
 
 ## Deviations
 - none recorded
