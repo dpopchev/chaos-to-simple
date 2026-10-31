@@ -64,6 +64,9 @@ proves the collapse: no charge when the stock is gone, no mail when the card is 
 :::
 :::
 
+```{.text include=build/06-simple/wounds.txt}
+```
+
 ::: notes
 I1, free shipping judged on the wrong amount, is closed by a named test in the core. I3,
 the parcel that never existed being paid for, is closed by a named test in the shell. Each
