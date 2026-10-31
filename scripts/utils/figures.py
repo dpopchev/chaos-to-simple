@@ -168,6 +168,59 @@ def moves(rules: Sequence[Rule]) -> tuple[Move, ...]:
     return tuple(Move(home, homes.count(home)) for home in style.CONTEXTS[:4])
 
 
+def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
+    """Draw checkout() as one box and one band per home, its width by bits, its count on it."""
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch, Rectangle
+
+    unit, band_x, band_h = 1.5, 5.0, 0.7
+    n = len(moves)
+    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    mid = (n - 1) / 2
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.2, mid - 0.8),
+            2.6,
+            1.6,
+            boxstyle="round,pad=0.05,rounding_size=0.15",
+            facecolor="#555555",
+            edgecolor="none",
+        )
+    )
+    ax.text(1.5, mid, "checkout()", ha="center", va="center", fontsize=16, color="white")
+    for row, move in enumerate(moves):
+        y = n - 1 - row
+        colour = style.context_colour(move.home)
+        ax.annotate(
+            "",
+            (band_x - 0.1, y),
+            (2.9, mid),
+            arrowprops={"arrowstyle": "-|>", "color": colour, "linewidth": 1.8},
+        )
+        ax.add_patch(
+            Rectangle((band_x, y - band_h / 2), move.bits * unit, band_h, facecolor=colour)
+        )
+        ax.text(
+            band_x + move.bits * unit / 2,
+            y,
+            str(move.bits),
+            ha="center",
+            va="center",
+            fontsize=20,
+            color="white",
+        )
+        ax.text(
+            band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16
+        )
+    ax.set_xlim(0, 11.5)
+    ax.set_ylim(-0.7, n - 0.3)
+    ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
+
+
 def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
     """Place each stop on the Stacey square: inside its zone, or beside the square without one.
 

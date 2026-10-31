@@ -13,6 +13,7 @@ from scripts.utils.figures import (
     ZONES,
     load_route,
     moves,
+    moves_figure,
     route,
     route_layout,
     stacey,
@@ -29,6 +30,12 @@ RULES_CSV = Path(__file__).resolve().parents[2] / "data" / "rules.csv"
 @pytest.mark.model
 def test_moves_sum_to_nine() -> None:
     assert sum(move.bits for move in moves(load_rules(RULES_CSV))) == 9
+
+
+@pytest.mark.edge
+def test_moves_figure_writes_a_png(tmp_path: Path) -> None:
+    out = moves_figure(tmp_path / "moves.png", moves(load_rules(RULES_CSV)))
+    assert out.read_bytes().startswith(PNG_MAGIC)
 
 
 def inside(point: tuple[float, float], zone: str) -> bool:
