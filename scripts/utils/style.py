@@ -27,6 +27,16 @@ def palette() -> list[str]:
     return [mcolors.to_hex(c) for c in sns.color_palette("colorblind", 6)]
 
 
+CONTEXTS = ("pricing", "shipping", "tax", "shell", "tangled")
+
+
+def context_colour(name: str) -> str:
+    """Return the deck colour of a context; raise ValueError for an unknown name."""
+    if name not in CONTEXTS:
+        raise ValueError(f"unknown context {name!r}; expected one of {CONTEXTS}")
+    return palette()[CONTEXTS.index(name)]
+
+
 def save(fig: Figure, out: Path) -> None:
     """Save fig to out at the deck dpi on white, creating parent folders, then close it."""
     out.parent.mkdir(parents=True, exist_ok=True)

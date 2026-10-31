@@ -9,7 +9,7 @@ import pytest
 import seaborn as sns
 from matplotlib.colors import to_hex
 
-from scripts.utils.style import FIGSIZE, FONT, apply, palette, save
+from scripts.utils.style import CONTEXTS, FIGSIZE, FONT, apply, context_colour, palette, save
 
 
 @pytest.mark.model
@@ -27,6 +27,11 @@ def test_apply_sets_the_figure_size() -> None:
 @pytest.mark.model
 def test_palette_has_six_colours() -> None:
     assert len(palette()) == 6
+
+
+@pytest.mark.model
+def test_context_colour_gives_five_distinct_colours() -> None:
+    assert len({context_colour(name) for name in CONTEXTS}) == 5
 
 
 @pytest.mark.edge
