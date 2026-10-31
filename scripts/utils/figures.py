@@ -3,11 +3,13 @@
 from __future__ import annotations
 
 import csv
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 
 from scripts.utils import style
+from scripts.utils.paths import load_incidents
 
 # (label, x0, y0) of each zone on the unit square; x is certainty on the How,
 # y is agreement on the What. Simple sits at the high-high corner.
@@ -35,24 +37,17 @@ SENTENCES = (
 )
 
 
-# (short name, footer counter) of each section, left to right.
-SECTIONS = (
-    ("00 pride", "?"),
-    ("01 bits", "64"),
-    ("02 which problem", "64"),
-    ("03 the room", "512"),
-    ("04 homes", "512"),
-    ("05 the seam", "512"),
-    ("06 simple", "72"),
-    ("07 six lines", "72"),
-)
+DATA = Path(__file__).resolve().parents[2] / "data"
 
-# section index -> the incident on the arrow into it.
-INCIDENTS = {
-    1: "I1: free shipping under 50",
-    3: "I2: before or after the discount?",
-    5: "I3: charged, no parcel",
+# route zone -> (index into ZONES, offset of the stop from that zone's corner).
+ZONE_SPOTS = {
+    "chaos": (3, (0.12, 0.12)),
+    "complex": (3, (0.32, 0.32)),
+    "what": (1, (0.25, 0.25)),
+    "how": (2, (0.25, 0.25)),
+    "simple": (0, (0.25, 0.25)),
 }
+LEFT_X, RIGHT_X = -0.24, 1.24
 
 
 @dataclass(frozen=True)
@@ -159,54 +154,97 @@ def tree(out: Path) -> Path:
     return out
 
 
-def route(out: Path) -> None:
-    """Draw the route of the talk: eight section boxes in two rows, the incidents on the arrows."""
+def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
+    """Place each stop on the Stacey square: inside its zone, or beside the square without one.
+
+    A stop without a zone sits in the left column while a zoned stop is still to come, in the
+    right column after the last one, level with the stop before it.
+    """
+    zoned = [i for i, stop in enumerate(stops) if stop.zone]
+    points: list[tuple[float, float]] = []
+    for i, stop in enumerate(stops):
+        if stop.zone:
+            index, (dx, dy) = ZONE_SPOTS[stop.zone]
+            points.append((ZONES[index][1] + dx, ZONES[index][2] + dy))
+        elif i < zoned[-1]:
+            level = points[-1][1] + 0.15 if points else ZONE_SPOTS[stops[zoned[0]].zone][1][1] - 0.2
+            points.append((LEFT_X, level))
+        else:
+            points.append((RIGHT_X, points[-1][1]))
+    return tuple(points)
+
+
+def route(
+    out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
+) -> None:
+    """Draw the route of the talk on the Stacey square: a box per stop, the move and incident on each arrow."""
     style.apply()
     import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch
+    from matplotlib.patches import FancyBboxPatch, Rectangle
 
     colours = style.palette()
     counter_colour = {"?": colours[3], "64": colours[0], "512": colours[1], "72": colours[2]}
-    per_row = 4
-    step, half_w, half_h = 3.4, 1.25, 0.55
+    stops = load_route(route_csv)
+    told_in = {incident.told_in: incident.id for incident in load_incidents(incidents_csv)}
+    points = route_layout(stops)
+    half_w, half_h = 0.085, 0.07
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
-    spots = [(i % per_row * step, -(i // per_row) * 2.6) for i in range(len(SECTIONS))]
-    for i, (name, counter) in enumerate(SECTIONS):
-        x, y = spots[i]
+    for i, (label, x0, y0) in enumerate(ZONES):
+        ax.add_patch(
+            Rectangle((x0, y0), 0.5, 0.5, facecolor=colours[i], alpha=0.25, edgecolor="white")
+        )
+        ax.text(x0 + 0.48, y0 + 0.48, label, ha="right", va="top", fontsize=10, color="#444444")
+    for stop, (x, y) in zip(stops, points, strict=True):
         ax.add_patch(
             FancyBboxPatch(
                 (x - half_w, y - half_h),
                 2 * half_w,
                 2 * half_h,
-                boxstyle="round,pad=0.05,rounding_size=0.2",
-                facecolor=counter_colour[counter],
+                boxstyle="round,pad=0.01,rounding_size=0.03",
+                facecolor=counter_colour[stop.counter],
                 edgecolor="none",
+                zorder=3,
             )
         )
-        ax.text(x, y, f"{name}\n{counter}", ha="center", va="center", fontsize=12, color="white")
-    for i in range(1, len(SECTIONS)):
-        (x0, y0), (x1, y1) = spots[i - 1], spots[i]
-        props = {"arrowstyle": "-|>", "color": "grey", "linewidth": 1.5}
-        if y1 != y0:
-            mid = (y0 + y1) / 2
-            ax.plot([x0, x0, x1], [y0 - half_h - 0.1, mid, mid], color="grey", linewidth=1.5)
-            start, end = (x1, mid), (x1, y1 + half_h + 0.1)
-        else:
-            start, end = (x0 + half_w + 0.15, y0), (x1 - half_w - 0.15, y1)
-        ax.annotate("", end, start, arrowprops=props)
-        if i in INCIDENTS:
-            head, tail = INCIDENTS[i].split(": ")
+        ax.text(
+            x,
+            y,
+            f"{stop.section}\n{stop.counter}",
+            ha="center",
+            va="center",
+            fontsize=12,
+            color="white",
+            zorder=4,
+        )
+    for stop, start, end in zip(stops[1:], points, points[1:], strict=False):
+        ax.annotate(
+            "",
+            end,
+            start,
+            arrowprops={
+                "arrowstyle": "-|>",
+                "color": "#555555",
+                "linewidth": 1.5,
+                "shrinkA": 32,
+                "shrinkB": 32,
+            },
+            zorder=2,
+        )
+        words = " ".join(w for w in (stop.move, told_in.get(stop.section, "")) if w)
+        if words:
             ax.text(
                 (start[0] + end[0]) / 2,
-                y1 + half_h + 0.2,
-                f"{head}\n{tail}",
+                (start[1] + end[1]) / 2,
+                words,
                 ha="center",
-                va="bottom",
+                va="center",
                 fontsize=10,
                 style="italic",
+                zorder=5,
+                bbox={"boxstyle": "round,pad=0.15", "facecolor": "white", "edgecolor": "none"},
             )
-    ax.set_xlim(-half_w - 0.2, 3 * step + half_w + 0.2)
-    ax.set_ylim(-3.2, 1.6)
+    ax.set_xlim(-0.4, 1.4)
+    ax.set_ylim(-0.2, 1.0)
     ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)

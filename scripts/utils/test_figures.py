@@ -8,10 +8,30 @@ from pathlib import Path
 import pytest
 
 from s01_bits.two_ifs import ship
-from scripts.utils.figures import TREE_LEAVES, load_route, route, stacey, story, tree
+from scripts.utils.figures import (
+    TREE_LEAVES,
+    ZONES,
+    load_route,
+    route,
+    route_layout,
+    stacey,
+    story,
+    tree,
+)
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 ROUTE_CSV = Path(__file__).resolve().parents[2] / "data" / "route.csv"
+
+
+def inside(point: tuple[float, float], zone: str) -> bool:
+    x, y = point
+    x0, y0 = next((zx, zy) for label, zx, zy in ZONES if label == zone)
+    return x0 <= x <= x0 + 0.5 and y0 <= y <= y0 + 0.5
+
+
+@pytest.mark.model
+def test_route_layout_puts_06_in_simple() -> None:
+    assert inside(route_layout(load_route(ROUTE_CSV))[6], "simple")
 
 
 @pytest.mark.edge
