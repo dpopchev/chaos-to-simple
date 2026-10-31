@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from pathlib import Path
+from typing import Literal
 
 from scripts.utils import style
 
@@ -50,6 +52,26 @@ INCIDENTS = {
     3: "I2: before or after the discount?",
     5: "I3: charged, no parcel",
 }
+
+
+@dataclass(frozen=True)
+class Leaf:
+    """One path of the two-if tree: its code (coupon bit, free-shipping bit), input, fee, state."""
+
+    code: str
+    subtotal: int
+    coupon: bool
+    fee: int
+    state: Literal["tested", "bug", "never"]
+
+
+# The four leaves of the two-if tree of docs/storyline.md; the test pins each fee to ship().
+TREE_LEAVES = (
+    Leaf("00", 40, False, 5, "tested"),
+    Leaf("01", 60, False, 0, "never"),
+    Leaf("10", 55, True, 0, "bug"),
+    Leaf("11", 100, True, 0, "tested"),
+)
 
 
 def route(out: Path) -> None:

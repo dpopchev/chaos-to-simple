@@ -2,13 +2,23 @@
 
 from __future__ import annotations
 
+from decimal import Decimal
 from pathlib import Path
 
 import pytest
 
-from scripts.utils.figures import route, stacey, story
+from s01_bits.two_ifs import ship
+from scripts.utils.figures import TREE_LEAVES, route, stacey, story
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+
+
+@pytest.mark.model
+def test_tree_leaves_match_ship() -> None:
+    def charged(subtotal: int, coupon: bool) -> Decimal:
+        return ship(Decimal(subtotal), coupon) - Decimal(subtotal) + (10 if coupon else 0)
+
+    assert all(charged(leaf.subtotal, leaf.coupon) == leaf.fee for leaf in TREE_LEAVES)
 
 
 @pytest.mark.edge
