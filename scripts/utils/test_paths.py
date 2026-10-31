@@ -19,6 +19,7 @@ from scripts.utils.paths import (
     doubling_table,
     epilogue_report,
     grid,
+    growth,
     line_of,
     load_cast,
     load_incidents,
@@ -380,3 +381,16 @@ class TestDoublingTableCountsAlong:
     @pytest.mark.model
     def test_doubling_has_one_row_per_core_bit(self, lines: list[str]) -> None:
         assert len(lines) == 1 + 6
+
+
+@pytest.mark.model
+def test_growth_ends_at_week_10_with_64_paths() -> None:
+    weeks = (3, 5, 6, 6, 9, 10)
+    cast = [CastRow(f"b{n}", w, "Team", "ask", "if x") for n, w in enumerate(weeks)]
+    last = growth(cast)[-1]
+    assert (last.week, last.bits, last.paths) == (10, 6, 64)
+
+
+@pytest.mark.model
+def test_growth_skips_the_shell_rows() -> None:
+    assert len(growth(DOUBLING_CAST)) == 6

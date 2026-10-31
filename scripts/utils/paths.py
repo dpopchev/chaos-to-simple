@@ -107,6 +107,19 @@ def doubling_table(cast: Sequence[CastRow]) -> str:
     return "\n".join(lines) + "\n"
 
 
+@dataclass(frozen=True)
+class Growth:
+    week: int
+    bits: int
+    paths: int
+
+
+def growth(cast: Sequence[CastRow]) -> tuple[Growth, ...]:
+    """One point per core bit in week order: the bits so far and the 2**bits paths they make."""
+    weeks = [c.week for c in cast if c.bit.startswith("b") and c.week is not None]
+    return tuple(Growth(w, bits, tangled(bits)) for bits, w in enumerate(weeks, start=1))
+
+
 def contexts_table(rules: Sequence[Rule], cast: Sequence[CastRow]) -> str:
     """Each context with its bits, its 2**n paths and who asked for them, in rules order."""
     requester = {c.bit: c.requested_by for c in cast}
