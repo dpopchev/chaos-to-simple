@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-004 > W-029 > T-073   | blocked: 0 | todo roots: 0 | done: 102 | pruned: 1
+open path: E-004 > W-029   | blocked: 0 | todo roots: 0 | done: 103 | pruned: 1
 
 ## Tree
 
 ```text
 E-004         [doing]    deck: the deck renders whole
-  W-029  bug    [doing]    deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [done], T-072 [done], T-073 [doing]   <- ACTIVE LEAF
+  W-029  bug    [doing]    deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [done], T-072 [done], T-073 [done]
   W-030  issue  [todo]     00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [todo], T-075 [todo]
   W-031  bug    [todo]     deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [todo], T-077 [todo], T-078 [todo]
 ```
@@ -196,7 +196,7 @@ flowchart TD
   E004 --> W029["W-029 bug doing: deck: four slides run past the frame bottom"]
   W029 --> T071["T-071 done: Name the overfull frames -> scripts/utils/overflow.py and make overflow"]
   W029 --> T072["T-072 done: Fit the 01-bits frames -> 01-bits/index.md"]
-  W029 --> T073["T-073 doing: Fit the 05-how and 06-simple frames -> 05-how/index.md and 06-simple/index.md -- ACTIVE LEAF"]
+  W029 --> T073["T-073 done: Fit the 05-how and 06-simple frames -> 05-how/index.md and 06-simple/index.md"]
   E004 --> W030["W-030 issue todo: 00-frontmatter: the route boxes name their sections"]
   W030 --> T074["T-074 todo: Add the names -> data/route.csv name column and Stop.name"]
   W030 --> T075["T-075 todo: Label the boxes -> stop_label(stop) used by route(out)"]
@@ -209,7 +209,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E004,W029,T073 doing
-  class T071,T072 done
+  class E004,W029 doing
+  class T071,T072,T073 done
   class W030,T074,T075,W031,T076,T077,T078 todo
 ```
