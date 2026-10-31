@@ -182,6 +182,68 @@ def ports_of(rules: Sequence[Rule]) -> tuple[Port, ...]:
     return tuple(Port(rule.context, rule.code) for rule in rules if rule.scope == "shell")
 
 
+def seam(out: Path, ports: Sequence[Port]) -> Path:
+    """Draw the core box, a port box per Port, and each answer's sum type on its arrow."""
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    n = len(ports)
+    mid = (n - 1) / 2
+    core_right, port_left, port_w, port_h = 3.4, 7.2, 2.6, 0.7
+    colour = style.context_colour("shell")
+    shape = "round,pad=0.05,rounding_size=0.15"
+    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    ax.add_patch(
+        FancyBboxPatch(
+            (0.2, mid - 1.2), 3.2, 2.4, boxstyle=shape, facecolor="#555555", edgecolor="none"
+        )
+    )
+    ax.text(1.8, mid, "core\npure rules", ha="center", va="center", fontsize=16, color="white")
+    for row, port in enumerate(ports):
+        y = n - 1 - row
+        ax.add_patch(
+            FancyBboxPatch(
+                (port_left, y - port_h / 2),
+                port_w,
+                port_h,
+                boxstyle=shape,
+                facecolor=colour,
+                edgecolor="none",
+            )
+        )
+        ax.text(
+            port_left + port_w / 2,
+            y,
+            port.context,
+            ha="center",
+            va="center",
+            fontsize=16,
+            color="white",
+        )
+        ax.annotate(
+            "",
+            (core_right + 0.15, y),
+            (port_left - 0.1, y),
+            arrowprops={"arrowstyle": "-|>", "color": colour, "linewidth": 1.8},
+        )
+        ax.text(
+            (core_right + port_left) / 2,
+            y + 0.12,
+            port.code,
+            ha="center",
+            va="bottom",
+            fontsize=12,
+            style="italic",
+        )
+    ax.set_xlim(0, 10.2)
+    ax.set_ylim(-0.7, n - 0.3)
+    ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
+
+
 def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
     """Draw checkout() as one box and one band per home, its width by bits, its count on it."""
     style.apply()

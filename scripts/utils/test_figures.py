@@ -19,6 +19,7 @@ from scripts.utils.figures import (
     ports_of,
     route,
     route_layout,
+    seam,
     stacey,
     story,
     tree,
@@ -42,6 +43,12 @@ def test_ports_of_reads_three_sum_types() -> None:
         ("warehouse", "Reserved | OutOfStock"),
         ("mail", "Sent | Bounced"),
     ]
+
+
+@pytest.mark.edge
+def test_seam_writes_a_png(tmp_path: Path) -> None:
+    out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV)))
+    assert out.read_bytes().startswith(PNG_MAGIC)
 
 
 @pytest.mark.edge
