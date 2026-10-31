@@ -7,6 +7,7 @@
 - 2026-10-31 W-020: fact: T-045's lane wrote test_paths.py by a Bash heredoc and the code before red, then took red: from a raising stub -> red: in History is not proof of test-first; the content passed every gate
 - 2026-10-31 W-023: fact: T-055's red came from its Check run on fcf941f^ after the edit, not before it; docs/storyline.md still names SECTIONS and INCIDENTS -> both stand as recorded, no fix filed
 - 2026-10-31 W-023: fact: route.png's rule lists route.csv and incidents.csv as prerequisites; route() reads them by default paths -> passing them as arguments needs --route/--incidents on scripts/figures.py
+- 2026-10-31 W-026: fact: style.palette() has six colours and no yellow -> the story card uses STORY_YELLOW #ece133 in scripts/utils/figures.py, the one colour outside the palette
 - 2026-10-31 W-029: fact: W-022 put tree.png on 'Four paths, the same two tests' at 935a78d -> its overflow is 25.68pt, not 21pt; T-072 fits the figure too
 
 ## Open questions
