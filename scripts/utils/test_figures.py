@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from s01_bits.two_ifs import ship
-from scripts.utils.figures import TREE_LEAVES, route, stacey, story
+from scripts.utils.figures import TREE_LEAVES, route, stacey, story, tree
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
@@ -39,6 +39,13 @@ def test_stacey_writes_a_png(tmp_path: Path) -> None:
 def test_route_writes_a_png(tmp_path: Path) -> None:
     out = tmp_path / "nested" / "route.png"
     route(out)
+    assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.edge
+def test_tree_writes_a_png(tmp_path: Path) -> None:
+    out = tmp_path / "nested" / "tree.png"
+    tree(out)
     assert out.read_bytes().startswith(PNG_MAGIC)
 
 

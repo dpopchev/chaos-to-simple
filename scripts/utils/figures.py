@@ -74,6 +74,71 @@ TREE_LEAVES = (
 )
 
 
+LEAF_LABELS = {
+    "00": "00 tested\n40, no coupon\nfee 5",
+    "01": "01 never ran\n60, no coupon\nfee 0, right\nby luck",
+    "10": "10 bug (I1)\n55 + coupon\nfee 0,\nshould be 5",
+    "11": "11 tested\n100 + coupon\nfee 0",
+}
+
+
+def tree(out: Path) -> Path:
+    """Draw the two-if tree: four leaves, green tested, red bug, grey never ran."""
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import FancyBboxPatch
+
+    colours = style.palette()
+    fill = {"tested": colours[2], "bug": colours[3], "never": "#8c8c8c"}
+    fig, ax = plt.subplots(figsize=(6.0, 4.5), dpi=style.DPI)
+    xs = {leaf.code: i * 1.5 for i, leaf in enumerate(TREE_LEAVES)}
+    top = (1.5 * 1.5, 0.0)
+    mids = {"0": (0.75, -1.4), "1": (3.75, -1.4)}
+    box = {"boxstyle": "round,pad=0.35", "facecolor": "white", "edgecolor": "grey"}
+    ax.text(*top, "coupon valid?", ha="center", va="center", fontsize=11, bbox=box)
+    for bit, (mx, my) in mids.items():
+        ax.annotate(
+            "",
+            (mx, my + 0.3),
+            (top[0], top[1] - 0.3),
+            arrowprops={"arrowstyle": "-|>", "color": "grey"},
+        )
+        ax.text(
+            top[0] + (mx - top[0]) / 2,
+            -0.7,
+            "no" if bit == "0" else "yes",
+            fontsize=10,
+            ha="center",
+        )
+        ax.text(mx, my, "free shipping\nearned?", ha="center", va="center", fontsize=10, bbox=box)
+    for leaf in TREE_LEAVES:
+        mx, my = mids[leaf.code[0]]
+        x, y = xs[leaf.code], -3.3
+        ax.annotate(
+            "", (x, y + 0.65), (mx, my - 0.4), arrowprops={"arrowstyle": "-|>", "color": "grey"}
+        )
+        ax.text(
+            (mx + x) / 2, -2.4, "no" if leaf.code[1] == "0" else "yes", fontsize=10, ha="center"
+        )
+        ax.add_patch(
+            FancyBboxPatch(
+                (x - 0.68, y - 0.65),
+                1.36,
+                1.3,
+                boxstyle="round,pad=0.03,rounding_size=0.1",
+                facecolor=fill[leaf.state],
+                edgecolor="none",
+            )
+        )
+        ax.text(x, y, LEAF_LABELS[leaf.code], ha="center", va="center", fontsize=8, color="white")
+    ax.set_xlim(-0.8, 5.3)
+    ax.set_ylim(-4.1, 0.5)
+    ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
+
+
 def route(out: Path) -> None:
     """Draw the route of the talk: eight section boxes in two rows, the incidents on the arrows."""
     style.apply()
