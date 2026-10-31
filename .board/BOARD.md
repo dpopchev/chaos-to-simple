@@ -196,7 +196,7 @@ flowchart TD
   E004 --> W029["W-029 bug doing: deck: four slides run past the frame bottom"]
   W029 --> T071["T-071 done: Name the overfull frames -> scripts/utils/overflow.py and make overflow"]
   W029 --> T072["T-072 done: Fit the 01-bits frames -> 01-bits/index.md"]
-  W029 --> T073["T-073 doing: Fit the 05-how frames -> 05-how/index.md -- ACTIVE LEAF"]
+  W029 --> T073["T-073 doing: Fit the 05-how and 06-simple frames -> 05-how/index.md and 06-simple/index.md -- ACTIVE LEAF"]
   E004 --> W030["W-030 issue todo: 00-frontmatter: the route boxes name their sections"]
   W030 --> T074["T-074 todo: Add the names -> data/route.csv name column and Stop.name"]
   W030 --> T075["T-075 todo: Label the boxes -> stop_label(stop) used by route(out)"]
