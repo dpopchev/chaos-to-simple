@@ -8,7 +8,7 @@ open path: E-004 > W-031 > T-077   | blocked: 0 | todo roots: 1 | done: 109 | pr
 E-004         [doing]    deck: the deck renders whole
   W-029  bug    [done]     deck: four slides run past the frame bottom   (filed during T-040) -- T-071 [done], T-072 [done], T-073 [done]
   W-030  issue  [done]     00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [done], T-075 [done], T-079 [done]
-  W-031  bug    [doing]    deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [done], T-077 [doing]   <- ACTIVE LEAF, T-078 [todo]
+  W-031  bug    [doing]    deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [done], T-077 [doing]   <- ACTIVE LEAF, T-078 [todo], T-082 [todo]
 W-032  bug    [todo]     (standalone) route.png: the arrowheads hide under the widened boxes   (filed during T-079) -- T-080 [todo], T-081 [todo]
 ```
 
@@ -206,6 +206,7 @@ flowchart TD
   W031 --> T076["T-076 done: Measure the widths -> scripts/utils/widths.py and make widths"]
   W031 --> T077["T-077 doing: Give the E-003 figures room -> 03-chaos, 04-what, 05-how, 06-simple index.md -- ACTIVE LEAF"]
   W031 --> T078["T-078 todo: Fit the older clipped lines -> 01-bits, 06-simple index.md"]
+  W031 --> T082["T-082 todo: Fit the slides past the report -> 00-frontmatter and 01-bits fitted, make widths clean"]
   W032["W-032 bug todo, standalone: route.png: the arrowheads hide under the widened boxes"]
   W032 --> T080["T-080 todo: Compute the arrow ends -> route_arrow_ends(start, end, half_w, half_h)"]
   W032 --> T081["T-081 todo: Draw the arrows to the edges -> route(out) calls route_arrow_ends"]
@@ -216,5 +217,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E004,W031,T077 doing
   class W029,T071,T072,T073,W030,T074,T075,T079,T076 done
-  class T078,W032,T080,T081 todo
+  class T078,T082,W032,T080,T081 todo
 ```

@@ -5,6 +5,7 @@
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-10-31 W-029: fact: W-022 put tree.png on 'Four paths, the same two tests' at 935a78d -> its overflow is 25.68pt, not 21pt; T-072 fits the figure too
+- 2026-10-31 W-031: fact: make widths at 7358521 names 52 lines on 8 slides; 'Checkout done', 'The checkout as found' and 'Two tests' were not in the report, and pages 7-8 rendered with gs clip at the right -> T-078 narrowed, T-082 fits the rest
 
 ## Open questions
 - none recorded
@@ -18,4 +19,5 @@
 - 2026-10-31 E-004: T-073's brief named 05-how/index.md alone, but 'The shell' frame lives in 06-simple/index.md:34; the Action, Output and title amended to name both files, Check unchanged; re-spawned one model up after the blocked hand-back
 - 2026-10-31 E-004: W-030 gets T-079: T-075's route.png clipped box 00 ('00 frontmatter' read '0 frontmatt'), so W-030's Then failed for one box; the box width now grows with the longest label; criterion unchanged
 - 2026-10-31 E-004: W-030 verified, but its widened boxes hide six arrowheads of route.png; filed standalone W-032 (filed during T-079) per the burn's lane-finding rule, for the developer to order at the close
+- 2026-10-31 E-004: W-031 gains T-082: make widths found three clipped slides the bug report missed (one of them made worse by T-072's columns); T-078's Check narrowed to its named slides while todo, T-082 carries make widths -> exit 0; W-031's criterion unchanged
 - 2026-10-31 E-004: W-031's T-076 and T-078 Actions amended before start: the code size is set by \fvset, not a bare size command (preamble.tex:26, the T-073 lane's observation), so too_wide scales its budget by a slide's \fvset size and T-078 names that way of shrinking; Checks unchanged
