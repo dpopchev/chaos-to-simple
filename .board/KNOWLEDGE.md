@@ -16,3 +16,4 @@
 ## Deviations
 - 2026-10-31 E-004: T-071's Action amended to name scripts/overflow.py, the entry point it already described as python -m scripts.overflow; the scope gate refused the close without the literal path; Check unchanged
 - 2026-10-31 E-004: T-073's brief named 05-how/index.md alone, but 'The shell' frame lives in 06-simple/index.md:34; the Action, Output and title amended to name both files, Check unchanged; re-spawned one model up after the blocked hand-back
+- 2026-10-31 E-004: W-030 gets T-079: T-075's route.png clipped box 00 ('00 frontmatter' read '0 frontmatt'), so W-030's Then failed for one box; the box width now grows with the longest label; criterion unchanged
