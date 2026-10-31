@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-004 > W-031 > T-078   | blocked: 0 | todo roots: 1 | done: 110 | pruned: 1
+open path: E-004 > W-031 > T-078   | blocked: 0 | todo roots: 2 | done: 110 | pruned: 1
 
 ## Tree
 
@@ -10,6 +10,7 @@ E-004         [doing]    deck: the deck renders whole
   W-030  issue  [done]     00-frontmatter: the route boxes name their sections   (filed during T-055) -- T-074 [done], T-075 [done], T-079 [done]
   W-031  bug    [doing]    deck: code and tables clip at the right edge, column figures too small to read   (filed during T-070) -- T-076 [done], T-077 [done], T-078 [doing]   <- ACTIVE LEAF, T-082 [todo]
 W-032  bug    [todo]     (standalone) route.png: the arrowheads hide under the widened boxes   (filed during T-079) -- T-080 [todo], T-081 [todo]
+W-033  bug    [todo]     (standalone) epilogue chart: the bar labels read too small   (filed during T-077) -- T-083 [todo], T-084 [todo]
 ```
 
 ## Closed
@@ -210,6 +211,9 @@ flowchart TD
   W032["W-032 bug todo, standalone: route.png: the arrowheads hide under the widened boxes"]
   W032 --> T080["T-080 todo: Compute the arrow ends -> route_arrow_ends(start, end, half_w, half_h)"]
   W032 --> T081["T-081 todo: Draw the arrows to the edges -> route(out) calls route_arrow_ends"]
+  W033["W-033 bug todo, standalone: epilogue chart: the bar labels read too small"]
+  W033 --> T083["T-083 todo: Enlarge the bar labels -> stacked_bar labels at fontsize 12"]
+  W033 --> T084["T-084 todo: Look at the epilogue slide -> local/state/epilogue.png read"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -217,5 +221,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E004,W031,T078 doing
   class W029,T071,T072,T073,W030,T074,T075,T079,T076,T077 done
-  class T082,W032,T080,T081 todo
+  class T082,W032,T080,T081,W033,T083,T084 todo
 ```

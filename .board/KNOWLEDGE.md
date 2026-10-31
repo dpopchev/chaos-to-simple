@@ -22,3 +22,4 @@
 - 2026-10-31 E-004: W-030 verified, but its widened boxes hide six arrowheads of route.png; filed standalone W-032 (filed during T-079) per the burn's lane-finding rule, for the developer to order at the close
 - 2026-10-31 E-004: W-031 gains T-082: make widths found three clipped slides the bug report missed (one of them made worse by T-072's columns); T-078's Check narrowed to its named slides while todo, T-082 carries make widths -> exit 0; W-031's criterion unchanged
 - 2026-10-31 E-004: W-031's T-076 and T-078 Actions amended before start: the code size is set by \fvset, not a bare size command (preamble.tex:26, the T-073 lane's observation), so too_wide scales its budget by a slide's \fvset size and T-078 names that way of shrinking; Checks unchanged
+- 2026-10-31 E-004: W-033 filed standalone (filed during T-077): the epilogue chart's bar labels stay at 8pt on their own slide; for the developer to order at the close
