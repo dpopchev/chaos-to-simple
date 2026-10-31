@@ -79,6 +79,11 @@ def test_load_route_reads_eight_sections() -> None:
     assert [stop.section for stop in load_route(ROUTE_CSV)] == [f"0{i}" for i in range(8)]
 
 
+@pytest.mark.edge
+def test_load_route_reads_the_names() -> None:
+    assert load_route(ROUTE_CSV)[1].name == "bits"
+
+
 @pytest.mark.model
 def test_tree_leaves_match_ship() -> None:
     def charged(subtotal: int, coupon: bool) -> Decimal:

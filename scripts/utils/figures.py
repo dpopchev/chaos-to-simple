@@ -56,6 +56,7 @@ class Stop:
     """One section of the talk: its Stacey zone, footer counter and the move into it."""
 
     section: str
+    name: str
     zone: str
     counter: str
     move: str
@@ -65,7 +66,7 @@ def load_route(path: Path) -> tuple[Stop, ...]:
     """Read the stops of the route from data/route.csv, in section order."""
     with path.open(newline="", encoding="ascii") as fh:
         return tuple(
-            Stop(row["section"], row["zone"], row["counter"], row["move"])
+            Stop(row["section"], row["name"], row["zone"], row["counter"], row["move"])
             for row in csv.DictReader(fh)
         )
 

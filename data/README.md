@@ -10,7 +10,7 @@ that section (`03-chaos/data/` holds the red cards, nobody else needs them).
 | `cast.csv` | `bit, week, requested_by, words, fragment` | 01 (the cast table beside the checkout, the doubling by week), 04 (who asked for each bit), `scripts/paths.py` |
 | `incidents.csv` | `id, week, told_in, closed_in, closed_by, kind, cost` | 06 (the wounds close by name: `closed_by` tests are run), `scripts/paths.py` |
 | `examples.csv` | `scope, bit, name, given, then` | 03 (green cards), 06 (every `name` must have a `test_<name>`) |
-| `route.csv` | `section, zone, counter, move` | 00 (agenda) and 02 (the route slide): `scripts/utils/figures.py` lays each section in its Stacey zone; `zone` and `move` are empty for a section off the map |
+| `route.csv` | `section, name, zone, counter, move` | 00 (agenda) and 02 (the route slide): `scripts/utils/figures.py` lays each section in its Stacey zone; `name` is the section folder's word after the dash; `zone` and `move` are empty for a section off the map |
 | `lines.csv` | `section, believed, learned` | `make lines` (each learned line must stand in its section's `index.md` and in `07-close/index.md`; believed is the claim the talk flips) |
 
 ## Conventions
