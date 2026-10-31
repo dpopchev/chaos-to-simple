@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Literal
 
 from scripts.utils import style
+from scripts.utils.examples import CardCounts
 from scripts.utils.paths import Rule, load_incidents
 
 # (label, x0, y0) of each zone on the unit square; x is certainty on the How,
@@ -216,6 +217,53 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
     ax.set_xlim(0, 11.5)
     ax.set_ylim(-0.7, n - 0.3)
     ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
+
+
+CARDS_PER_ROW = 7
+STORY_YELLOW = "#ece133"  # seaborn colorblind's yellow; style.palette() stops at six colours
+
+
+def example_map(out: Path, before: CardCounts, after: CardCounts) -> Path:
+    """Draw the example map twice, before and after the room, a coloured rectangle per card.
+
+    Each panel puts the yellow story card on top, then rows of blue, red and green cards; the
+    rows each colour needs are the larger of the two panels, so the panels line up.
+    """
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Rectangle
+
+    colours = style.palette()
+    kinds = (("blue", colours[0]), ("red", colours[3]), ("green", colours[2]))
+    rows_of = {
+        name: max(1, -(-max(getattr(before, name), getattr(after, name)) // CARDS_PER_ROW))
+        for name, _ in kinds
+    }
+    fig, axes = plt.subplots(1, 2, figsize=style.FIGSIZE, dpi=style.DPI)
+    panels = ((axes[0], "before the room", before), (axes[1], "after the room", after))
+    for ax, title, counts in panels:
+        ax.add_patch(
+            Rectangle((0, 0), 3.2, 0.8, facecolor=STORY_YELLOW, edgecolor="white", linewidth=1.5)
+        )
+        ax.text(1.6, 0.4, "story", ha="center", va="center", fontsize=10)
+        row = 1.4
+        for name, colour in kinds:
+            for n in range(getattr(counts, name)):
+                x, y = (n % CARDS_PER_ROW) * 1.0, row + (n // CARDS_PER_ROW) * 1.0
+                ax.add_patch(
+                    Rectangle((x, y), 0.85, 0.8, facecolor=colour, edgecolor="white", linewidth=1.5)
+                )
+            row += rows_of[name] + 0.2
+        ax.set_title(
+            f"{title}\n{counts.blue} blue, {counts.red} red, {counts.green} green, 1 yellow",
+            fontsize=11,
+        )
+        ax.set_xlim(-0.1, CARDS_PER_ROW)
+        ax.set_ylim(row, -0.1)
+        ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)
     return out
