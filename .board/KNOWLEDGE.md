@@ -4,6 +4,7 @@
 - 2026-10-30 E-001: standing: the draft was green on python 3.14.7 (ruff, pyright, 115 passed + 1 xfailed) before the move -> the exhibits need no code change for 3.14 supersedes: E-001#2
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
+- 2026-10-31 W-020: fact: T-045's lane wrote test_paths.py by a Bash heredoc and the code before red, then took red: from a raising stub -> red: in History is not proof of test-first; the content passed every gate
 
 ## Open questions
 - none recorded
