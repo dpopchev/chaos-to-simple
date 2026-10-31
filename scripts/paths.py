@@ -10,6 +10,7 @@
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
         --out build/04-what/contexts.txt
     python -m scripts.paths doubling --cast data/cast.csv --out build/01-bits/doubling.txt
+    python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -29,6 +30,8 @@ from scripts.utils.paths import (
     doubling_table,
     epilogue_report,
     grid,
+    growth,
+    growth_chart,
     load_cast,
     load_incidents,
     load_rules,
@@ -53,6 +56,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "cast",
             "contexts",
             "doubling",
+            "growth",
             "wounds",
         ],
     )
@@ -69,6 +73,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.out is None:
             parser.error("chart needs --out")
         stacked_bar(args.out, bars_from_rules(load_rules(args.rules)))
+        return 0
+
+    if args.what == "growth":
+        if args.out is None:
+            parser.error("growth needs --out")
+        growth_chart(args.out, growth(load_cast(args.cast)))
         return 0
 
     if args.what == "rules":

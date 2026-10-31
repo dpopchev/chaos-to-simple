@@ -20,6 +20,7 @@ from scripts.utils.paths import (
     epilogue_report,
     grid,
     growth,
+    growth_chart,
     line_of,
     load_cast,
     load_incidents,
@@ -394,3 +395,9 @@ def test_growth_ends_at_week_10_with_64_paths() -> None:
 @pytest.mark.model
 def test_growth_skips_the_shell_rows() -> None:
     assert len(growth(DOUBLING_CAST)) == 6
+
+
+@pytest.mark.edge
+def test_growth_chart_writes_a_png(tmp_path: Path) -> None:
+    out = growth_chart(tmp_path / "nested" / "growth.png", growth(DOUBLING_CAST))
+    assert out.read_bytes().startswith(b"\x89PNG")
