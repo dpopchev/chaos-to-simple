@@ -5,6 +5,7 @@
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-10-31 W-020: fact: T-045's lane wrote test_paths.py by a Bash heredoc and the code before red, then took red: from a raising stub -> red: in History is not proof of test-first; the content passed every gate
+- 2026-10-31 W-029: fact: W-022 put tree.png on 'Four paths, the same two tests' at 935a78d -> its overflow is 25.68pt, not 21pt; T-072 fits the figure too
 
 ## Open questions
 - none recorded
