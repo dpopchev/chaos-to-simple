@@ -1,7 +1,6 @@
 ## Checkout done
 
-```text
-#dev, Thursday 21:40 -- past me: Checkout done. 100% coverage. Shipping tonight.
+```{.text include=00-frontmatter/data/message.txt}
 ```
 
 ::: notes

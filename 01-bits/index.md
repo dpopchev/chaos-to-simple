@@ -131,6 +131,9 @@ The rest of the talk is a list of ways to turn a multiplication into an addition
 - Marketing's new request: digital books, no shipping, the seventh if
 - The contract: no decision is ever deleted, only moved
 
+```{.text include=06-simple/data/teaser.txt}
+```
+
 Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.
 
 ::: notes

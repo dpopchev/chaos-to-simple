@@ -99,6 +99,9 @@ adds paths; one that passes flags multiplies them.
 ```{.text include=build/06-simple/epilogue.txt}
 ```
 
+```{.text include=06-simple/data/teaser.txt}
+```
+
 ::: notes
 Digital books ship nothing, so no shipping fee. The if lands in shipping, one bit in one
 context, and the counts show what it cost. Chat: where does the digital-books if go?
