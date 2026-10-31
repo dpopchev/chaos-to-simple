@@ -71,6 +71,11 @@ def load_route(path: Path) -> tuple[Stop, ...]:
         )
 
 
+def stop_label(stop: Stop) -> str:
+    """Label a route box: section number and name on the first line, the counter on the second."""
+    return f"{stop.section} {stop.name}\n{stop.counter}"
+
+
 @dataclass(frozen=True)
 class Leaf:
     """One path of the two-if tree: its code (coupon bit, free-shipping bit), input, fee, state."""
@@ -400,7 +405,7 @@ def route(
         ax.text(
             x,
             y,
-            f"{stop.section}\n{stop.counter}",
+            stop_label(stop),
             ha="center",
             va="center",
             fontsize=12,

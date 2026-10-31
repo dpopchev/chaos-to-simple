@@ -12,6 +12,7 @@ from scripts.utils.examples import CardCounts
 from scripts.utils.figures import (
     TREE_LEAVES,
     ZONES,
+    Stop,
     example_map,
     load_route,
     moves,
@@ -21,6 +22,7 @@ from scripts.utils.figures import (
     route_layout,
     seam,
     stacey,
+    stop_label,
     story,
     tree,
 )
@@ -82,6 +84,11 @@ def test_load_route_reads_eight_sections() -> None:
 @pytest.mark.edge
 def test_load_route_reads_the_names() -> None:
     assert load_route(ROUTE_CSV)[1].name == "bits"
+
+
+@pytest.mark.model
+def test_stop_label_reads_number_name_counter() -> None:
+    assert stop_label(Stop("01", "bits", "chaos", "64", "count")) == "01 bits\n64"
 
 
 @pytest.mark.model
