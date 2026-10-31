@@ -60,6 +60,8 @@ section 04, says the discounted goods. Branch coverage was 100% before and after
 
 \scriptsize
 
+:::: columns
+::: {.column width="50%"}
 ```{.python include=01-bits/s01_bits/two_ifs.py snippet=ship}
 ```
 
@@ -68,6 +70,11 @@ section 04, says the discounted goods. Branch coverage was 100% before and after
 
 ```{.text include=build/01-bits/two_ifs.txt}
 ```
+:::
+::: {.column width="50%"}
+![](build/01-bits/tree.png){width=100%}
+:::
+::::
 
 ::: notes
 Two ifs, four paths. The same two tests reach 100%. Path 01 never ran, and the badge
