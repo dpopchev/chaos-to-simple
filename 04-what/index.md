@@ -59,8 +59,15 @@ same move: a Money crosses the boundary, a flag does not.
 
 ## Bounded contexts: every bit has a home
 
+:::: columns
+::: {.column width="55%"}
 ```{.text include=build/04-what/contexts.txt}
 ```
+:::
+::: {.column width="45%"}
+![](build/04-what/moves.png){width=100%}
+:::
+::::
 
 Marketing and loyalty are pricing, logistics is shipping, accounting is tax. The people
 who asked are the map of the contexts.
