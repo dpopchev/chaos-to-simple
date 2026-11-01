@@ -9,13 +9,13 @@ Beat: put the bits where they belong, count again. 64 core paths tested by enume
 | Footer counter | `512` on entry, `72` on the last slide |
 | Owns | `s06_simple/core.py` (`Request`, `Priced`, `price`), `shell.py` (`checkout`, `Accepted | Rejected`), `tests/` (64 paths, 10 green cards, 8 worlds, 4 shell cards) |
 | Uses | `s04_what` (the contexts), `s05_how` (ports and fakes), `data/examples.csv` (test names are pinned to it) |
-| Produces | `build/06-simple/pytest.txt`, `build/06-simple/paths.png` (stacked bar: 512, 64 + 8, 4 + 8 + 2 + 8) via `section.mk` |
+| Produces | `build/06-simple/pytest-core.txt`, `build/06-simple/paths.png` (stacked bar: 512, 64 + 8, 4 + 8 + 2 + 8) via `section.mk` |
 
 ## Slides
 
 - [x] The core: `snippet=price`
 - [x] Sixty-four paths, one test each: `snippet=from-bits`
-- [x] We counted them: `build/06-simple/pytest.txt`
+- [x] Sixty-four paths, each invariant a test: `build/06-simple/pytest-core.txt`
 - [x] The shell: `snippet=checkout`
 - [x] Eight worlds, four outcomes: `snippet=eight`
 - [x] The wounds close by name: `snippet=wound-i1`, `snippet=wound-i3`, `build/06-simple/wounds.txt`

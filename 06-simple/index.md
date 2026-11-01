@@ -20,9 +20,9 @@ Invariants, not expectations: discounts never add, free shipping iff discounted 
 reach 50, VAT never reduces. The ten green cards are separate named tests.
 :::
 
-## We counted them
+## Sixty-four paths, each invariant a test
 
-```{.text include=build/06-simple/pytest.txt}
+```{.text include=build/06-simple/pytest-core.txt}
 ```
 
 ## The shell
