@@ -1,14 +1,16 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 4 | done: 158 | pruned: 2
+open path: none   | blocked: 0 | todo roots: 1 | done: 158 | pruned: 2
 
 ## Tree
 
 ```text
-W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [todo]
-W-037  bug    [todo]     (standalone) route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
-W-038  bug    [todo]     (standalone) epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [todo], T-094 [todo]
-W-047  bug    [todo]     (standalone) 03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [todo]
+E-006         [todo]     deck: talk day -- legible figures, true docs, the review on record
+  W-036  spike  [todo]     talk: the 2026-11-01 review and the cut on record in docs/cut-40.md   (filed during W-034) -- T-089 [todo], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [todo]
+  W-037  bug    [todo]     route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
+  W-038  bug    [todo]     epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [todo], T-094 [todo], T-121 [todo]
+  W-047  bug    [todo]     03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [todo]
+  W-049  bug    [todo]     epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [todo], T-120 [todo]
 ```
 
 ## Closed
@@ -296,23 +298,28 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  W036["W-036 spike todo, standalone: talk: which of the review remarks the 40-minute deck adopts"]
+  E006["E-006 todo: deck: talk day -- legible figures, true docs, the review on record"]
+  E006 --> W036["W-036 spike todo: talk: the 2026-11-01 review and the cut on record in docs/cut-40.md"]
   W036 --> T089["T-089 todo: Write the remarks into the repository -> docs/cut-40.md"]
   W036 --> T090["T-090 pruned: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
   W036 --> T095["T-095 todo: Record the filed plan -> docs/cut-40.md Plan section"]
-  W037["W-037 bug todo, standalone: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
+  E006 --> W037["W-037 bug todo: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
   W037 --> T091["T-091 todo: Compute the clearing offset -> route_label_offset(words, tail, head)"]
   W037 --> T092["T-092 todo: Place each label clear of its arrow -> route(out) calls route_label_offset"]
-  W038["W-038 bug todo, standalone: epilogue chart: the 30 total overprints the chart title"]
+  E006 --> W038["W-038 bug todo: epilogue chart: the 30 total overprints the chart title"]
   W038 --> T093["T-093 todo: Compute the headroom -> bar_headroom(top)"]
   W038 --> T094["T-094 todo: Lift the axes over the totals -> stacked_bar sets ylim to bar_headroom(top) and drops the title"]
-  W047["W-047 bug todo, standalone: 03-chaos README Done-when still names the 72 count"]
+  W038 --> T121["T-121 todo: Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it"]
+  E006 --> W047["W-047 bug todo: 03-chaos README Done-when still names the 72 count"]
   W047 --> T117["T-117 todo: Fix the Done-when -> 03-chaos/README.md names 2^9 = 512 only"]
+  E006 --> W049["W-049 bug todo: epilogue frame set in \tiny: the two-column layout fits only at 5pt"]
+  W049 --> T119["T-119 todo: Wrap the two long lines -> teaser.txt and the fee-digital snippet with no line over 71 characters"]
+  W049 --> T120["T-120 todo: Set the epilogue at \scriptsize -> 06-simple/index.md frame 'Epilogue: marketing's seventh if'"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W036,T089,T095,W037,T091,T092,W038,T093,T094,W047,T117 todo
+  class E006,W036,T089,T095,W037,T091,T092,W038,T093,T094,T121,W047,T117,W049,T119,T120 todo
   class T090 pruned
 ```
