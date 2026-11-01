@@ -18,6 +18,7 @@ from scripts.utils.paths import (
     bars_from_rules,
     bits_by,
     cast_table,
+    cell_kinds,
     contexts_table,
     count_report,
     doubling_table,
@@ -25,6 +26,7 @@ from scripts.utils.paths import (
     epilogue_bars,
     epilogue_report,
     grid,
+    grid_image,
     growth,
     growth_chart,
     line_of,
@@ -187,6 +189,30 @@ class TestGridListsEveryPathOnce:
     @pytest.mark.model
     def test_last_cell_is_all_ones(self, cells: list[str]) -> None:
         assert cells[-1] == "111111"
+
+
+class TestGridImageMarksThreeCells:
+    @pytest.fixture
+    def kinds(self) -> tuple[str, ...]:
+        return cell_kinds(6, ["000000", "111111"], ["000101"])
+
+    @pytest.mark.model
+    def test_two_cells_are_tested(self, kinds: tuple[str, ...]) -> None:
+        assert kinds.count("tested") == 2
+
+    @pytest.mark.model
+    def test_one_cell_is_the_bug(self, kinds: tuple[str, ...]) -> None:
+        assert kinds.index("bug") == 0b000101
+
+    @pytest.mark.model
+    def test_the_rest_is_untested(self, kinds: tuple[str, ...]) -> None:
+        assert kinds.count("untested") == 61
+
+
+@pytest.mark.view
+def test_grid_image_is_near_square(tmp_path: Path) -> None:
+    out = grid_image(6, ["000000", "111111"], ["000101"], tmp_path / "grid.png")
+    assert pixel_ratio(out) == pytest.approx(1.0, abs=0.1)
 
 
 @pytest.mark.model

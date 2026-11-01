@@ -249,6 +249,54 @@ def grid(bits: int, columns: int = 8) -> str:
     return "\n".join(rows) + "\n"
 
 
+def cell_kinds(bits: int, tested: Sequence[str], bug: Sequence[str]) -> tuple[str, ...]:
+    """Name each of the 2**bits paths by number: "bug", "tested" or "untested"."""
+    hit = {int(b, 2) for b in tested}
+    broken = {int(b, 2) for b in bug}
+    return tuple(
+        "bug" if n in broken else "tested" if n in hit else "untested" for n in range(tangled(bits))
+    )
+
+
+def grid_image(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) -> Path:
+    """Draw every path as a cell with its bit string: tested green, the bug red, the rest grey."""
+    from scripts.utils import style
+    from scripts.utils.coverage_view import GRID_SIDE
+
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Rectangle
+
+    fills = {
+        "tested": colour_of("accounting"),
+        "bug": colour_of("payment"),
+        "untested": colour_of("customer"),
+    }
+    fig, ax = plt.subplots(figsize=(6.0, 6.0), dpi=style.DPI)
+    for n, kind in enumerate(cell_kinds(bits, tested, bug)):
+        r, c = divmod(n, GRID_SIDE)
+        y = GRID_SIDE - 1 - r
+        ax.add_patch(Rectangle((c, y), 0.94, 0.94, facecolor=fills[kind], edgecolor="none"))
+        ax.text(
+            c + 0.47,
+            y + 0.47,
+            f"{n:0{bits}b}",
+            ha="center",
+            va="center",
+            fontsize=11,
+            family="monospace",
+            color="black" if kind == "untested" else "white",
+            fontweight="normal" if kind == "untested" else "bold",
+        )
+    ax.set_xlim(0, GRID_SIDE)
+    ax.set_ylim(0, GRID_SIDE)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    fig.tight_layout(pad=0.2)
+    style.save(fig, out)
+    return out
+
+
 Segment = tuple[str, int]
 Bar = tuple[str, Sequence[Segment]]
 

@@ -5,6 +5,7 @@ python -m scripts.figures business-map --out build/00-frontmatter/business-map.p
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures example-map --out build/03-chaos/example_map.png
 python -m scripts.figures finance --out build/01-bits/finance.png
+python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
@@ -18,7 +19,7 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.coverage_view import draw, load_tested
+from scripts.utils.coverage_view import BITS, draw, load_tested
 from scripts.utils.examples import card_counts, example_names
 from scripts.utils.figures import (
     example_map,
@@ -33,7 +34,7 @@ from scripts.utils.figures import (
 from scripts.utils.finance import draw as draw_finance
 from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
-from scripts.utils.paths import load_cast, load_incidents, load_rules
+from scripts.utils.paths import grid_image, load_cast, load_incidents, load_rules
 from scripts.utils.stage import agenda_strip, business_map, load_route
 
 
@@ -47,6 +48,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "coverage-view",
         "example-map",
         "finance",
+        "grid-image",
         "moves",
         "seam",
         "stacey",
@@ -76,6 +78,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "coverage-view":
         draw(load_tested(args.tested), args.out)
+        return 0
+    if args.what == "grid-image":
+        rows = load_tested(args.tested)
+        grid_image(
+            BITS,
+            [r.bits for r in rows if r.kind == "tested"],
+            [r.bits for r in rows if r.kind == "bug"],
+            args.out,
+        )
         return 0
     if args.what == "example-map":
         names = [
