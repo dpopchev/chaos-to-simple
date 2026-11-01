@@ -107,6 +107,11 @@ lines: ## Check the six should-have-known lines in their sections and in 07
 	@$(RUN) python -m scripts.check_lines --root .
 	$(call log_done,the six lines are in their sections and in 07)
 
+.PHONY: budget
+budget: ## Fail naming each section whose frame count differs from data/budget.csv
+	@$(RUN) python -m scripts.check_budget --root .
+	$(call log_done,every section holds its budgeted frames)
+
 .PHONY: widths
 widths: $(ARTIFACTS) ## Fail naming each included line wider than its column
 	@$(RUN) python -m scripts.check_widths --root . --full 104

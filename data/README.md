@@ -12,6 +12,7 @@ that section (`03-chaos/data/` holds the red cards, nobody else needs them).
 | `examples.csv` | `scope, bit, name, given, then` | 03 (green cards), 06 (every `name` must have a `test_<name>`) |
 | `route.csv` | `section, name, zone, counter, move` | 00 (agenda) and 02 (the route slide): `scripts/utils/figures.py` lays each section in its Stacey zone; `name` is the section folder's word after the dash; `zone` and `move` are empty for a section off the map |
 | `artifacts.csv` | `path, kind, producer` | `make stubs`: every build path the slides include, its kind (png, txt, diff, tex) and what builds it; a path no make rule builds gets a placeholder, `STRICT=1` fails on it |
+| `budget.csv` | `section, frames, minutes` | `make budget`: the frames each section's `index.md` holds (its `## ` lines) and the minutes it gets; frames sum 41, minutes 45 (the title frames of 00 and 07 are not counted) |
 | `lines.csv` | `section, believed, learned` | `make lines` (each learned line must stand in its section's `index.md` and in `07-close/index.md`; believed is the claim the talk flips) |
 
 ## Conventions

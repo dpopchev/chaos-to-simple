@@ -68,6 +68,7 @@ make check                every check: board, ruff, pyright, pytest, ascii
 make talk                 check, then build build/talk.pdf
 make test K=<expression>  pytest -k: only the tests matching the expression
 make lines                fail on a slide line over the limit
+make budget               fail on a section whose frame count differs from data/budget.csv
 make lengths              fail on an included block over its line cap
 make deliverable          every deliverable: build/talk.pdf, not empty
 make draft                the PDF without the checks, for layout work
