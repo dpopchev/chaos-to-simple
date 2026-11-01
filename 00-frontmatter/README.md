@@ -26,6 +26,10 @@ line ranges: a line range rots on the first edit above it, a name does not.
 Add `.numberLines` (`{.python .numberLines include=... snippet=checkout}`) and the
 numbers are the file's own line numbers, starting at the first line shown.
 
+A source line may end with a step marker, `# [step: N]` (N from 0 to 6). The filter strips
+it on include, so no slide shows it; the step diffs read it to know which request added the
+line. `make widths` and `make lengths` measure the stripped line.
+
 ## How a slide moves the footer counter
 
     ## Three numbers {paths=64}

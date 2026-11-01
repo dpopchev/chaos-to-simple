@@ -21,6 +21,12 @@ SLIDE = """## Beside a figure
 
 
 @pytest.mark.view
+def test_too_wide_measures_a_line_without_its_step_marker() -> None:
+    texts = {"a.py": "x" * 52 + "  # [step: 3]\n"}
+    assert too_wide(SLIDE, texts.__getitem__, 104) == ()
+
+
+@pytest.mark.view
 def test_too_wide_names_a_line_past_its_column() -> None:
     texts = {"a.py": "short\n" + "x" * 60 + "\n"}
     assert too_wide(SLIDE, texts.__getitem__, 104) == (

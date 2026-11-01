@@ -9,6 +9,7 @@
 --   # [snippet: checkout]
 --   ...
 --   # [/snippet]
+-- A trailing step marker, "  # [step: N]", is stripped from every included line.
 -- Markers are dropped, the block is dedented, snippets do not nest, and a missing
 -- file or marker aborts the build (pandoc exits non-zero on error()). Exception: a
 -- missing file renders a block reading "STUB: <path>" with a warning on stderr,
@@ -22,7 +23,7 @@ local function read_lines(path)
   end
   local lines = {}
   for line in fh:lines() do
-    lines[#lines + 1] = line
+    lines[#lines + 1] = line:gsub("%s*# %[step: %d%]%s*$", "")
   end
   fh:close()
   return lines

@@ -19,6 +19,14 @@ INCLUDE = re.compile(
 _FVSET = re.compile(r"\\fvset\{fontsize=\\(?P<size>\w+)")
 
 
+_STEP_MARKER = re.compile(r"\s*# \[step: \d\]\s*$")
+
+
+def strip_step_markers(text: str) -> str:
+    """Drop a trailing '# [step: N]' from each line, as the include filter does."""
+    return "\n".join(_STEP_MARKER.sub("", row) for row in text.splitlines())
+
+
 def snippet_text(text: str, name: str) -> str:
     """Return the lines between a snippet's markers, dedented as the filter does."""
     out: list[str] = []
@@ -60,7 +68,7 @@ def too_wide(
             percent = 100.0
         include = INCLUDE.match(line)
         if include:
-            text = read(include.group("path"))
+            text = strip_step_markers(read(include.group("path")))
             if include.group("snippet"):
                 text = snippet_text(text, include.group("snippet"))
             budget = int(full * percent / 100 * scale)

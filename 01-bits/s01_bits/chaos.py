@@ -46,28 +46,28 @@ Send = Callable[[str, Decimal], None]
 
 
 # [snippet: checkout]
-def checkout(order: Order, today: date, charge: Charge, reserve: Reserve, send: Send) -> Decimal:
-    goods = sum((line.price * line.qty for line in order.lines), Decimal(0))
-    subtotal = goods
-    if order.coupon_valid_until is not None and order.coupon_valid_until >= today:
-        goods -= Decimal(10)
-    if order.member:
-        goods = goods * Decimal("0.90")
-    shipping = Decimal(5)
-    if order.international:
-        shipping = Decimal(20)
-    if subtotal >= Decimal(50):
-        shipping = Decimal(0)
-    if order.gift_wrap:
-        shipping += Decimal(3)
-    total = goods + shipping
-    if order.vat_id is None:
-        total = total * Decimal("1.20")
-    total = total.quantize(CENT, rounding=ROUND_HALF_UP)
-    charge(total)  # what if it is declined?
-    reserve(order.lines)  # what if the stock is gone?
-    send(order.email, total)  # what if it bounces?
-    return total
+def checkout(order: Order, today: date, charge: Charge, reserve: Reserve, send: Send):  # [step: 0]
+    goods = sum((line.price * line.qty for line in order.lines), Decimal(0))  # [step: 0]
+    subtotal = goods  # [step: 0]
+    if order.coupon_valid_until is not None and order.coupon_valid_until >= today:  # [step: 1]
+        goods -= Decimal(10)  # [step: 1]
+    if order.member:  # [step: 2]
+        goods = goods * Decimal("0.90")  # [step: 2]
+    shipping = Decimal(5)  # [step: 0]
+    if order.international:  # [step: 4]
+        shipping = Decimal(20)  # [step: 4]
+    if subtotal >= Decimal(50):  # [step: 3]
+        shipping = Decimal(0)  # [step: 3]
+    if order.gift_wrap:  # [step: 5]
+        shipping += Decimal(3)  # [step: 5]
+    total = goods + shipping  # [step: 0]
+    if order.vat_id is None:  # [step: 6]
+        total = total * Decimal("1.20")  # [step: 6]
+    total = total.quantize(CENT, rounding=ROUND_HALF_UP)  # [step: 0]
+    charge(total)  # what if it is declined?  # [step: 0]
+    reserve(order.lines)  # what if the stock is gone?  # [step: 0]
+    send(order.email, total)  # what if it bounces?  # [step: 0]
+    return total  # [step: 0]
 
 
 # [/snippet]

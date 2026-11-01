@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from scripts.utils.widths import INCLUDE, snippet_text
+from scripts.utils.widths import INCLUDE, snippet_text, strip_step_markers
 
 _HEADING_PREFIX = "## "
 
@@ -25,7 +25,7 @@ def too_long(
         include = INCLUDE.match(line)
         if not include:
             continue
-        text = read(include.group("path"))
+        text = strip_step_markers(read(include.group("path")))
         snippet = include.group("snippet")
         if snippet:
             text = snippet_text(text, snippet)

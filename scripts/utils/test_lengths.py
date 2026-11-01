@@ -26,6 +26,12 @@ def test_too_long_counts_non_blank_lines_only() -> None:
 
 
 @pytest.mark.view
+def test_too_long_does_not_count_a_bare_step_marker() -> None:
+    texts = {"a.py": "a\n# [step: 2]\nb\nc\n"}
+    assert too_long(_slide(""), texts.__getitem__, 3) == ()
+
+
+@pytest.mark.view
 def test_too_long_honours_the_include_cap() -> None:
     texts = {"a.py": BLOCK}
     assert too_long(_slide(" cap=4"), texts.__getitem__, 3) == ()
