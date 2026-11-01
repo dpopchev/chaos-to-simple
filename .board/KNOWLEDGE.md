@@ -32,4 +32,4 @@
 - 2026-11-02 E-007: the one-assert gate covers the exhibit tests too: W-067 lifts the E-001 exemption in conftest.py; the category-marker exemption stays (developer, 2026-11-01)
 
 ## Deviations
-- none recorded
+- 2026-11-02 E-007: W-071 filed under E-007 from W-051's criterion run; it lands before W-052 so the talk-day fallback sha carries both charts
