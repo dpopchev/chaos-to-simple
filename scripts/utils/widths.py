@@ -13,11 +13,13 @@ POINTS = {"small": 9, "footnotesize": 8, "scriptsize": 7, "tiny": 5}
 _HEADING = re.compile(r"^## (?P<title>.*?)(?:\s*\{[^}]*\})?\s*$")
 _COLUMN = re.compile(r'\.column\s+width="(?P<pct>\d+(?:\.\d+)?)%"')
 _CLOSE = re.compile(r"^:{3,}\s*$")
-_INCLUDE = re.compile(r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?:\s+snippet=(?P<snippet>[\w-]+))?")
+INCLUDE = re.compile(
+    r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?:\s+snippet=(?P<snippet>[\w-]+))?(?:\s+cap=(?P<cap>\d+))?"
+)
 _FVSET = re.compile(r"\\fvset\{fontsize=\\(?P<size>\w+)")
 
 
-def _snippet(text: str, name: str) -> str:
+def snippet_text(text: str, name: str) -> str:
     """Return the lines between a snippet's markers, dedented as the filter does."""
     out: list[str] = []
     inside = False
@@ -56,11 +58,11 @@ def too_wide(
             percent = float(column.group("pct"))
         elif _CLOSE.match(line):
             percent = 100.0
-        include = _INCLUDE.match(line)
+        include = INCLUDE.match(line)
         if include:
             text = read(include.group("path"))
             if include.group("snippet"):
-                text = _snippet(text, include.group("snippet"))
+                text = snippet_text(text, include.group("snippet"))
             budget = int(full * percent / 100 * scale)
             found.extend(
                 f"{name} {heading}: {len(row)} > {budget}: {row}"
