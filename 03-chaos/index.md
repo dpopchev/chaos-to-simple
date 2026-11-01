@@ -42,7 +42,7 @@ core alone. That is the first good news: the number is now true.
 
 ## First change: a table, not a refactoring
 
-```{.text include=build/data/rules.txt}
+```{.text include=build/03-chaos/rules.txt}
 ```
 
 - `data/rules.csv`: bit, scope, context, name, rule, code
