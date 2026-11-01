@@ -13,7 +13,7 @@ $(STORY_FILES) &: 01-bits/s01_bits/chaos.py 01-bits/data/bubbles.csv data/actors
 	$(call log_done,$(BUILD)/01-bits storyboard written)
 
 $(BUILD)/01-bits/coverage-summary.txt: $(BUILD)/01-bits/coverage.txt
-	@grep -E 'chaos\.py|^TOTAL' $< > $@
+	@grep -E 'chaos\.py|^TOTAL|^2 passed' $< > $@
 	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/doubling.txt: data/cast.csv scripts/paths.py scripts/utils/paths.py
@@ -22,8 +22,8 @@ $(BUILD)/01-bits/doubling.txt: data/cast.csv scripts/paths.py scripts/utils/path
 
 $(BUILD)/01-bits/coverage.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_chaos.py
 	@mkdir -p $(@D)
-	@$(RUN) pytest 01-bits/tests -q --no-header -k 'regular_order or order_with_everything' \
-	  --cov=s01_bits --cov-branch \
+	@$(RUN) pytest 01-bits/tests -q --no-header -k 'test_regular_order or test_order_with_everything' \
+	  --cov=s01_bits.chaos --cov-branch \
 	  --cov-report=term-missing > $@
 	$(call log_done,$@ written)
 

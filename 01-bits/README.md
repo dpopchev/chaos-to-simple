@@ -50,13 +50,15 @@ campaign on time, one if at a time.
 
 ## Live
 
-1. `make test K=test_chaos`: 2 passed, 1 xfailed.
+1. `make test K=test_chaos`: 2 passed, 1 xfailed; `build/01-bits/coverage.txt` runs only
+   `test_regular_order` and `test_order_with_everything` over `s01_bits.chaos`: 2 passed.
 2. `uv run pytest 01-bits/tests -k free_shipping_after_discount --runxfail`: the assertion
    shows 54.00 against 60.00.
 
 ## Done when
 
-- Given the two `test_chaos` tests, when run under branch coverage, then the report says 100%.
+- Given the two `test_chaos` tests, when run under branch coverage, then the report says 2 passed and
+  `chaos.py` at 100%; `coverage-summary.txt` keeps both lines.
 - Given the planted bug test, when run normally, then the suite is green (xfail) and
   `--runxfail` shows 54.00 against 60.00.
 - Given the grid slide, when shown, then 000000 and 111111 can be pointed at.
