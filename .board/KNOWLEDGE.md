@@ -10,7 +10,7 @@
 - none recorded
 
 ## Decisions
-- 2026-11-01 W-035: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 2 hours) (developer, 2026-11-01)
+- none recorded
 
 ## Deviations
 - none recorded
