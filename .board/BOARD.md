@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-033 > T-083   | blocked: 0 | todo roots: 1 | done: 117 | pruned: 1
+open path: W-033 > T-084   | blocked: 0 | todo roots: 1 | done: 118 | pruned: 1
 
 ## Tree
 
 ```text
-W-033  bug    [doing]    (standalone) epilogue chart: the bar labels read too small   (filed during T-077) -- T-083 [doing]   <- ACTIVE LEAF, T-084 [todo]
+W-033  bug    [doing]    (standalone) epilogue chart: the bar labels read too small   (filed during T-077) -- T-083 [done], T-084 [doing]   <- ACTIVE LEAF
 W-034  bug    [todo]     (standalone) route.png: the move labels cover the short arrows   (filed during W-032) -- T-085 [todo], T-086 [todo]
 ```
 
@@ -221,8 +221,8 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every ar
 ```mermaid
 flowchart TD
   W033["W-033 bug doing, standalone: epilogue chart: the bar labels read too small"]
-  W033 --> T083["T-083 doing: Enlarge the bar labels -> stacked_bar labels at fontsize 12 -- ACTIVE LEAF"]
-  W033 --> T084["T-084 todo: Look at the epilogue slide -> local/state/epilogue.png read"]
+  W033 --> T083["T-083 done: Enlarge the bar labels -> stacked_bar labels at fontsize 12"]
+  W033 --> T084["T-084 doing: Look at the epilogue slide -> local/state/epilogue.png read -- ACTIVE LEAF"]
   W034["W-034 bug todo, standalone: route.png: the move labels cover the short arrows"]
   W034 --> T085["T-085 todo: Compute the label point -> route_label_point(tail, head, offset)"]
   W034 --> T086["T-086 todo: Place the labels off the arrows -> route(out) calls route_label_point"]
@@ -231,6 +231,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W033,T083 doing
-  class T084,W034,T085,T086 todo
+  class W033,T084 doing
+  class T083 done
+  class W034,T085,T086 todo
 ```
