@@ -1,11 +1,5 @@
 # Simple: functional core, imperative shell
 
-## The picture {paths=512}
-
-- Core: six bits, pure functions, values in and values out, composed from three contexts
-- Shell: three effects, one call into the core, a `match` per answer
-- Between them: the seam from section 05
-
 ## The core
 
 ```{.python include=06-simple/s06_simple/core.py snippet=price}
@@ -40,7 +34,8 @@ reach 50, VAT never reduces. The ten green cards are separate named tests.
 
 ::: notes
 House rule: no if on a domain field. Reserve, charge, send; every answer is a sum type and
-every match is exhaustive. None of this knows what a coupon is.
+every match is exhaustive. None of this knows what a coupon is. The signature is the five
+ports of 05.
 :::
 
 ## Eight worlds, four outcomes
@@ -74,7 +69,12 @@ wound from the earlier sections now has a test with its name on it.
 
 ## The number {paths=72}
 
-![](build/06-simple/paths.png){height=75%}
+![](build/06-simple/paths.png){height=60%}
+
+```{.text include=build/data/splits.txt}
+```
+
+No decision is ever deleted, only moved
 
 ::: notes
 512 against 72, and 22 if you count by context. Branch coverage was 100% before and 100%
@@ -84,9 +84,12 @@ adds paths; one that passes flags multiplies them.
 
 ## Epilogue: marketing's seventh if
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
-```{.python include=04-what/s04_what/shipping.py snippet=fee}
+:::: {.columns}
+::: {.column width="60%"}
+
+```{.text include=06-simple/data/teaser.txt}
 ```
 
 ```{.python include=06-simple/s06_simple/seventh.py snippet=fee-digital}
@@ -95,16 +98,17 @@ adds paths; one that passes flags multiplies them.
 ```{.text include=build/06-simple/epilogue.txt}
 ```
 
-```{.text include=06-simple/data/teaser.txt}
-```
+:::
+::: {.column width="40%"}
+
+![](build/06-simple/epilogue.png)
+
+:::
+::::
+
+\theline{One more if is cheap}{Decisions in the core, effects in the shell. The next if costs 8, not 512.}
 
 ::: notes
 Digital books ship nothing, so no shipping fee. The if lands in shipping, one bit in one
 context, and the counts show what it cost. Chat: where does the digital-books if go?
 :::
-
-## Epilogue, the cost in a chart
-
-![](build/06-simple/epilogue.png){height=70%}
-
-\theline{One more if is cheap}{Decisions in the core, effects in the shell. The next if costs 8, not 512.}
