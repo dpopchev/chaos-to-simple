@@ -489,8 +489,14 @@ def route(
         )
         words = " ".join(w for w in (stop.move, told_in.get(stop.section, "")) if w)
         if words:
+            offset = route_label_offset(words, tail, head, char_w=0.012, gap=0.02)
+            captions = [(x0 + 0.48, y0 + 0.48) for _, x0, y0 in ZONES]
+            label_at = max(
+                (route_label_point(tail, head, sign * offset) for sign in (1, -1)),
+                key=lambda p: min(math.hypot(p[0] - cx, p[1] - cy) for cx, cy in captions),
+            )
             ax.text(
-                *route_label_point(tail, head, 0.05),
+                *label_at,
                 words,
                 ha="center",
                 va="center",
