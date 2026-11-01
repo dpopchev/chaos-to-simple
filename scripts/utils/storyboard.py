@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import difflib
 import re
+import textwrap
 from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
@@ -54,6 +55,7 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(diff) + "\n"
 
 
-def bubble(row: BubbleRow, labels: Mapping[str, str]) -> str:
-    """Return the bubble text: actor label and date, then the words."""
-    return f"{labels[row.actor]}, {row.when}\n{row.words}\n"
+def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:
+    """Return the bubble text: actor label and date, then the words wrapped at width."""
+    words = textwrap.fill(row.words, width=width)
+    return f"{labels[row.actor]}, {row.when}\n{words}\n"
