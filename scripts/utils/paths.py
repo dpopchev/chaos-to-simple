@@ -157,10 +157,18 @@ def bits_by(rules: Sequence[Rule], key: str) -> dict[str, int]:
     return counts
 
 
-def rules_table(rules: Sequence[Rule]) -> str:
-    """The glossary: bit, context, name and the code that carries it."""
-    columns = ("bit", "context", "name", "code")
-    rows = [columns, *[tuple(getattr(r, c) for c in columns) for r in rules]]
+def rules_table(
+    rules: Sequence[Rule],
+    columns: Sequence[str] = ("bit", "context", "name", "code"),
+    cast: Sequence[CastRow] = (),
+) -> str:
+    """The glossary of the chosen columns; 'who' is the requester joined from cast by bit."""
+    requester = {c.bit: c.requested_by for c in cast}
+
+    def cell(rule: Rule, column: str) -> str:
+        return requester[rule.bit] if column == "who" else getattr(rule, column)
+
+    rows = [tuple(columns), *[tuple(cell(r, c) for c in columns) for r in rules]]
     widths = [max(len(row[i]) for row in rows) for i in range(len(columns))]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
@@ -169,7 +177,7 @@ def rules_table(rules: Sequence[Rule]) -> str:
 
 
 def count_report(rules: Sequence[Rule]) -> str:
-    """Three ways to count the same bits: tangled, core | shell, contexts | shell."""
+    """The scope table and the honest count of one function, ending at 2^n."""
     core = [r for r in rules if r.scope == "core"]
     shell = [r for r in rules if r.scope == "shell"]
     contexts = bits_by(core, "context")
@@ -182,12 +190,20 @@ def count_report(rules: Sequence[Rule]) -> str:
     lines.append("")
     n = len(rules)
     lines.append(f"one function, {n} bits:  2^{n} = {tangled(n)}")
-    lines.append(
-        f"core | shell:           2^{len(core)} + 2^{len(shell)}"
-        f" = {tangled(len(core))} + {tangled(len(shell))} = {split([len(core), len(shell)])}"
-    )
+    return "\n".join(lines) + "\n"
+
+
+def splits_report(rules: Sequence[Rule]) -> str:
+    """The two splits: core | shell and contexts | shell."""
+    core = [r for r in rules if r.scope == "core"]
+    shell = [r for r in rules if r.scope == "shell"]
+    contexts = bits_by(core, "context")
     parts = [tangled(n) for n in contexts.values()] + [tangled(len(shell))]
-    lines.append(f"contexts | shell:       {' + '.join(str(p) for p in parts)} = {sum(parts)}")
+    lines = [
+        f"core | shell:           2^{len(core)} + 2^{len(shell)}"
+        f" = {tangled(len(core))} + {tangled(len(shell))} = {split([len(core), len(shell)])}",
+        f"contexts | shell:       {' + '.join(str(p) for p in parts)} = {sum(parts)}",
+    ]
     return "\n".join(lines) + "\n"
 
 

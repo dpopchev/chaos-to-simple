@@ -2,6 +2,9 @@
 
     python -m scripts.paths rules  --rules data/rules.csv --out build/data/rules.txt
     python -m scripts.paths counts --rules data/rules.csv --out build/data/counts.txt
+    python -m scripts.paths splits --rules data/rules.csv --out build/data/splits.txt
+    python -m scripts.paths rules  --rules data/rules.csv --columns bit,who,rule \\
+        --cast data/cast.csv --out build/03-chaos/rules.txt
     python -m scripts.paths grid   --bits 6 --out build/01-bits/grid.txt
     python -m scripts.paths epilogue --rules data/rules.csv --seventh data/seventh.csv \\
         --out build/06-simple/epilogue.txt
@@ -40,6 +43,7 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
     rules_table,
+    splits_report,
     stacked_bar,
     wounds_selector,
 )
@@ -54,6 +58,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         choices=[
             "rules",
             "counts",
+            "splits",
             "grid",
             "chart",
             "epilogue",
@@ -70,6 +75,11 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"))
     parser.add_argument("--seventh", type=Path, default=Path("data/seventh.csv"))
+    parser.add_argument(
+        "--columns",
+        default="bit,context,name,code",
+        help="comma-separated columns of the rules table; 'who' joins the cast",
+    )
     parser.add_argument("--bits", type=int, default=6, help="bits for the grid")
     parser.add_argument("--upto", type=int, default=None, help="first N rows of the doubling")
     parser.add_argument("--out", type=Path, default=None, help="file to write; default stdout")
@@ -98,7 +108,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.what == "rules":
-        text = rules_table(load_rules(args.rules))
+        text = rules_table(
+            load_rules(args.rules), tuple(args.columns.split(",")), load_cast(args.cast)
+        )
     elif args.what == "cast":
         text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "contexts":
@@ -112,6 +124,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "counts":
         text = count_report(load_rules(args.rules))
+    elif args.what == "splits":
+        text = splits_report(load_rules(args.rules))
     else:
         text = grid(args.bits)
 

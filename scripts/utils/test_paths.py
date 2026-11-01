@@ -30,6 +30,7 @@ from scripts.utils.paths import (
     load_rules,
     rules_table,
     split,
+    splits_report,
     stacked_bar,
     tangled,
     wounds_selector,
@@ -93,7 +94,7 @@ def test_bits_by_context_counts_each_context(sample_rules: list[Rule]) -> None:
     assert bits_by(sample_rules, "context") == {"pricing": 2, "shipping": 1, "payment": 1}
 
 
-class TestCountReportNamesThreeWaysOfCounting:
+class TestCountReportEndsAtTheHonestCount:
     @pytest.fixture
     def report(self, sample_rules: list[Rule]) -> str:
         return count_report(sample_rules)
@@ -102,23 +103,34 @@ class TestCountReportNamesThreeWaysOfCounting:
     def test_one_function_multiplies(self, report: str) -> None:
         assert "one function, 4 bits:  2^4 = 16" in report
 
-    @pytest.mark.edge
-    def test_scopes_add(self, report: str) -> None:
-        assert "core | shell:           2^3 + 2^1 = 8 + 2 = 10" in report
+
+@pytest.mark.edge
+def test_count_report_ends_at_512(repo_rules: list[Rule]) -> None:
+    assert count_report(repo_rules).splitlines()[-1] == "one function, 9 bits:  2^9 = 512"
+
+
+class TestSplitsReportHasTheTwoSplitLines:
+    @pytest.fixture
+    def lines(self, sample_rules: list[Rule]) -> list[str]:
+        return splits_report(sample_rules).splitlines()
 
     @pytest.mark.edge
-    def test_contexts_add(self, report: str) -> None:
-        assert "contexts | shell:       4 + 2 + 2 = 8" in report
+    def test_splits_report_has_the_two_split_lines(self, lines: list[str]) -> None:
+        assert len(lines) == 2
+
+    @pytest.mark.edge
+    def test_scopes_add(self, lines: list[str]) -> None:
+        assert lines[0] == "core | shell:           2^3 + 2^1 = 8 + 2 = 10"
+
+    @pytest.mark.edge
+    def test_contexts_add(self, lines: list[str]) -> None:
+        assert lines[1] == "contexts | shell:       4 + 2 + 2 = 8"
 
 
 class TestTalkNumbersComeFromRepoData:
     @pytest.fixture
     def report(self, repo_rules: list[Rule]) -> str:
-        return count_report(repo_rules)
-
-    @pytest.mark.edge
-    def test_one_function_is_512(self, report: str) -> None:
-        assert "2^9 = 512" in report
+        return splits_report(repo_rules)
 
     @pytest.mark.edge
     def test_core_and_shell_make_72(self, report: str) -> None:
@@ -216,6 +228,19 @@ def cast_rows(tmp_path: Path) -> list[CastRow]:
 @pytest.mark.edge
 def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
     assert cast_rows[0] == CastRow("b0", 3, "Marketing", "10 off, with the code", "why ten", "if a")
+
+
+@pytest.mark.edge
+def test_rules_table_who_column_joins_the_cast(
+    sample_rules: list[Rule], cast_rows: list[CastRow]
+) -> None:
+    rules = [r for r in sample_rules if r.bit in ("b0", "s0")]
+    table = rules_table(rules, columns=("bit", "who", "rule"), cast=cast_rows)
+    assert [line.split(None, 2) for line in table.splitlines()] == [
+        ["bit", "who", "rule"],
+        ["b0", "Marketing", "A coupon"],
+        ["s0", "Nobody", "A charge"],
+    ]
 
 
 INCIDENTS_CSV = (

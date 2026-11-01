@@ -20,7 +20,7 @@ PREAMBLE  := $(FRONT)/preamble.tex
 FILTERS   := $(sort $(wildcard $(FRONT)/filters/*.lua))
 INDEXES   := $(sort $(wildcard [0-9][0-9]-*/index.md))
 RULES     := data/rules.csv
-SHARED    := $(BUILD)/data/rules.txt $(BUILD)/data/counts.txt
+SHARED    := $(BUILD)/data/rules.txt $(BUILD)/data/counts.txt $(BUILD)/data/splits.txt
 ARTIFACTS := $(SHARED)
 PDF       := $(BUILD)/talk.pdf
 NOTES     := $(BUILD)/talk-notes.pdf
@@ -76,6 +76,10 @@ $(BUILD)/data/rules.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
 
 $(BUILD)/data/counts.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths counts --rules $(RULES) --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/data/splits.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths splits --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
 .PHONY: artifacts
