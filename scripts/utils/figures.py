@@ -437,24 +437,25 @@ def route(
             zorder=4,
         )
     for stop, start, end in zip(stops[1:], points, points[1:], strict=False):
+        tail, head = route_arrow_ends(start, end, half_w, half_h)
         ax.annotate(
             "",
-            end,
-            start,
+            head,
+            tail,
             arrowprops={
                 "arrowstyle": "-|>",
                 "color": "#555555",
                 "linewidth": 1.5,
-                "shrinkA": 32,
-                "shrinkB": 32,
+                "shrinkA": 0,
+                "shrinkB": 0,
             },
             zorder=2,
         )
         words = " ".join(w for w in (stop.move, told_in.get(stop.section, "")) if w)
         if words:
             ax.text(
-                (start[0] + end[0]) / 2,
-                (start[1] + end[1]) / 2,
+                (tail[0] + head[0]) / 2,
+                (tail[1] + head[1]) / 2,
                 words,
                 ha="center",
                 va="center",
