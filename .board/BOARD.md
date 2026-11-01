@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007   | blocked: 0 | todo roots: 5 | done: 206 | pruned: 2
+open path: E-007 > W-057 > T-140   | blocked: 0 | todo roots: 5 | done: 206 | pruned: 2
 
 ## Tree
 
@@ -13,7 +13,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-054  issue  [done]     one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [done], T-132 [done], T-133 [done]
   W-055  issue  [done]     00: the business map and the agenda as a pictogram strip -- T-134 [done], T-135 [done], T-136 [done]
   W-056  issue  [done]     01: the storyboard, the function written one request at a time -- T-137 [done], T-138 [done], T-139 [done], T-186 [done]
-  W-057  issue  [todo]     01: past me's two tests and what coverage saw -- T-140 [todo], T-141 [todo], T-142 [todo]
+  W-057  issue  [doing]    01: past me's two tests and what coverage saw -- T-140 [doing]   <- ACTIVE LEAF, T-141 [todo], T-142 [todo]
   W-058  issue  [todo]     01: finance found it, as a chart -- T-143 [todo], T-144 [todo], T-145 [todo]
   W-059  issue  [todo]     01: the path nobody ran, and why nobody ran it -- T-146 [todo], T-147 [todo], T-148 [todo]
   W-060  issue  [todo]     02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [todo], T-150 [todo], T-151 [todo]
@@ -379,8 +379,8 @@ flowchart TD
   W056 --> T138["T-138 done: Render the step diffs and bubbles -> build/01-bits/step-0.diff .. step-6.diff, bubble-0.txt .. bubble-8.txt"]
   W056 --> T139["T-139 done: Finish the seven storyboard frames -> 01-bits/index.md frames 1 to 7"]
   W056 --> T186["T-186 done: Wrap the bubble words to the bubble column -> build/01-bits/bubble-0.txt .. bubble-8.txt"]
-  E007 --> W057["W-057 issue todo: 01: past me's two tests and what coverage saw"]
-  W057 --> T140["T-140 todo: Simplify past me's tests and restrict the coverage run -> build/01-bits/coverage.txt"]
+  E007 --> W057["W-057 issue doing: 01: past me's two tests and what coverage saw"]
+  W057 --> T140["T-140 doing: Simplify past me's tests and restrict the coverage run -> build/01-bits/coverage.txt -- ACTIVE LEAF"]
   W057 --> T141["T-141 todo: Render the coverage view -> build/01-bits/coverage-view.png"]
   W057 --> T142["T-142 todo: Finish the tests frame -> 01-bits/index.md frame 8"]
   E007 --> W058["W-058 issue todo: 01: finance found it, as a chart"]
@@ -452,7 +452,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007 doing
+  class E007,W057,T140 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W071,T178,W076,T183,W077,T184 done
-  class W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182 todo
+  class T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182 todo
 ```
