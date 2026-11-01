@@ -45,7 +45,6 @@ type Outcome = Accepted | Rejected
 # [/snippet]
 
 
-# [snippet: checkout]
 def checkout(
     request: Request,
     today: date,
@@ -53,6 +52,7 @@ def checkout(
     inventory: Inventory,
     mailer: Mailer,
 ) -> Outcome:
+    # [snippet: checkout]
     priced = price(request, today)  # the only call into the core
     match inventory.reserve(request.skus):  # s1
         case OutOfStock(sku=sku):
@@ -65,6 +65,7 @@ def checkout(
         case Charged(reference=reference):
             confirmed = delivered(mailer.send(request.email, priced.total))  # s2
             return Accepted(priced.total, reference, confirmed)
+    # [/snippet]
 
 
 def delivered(result: SendResult) -> bool:
@@ -73,6 +74,3 @@ def delivered(result: SendResult) -> bool:
             return True
         case Bounced():
             return False
-
-
-# [/snippet]

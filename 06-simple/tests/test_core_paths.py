@@ -15,7 +15,7 @@ from s06_simple.core import Request, price
 TODAY = date(2026, 11, 5)
 
 
-# [snippet: from-bits]
+# [snippet: request-from-bits]
 def request_from_bits(bits: int) -> Request:
     """Bit k of the path number sets decision bk; 000000 is the plainest order."""
     return Request(
@@ -30,6 +30,10 @@ def request_from_bits(bits: int) -> Request:
     )
 
 
+# [/snippet]
+
+
+# [snippet: from-bits]
 @pytest.mark.parametrize("bits", range(64), ids=lambda b: f"{b:06b}")
 def test_every_core_path_holds_the_invariants(bits: int) -> None:
     request = request_from_bits(bits)

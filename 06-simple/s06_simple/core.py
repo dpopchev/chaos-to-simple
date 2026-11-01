@@ -36,7 +36,7 @@ class Priced:
 
 # [snippet: price]
 def price(request: Request, today: date) -> Priced:
-    """Composes the three contexts. No if of its own: 4 + 8 + 2 paths, not 64."""
+    """Composes three contexts; every bit stays where it was named."""
     goods = discounted_goods(request.goods, request.coupon, request.member, today)
     shipping = shipping_fee(goods, request.zone, request.gift_wrap)
     total = total_with_vat(goods + shipping, request.vat_id)
