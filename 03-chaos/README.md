@@ -29,7 +29,7 @@ runs in this section.
 - Given the story diagram, when told aloud, then each of the six red cards falls out of
   a numbered sentence.
 - Given `data/rules.csv`, when `make artifacts` runs, then the counts slide says
-  `2^9 = 512` and `64 + 8 = 72`.
+  `2^9 = 512`.
 
 ## Open
 
