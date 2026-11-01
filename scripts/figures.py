@@ -4,6 +4,7 @@ python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures example-map --out build/03-chaos/example_map.png
+python -m scripts.figures finance --out build/01-bits/finance.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
@@ -29,6 +30,8 @@ from scripts.utils.figures import (
     story,
     tree,
 )
+from scripts.utils.finance import draw as draw_finance
+from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
 from scripts.utils.paths import load_cast, load_incidents, load_rules
 from scripts.utils.stage import agenda_strip, business_map, load_route
@@ -43,6 +46,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "business-map",
         "coverage-view",
         "example-map",
+        "finance",
         "moves",
         "seam",
         "stacey",
@@ -58,12 +62,18 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
+    parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
     parser.add_argument("--questions", type=Path, default=Path("03-chaos/data/questions.md"))
     parser.add_argument("--tested", type=Path, default=Path("01-bits/data/tested.csv"))
     parser.add_argument("--chaos-tests", type=Path, default=Path("01-bits/tests/test_chaos.py"))
     args = parser.parse_args(argv)
 
+    if args.what == "finance":
+        weeks = load_october(args.october)
+        draw_finance(weeks, args.out)
+        args.out.with_suffix(".txt").write_text(report(weeks), encoding="ascii")
+        return 0
     if args.what == "coverage-view":
         draw(load_tested(args.tested), args.out)
         return 0
