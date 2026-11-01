@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-034 > T-086   | blocked: 0 | todo roots: 1 | done: 121 | pruned: 1
+open path: W-034   | blocked: 0 | todo roots: 1 | done: 122 | pruned: 1
 
 ## Tree
 
 ```text
-W-034  bug    [doing]    (standalone) route.png: the move labels cover the short arrows   (filed during W-032) -- T-085 [done], T-086 [doing]   <- ACTIVE LEAF
+W-034  bug    [doing]    (standalone) route.png: the move labels cover the short arrows   (filed during W-032) -- T-085 [done], T-086 [done]
 W-035  bug    [todo]     (standalone) epilogue chart: the labels shrink to about 7 points on the slide   (filed during W-033) -- T-087 [todo], T-088 [todo]
 ```
 
@@ -229,7 +229,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 flowchart TD
   W034["W-034 bug doing, standalone: route.png: the move labels cover the short arrows"]
   W034 --> T085["T-085 done: Compute the label point -> route_label_point(tail, head, offset)"]
-  W034 --> T086["T-086 doing: Place the labels off the arrows -> route(out) calls route_label_point -- ACTIVE LEAF"]
+  W034 --> T086["T-086 done: Place the labels off the arrows -> route(out) calls route_label_point"]
   W035["W-035 bug todo, standalone: epilogue chart: the labels shrink to about 7 points on the slide"]
   W035 --> T087["T-087 todo: Draw every chart text at 22 points -> stacked_bar texts at fontsize 22"]
   W035 --> T088["T-088 todo: Look at the epilogue slide at 22 points -> local/state/epilogue-22.png read"]
@@ -238,7 +238,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W034,T086 doing
-  class T085 done
+  class W034 doing
+  class T085,T086 done
   class W035,T087,T088 todo
 ```
