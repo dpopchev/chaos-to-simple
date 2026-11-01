@@ -5,7 +5,7 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 
 | | |
 |---|---|
-| Minutes | 8 |
+| Minutes | 5.5 |
 | Footer counter | `64` on entry, `512` from "The honest count" |
 | Owns | `diagrams/story.mmd` (the domain story as a sequence diagram), `data/questions.md` (the red cards and where each was answered) |
 | Uses | `data/rules.csv`, `data/examples.csv` (shared: 04 and 06 read them too) |
@@ -13,11 +13,11 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 
 ## Slides
 
-- [x] One story, nine sentences: the diagram
-- [x] The questions the story raised: the red cards
-- [x] Example mapping: the rules we can now count: `build/data/rules.txt`
+- [x] The room: one story, nine sentences: `build/03-chaos/story.png`
+- [x] The six questions, decided: the red cards, with the three effects in rows 4-6
+- [x] The six questions, as a map: `build/03-chaos/example_map.png`
 - [x] The honest count: `build/data/counts.txt`
-- [x] First change: a table, not a refactoring, with the line glued at its foot
+- [x] First change: bit, who, rule, with the line glued at its foot: `build/data/rules.txt`
 
 ## Live
 

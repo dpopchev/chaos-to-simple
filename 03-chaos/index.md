@@ -11,12 +11,14 @@ coupon to an address in Sofia. Stop at every sentence where the room has a quest
 
 ## The six questions
 
-1. What if the coupon expired yesterday?
-2. Does the member discount stack with the coupon, and in which order?
-3. Is the free-shipping threshold checked before or after the discounts? Decided in the room: after the discount.
-4. What happens when the payment is declined?
-5. What happens when the stock is gone after we priced the order?
-6. What happens when the confirmation email bounces?
+| question | decided |
+|---|---|
+| What if the coupon expired yesterday? | |
+| Does the member discount stack with the coupon, and in which order? | |
+| Is the free-shipping threshold checked before or after the discounts? | Decided in the room: after the discount |
+| What happens when the payment is declined? | the provider answers Charged / Declined (s0) |
+| What happens when the stock is gone after we priced the order? | the warehouse answers Reserved / OutOfStock (s1) |
+| What happens when the confirmation email bounces? | the mailer answers Sent / Bounced (s2) |
 
 ::: notes
 Question 3 was a decision nobody made: marketing wanted before, logistics wanted after, and
@@ -27,26 +29,6 @@ Chat: which question would you have asked?
 ## The six questions, as a map
 
 ![](build/03-chaos/example_map.png){height=80%}
-
-## Three effects nobody wrote down
-
-- The provider answers: `Charged | Declined` (s0)
-- The warehouse answers: `Reserved | OutOfStock` (s1)
-- The mailer answers: `Sent | Bounced` (s2)
-
-::: notes
-Three effects the code calls without a decision around them. Each one is a bit nobody
-wrote down, and each one doubles the paths.
-:::
-
-## What it felt like, what it was
-
-![](build/03-chaos/growth.png){height=70%}
-
-::: notes
-Six asks in ten weeks, each one small. Bits went 1 to 6 in a line; the paths doubled
-each time and ended at 64.
-:::
 
 ## The honest count {paths=512}
 
