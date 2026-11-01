@@ -2,6 +2,7 @@
 
 python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
+python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures example-map --out build/03-chaos/example_map.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
@@ -16,6 +17,7 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
+from scripts.utils.coverage_view import draw, load_tested
 from scripts.utils.examples import card_counts, example_names
 from scripts.utils.figures import (
     example_map,
@@ -36,7 +38,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    choices = ["agenda", "business-map", "example-map", "moves", "seam", "stacey", "story", "tree"]
+    choices = [
+        "agenda",
+        "business-map",
+        "coverage-view",
+        "example-map",
+        "moves",
+        "seam",
+        "stacey",
+        "story",
+        "tree",
+    ]
     parser.add_argument("what", choices=choices)
     parser.add_argument("--out", type=Path, required=True, help="PNG file to write")
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"), help="moves: rules")
@@ -48,9 +60,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
     parser.add_argument("--questions", type=Path, default=Path("03-chaos/data/questions.md"))
+    parser.add_argument("--tested", type=Path, default=Path("01-bits/data/tested.csv"))
     parser.add_argument("--chaos-tests", type=Path, default=Path("01-bits/tests/test_chaos.py"))
     args = parser.parse_args(argv)
 
+    if args.what == "coverage-view":
+        draw(load_tested(args.tested), args.out)
+        return 0
     if args.what == "example-map":
         names = [
             *example_names(args.examples, "core"),

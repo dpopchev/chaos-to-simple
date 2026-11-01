@@ -1,0 +1,4 @@
+name,bits,kind
+test_regular_order,000000,tested
+test_order_with_everything,111111,tested
+test_free_shipping_after_discount,000101,bug
