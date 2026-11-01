@@ -1,12 +1,20 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 2 | done: 126 | pruned: 1
+open path: none   | blocked: 0 | todo roots: 4 | done: 126 | pruned: 2
 
 ## Tree
 
 ```text
-W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [todo]
+E-005         [todo]     deck: the 40-minute cut
+  W-039  issue  [todo]     lines: the believed / learned device glued to each section's last frame -- T-096 [todo], T-097 [todo]
+  W-040  issue  [todo]     00 and 01: the cut and the cast -- T-098 [todo], T-099 [todo], T-100 [todo], T-101 [todo]
+  W-041  issue  [todo]     02 and 03: the cut and the counter's reveal -- T-102 [todo], T-103 [todo], T-104 [todo]
+  W-042  issue  [todo]     04 and 05: the cut and the I3 beat -- T-105 [todo], T-106 [todo], T-107 [todo], T-108 [todo]
+  W-043  issue  [todo]     06 and 07: the cut, the reveal and the Q&A -- T-109 [todo], T-110 [todo], T-111 [todo]
+  W-044  issue  [todo]     lengths: the snippet cap in make check -- T-112 [todo], T-113 [todo]
+W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [todo]
 W-037  bug    [todo]     (standalone) route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
+W-038  bug    [todo]     (standalone) epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [todo], T-094 [todo]
 ```
 
 ## Closed
@@ -241,16 +249,46 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
+  E005["E-005 todo: deck: the 40-minute cut"]
+  E005 --> W039["W-039 issue todo: lines: the believed / learned device glued to each section's last frame"]
+  W039 --> T096["T-096 todo: Define the line block -> \theline in 00-frontmatter/preamble.tex"]
+  W039 --> T097["T-097 todo: Glue the lines -> 01..06 index.md end on \theline, no 'The line' frame"]
+  E005 --> W040["W-040 issue todo: 00 and 01: the cut and the cast"]
+  W040 --> T098["T-098 todo: Render the cast without asides -> cast_table by source line, doubling_table with upto"]
+  W040 --> T099["T-099 todo: Render the artifacts of 01 -> doubling-1..6.txt and coverage-summary.txt from 01-bits/section.mk"]
+  W040 --> T100["T-100 todo: Cut 00 -> 00-frontmatter/index.md three frames"]
+  W040 --> T101["T-101 todo: Cut 01 -> 01-bits/index.md seven frames"]
+  E005 --> W041["W-041 issue todo: 02 and 03: the cut and the counter's reveal"]
+  W041 --> T102["T-102 todo: Split the counts and name who asked -> scripts.paths splits and rules --columns"]
+  W041 --> T103["T-103 todo: Cut 02 -> 02-stacey/index.md two frames"]
+  W041 --> T104["T-104 todo: Cut 03 -> 03-chaos/index.md five frames"]
+  E005 --> W042["W-042 issue todo: 04 and 05: the cut and the I3 beat"]
+  W042 --> T105["T-105 todo: Trim the 05 exhibits -> oo at two methods, the types snippet in ports.py"]
+  W042 --> T106["T-106 todo: Render the effect lines -> scripts.paths effects and build/05-how/effects.txt"]
+  W042 --> T107["T-107 todo: Cut 04 -> 04-what/index.md four frames"]
+  W042 --> T108["T-108 todo: Cut 05 -> 05-how/index.md six frames"]
+  E005 --> W043["W-043 issue todo: 06 and 07: the cut, the reveal and the Q&A"]
+  W043 --> T109["T-109 todo: Trim the 06 exhibits -> core docstring, from-bits at the test, shell checkout at its body"]
+  W043 --> T110["T-110 todo: Cut 06 -> 06-simple/index.md eight frames"]
+  W043 --> T111["T-111 todo: Cut 07 -> 07-close/index.md two frames"]
+  E005 --> W044["W-044 issue todo: lengths: the snippet cap in make check"]
+  W044 --> T112["T-112 todo: Count the included lines -> too_long in scripts/utils/lengths.py"]
+  W044 --> T113["T-113 todo: Gate the lengths -> make lengths in make check"]
   W036["W-036 spike todo, standalone: talk: which of the review remarks the 40-minute deck adopts"]
   W036 --> T089["T-089 todo: Write the remarks into the repository -> docs/cut-40.md"]
-  W036 --> T090["T-090 todo: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
+  W036 --> T090["T-090 pruned: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
+  W036 --> T095["T-095 todo: Record the filed plan -> docs/cut-40.md Plan section"]
   W037["W-037 bug todo, standalone: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
   W037 --> T091["T-091 todo: Compute the clearing offset -> route_label_offset(words, tail, head)"]
   W037 --> T092["T-092 todo: Place each label clear of its arrow -> route(out) calls route_label_offset"]
+  W038["W-038 bug todo, standalone: epilogue chart: the 30 total overprints the chart title"]
+  W038 --> T093["T-093 todo: Compute the headroom -> bar_headroom(top)"]
+  W038 --> T094["T-094 todo: Lift the axes over the totals -> stacked_bar sets ylim to bar_headroom(top) and drops the title"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W036,T089,T090,W037,T091,T092 todo
+  class E005,W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,W042,T105,T106,T107,T108,W043,T109,T110,T111,W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094 todo
+  class T090 pruned
 ```
