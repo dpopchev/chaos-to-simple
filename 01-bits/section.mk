@@ -2,6 +2,16 @@
 # numbers on the slides are measured, not typed. A plain `#` keeps it out of make help.
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/cast.txt $(BUILD)/01-bits/doubling.txt $(BUILD)/01-bits/two_ifs.txt $(BUILD)/01-bits/tree.png
 
+ARTIFACTS += $(foreach k,1 2 3 4 5 6,$(BUILD)/01-bits/doubling-$(k).txt) $(BUILD)/01-bits/coverage-summary.txt
+
+$(BUILD)/01-bits/doubling-%.txt: data/cast.csv scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths doubling --cast data/cast.csv --upto $* --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/01-bits/coverage-summary.txt: $(BUILD)/01-bits/coverage.txt
+	@grep -E 'chaos\.py|^TOTAL' $< > $@
+	$(call log_done,$@ written)
+
 $(BUILD)/01-bits/tree.png: scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures tree --out $@
 	$(call log_done,$@ written)
