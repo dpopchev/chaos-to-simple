@@ -13,7 +13,7 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `preamble.tex` | footer path counter, smaller code font, no navigation symbols | the footer or the look changes |
 | `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range | never, unless the marker syntax changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
-| `index.md` | the opening: the message from past me, the raw checkout, the chat question and the route as the agenda; the title slide comes from `meta.yaml` | the opening changes |
+| `index.md` | the opening: the business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
 
 ## How a slide pulls code
 
@@ -63,3 +63,6 @@ Decision: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex,
 
 - Given `make slides`, when the deck opens, then the title slide shows title, subtitle,
   author, institute and date, and the footer reads `paths to reason about: ?`.
+- Given `make talk`, when frame 00 opens, then the business map shows the nine named
+  parts and the agenda strip shows eight stops with I1, I2 and I3 marked, and each
+  frame carries its speaker notes.
