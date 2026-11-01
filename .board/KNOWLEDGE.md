@@ -12,6 +12,8 @@
 
 ## Decisions
 - 2026-11-01 E-006: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-01)
+- 2026-11-01 W-036: adopted: the review became E-005 -- six work items W-039..W-044, the line device first, four section pairs, the snippet cap last -- with C1-C7 at their leading options, landed as v0.5.0 and recorded in docs/cut-40.md at fd3743b
+- 2026-11-01 W-036: adopted: the review became E-005 -- six work items W-039..W-044, the line device first, four section pairs, the snippet cap last -- with C1-C7 at their leading options, landed as v0.5.0 and recorded in docs/cut-40.md at fd3743b (developer, 2026-11-01)
 
 ## Deviations
 - none recorded
