@@ -10,6 +10,7 @@ python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
+python -m scripts.figures stacey --highlight 02 --out build/02-stacey/stacey-02.png
 python -m scripts.figures story --out build/03-chaos/story.png
 python -m scripts.figures tree --out build/01-bits/tree.png
 """
@@ -67,6 +68,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
+    parser.add_argument("--highlight", help="stacey: the section whose stop stands out")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
     parser.add_argument("--labels", type=Path, default=Path("02-stacey/data/labels.csv"))
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
@@ -125,7 +127,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "stacey":
         draw_stacey(
-            load_spots(args.route), load_zones(args.zones), load_labels(args.labels), args.out
+            load_spots(args.route),
+            load_zones(args.zones),
+            load_labels(args.labels),
+            args.out,
+            args.highlight,
         )
         return 0
     {"story": story, "tree": tree}[args.what](args.out)
