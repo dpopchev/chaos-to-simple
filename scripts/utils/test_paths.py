@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 import pytest
+from PIL import Image
 
 from scripts.paths import main
 from scripts.utils.paths import (
@@ -437,6 +438,35 @@ def test_epilogue_chart_writes_a_png(tmp_path: Path) -> None:
         ]
     )
     assert out.read_bytes().startswith(b"\x89PNG")
+
+
+def pixel_ratio(path: Path) -> float:
+    with Image.open(path) as image:
+        return image.width / image.height
+
+
+@pytest.mark.view
+def test_number_chart_shape_is_wide(tmp_path: Path) -> None:
+    out = tmp_path / "paths.png"
+    main(["chart", "--rules", str(REPO_RULES), "--out", str(out)])
+    assert pixel_ratio(out) == pytest.approx(8 / 3.5, abs=0.02)
+
+
+@pytest.mark.view
+def test_epilogue_chart_shape_is_square(tmp_path: Path) -> None:
+    out = tmp_path / "epilogue.png"
+    main(
+        [
+            "epilogue-chart",
+            "--rules",
+            str(REPO_RULES),
+            "--seventh",
+            str(SEVENTH_RULES),
+            "--out",
+            str(out),
+        ]
+    )
+    assert pixel_ratio(out) == pytest.approx(1.0, abs=0.02)
 
 
 DOUBLING_CAST = [

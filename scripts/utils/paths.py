@@ -334,10 +334,24 @@ def slice_label_point(x: float, bottom: float, value: float) -> tuple[float, flo
     return (x + 0.33, bottom + value / 2)
 
 
-def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason about") -> None:
+def spread_apart(ys: Sequence[float], gap: float) -> list[float]:
+    """Push ascending label heights upward until neighbours sit at least gap apart."""
+    placed: list[float] = []
+    for y in ys:
+        placed.append(max(y, placed[-1] + gap) if placed else y)
+    return placed
+
+
+def stacked_bar(
+    out: Path,
+    bars: Sequence[Bar],
+    title: str = "paths to reason about",
+    figsize: tuple[float, float] = (8.0, 3.5),
+    fontsize: int = 11,
+) -> None:
     """A stacked bar per way of counting, every segment labelled with its exact count.
 
-    A segment too thin to carry its label inside gets it beside the bar, level with the slice.
+    A segment under 8% of the top gets its label beside the bar, level with the slice.
     """
     from scripts.utils import style
 
@@ -346,7 +360,9 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
 
     colours = style.palette()
     top = max(sum(value for _, value in segments) for _, segments in bars)
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=figsize, dpi=style.DPI)
+    gap = bar_headroom(top) * 1.5 * fontsize / (0.75 * figsize[1] * 72)
+    aside: list[tuple[str, tuple[float, float]]] = []
     for x, (label, segments) in enumerate(bars):
         bottom = 0
         for i, (name, value) in enumerate(segments):
@@ -361,20 +377,37 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
             )
             middle = bottom + value / 2
             if value >= 0.2 * top:
-                ax.text(x, middle, f"{name}:\n{value}", ha="center", va="center", fontsize=22)
-            elif value >= 0.11 * top:
-                ax.text(x, middle, f"{name}: {value}", ha="center", va="center", fontsize=22)
+                ax.text(
+                    x, middle, f"{name}:\n{value}", ha="center", va="center", fontsize=fontsize
+                )
+            elif value >= 0.08 * top:
+                ax.text(x, middle, f"{name}: {value}", ha="center", va="center", fontsize=fontsize)
             else:
-                lx, ly = slice_label_point(x, bottom, value)
-                ax.text(lx, ly, f"{name}: {value}", ha="left", va="center", fontsize=22)
+                aside.append((f"{name}: {value}", slice_label_point(x, bottom, value)))
             bottom += value
-        ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=22, fontweight="bold")
-        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=22)
+        points = [point for _, point in aside]
+        for (text, (lx, ly)), y in zip(
+            aside, spread_apart([py for _, py in points], gap), strict=True
+        ):
+            ax.annotate(
+                text,
+                (lx - 0.03, ly),
+                xytext=(lx + 0.05, y),
+                ha="left",
+                va="center",
+                fontsize=fontsize,
+                arrowprops={"arrowstyle": "-", "color": "0.5", "linewidth": 0.8},
+            )
+        aside.clear()
+        ax.text(
+            x, bottom, str(bottom), ha="center", va="bottom", fontsize=fontsize, fontweight="bold"
+        )
+        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=fontsize)
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)
     ax.set_ylim(0, bar_headroom(top))
-    ax.set_ylabel(title, fontsize=22)
-    ax.tick_params(labelsize=22)
+    ax.set_ylabel(title, fontsize=fontsize)
+    ax.tick_params(labelsize=fontsize)
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()

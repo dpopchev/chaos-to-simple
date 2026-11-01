@@ -102,6 +102,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.out,
             epilogue_bars(load_rules(args.rules), load_rules(args.seventh)),
             title="paths to reason about",
+            figsize=(4.5, 4.5),
+            fontsize=10,
         )
         return 0
 
