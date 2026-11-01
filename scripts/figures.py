@@ -1,5 +1,6 @@
 """Draw the deck's diagrams: make artifacts calls this.
 
+python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
 python -m scripts.figures example-map --out build/03-chaos/example_map.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures route --out build/00-frontmatter/route.png
@@ -27,18 +28,21 @@ from scripts.utils.figures import (
     story,
     tree,
 )
+from scripts.utils.palette import load_actors
 from scripts.utils.paths import load_cast, load_rules
+from scripts.utils.stage import business_map
 
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
-    choices = ["example-map", "moves", "route", "seam", "stacey", "story", "tree"]
+    choices = ["business-map", "example-map", "moves", "route", "seam", "stacey", "story", "tree"]
     parser.add_argument("what", choices=choices)
     parser.add_argument("--out", type=Path, required=True, help="PNG file to write")
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"), help="moves: rules")
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"), help="seam: cast")
+    parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"), help="actors")
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
     parser.add_argument("--questions", type=Path, default=Path("03-chaos/data/questions.md"))
     parser.add_argument("--chaos-tests", type=Path, default=Path("01-bits/tests/test_chaos.py"))
@@ -59,6 +63,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "moves":
         moves_figure(args.out, moves(load_rules(args.rules)))
+        return 0
+    if args.what == "business-map":
+        business_map(
+            load_actors(args.actors), load_cast(args.cast), load_rules(args.rules), args.out
+        )
         return 0
     if args.what == "seam":
         seam(args.out, ports_of(load_rules(args.rules), load_cast(args.cast)))
