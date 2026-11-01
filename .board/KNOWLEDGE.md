@@ -6,6 +6,7 @@
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-11-01 E-004: standing: 00-frontmatter/preamble.tex:26 sets code blocks to \footnotesize, so only \fvset{fontsize=...} in a slide body shrinks code -> make overflow and make widths guard frame height and column width supersedes: W-029#1, W-031#1
 - 2026-11-01 E-005: standing: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run supersedes: E-005#1
+- 2026-11-02 E-007: fact: T-137 dropped the -> Decimal return annotation from chaos.py's def checkout so the line fits ruff's 100 columns with its step marker -> the 01 exhibit shows def checkout without a return type; restoring it wraps the def (24 lines)
 - 2026-11-02 E-007: fact: counts.txt holds no 72, the example-name tests exist and make lines checks both columns -> the pasted T-060, T-064 and T-078 were not filed
 - 2026-11-02 E-007: fact: fontawesome5.sty and three Font Awesome OTF faces are installed since 2026-11-01, Hack Nerd Font under \~/.local/share/fonts -> W-053 picks the font, the labelled box stays the fallback
 - 2026-11-02 E-007: fact: mmdc is installed since 2026-11-01 (the E-001 finding is stale) -> the E-002 Decision, not the toolchain, keeps Mermaid out
@@ -41,4 +42,5 @@
 - 2026-11-02 E-007: W-071 filed under E-007 from W-051's criterion run; it lands before W-052 so the talk-day fallback sha carries both charts
 - 2026-11-02 E-007: W-076 filed under E-007 from W-054's criterion run; it lands before W-055
 - 2026-11-02 E-007: W-077 filed under E-007 from T-134's close gate; W-055 blocked on it
+- 2026-11-02 E-007: W-078 filed under E-007 from T-137: effects.txt prints the step markers
 - 2026-11-02 E-007: ten todo Checks of the form make artifacts && test -s or ls now start with make clean-build, since make stubs leaves a placeholder at every manifest path that would pass them
