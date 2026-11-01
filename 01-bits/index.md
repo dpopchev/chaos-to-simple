@@ -55,47 +55,71 @@ section 04, says the discounted goods. Branch coverage was 100% before and after
 
 ## Count along: one if, one bit {paths=64}
 
+```{=latex}
 \begin{onlyenv}<1>
+```
 
 ```{.text include=build/01-bits/doubling-1.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
+```{=latex}
 \begin{onlyenv}<2>
+```
 
 ```{.text include=build/01-bits/doubling-2.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
+```{=latex}
 \begin{onlyenv}<3>
+```
 
 ```{.text include=build/01-bits/doubling-3.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
+```{=latex}
 \begin{onlyenv}<4>
+```
 
 ```{.text include=build/01-bits/doubling-4.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
+```{=latex}
 \begin{onlyenv}<5>
+```
 
 ```{.text include=build/01-bits/doubling-5.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
+```{=latex}
 \begin{onlyenv}<6>
+```
 
 ```{.text include=build/01-bits/doubling-6.txt}
 ```
 
+```{=latex}
 \end{onlyenv}
+```
 
 ::: notes
 Each if doubles the paths, one line per click. Before each click, ask the room for the
