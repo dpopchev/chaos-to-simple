@@ -22,7 +22,7 @@ pure core and the effectful shell.
 - [x] Command Query Separation draws the seam
 - [x] The answers the world may give: `snippet=results`
 - [x] The ports: `snippet=ports`
-- [x] Refactoring moves and their sign
+- [x] Refactoring moves and their sign, with the line glued at its foot
 
 ## Live
 

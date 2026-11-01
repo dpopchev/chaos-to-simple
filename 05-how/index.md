@@ -82,6 +82,4 @@ nothing is on either side of it yet. Counter still 512.
 - Cohesion: bits that change together live together. Their count stays local.
 - Each move in the table either adds a path or hides one; count them before you merge.
 
-A class will keep it tidy
-
-A method that does and tells hides a bit. Separate asking from doing; make every answer a value.
+\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}

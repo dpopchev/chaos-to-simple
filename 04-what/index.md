@@ -72,13 +72,9 @@ test. The counter does not move in this section; that is honest.
 
 ## Bounded contexts, the moves
 
-![](build/04-what/moves.png){height=80%}
+![](build/04-what/moves.png){height=70%}
 
-## The line
-
-Naming is cosmetics
-
-Every if was somebody's sentence. Write it down, give it a home, pass values between homes.
+\theline{Naming is cosmetics}{Every if was somebody's sentence. Write it down, give it a home, pass values between homes.}
 
 ::: notes
 Each home is a context with a name, its bits, its paths and the people who asked. Section

@@ -46,7 +46,7 @@ campaign on time, one if at a time.
 - [x] 6. Count along: one if, one bit, to 64 (`{paths=64}`)
 - [x] 7. A path is a six-bit number: the grid
 - [x] 8. Rule 1: how ifs count
-- [x] 9. Parked for section 03, with the should-have-known line
+- [x] 9. Parked for section 03, with the line glued at its foot (`\theline`)
 
 ## Live
 

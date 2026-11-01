@@ -19,7 +19,7 @@ Beat: put the bits where they belong, count again. 64 core paths tested by enume
 - [x] We counted them: `build/06-simple/pytest.txt`
 - [x] The shell: `snippet=checkout`
 - [x] Eight worlds, four outcomes: `snippet=eight`
-- [x] The number: the chart
+- [x] The number: the chart; the epilogue chart carries the line glued at its foot
 
 ## Live
 

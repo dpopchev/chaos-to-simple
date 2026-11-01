@@ -17,7 +17,7 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 - [x] The questions the story raised: the red cards
 - [x] Example mapping: the rules we can now count: `build/data/rules.txt`
 - [x] The honest count: `build/data/counts.txt`
-- [x] First change: a table, not a refactoring
+- [x] First change: a table, not a refactoring, with the line glued at its foot
 
 ## Live
 

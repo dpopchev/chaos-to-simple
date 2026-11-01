@@ -17,7 +17,7 @@ two axes; each later section is one move on the map.
 - [x] Two axes, four zones: the matrix
 - [x] Bits on the map: the table
 - [x] The route of this talk
-- [x] The line: check whether the What is agreed
+- [x] The route of this talk, with the line glued at its foot: check whether the What is agreed
 
 ## Done when
 

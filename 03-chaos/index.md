@@ -67,17 +67,11 @@ core alone. That is the first good news: the number is now true.
 - `data/examples.csv`: one green card per rule, named like a test
 - Checked in next to the code, read by the build
 
+\theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
+
 ::: notes
 The cheapest move in the talk. The table is generated from data/rules.csv; the green cards
 are data/examples.csv and come back as test names in 06. The counter went up, which is the point.
-:::
 
-## The line
-
-Counting makes it worse
-
-You cannot shrink a count you have not made. The bigger number is the first good news.
-
-::: notes
 Say it slowly, then move on. Chaos to complex starts with the count.
 :::

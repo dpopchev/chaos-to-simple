@@ -105,10 +105,6 @@ context, and the counts show what it cost. Chat: where does the digital-books if
 
 ## Epilogue, the cost in a chart
 
-![](build/06-simple/epilogue.png){height=80%}
+![](build/06-simple/epilogue.png){height=70%}
 
-## The line
-
-One more if is cheap
-
-Decisions in the core, effects in the shell. The next if costs 8, not 512.
+\theline{One more if is cheap}{Decisions in the core, effects in the shell. The next if costs 8, not 512.}

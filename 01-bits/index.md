@@ -160,9 +160,7 @@ The rest of the talk is a list of ways to turn a multiplication into an addition
 ```{.text include=06-simple/data/teaser.txt}
 ```
 
-A green badge means tested
-
-Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.
+\theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.}
 
 ::: notes
 Parked, not deleted: the three calls and the seventh if wait for section 03.

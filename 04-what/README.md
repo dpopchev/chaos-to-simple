@@ -18,7 +18,7 @@ place; contracts between contexts are values, never flags.
 - [x] A rule is a phrase, a phrase is a method: `snippet=coupon`, `snippet=discounted`
 - [x] A bit as a type: `snippet=zone`
 - [x] Contracts are values, never flags: `snippet=fee`, `snippet=vat`
-- [x] Bounded contexts: every bit has a home
+- [x] Bounded contexts: every bit has a home, with the line glued to the moves frame
 
 ## Live
 
