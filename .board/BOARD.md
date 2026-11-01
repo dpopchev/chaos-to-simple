@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-060 > T-151   | blocked: 0 | todo roots: 6 | done: 224 | pruned: 2
+open path: E-007 > W-060   | blocked: 0 | todo roots: 6 | done: 225 | pruned: 2
 
 ## Tree
 
@@ -16,7 +16,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-057  issue  [done]     01: past me's two tests and what coverage saw -- T-140 [done], T-141 [done], T-142 [done]
   W-058  issue  [done]     01: finance found it, as a chart -- T-143 [done], T-144 [done], T-145 [done]
   W-059  issue  [done]     01: the path nobody ran, and why nobody ran it -- T-146 [done], T-147 [done], T-148 [done]
-  W-060  issue  [doing]    02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [done], T-150 [done], T-151 [doing]   <- ACTIVE LEAF
+  W-060  issue  [doing]    02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [done], T-150 [done], T-151 [done]
   W-061  spike  [todo]     the source behind the BOOM label -- T-152 [todo], T-153 [todo]
   W-062  issue  [todo]     03: the room as a journey, a log and a retro table -- T-154 [todo], T-155 [todo], T-156 [todo], T-157 [todo]
   W-063  issue  [todo]     03: the explosion to 512 in the style of 01 -- T-158 [todo], T-159 [todo], T-160 [todo]
@@ -397,7 +397,7 @@ flowchart TD
   E007 --> W060["W-060 issue doing: 02: the Stacey matrix as specified, radial with the Who diagonal"]
   W060 --> T149["T-149 done: Add the zones and labels datasets and the matrix renderer -> build/02-stacey/stacey.png"]
   W060 --> T150["T-150 done: Render the highlighted minimaps -> build/02-stacey/stacey-01.png .. stacey-06.png"]
-  W060 --> T151["T-151 doing: Finish the 02 frames -> 02-stacey/index.md -- ACTIVE LEAF"]
+  W060 --> T151["T-151 done: Finish the 02 frames -> 02-stacey/index.md"]
   E007 --> W061["W-061 spike todo: the source behind the BOOM label"]
   W061 --> T152["T-152 todo: Collect candidate sources -> 02-stacey/data/boom-sources.md"]
   W061 --> T153["T-153 todo: Record the decision and set the label -> 02-stacey/README.md, 02-stacey/data/labels.csv"]
@@ -461,7 +461,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W060,T151 doing
-  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,T149,T150,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
+  class E007,W060 doing
+  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,T149,T150,T151,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
   class W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189 todo
 ```
