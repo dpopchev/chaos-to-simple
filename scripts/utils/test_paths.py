@@ -13,6 +13,7 @@ from scripts.utils.paths import (
     CastRow,
     Incident,
     Rule,
+    bar_headroom,
     bars_from_rules,
     bits_by,
     cast_table,
@@ -191,6 +192,11 @@ def test_bars_follow_the_inventory(repo_rules: list[Rule]) -> None:
     bars = bars_from_rules(repo_rules)
     totals = [sum(value for _, value in segments) for _, segments in bars]
     assert totals == [512, 72, 22]
+
+
+@pytest.mark.model
+def test_bar_headroom_leaves_room_above_the_tallest_bar() -> None:
+    assert bar_headroom(30) >= 36
 
 
 class TestStackedBarWritesAPng:

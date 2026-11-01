@@ -324,6 +324,11 @@ def growth_chart(out: Path, points: Sequence[Growth]) -> Path:
     return out
 
 
+def bar_headroom(top: int) -> float:
+    """The upper y limit of a stacked bar chart, with room above the tallest bar for its total."""
+    return top * 1.2
+
+
 def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason about") -> None:
     """A stacked bar per way of counting, every segment labelled with its exact count.
 
