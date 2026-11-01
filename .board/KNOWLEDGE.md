@@ -39,3 +39,4 @@
 
 ## Deviations
 - 2026-11-02 E-007: W-071 filed under E-007 from W-051's criterion run; it lands before W-052 so the talk-day fallback sha carries both charts
+- 2026-11-02 E-007: W-076 filed under E-007 from W-054's criterion run; it lands before W-055
