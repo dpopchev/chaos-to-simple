@@ -1,31 +1,7 @@
-## Checkout done
+## The business map {paths=?}
 
-```{.text include=00-frontmatter/data/message.txt}
-```
+![](build/00-frontmatter/business-map.png){height=80%}
 
-::: notes
-Let the message sit for a moment. This is pride, and the narrator is present me.
-:::
+## Agenda, in the order the bits fall {paths=?}
 
-## The checkout, as past me left it {paths=?}
-
-\fvset{fontsize=\scriptsize}
-
-```{.python .numberLines include=01-bits/s01_bits/chaos.py snippet=checkout cap=24}
-```
-
-- Question for the chat: how many tests until you are sure it works?
-
-::: notes
-Ask the question, wait, and read three guesses aloud from the chat.
-Do not answer yet; section 01 answers with the coverage report.
-:::
-
-## Agenda, in the order the bits fall
-
-![](build/00-frontmatter/route.png){height=80%}
-
-::: notes
-Point at the footer: the number of paths to reason about follows us through the talk.
-It starts as a question mark.
-:::
+![](build/00-frontmatter/agenda.png){height=80%}
