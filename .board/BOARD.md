@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-054 > T-132   | blocked: 0 | todo roots: 2 | done: 190 | pruned: 2
+open path: E-007 > W-054 > T-132   | blocked: 0 | todo roots: 3 | done: 190 | pruned: 2
 
 ## Tree
 
@@ -29,6 +29,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-071  bug    [done]     06 epilogue chart is width-capped in its 30% column, below 65% height, labels unreadable   (filed during T-125) -- T-178 [done]
 W-070  issue  [todo]     (standalone) chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
 W-072  bug    [todo]     (standalone) make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
+W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
 ```
 
 ## Closed
@@ -428,6 +429,8 @@ flowchart TD
   W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
   W072["W-072 bug todo, standalone: make lengths crashes on an include of a missing file the filter would render as a STUB"]
   W072 --> T179["T-179 todo: Skip a missing include with a warning -> scripts/check_lengths.py"]
+  W073["W-073 bug todo, standalone: 05 ports.png is not rebuilt when data/cast.csv changes"]
+  W073 --> T180["T-180 todo: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -435,5 +438,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E007,W054,T132 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,T131,W071,T178 done
-  class T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177,W072,T179 todo
+  class T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177,W072,T179,W073,T180 todo
 ```
