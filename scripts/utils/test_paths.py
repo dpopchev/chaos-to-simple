@@ -224,9 +224,9 @@ class TestStackedBarWritesAPng:
 
 
 CAST_CSV = (
-    "bit,week,requested_by,words,aside,fragment\n"
-    'b0,3,Marketing,"10 off, with the code",why ten,if a\n'
-    "s0,,Nobody,nobody wrote it down,,call(x)\n"
+    "bit,step,week,requested_by,words,aside,fragment\n"
+    'b0,1,3,marketing,"10 off, with the code",why ten,if a\n'
+    "s0,0,1,mailer,nobody wrote it down,,call(x)\n"
 )
 
 CAST_SOURCE = "first\nif a:\n    pass\ncall(x)\n"
@@ -241,7 +241,9 @@ def cast_rows(tmp_path: Path) -> list[CastRow]:
 
 @pytest.mark.edge
 def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
-    assert cast_rows[0] == CastRow("b0", 3, "Marketing", "10 off, with the code", "why ten", "if a")
+    assert cast_rows[0] == CastRow(
+        "b0", 1, 3, "marketing", "10 off, with the code", "why ten", "if a"
+    )
 
 
 @pytest.mark.edge
@@ -253,7 +255,7 @@ def test_rules_table_who_column_joins_the_cast(
     assert [line.split(None, 2) for line in table.splitlines()] == [
         ["bit", "who", "rule"],
         ["b0", "Marketing", "A coupon"],
-        ["s0", "Nobody", "A charge"],
+        ["s0", "Mailer", "A charge"],
     ]
 
 
@@ -335,15 +337,15 @@ CONTEXTS_RULES = (
     "b0,core,pricing,coupon,A coupon,coupon\n"
     "b1,core,pricing,member,A member,member\n"
     "b2,core,shipping,zone,A zone,zone\n"
-    "s0,shell,payment,charge,A charge,charge\n"
+    "s0,shell,shell,charge,A charge,charge\n"
 )
 
 CONTEXTS_CAST = (
-    "bit,week,requested_by,words,aside,fragment\n"
-    "b0,3,Marketing,a,,x\n"
-    "b1,5,Loyalty program,b,,y\n"
-    "b2,6,Marketing,c,,z\n"
-    "s0,,Nobody,d,,w\n"
+    "bit,step,week,requested_by,words,aside,fragment\n"
+    "b0,1,3,marketing,a,,x\n"
+    "b1,2,5,loyalty,b,,y\n"
+    "b2,3,6,marketing,c,,z\n"
+    "s0,0,1,mailer,d,,w\n"
 )
 
 
@@ -372,8 +374,8 @@ class TestContextsTableJoinsRulesAndCast:
         ]
 
     @pytest.mark.model
-    def test_contexts_table_shell_context_is_asked_by_nobody(self, lines: list[str]) -> None:
-        assert lines[3].split() == ["payment", "s0", "2", "Nobody"]
+    def test_contexts_table_shell_context_is_asked_by_its_provider(self, lines: list[str]) -> None:
+        assert lines[3].split() == ["shell", "s0", "2", "Mailer"]
 
     @pytest.mark.edge
     def test_contexts_table_has_no_trailing_spaces(self, lines: list[str]) -> None:
@@ -470,8 +472,8 @@ def test_epilogue_chart_shape_is_square(tmp_path: Path) -> None:
 
 
 DOUBLING_CAST = [
-    *[CastRow(f"b{n}", 3 + n, f"Team {n}", f"ask {n}", "", f"if {n}") for n in range(6)],
-    CastRow("s0", None, "Nobody", "unwritten", "", "call(x)"),
+    *[CastRow(f"b{n}", n + 1, 3 + n, "marketing", f"ask {n}", "", f"if {n}") for n in range(6)],
+    CastRow("s0", 0, None, "mailer", "unwritten", "", "call(x)"),
 ]
 
 
@@ -501,8 +503,8 @@ def test_doubling_upto_two_rows_has_two_rows() -> None:
 @pytest.mark.model
 def test_cast_table_rows_run_down_the_source() -> None:
     cast = [
-        CastRow("s0", None, "Nobody", "unwritten", "", "call(x)"),
-        CastRow("b0", 3, "Marketing", "ask", "", "if a"),
+        CastRow("s0", 0, None, "mailer", "unwritten", "", "call(x)"),
+        CastRow("b0", 1, 3, "marketing", "ask", "", "if a"),
     ]
     lines = cast_table(cast, CAST_SOURCE).splitlines()[1:]
     assert [line.split()[0] for line in lines] == ["2", "4"]
@@ -511,7 +513,7 @@ def test_cast_table_rows_run_down_the_source() -> None:
 @pytest.mark.model
 def test_growth_ends_at_week_10_with_64_paths() -> None:
     weeks = (3, 5, 6, 6, 9, 10)
-    cast = [CastRow(f"b{n}", w, "Team", "ask", "", "if x") for n, w in enumerate(weeks)]
+    cast = [CastRow(f"b{n}", n + 1, w, "marketing", "ask", "", "if x") for n, w in enumerate(weeks)]
     last = growth(cast)[-1]
     assert (last.week, last.bits, last.paths) == (10, 6, 64)
 
@@ -530,9 +532,9 @@ def test_growth_chart_writes_a_png(tmp_path: Path) -> None:
 @pytest.mark.model
 def test_effects_lines_number_the_three_shell_calls() -> None:
     cast = [
-        CastRow("b0", 3, "Marketing", "a", "", "if a"),
-        CastRow("s0", None, "Nobody", "b", "", "charge(total)"),
-        CastRow("s1", None, "Nobody", "c", "", "reserve(x)"),
+        CastRow("b0", 1, 3, "marketing", "a", "", "if a"),
+        CastRow("s0", 0, None, "payment", "b", "", "charge(total)"),
+        CastRow("s1", 0, None, "warehouse", "c", "", "reserve(x)"),
     ]
     source = "if a:\n    pass\n    charge(total)  # declined?\n    reserve(x)  # gone?\n"
     assert effects_lines(cast, source) == "3  charge(total)  # declined?\n4  reserve(x)  # gone?\n"

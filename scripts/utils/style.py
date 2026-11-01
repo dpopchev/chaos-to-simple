@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.figure import Figure
 
+from scripts.utils.palette import colour_of, load_contexts
+
 FONT = "Adwaita Sans"
 FALLBACK_FONT = "DejaVu Sans"
 FIGSIZE = (8.0, 4.5)
@@ -27,14 +29,14 @@ def palette() -> list[str]:
     return [mcolors.to_hex(c) for c in sns.color_palette("colorblind", 6)]
 
 
-CONTEXTS = ("pricing", "shipping", "tax", "shell", "tangled")
+CONTEXTS = tuple(load_contexts())
 
 
 def context_colour(name: str) -> str:
-    """Return the deck colour of a context; raise ValueError for an unknown name."""
+    """Return the colour of a context from data/contexts.csv; raise ValueError if unknown."""
     if name not in CONTEXTS:
         raise ValueError(f"unknown context {name!r}; expected one of {CONTEXTS}")
-    return palette()[CONTEXTS.index(name)]
+    return colour_of(name)
 
 
 def save(fig: Figure, out: Path) -> None:

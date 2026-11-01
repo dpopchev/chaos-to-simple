@@ -12,6 +12,8 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, fields
 from pathlib import Path
 
+from scripts.utils.palette import label_of
+
 
 @dataclass(frozen=True)
 class Rule:
@@ -32,6 +34,7 @@ def load_rules(path: Path) -> list[Rule]:
 @dataclass(frozen=True)
 class CastRow:
     bit: str
+    step: int
     week: int | None
     requested_by: str
     words: str
@@ -45,6 +48,7 @@ def load_cast(path: Path) -> list[CastRow]:
         return [
             CastRow(
                 row["bit"],
+                int(row["step"]),
                 int(row["week"]) if row["week"] else None,
                 row["requested_by"],
                 row["words"],
@@ -97,7 +101,7 @@ def cast_table(cast: Sequence[CastRow], source: str) -> str:
     """The cast of the ifs by source line: the line, the bit, who asked and their words."""
     placed = sorted(((line_of(c.fragment, source), c) for c in cast), key=lambda p: p[0])
     rows = [("line", "bit", "who", "words")]
-    rows += [(str(line), c.bit, c.requested_by, c.words) for line, c in placed]
+    rows += [(str(line), c.bit, label_of(c.requested_by), c.words) for line, c in placed]
     widths = [max(len(row[i]) for row in rows) for i in range(4)]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
@@ -110,7 +114,7 @@ def doubling_table(cast: Sequence[CastRow], upto: int | None = None) -> str:
     core = [c for c in cast if c.bit.startswith("b")][:upto]
     rows = [("week", "who", "bits", "paths")]
     for bits, c in enumerate(core, start=1):
-        rows.append((str(c.week), c.requested_by, str(bits), str(tangled(bits))))
+        rows.append((str(c.week), label_of(c.requested_by),str(bits), str(tangled(bits))))
     widths = [max(len(row[i]) for row in rows) for i in range(4)]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
@@ -133,7 +137,7 @@ def growth(cast: Sequence[CastRow]) -> tuple[Growth, ...]:
 
 def contexts_table(rules: Sequence[Rule], cast: Sequence[CastRow]) -> str:
     """Each context with its bits, its 2**n paths and who asked for them, in rules order."""
-    requester = {c.bit: c.requested_by for c in cast}
+    requester = {c.bit: label_of(c.requested_by) for c in cast}
     rows = [("context", "bits", "paths", "who")]
     for context in bits_by(rules, "context"):
         bits = [r.bit for r in rules if r.context == context]
@@ -171,7 +175,7 @@ def rules_table(
     cast: Sequence[CastRow] = (),
 ) -> str:
     """The glossary of the chosen columns; 'who' is the requester joined from cast by bit."""
-    requester = {c.bit: c.requested_by for c in cast}
+    requester = {c.bit: label_of(c.requested_by) for c in cast}
 
     def cell(rule: Rule, column: str) -> str:
         return requester[rule.bit] if column == "who" else getattr(rule, column)

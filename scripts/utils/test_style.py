@@ -34,6 +34,11 @@ def test_context_colour_gives_five_distinct_colours() -> None:
     assert len({context_colour(name) for name in CONTEXTS}) == 5
 
 
+@pytest.mark.model
+def test_context_colour_reads_contexts_csv() -> None:
+    assert context_colour("pricing") == "#7B3F9E"
+
+
 @pytest.mark.edge
 def test_save_writes_a_non_empty_png_under_a_new_folder(tmp_path: Path) -> None:
     apply()

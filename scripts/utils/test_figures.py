@@ -30,9 +30,10 @@ from scripts.utils.figures import (
     story,
     tree,
 )
-from scripts.utils.paths import load_rules
+from scripts.utils.paths import load_cast, load_rules
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
+CAST_CSV = Path(__file__).resolve().parents[2] / "data" / "cast.csv"
 ROUTE_CSV = Path(__file__).resolve().parents[2] / "data" / "route.csv"
 RULES_CSV = Path(__file__).resolve().parents[2] / "data" / "rules.csv"
 
@@ -44,16 +45,17 @@ def test_moves_sum_to_nine() -> None:
 
 @pytest.mark.model
 def test_ports_of_reads_three_sum_types() -> None:
-    assert [(p.context, p.code) for p in ports_of(load_rules(RULES_CSV))] == [
-        ("payment", "Charged | Declined"),
-        ("warehouse", "Reserved | OutOfStock"),
-        ("mail", "Sent | Bounced"),
+    ports = ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV))
+    assert [(p.context, p.code) for p in ports] == [
+        ("Payment provider", "Charged | Declined"),
+        ("Warehouse", "Reserved | OutOfStock"),
+        ("Mailer", "Sent | Bounced"),
     ]
 
 
 @pytest.mark.edge
 def test_seam_writes_a_png(tmp_path: Path) -> None:
-    out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV)))
+    out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV)))
     assert out.read_bytes().startswith(PNG_MAGIC)
 
 

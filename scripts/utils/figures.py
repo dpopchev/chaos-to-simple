@@ -11,7 +11,8 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.examples import CardCounts
-from scripts.utils.paths import Rule, load_incidents
+from scripts.utils.palette import label_of
+from scripts.utils.paths import CastRow, Rule, load_incidents
 
 # (label, x0, y0) of each zone on the unit square; x is certainty on the How,
 # y is agreement on the What. Simple sits at the high-high corner.
@@ -184,9 +185,10 @@ class Port:
     code: str
 
 
-def ports_of(rules: Sequence[Rule]) -> tuple[Port, ...]:
-    """Read the shell rows in csv order as ports, their code column the sum type."""
-    return tuple(Port(rule.context, rule.code) for rule in rules if rule.scope == "shell")
+def ports_of(rules: Sequence[Rule], cast: Sequence[CastRow]) -> tuple[Port, ...]:
+    """Read the shell rows in csv order as ports: the provider's label, the code its sum type."""
+    asked = {c.bit: label_of(c.requested_by) for c in cast}
+    return tuple(Port(asked[rule.bit], rule.code) for rule in rules if rule.scope == "shell")
 
 
 def seam(out: Path, ports: Sequence[Port]) -> Path:
