@@ -6,9 +6,11 @@ from pathlib import Path
 
 import pytest
 
+from scripts.utils.icons import FONT_AWESOME, Family
 from scripts.utils.palette import (
     Actor,
     Context,
+    actors_tex,
     colour_of,
     icon_of,
     label_of,
@@ -95,3 +97,30 @@ def test_colour_of_an_unknown_key_raises() -> None:
 def test_icon_of_a_context_raises() -> None:
     with pytest.raises(ValueError, match="no icon"):
         icon_of("pricing")
+
+
+def _tex(font: Family | None) -> list[str]:
+    actors = load_actors(DATA / "actors.csv")
+    contexts = load_contexts(DATA / "contexts.csv")
+    return actors_tex(actors, contexts, font).splitlines()
+
+
+@pytest.mark.model
+def test_actors_tex_defines_one_actor_line_per_actor() -> None:
+    assert sum(line.startswith("\\defineactor{") for line in _tex(FONT_AWESOME)) == 9
+
+
+@pytest.mark.model
+def test_actors_tex_defines_one_colour_per_actor_and_context() -> None:
+    assert sum(line.startswith("\\definecolor{") for line in _tex(None)) == 14
+
+
+@pytest.mark.model
+def test_actors_tex_writes_the_glyph_as_a_character_code() -> None:
+    line = '\\defineactor{customer}{Customer}{customer}{\\symbol{"F007}}'
+    assert line in _tex(FONT_AWESOME)
+
+
+@pytest.mark.edge
+def test_actors_tex_without_an_icon_font_leaves_the_glyph_empty() -> None:
+    assert "\\defineactor{customer}{Customer}{customer}{}" in _tex(None)

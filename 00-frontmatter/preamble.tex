@@ -25,6 +25,19 @@
 % Both texts come verbatim from data/lines.csv; make lines checks that they are verbatim.
 \newcommand{\theline}[2]{\vfill{\color{gray}#1}\par\textbf{#2}}
 
+% Actors: \actor{key} draws a box in the actor's colour with its pictogram and label. The
+% pictograms are Font Awesome 7 Free Solid through fontspec (W-053); where the font is
+% missing the glyph is empty and the labelled box stands alone.
+\usepackage{fontspec}
+\IfFontExistsTF{Font Awesome 7 Free Solid}{\newfontfamily\iconfont{Font Awesome 7 Free Solid}}{\newcommand{\iconfont}{}}
+\usepackage{tcolorbox}
+\newcommand{\defineactor}[4]{%
+  \expandafter\gdef\csname actor@#1\endcsname{%
+    \tcbox[on line,boxsep=2pt,left=2pt,right=2pt,top=0pt,bottom=0pt,arc=2pt,colback=#3,colframe=#3,
+      coltext=white]{{\iconfont #4}\,#2}}}
+\newcommand{\actor}[1]{\csname actor@#1\endcsname}
+\input{build/00-frontmatter/actors.tex}
+
 % Code blocks a size smaller, so a twenty-line snippet fits a 16:9 frame.
 \usepackage{etoolbox}
 \AtBeginEnvironment{Shaded}{\footnotesize}
