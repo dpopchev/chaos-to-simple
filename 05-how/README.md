@@ -7,7 +7,7 @@ pure core and the effectful shell.
 
 | | |
 |---|---|
-| Minutes | 8 |
+| Minutes | 6 |
 | Footer counter | stays at `512`; the seam is drawn, nothing is on either side yet |
 | Owns | `s05_how/oo_checkout.py` (the counter-example), `ports.py` (result sum types and Protocols), `fakes.py` (test doubles, one bit each), `tests/` |
 | Uses | `s04_what` (Money, Coupon, the constants). Upstream only: 04 never imports this. |
@@ -16,13 +16,12 @@ pure core and the effectful shell.
 
 ## Slides
 
-- [x] Coupling multiplies, cohesion adds: the refrain
-- [x] Object with a mutable total: `snippet=oo`
+- [x] I3: the incident, then the numbered effect lines: `build/05-how/effects.txt`
+- [x] Past me reached for a class: `snippet=oo`
 - [x] The bit nobody wrote down: `snippet=order-bit`
-- [x] Command Query Separation draws the seam
-- [x] The answers the world may give: `snippet=results`
-- [x] The ports: `snippet=ports`
-- [x] Refactoring moves and their sign, with the line glued at its foot
+- [x] Command Query Separation draws the seam: `snippet=types`
+- [x] The ports, as a picture
+- [x] A boundary that passes values adds paths: the moves table, with the line glued at its foot
 
 ## Live
 

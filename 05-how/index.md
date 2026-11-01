@@ -5,6 +5,11 @@
 ```{.text include=05-how/data/incident.txt}
 ```
 
+```{.text include=build/05-how/effects.txt}
+```
+
+charge before reserve -- the order was the bug, and nobody decided it
+
 ::: notes
 The incident first, before any design word. Cards were charged for parcels the warehouse
 did not have. The report is the only spec we have; the code under it is what we changed.
@@ -14,6 +19,8 @@ did not have. The report is the only spec we have; the code under it is what we 
 
 ```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
+
+The same bit in OO clothing: the order hidden in state
 
 ::: notes
 "I'll make it a class and handle it properly." The class holds a mutable total that every
@@ -39,33 +46,14 @@ expression, where it is one path.
 - Never both in one method: `apply_coupon() -> bool` mutated and answered
 - The refrain: a boundary that passes values adds paths; one that passes flags multiplies them
 
-## The answers the world may give
-
-\fvset{fontsize=\tiny,baselinestretch=0.9}
-
-```{.python include=05-how/s05_how/ports.py snippet=results}
+```{.python include=05-how/s05_how/ports.py snippet=types}
 ```
-
-::: notes
-Every effect answers with a value. A declined card is a value, not an exception; the
-business outcomes are sum types the caller must match.
-:::
-
-## The ports
-
-```{.python include=05-how/s05_how/ports.py snippet=ports}
-```
-
-::: notes
-Three Protocols, three sum types, no exceptions for business outcomes. The seam is drawn;
-nothing is on either side of it yet. Counter still 512.
-:::
 
 ## The ports, as a picture
 
 ![](build/05-how/ports.png){height=80%}
 
-## Refactoring moves and their sign
+## A boundary that passes values adds paths; one that passes flags multiplies them
 
 | move | sign |
 |---|---|
@@ -76,10 +64,10 @@ nothing is on either side of it yet. Counter still 512.
 | mutable state read in a later step | hidden x |
 | `try`/`except` around I/O inside the rules | hidden x |
 
-## Coupling multiplies, cohesion adds
+\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
 
+::: notes
 - Coupling: a flag crossing a boundary. The other side branches on it.
 - Cohesion: bits that change together live together. Their count stays local.
 - Each move in the table either adds a path or hides one; count them before you merge.
-
-\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
+:::
