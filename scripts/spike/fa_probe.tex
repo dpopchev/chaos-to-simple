@@ -1,0 +1,51 @@
+% W-053 spike: the nine actor icons in each renderer lualatex offers, each row over its names.
+% Row 1: the fontawesome5 package (its own Font Awesome 5 Free OTF in texmf-dist).
+% Row 2: fontspec on Font Awesome 7 Free Solid (otf-font-awesome), the face matplotlib draws.
+% Row 3: fontspec on Hack Nerd Font, the nf-fa codepoints of scripts/utils/icons.py.
+% Built by make spike-fa: lualatex -jobname fa-probe into build/spike/.
+\documentclass{article}
+\usepackage[a4paper,landscape,margin=1.5cm]{geometry}
+\usepackage{fontspec}
+\usepackage{fontawesome5}
+\newfontfamily\fasevenface{Font Awesome 7 Free Solid}
+\newfontfamily\nerdface{Hack Nerd Font}
+\pagestyle{empty}
+\newcommand{\cell}[2]{\begin{tabular}[t]{c}{\Huge #1}\\[0.4em]\small #2\end{tabular}}
+\newcommand{\fasevenicon}[1]{{\fasevenface\symbol{#1}}}
+\newcommand{\nerdicon}[1]{{\nerdface\symbol{#1}}}
+\begin{document}
+
+\section*{fontawesome5 package}
+\cell{\faIcon{user}}{user}
+\cell{\faIcon{code}}{code}
+\cell{\faIcon{bullhorn}}{bullhorn}
+\cell{\faIcon{star}}{star}
+\cell{\faIcon{truck}}{truck}
+\cell{\faIcon{calculator}}{calculator}
+\cell{\faIcon{credit-card}}{credit-card}
+\cell{\faIcon{warehouse}}{warehouse}
+\cell{\faIcon{envelope}}{envelope}
+
+\section*{fontspec: Font Awesome 7 Free Solid}
+\cell{\fasevenicon{"F007}}{user}
+\cell{\fasevenicon{"F121}}{code}
+\cell{\fasevenicon{"F0A1}}{bullhorn}
+\cell{\fasevenicon{"F005}}{star}
+\cell{\fasevenicon{"F0D1}}{truck}
+\cell{\fasevenicon{"F1EC}}{calculator}
+\cell{\fasevenicon{"F09D}}{credit-card}
+\cell{\fasevenicon{"F494}}{warehouse}
+\cell{\fasevenicon{"F0E0}}{envelope}
+
+\section*{fontspec: Hack Nerd Font}
+\cell{\nerdicon{"F007}}{user}
+\cell{\nerdicon{"F121}}{code}
+\cell{\nerdicon{"F0A1}}{bullhorn}
+\cell{\nerdicon{"F005}}{star}
+\cell{\nerdicon{"F0D1}}{truck}
+\cell{\nerdicon{"F1EC}}{calculator}
+\cell{\nerdicon{"F09D}}{credit-card}
+\cell{\nerdicon{"ED92}}{warehouse}
+\cell{\nerdicon{"F0E0}}{envelope}
+
+\end{document}

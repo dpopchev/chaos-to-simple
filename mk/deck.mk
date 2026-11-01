@@ -168,3 +168,26 @@ new: ## Scaffold a section, SECTION=NN-name TITLE="Section title"
 deliverable-talk: $(PDF) ## Build the deck PDF and check it is not empty
 	@test -s $(PDF)
 	$(call log_done,$(PDF) built)
+
+# ------------------------------------------------------------------------------
+### Tools
+# ------------------------------------------------------------------------------
+
+# W-053 spike: the nine actor icons through lualatex and through matplotlib.
+SPIKE        := $(BUILD)/spike
+ICON_FONTS   := "Font Awesome 7 Free" "Hack Nerd Font"
+
+.PHONY: spike-fa
+spike-fa: ## Draw the actor icons into build/spike as pdf and png
+	@mkdir -p $(SPIKE)
+	@lualatex -interaction=nonstopmode -halt-on-error -output-directory $(SPIKE) \
+	  -jobname fa-probe scripts/spike/fa_probe.tex >/dev/null
+	@for family in $(ICON_FONTS); do \
+	  if fc-list "$$family" file | grep -q .; then \
+	    $(RUN) python -m scripts.icons probe --font "$$family" --out $(SPIKE)/fa-probe.png; \
+	    $(call _log_line,$(CYAN),INFO,$(SPIKE)/fa-probe.png drawn with $$family) \
+	    exit 0; \
+	  fi; \
+	done; \
+	$(call _log_line,$(RED),FAIL,fc-list finds none of $(ICON_FONTS)) exit 1
+	$(call log_done,$(SPIKE)/fa-probe.pdf and $(SPIKE)/fa-probe.png written)
