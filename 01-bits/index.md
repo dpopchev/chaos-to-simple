@@ -19,7 +19,7 @@ Three calls at the end with a question in the comment: keep those for section 03
 
 \fvset{fontsize=\scriptsize}
 
-```{.python include=01-bits/tests/test_chaos.py snippet=two-tests}
+```{.python include=01-bits/tests/test_chaos.py snippet=two-tests cap=24}
 ```
 
 ```{.text include=build/01-bits/coverage-summary.txt}

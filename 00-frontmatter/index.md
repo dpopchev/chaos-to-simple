@@ -11,7 +11,7 @@ Let the message sit for a moment. This is pride, and the narrator is present me.
 
 \fvset{fontsize=\scriptsize}
 
-```{.python .numberLines include=01-bits/s01_bits/chaos.py snippet=checkout}
+```{.python .numberLines include=01-bits/s01_bits/chaos.py snippet=checkout cap=24}
 ```
 
 - Question for the chat: how many tests until you are sure it works?

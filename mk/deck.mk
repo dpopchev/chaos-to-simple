@@ -29,7 +29,7 @@ NOTES     := $(BUILD)/talk-notes.pdf
 SECTION ?=
 TITLE   ?=
 
-CHECKS       += ascii lines
+CHECKS       += ascii lines lengths
 DELIVERABLES += deliverable-talk
 
 # A section that generates artifacts declares them in its own section.mk: it
@@ -101,6 +101,11 @@ lines: ## Check the six should-have-known lines in their sections and in 07
 widths: $(ARTIFACTS) ## Fail naming each included line wider than its column
 	@$(RUN) python -m scripts.check_widths --root . --full 104
 	$(call log_done,every included line fits its column)
+
+.PHONY: lengths
+lengths: $(ARTIFACTS) ## Fail naming each included block over its line cap
+	@$(RUN) python -m scripts.check_lengths --root . --cap 14
+	$(call log_done,every included block is within its line cap)
 
 OVERFLOW := local/state/overflow
 
