@@ -17,7 +17,6 @@ from scripts.utils.figures import (
     ports_of,
     seam,
     seam_boxes,
-    stacey,
     story,
     tree,
 )
@@ -73,20 +72,6 @@ def test_tree_leaves_match_ship() -> None:
         return ship(Decimal(subtotal), coupon) - Decimal(subtotal) + (10 if coupon else 0)
 
     assert all(charged(leaf.subtotal, leaf.coupon) == leaf.fee for leaf in TREE_LEAVES)
-
-
-@pytest.mark.edge
-def test_stacey_writes_a_non_empty_file(tmp_path: Path) -> None:
-    out = tmp_path / "nested" / "stacey.png"
-    stacey(out)
-    assert out.stat().st_size > 0
-
-
-@pytest.mark.edge
-def test_stacey_writes_a_png(tmp_path: Path) -> None:
-    out = tmp_path / "stacey.png"
-    stacey(out)
-    assert out.read_bytes().startswith(PNG_MAGIC)
 
 
 @pytest.mark.edge

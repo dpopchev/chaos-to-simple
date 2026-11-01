@@ -28,7 +28,6 @@ from scripts.utils.figures import (
     moves_figure,
     ports_of,
     seam,
-    stacey,
     story,
     tree,
 )
@@ -36,6 +35,8 @@ from scripts.utils.finance import draw as draw_finance
 from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
 from scripts.utils.paths import doubling_chart, grid_image, load_cast, load_incidents, load_rules
+from scripts.utils.stacey import draw as draw_stacey
+from scripts.utils.stacey import load_labels, load_spots, load_zones
 from scripts.utils.stage import agenda_strip, business_map, load_route
 
 
@@ -66,6 +67,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
+    parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
+    parser.add_argument("--labels", type=Path, default=Path("02-stacey/data/labels.csv"))
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
     parser.add_argument("--questions", type=Path, default=Path("03-chaos/data/questions.md"))
@@ -120,7 +123,12 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "seam":
         seam(args.out, ports_of(load_rules(args.rules), load_cast(args.cast)))
         return 0
-    {"stacey": stacey, "story": story, "tree": tree}[args.what](args.out)
+    if args.what == "stacey":
+        draw_stacey(
+            load_spots(args.route), load_zones(args.zones), load_labels(args.labels), args.out
+        )
+        return 0
+    {"story": story, "tree": tree}[args.what](args.out)
     return 0
 
 

@@ -13,19 +13,6 @@ from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_fi
 from scripts.utils.palette import colour_of, icon_of, label_of
 from scripts.utils.paths import CastRow, Rule
 
-# Palette keys of the four Stacey zones, in ZONES order.
-ZONE_KEYS = ("logistics", "marketing", "accounting", "payment")
-
-# (label, x0, y0) of each zone on the unit square; x is certainty on the How,
-# y is agreement on the What. Simple sits at the high-high corner.
-ZONES = (
-    ("simple", 0.5, 0.5),
-    ("complicated on the What", 0.5, 0.0),
-    ("complicated on the How", 0.0, 0.5),
-    ("complex, chaos in the corner", 0.0, 0.0),
-)
-
-
 ACTORS = ("Customer", "Shop", "Warehouse", "Payment provider", "Mailer")
 # Palette key of each lifeline, in ACTORS order.
 STORY_KEYS = ("customer", "dev", "warehouse", "payment", "mailer")
@@ -403,31 +390,5 @@ def story(out: Path) -> None:
     ax.set_xlim(-0.6, len(ACTORS) - 0.4)
     ax.set_ylim(bottom, top + 0.9)
     ax.axis("off")
-    fig.tight_layout()
-    style.save(fig, out)
-
-
-def stacey(out: Path) -> None:
-    """Draw the Stacey matrix: four zones over certainty on the How and agreement on the What."""
-    style.apply()
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import Rectangle
-
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
-    for i, (label, x0, y0) in enumerate(ZONES):
-        ax.add_patch(
-            Rectangle(
-                (x0, y0), 0.5, 0.5, facecolor=colour_of(ZONE_KEYS[i]), alpha=0.35, edgecolor="white"
-            )
-        )
-        ax.text(x0 + 0.25, y0 + 0.25, label, ha="center", va="center", fontsize=18)
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
-    ax.set_xticks([])
-    ax.set_yticks([])
-    ax.set_xlabel("certainty on the How  (low -> high)", fontsize=14)
-    ax.set_ylabel("agreement on the What  (low -> high)", fontsize=14)
-    for side in ("left", "bottom"):
-        ax.spines[side].set_visible(False)
     fig.tight_layout()
     style.save(fig, out)
