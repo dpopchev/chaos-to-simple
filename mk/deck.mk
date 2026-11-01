@@ -148,6 +148,18 @@ doctor: ## Report the deck toolchain and the fonts
 	    $(call _log_line,$(YELLOW),WARN,font $$font missing -- the deck needs it for Latin and Cyrillic) \
 	  fi; \
 	done
+	@if command -v kpsewhich >/dev/null && kpsewhich fontawesome5.sty >/dev/null; then \
+	  $(call _log_line,$(CYAN),INFO,found fontawesome5.sty -- the second icon choice) \
+	else \
+	  $(call _log_line,$(YELLOW),WARN,fontawesome5.sty missing -- texlive-fontsextra carries it) \
+	fi
+	@for font in $(ICON_FONTS); do \
+	  if fc-list "$$font" file | grep -q .; then \
+	    $(call _log_line,$(CYAN),INFO,found icon font $$font) \
+	  else \
+	    $(call _log_line,$(YELLOW),WARN,icon font $$font missing -- see 00-frontmatter/README.md Pictograms) \
+	  fi; \
+	done
 	$(call log_done,toolchain reported)
 
 .PHONY: new

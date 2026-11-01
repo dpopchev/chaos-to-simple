@@ -40,6 +40,25 @@ Adwaita Sans and Adwaita Mono fonts (both carry Cyrillic), and pass `--skip-slid
 the ascii target in the Makefile so only code, config, data and READMEs stay ASCII-only.
 The engine is lualatex with these fonts, the only pair the build machine has.
 
+## Pictograms
+
+Each actor and each route stop is drawn as an icon, in the deck by lualatex and in the
+figures by matplotlib. The W-053 spike (`make spike-fa`, `build/spike/fa-probe.pdf` and
+`build/spike/fa-probe.png`) drew the nine actor icons with no missing glyph from:
+
+| Font | lualatex | matplotlib |
+|---|---|---|
+| Font Awesome 7 Free Solid (otf-font-awesome, `/usr/share/fonts/OTF`) | fontspec | by the fc-list path |
+| the fontawesome5 package (its own Font Awesome 5 Free OTF) | `\faIcon{name}` | no |
+| Hack Nerd Font (`~/.local/share/fonts`) | fontspec | by the fc-list path |
+
+An icon name maps to its glyph through `ICONS` in `scripts/utils/icons.py`: one codepoint
+per font, read from the font's cmap with fontTools, since Nerd Fonts moves warehouse,
+store and layer-group out of their Font Awesome codepoints. `make doctor` reports
+fontawesome5.sty and the icon fonts.
+
+Decision: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex, its fc-list path in matplotlib; ICONS in scripts/utils/icons.py maps a name to its codepoint; fontawesome5 is the second choice, Hack Nerd Font the third, a labelled box the fallback if fc-list finds none.
+
 ## Done when
 
 - Given `make slides`, when the deck opens, then the title slide shows title, subtitle,
