@@ -15,12 +15,6 @@ from s04_what.pricing import COUPON_VALUE, MEMBER_FACTOR, Coupon
 
 # [snippet: oo]
 class Checkout:
-    def __init__(self, goods: Money, coupon: Coupon | None, member: bool, today: date) -> None:
-        self.total = goods
-        self.coupon = coupon
-        self.member = member
-        self.today = today
-
     def apply_coupon(self) -> bool:  # a command that also answers: CQS broken
         if self.coupon is not None and self.coupon.is_valid_on(self.today):
             self.total = self.total - COUPON_VALUE
@@ -33,5 +27,9 @@ class Checkout:
             return True
         return False
 
-
-# [/snippet]
+    # [/snippet]
+    def __init__(self, goods: Money, coupon: Coupon | None, member: bool, today: date) -> None:
+        self.total = goods
+        self.coupon = coupon
+        self.member = member
+        self.today = today

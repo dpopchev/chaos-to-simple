@@ -24,9 +24,6 @@ class Declined:
     reason: str
 
 
-type ChargeResult = Charged | Declined
-
-
 @dataclass(frozen=True)
 class Reserved:
     pass
@@ -35,9 +32,6 @@ class Reserved:
 @dataclass(frozen=True)
 class OutOfStock:
     sku: str
-
-
-type ReserveResult = Reserved | OutOfStock
 
 
 @dataclass(frozen=True)
@@ -50,9 +44,13 @@ class Bounced:
     pass
 
 
+# [/snippet]
+
+
+# [snippet: types]
+type ChargeResult = Charged | Declined
+type ReserveResult = Reserved | OutOfStock
 type SendResult = Sent | Bounced
-
-
 # [/snippet]
 
 
