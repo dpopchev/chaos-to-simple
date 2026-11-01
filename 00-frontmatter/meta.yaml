@@ -12,6 +12,15 @@ theme: default
 fontsize: 10pt
 mainfont: "Adwaita Sans"
 sansfont: "Adwaita Sans"
+# Adwaita Sans is a variable font with no bold shape by name: \textbf falls back to regular
+# (Font shape TU/AdwaitaSans(0)/b/n undefined). Select the bold instance on the wght axis.
+# Raw latex spans keep pandoc from escaping the braces.
+mainfontoptions:
+  - "`BoldFont={*}`{=latex}"
+  - "`BoldFeatures={RawFeature={+axis={wght=700}}}`{=latex}"
+sansfontoptions:
+  - "`BoldFont={*}`{=latex}"
+  - "`BoldFeatures={RawFeature={+axis={wght=700}}}`{=latex}"
 monofont: "Adwaita Mono"
 monofontoptions:
   - Scale=0.85
