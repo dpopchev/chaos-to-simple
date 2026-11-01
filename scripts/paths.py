@@ -11,7 +11,8 @@
         --out build/01-bits/cast.txt
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
         --out build/04-what/contexts.txt
-    python -m scripts.paths doubling --cast data/cast.csv --out build/01-bits/doubling.txt
+    python -m scripts.paths doubling --cast data/cast.csv [--upto N] \\
+        --out build/01-bits/doubling.txt
     python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
@@ -70,6 +71,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"))
     parser.add_argument("--seventh", type=Path, default=Path("data/seventh.csv"))
     parser.add_argument("--bits", type=int, default=6, help="bits for the grid")
+    parser.add_argument("--upto", type=int, default=None, help="first N rows of the doubling")
     parser.add_argument("--out", type=Path, default=None, help="file to write; default stdout")
     args = parser.parse_args(argv)
 
@@ -102,7 +104,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.what == "contexts":
         text = contexts_table(load_rules(args.rules), load_cast(args.cast))
     elif args.what == "doubling":
-        text = doubling_table(load_cast(args.cast))
+        text = doubling_table(load_cast(args.cast), args.upto)
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])

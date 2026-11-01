@@ -198,9 +198,9 @@ class TestStackedBarWritesAPng:
 
 
 CAST_CSV = (
-    "bit,week,requested_by,words,fragment\n"
-    'b0,3,Marketing,"10 off, with the code",if a\n'
-    "s0,,Nobody,nobody wrote it down,call(x)\n"
+    "bit,week,requested_by,words,aside,fragment\n"
+    'b0,3,Marketing,"10 off, with the code",why ten,if a\n'
+    "s0,,Nobody,nobody wrote it down,,call(x)\n"
 )
 
 CAST_SOURCE = "first\nif a:\n    pass\ncall(x)\n"
@@ -215,7 +215,7 @@ def cast_rows(tmp_path: Path) -> list[CastRow]:
 
 @pytest.mark.edge
 def test_cast_row_reads_every_column(cast_rows: list[CastRow]) -> None:
-    assert cast_rows[0] == CastRow("b0", 3, "Marketing", "10 off, with the code", "if a")
+    assert cast_rows[0] == CastRow("b0", 3, "Marketing", "10 off, with the code", "why ten", "if a")
 
 
 INCIDENTS_CSV = (
@@ -300,11 +300,11 @@ CONTEXTS_RULES = (
 )
 
 CONTEXTS_CAST = (
-    "bit,week,requested_by,words,fragment\n"
-    "b0,3,Marketing,a,x\n"
-    "b1,5,Loyalty program,b,y\n"
-    "b2,6,Marketing,c,z\n"
-    "s0,,Nobody,d,w\n"
+    "bit,week,requested_by,words,aside,fragment\n"
+    "b0,3,Marketing,a,,x\n"
+    "b1,5,Loyalty program,b,,y\n"
+    "b2,6,Marketing,c,,z\n"
+    "s0,,Nobody,d,,w\n"
 )
 
 
@@ -402,8 +402,8 @@ def test_epilogue_chart_writes_a_png(tmp_path: Path) -> None:
 
 
 DOUBLING_CAST = [
-    *[CastRow(f"b{n}", 3 + n, f"Team {n}", f"ask {n}", f"if {n}") for n in range(6)],
-    CastRow("s0", None, "Nobody", "unwritten", "call(x)"),
+    *[CastRow(f"b{n}", 3 + n, f"Team {n}", f"ask {n}", "", f"if {n}") for n in range(6)],
+    CastRow("s0", None, "Nobody", "unwritten", "", "call(x)"),
 ]
 
 
@@ -420,11 +420,30 @@ class TestDoublingTableCountsAlong:
     def test_doubling_has_one_row_per_core_bit(self, lines: list[str]) -> None:
         assert len(lines) == 1 + 6
 
+    @pytest.mark.model
+    def test_doubling_table_has_no_asked_for_column(self, lines: list[str]) -> None:
+        assert lines[0].split() == ["week", "who", "bits", "paths"]
+
+
+@pytest.mark.model
+def test_doubling_upto_two_rows_has_two_rows() -> None:
+    assert len(doubling_table(DOUBLING_CAST, upto=2).splitlines()) == 1 + 2
+
+
+@pytest.mark.model
+def test_cast_table_rows_run_down_the_source() -> None:
+    cast = [
+        CastRow("s0", None, "Nobody", "unwritten", "", "call(x)"),
+        CastRow("b0", 3, "Marketing", "ask", "", "if a"),
+    ]
+    lines = cast_table(cast, CAST_SOURCE).splitlines()[1:]
+    assert [line.split()[0] for line in lines] == ["2", "4"]
+
 
 @pytest.mark.model
 def test_growth_ends_at_week_10_with_64_paths() -> None:
     weeks = (3, 5, 6, 6, 9, 10)
-    cast = [CastRow(f"b{n}", w, "Team", "ask", "if x") for n, w in enumerate(weeks)]
+    cast = [CastRow(f"b{n}", w, "Team", "ask", "", "if x") for n, w in enumerate(weeks)]
     last = growth(cast)[-1]
     assert (last.week, last.bits, last.paths) == (10, 6, 64)
 

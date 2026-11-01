@@ -35,6 +35,7 @@ class CastRow:
     week: int | None
     requested_by: str
     words: str
+    aside: str
     fragment: str
 
 
@@ -47,6 +48,7 @@ def load_cast(path: Path) -> list[CastRow]:
                 int(row["week"]) if row["week"] else None,
                 row["requested_by"],
                 row["words"],
+                row["aside"],
                 row["fragment"],
             )
             for row in csv.DictReader(fh)
@@ -84,9 +86,10 @@ def line_of(fragment: str, source: str) -> int:
 
 
 def cast_table(cast: Sequence[CastRow], source: str) -> str:
-    """The cast of the ifs: the source line, the bit, who asked and their words."""
+    """The cast of the ifs by source line: the line, the bit, who asked and their words."""
+    placed = sorted(((line_of(c.fragment, source), c) for c in cast), key=lambda p: p[0])
     rows = [("line", "bit", "who", "words")]
-    rows += [(str(line_of(c.fragment, source)), c.bit, c.requested_by, c.words) for c in cast]
+    rows += [(str(line), c.bit, c.requested_by, c.words) for line, c in placed]
     widths = [max(len(row[i]) for row in rows) for i in range(4)]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
@@ -94,13 +97,13 @@ def cast_table(cast: Sequence[CastRow], source: str) -> str:
     return "\n".join(lines) + "\n"
 
 
-def doubling_table(cast: Sequence[CastRow]) -> str:
-    """Each core bit in csv order with its week, who asked, and the 2**bits paths it makes."""
-    core = [c for c in cast if c.bit.startswith("b")]
-    rows = [("week", "who", "asked for", "bits", "paths")]
+def doubling_table(cast: Sequence[CastRow], upto: int | None = None) -> str:
+    """The first upto core bits (all when None) in csv order: week, who, bits, 2**bits paths."""
+    core = [c for c in cast if c.bit.startswith("b")][:upto]
+    rows = [("week", "who", "bits", "paths")]
     for bits, c in enumerate(core, start=1):
-        rows.append((str(c.week), c.requested_by, c.words, str(bits), str(tangled(bits))))
-    widths = [max(len(row[i]) for row in rows) for i in range(5)]
+        rows.append((str(c.week), c.requested_by, str(bits), str(tangled(bits))))
+    widths = [max(len(row[i]) for row in rows) for i in range(4)]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
     ]
