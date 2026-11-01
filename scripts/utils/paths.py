@@ -325,13 +325,13 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
             )
             if value >= 0.08 * top:
                 label_y = bottom + value / 2
-                ax.text(x, label_y, f"{name}: {value}", ha="center", va="center", fontsize=8)
+                ax.text(x, label_y, f"{name}:\n{value}", ha="center", va="center", fontsize=12)
             else:
                 beside.append(f"{name}: {value}")
             bottom += value
         ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=11, fontweight="bold")
         if beside:
-            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=8)
+            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=12)
         ax.text(x, -0.02 * top, label, ha="center", va="top")
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)
