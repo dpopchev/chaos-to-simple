@@ -329,10 +329,15 @@ def bar_headroom(top: int) -> float:
     return top * 1.2
 
 
+def slice_label_point(x: float, bottom: float, value: float) -> tuple[float, float]:
+    """Where a thin slice's label sits: beside the bar, level with the slice's middle."""
+    return (x + 0.33, bottom + value / 2)
+
+
 def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason about") -> None:
     """A stacked bar per way of counting, every segment labelled with its exact count.
 
-    A segment too thin to carry its label inside gets it in a note beside the bar.
+    A segment too thin to carry its label inside gets it beside the bar, level with the slice.
     """
     from scripts.utils import style
 
@@ -344,7 +349,6 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for x, (label, segments) in enumerate(bars):
         bottom = 0
-        beside: list[str] = []
         for i, (name, value) in enumerate(segments):
             ax.bar(
                 x,
@@ -361,11 +365,10 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
             elif value >= 0.11 * top:
                 ax.text(x, middle, f"{name}: {value}", ha="center", va="center", fontsize=22)
             else:
-                beside.append(f"{name}: {value}")
+                lx, ly = slice_label_point(x, bottom, value)
+                ax.text(lx, ly, f"{name}: {value}", ha="left", va="center", fontsize=22)
             bottom += value
         ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=22, fontweight="bold")
-        if beside:
-            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=22)
         ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=22)
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)

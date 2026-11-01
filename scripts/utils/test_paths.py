@@ -31,6 +31,7 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
     rules_table,
+    slice_label_point,
     split,
     splits_report,
     stacked_bar,
@@ -197,6 +198,11 @@ def test_bars_follow_the_inventory(repo_rules: list[Rule]) -> None:
 @pytest.mark.model
 def test_bar_headroom_leaves_room_above_the_tallest_bar() -> None:
     assert bar_headroom(30) >= 36
+
+
+@pytest.mark.model
+def test_slice_label_point_sits_at_the_slice_middle() -> None:
+    assert slice_label_point(1, 12, 2) == (1.33, 13)
 
 
 class TestStackedBarWritesAPng:
