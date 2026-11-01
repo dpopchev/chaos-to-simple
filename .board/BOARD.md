@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 4 | done: 126 | pruned: 2
+open path: E-005 > W-039 > T-096   | blocked: 0 | todo roots: 3 | done: 126 | pruned: 2
 
 ## Tree
 
 ```text
-E-005         [todo]     deck: the 40-minute cut
-  W-039  issue  [todo]     lines: the believed / learned device glued to each section's last frame -- T-096 [todo], T-097 [todo]
+E-005         [doing]    deck: the 40-minute cut
+  W-039  issue  [doing]    lines: the believed / learned device glued to each section's last frame -- T-096 [doing]   <- ACTIVE LEAF, T-097 [todo]
   W-040  issue  [todo]     00 and 01: the cut and the cast -- T-098 [todo], T-099 [todo], T-100 [todo], T-101 [todo]
   W-041  issue  [todo]     02 and 03: the cut and the counter's reveal -- T-102 [todo], T-103 [todo], T-104 [todo]
   W-042  issue  [todo]     04 and 05: the cut and the I3 beat -- T-105 [todo], T-106 [todo], T-107 [todo], T-108 [todo]
@@ -249,9 +249,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E005["E-005 todo: deck: the 40-minute cut"]
-  E005 --> W039["W-039 issue todo: lines: the believed / learned device glued to each section's last frame"]
-  W039 --> T096["T-096 todo: Define the line block -> \theline in 00-frontmatter/preamble.tex"]
+  E005["E-005 doing: deck: the 40-minute cut"]
+  E005 --> W039["W-039 issue doing: lines: the believed / learned device glued to each section's last frame"]
+  W039 --> T096["T-096 doing: Define the line block -> \theline in 00-frontmatter/preamble.tex -- ACTIVE LEAF"]
   W039 --> T097["T-097 todo: Glue the lines -> 01..06 index.md end on \theline, no 'The line' frame"]
   E005 --> W040["W-040 issue todo: 00 and 01: the cut and the cast"]
   W040 --> T098["T-098 todo: Render the cast without asides -> cast_table by source line, doubling_table with upto"]
@@ -289,6 +289,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E005,W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,W042,T105,T106,T107,T108,W043,T109,T110,T111,W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094 todo
+  class E005,W039,T096 doing
+  class T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,W042,T105,T106,T107,T108,W043,T109,T110,T111,W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094 todo
   class T090 pruned
 ```
