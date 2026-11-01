@@ -17,6 +17,7 @@
 - 2026-11-02 E-007: fact: the pasted route.csv put 01 and 06 on the diagonal and 01, 02 beyond radius 1 -> corrected coordinates in local/briefs/e007/data/route.csv, the BOOM band open above 0.75
 - 2026-11-02 E-007: fact: the pasted tested.csv I1 row was 000001; the bug path sets b0 and b2, 000101 as the grid prints it -> the corrected row is in local/briefs/e007
 - 2026-11-02 E-007: fact: the talk is 2026-11-05 (00-frontmatter/meta.yaml) and the fallback deck is v0.6.1 -> a work item that cannot land by the evening of 2026-11-04 is parked, never rushed
+- 2026-11-02 E-007: fact: the talk-day fallback deck is main at 9ecaab0 (W-050, W-051, W-071 landed) -> the developer tags it v0.6.1; W-052 stubs the deck from here
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
