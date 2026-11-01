@@ -1,17 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-006   | blocked: 0 | todo roots: 0 | done: 173 | pruned: 2
+open path: none   | blocked: 0 | todo roots: 0 | done: 174 | pruned: 2
 
 ## Tree
-
-```text
-E-006         [doing]    deck: talk day -- legible figures, true docs, the review on record
-  W-036  spike  [done]     talk: the 2026-11-01 review and the cut on record in docs/cut-40.md   (filed during W-034) -- T-089 [done], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [done]
-  W-037  bug    [done]     route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [done], T-092 [done]
-  W-038  bug    [done]     epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [done], T-094 [done], T-121 [done]
-  W-047  bug    [done]     03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [done]
-  W-049  bug    [done]     epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [done], T-120 [done]
-```
 
 ## Closed
 
@@ -236,6 +227,36 @@ closed 2026-11-01 -- outcome: make talk builds the 40-minute deck: one counter r
 
 - T-118 [done] Fit the moves frame -> 04-what/index.md 'Bounded contexts, the moves' at moves.png height 60%
 
+### E-006 [done] deck: talk day -- legible figures, true docs, the review on record
+
+closed 2026-11-01 -- outcome: the talk-day deck: every figure and frame readable from the back of the room, every README matching its frames, the review and its plan recorded in docs/. -- ledger: ledgers/E-006.md
+
+#### W-036 spike [done] talk: the 2026-11-01 review and the cut on record in docs/cut-40.md   (filed during W-034)
+
+- T-089 [done] Write the remarks into the repository -> docs/cut-40.md
+- T-090 [pruned] Draft the cut from the remarks -> docs/cut-40.md Plan section   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead]
+- T-095 [done] Record the filed plan -> docs/cut-40.md Plan section
+
+#### W-037 bug [done] route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034)
+
+- T-091 [done] Compute the clearing offset -> route_label_offset(words, tail, head)
+- T-092 [done] Place each label clear of its arrow -> route(out) calls route_label_offset
+
+#### W-038 bug [done] epilogue chart: the 30 total overprints the chart title   (filed during W-035)
+
+- T-093 [done] Compute the headroom -> bar_headroom(top)
+- T-094 [done] Lift the axes over the totals -> stacked_bar sets ylim to bar_headroom(top) and drops the title
+- T-121 [done] Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it
+
+#### W-047 bug [done] 03-chaos README Done-when still names the 72 count   (filed during T-104)
+
+- T-117 [done] Fix the Done-when -> 03-chaos/README.md names 2^9 = 512 only
+
+#### W-049 bug [done] epilogue frame set in \tiny: the two-column layout fits only at 5pt
+
+- T-119 [done] Wrap the two long lines -> teaser.txt and the fee-digital snippet with no line over 71 characters
+- T-120 [done] Set the epilogue at \scriptsize -> 06-simple/index.md frame 'Epilogue: marketing's seventh if'
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -298,29 +319,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E006["E-006 doing: deck: talk day -- legible figures, true docs, the review on record"]
-  E006 --> W036["W-036 spike done: talk: the 2026-11-01 review and the cut on record in docs/cut-40.md"]
-  W036 --> T089["T-089 done: Write the remarks into the repository -> docs/cut-40.md"]
-  W036 --> T090["T-090 pruned: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
-  W036 --> T095["T-095 done: Record the filed plan -> docs/cut-40.md Plan section"]
-  E006 --> W037["W-037 bug done: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
-  W037 --> T091["T-091 done: Compute the clearing offset -> route_label_offset(words, tail, head)"]
-  W037 --> T092["T-092 done: Place each label clear of its arrow -> route(out) calls route_label_offset"]
-  E006 --> W038["W-038 bug done: epilogue chart: the 30 total overprints the chart title"]
-  W038 --> T093["T-093 done: Compute the headroom -> bar_headroom(top)"]
-  W038 --> T094["T-094 done: Lift the axes over the totals -> stacked_bar sets ylim to bar_headroom(top) and drops the title"]
-  W038 --> T121["T-121 done: Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it"]
-  E006 --> W047["W-047 bug done: 03-chaos README Done-when still names the 72 count"]
-  W047 --> T117["T-117 done: Fix the Done-when -> 03-chaos/README.md names 2^9 = 512 only"]
-  E006 --> W049["W-049 bug done: epilogue frame set in \tiny: the two-column layout fits only at 5pt"]
-  W049 --> T119["T-119 done: Wrap the two long lines -> teaser.txt and the fee-digital snippet with no line over 71 characters"]
-  W049 --> T120["T-120 done: Set the epilogue at \scriptsize -> 06-simple/index.md frame 'Epilogue: marketing's seventh if'"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E006 doing
-  class W036,T089,T095,W037,T091,T092,W038,T093,T094,T121,W047,T117,W049,T119,T120 done
-  class T090 pruned
 ```
