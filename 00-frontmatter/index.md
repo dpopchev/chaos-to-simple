@@ -7,12 +7,12 @@
 Let the message sit for a moment. This is pride, and the narrator is present me.
 :::
 
-## The checkout, as past me left it
+## The checkout, as past me left it {paths=?}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.python .numberLines include=01-bits/s01_bits/chaos.py snippet=checkout}
 ```
-
-## How many tests would make you sure? {paths=?}
 
 - Question for the chat: how many tests until you are sure it works?
 
