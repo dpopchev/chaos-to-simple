@@ -113,12 +113,12 @@ budget: ## Fail naming each section whose frame count differs from data/budget.c
 	$(call log_done,every section holds its budgeted frames)
 
 .PHONY: widths
-widths: $(ARTIFACTS) ## Fail naming each included line wider than its column
+widths: $(ARTIFACTS) | stubs ## Fail naming each included line wider than its column
 	@$(RUN) python -m scripts.check_widths --root . --full 104
 	$(call log_done,every included line fits its column)
 
 .PHONY: lengths
-lengths: $(ARTIFACTS) ## Fail naming each included block over its line cap
+lengths: $(ARTIFACTS) | stubs ## Fail naming each included block over its line cap
 	@$(RUN) python -m scripts.check_lengths --root . --cap 14
 	$(call log_done,every included block is within its line cap)
 
