@@ -21,6 +21,7 @@ from scripts.utils.figures import (
     route,
     route_arrow_ends,
     route_box_half_width,
+    route_label_offset,
     route_label_point,
     route_layout,
     seam,
@@ -110,6 +111,11 @@ def test_route_arrow_ends_on_the_box_edge() -> None:
 @pytest.mark.model
 def test_route_label_point_off_the_arrow() -> None:
     assert route_label_point((0.0, 0.0), (1.0, 0.0), 0.05) == pytest.approx((0.5, 0.05))
+
+
+@pytest.mark.model
+def test_route_label_offset_clears_a_diagonal_shaft() -> None:
+    assert route_label_offset("separate I3", (0.5, 0.3), (0.3, 0.6)) > 0.05
 
 
 @pytest.mark.model

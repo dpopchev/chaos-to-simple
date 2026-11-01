@@ -410,6 +410,26 @@ def route_label_point(
     return mid[0] - dy / length * offset, mid[1] + dx / length * offset
 
 
+def route_label_offset(
+    words: str,
+    tail: tuple[float, float],
+    head: tuple[float, float],
+    char_w: float = 0.008,
+    half_h: float = 0.025,
+    gap: float = 0.01,
+) -> float:
+    """Return the distance along the normal at which the label box clears the shaft.
+
+    Half the label width times the unit normal's absolute x, plus half its height times the
+    absolute y, plus a gap; a zero-length segment has no normal and returns the gap.
+    """
+    dx, dy = head[0] - tail[0], head[1] - tail[1]
+    length = math.hypot(dx, dy)
+    if not length:
+        return gap
+    return char_w * len(words) / 2 * abs(dy) / length + half_h * abs(dx) / length + gap
+
+
 def route(
     out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
 ) -> None:
