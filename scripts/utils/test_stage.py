@@ -7,8 +7,14 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.palette import load_actors
-from scripts.utils.paths import load_cast, load_rules
-from scripts.utils.stage import business_map, edge_words
+from scripts.utils.paths import load_cast, load_incidents, load_rules
+from scripts.utils.stage import (
+    agenda_strip,
+    business_map,
+    edge_words,
+    incident_marks,
+    load_route,
+)
 
 DATA = Path(__file__).resolve().parents[2] / "data"
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
@@ -33,5 +39,32 @@ def test_business_map_writes_a_png(tmp_path: Path) -> None:
         load_cast(DATA / "cast.csv"),
         load_rules(DATA / "rules.csv"),
         tmp_path / "map.png",
+    )
+    assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.edge
+def test_load_route_reads_eight_stops_in_order() -> None:
+    assert [s.section for s in load_route(DATA / "route.csv")] == [f"0{i}" for i in range(8)]
+
+
+@pytest.mark.edge
+def test_load_route_reads_the_label_and_icon() -> None:
+    stop = load_route(DATA / "route.csv")[1]
+    assert (stop.label, stop.icon) == ("Bits", "code-branch")
+
+
+@pytest.mark.model
+def test_incident_marks_follow_told_in() -> None:
+    marks = incident_marks(load_incidents(DATA / "incidents.csv"))
+    assert marks == {"01": "I1", "02": "I2", "05": "I3"}
+
+
+@pytest.mark.edge
+def test_agenda_strip_writes_a_png(tmp_path: Path) -> None:
+    out = agenda_strip(
+        load_route(DATA / "route.csv"),
+        load_incidents(DATA / "incidents.csv"),
+        tmp_path / "agenda.png",
     )
     assert out.read_bytes().startswith(PNG_MAGIC)

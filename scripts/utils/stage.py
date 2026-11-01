@@ -2,21 +2,135 @@
 
 from __future__ import annotations
 
+import csv
 import textwrap
-from collections.abc import Mapping, Sequence
+from collections.abc import Iterable, Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
 from scripts.utils.palette import Actor, colour_of
-from scripts.utils.paths import CastRow, Rule
+from scripts.utils.paths import CastRow, Incident, Rule
 
 CUSTOMER_WORDS = "places an order"
 BOX_W, BOX_H = 2.7, 0.8
 SHOP_W, SHOP_H = 2.6, 6.8
 DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.4, 5.4, 4.8
 WRAP = 22
+
+
+@dataclass(frozen=True)
+class Stop:
+    """One section of the talk: its pictogram, label and counter, the incident it tells."""
+
+    section: str
+    label: str
+    icon: str
+    counter: str
+    incident: str
+
+
+def load_route(path: Path) -> tuple[Stop, ...]:
+    """Read the stops of the agenda from data/route.csv, in section order."""
+    with path.open(newline="", encoding="ascii") as fh:
+        return tuple(
+            Stop(row["section"], row["label"], row["icon"], row["counter"], row["incident"])
+            for row in csv.DictReader(fh)
+        )
+
+
+def incident_marks(incidents: Iterable[Incident]) -> dict[str, str]:
+    """Return the incident id each section tells, keyed by section."""
+    return {i.told_in: i.id for i in incidents}
+
+
+COUNTER_COLOUR = {"?": "payment", "64": "logistics", "512": "marketing", "72": "accounting"}
+STOP_W, STOP_H, PITCH = 0.9, 1.5, 1.05
+
+
+def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path) -> Path:
+    """Draw the agenda: a box per stop left to right, pictogram and label inside, counter below.
+
+    A stop whose section an incident is told in carries that incident's mark on its corner.
+    """
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.font_manager import FontProperties
+    from matplotlib.patches import FancyBboxPatch
+
+    marks = incident_marks(incidents)
+    font = icon_file()
+    fig, ax = plt.subplots(figsize=(11.0, 3.2), dpi=style.DPI)
+    for i, stop in enumerate(route):
+        x = i * PITCH
+        face = colour_of(COUNTER_COLOUR[stop.counter])
+        ink = label_ink(face)
+        ax.add_patch(
+            FancyBboxPatch(
+                (x - STOP_W / 2, -STOP_H / 2),
+                STOP_W,
+                STOP_H,
+                boxstyle="round,pad=0.02,rounding_size=0.08",
+                facecolor=face,
+                edgecolor="none",
+                zorder=3,
+            )
+        )
+        if font is not None:
+            ax.text(
+                x,
+                0.3,
+                glyph(stop.icon, FONT_AWESOME),
+                ha="center",
+                va="center",
+                fontproperties=FontProperties(fname=font, size=26),
+                color=ink,
+                zorder=4,
+            )
+        ax.text(
+            x,
+            -0.3,
+            f"{stop.section}\n{textwrap.fill(stop.label, 9)}",
+            ha="center",
+            va="center",
+            fontsize=10,
+            color=ink,
+            zorder=4,
+        )
+        ax.text(
+            x, -STOP_H / 2 - 0.22, stop.counter, ha="center", va="center", fontsize=14,
+            fontweight="bold", zorder=4,
+        )
+        if i + 1 < len(route):
+            ax.annotate(
+                "",
+                (x + PITCH - STOP_W / 2 - 0.04, 0),
+                (x + STOP_W / 2 + 0.04, 0),
+                arrowprops={"arrowstyle": "-|>", "color": "dimgrey", "linewidth": 1.5},
+                zorder=2,
+            )
+        if stop.section in marks:
+            ax.text(
+                x + STOP_W / 2 - 0.05,
+                STOP_H / 2 + 0.05,
+                marks[stop.section],
+                ha="center",
+                va="center",
+                fontsize=10,
+                fontweight="bold",
+                color="white",
+                bbox={"boxstyle": "circle,pad=0.3", "facecolor": "black", "edgecolor": "none"},
+                zorder=5,
+            )
+    ax.set_xlim(-0.6, (len(route) - 1) * PITCH + 0.6)
+    ax.set_ylim(-1.3, 1.1)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
 
 
 def edge_words(

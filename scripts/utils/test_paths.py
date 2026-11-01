@@ -260,9 +260,9 @@ def test_rules_table_who_column_joins_the_cast(
 
 
 INCIDENTS_CSV = (
-    "id,week,told_in,closed_in,closed_by,kind,cost\n"
-    'I1,14,01,06,test_a,rule,"1,000 orders"\n'
-    "I2,15,02,04,rules.csv b2,decision,one meeting\n"
+    "id,week,date,told_in,decided_in,closed_in,closed_by,kind,cost\n"
+    'I1,14,2026-10-26,01,03,06,test_a,rule,"1,000 orders"\n'
+    "I2,15,2026-11-04,02,03,04,rules.csv b2,decision,one meeting\n"
 )
 
 
@@ -271,7 +271,7 @@ def test_load_incidents_reads_every_column(tmp_path: Path) -> None:
     path = tmp_path / "incidents.csv"
     path.write_text(INCIDENTS_CSV, encoding="ascii")
     assert load_incidents(path)[0] == Incident(
-        "I1", "14", "01", "06", "test_a", "rule", "1,000 orders"
+        "I1", "14", "2026-10-26", "01", "03", "06", "test_a", "rule", "1,000 orders"
     )
 
 
@@ -290,9 +290,9 @@ def test_exhibits_carry_the_incident_costs() -> None:
 @pytest.mark.model
 def test_wounds_selector_skips_a_closed_by_that_is_no_test() -> None:
     incidents = (
-        Incident("I1", "14", "01", "06", "test_a", "rule", "x"),
-        Incident("I2", "15", "02", "04", "rules.csv b2", "decision", "y"),
-        Incident("I3", "18", "05", "06", "test_b", "effect", "z"),
+        Incident("I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x"),
+        Incident("I2", "15", "d2", "02", "03", "04", "rules.csv b2", "decision", "y"),
+        Incident("I3", "18", "d3", "05", "03", "06", "test_b", "effect", "z"),
     )
     assert wounds_selector(incidents) == "test_a or test_b"
 

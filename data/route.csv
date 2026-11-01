@@ -1,9 +1,9 @@
-section,name,zone,counter,move
-00,frontmatter,,?,
-01,bits,chaos,64,count
-02,stacey,,64,
-03,chaos,complex,512,agree
-04,what,what,512,name
-05,how,how,512,separate
-06,simple,simple,72,split
-07,close,,72,
+section,label,icon,counter,incident,x,y
+00,Stage,store,?,,,
+01,Bits,code-branch,64,I1,0.65,0.75
+02,Map,map,64,I2,0.45,0.75
+03,Room,comments,512,,0.45,0.45
+04,Homes,home,512,,0.60,0.25
+05,Seam,cut,512,I3,0.25,0.20
+06,Core and shell,layer-group,72,,0.12,0.06
+07,Close,flag-checkered,72,,,

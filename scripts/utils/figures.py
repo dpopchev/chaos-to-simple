@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import csv
-import math
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -13,7 +11,7 @@ from scripts.utils import style
 from scripts.utils.examples import CardCounts
 from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
 from scripts.utils.palette import colour_of, icon_of, label_of
-from scripts.utils.paths import CastRow, Rule, load_incidents
+from scripts.utils.paths import CastRow, Rule
 
 # Palette keys of the four Stacey zones, in ZONES order.
 ZONE_KEYS = ("logistics", "marketing", "accounting", "payment")
@@ -44,44 +42,6 @@ SENTENCES = (
     (4, 1, "8. Sent or Bounced", True),
     (1, 0, "9. Accepted or Rejected", True),
 )
-
-
-DATA = Path(__file__).resolve().parents[2] / "data"
-
-# route zone -> (index into ZONES, offset of the stop from that zone's corner).
-ZONE_SPOTS = {
-    "chaos": (3, (0.12, 0.12)),
-    "complex": (3, (0.32, 0.32)),
-    "what": (1, (0.25, 0.25)),
-    "how": (2, (0.25, 0.25)),
-    "simple": (0, (0.25, 0.25)),
-}
-LEFT_X, RIGHT_X = -0.24, 1.24
-
-
-@dataclass(frozen=True)
-class Stop:
-    """One section of the talk: its Stacey zone, footer counter and the move into it."""
-
-    section: str
-    name: str
-    zone: str
-    counter: str
-    move: str
-
-
-def load_route(path: Path) -> tuple[Stop, ...]:
-    """Read the stops of the route from data/route.csv, in section order."""
-    with path.open(newline="", encoding="ascii") as fh:
-        return tuple(
-            Stop(row["section"], row["name"], row["zone"], row["counter"], row["move"])
-            for row in csv.DictReader(fh)
-        )
-
-
-def stop_label(stop: Stop) -> str:
-    """Label a route box: section number and name on the first line, the counter on the second."""
-    return f"{stop.section} {stop.name}\n{stop.counter}"
 
 
 @dataclass(frozen=True)
@@ -404,173 +364,6 @@ def example_map(out: Path, before: CardCounts, after: CardCounts) -> Path:
     fig.tight_layout()
     style.save(fig, out)
     return out
-
-
-def route_layout(stops: Sequence[Stop]) -> tuple[tuple[float, float], ...]:
-    """Place each stop on the Stacey square: inside its zone, or beside the square without one.
-
-    A stop without a zone sits in the left column while a zoned stop is still to come, in the
-    right column after the last one, level with the stop before it.
-    """
-    zoned = [i for i, stop in enumerate(stops) if stop.zone]
-    points: list[tuple[float, float]] = []
-    for i, stop in enumerate(stops):
-        if stop.zone:
-            index, (dx, dy) = ZONE_SPOTS[stop.zone]
-            points.append((ZONES[index][1] + dx, ZONES[index][2] + dy))
-        elif i < zoned[-1]:
-            level = points[-1][1] + 0.15 if points else ZONE_SPOTS[stops[zoned[0]].zone][1][1] - 0.2
-            points.append((LEFT_X, level))
-        else:
-            points.append((RIGHT_X, points[-1][1]))
-    return tuple(points)
-
-
-def route_box_half_width(stops: Sequence[Stop]) -> float:
-    """Return the half width of a route box: wide enough for the longest label line.
-
-    0.0095 per character at fontsize 12 keeps today's 0.085 for a nine-character line.
-    """
-    longest = max(len(line) for stop in stops for line in stop_label(stop).split("\n"))
-    return 0.0095 * longest
-
-
-def route_arrow_ends(
-    start: tuple[float, float], end: tuple[float, float], half_w: float, half_h: float
-) -> tuple[tuple[float, float], tuple[float, float]]:
-    """Return where the segment leaves the start box and enters the end box, a gap outside each.
-
-    Each box is centred on its point, padded by the 0.01 of the FancyBboxPatch.
-    """
-    pad, gap = 0.01, 0.01
-    dx, dy = end[0] - start[0], end[1] - start[1]
-    reach_x, reach_y = half_w + pad + gap, half_h + pad + gap
-    ratios = [reach / abs(d) for reach, d in ((reach_x, dx), (reach_y, dy)) if d]
-    t = min(ratios) if ratios else 0.0
-    return (start[0] + dx * t, start[1] + dy * t), (end[0] - dx * t, end[1] - dy * t)
-
-
-def route_label_point(
-    tail: tuple[float, float], head: tuple[float, float], offset: float
-) -> tuple[float, float]:
-    """Return the segment's midpoint moved by offset along its unit normal, left of tail -> head.
-
-    A zero-length segment has no normal and returns the midpoint.
-    """
-    dx, dy = head[0] - tail[0], head[1] - tail[1]
-    mid = ((tail[0] + head[0]) / 2, (tail[1] + head[1]) / 2)
-    length = math.hypot(dx, dy)
-    if not length:
-        return mid
-    return mid[0] - dy / length * offset, mid[1] + dx / length * offset
-
-
-def route_label_offset(
-    words: str,
-    tail: tuple[float, float],
-    head: tuple[float, float],
-    char_w: float = 0.008,
-    half_h: float = 0.025,
-    gap: float = 0.01,
-) -> float:
-    """Return the distance along the normal at which the label box clears the shaft.
-
-    Half the label width times the unit normal's absolute x, plus half its height times the
-    absolute y, plus a gap; a zero-length segment has no normal and returns the gap.
-    """
-    dx, dy = head[0] - tail[0], head[1] - tail[1]
-    length = math.hypot(dx, dy)
-    if not length:
-        return gap
-    return char_w * len(words) / 2 * abs(dy) / length + half_h * abs(dx) / length + gap
-
-
-def route(
-    out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
-) -> None:
-    """Draw the route on the Stacey square: a box per stop, move and incident on each arrow."""
-    style.apply()
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyBboxPatch, Rectangle
-
-    counter_colour = {
-        "?": colour_of("payment"),
-        "64": colour_of("logistics"),
-        "512": colour_of("marketing"),
-        "72": colour_of("accounting"),
-    }
-    stops = load_route(route_csv)
-    told_in = {incident.told_in: incident.id for incident in load_incidents(incidents_csv)}
-    points = route_layout(stops)
-    half_w, half_h = route_box_half_width(stops), 0.07
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
-    for i, (label, x0, y0) in enumerate(ZONES):
-        ax.add_patch(
-            Rectangle(
-                (x0, y0), 0.5, 0.5, facecolor=colour_of(ZONE_KEYS[i]), alpha=0.25, edgecolor="white"
-            )
-        )
-        ax.text(x0 + 0.48, y0 + 0.48, label, ha="right", va="top", fontsize=10, color="dimgrey")
-    for stop, (x, y) in zip(stops, points, strict=True):
-        ax.add_patch(
-            FancyBboxPatch(
-                (x - half_w, y - half_h),
-                2 * half_w,
-                2 * half_h,
-                boxstyle="round,pad=0.01,rounding_size=0.03",
-                facecolor=counter_colour[stop.counter],
-                edgecolor="none",
-                zorder=3,
-            )
-        )
-        ax.text(
-            x,
-            y,
-            stop_label(stop),
-            ha="center",
-            va="center",
-            fontsize=12,
-            color="white",
-            zorder=4,
-        )
-    for stop, start, end in zip(stops[1:], points, points[1:], strict=False):
-        tail, head = route_arrow_ends(start, end, half_w, half_h)
-        ax.annotate(
-            "",
-            head,
-            tail,
-            arrowprops={
-                "arrowstyle": "-|>",
-                "color": "dimgrey",
-                "linewidth": 1.5,
-                "shrinkA": 0,
-                "shrinkB": 0,
-            },
-            zorder=2,
-        )
-        words = " ".join(w for w in (stop.move, told_in.get(stop.section, "")) if w)
-        if words:
-            offset = route_label_offset(words, tail, head, char_w=0.012, gap=0.02)
-            captions = [(x0 + 0.48, y0 + 0.48) for _, x0, y0 in ZONES]
-            label_at = max(
-                (route_label_point(tail, head, sign * offset) for sign in (1, -1)),
-                key=lambda p: min(math.hypot(p[0] - cx, p[1] - cy) for cx, cy in captions),
-            )
-            ax.text(
-                *label_at,
-                words,
-                ha="center",
-                va="center",
-                fontsize=10,
-                style="italic",
-                zorder=5,
-                bbox={"boxstyle": "round,pad=0.15", "facecolor": "white", "edgecolor": "none"},
-            )
-    ax.set_xlim(-0.4, 1.4)
-    ax.set_ylim(-0.2, 1.0)
-    ax.axis("off")
-    fig.tight_layout()
-    style.save(fig, out)
 
 
 def story(out: Path) -> None:

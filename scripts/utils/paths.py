@@ -63,7 +63,9 @@ def load_cast(path: Path) -> list[CastRow]:
 class Incident:
     id: str
     week: str
+    date: str
     told_in: str
+    decided_in: str
     closed_in: str
     closed_by: str
     kind: str
