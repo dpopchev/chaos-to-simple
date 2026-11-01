@@ -21,6 +21,10 @@
   \vskip0pt%
 }
 
+% The line: #1 the believed line in grey over #2 the learned line in bold, at the frame bottom.
+% Both texts come verbatim from data/lines.csv; make lines checks that they are verbatim.
+\newcommand{\theline}[2]{\vfill{\color{gray}#1}\par\textbf{#2}}
+
 % Code blocks a size smaller, so a twenty-line snippet fits a 16:9 frame.
 \usepackage{etoolbox}
 \AtBeginEnvironment{Shaded}{\footnotesize}
