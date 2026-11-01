@@ -203,10 +203,27 @@ marketing lines aloud, then ask the chat how many tests it takes until you are s
 
 \fvset{fontsize=\tiny}
 
+:::: {.columns}
+::: {.column width="64%"}
+
 ```{.python include=01-bits/tests/test_chaos.py snippet=two-tests cap=24}
 ```
 
-![](build/01-bits/coverage-view.png){height=20%}
+:::
+::: {.column width="36%"}
+
+![](build/01-bits/coverage-view.png){height=60%}
+
+:::
+::::
+
+```{.text include=build/01-bits/coverage-summary.txt}
+```
+
+::: notes
+Branch coverage counts twelve edges, and both tests take every edge, so the report says
+100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
+:::
 
 ## Finance found it, not the tests {paths=64}
 

@@ -47,6 +47,7 @@ campaign on time, one if at a time.
 - [x] 5. Step 4, four ifs, paths=16: shipping abroad at 20 BGN, `step-4.diff`
 - [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 BGN, `step-5.diff`
 - [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, with the dev and marketing bubbles, `step-6.diff`
+- [x] 8. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
 
 ## Live
 
