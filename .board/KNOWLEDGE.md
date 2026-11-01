@@ -11,7 +11,7 @@
 - none recorded
 
 ## Decisions
-- none recorded
+- 2026-11-01 E-006: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-01)
 
 ## Deviations
 - none recorded
