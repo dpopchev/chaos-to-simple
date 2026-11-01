@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import math
 from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -392,6 +393,21 @@ def route_arrow_ends(
     ratios = [reach / abs(d) for reach, d in ((reach_x, dx), (reach_y, dy)) if d]
     t = min(ratios) if ratios else 0.0
     return (start[0] + dx * t, start[1] + dy * t), (end[0] - dx * t, end[1] - dy * t)
+
+
+def route_label_point(
+    tail: tuple[float, float], head: tuple[float, float], offset: float
+) -> tuple[float, float]:
+    """Return the segment's midpoint moved by offset along its unit normal, left of tail -> head.
+
+    A zero-length segment has no normal and returns the midpoint.
+    """
+    dx, dy = head[0] - tail[0], head[1] - tail[1]
+    mid = ((tail[0] + head[0]) / 2, (tail[1] + head[1]) / 2)
+    length = math.hypot(dx, dy)
+    if not length:
+        return mid
+    return mid[0] - dy / length * offset, mid[1] + dx / length * offset
 
 
 def route(
