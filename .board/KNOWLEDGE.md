@@ -43,4 +43,5 @@
 - 2026-11-02 E-007: W-076 filed under E-007 from W-054's criterion run; it lands before W-055
 - 2026-11-02 E-007: W-077 filed under E-007 from T-134's close gate; W-055 blocked on it
 - 2026-11-02 E-007: W-078 filed under E-007 from T-137: effects.txt prints the step markers
+- 2026-11-02 E-007: W-079 filed under E-007 from W-057's criterion run
 - 2026-11-02 E-007: ten todo Checks of the form make artifacts && test -s or ls now start with make clean-build, since make stubs leaves a placeholder at every manifest path that would pass them
