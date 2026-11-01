@@ -470,8 +470,7 @@ def route(
         words = " ".join(w for w in (stop.move, told_in.get(stop.section, "")) if w)
         if words:
             ax.text(
-                (tail[0] + head[0]) / 2,
-                (tail[1] + head[1]) / 2,
+                *route_label_point(tail, head, 0.05),
                 words,
                 ha="center",
                 va="center",
