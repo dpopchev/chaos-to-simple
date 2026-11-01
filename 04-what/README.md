@@ -5,7 +5,7 @@ place; contracts between contexts are values, never flags.
 
 | | |
 |---|---|
-| Minutes | 8 |
+| Minutes | 5.5 |
 | Footer counter | stays at `512`; the chaos function is untouched, the bits only got names |
 | Owns | `s04_what/money.py`, `pricing.py` (b0 b1), `shipping.py` (b2 b3 b4), `tax.py` (b5); `tests/` with one test per green card of these contexts |
 | Uses | `data/rules.csv` through the shared `build/data/rules.txt` (the glossary slide) |
@@ -14,11 +14,10 @@ place; contracts between contexts are values, never flags.
 
 ## Slides
 
-- [x] One language: the rules table, read as a glossary
-- [x] A rule is a phrase, a phrase is a method: `snippet=coupon`, `snippet=discounted`
+- [x] The dispute closes: `snippet=coupon`, `snippet=fee`, the takeaway "Values, never flags"
 - [x] A bit as a type: `snippet=zone`
-- [x] Contracts are values, never flags: `snippet=fee`, `snippet=vat`
-- [x] Bounded contexts: every bit has a home, with the line glued to the moves frame
+- [x] Bounded contexts: every bit has a home
+- [x] Bounded contexts, the moves: the contract line under moves.png, glued to the frame
 
 ## Live
 
