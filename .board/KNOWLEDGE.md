@@ -18,6 +18,9 @@
 - 2026-11-02 E-007: fact: the pasted tested.csv I1 row was 000001; the bug path sets b0 and b2, 000101 as the grid prints it -> the corrected row is in local/briefs/e007
 - 2026-11-02 E-007: fact: the talk is 2026-11-05 (00-frontmatter/meta.yaml) and the fallback deck is v0.6.1 -> a work item that cannot land by the evening of 2026-11-04 is parked, never rushed
 - 2026-11-02 E-007: fact: the talk-day fallback deck is main at 9ecaab0 (W-050, W-051, W-071 landed) -> the developer tags it v0.6.1; W-052 stubs the deck from here
+- 2026-11-02 W-053: fact: lualatex draws all nine actor icons with no Missing character via fontawesome5 (its own FA5 OTF), fontspec Font Awesome 7 Free Solid and fontspec Hack Nerd Font -> both installed fonts serve lualatex
+- 2026-11-02 W-053: fact: matplotlib draws all nine actor icons from Font Awesome 7 Free-Solid-900.otf and from HackNerdFont-Regular.ttf, loaded by fc-list path -> one named font serves both renderers; FA7 Free is the one fc-list finds first
+- 2026-11-02 W-053: fact: otf-font-awesome is Font Awesome 7 Free, not 6, icons in its Solid face; Nerd Fonts moves warehouse, store, layer-group to ED92, EE17, EEA8 -> scripts/utils/icons.py keeps a codepoint per font, read with fontTools
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
