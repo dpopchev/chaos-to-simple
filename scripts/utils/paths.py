@@ -323,20 +323,23 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
                 edgecolor="white",
                 linewidth=0.8,
             )
-            if value >= 0.08 * top:
-                label_y = bottom + value / 2
-                ax.text(x, label_y, f"{name}:\n{value}", ha="center", va="center", fontsize=12)
+            middle = bottom + value / 2
+            if value >= 0.2 * top:
+                ax.text(x, middle, f"{name}:\n{value}", ha="center", va="center", fontsize=22)
+            elif value >= 0.11 * top:
+                ax.text(x, middle, f"{name}: {value}", ha="center", va="center", fontsize=22)
             else:
                 beside.append(f"{name}: {value}")
             bottom += value
-        ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=11, fontweight="bold")
+        ax.text(x, bottom, str(bottom), ha="center", va="bottom", fontsize=22, fontweight="bold")
         if beside:
-            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=12)
-        ax.text(x, -0.02 * top, label, ha="center", va="top")
+            ax.text(x + 0.33, bottom, "\n".join(beside), ha="left", va="bottom", fontsize=22)
+        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=22)
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)
-    ax.set_ylabel(title)
-    ax.set_title(title)
+    ax.set_ylabel(title, fontsize=22)
+    ax.set_title(title, fontsize=22)
+    ax.tick_params(labelsize=22)
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()
