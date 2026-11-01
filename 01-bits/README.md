@@ -9,7 +9,7 @@ campaign on time, one if at a time.
 
 ## Minutes
 
-9
+7
 
 ## Footer counter
 
@@ -21,7 +21,7 @@ campaign on time, one if at a time.
 - `s01_bits/two_ifs.py`: the two-ifs zoom-in
 - `tests/test_chaos.py`: two deceptive tests and the planted bug, xfail strict
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
-- `index.md`: the nine slides
+- `index.md`: the seven slides
 
 ## Uses
 
@@ -38,15 +38,13 @@ campaign on time, one if at a time.
 
 ## Slides
 
-- [x] 1. The checkout as found: `snippet=checkout` beside the cast
-- [x] 2. Two tests. Coverage says 100%: `snippet=two-tests` and the coverage report
+- [x] 1. The cast behind the ifs: the cast table by source line
+- [x] 2. Two tests. Coverage says 100%: `snippet=two-tests` and the coverage summary
 - [x] 3. Finance found it, not the tests: incident I1
-- [x] 4. One of the other sixty-two: `snippet=bug`, run live
-- [x] 5. Four paths, the same two tests: `snippet=ship`, `snippet=ship-tests`, two-ifs report
-- [x] 6. Count along: one if, one bit, to 64 (`{paths=64}`)
-- [x] 7. A path is a six-bit number: the grid
-- [x] 8. Rule 1: how ifs count
-- [x] 9. Parked for section 03, with the line glued at its foot (`\theline`)
+- [x] 4. The path nobody ran: `snippet=bug`, run live
+- [x] 5. Count along: one if, one bit, to 64 (six overlays, one doubling row per click)
+- [x] 6. A path is a six-bit number: the grid and the three counting lines
+- [x] 7. Parked for section 03, with the line glued at its foot (`\theline`)
 
 ## Live
 
@@ -60,7 +58,7 @@ campaign on time, one if at a time.
 - Given the planted bug test, when run normally, then the suite is green (xfail) and
   `--runxfail` shows 54.00 against 60.00.
 - Given the grid slide, when shown, then 000000 and 111111 can be pointed at.
-- Given `index.md`, when counted, then it holds nine `## ` slides.
+- Given `index.md`, when counted, then it holds seven `## ` slides.
 
 ## Open
 
