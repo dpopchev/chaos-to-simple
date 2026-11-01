@@ -26,6 +26,7 @@
 
 ## Decisions
 - 2026-11-02 E-007: W-050 and W-051 land first; the developer tags v0.6.1 as the talk-day fallback deck before W-052 starts, since the skeleton stubs main until W-069 lands (developer, 2026-11-01)
+- 2026-11-02 E-007: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 32 hours) (developer, 2026-11-02)
 - 2026-11-02 E-007: figures stay matplotlib, E-002 stands: the manifest rows journey, moves and ports are produced by scripts.figures, not mmdc (developer, 2026-11-01)
 - 2026-11-02 E-007: the deck is 45 minutes and 48 frames (title, six section frames, 41 content); 07 keeps no section frame, E-005 C7 stands (developer, 2026-11-01)
 - 2026-11-02 E-007: the one-assert gate covers the exhibit tests too: W-067 lifts the E-001 exemption in conftest.py; the category-marker exemption stays (developer, 2026-11-01)
