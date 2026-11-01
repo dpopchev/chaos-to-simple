@@ -229,9 +229,21 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 \fvset{fontsize=\scriptsize}
 
-![](build/01-bits/finance.png){height=45%}
+![](build/01-bits/finance.png){height=55%}
 
-STUB: 01-bits/data/squeeze.txt
+```{.text include=build/01-bits/finance.txt}
+```
+
+\actor{marketing}
+
+```{.text include=01-bits/data/squeeze.txt}
+```
+
+::: notes
+Finance noticed, not the tests: October's four weeks, received shipping income against the
+shortfall, 1,214 orders and 6,070 BGN. Then marketing, the same morning, asks for one more
+if, with no idea what the last one cost.
+:::
 
 ## The path nobody ran {paths=64}
 

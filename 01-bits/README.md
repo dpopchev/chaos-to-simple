@@ -50,6 +50,7 @@ campaign on time, one if at a time.
 - [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 BGN, `step-5.diff`
 - [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, with the dev and marketing bubbles, `step-6.diff`
 - [x] 8. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
+- [x] 9. Finance found it, paths=64: `finance.png` with `finance.txt` as the caption, marketing's squeeze bubble under it
 
 ## Live
 
