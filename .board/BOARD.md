@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-052 > T-126   | blocked: 0 | todo roots: 1 | done: 182 | pruned: 2
+open path: E-007 > W-052 > T-127   | blocked: 0 | todo roots: 1 | done: 183 | pruned: 2
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-007 > W-052 > T-126   | blocked: 0 | todo roots: 1 | done: 182 | pr
 E-007         [doing]    deck v2: the stage, the counter one bit at a time, the checkout changing on screen
   W-050  bug    [done]     06 We counted them shows the whole suite's count -- T-122 [done], T-123 [done]
   W-051  bug    [done]     06 the number and epilogue charts render small with overlapping labels -- T-124 [done], T-125 [done]
-  W-052  issue  [doing]    skeleton: the new frame plan builds end to end on stubs -- T-126 [doing]   <- ACTIVE LEAF, T-127 [todo], T-128 [todo]
+  W-052  issue  [doing]    skeleton: the new frame plan builds end to end on stubs -- T-126 [done], T-127 [doing]   <- ACTIVE LEAF, T-128 [todo]
   W-053  spike  [todo]     the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font -- T-129 [todo], T-130 [todo]
   W-054  issue  [todo]     one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [todo], T-132 [todo], T-133 [todo]
   W-055  issue  [todo]     00: the business map and the agenda as a pictogram strip -- T-134 [todo], T-135 [todo], T-136 [todo]
@@ -353,8 +353,8 @@ flowchart TD
   W051 --> T124["T-124 done: Reshape the two chart figures -> build/06-simple/paths.png wide, build/06-simple/epilogue.png near-square"]
   W051 --> T125["T-125 done: Lay the two frames out in columns -> 06-simple/index.md"]
   E007 --> W052["W-052 issue doing: skeleton: the new frame plan builds end to end on stubs"]
-  W052 --> T126["T-126 doing: Add the artifact manifest, the stub writer and the strict guard -> make stubs -- ACTIVE LEAF"]
-  W052 --> T127["T-127 todo: Add the frame budget helper -> scripts/utils/budget.py"]
+  W052 --> T126["T-126 done: Add the artifact manifest, the stub writer and the strict guard -> make stubs"]
+  W052 --> T127["T-127 doing: Add the frame budget helper -> scripts/utils/budget.py -- ACTIVE LEAF"]
   W052 --> T128["T-128 todo: Rewrite the eight index files to the frame plan -> 00-frontmatter/index.md .. 07-close/index.md"]
   E007 --> W053["W-053 spike todo: the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font"]
   W053 --> T129["T-129 todo: Probe the two renderers -> build/spike/fa-probe.pdf, build/spike/fa-probe.png"]
@@ -430,7 +430,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W052,T126 doing
-  class W050,T122,T123,W051,T124,T125,W071,T178 done
-  class T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177 todo
+  class E007,W052,T127 doing
+  class W050,T122,T123,W051,T124,T125,T126,W071,T178 done
+  class T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177 todo
 ```
