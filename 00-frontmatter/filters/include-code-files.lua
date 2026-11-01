@@ -10,7 +10,9 @@
 --   ...
 --   # [/snippet]
 -- Markers are dropped, the block is dedented, snippets do not nest, and a missing
--- file or marker aborts the build (pandoc exits non-zero on error()).
+-- file or marker aborts the build (pandoc exits non-zero on error()). Exception: a
+-- missing file renders a block reading "STUB: <path>" with a warning on stderr,
+-- unless the environment variable STRICT is set (make STRICT=1), then it errors.
 -- Paths are relative to the directory make runs from: the repo root.
 
 local function read_lines(path)
@@ -99,6 +101,16 @@ function CodeBlock(cb)
   local path = cb.attributes["include"]
   if path == nil then
     return nil
+  end
+  local strict = os.getenv("STRICT")
+  if (strict == nil or strict == "") and not io.open(path, "r") then
+    io.stderr:write("include-code-files: STUB: " .. path .. "\n")
+    cb.text = "STUB: " .. path
+    cb.attributes["include"] = nil
+    cb.attributes["snippet"] = nil
+    cb.attributes["start-line"] = nil
+    cb.attributes["end-line"] = nil
+    return cb
   end
   local lines = read_lines(path)
   local first = 1

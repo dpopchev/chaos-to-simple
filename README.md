@@ -73,6 +73,8 @@ make deliverable          every deliverable: build/talk.pdf, not empty
 make draft                the PDF without the checks, for layout work
 make notes                build/talk-notes.pdf with speaker notes on a second screen
 make artifacts            coverage report, counts, grid, chart
+make stubs                placeholder for each data/artifacts.csv path no rule builds yet
+make talk STRICT=1        fail (stubs and missing includes) while a manifest path has no rule
 make new SECTION=08-name TITLE="Section title"
 ```
 

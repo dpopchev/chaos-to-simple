@@ -1,0 +1,60 @@
+path,kind,producer
+build/00-frontmatter/actors.tex,tex,scripts.actors_tex
+build/00-frontmatter/business-map.png,png,scripts.figures stage business-map
+build/00-frontmatter/agenda.png,png,scripts.figures stage agenda
+build/01-bits/step-0.diff,diff,scripts.paths storyboard
+build/01-bits/step-1.diff,diff,scripts.paths storyboard
+build/01-bits/step-2.diff,diff,scripts.paths storyboard
+build/01-bits/step-3.diff,diff,scripts.paths storyboard
+build/01-bits/step-4.diff,diff,scripts.paths storyboard
+build/01-bits/step-5.diff,diff,scripts.paths storyboard
+build/01-bits/step-6.diff,diff,scripts.paths storyboard
+build/01-bits/bubble-0.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-1.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-2.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-3.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-4.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-5.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-6.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-7.txt,txt,scripts.paths storyboard
+build/01-bits/bubble-8.txt,txt,scripts.paths storyboard
+build/01-bits/coverage.txt,txt,pytest --cov
+build/01-bits/coverage-summary.txt,txt,grep over coverage.txt
+build/01-bits/coverage-view.png,png,scripts.figures coverage-view
+build/01-bits/finance.png,png,scripts.figures finance
+build/01-bits/finance.txt,txt,scripts.figures finance
+build/01-bits/grid.png,png,scripts.figures grid-image
+build/01-bits/doubling.png,png,scripts.figures doubling
+build/01-bits/doubling.txt,txt,scripts.paths doubling
+build/02-stacey/stacey.png,png,scripts.figures stacey
+build/02-stacey/stacey-01.png,png,scripts.figures stacey --highlight 01
+build/02-stacey/stacey-02.png,png,scripts.figures stacey --highlight 02
+build/02-stacey/stacey-03.png,png,scripts.figures stacey --highlight 03
+build/02-stacey/stacey-04.png,png,scripts.figures stacey --highlight 04
+build/02-stacey/stacey-05.png,png,scripts.figures stacey --highlight 05
+build/02-stacey/stacey-06.png,png,scripts.figures stacey --highlight 06
+build/03-chaos/diagrams/journey.png,png,scripts.figures journey
+build/03-chaos/retro.txt,txt,scripts.paths retro
+build/03-chaos/grid-9.png,png,scripts.figures grid-panels
+build/03-chaos/doubling-512.png,png,scripts.figures doubling --room
+build/03-chaos/board.png,png,scripts.figures board --stage 03
+build/data/rules.txt,txt,scripts.paths rules
+build/data/counts.txt,txt,scripts.paths counts
+build/data/splits.txt,txt,scripts.paths splits
+build/04-what/colorcode.png,png,scripts.figures colorcode
+build/04-what/fix.diff,diff,scripts.paths diff
+build/04-what/v4.diff,diff,scripts.paths diff
+build/04-what/contexts.txt,txt,scripts.paths contexts
+build/04-what/moves.png,png,scripts.figures moves
+build/04-what/board.png,png,scripts.figures board --stage 04
+build/05-how/ports.png,png,scripts.figures seam
+build/05-how/effects.txt,txt,scripts.paths effects
+build/05-how/v5.diff,diff,scripts.paths diff
+build/05-how/board.png,png,scripts.figures board --stage 05
+build/06-simple/pytest-core.txt,txt,pytest
+build/06-simple/wounds.txt,txt,pytest -rp -k
+build/06-simple/paths.png,png,scripts.paths chart
+build/06-simple/seventh.diff,diff,scripts.paths diff
+build/06-simple/epilogue.txt,txt,scripts.paths epilogue
+build/06-simple/epilogue.png,png,scripts.paths epilogue-chart
+build/07-close/board.png,png,scripts.figures board --stage 06

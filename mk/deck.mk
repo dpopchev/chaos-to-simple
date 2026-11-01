@@ -39,19 +39,19 @@ include $(wildcard [0-9][0-9]-*/section.mk)
 
 DECK_INPUTS := $(INDEXES) $(META) $(DEFAULTS) $(PREAMBLE) $(FILTERS) $(ARTIFACTS)
 
-$(PDF): $(DECK_INPUTS)
+$(PDF): $(DECK_INPUTS) | stubs
 	@mkdir -p $(@D)
 	@$(PANDOC) --defaults $(DEFAULTS) $(INDEXES) -o $@
 	$(call log_done,$@ built from $(words $(INDEXES)) index files)
 
-$(NOTES): $(DECK_INPUTS)
+$(NOTES): $(DECK_INPUTS) | stubs
 	@mkdir -p $(@D)
 	@$(PANDOC) --defaults $(DEFAULTS) \
 	  --variable 'beameroption=show notes on second screen=right' $(INDEXES) -o $@
 	$(call log_done,$@ built with the speaker notes)
 
 .PHONY: slides
-slides: $(PDF) ## Build build/talk.pdf
+slides: $(PDF) | stubs ## Build build/talk.pdf
 	$(call log_done,$(PDF) current)
 
 .PHONY: draft
@@ -66,8 +66,18 @@ notes: $(NOTES) ## Build build/talk-notes.pdf with the speaker notes
 	$(call log_done,$(NOTES) current)
 
 .PHONY: talk
-talk: check slides ## Run every check, then build the deck
+talk: check slides | stubs ## Run every check, then build the deck
 	$(call log_done,checked and built $(PDF))
+
+# The manifest names every artifact the new frame plan includes; a path that no
+# rule builds yet gets a placeholder. STRICT=1 writes nothing and fails on each.
+STRICT ?=
+
+.PHONY: stubs
+stubs: ## Write a placeholder for each manifest path no rule builds; STRICT=1 fails instead
+	@$(RUN) python -m scripts.stubs --manifest data/artifacts.csv \
+	  --built $(sort $(ARTIFACTS)) $(if $(STRICT),--strict)
+	$(call log_done,manifest paths without a rule stubbed)
 
 # Shared data renders once into build/data/; any section may include those files.
 $(BUILD)/data/rules.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
