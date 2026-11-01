@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-006 > W-038 > T-121   | blocked: 0 | todo roots: 0 | done: 166 | pruned: 2
+open path: E-006 > W-038   | blocked: 0 | todo roots: 0 | done: 167 | pruned: 2
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-006 > W-038 > T-121   | blocked: 0 | todo roots: 0 | done: 166 | pr
 E-006         [doing]    deck: talk day -- legible figures, true docs, the review on record
   W-036  spike  [done]     talk: the 2026-11-01 review and the cut on record in docs/cut-40.md   (filed during W-034) -- T-089 [done], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [done]
   W-037  bug    [done]     route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [done], T-092 [done]
-  W-038  bug    [doing]    epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [done], T-094 [done], T-121 [doing]   <- ACTIVE LEAF
+  W-038  bug    [doing]    epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [done], T-094 [done], T-121 [done]
   W-047  bug    [todo]     03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [todo]
   W-049  bug    [todo]     epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [todo], T-120 [todo]
 ```
@@ -309,7 +309,7 @@ flowchart TD
   E006 --> W038["W-038 bug doing: epilogue chart: the 30 total overprints the chart title"]
   W038 --> T093["T-093 done: Compute the headroom -> bar_headroom(top)"]
   W038 --> T094["T-094 done: Lift the axes over the totals -> stacked_bar sets ylim to bar_headroom(top) and drops the title"]
-  W038 --> T121["T-121 doing: Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it -- ACTIVE LEAF"]
+  W038 --> T121["T-121 done: Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it"]
   E006 --> W047["W-047 bug todo: 03-chaos README Done-when still names the 72 count"]
   W047 --> T117["T-117 todo: Fix the Done-when -> 03-chaos/README.md names 2^9 = 512 only"]
   E006 --> W049["W-049 bug todo: epilogue frame set in \tiny: the two-column layout fits only at 5pt"]
@@ -320,8 +320,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E006,W038,T121 doing
-  class W036,T089,T095,W037,T091,T092,T093,T094 done
+  class E006,W038 doing
+  class W036,T089,T095,W037,T091,T092,T093,T094,T121 done
   class W047,T117,W049,T119,T120 todo
   class T090 pruned
 ```
