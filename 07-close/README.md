@@ -4,7 +4,7 @@ Beat: three lines to take home, where to read more, prepared answers.
 
 | | |
 |---|---|
-| Minutes | 2 + 8 for Q&A |
+| Minutes | 2.5 + 15 for Q&A |
 | Footer counter | `72` |
 | Owns | the closing text and the prepared answers in the speaker notes |
 | Uses | nothing |
@@ -13,8 +13,8 @@ Beat: three lines to take home, where to read more, prepared answers.
 ## Slides
 
 - [x] What I should have known from the start
-- [ ] Where to go from here: add the repository link once it is public
-- [x] Q&A with prepared answers in the notes
+- [ ] Q&A: the repository link, once it is public
+- [x] Q&A with six prepared answers and two live demos in the notes
 
 ## Done when
 

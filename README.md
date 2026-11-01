@@ -52,7 +52,7 @@ The build globs `[0-9][0-9]-*/index.md`, sorted, so the directory name gives the
 the file name gives the entry point; any other Markdown in a section (README, notes, data)
 is invisible to pandoc by construction. `index.md` opens with a level-1 heading, which
 beamer turns into the section's title slide, so the file is also the section's index in
-the deck. Speaker notes live in `::: notes` blocks next to the slide they belong to.
+the deck; the close is the one section that opens on its first frame, with no title slide. Speaker notes live in `::: notes` blocks next to the slide they belong to.
 
 Alternatives considered: one big `slides.md` (merge conflicts, no ownership), a hand-kept
 list of files in the Makefile (a second place to keep in order), `slides.md` per section
