@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-035 > T-088   | blocked: 0 | todo roots: 2 | done: 124 | pruned: 1
+open path: W-035   | blocked: 0 | todo roots: 2 | done: 125 | pruned: 1
 
 ## Tree
 
 ```text
-W-035  bug    [doing]    (standalone) epilogue chart: the labels shrink to about 7 points on the slide   (filed during W-033) -- T-087 [done], T-088 [doing]   <- ACTIVE LEAF
+W-035  bug    [doing]    (standalone) epilogue chart: the labels shrink to about 7 points on the slide   (filed during W-033) -- T-087 [done], T-088 [done]
 W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [todo]
 W-037  bug    [todo]     (standalone) route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
 ```
@@ -237,7 +237,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every ar
 flowchart TD
   W035["W-035 bug doing, standalone: epilogue chart: the labels shrink to about 7 points on the slide"]
   W035 --> T087["T-087 done: Draw every chart text at 22 points -> stacked_bar texts at fontsize 22"]
-  W035 --> T088["T-088 doing: Look at the epilogue slide at 22 points -> local/state/epilogue-22.png read -- ACTIVE LEAF"]
+  W035 --> T088["T-088 done: Look at the epilogue slide at 22 points -> local/state/epilogue-22.png read"]
   W036["W-036 spike todo, standalone: talk: which of the review remarks the 40-minute deck adopts"]
   W036 --> T089["T-089 todo: Write the remarks into the repository -> docs/cut-40.md"]
   W036 --> T090["T-090 todo: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
@@ -249,7 +249,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W035,T088 doing
-  class T087 done
+  class W035 doing
+  class T087,T088 done
   class W036,T089,T090,W037,T091,T092 todo
 ```
