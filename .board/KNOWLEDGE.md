@@ -22,6 +22,7 @@
 - 2026-11-02 W-053: fact: lualatex draws all nine actor icons with no Missing character via fontawesome5 (its own FA5 OTF), fontspec Font Awesome 7 Free Solid and fontspec Hack Nerd Font -> both installed fonts serve lualatex
 - 2026-11-02 W-053: fact: matplotlib draws all nine actor icons from Font Awesome 7 Free-Solid-900.otf and from HackNerdFont-Regular.ttf, loaded by fc-list path -> one named font serves both renderers; FA7 Free is the one fc-list finds first
 - 2026-11-02 W-053: fact: otf-font-awesome is Font Awesome 7 Free, not 6, icons in its Solid face; Nerd Fonts moves warehouse, store, layer-group to ED92, EE17, EEA8 -> scripts/utils/icons.py keeps a codepoint per font, read with fontTools
+- 2026-11-02 W-061: fact: no source read states 8:1; Brooks, The Tar Pit (1975) states at least 3x per step and 9x program -> programming systems product; Cagan (SVPG 2012) puts a live-data prototype at 20-50% of production; Zimmerman 2001 gives no figure -> 02-stacey/data/boom-sources.md
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
