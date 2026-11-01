@@ -4,6 +4,7 @@ python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures example-map --out build/03-chaos/example_map.png
+python -m scripts.figures doubling --cast data/cast.csv --out build/01-bits/doubling.png
 python -m scripts.figures finance --out build/01-bits/finance.png
 python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
@@ -34,7 +35,7 @@ from scripts.utils.figures import (
 from scripts.utils.finance import draw as draw_finance
 from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
-from scripts.utils.paths import grid_image, load_cast, load_incidents, load_rules
+from scripts.utils.paths import doubling_chart, grid_image, load_cast, load_incidents, load_rules
 from scripts.utils.stage import agenda_strip, business_map, load_route
 
 
@@ -46,6 +47,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "agenda",
         "business-map",
         "coverage-view",
+        "doubling",
         "example-map",
         "finance",
         "grid-image",
@@ -78,6 +80,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "coverage-view":
         draw(load_tested(args.tested), args.out)
+        return 0
+    if args.what == "doubling":
+        doubling_chart(load_cast(args.cast), args.out)
         return 0
     if args.what == "grid-image":
         rows = load_tested(args.tested)

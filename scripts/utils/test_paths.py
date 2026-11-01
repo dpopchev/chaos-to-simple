@@ -21,6 +21,7 @@ from scripts.utils.paths import (
     cell_kinds,
     contexts_table,
     count_report,
+    doubling_chart,
     doubling_table,
     effects_lines,
     epilogue_bars,
@@ -510,11 +511,15 @@ class TestDoublingTableCountsAlong:
 
     @pytest.mark.model
     def test_doubling_last_row_is_six_bits_64_paths(self, lines: list[str]) -> None:
-        assert lines[-1].split()[-2:] == ["6", "64"]
+        assert lines[-2].split()[-2:] == ["6", "64"]
 
     @pytest.mark.model
     def test_doubling_has_one_row_per_core_bit(self, lines: list[str]) -> None:
-        assert len(lines) == 1 + 6
+        assert len(lines) == 1 + 6 + 1
+
+    @pytest.mark.model
+    def test_doubling_table_ends_with_tested_two(self, lines: list[str]) -> None:
+        assert lines[-1] == "tested: 2"
 
     @pytest.mark.model
     def test_doubling_table_has_no_asked_for_column(self, lines: list[str]) -> None:
@@ -524,6 +529,12 @@ class TestDoublingTableCountsAlong:
 @pytest.mark.model
 def test_doubling_upto_two_rows_has_two_rows() -> None:
     assert len(doubling_table(DOUBLING_CAST, upto=2).splitlines()) == 1 + 2
+
+
+@pytest.mark.view
+def test_doubling_chart_is_near_square(tmp_path: Path) -> None:
+    out = doubling_chart(DOUBLING_CAST, tmp_path / "doubling.png")
+    assert pixel_ratio(out) == pytest.approx(1.0, abs=0.1)
 
 
 @pytest.mark.model

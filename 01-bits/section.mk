@@ -5,7 +5,7 @@ STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
 
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/doubling.txt
 ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES)
-ARTIFACTS += $(BUILD)/01-bits/grid.png
+ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png \
   $(BUILD)/01-bits/finance.txt
 
@@ -18,6 +18,11 @@ $(BUILD)/01-bits/finance.png $(BUILD)/01-bits/finance.txt &: 01-bits/data/octobe
 $(BUILD)/01-bits/grid.png: 01-bits/data/tested.csv scripts/figures.py scripts/utils/paths.py \
     scripts/utils/coverage_view.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures grid-image --tested 01-bits/data/tested.csv --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/01-bits/doubling.png: data/cast.csv scripts/figures.py scripts/utils/paths.py \
+    scripts/utils/style.py
+	@$(RUN) python -m scripts.figures doubling --cast data/cast.csv --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/coverage-view.png: 01-bits/data/tested.csv scripts/figures.py \

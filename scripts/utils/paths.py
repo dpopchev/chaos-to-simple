@@ -121,6 +121,8 @@ def doubling_table(cast: Sequence[CastRow], upto: int | None = None) -> str:
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
     ]
+    if upto is None:
+        lines.append("tested: 2")
     return "\n".join(lines) + "\n"
 
 
@@ -135,6 +137,51 @@ def growth(cast: Sequence[CastRow]) -> tuple[Growth, ...]:
     """One point per core bit in week order: the bits so far and the 2**bits paths they make."""
     weeks = [c.week for c in cast if c.bit.startswith("b") and c.week is not None]
     return tuple(Growth(w, bits, tangled(bits)) for bits, w in enumerate(weeks, start=1))
+
+
+def doubling_chart(
+    cast: Sequence[CastRow], out: Path, tested: int = 2, room_week: int | None = None
+) -> Path:
+    """Draw paths per week as a step line and the flat tested line beside it, near-square.
+
+    room_week, when set, ends the curve there instead of at the last core bit's week.
+    """
+    from scripts.utils import style
+
+    style.apply()
+    import matplotlib.pyplot as plt
+
+    points = growth(cast)
+    weeks = [p.week for p in points]
+    paths = [p.paths for p in points]
+    end = room_week if room_week is not None else weeks[-1]
+    curve = colour_of("marketing")
+    flat = colour_of("payment")
+    fig, ax = plt.subplots(figsize=(6.0, 6.0), dpi=style.DPI)
+    ax.step([*weeks, end], [*paths, paths[-1]], where="post", color=curve, linewidth=3)
+    ax.plot(weeks, paths, "o", color=curve, markersize=8)
+    ax.hlines(tested, weeks[0] - 0.5, end, color=flat, linewidth=3)
+    for week, value in zip(weeks, paths, strict=True):
+        ax.annotate(
+            str(value),
+            (week, value),
+            textcoords="offset points",
+            xytext=(-6, 8),
+            ha="right",
+            fontsize=14,
+            color=curve,
+        )
+    ax.text(end, tested * 1.35, f"tested: {tested}", ha="right", fontsize=16, color=flat)
+    ax.text(weeks[0], paths[-1] * 0.92, "paths", fontsize=16, color=curve)
+    ax.set_xlabel("week", fontsize=16)
+    ax.set_ylabel("paths", fontsize=16)
+    ax.tick_params(labelsize=14)
+    ax.set_xticks(range(weeks[0], end + 1))
+    ax.set_xlim(weeks[0] - 0.5, end + 0.5)
+    ax.set_ylim(0, paths[-1] * 1.15)
+    fig.tight_layout()
+    style.save(fig, out)
+    return out
 
 
 def contexts_table(rules: Sequence[Rule], cast: Sequence[CastRow]) -> str:
