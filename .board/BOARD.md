@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-005   | blocked: 0 | todo roots: 4 | done: 154 | pruned: 2
+open path: E-005 > W-044 > T-112   | blocked: 0 | todo roots: 4 | done: 154 | pruned: 2
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-005         [doing]    deck: the 40-minute cut
   W-041  issue  [done]     02 and 03: the cut and the counter's reveal -- T-102 [done], T-103 [done], T-104 [done], T-116 [done]
   W-042  issue  [done]     04 and 05: the cut and the I3 beat -- T-105 [done], T-106 [done], T-107 [done], T-108 [done]
   W-043  issue  [done]     06 and 07: the cut, the reveal and the Q&A -- T-109 [done], T-110 [done], T-111 [done]
-  W-044  issue  [todo]     lengths: the snippet cap in make check -- T-112 [todo], T-113 [todo]
+  W-044  issue  [doing]    lengths: the snippet cap in make check -- T-112 [doing]   <- ACTIVE LEAF, T-113 [todo]
   W-045  bug    [done]     deck bold renders regular: Adwaita Sans has no bold shape   (filed during T-097) -- T-114 [done]
   W-046  bug    [done]     count along prints its include fences instead of the doubling rows   (filed during T-101) -- T-115 [done]
   W-048  bug    [done]     04 moves frame overfull: make overflow exits 1   (filed during T-108) -- T-118 [done]
@@ -276,8 +276,8 @@ flowchart TD
   W043 --> T109["T-109 done: Trim the 06 exhibits -> core docstring, from-bits at the test, shell checkout at its body"]
   W043 --> T110["T-110 done: Cut 06 -> 06-simple/index.md eight frames"]
   W043 --> T111["T-111 done: Cut 07 -> 07-close/index.md two frames"]
-  E005 --> W044["W-044 issue todo: lengths: the snippet cap in make check"]
-  W044 --> T112["T-112 todo: Count the included lines -> too_long in scripts/utils/lengths.py"]
+  E005 --> W044["W-044 issue doing: lengths: the snippet cap in make check"]
+  W044 --> T112["T-112 doing: Count the included lines -> too_long in scripts/utils/lengths.py -- ACTIVE LEAF"]
   W044 --> T113["T-113 todo: Gate the lengths -> make lengths in make check"]
   E005 --> W045["W-045 bug done: deck bold renders regular: Adwaita Sans has no bold shape"]
   W045 --> T114["T-114 done: Give Adwaita Sans a bold face -> mainfontoptions and sansfontoptions in 00-frontmatter/meta.yaml"]
@@ -302,8 +302,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E005 doing
+  class E005,W044,T112 doing
   class W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,T116,W042,T105,T106,T107,T108,W043,T109,T110,T111,W045,T114,W046,T115,W048,T118 done
-  class W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094,W047,T117 todo
+  class T113,W036,T089,T095,W037,T091,T092,W038,T093,T094,W047,T117 todo
   class T090 pruned
 ```
