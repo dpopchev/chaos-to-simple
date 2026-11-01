@@ -369,8 +369,8 @@ def stacked_bar(out: Path, bars: Sequence[Bar], title: str = "paths to reason ab
         ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=22)
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)
+    ax.set_ylim(0, bar_headroom(top))
     ax.set_ylabel(title, fontsize=22)
-    ax.set_title(title, fontsize=22)
     ax.tick_params(labelsize=22)
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
