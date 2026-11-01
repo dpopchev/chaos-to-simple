@@ -84,7 +84,7 @@ adds paths; one that passes flags multiplies them.
 
 ## Epilogue: marketing's seventh if
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="60%"}
