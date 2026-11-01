@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-005 > W-048   | blocked: 0 | todo roots: 4 | done: 149 | pruned: 2
+open path: E-005   | blocked: 0 | todo roots: 4 | done: 150 | pruned: 2
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-005         [doing]    deck: the 40-minute cut
   W-044  issue  [todo]     lengths: the snippet cap in make check -- T-112 [todo], T-113 [todo]
   W-045  bug    [done]     deck bold renders regular: Adwaita Sans has no bold shape   (filed during T-097) -- T-114 [done]
   W-046  bug    [done]     count along prints its include fences instead of the doubling rows   (filed during T-101) -- T-115 [done]
-  W-048  bug    [doing]    04 moves frame overfull: make overflow exits 1   (filed during T-108) -- T-118 [done]
+  W-048  bug    [done]     04 moves frame overfull: make overflow exits 1   (filed during T-108) -- T-118 [done]
 W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [todo]
 W-037  bug    [todo]     (standalone) route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
 W-038  bug    [todo]     (standalone) epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [todo], T-094 [todo]
@@ -283,7 +283,7 @@ flowchart TD
   W045 --> T114["T-114 done: Give Adwaita Sans a bold face -> mainfontoptions and sansfontoptions in 00-frontmatter/meta.yaml"]
   E005 --> W046["W-046 bug done: count along prints its include fences instead of the doubling rows"]
   W046 --> T115["T-115 done: Fence the overlays -> 01-bits/index.md count along with raw latex begin and end fences"]
-  E005 --> W048["W-048 bug doing: 04 moves frame overfull: make overflow exits 1"]
+  E005 --> W048["W-048 bug done: 04 moves frame overfull: make overflow exits 1"]
   W048 --> T118["T-118 done: Fit the moves frame -> 04-what/index.md 'Bounded contexts, the moves' at moves.png height 60%"]
   W036["W-036 spike todo, standalone: talk: which of the review remarks the 40-minute deck adopts"]
   W036 --> T089["T-089 todo: Write the remarks into the repository -> docs/cut-40.md"]
@@ -302,8 +302,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E005,W048 doing
-  class W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,T116,W042,T105,T106,T107,T108,W045,T114,W046,T115,T118 done
+  class E005 doing
+  class W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,T116,W042,T105,T106,T107,T108,W045,T114,W046,T115,W048,T118 done
   class W043,T109,T110,T111,W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094,W047,T117 todo
   class T090 pruned
 ```
