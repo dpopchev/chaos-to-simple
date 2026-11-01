@@ -25,6 +25,7 @@ from scripts.utils.figures import (
     route_label_point,
     route_layout,
     seam,
+    seam_boxes,
     stacey,
     stop_label,
     story,
@@ -51,6 +52,12 @@ def test_ports_of_reads_three_sum_types() -> None:
         ("Warehouse", "Reserved | OutOfStock"),
         ("Mailer", "Sent | Bounced"),
     ]
+
+
+@pytest.mark.model
+def test_seam_box_colour_is_the_actor_colour() -> None:
+    ports = ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV))
+    assert seam_boxes(ports) == ("#D55E00", "#56B4E9", "#F0E442")
 
 
 @pytest.mark.edge

@@ -11,7 +11,8 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.examples import CardCounts
-from scripts.utils.palette import colour_of, label_of
+from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
+from scripts.utils.palette import colour_of, icon_of, label_of
 from scripts.utils.paths import CastRow, Rule, load_incidents
 
 # Palette keys of the four Stacey zones, in ZONES order.
@@ -191,18 +192,45 @@ class Port:
 
     context: str
     code: str
+    actor: str
 
 
 def ports_of(rules: Sequence[Rule], cast: Sequence[CastRow]) -> tuple[Port, ...]:
-    """Read the shell rows in csv order as ports: the provider's label, the code its sum type."""
-    asked = {c.bit: label_of(c.requested_by) for c in cast}
-    return tuple(Port(asked[rule.bit], rule.code) for rule in rules if rule.scope == "shell")
+    """Read the shell rows in csv order as ports: provider's label, its sum type, its actor key."""
+    asked = {c.bit: c.requested_by for c in cast}
+    return tuple(
+        Port(label_of(asked[rule.bit]), rule.code, asked[rule.bit])
+        for rule in rules
+        if rule.scope == "shell"
+    )
+
+
+def seam_boxes(ports: Sequence[Port]) -> tuple[str, ...]:
+    """Return the face colour of each port box: its actor's palette colour."""
+    return tuple(colour_of(port.actor) for port in ports)
+
+
+def label_ink(face: str) -> str:
+    """Return black on a light face and white on a dark one, by relative luminance."""
+    r, g, b = (int(face[i : i + 2], 16) / 255 for i in (1, 3, 5))
+    linear = [c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4 for c in (r, g, b)]
+    luminance = 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2]
+    return "black" if luminance > 0.3 else "white"
+
+
+def icon_file() -> Path | None:
+    """Return the Font Awesome 7 Free Solid file, or None when fontconfig finds none."""
+    try:
+        return font_file(FONT_AWESOME, fc_list)
+    except FontMissingError:
+        return None
 
 
 def seam(out: Path, ports: Sequence[Port]) -> Path:
     """Draw the core box, a port box per Port, and each answer's sum type on its arrow."""
     style.apply()
     import matplotlib.pyplot as plt
+    from matplotlib.font_manager import FontProperties
     from matplotlib.patches import FancyBboxPatch
 
     n = len(ports)
@@ -217,26 +245,39 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
         )
     )
     ax.text(1.8, mid, "core\npure rules", ha="center", va="center", fontsize=16, color="white")
-    for row, port in enumerate(ports):
+    faces = seam_boxes(ports)
+    font = icon_file()
+    for row, (port, face) in enumerate(zip(ports, faces, strict=True)):
         y = n - 1 - row
+        ink = label_ink(face)
         ax.add_patch(
             FancyBboxPatch(
                 (port_left, y - port_h / 2),
                 port_w,
                 port_h,
                 boxstyle=shape,
-                facecolor=colour,
+                facecolor=face,
                 edgecolor="none",
             )
         )
+        if font is not None:
+            ax.text(
+                port_left + 0.1,
+                y,
+                glyph(icon_of(port.actor), FONT_AWESOME),
+                ha="left",
+                va="center",
+                fontproperties=FontProperties(fname=font, size=16),
+                color=ink,
+            )
         ax.text(
-            port_left + port_w / 2,
+            port_left + port_w / 2 + (0.2 if font is not None else 0.0),
             y,
             port.context,
             ha="center",
             va="center",
-            fontsize=16,
-            color="white",
+            fontsize=16 if font is None else 14,
+            color=ink,
         )
         ax.annotate(
             "",
