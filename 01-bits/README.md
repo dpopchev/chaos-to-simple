@@ -21,6 +21,8 @@ campaign on time, one if at a time.
 - `s01_bits/two_ifs.py`: the two-ifs zoom-in
 - `tests/test_chaos.py`: two deceptive tests and the planted bug, xfail strict
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
+- `data/october.csv`: the four October weeks of expected and received shipping income
+- `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 BGN, and its calendar
 - `index.md`: the seven slides
 
 ## Uses
