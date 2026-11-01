@@ -40,13 +40,13 @@ campaign on time, one if at a time.
 
 ## Slides
 
-- [x] 1. The cast behind the ifs: the cast table by source line
-- [x] 2. Two tests. Coverage says 100%: `snippet=two-tests` and the coverage summary
-- [x] 3. Finance found it, not the tests: incident I1
-- [x] 4. The path nobody ran: `snippet=bug`, run live
-- [x] 5. Count along: one if, one bit, to 64 (six overlays, one doubling row per click)
-- [x] 6. A path is a six-bit number: the grid and the three counting lines
-- [x] 7. Parked for section 03, with the line glued at its foot (`\theline`)
+- [x] 1. Step 0, no ifs, paths=1: the customer's bubble over the skeleton diff
+- [x] 2. Step 1, one if, paths=2: marketing's AUTUMN coupon, `step-1.diff`
+- [x] 3. Step 2, two ifs, paths=4: the loyalty program's member discount, `step-2.diff`
+- [x] 4. Step 3, three ifs, paths=8: free shipping from 50 BGN, `step-3.diff`
+- [x] 5. Step 4, four ifs, paths=16: shipping abroad at 20 BGN, `step-4.diff`
+- [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 BGN, `step-5.diff`
+- [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, with the dev and marketing bubbles, `step-6.diff`
 
 ## Live
 
