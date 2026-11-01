@@ -18,6 +18,8 @@
         --out build/04-what/contexts.txt
     python -m scripts.paths doubling --cast data/cast.csv [--upto N] \\
         --out build/01-bits/doubling.txt
+    python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
+        --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
@@ -30,6 +32,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from scripts.utils.palette import load_actors
 from scripts.utils.paths import (
     bars_from_rules,
     cast_table,
@@ -50,6 +53,18 @@ from scripts.utils.paths import (
     stacked_bar,
     wounds_selector,
 )
+from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
+
+
+def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -> None:
+    """Write step-0..6.diff and bubble-0..8.txt into out_dir."""
+    text = source.read_text(encoding="ascii")
+    labels = {key: actor.label for key, actor in load_actors(actors).items()}
+    out_dir.mkdir(parents=True, exist_ok=True)
+    for n in range(STEPS):
+        (out_dir / f"step-{n}.diff").write_text(step_diff(text, n), encoding="ascii")
+    for n, row in enumerate(load_bubbles(bubbles)):
+        (out_dir / f"bubble-{n}.txt").write_text(bubble(row, labels), encoding="ascii")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -72,8 +87,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             "doubling",
             "growth",
             "wounds",
+            "storyboard",
         ],
     )
+    parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
+    parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
     parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
@@ -105,6 +123,12 @@ def main(argv: Sequence[str] | None = None) -> int:
             figsize=(4.5, 4.5),
             fontsize=10,
         )
+        return 0
+
+    if args.what == "storyboard":
+        if args.out is None:
+            parser.error("storyboard needs --out, a directory")
+        write_storyboard(args.source, args.bubbles, args.actors, args.out)
         return 0
 
     if args.what == "growth":

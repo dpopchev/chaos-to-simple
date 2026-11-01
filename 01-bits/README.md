@@ -25,13 +25,15 @@ campaign on time, one if at a time.
 
 ## Uses
 
-- `data/cast.csv` (the six requests and their words), rendered to `build/01-bits/cast.txt`
+- `data/bubbles.csv` (the nine bubbles) and `data/cast.csv` (the six requests and their words)
 - `data/incident.txt` (finance report of incident I1)
 - nothing else outside this directory; this stage of the example is standalone on purpose
 
 ## Produces
 
-- `build/01-bits/cast.txt`: the cast table beside the checkout
+- `build/01-bits/step-0.diff` .. `step-6.diff`: the checkout growing one request at a time
+- `build/01-bits/bubble-0.txt` .. `bubble-8.txt`: the actor, the date and the words of each
+  request, from `data/bubbles.csv`
 - `build/01-bits/coverage.txt`: the two tests under branch coverage
 - `build/01-bits/two_ifs.txt`: the two-ifs zoom-in under branch coverage
 - `build/01-bits/grid.txt`: the 64 six-bit path strings
