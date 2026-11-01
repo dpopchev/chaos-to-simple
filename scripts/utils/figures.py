@@ -379,6 +379,21 @@ def route_box_half_width(stops: Sequence[Stop]) -> float:
     return 0.0095 * longest
 
 
+def route_arrow_ends(
+    start: tuple[float, float], end: tuple[float, float], half_w: float, half_h: float
+) -> tuple[tuple[float, float], tuple[float, float]]:
+    """Return where the segment leaves the start box and enters the end box, a gap outside each.
+
+    Each box is centred on its point, padded by the 0.01 of the FancyBboxPatch.
+    """
+    pad, gap = 0.01, 0.01
+    dx, dy = end[0] - start[0], end[1] - start[1]
+    reach_x, reach_y = half_w + pad + gap, half_h + pad + gap
+    ratios = [reach / abs(d) for reach, d in ((reach_x, dx), (reach_y, dy)) if d]
+    t = min(ratios) if ratios else 0.0
+    return (start[0] + dx * t, start[1] + dy * t), (end[0] - dx * t, end[1] - dy * t)
+
+
 def route(
     out: Path, route_csv: Path = DATA / "route.csv", incidents_csv: Path = DATA / "incidents.csv"
 ) -> None:

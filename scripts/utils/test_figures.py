@@ -19,6 +19,7 @@ from scripts.utils.figures import (
     moves_figure,
     ports_of,
     route,
+    route_arrow_ends,
     route_box_half_width,
     route_layout,
     seam,
@@ -97,6 +98,12 @@ def test_route_box_half_width_fits_the_longest_label() -> None:
     wide = (Stop("00", "frontmatter", "", "?", ""), Stop("01", "bits", "chaos", "64", "count"))
     narrow = (Stop("01", "bits", "chaos", "64", "count"),)
     assert route_box_half_width(wide) > route_box_half_width(narrow)
+
+
+@pytest.mark.model
+def test_route_arrow_ends_on_the_box_edge() -> None:
+    _, arrow_end = route_arrow_ends((0.0, 0.0), (1.0, 0.0), 0.1, 0.07)
+    assert arrow_end[0] <= 1 - 0.11
 
 
 @pytest.mark.model
