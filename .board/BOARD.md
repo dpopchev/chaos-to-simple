@@ -1,12 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 2 | done: 123 | pruned: 1
+open path: W-035 > T-087   | blocked: 0 | todo roots: 2 | done: 123 | pruned: 1
 
 ## Tree
 
 ```text
-W-035  bug    [todo]     (standalone) epilogue chart: the labels shrink to about 7 points on the slide   (filed during W-033) -- T-087 [todo], T-088 [todo]
+W-035  bug    [doing]    (standalone) epilogue chart: the labels shrink to about 7 points on the slide   (filed during W-033) -- T-087 [doing]   <- ACTIVE LEAF, T-088 [todo]
 W-036  spike  [todo]     (standalone) talk: which of the review remarks the 40-minute deck adopts   (filed during W-034) -- T-089 [todo], T-090 [todo]
+W-037  bug    [todo]     (standalone) route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
 ```
 
 ## Closed
@@ -234,16 +235,20 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every ar
 ## Diagram
 ```mermaid
 flowchart TD
-  W035["W-035 bug todo, standalone: epilogue chart: the labels shrink to about 7 points on the slide"]
-  W035 --> T087["T-087 todo: Draw every chart text at 22 points -> stacked_bar texts at fontsize 22"]
+  W035["W-035 bug doing, standalone: epilogue chart: the labels shrink to about 7 points on the slide"]
+  W035 --> T087["T-087 doing: Draw every chart text at 22 points -> stacked_bar texts at fontsize 22 -- ACTIVE LEAF"]
   W035 --> T088["T-088 todo: Look at the epilogue slide at 22 points -> local/state/epilogue-22.png read"]
   W036["W-036 spike todo, standalone: talk: which of the review remarks the 40-minute deck adopts"]
   W036 --> T089["T-089 todo: Write the remarks into the repository -> docs/cut-40.md"]
   W036 --> T090["T-090 todo: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
+  W037["W-037 bug todo, standalone: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
+  W037 --> T091["T-091 todo: Compute the clearing offset -> route_label_offset(words, tail, head)"]
+  W037 --> T092["T-092 todo: Place each label clear of its arrow -> route(out) calls route_label_offset"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W035,T087,T088,W036,T089,T090 todo
+  class W035,T087 doing
+  class T088,W036,T089,T090,W037,T091,T092 todo
 ```
