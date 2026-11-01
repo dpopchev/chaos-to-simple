@@ -69,7 +69,7 @@ wound from the earlier sections now has a test with its name on it.
 
 ## The number {paths=72}
 
-![](build/06-simple/paths.png){height=60%}
+![](build/06-simple/paths.png){height=65%}
 
 ```{.text include=build/data/splits.txt}
 ```
@@ -87,7 +87,7 @@ adds paths; one that passes flags multiplies them.
 \fvset{fontsize=\scriptsize}
 
 :::: {.columns}
-::: {.column width="60%"}
+::: {.column width="70%"}
 
 ```{.text include=06-simple/data/teaser.txt}
 ```
@@ -99,9 +99,9 @@ adds paths; one that passes flags multiplies them.
 ```
 
 :::
-::: {.column width="40%"}
+::: {.column width="30%"}
 
-![](build/06-simple/epilogue.png)
+![](build/06-simple/epilogue.png){height=65%}
 
 :::
 ::::
