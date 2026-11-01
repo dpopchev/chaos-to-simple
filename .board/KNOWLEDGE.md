@@ -6,12 +6,29 @@
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-11-01 E-004: standing: 00-frontmatter/preamble.tex:26 sets code blocks to \footnotesize, so only \fvset{fontsize=...} in a slide body shrinks code -> make overflow and make widths guard frame height and column width supersedes: W-029#1, W-031#1
 - 2026-11-01 E-005: standing: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run supersedes: E-005#1
+- 2026-11-02 E-007: fact: counts.txt holds no 72, the example-name tests exist and make lines checks both columns -> the pasted T-060, T-064 and T-078 were not filed
+- 2026-11-02 E-007: fact: fontawesome5.sty and three Font Awesome OTF faces are installed since 2026-11-01, Hack Nerd Font under \~/.local/share/fonts -> W-053 picks the font, the labelled box stays the fallback
+- 2026-11-02 E-007: fact: mmdc is installed since 2026-11-01 (the E-001 finding is stale) -> the E-002 Decision, not the toolchain, keeps Mermaid out
+- 2026-11-02 E-007: fact: october.csv sums to 1,214 free orders and 6,070 BGN, and every date in bubbles, incidents and october falls in its week on the calendar 2026-07-27 + 7 x (N - 1) -> test_october and one calendar test per file pin them
+- 2026-11-02 E-007: fact: pdfinfo and pdftoppm are absent, gs is present and counts pages (49 today) -> every page check uses gs
+- 2026-11-02 E-007: fact: rules.csv shell rows named payment, warehouse and mail as contexts, none a contexts.csv key -> they become shell; the actor comes through cast.csv requested_by
+- 2026-11-02 E-007: fact: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py
+- 2026-11-02 E-007: fact: the data the briefs copy lives in local/briefs/e007/ (untracked), one file per target path -> a lane copies, never retypes
+- 2026-11-02 E-007: fact: the pasted route.csv put 01 and 06 on the diagonal and 01, 02 beyond radius 1 -> corrected coordinates in local/briefs/e007/data/route.csv, the BOOM band open above 0.75
+- 2026-11-02 E-007: fact: the pasted tested.csv I1 row was 000001; the bug path sets b0 and b2, 000101 as the grid prints it -> the corrected row is in local/briefs/e007
+- 2026-11-02 E-007: fact: the talk is 2026-11-05 (00-frontmatter/meta.yaml) and the fallback deck is v0.6.1 -> a work item that cannot land by the evening of 2026-11-04 is parked, never rushed
 
 ## Open questions
-- none recorded
+- 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
+- 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
+- 2026-11-02 E-007: open: shop named or nameless
+- 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- none recorded
+- 2026-11-02 E-007: W-050 and W-051 land first; the developer tags v0.6.1 as the talk-day fallback deck before W-052 starts, since the skeleton stubs main until W-069 lands (developer, 2026-11-01)
+- 2026-11-02 E-007: figures stay matplotlib, E-002 stands: the manifest rows journey, moves and ports are produced by scripts.figures, not mmdc (developer, 2026-11-01)
+- 2026-11-02 E-007: the deck is 45 minutes and 48 frames (title, six section frames, 41 content); 07 keeps no section frame, E-005 C7 stands (developer, 2026-11-01)
+- 2026-11-02 E-007: the one-assert gate covers the exhibit tests too: W-067 lifts the E-001 exemption in conftest.py; the category-marker exemption stays (developer, 2026-11-01)
 
 ## Deviations
 - none recorded

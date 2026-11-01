@@ -1,8 +1,32 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 174 | pruned: 2
+open path: none   | blocked: 0 | todo roots: 1 | done: 174 | pruned: 2
 
 ## Tree
+
+```text
+E-007         [todo]     deck v2: the stage, the counter one bit at a time, the checkout changing on screen
+  W-050  bug    [todo]     06 We counted them shows the whole suite's count -- T-122 [todo], T-123 [todo]
+  W-051  bug    [todo]     06 the number and epilogue charts render small with overlapping labels -- T-124 [todo], T-125 [todo]
+  W-052  issue  [todo]     skeleton: the new frame plan builds end to end on stubs -- T-126 [todo], T-127 [todo], T-128 [todo]
+  W-053  spike  [todo]     the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font -- T-129 [todo], T-130 [todo]
+  W-054  issue  [todo]     one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [todo], T-132 [todo], T-133 [todo]
+  W-055  issue  [todo]     00: the business map and the agenda as a pictogram strip -- T-134 [todo], T-135 [todo], T-136 [todo]
+  W-056  issue  [todo]     01: the storyboard, the function written one request at a time -- T-137 [todo], T-138 [todo], T-139 [todo]
+  W-057  issue  [todo]     01: past me's two tests and what coverage saw -- T-140 [todo], T-141 [todo], T-142 [todo]
+  W-058  issue  [todo]     01: finance found it, as a chart -- T-143 [todo], T-144 [todo], T-145 [todo]
+  W-059  issue  [todo]     01: the path nobody ran, and why nobody ran it -- T-146 [todo], T-147 [todo], T-148 [todo]
+  W-060  issue  [todo]     02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [todo], T-150 [todo], T-151 [todo]
+  W-061  spike  [todo]     the source behind the BOOM label -- T-152 [todo], T-153 [todo]
+  W-062  issue  [todo]     03: the room as a journey, a log and a retro table -- T-154 [todo], T-155 [todo], T-156 [todo], T-157 [todo]
+  W-063  issue  [todo]     03: the explosion to 512 in the style of 01 -- T-158 [todo], T-159 [todo], T-160 [todo]
+  W-064  issue  [todo]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [todo], T-162 [todo]
+  W-065  issue  [todo]     04: the diff ladder begins, the checkout stays on screen -- T-163 [todo], T-164 [todo], T-165 [todo], T-166 [todo]
+  W-066  issue  [todo]     05: the seam as the next edit of the same function -- T-167 [todo], T-168 [todo], T-169 [todo]
+  W-067  issue  [todo]     one assert per test, enforced by the build for the exhibit tests too -- T-170 [todo], T-171 [todo], T-172 [todo]
+  W-068  issue  [todo]     06: the last rung, the seam cut, the paths counted, the seventh if -- T-173 [todo], T-174 [todo]
+  W-069  issue  [todo]     lines and counter pinned to the plan -- T-175 [todo], T-176 [todo]
+```
 
 ## Closed
 
@@ -319,9 +343,86 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
+  E007["E-007 todo: deck v2: the stage, the counter one bit at a time, the checkout changing on screen"]
+  E007 --> W050["W-050 bug todo: 06 We counted them shows the whole suite's count"]
+  W050 --> T122["T-122 todo: Restrict the counted run to the path tests -> build/06-simple/pytest-core.txt"]
+  W050 --> T123["T-123 todo: Point the frame at the measured count -> 06-simple/index.md"]
+  E007 --> W051["W-051 bug todo: 06 the number and epilogue charts render small with overlapping labels"]
+  W051 --> T124["T-124 todo: Reshape the two chart figures -> build/06-simple/paths.png wide, build/06-simple/epilogue.png near-square"]
+  W051 --> T125["T-125 todo: Lay the two frames out in columns -> 06-simple/index.md"]
+  E007 --> W052["W-052 issue todo: skeleton: the new frame plan builds end to end on stubs"]
+  W052 --> T126["T-126 todo: Add the artifact manifest, the stub writer and the strict guard -> make stubs"]
+  W052 --> T127["T-127 todo: Add the frame budget helper -> scripts/utils/budget.py"]
+  W052 --> T128["T-128 todo: Rewrite the eight index files to the frame plan -> 00-frontmatter/index.md .. 07-close/index.md"]
+  E007 --> W053["W-053 spike todo: the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font"]
+  W053 --> T129["T-129 todo: Probe the two renderers -> build/spike/fa-probe.pdf, build/spike/fa-probe.png"]
+  W053 --> T130["T-130 todo: Record the decision -> 00-frontmatter/README.md"]
+  E007 --> W054["W-054 issue todo: one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib"]
+  W054 --> T131["T-131 todo: Add the actors and contexts datasets and the palette module -> scripts/utils/palette.py"]
+  W054 --> T132["T-132 todo: Generate the actor macros -> build/00-frontmatter/actors.tex"]
+  W054 --> T133["T-133 todo: Enforce the palette in figures -> scripts/utils/test_palette_usage.py"]
+  E007 --> W055["W-055 issue todo: 00: the business map and the agenda as a pictogram strip"]
+  W055 --> T134["T-134 todo: Render the business map -> build/00-frontmatter/business-map.png"]
+  W055 --> T135["T-135 todo: Replace the route dataset and render the agenda strip -> build/00-frontmatter/agenda.png"]
+  W055 --> T136["T-136 todo: Finish the 00 frames -> 00-frontmatter/index.md"]
+  E007 --> W056["W-056 issue todo: 01: the storyboard, the function written one request at a time"]
+  W056 --> T137["T-137 todo: Mark the steps in the exhibit and strip them on include -> 01-bits/s01_bits/chaos.py"]
+  W056 --> T138["T-138 todo: Render the step diffs and bubbles -> build/01-bits/step-0.diff .. step-6.diff, bubble-0.txt .. bubble-8.txt"]
+  W056 --> T139["T-139 todo: Finish the seven storyboard frames -> 01-bits/index.md frames 1 to 7"]
+  E007 --> W057["W-057 issue todo: 01: past me's two tests and what coverage saw"]
+  W057 --> T140["T-140 todo: Simplify past me's tests and restrict the coverage run -> build/01-bits/coverage.txt"]
+  W057 --> T141["T-141 todo: Render the coverage view -> build/01-bits/coverage-view.png"]
+  W057 --> T142["T-142 todo: Finish the tests frame -> 01-bits/index.md frame 8"]
+  E007 --> W058["W-058 issue todo: 01: finance found it, as a chart"]
+  W058 --> T143["T-143 todo: Add the October dataset with pinned totals -> 01-bits/data/october.csv"]
+  W058 --> T144["T-144 todo: Render the finance chart -> build/01-bits/finance.png, build/01-bits/finance.txt"]
+  W058 --> T145["T-145 todo: Finish the finance frame with the squeeze -> 01-bits/index.md frame 9"]
+  E007 --> W059["W-059 issue todo: 01: the path nobody ran, and why nobody ran it"]
+  W059 --> T146["T-146 todo: Render the marked grid image -> build/01-bits/grid.png"]
+  W059 --> T147["T-147 todo: Render the doubling curve -> build/01-bits/doubling.png, build/01-bits/doubling.txt"]
+  W059 --> T148["T-148 todo: Finish the red-test and grid frames -> 01-bits/index.md frames 10 and 11"]
+  E007 --> W060["W-060 issue todo: 02: the Stacey matrix as specified, radial with the Who diagonal"]
+  W060 --> T149["T-149 todo: Add the zones and labels datasets and the matrix renderer -> build/02-stacey/stacey.png"]
+  W060 --> T150["T-150 todo: Render the highlighted minimaps -> build/02-stacey/stacey-01.png .. stacey-06.png"]
+  W060 --> T151["T-151 todo: Finish the 02 frames -> 02-stacey/index.md"]
+  E007 --> W061["W-061 spike todo: the source behind the BOOM label"]
+  W061 --> T152["T-152 todo: Collect candidate sources -> 02-stacey/data/boom-sources.md"]
+  W061 --> T153["T-153 todo: Record the decision and set the label -> 02-stacey/README.md, 02-stacey/data/labels.csv"]
+  E007 --> W062["W-062 issue todo: 03: the room as a journey, a log and a retro table"]
+  W062 --> T154["T-154 todo: Replace the red cards with a dataset -> data/questions.csv"]
+  W062 --> T155["T-155 todo: Render the retro table -> build/03-chaos/retro.txt"]
+  W062 --> T156["T-156 todo: Draw the journey and write the room log -> build/03-chaos/diagrams/journey.png, 03-chaos/data/room.txt"]
+  W062 --> T157["T-157 todo: Finish the 03 frames 1 to 3 -> 03-chaos/index.md"]
+  E007 --> W063["W-063 issue todo: 03: the explosion to 512 in the style of 01"]
+  W063 --> T158["T-158 todo: Render the nine-bit panels -> build/03-chaos/grid-9.png"]
+  W063 --> T159["T-159 todo: Extend the doubling curve to the room -> build/03-chaos/doubling-512.png"]
+  W063 --> T160["T-160 todo: Finish the explosion frame -> 03-chaos/index.md frame 4"]
+  E007 --> W064["W-064 issue todo: the rules board, the artifact everyone sees from the room to the tests"]
+  W064 --> T161["T-161 todo: Render the board per stage -> build/03-chaos/board.png, build/04-what/board.png, build/05-how/board.png, build/07-close/board.png"]
+  W064 --> T162["T-162 todo: Place the board on four frames -> 03-chaos, 04-what, 05-how, 07-close index.md"]
+  E007 --> W065["W-065 issue todo: 04: the diff ladder begins, the checkout stays on screen"]
+  W065 --> T163["T-163 todo: Add the staged checkouts with their tests -> 04-what/s04_what/checkout_fixed.py, 04-what/s04_what/checkout_v4.py"]
+  W065 --> T164["T-164 todo: Render the colour-coded checkout -> build/04-what/colorcode.png"]
+  W065 --> T165["T-165 todo: Render the diffs between stages -> build/04-what/fix.diff, build/04-what/v4.diff"]
+  W065 --> T166["T-166 todo: Finish the 04 frames -> 04-what/index.md"]
+  E007 --> W066["W-066 issue todo: 05: the seam as the next edit of the same function"]
+  W066 --> T167["T-167 todo: Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py"]
+  W066 --> T168["T-168 todo: Render the v4-to-v5 diff -> build/05-how/v5.diff"]
+  W066 --> T169["T-169 todo: Finish the 05 frames -> 05-how/index.md"]
+  E007 --> W067["W-067 issue todo: one assert per test, enforced by the build for the exhibit tests too"]
+  W067 --> T170["T-170 todo: Refactor the exhibit tests into one-assert functions and classes -> 01-bits/tests, 04-what/tests, 05-how/tests, 06-simple/tests"]
+  W067 --> T171["T-171 todo: Lift the exhibit exemption from the assert gate -> conftest.py"]
+  W067 --> T172["T-172 todo: Point the wounds run at the class names -> build/06-simple/wounds.txt"]
+  E007 --> W068["W-068 issue todo: 06: the last rung, the seam cut, the paths counted, the seventh if"]
+  W068 --> T173["T-173 todo: Render the seventh-if diff -> build/06-simple/seventh.diff"]
+  W068 --> T174["T-174 todo: Finish the 06 frames -> 06-simple/index.md"]
+  E007 --> W069["W-069 issue todo: lines and counter pinned to the plan"]
+  W069 --> T175["T-175 todo: Add the counter helper -> scripts/utils/counter.py"]
+  W069 --> T176["T-176 todo: Pin the deck's counters to the route -> scripts/utils/test_counter_plan.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E007,W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176 todo
 ```
