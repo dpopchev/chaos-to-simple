@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-006 > W-049   | blocked: 0 | todo roots: 0 | done: 172 | pruned: 2
+open path: E-006   | blocked: 0 | todo roots: 0 | done: 173 | pruned: 2
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-006         [doing]    deck: talk day -- legible figures, true docs, the revie
   W-037  bug    [done]     route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [done], T-092 [done]
   W-038  bug    [done]     epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [done], T-094 [done], T-121 [done]
   W-047  bug    [done]     03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [done]
-  W-049  bug    [doing]    epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [done], T-120 [done]
+  W-049  bug    [done]     epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [done], T-120 [done]
 ```
 
 ## Closed
@@ -312,7 +312,7 @@ flowchart TD
   W038 --> T121["T-121 done: Place each thin-slice label beside its slice -> slice_label_point(x, bottom, value) and stacked_bar calling it"]
   E006 --> W047["W-047 bug done: 03-chaos README Done-when still names the 72 count"]
   W047 --> T117["T-117 done: Fix the Done-when -> 03-chaos/README.md names 2^9 = 512 only"]
-  E006 --> W049["W-049 bug doing: epilogue frame set in \tiny: the two-column layout fits only at 5pt"]
+  E006 --> W049["W-049 bug done: epilogue frame set in \tiny: the two-column layout fits only at 5pt"]
   W049 --> T119["T-119 done: Wrap the two long lines -> teaser.txt and the fee-digital snippet with no line over 71 characters"]
   W049 --> T120["T-120 done: Set the epilogue at \scriptsize -> 06-simple/index.md frame 'Epilogue: marketing's seventh if'"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -320,7 +320,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E006,W049 doing
-  class W036,T089,T095,W037,T091,T092,W038,T093,T094,T121,W047,T117,T119,T120 done
+  class E006 doing
+  class W036,T089,T095,W037,T091,T092,W038,T093,T094,T121,W047,T117,W049,T119,T120 done
   class T090 pruned
 ```
