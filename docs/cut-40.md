@@ -161,3 +161,234 @@ when the frame is gone.
 - build/06-simple/epilogue.txt is a build artifact, not in git: its count is today's build, the
   three delta lines the brief names.
 - Frame 61 held 22 raw, 20 non-blank lines in four blocks; today's epilogue frame holds 13.
+
+## Plan
+
+The plan as filed on 2026-11-01, on the developer's word 'plan', from the coordinator's report
+of that day. Its draft, the brief of T-090, was pruned as superseded once E-005 was filed
+directly; the conflicts below quote their options from that brief. Read back with
+`board show E-005 --detail full` and `board show W-0nn --detail full`.
+
+### Epic E-005: deck: the 40-minute cut
+
+- Hypothesis: Does build/talk.pdf, cut to the 40-minute budget (44 frames: the title, six
+  section frames, 3+7+2+5+4+6+8+2 content frames) with the storyline fixes A1-A10 of the
+  2026-11-01 review, the believed / learned lines glued to each section's last frame, no
+  included snippet over its cap (guarded by make check) and the Q&A frame last, tell one story
+  in 40 minutes with 15 of Q&A?
+- Outcome: make talk builds the 40-minute deck: one counter reveal at 06, one table per
+  section, the line device on every section's last frame, no snippet over its cap, the
+  repository frame up for the Q&A.
+- Acceptance criteria:
+  - AC1 Given data/lines.csv, When make talk runs, Then sections 01-06 each end on a content
+    frame whose bottom shows the believed line in grey over the learned line in bold, with no
+    frame titled 'The line' left and make lines exiting 0. -> W-039
+  - AC2 Given the deck, When make talk runs, Then 00 shows three frames (the message; the
+    numbered checkout ending on the chat question; the route) and 01 seven (the cast by source
+    line without asides; two tests with a two-line coverage summary; I1; 'The path nobody
+    ran'; count along revealing one doubling row per click; the grid with three counting
+    lines; parked with the contract on its own line). -> W-040
+  - AC3 Given the deck, When make talk runs, Then 02 shows two frames ('I wanted to write a
+    test'; 'The agenda was a map' with the route) and 03 five (the room; the six questions
+    with a decided column whose rows 4-6 are the three effects; the map; the honest count
+    ending at 2^9 = 512 with no 72 or 22; 'First change' as bit, who, rule). -> W-041
+  - AC4 Given the deck, When make talk runs, Then 04 shows four frames ('The dispute closes'
+    with the sentence, Coupon.is_valid_on, shipping_fee and 'Values, never flags' as its
+    takeaway; a bit as a type; every bit has a home; the moves with the contract line) and 05
+    six (I3 over the numbered effect lines of chaos.py; the class at two methods; the hidden
+    bit; CQS with the three type lines; the ports as a picture; the moves table titled by the
+    refrain). -> W-042
+  - AC5 Given the deck, When make talk runs, Then 06 shows eight frames (the core whose
+    docstring reads 'Composes three contexts; every bit stays where it was named'; the
+    parametrized test alone; the count; the shell body alone; eight worlds; the wounds; the
+    number with the two split lines and the contract; the epilogue in two columns with the
+    chat line on top) and 07 two (the six lines; 'Q&A' with the repository link and six seeded
+    answers in its notes) with no 'Close' section frame. -> W-043
+  - AC6 Given the deck, When make check runs, Then make lengths is among its checks and exits
+    0 naming no included block over its cap. -> W-044
+
+### Order
+
+1. W-039 the line device first: every later work item lands its glued line on a frame it
+   rewrites.
+2. W-040, W-041, W-042, W-043 in story order, each depends_on W-039; W-043 also depends_on
+   W-041, whose build/data/splits.txt it shows.
+3. W-044 last, depends_on W-040..W-043: the cap gates the deck once the four pairs trimmed it.
+
+One lane; each work item lands a deck make talk builds.
+
+### Work items
+
+#### W-039 lines: the believed / learned device glued to each section's last frame
+
+- Kind: issue. Remarks: A8.
+- Hypothesis: Does one LaTeX macro, \theline{believed}{learned}, placed as the last line of
+  each section's last content frame, show the believed line in grey over the learned line in
+  bold at the frame bottom, let make lines still find both texts, and free the four separate
+  'The line' frames?
+- Criterion: Given data/lines.csv, When make talk runs, Then sections 01-06 each end on a
+  content frame whose bottom shows the believed line in grey over the learned line in bold,
+  with no frame titled 'The line' left and make lines exiting 0.
+- Tasks:
+  - T-096 Define the line block -> \theline in 00-frontmatter/preamble.tex
+  - T-097 Glue the lines -> 01..06 index.md end on \theline, no 'The line' frame
+
+#### W-040 00 and 01: the cut and the cast
+
+- Kind: issue. Remarks: A4, A5, A10, D3, D4.
+- Hypothesis: Does 00 at three frames and 01 at seven -- the cast by source line without
+  asides, a two-line coverage summary, 'The path nobody ran', the doubling revealed one row
+  per click, the grid with three counting lines, the contract on its own line -- keep the
+  opening at 9.5 minutes with the count to 64 intact?
+- Criterion: Given the deck, When make talk runs, Then 00 shows three frames (the message, the
+  numbered checkout ending on the chat question, the route) and 01 seven (the cast by source
+  line without asides, two tests with a two-line coverage summary, I1, 'The path nobody ran',
+  count along revealing one doubling row per click, the grid with three counting lines, parked
+  with the contract on its own line).
+- Tasks:
+  - T-098 Render the cast without asides -> cast_table by source line, doubling_table with
+    upto
+  - T-099 Render the artifacts of 01 -> doubling-1..6.txt and coverage-summary.txt from
+    01-bits/section.mk
+  - T-100 Cut 00 -> 00-frontmatter/index.md three frames
+  - T-101 Cut 01 -> 01-bits/index.md seven frames
+
+#### W-041 02 and 03: the cut and the counter's reveal
+
+- Kind: issue. Remarks: A1, A2, A7. Settles C4.
+- Hypothesis: Does 02 at two frames and 03 at five -- the route retitled 'The agenda was a
+  map', the six questions with a decided column, the honest count ending at 2^9 = 512 with the
+  split lines moved out to 06, 'First change' as bit, who, rule -- give the counter its reveal
+  in 06 while 02 and 03 keep 8.5 minutes?
+- Criterion: Given the deck, When make talk runs, Then 02 shows two frames ('I wanted to write
+  a test', 'The agenda was a map' with the route) and 03 five (the room, the six questions with
+  a decided column whose rows 4-6 are the three effects, the map, the honest count ending at
+  2^9 = 512 with no 72 or 22, 'First change' as bit, who, rule).
+- Tasks:
+  - T-102 Split the counts and name who asked -> scripts.paths splits and rules --columns
+  - T-103 Cut 02 -> 02-stacey/index.md two frames
+  - T-104 Cut 03 -> 03-chaos/index.md five frames
+  - T-116 Show the sentences -> 03-chaos/index.md 'First change' includes
+    build/03-chaos/rules.txt (filed during the work item, after T-104 closed)
+
+#### W-042 04 and 05: the cut and the I3 beat
+
+- Kind: issue. Remarks: A3, A10. Settles C1, C2, C5.
+- Hypothesis: Does 04 at four frames and 05 at six -- the dispute frame carrying is_valid_on,
+  shipping_fee and 'Values, never flags', I3 answered by the three numbered effect lines of
+  chaos.py before the class, the class at two methods, the three type lines, the moves table
+  titled by the refrain -- close I3 on the call order while 04 and 05 keep 11.5 minutes?
+- Criterion: Given the deck, When make talk runs, Then 04 shows four frames ('The dispute
+  closes' with the sentence, Coupon.is_valid_on, shipping_fee and 'Values, never flags' as its
+  takeaway, a bit as a type, every bit has a home, the moves with the contract line) and 05
+  six (I3 over the numbered effect lines of chaos.py, the class at two methods, the hidden
+  bit, CQS with the three type lines, the ports as a picture, the moves table titled by the
+  refrain).
+- Tasks:
+  - T-105 Trim the 05 exhibits -> oo at two methods, the types snippet in ports.py
+  - T-106 Render the effect lines -> scripts.paths effects and build/05-how/effects.txt
+  - T-107 Cut 04 -> 04-what/index.md four frames
+  - T-108 Cut 05 -> 05-how/index.md six frames
+
+#### W-043 06 and 07: the cut, the reveal and the Q&A
+
+- Kind: issue. Remarks: A1, A6, A9, A10, D5. Settles C6, C7.
+- Hypothesis: Does 06 at eight frames and 07 at two -- the core docstring without a count, the
+  parametrized test alone, the shell body, the number with the two split lines and the
+  contract, the epilogue in two columns with the chat line on top, the six lines, a Q&A frame
+  with the repository link -- give the counter its reveal at 'The number' and keep the
+  repository on screen for the Q&A?
+- Criterion: Given the deck, When make talk runs, Then 06 shows eight frames (the core whose
+  docstring names the three contexts and no count, the parametrized test alone, the count, the
+  shell body alone, eight worlds, the wounds, the number with the two split lines and the
+  contract, the epilogue in two columns with the chat line on top) and 07 two (the six lines,
+  'Q&A' with the repository link and six seeded answers in its notes) with no 'Close' section
+  frame.
+- Tasks:
+  - T-109 Trim the 06 exhibits -> core docstring, from-bits at the test, shell checkout at its
+    body
+  - T-110 Cut 06 -> 06-simple/index.md eight frames
+  - T-111 Cut 07 -> 07-close/index.md two frames
+
+#### W-044 lengths: the snippet cap in make check
+
+- Kind: issue. Remarks: D1. Settles C3.
+- Hypothesis: Does a make lengths check, counting the non-blank lines of every included block
+  against a cap of 14 or the cap=N an include carries, keep the trimmed deck from regressing
+  while the two exhibits over 14 by design stay whole?
+- Criterion: Given the deck, When make check runs, Then make lengths is among its checks and
+  exits 0 naming no included block over its cap.
+- Tasks:
+  - T-112 Count the included lines -> too_long in scripts/utils/lengths.py
+  - T-113 Gate the lengths -> make lengths in make check
+
+### Conflicts decided
+
+E-005's Decision of 2026-11-01: "plan: the tree of the coordinator's report of 2026-11-01
+filed on the developer's word 'plan', the seven conflicts C1-C7 at their leading options; the
+options stand in T-090's brief (pruned) and T-095 records the picks in docs/cut-40.md". Each
+conflict below lists its leading option first, then the flip, then the one taken and the work
+item that carried it.
+
+C1. 04 'One language': A2 keeps a bit / context / name / code table, the Keep / Cut table cuts
+frame 34 as a duplicate
+
+- Leading: cut 34; rules --columns still renders both tables and the code table waits for the
+  post.
+- Flip: keep 34 if the code column must precede 'The dispute closes'.
+- Taken: the leading option, by W-042 (frame 34 cut, the code table stays in
+  build/data/rules.txt for the post).
+
+C2. README rule 4 allows a line range only for generated text, A3 wants chaos.py lines 67-69
+
+- Leading: a generated build/05-how/effects.txt from the cast's s0-s2 fragments, numbered by
+  line_of.
+- Flip: amend rule 4 for a numbered excerpt of a snippet the deck already shows whole.
+- Taken: the leading option, by W-042 (T-106; README rule 4 stands).
+
+C3. D1's 14-line cap against the kept exhibits chaos.py:checkout (22 non-blank) and two-tests
+(19)
+
+- Leading: cap 14 with a visible cap=N attribute on those two includes.
+- Flip: no cap; make overflow guards the height alone.
+- Taken: the leading option, by W-044 (cap 14, cap=24 on chaos.py snippet=checkout in 00 and
+  test_chaos.py snippet=two-tests in 01).
+
+C4. A7's three options for growth.png
+
+- Leading: drop the frame for 40 minutes; the artifact stays for the Friday post.
+- Flip: move it to 01 beside count along (+1 frame, +0.5 min).
+- Taken: the leading option, by W-041 (frames 28 and 29 gone, growth.png an artifact for the
+  post).
+
+C5. 'Frame the 05 line accordingly'
+
+- Leading: data/lines.csv unchanged; the framing in the 05 frame titles and notes.
+- Flip: reword the 05 learned line to name the call order, which changes 07 too.
+- Taken: the leading option, by W-042 (data/lines.csv unchanged).
+
+C6. 'shell (checkout only)' is 19 lines with its seven-line signature
+
+- Leading: the snippet shows the body (12 lines); the signature is read from 05's ports
+  picture.
+- Flip: keep the signature with cap=20.
+- Taken: the leading option, by W-043 (T-109; the snippet runs from 'priced = price(request,
+  today)' to 'return Accepted').
+
+C7. Cutting frame 64 removes the only level-1 heading of 07-close/index.md
+
+- Leading: cut it and amend README.md.
+- Flip: keep the section frame (+1 frame).
+- Taken: the leading option, by W-043 (T-111; no 'Close' section frame, README.md 'Why
+  index.md' amended).
+
+### As landed
+
+Three bugs were filed and fixed during the burn of E-005, each under E-005:
+
+- W-045 deck bold renders regular: Adwaita Sans has no bold shape (found by W-039's run 1)
+- W-046 count along prints its include fences instead of the doubling rows (found by W-040's
+  run 1)
+- W-048 04 moves frame overfull: make overflow exits 1 (found by W-042's criterion run)
+
+E-005 closed on 2026-11-01, released as v0.5.0 at da1f165.
