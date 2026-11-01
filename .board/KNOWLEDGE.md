@@ -5,14 +5,13 @@
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-11-01 E-004: standing: 00-frontmatter/preamble.tex:26 sets code blocks to \footnotesize, so only \fvset{fontsize=...} in a slide body shrinks code -> make overflow and make widths guard frame height and column width supersedes: W-029#1, W-031#1
-- 2026-11-01 E-005: fact: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run
+- 2026-11-01 E-005: standing: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run supersedes: E-005#1
 
 ## Open questions
 - none recorded
 
 ## Decisions
-- 2026-11-01 E-005: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-01)
-- 2026-11-01 E-005: plan: the tree of the coordinator's report of 2026-11-01 filed on the developer's word 'plan', the seven conflicts C1-C7 at their leading options; the options stand in T-090's brief (pruned) and T-095 records the picks in docs/cut-40.md (developer, 2026-11-01)
+- none recorded
 
 ## Deviations
 - none recorded
