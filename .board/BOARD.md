@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007   | blocked: 0 | todo roots: 2 | done: 189 | pruned: 2
+open path: E-007 > W-054 > T-131   | blocked: 0 | todo roots: 2 | done: 189 | pruned: 2
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-051  bug    [done]     06 the number and epilogue charts render small with overlapping labels -- T-124 [done], T-125 [done]
   W-052  issue  [done]     skeleton: the new frame plan builds end to end on stubs -- T-126 [done], T-127 [done], T-128 [done]
   W-053  spike  [done]     the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font -- T-129 [done], T-130 [done]
-  W-054  issue  [todo]     one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [todo], T-132 [todo], T-133 [todo]
+  W-054  issue  [doing]    one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [doing]   <- ACTIVE LEAF, T-132 [todo], T-133 [todo]
   W-055  issue  [todo]     00: the business map and the agenda as a pictogram strip -- T-134 [todo], T-135 [todo], T-136 [todo]
   W-056  issue  [todo]     01: the storyboard, the function written one request at a time -- T-137 [todo], T-138 [todo], T-139 [todo]
   W-057  issue  [todo]     01: past me's two tests and what coverage saw -- T-140 [todo], T-141 [todo], T-142 [todo]
@@ -360,8 +360,8 @@ flowchart TD
   E007 --> W053["W-053 spike done: the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font"]
   W053 --> T129["T-129 done: Probe the two renderers -> build/spike/fa-probe.pdf, build/spike/fa-probe.png"]
   W053 --> T130["T-130 done: Record the decision -> 00-frontmatter/README.md"]
-  E007 --> W054["W-054 issue todo: one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib"]
-  W054 --> T131["T-131 todo: Add the actors and contexts datasets and the palette module -> scripts/utils/palette.py"]
+  E007 --> W054["W-054 issue doing: one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib"]
+  W054 --> T131["T-131 doing: Add the actors and contexts datasets and the palette module -> scripts/utils/palette.py -- ACTIVE LEAF"]
   W054 --> T132["T-132 todo: Generate the actor macros -> build/00-frontmatter/actors.tex"]
   W054 --> T133["T-133 todo: Enforce the palette in figures -> scripts/utils/test_palette_usage.py"]
   E007 --> W055["W-055 issue todo: 00: the business map and the agenda as a pictogram strip"]
@@ -433,7 +433,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007 doing
+  class E007,W054,T131 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W071,T178 done
-  class W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177,W072,T179 todo
+  class T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W070,T177,W072,T179 todo
 ```
