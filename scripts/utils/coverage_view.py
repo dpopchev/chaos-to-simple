@@ -46,7 +46,7 @@ def differing_bits(left: str, right: str) -> tuple[int, ...]:
 
 
 def draw(rows: Sequence[TestedRow], out: Path) -> Path:
-    """Draw the two views: columns marked covered left, the grid of 64 paths right."""
+    """Draw the two views stacked: columns marked covered above, the grid of 64 paths below."""
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.patches import Rectangle
@@ -55,21 +55,21 @@ def draw(rows: Sequence[TestedRow], out: Path) -> Path:
     tested = [row for row in rows if row.kind == "tested"]
     covered = columns_covered(tested)
     fig, (left, right) = plt.subplots(
-        1, 2, figsize=(8.0, 4.0), dpi=style.DPI, gridspec_kw={"width_ratios": [1.2, 1]}
+        2, 1, figsize=(5.0, 6.0), dpi=style.DPI, gridspec_kw={"height_ratios": [1, 1.5]}
     )
     for col in range(BITS):
         x = col * 1.1
-        left.text(x, 2.9, f"b{BITS - 1 - col}", ha="center", va="center", fontsize=10)
+        left.text(x, 2.9, f"b{BITS - 1 - col}", ha="center", va="center", fontsize=14)
         for line, row in enumerate(tested):
             y = 1.9 - line * 1.1
             left.add_patch(
                 Rectangle((x - 0.45, y - 0.45), 0.9, 0.9, facecolor=green, edgecolor="none")
             )
-            left.text(x, y, row.bits[col], ha="center", va="center", fontsize=14, color="white")
+            left.text(x, y, row.bits[col], ha="center", va="center", fontsize=20, color="white")
         mark = green if covered[col] else grey
         left.add_patch(Rectangle((x - 0.45, -0.55), 0.9, 0.4, facecolor=mark, edgecolor="none"))
-        left.text(x, -0.35, "both", ha="center", va="center", fontsize=8, color="white")
-    left.set_title("two tests, both values of every column", fontsize=11)
+        left.text(x, -0.35, "both", ha="center", va="center", fontsize=11, color="white")
+    left.set_title("two tests, both values of every column", fontsize=15)
     left.set_xlim(-0.8, 6.0)
     left.set_ylim(-0.8, 3.3)
     left.set_aspect("equal")
@@ -87,7 +87,7 @@ def draw(rows: Sequence[TestedRow], out: Path) -> Path:
                 edgecolor="none",
             )
         )
-    right.set_title(f"{len(hit)} of {GRID_SIDE * GRID_SIDE} combinations", fontsize=11)
+    right.set_title(f"{len(hit)} of {GRID_SIDE * GRID_SIDE} combinations", fontsize=15)
     right.set_xlim(-0.1, GRID_SIDE)
     right.set_ylim(-0.1, GRID_SIDE)
     right.set_aspect("equal")

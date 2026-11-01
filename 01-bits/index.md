@@ -204,15 +204,15 @@ marketing lines aloud, then ask the chat how many tests it takes until you are s
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="64%"}
+::: {.column width="54%"}
 
 ```{.python include=01-bits/tests/test_chaos.py snippet=two-tests cap=24}
 ```
 
 :::
-::: {.column width="36%"}
+::: {.column width="46%"}
 
-![](build/01-bits/coverage-view.png){height=60%}
+![](build/01-bits/coverage-view.png){height=62%}
 
 :::
 ::::
