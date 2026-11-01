@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-050   | blocked: 0 | todo roots: 0 | done: 176 | pruned: 2
+open path: E-007   | blocked: 0 | todo roots: 0 | done: 177 | pruned: 2
 
 ## Tree
 
 ```text
 E-007         [doing]    deck v2: the stage, the counter one bit at a time, the checkout changing on screen
-  W-050  bug    [doing]    06 We counted them shows the whole suite's count -- T-122 [done], T-123 [done]
+  W-050  bug    [done]     06 We counted them shows the whole suite's count -- T-122 [done], T-123 [done]
   W-051  bug    [todo]     06 the number and epilogue charts render small with overlapping labels -- T-124 [todo], T-125 [todo]
   W-052  issue  [todo]     skeleton: the new frame plan builds end to end on stubs -- T-126 [todo], T-127 [todo], T-128 [todo]
   W-053  spike  [todo]     the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font -- T-129 [todo], T-130 [todo]
@@ -344,7 +344,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ```mermaid
 flowchart TD
   E007["E-007 doing: deck v2: the stage, the counter one bit at a time, the checkout changing on screen"]
-  E007 --> W050["W-050 bug doing: 06 We counted them shows the whole suite's count"]
+  E007 --> W050["W-050 bug done: 06 We counted them shows the whole suite's count"]
   W050 --> T122["T-122 done: Restrict the counted run to the path tests -> build/06-simple/pytest-core.txt"]
   W050 --> T123["T-123 done: Point the frame at the measured count -> 06-simple/index.md"]
   E007 --> W051["W-051 bug todo: 06 the number and epilogue charts render small with overlapping labels"]
@@ -424,7 +424,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W050 doing
-  class T122,T123 done
+  class E007 doing
+  class W050,T122,T123 done
   class W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176 todo
 ```
