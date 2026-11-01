@@ -46,7 +46,7 @@ test. The counter does not move in this section; that is honest.
 
 ## Bounded contexts, the moves
 
-![](build/04-what/moves.png){height=70%}
+![](build/04-what/moves.png){height=60%}
 
 No decision is ever deleted, only moved
 
