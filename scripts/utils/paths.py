@@ -12,7 +12,7 @@ from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, fields
 from pathlib import Path
 
-from scripts.utils.palette import label_of
+from scripts.utils.palette import colour_of, label_of
 
 
 @dataclass(frozen=True)
@@ -296,12 +296,11 @@ def growth_chart(out: Path, points: Sequence[Growth]) -> Path:
     style.apply()
     import matplotlib.pyplot as plt
 
-    colours = style.palette()
     weeks = [p.week for p in points]
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for name, values, colour in (
-        ("paths", [p.paths for p in points], colours[1]),
-        ("bits", [p.bits for p in points], colours[0]),
+        ("paths", [p.paths for p in points], colour_of("marketing")),
+        ("bits", [p.bits for p in points], colour_of("logistics")),
     ):
         ax.plot(weeks, values, marker="o", color=colour, label=name)
         for i, (week, value) in enumerate(zip(weeks, values, strict=True)):
@@ -346,6 +345,18 @@ def spread_apart(ys: Sequence[float], gap: float) -> list[float]:
     return placed
 
 
+def segment_colour(name: str) -> str:
+    """Return the palette colour of a bar segment: its context, the shell, the core or the tangle.
+
+    A segment is named by a context key, "shell", "core N bits", "shell N bits" or
+    "N bits tangled"; the core as a whole is the shop's own (dev) colour.
+    """
+    words = name.split()
+    if words[-1] == "tangled":
+        return colour_of("tangled")
+    return colour_of("dev" if words[0] == "core" else words[0])
+
+
 def stacked_bar(
     out: Path,
     bars: Sequence[Bar],
@@ -362,30 +373,44 @@ def stacked_bar(
     style.apply()
     import matplotlib.pyplot as plt
 
-    colours = style.palette()
     top = max(sum(value for _, value in segments) for _, segments in bars)
     fig, ax = plt.subplots(figsize=figsize, dpi=style.DPI)
     gap = bar_headroom(top) * 1.5 * fontsize / (0.75 * figsize[1] * 72)
     aside: list[tuple[str, tuple[float, float]]] = []
     for x, (label, segments) in enumerate(bars):
         bottom = 0
-        for i, (name, value) in enumerate(segments):
+        for name, value in segments:
             ax.bar(
                 x,
                 value,
                 bottom=bottom,
                 width=0.6,
-                color=colours[i % len(colours)],
+                color=segment_colour(name),
                 edgecolor="white",
                 linewidth=0.8,
             )
             middle = bottom + value / 2
+            ink = "white" if name.startswith("core") else "black"  # the core is the black dev
             if value >= 0.2 * top:
                 ax.text(
-                    x, middle, f"{name}:\n{value}", ha="center", va="center", fontsize=fontsize
+                    x,
+                    middle,
+                    f"{name}:\n{value}",
+                    ha="center",
+                    va="center",
+                    fontsize=fontsize,
+                    color=ink,
                 )
             elif value >= 0.08 * top:
-                ax.text(x, middle, f"{name}: {value}", ha="center", va="center", fontsize=fontsize)
+                ax.text(
+                    x,
+                    middle,
+                    f"{name}: {value}",
+                    ha="center",
+                    va="center",
+                    fontsize=fontsize,
+                    color=ink,
+                )
             else:
                 aside.append((f"{name}: {value}", slice_label_point(x, bottom, value)))
             bottom += value

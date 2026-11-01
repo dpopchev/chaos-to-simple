@@ -11,8 +11,11 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.examples import CardCounts
-from scripts.utils.palette import label_of
+from scripts.utils.palette import colour_of, label_of
 from scripts.utils.paths import CastRow, Rule, load_incidents
+
+# Palette keys of the four Stacey zones, in ZONES order.
+ZONE_KEYS = ("logistics", "marketing", "accounting", "payment")
 
 # (label, x0, y0) of each zone on the unit square; x is certainty on the How,
 # y is agreement on the What. Simple sits at the high-high corner.
@@ -25,6 +28,8 @@ ZONES = (
 
 
 ACTORS = ("Customer", "Shop", "Warehouse", "Payment provider", "Mailer")
+# Palette key of each lifeline, in ACTORS order.
+STORY_KEYS = ("customer", "dev", "warehouse", "payment", "mailer")
 
 # (sender, receiver, text, is_answer): the nine sentences of the domain story, top to bottom.
 SENTENCES = (
@@ -112,8 +117,11 @@ def tree(out: Path) -> Path:
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch
 
-    colours = style.palette()
-    fill = {"tested": colours[2], "bug": colours[3], "never": "#8c8c8c"}
+    fill = {
+        "tested": colour_of("accounting"),
+        "bug": colour_of("payment"),
+        "never": colour_of("customer"),
+    }
     fig, ax = plt.subplots(figsize=(6.0, 4.5), dpi=style.DPI)
     xs = {leaf.code: i * 1.5 for i, leaf in enumerate(TREE_LEAVES)}
     top = (1.5 * 1.5, 0.0)
@@ -205,7 +213,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     ax.add_patch(
         FancyBboxPatch(
-            (0.2, mid - 1.2), 3.2, 2.4, boxstyle=shape, facecolor="#555555", edgecolor="none"
+            (0.2, mid - 1.2), 3.2, 2.4, boxstyle=shape, facecolor=colour_of("dev"), edgecolor="none"
         )
     )
     ax.text(1.8, mid, "core\npure rules", ha="center", va="center", fontsize=16, color="white")
@@ -269,7 +277,7 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             2.6,
             1.6,
             boxstyle="round,pad=0.05,rounding_size=0.15",
-            facecolor="#555555",
+            facecolor=colour_of("dev"),
             edgecolor="none",
         )
     )
@@ -307,7 +315,6 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
 
 
 CARDS_PER_ROW = 7
-STORY_YELLOW = "#ece133"  # seaborn colorblind's yellow; style.palette() stops at six colours
 
 
 def example_map(out: Path, before: CardCounts, after: CardCounts) -> Path:
@@ -320,8 +327,11 @@ def example_map(out: Path, before: CardCounts, after: CardCounts) -> Path:
     import matplotlib.pyplot as plt
     from matplotlib.patches import Rectangle
 
-    colours = style.palette()
-    kinds = (("blue", colours[0]), ("red", colours[3]), ("green", colours[2]))
+    kinds = (
+        ("blue", colour_of("logistics")),
+        ("red", colour_of("payment")),
+        ("green", colour_of("accounting")),
+    )
     rows_of = {
         name: max(1, -(-max(getattr(before, name), getattr(after, name)) // CARDS_PER_ROW))
         for name, _ in kinds
@@ -330,7 +340,9 @@ def example_map(out: Path, before: CardCounts, after: CardCounts) -> Path:
     panels = ((axes[0], "before the room", before), (axes[1], "after the room", after))
     for ax, title, counts in panels:
         ax.add_patch(
-            Rectangle((0, 0), 3.2, 0.8, facecolor=STORY_YELLOW, edgecolor="white", linewidth=1.5)
+            Rectangle(
+                (0, 0), 3.2, 0.8, facecolor=colour_of("mailer"), edgecolor="white", linewidth=1.5
+            )
         )
         ax.text(1.6, 0.4, "story", ha="center", va="center", fontsize=10)
         row = 1.4
@@ -440,8 +452,12 @@ def route(
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch, Rectangle
 
-    colours = style.palette()
-    counter_colour = {"?": colours[3], "64": colours[0], "512": colours[1], "72": colours[2]}
+    counter_colour = {
+        "?": colour_of("payment"),
+        "64": colour_of("logistics"),
+        "512": colour_of("marketing"),
+        "72": colour_of("accounting"),
+    }
     stops = load_route(route_csv)
     told_in = {incident.told_in: incident.id for incident in load_incidents(incidents_csv)}
     points = route_layout(stops)
@@ -449,9 +465,11 @@ def route(
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for i, (label, x0, y0) in enumerate(ZONES):
         ax.add_patch(
-            Rectangle((x0, y0), 0.5, 0.5, facecolor=colours[i], alpha=0.25, edgecolor="white")
+            Rectangle(
+                (x0, y0), 0.5, 0.5, facecolor=colour_of(ZONE_KEYS[i]), alpha=0.25, edgecolor="white"
+            )
         )
-        ax.text(x0 + 0.48, y0 + 0.48, label, ha="right", va="top", fontsize=10, color="#444444")
+        ax.text(x0 + 0.48, y0 + 0.48, label, ha="right", va="top", fontsize=10, color="dimgrey")
     for stop, (x, y) in zip(stops, points, strict=True):
         ax.add_patch(
             FancyBboxPatch(
@@ -482,7 +500,7 @@ def route(
             tail,
             arrowprops={
                 "arrowstyle": "-|>",
-                "color": "#555555",
+                "color": "dimgrey",
                 "linewidth": 1.5,
                 "shrinkA": 0,
                 "shrinkB": 0,
@@ -519,7 +537,7 @@ def story(out: Path) -> None:
     style.apply()
     import matplotlib.pyplot as plt
 
-    colours = style.palette()
+    colours = [colour_of(key) for key in STORY_KEYS]
     n = len(SENTENCES)
     fig, ax = plt.subplots(figsize=(11.0, 6.2), dpi=style.DPI)
     top = 0.5
@@ -533,7 +551,7 @@ def story(out: Path) -> None:
             ha="center",
             va="bottom",
             fontsize=15,
-            color="white",
+            color="black" if STORY_KEYS[i] == "mailer" else "white",
             bbox={"boxstyle": "round,pad=0.4", "facecolor": colours[i], "edgecolor": "none"},
         )
     for row, (src, dst, text, answer) in enumerate(SENTENCES):
@@ -561,11 +579,12 @@ def stacey(out: Path) -> None:
     import matplotlib.pyplot as plt
     from matplotlib.patches import Rectangle
 
-    colours = style.palette()
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     for i, (label, x0, y0) in enumerate(ZONES):
         ax.add_patch(
-            Rectangle((x0, y0), 0.5, 0.5, facecolor=colours[i], alpha=0.35, edgecolor="white")
+            Rectangle(
+                (x0, y0), 0.5, 0.5, facecolor=colour_of(ZONE_KEYS[i]), alpha=0.35, edgecolor="white"
+            )
         )
         ax.text(x0 + 0.25, y0 + 0.25, label, ha="center", va="center", fontsize=18)
     ax.set_xlim(0, 1)

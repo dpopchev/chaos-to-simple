@@ -11,7 +11,6 @@ matplotlib.use("Agg")
 
 from pathlib import Path
 
-import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 import seaborn as sns
 from matplotlib.figure import Figure
@@ -22,11 +21,6 @@ FONT = "Adwaita Sans"
 FALLBACK_FONT = "DejaVu Sans"
 FIGSIZE = (8.0, 4.5)
 DPI = 150
-
-
-def palette() -> list[str]:
-    """Six hex colours, seaborn's colorblind palette."""
-    return [mcolors.to_hex(c) for c in sns.color_palette("colorblind", 6)]
 
 
 CONTEXTS = tuple(load_contexts())
@@ -50,7 +44,6 @@ def apply() -> None:
     """Set the deck theme: white, deck font, 16:9 at 150 dpi, no top or right spine."""
     sns.set_theme(
         style="white",
-        palette=palette(),
         font=FONT,
         rc={
             "font.family": [FONT, FALLBACK_FONT],
