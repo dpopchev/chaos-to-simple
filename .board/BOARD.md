@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-006   | blocked: 0 | todo roots: 0 | done: 161 | pruned: 2
+open path: E-006 > W-037 > T-091   | blocked: 0 | todo roots: 0 | done: 161 | pruned: 2
 
 ## Tree
 
 ```text
 E-006         [doing]    deck: talk day -- legible figures, true docs, the review on record
   W-036  spike  [done]     talk: the 2026-11-01 review and the cut on record in docs/cut-40.md   (filed during W-034) -- T-089 [done], T-090 [pruned]   [pruned: superseded: the developer approved the tree from the coordinator's report of 2026-11-01 and E-005 was filed directly; T-095 records the filed plan instead], T-095 [done]
-  W-037  bug    [todo]     route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [todo], T-092 [todo]
+  W-037  bug    [doing]    route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01   (filed during W-034) -- T-091 [doing]   <- ACTIVE LEAF, T-092 [todo]
   W-038  bug    [todo]     epilogue chart: the 30 total overprints the chart title   (filed during W-035) -- T-093 [todo], T-094 [todo], T-121 [todo]
   W-047  bug    [todo]     03-chaos README Done-when still names the 72 count   (filed during T-104) -- T-117 [todo]
   W-049  bug    [todo]     epilogue frame set in \tiny: the two-column layout fits only at 5pt -- T-119 [todo], T-120 [todo]
@@ -303,8 +303,8 @@ flowchart TD
   W036 --> T089["T-089 done: Write the remarks into the repository -> docs/cut-40.md"]
   W036 --> T090["T-090 pruned: Draft the cut from the remarks -> docs/cut-40.md Plan section"]
   W036 --> T095["T-095 done: Record the filed plan -> docs/cut-40.md Plan section"]
-  E006 --> W037["W-037 bug todo: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
-  W037 --> T091["T-091 todo: Compute the clearing offset -> route_label_offset(words, tail, head)"]
+  E006 --> W037["W-037 bug doing: route.png: the 04->05 label covers its shaft and the zone caption, the 00->01 label touches box 01"]
+  W037 --> T091["T-091 doing: Compute the clearing offset -> route_label_offset(words, tail, head) -- ACTIVE LEAF"]
   W037 --> T092["T-092 todo: Place each label clear of its arrow -> route(out) calls route_label_offset"]
   E006 --> W038["W-038 bug todo: epilogue chart: the 30 total overprints the chart title"]
   W038 --> T093["T-093 todo: Compute the headroom -> bar_headroom(top)"]
@@ -320,8 +320,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E006 doing
+  class E006,W037,T091 doing
   class W036,T089,T095 done
-  class W037,T091,T092,W038,T093,T094,T121,W047,T117,W049,T119,T120 todo
+  class T092,W038,T093,T094,T121,W047,T117,W049,T119,T120 todo
   class T090 pruned
 ```
