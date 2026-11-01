@@ -250,19 +250,39 @@ if, with no idea what the last one cost.
 ```{.python include=01-bits/tests/test_chaos.py snippet=bug}
 ```
 
+::: notes
+Run it live. `make test K=test_chaos` shows 2 passed, 1 xfailed: the bug test is marked
+xfail, so the suite stays green. Then `uv run pytest 01-bits/tests -k free_shipping_after_discount --runxfail`
+shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted goods.
+:::
+
 ## A path is a six-bit number {paths=64}
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-![](build/01-bits/grid.png){height=65%}
+![](build/01-bits/grid.png){height=52%}
 
 :::
 ::: {.column width="50%"}
 
-![](build/01-bits/doubling.png){height=65%}
+![](build/01-bits/doubling.png){height=52%}
 
 :::
 ::::
 
+\small
+
+Sequential ifs multiply: 2 x 2 x 2 x 2 x 2 x 2
+
+Alternatives (elif, match) add: 2 + 2 + 2
+
+Two sequential ifs as if/elif: 4 paths become 3
+
 \theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.}
+
+::: notes
+Point at 000000 and 111111 on the grid: the two tests, both green. Then point at 000101,
+the I1 path, red: the bug. The curve doubled with every request, while the tested
+cells stayed at 2.
+:::
