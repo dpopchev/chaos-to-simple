@@ -8,7 +8,10 @@ from s04_what.shipping import FREE_SHIPPING_FROM, GIFT_WRAP, Zone, base_fee
 
 # [snippet: fee-digital]
 def shipping_fee(
-    discounted_goods: Money, zone: Zone, gift_wrap: bool, digital: bool
+    discounted_goods: Money,
+    zone: Zone,
+    gift_wrap: bool,
+    digital: bool,
 ) -> Money:
     if digital:  # b6: nothing to ship
         return bgn(0)

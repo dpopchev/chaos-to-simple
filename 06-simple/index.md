@@ -87,7 +87,7 @@ adds paths; one that passes flags multiplies them.
 \fvset{fontsize=\scriptsize}
 
 :::: {.columns}
-::: {.column width="70%"}
+::: {.column width="60%"}
 
 ```{.text include=06-simple/data/teaser.txt}
 ```
@@ -99,7 +99,7 @@ adds paths; one that passes flags multiplies them.
 ```
 
 :::
-::: {.column width="30%"}
+::: {.column width="40%"}
 
 ![](build/06-simple/epilogue.png){height=65%}
 
