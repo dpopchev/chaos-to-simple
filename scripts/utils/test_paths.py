@@ -19,6 +19,7 @@ from scripts.utils.paths import (
     contexts_table,
     count_report,
     doubling_table,
+    effects_lines,
     epilogue_bars,
     epilogue_report,
     grid,
@@ -482,3 +483,14 @@ def test_growth_skips_the_shell_rows() -> None:
 def test_growth_chart_writes_a_png(tmp_path: Path) -> None:
     out = growth_chart(tmp_path / "nested" / "growth.png", growth(DOUBLING_CAST))
     assert out.read_bytes().startswith(b"\x89PNG")
+
+
+@pytest.mark.model
+def test_effects_lines_number_the_three_shell_calls() -> None:
+    cast = [
+        CastRow("b0", 3, "Marketing", "a", "", "if a"),
+        CastRow("s0", None, "Nobody", "b", "", "charge(total)"),
+        CastRow("s1", None, "Nobody", "c", "", "reserve(x)"),
+    ]
+    source = "if a:\n    pass\n    charge(total)  # declined?\n    reserve(x)  # gone?\n"
+    assert effects_lines(cast, source) == "3  charge(total)  # declined?\n4  reserve(x)  # gone?\n"

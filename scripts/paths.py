@@ -12,6 +12,8 @@
         --out build/06-simple/epilogue.png
     python -m scripts.paths cast   --cast data/cast.csv --source 01-bits/s01_bits/chaos.py \\
         --out build/01-bits/cast.txt
+    python -m scripts.paths effects --cast data/cast.csv --source 01-bits/s01_bits/chaos.py \\
+        --out build/05-how/effects.txt
     python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
         --out build/04-what/contexts.txt
     python -m scripts.paths doubling --cast data/cast.csv [--upto N] \\
@@ -34,6 +36,7 @@ from scripts.utils.paths import (
     contexts_table,
     count_report,
     doubling_table,
+    effects_lines,
     epilogue_bars,
     epilogue_report,
     grid,
@@ -64,6 +67,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "epilogue",
             "epilogue-chart",
             "cast",
+            "effects",
             "contexts",
             "doubling",
             "growth",
@@ -113,6 +117,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
     elif args.what == "cast":
         text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
+    elif args.what == "effects":
+        text = effects_lines(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "contexts":
         text = contexts_table(load_rules(args.rules), load_cast(args.cast))
     elif args.what == "doubling":

@@ -85,6 +85,14 @@ def line_of(fragment: str, source: str) -> int:
     return hits[0]
 
 
+def effects_lines(cast: Sequence[CastRow], source: str) -> str:
+    """The source lines of the shell effects (the s* bits), each prefixed by its line number."""
+    lines = source.splitlines()
+    placed = sorted((line_of(c.fragment, source), c) for c in cast if c.bit.startswith("s"))
+    width = max((len(str(n)) for n, _ in placed), default=0)
+    return "".join(f"{str(n).rjust(width)}  {lines[n - 1].strip()}\n" for n, _ in placed)
+
+
 def cast_table(cast: Sequence[CastRow], source: str) -> str:
     """The cast of the ifs by source line: the line, the bit, who asked and their words."""
     placed = sorted(((line_of(c.fragment, source), c) for c in cast), key=lambda p: p[0])
