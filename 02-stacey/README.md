@@ -5,7 +5,7 @@ two axes; each later section is one move on the map.
 
 | | |
 |---|---|
-| Minutes | 5 |
+| Minutes | 3 |
 | Footer counter | stays at `64` |
 | Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk` |
 | Uses | nothing |
@@ -14,10 +14,7 @@ two axes; each later section is one move on the map.
 ## Slides
 
 - [x] I wanted to write a test: the question, two answers
-- [x] Two axes, four zones: the matrix
-- [x] Bits on the map: the table
-- [x] The route of this talk
-- [x] The route of this talk, with the line glued at its foot: check whether the What is agreed
+- [x] The agenda was a map: the route, with the line glued at its foot: check whether the What is agreed
 
 ## Done when
 
