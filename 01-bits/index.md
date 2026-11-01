@@ -268,9 +268,6 @@ shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted 
 
 ![](build/01-bits/doubling.png){height=52%}
 
-:::
-::::
-
 \small
 
 Sequential ifs multiply: 2 x 2 x 2 x 2 x 2 x 2
@@ -278,6 +275,9 @@ Sequential ifs multiply: 2 x 2 x 2 x 2 x 2 x 2
 Alternatives (elif, match) add: 2 + 2 + 2
 
 Two sequential ifs as if/elif: 4 paths become 3
+
+:::
+::::
 
 \theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.}
 
