@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-005 > W-041   | blocked: 0 | todo roots: 4 | done: 142 | pruned: 2
+open path: E-005   | blocked: 0 | todo roots: 4 | done: 143 | pruned: 2
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-005 > W-041   | blocked: 0 | todo roots: 4 | done: 142 | pruned: 2
 E-005         [doing]    deck: the 40-minute cut
   W-039  issue  [done]     lines: the believed / learned device glued to each section's last frame -- T-096 [done], T-097 [done]
   W-040  issue  [done]     00 and 01: the cut and the cast -- T-098 [done], T-099 [done], T-100 [done], T-101 [done]
-  W-041  issue  [doing]    02 and 03: the cut and the counter's reveal -- T-102 [done], T-103 [done], T-104 [done], T-116 [done]
+  W-041  issue  [done]     02 and 03: the cut and the counter's reveal -- T-102 [done], T-103 [done], T-104 [done], T-116 [done]
   W-042  issue  [todo]     04 and 05: the cut and the I3 beat -- T-105 [todo], T-106 [todo], T-107 [todo], T-108 [todo]
   W-043  issue  [todo]     06 and 07: the cut, the reveal and the Q&A -- T-109 [todo], T-110 [todo], T-111 [todo]
   W-044  issue  [todo]     lengths: the snippet cap in make check -- T-112 [todo], T-113 [todo]
@@ -261,7 +261,7 @@ flowchart TD
   W040 --> T099["T-099 done: Render the artifacts of 01 -> doubling-1..6.txt and coverage-summary.txt from 01-bits/section.mk"]
   W040 --> T100["T-100 done: Cut 00 -> 00-frontmatter/index.md three frames"]
   W040 --> T101["T-101 done: Cut 01 -> 01-bits/index.md seven frames"]
-  E005 --> W041["W-041 issue doing: 02 and 03: the cut and the counter's reveal"]
+  E005 --> W041["W-041 issue done: 02 and 03: the cut and the counter's reveal"]
   W041 --> T102["T-102 done: Split the counts and name who asked -> scripts.paths splits and rules --columns"]
   W041 --> T103["T-103 done: Cut 02 -> 02-stacey/index.md two frames"]
   W041 --> T104["T-104 done: Cut 03 -> 03-chaos/index.md five frames"]
@@ -299,8 +299,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E005,W041 doing
-  class W039,T096,T097,W040,T098,T099,T100,T101,T102,T103,T104,T116,W045,T114,W046,T115 done
+  class E005 doing
+  class W039,T096,T097,W040,T098,T099,T100,T101,W041,T102,T103,T104,T116,W045,T114,W046,T115 done
   class W042,T105,T106,T107,T108,W043,T109,T110,T111,W044,T112,T113,W036,T089,T095,W037,T091,T092,W038,T093,T094,W047,T117 todo
   class T090 pruned
 ```
