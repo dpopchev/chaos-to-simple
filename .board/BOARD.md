@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 2 | done: 114 | pruned: 1
+open path: W-032 > T-080   | blocked: 0 | todo roots: 1 | done: 114 | pruned: 1
 
 ## Tree
 
 ```text
-W-032  bug    [todo]     (standalone) route.png: the arrowheads hide under the widened boxes   (filed during T-079) -- T-080 [todo], T-081 [todo]
+W-032  bug    [doing]    (standalone) route.png: the arrowheads hide under the widened boxes   (filed during T-079) -- T-080 [doing]   <- ACTIVE LEAF, T-081 [todo]
 W-033  bug    [todo]     (standalone) epilogue chart: the bar labels read too small   (filed during T-077) -- T-083 [todo], T-084 [todo]
 ```
 
@@ -213,8 +213,8 @@ closed 2026-10-30 -- outcome: Given docs/storyline.md, When the developer reads 
 ## Diagram
 ```mermaid
 flowchart TD
-  W032["W-032 bug todo, standalone: route.png: the arrowheads hide under the widened boxes"]
-  W032 --> T080["T-080 todo: Compute the arrow ends -> route_arrow_ends(start, end, half_w, half_h)"]
+  W032["W-032 bug doing, standalone: route.png: the arrowheads hide under the widened boxes"]
+  W032 --> T080["T-080 doing: Compute the arrow ends -> route_arrow_ends(start, end, half_w, half_h) -- ACTIVE LEAF"]
   W032 --> T081["T-081 todo: Draw the arrows to the edges -> route(out) calls route_arrow_ends"]
   W033["W-033 bug todo, standalone: epilogue chart: the bar labels read too small"]
   W033 --> T083["T-083 todo: Enlarge the bar labels -> stacked_bar labels at fontsize 12"]
@@ -224,5 +224,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W032,T080,T081,W033,T083,T084 todo
+  class W032,T080 doing
+  class T081,W033,T083,T084 todo
 ```
