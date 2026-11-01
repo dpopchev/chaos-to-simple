@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007   | blocked: 0 | todo roots: 5 | done: 220 | pruned: 2
+open path: E-007   | blocked: 0 | todo roots: 6 | done: 220 | pruned: 2
 
 ## Tree
 
@@ -31,11 +31,13 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-077  bug    [done]     make check fails on a fresh build/: lengths and widths read stub files they do not build   (filed during T-134) -- T-184 [done]
   W-078  bug    [todo]     05 effects listing prints the step markers of chaos.py   (filed during T-137) -- T-185 [todo]
   W-079  bug    [done]     01 coverage view renders as an unreadable thumbnail on the tests frame   (filed during T-142) -- T-187 [done]
+  W-080  bug    [todo]     01 grid frame: the grid image prints over the frame title   (filed during T-148) -- T-188 [todo]
 W-070  issue  [todo]     (standalone) chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
 W-072  bug    [todo]     (standalone) make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
 W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
 W-074  bug    [todo]     (standalone) make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
 W-075  issue  [todo]     (standalone) scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
+W-081  bug    [todo]     (standalone) make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
 ```
 
 ## Closed
@@ -440,6 +442,8 @@ flowchart TD
   W078 --> T185["T-185 todo: Strip the step markers in effects_lines -> build/05-how/effects.txt"]
   E007 --> W079["W-079 bug done: 01 coverage view renders as an unreadable thumbnail on the tests frame"]
   W079 --> T187["T-187 done: Stack the coverage view and give it half the frame -> build/01-bits/coverage-view.png, 01-bits/index.md"]
+  E007 --> W080["W-080 bug todo: 01 grid frame: the grid image prints over the frame title"]
+  W080 --> T188["T-188 todo: Fit the grid frame under its title -> 01-bits/index.md"]
   W070["W-070 issue todo, standalone: chart labels: spread_apart gets its own test"]
   W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
   W072["W-072 bug todo, standalone: make lengths crashes on an include of a missing file the filter would render as a STUB"]
@@ -450,6 +454,8 @@ flowchart TD
   W074 --> T181["T-181 todo: Format the tree and gate it in make check -> mk/python.mk"]
   W075["W-075 issue todo, standalone: scripts.utils.style imports palette, so palette imports icons lazily"]
   W075 --> T182["T-182 todo: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
+  W081["W-081 bug todo, standalone: make overflow passes a frame whose content beamer shifts over the title"]
+  W081 --> T189["T-189 todo: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -457,5 +463,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E007 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W071,T178,W076,T183,W077,T184,W079,T187 done
-  class W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182 todo
+  class W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W080,T188,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189 todo
 ```
