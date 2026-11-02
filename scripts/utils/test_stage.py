@@ -14,6 +14,7 @@ from scripts.utils.stage import (
     edge_words,
     incident_marks,
     load_route,
+    map_legend,
     stop_alpha,
 )
 
@@ -31,6 +32,14 @@ def test_a_provider_edge_carries_its_answer() -> None:
 def test_a_department_edge_carries_its_requests() -> None:
     words = edge_words(load_actors(), load_cast(DATA / "cast.csv"), load_rules(DATA / "rules.csv"))
     assert words["logistics"] == "free shipping from 50; abroad is 20, not 5"
+
+
+@pytest.mark.model
+def test_map_legend_names_core_and_generic() -> None:
+    assert map_legend() == (
+        ("core subdomain: the shop and its policies", "outlined"),
+        ("generic subdomain: sourced out", "filled"),
+    )
 
 
 @pytest.mark.edge

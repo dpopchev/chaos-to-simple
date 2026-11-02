@@ -198,10 +198,21 @@ def positions(actors: Mapping[str, Actor]) -> dict[str, tuple[float, float]]:
     return spots
 
 
+def map_legend() -> tuple[tuple[str, str], ...]:
+    """Return the strategic legend of the map: each line's words and how its box is drawn."""
+    return (
+        ("core subdomain: the shop and its policies", "outlined"),
+        ("generic subdomain: sourced out", "filled"),
+    )
+
+
 def business_map(
     actors: Mapping[str, Actor], cast: Sequence[CastRow], rules: Sequence[Rule], out: Path
 ) -> Path:
-    """Draw the business map: a box and pictogram per actor, an edge with its words to the shop."""
+    """Draw the business map: a box and pictogram per actor, an edge with its words to the shop.
+
+    The shop is the outlined core; a department asks, a provider is called and answers back.
+    """
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.font_manager import FontProperties
@@ -216,33 +227,34 @@ def business_map(
         x, y = spots[key]
         is_shop = actor.kind == "dev"
         w, h = (SHOP_W, SHOP_H) if is_shop else (BOX_W, BOX_H)
-        face = colour_of(key)
-        ink = label_ink(face)
+        face = "white" if is_shop else colour_of(key)
+        ink = "black" if is_shop else label_ink(face)
         if not is_shop:
             side = 0.0 if actor.kind == "customer" else (1.0 if x < 0 else -1.0)
+            both = actor.kind == "provider"
+            lift = 0.18 if both else 0.0
             if side:
-                tail = (x + side * (w / 2 + 0.1), y)
-                head = (-side * (SHOP_W / 2 + 0.1), y)
+                tail = (x + side * (w / 2 + 0.1), y + lift)
+                head = (-side * (SHOP_W / 2 + 0.1), y + lift)
             else:
                 tail = (x, y - h / 2 - 0.1)
                 head = (x, SHOP_H / 2 + 0.1)
-            ax.annotate(
-                "",
-                head,
-                tail,
-                arrowprops={
-                    "arrowstyle": "-|>",
-                    "color": face if key != "mailer" else "dimgrey",
-                    "linewidth": 2.0,
-                    "shrinkA": 0,
-                    "shrinkB": 0,
-                },
-                zorder=1,
-            )
+            arrow = {
+                "arrowstyle": "-|>",
+                "color": face if key != "mailer" else "dimgrey",
+                "linewidth": 2.0,
+                "shrinkA": 0,
+                "shrinkB": 0,
+            }
+            ax.annotate("", head, tail, arrowprops=arrow, zorder=1)
+            if both:
+                call = ((tail[0], y - lift), (head[0], y - lift))
+                ax.annotate("", *call, arrowprops=arrow, zorder=1)
+            said = f"asks: {words[key]}" if actor.kind == "department" else words[key]
             ax.text(
                 (tail[0] + head[0]) / 2 + (0.15 if not side else 0.0),
                 (tail[1] + head[1]) / 2 + (0.0 if not side else 0.12),
-                textwrap.fill(words[key], WRAP),
+                textwrap.fill(said, WRAP),
                 ha="left" if not side else "center",
                 va="center" if not side else "bottom",
                 fontsize=11,
@@ -256,7 +268,8 @@ def business_map(
                 h,
                 boxstyle=shape,
                 facecolor=face,
-                edgecolor="none",
+                edgecolor="black" if is_shop else "none",
+                linewidth=3 if is_shop else 0,
                 zorder=3,
             )
         )
@@ -281,8 +294,22 @@ def business_map(
             color=ink,
             zorder=4,
         )
+    for i, (text, how) in enumerate(map_legend()):
+        lx = -6.6 + i * 6.6
+        ax.add_patch(
+            FancyBboxPatch(
+                (lx, -4.35),
+                0.5,
+                0.3,
+                boxstyle="round,pad=0.02,rounding_size=0.05",
+                facecolor="white" if how == "outlined" else "lightgrey",
+                edgecolor="black" if how == "outlined" else "none",
+                linewidth=3 if how == "outlined" else 0,
+            )
+        )
+        ax.text(lx + 0.7, -4.2, text, ha="left", va="center", fontsize=11)
     ax.set_xlim(-7.2, 7.2)
-    ax.set_ylim(-3.6, 5.5)
+    ax.set_ylim(-4.7, 5.5)
     ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)
