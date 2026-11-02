@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-113 > T-262   | blocked: 0 | todo roots: 4 | done: 380 | pruned: 4
+open path: E-012 > W-113 > T-263   | blocked: 0 | todo roots: 4 | done: 381 | pruned: 4
 
 ## Tree
 
@@ -16,7 +16,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-110  issue  [done]     03: the journey as the customer certainty, the retro subdomains -- T-253 [done], T-254 [done], T-255 [done]
   W-111  issue  [done]     03: the honest count panels and the board continuity -- T-256 [done], T-257 [done], T-258 [done]
   W-112  issue  [done]     04: tactical to strategic in five frames -- T-259 [done], T-260 [done], T-261 [done]
-  W-113  issue  [doing]    04: the moves frame, core = the What, shell = the How -- T-262 [doing]   <- ACTIVE LEAF, T-263 [todo]
+  W-113  issue  [doing]    04: the moves frame, core = the What, shell = the How -- T-262 [done], T-263 [doing]   <- ACTIVE LEAF
   W-114  issue  [todo]     05: the test first -- T-264 [todo], T-265 [todo], T-266 [todo]
   W-115  issue  [todo]     05: the ports answer with values, the moves table explained -- T-267 [todo], T-268 [todo]
   W-116  issue  [todo]     06: cut along the seam -- T-269 [todo], T-270 [todo]
@@ -675,8 +675,8 @@ flowchart TD
   W112 --> T260["T-260 done: Trim the b2 comment -> 04-what/s04_what/shipping.py and 06-simple/s06_simple/seventh.py"]
   W112 --> T261["T-261 done: Rewrite the five frames -> 04-what/index.md, 04-what/section.mk, data/artifacts.csv, data/budget.csv, 04-what/README.md"]
   E012 --> W113["W-113 issue doing: 04: the moves frame, core = the What, shell = the How"]
-  W113 --> T262["T-262 doing: Group the bands -> band_groups and the brackets of moves_figure -- ACTIVE LEAF"]
-  W113 --> T263["T-263 todo: Widen the frame -> 04-what/index.md"]
+  W113 --> T262["T-262 done: Group the bands -> band_groups and the brackets of moves_figure"]
+  W113 --> T263["T-263 doing: Widen the frame -> 04-what/index.md -- ACTIVE LEAF"]
   E012 --> W114["W-114 issue todo: 05: the test first"]
   W114 --> T264["T-264 todo: Write the I3 test against v4 -> 05-how/tests/test_i3.py"]
   W114 --> T265["T-265 todo: Capture the run -> build/05-how/i3-run.txt in 05-how/section.mk and data/artifacts.csv"]
@@ -712,7 +712,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W113,T262 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261 done
-  class T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283 todo
+  class E012,W113,T263 doing
+  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,T262 done
+  class W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283 todo
 ```
