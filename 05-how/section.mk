@@ -19,6 +19,6 @@ $(BUILD)/05-how/v5.diff: 04-what/s04_what/checkout_v4.py 05-how/s05_how/checkout
 		--to 05-how/s05_how/checkout_v5.py --snippet checkout --start 'total = total_with_vat' --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/05-how/ports.png: data/rules.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
-	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --out $@
+$(BUILD)/05-how/ports.png: data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)
