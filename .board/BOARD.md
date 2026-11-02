@@ -1,14 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-009   | blocked: 0 | todo roots: 0 | done: 290 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 0 | done: 291 | pruned: 4
 
 ## Tree
-
-```text
-E-009         [doing]    backlog after v0.8.0: the strict include test and the in-tree bytecode
-  W-086  issue  [done]     lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [done]
-  W-088  bug    [done]     stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [done]
-```
 
 ## Closed
 
@@ -457,6 +451,18 @@ closed 2026-11-02 -- outcome: make check is green on main with ruff format --che
 - T-196 [done] Print each frame's slack in the overflow build -> 00-frontmatter/slack-probe.tex
 - T-197 [done] Name a frame under the slack threshold -> scripts/utils/overflow.py
 
+### E-009 [done] backlog after v0.8.0: the strict include test and the in-tree bytecode
+
+closed 2026-11-02 -- outcome: make check is green on main with a named test of read_include's strict failure, and make clean-python leaves no __pycache__ folder under scripts or the sections. -- ledger: ledgers/E-009.md
+
+#### W-086 issue [done] lengths: the STRICT failure on a missing include gets its own test   (filed during T-179)
+
+- T-195 [done] Pin the strict failure of read_include -> scripts/utils/test_widths.py
+
+#### W-088 bug [done] stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190)
+
+- T-198 [done] Remove the in-tree bytecode in make clean-python -> mk/python.mk
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -519,16 +525,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E009["E-009 doing: backlog after v0.8.0: the strict include test and the in-tree bytecode"]
-  E009 --> W086["W-086 issue done: lengths: the STRICT failure on a missing include gets its own test"]
-  W086 --> T195["T-195 done: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
-  E009 --> W088["W-088 bug done: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
-  W088 --> T198["T-198 done: Remove the in-tree bytecode in make clean-python -> mk/python.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E009 doing
-  class W086,T195,W088,T198 done
 ```
