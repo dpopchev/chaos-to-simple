@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-072   | blocked: 0 | todo roots: 0 | done: 271 | pruned: 2
+open path: E-008   | blocked: 0 | todo roots: 0 | done: 272 | pruned: 2
 
 ## Tree
 
 ```text
 E-008         [doing]    backlog after deck v2: the build guards, the rebuild rule and the cleanups
   W-070  issue  [done]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [done]
-  W-072  bug    [doing]    make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
+  W-072  bug    [done]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
   W-073  bug    [todo]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
   W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
   W-075  issue  [todo]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
@@ -487,7 +487,7 @@ flowchart TD
   E008["E-008 doing: backlog after deck v2: the build guards, the rebuild rule and the cleanups"]
   E008 --> W070["W-070 issue done: chart labels: spread_apart gets its own test"]
   W070 --> T177["T-177 done: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
-  E008 --> W072["W-072 bug doing: make lengths crashes on an include of a missing file the filter would render as a STUB"]
+  E008 --> W072["W-072 bug done: make lengths crashes on an include of a missing file the filter would render as a STUB"]
   W072 --> T179["T-179 done: Skip a missing include with a warning -> scripts/check_lengths.py"]
   E008 --> W073["W-073 bug todo: 05 ports.png is not rebuilt when data/cast.csv changes"]
   W073 --> T180["T-180 todo: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
@@ -506,7 +506,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W072 doing
-  class W070,T177,T179 done
+  class E008 doing
+  class W070,T177,W072,T179 done
   class W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
