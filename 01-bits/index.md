@@ -110,7 +110,7 @@ Read the logistics line aloud and ask the room why the carts are left.
 
 ## Step 4: four ifs {paths=16}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="35%"}
@@ -137,7 +137,7 @@ paths. Read the second logistics line aloud and say that the shipping rules now 
 
 ## Step 5: five ifs {paths=32}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="35%"}
@@ -164,7 +164,7 @@ aloud, the one that promised just one more if.
 
 ## Step 6: six ifs {paths=64}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="35%"}
