@@ -69,14 +69,13 @@ No charge when stock is gone, no mail when the card is refused.
 
 \fvset{fontsize=\scriptsize}
 
-```{.python include=06-simple/tests/test_examples.py snippet=wound-i1}
-```
-
-```{.python include=06-simple/tests/test_shell.py snippet=wound-i3}
+```{.text include=build/06-simple/postmortem.txt}
 ```
 
 ```{.text include=build/06-simple/wounds.txt}
 ```
+
+every wound closes by name; the seam made each decision local
 
 ::: notes
 I1 and I3 close by name, each wound is now a test with its own name.
