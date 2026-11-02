@@ -83,7 +83,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
-    parser.add_argument("--highlight", help="stacey: the section whose stop stands out")
+    parser.add_argument("--highlight", help="agenda, stacey: the section whose stop stands out")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
     parser.add_argument("--labels", type=Path, default=Path("02-stacey/data/labels.csv"))
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
@@ -151,7 +151,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
     if args.what == "agenda":
-        agenda_strip(load_route(args.route), load_incidents(args.incidents), args.out)
+        agenda_strip(
+            load_route(args.route), load_incidents(args.incidents), args.out, args.highlight
+        )
         return 0
     if args.what == "seam":
         seam(args.out, ports_of(load_rules(args.rules), load_cast(args.cast)))

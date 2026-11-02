@@ -2,6 +2,12 @@ path,kind,producer
 build/00-frontmatter/actors.tex,tex,scripts.actors_tex
 build/00-frontmatter/business-map.png,png,scripts.figures stage business-map
 build/00-frontmatter/agenda.png,png,scripts.figures stage agenda
+build/00-frontmatter/agenda-01.png,png,scripts.figures agenda --highlight 01
+build/00-frontmatter/agenda-02.png,png,scripts.figures agenda --highlight 02
+build/00-frontmatter/agenda-03.png,png,scripts.figures agenda --highlight 03
+build/00-frontmatter/agenda-04.png,png,scripts.figures agenda --highlight 04
+build/00-frontmatter/agenda-05.png,png,scripts.figures agenda --highlight 05
+build/00-frontmatter/agenda-06.png,png,scripts.figures agenda --highlight 06
 build/01-bits/step-0.diff,diff,scripts.paths storyboard
 build/01-bits/step-1.diff,diff,scripts.paths storyboard
 build/01-bits/step-2.diff,diff,scripts.paths storyboard

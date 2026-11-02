@@ -14,6 +14,7 @@ from scripts.utils.stage import (
     edge_words,
     incident_marks,
     load_route,
+    stop_alpha,
 )
 
 DATA = Path(__file__).resolve().parents[2] / "data"
@@ -68,3 +69,13 @@ def test_agenda_strip_writes_a_png(tmp_path: Path) -> None:
         tmp_path / "agenda.png",
     )
     assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.model
+def test_stop_alpha_fades_the_other_stops() -> None:
+    assert (stop_alpha("01", "01"), stop_alpha("02", "01")) == (1.0, 0.25)
+
+
+@pytest.mark.model
+def test_stop_alpha_keeps_every_stop_without_a_highlight() -> None:
+    assert stop_alpha("02", None) == 1.0

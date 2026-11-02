@@ -50,10 +50,24 @@ COUNTER_COLOUR = {"?": "payment", "64": "logistics", "512": "marketing", "72": "
 STOP_W, STOP_H, PITCH = 0.9, 1.5, 1.05
 
 
-def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path) -> Path:
+FADED = 0.25
+
+
+def stop_alpha(section: str, highlight: str | None) -> float:
+    """Return 1.0 for the highlighted stop or when none is highlighted, FADED otherwise."""
+    return 1.0 if highlight is None or section == highlight else FADED
+
+
+def agenda_strip(
+    route: Sequence[Stop],
+    incidents: Iterable[Incident],
+    out: Path,
+    highlight: str | None = None,
+) -> Path:
     """Draw the agenda: a box per stop left to right, pictogram and label inside, counter below.
 
     A stop whose section an incident is told in carries that incident's mark on its corner.
+    With a highlight, that stop gets a black edge and every other stop fades with its counter.
     """
     style.apply()
     import matplotlib.pyplot as plt
@@ -67,6 +81,8 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
         x = i * PITCH
         face = colour_of(COUNTER_COLOUR[stop.counter])
         ink = label_ink(face)
+        alpha = stop_alpha(stop.section, highlight)
+        picked = highlight is not None and stop.section == highlight
         ax.add_patch(
             FancyBboxPatch(
                 (x - STOP_W / 2, -STOP_H / 2),
@@ -74,7 +90,9 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
                 STOP_H,
                 boxstyle="round,pad=0.02,rounding_size=0.08",
                 facecolor=face,
-                edgecolor="none",
+                edgecolor="black" if picked else "none",
+                linewidth=3 if picked else 0,
+                alpha=alpha,
                 zorder=3,
             )
         )
@@ -87,6 +105,7 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
                 va="center",
                 fontproperties=FontProperties(fname=font, size=26),
                 color=ink,
+                alpha=alpha,
                 zorder=4,
             )
         ax.text(
@@ -97,6 +116,7 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
             va="center",
             fontsize=10,
             color=ink,
+            alpha=alpha,
             zorder=4,
         )
         ax.text(
@@ -107,6 +127,7 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
             va="center",
             fontsize=14,
             fontweight="bold",
+            alpha=alpha,
             zorder=4,
         )
         if i + 1 < len(route):
