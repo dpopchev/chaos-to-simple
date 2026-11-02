@@ -1,14 +1,16 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 4 | done: 329 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 1 | done: 329 | pruned: 4
 
 ## Tree
 
 ```text
-W-098  issue  [todo]     (standalone) 04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
-W-099  issue  [todo]     (standalone) remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
-W-100  issue  [todo]     (standalone) 06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
-W-101  issue  [todo]     (standalone) 07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
+E-011         [todo]     the v0.9.0 backlog and the layout gates
+  W-098  issue  [todo]     04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
+  W-099  issue  [todo]     remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
+  W-100  issue  [todo]     06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
+  W-101  issue  [todo]     07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
+  W-102  issue  [todo]     make check runs widths and overflow -- T-231 [todo]
 ```
 
 ## Closed
@@ -591,18 +593,21 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  W098["W-098 issue todo, standalone: 04: the homes diff at a readable size"]
+  E011["E-011 todo: the v0.9.0 backlog and the layout gates"]
+  E011 --> W098["W-098 issue todo: 04: the homes diff at a readable size"]
   W098 --> T227["T-227 todo: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
-  W099["W-099 issue todo, standalone: remove the unused contexts table and its paths subcommand"]
+  E011 --> W099["W-099 issue todo: remove the unused contexts table and its paths subcommand"]
   W099 --> T228["T-228 todo: Remove contexts_table and the contexts subcommand -> scripts/utils/paths.py and scripts/paths.py"]
-  W100["W-100 issue todo, standalone: 06: the number chart's core label and doubled shell entry"]
+  E011 --> W100["W-100 issue todo: 06: the number chart's core label and doubled shell entry"]
   W100 --> T229["T-229 todo: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py"]
-  W101["W-101 issue todo, standalone: 07: the repository URL breaks across two lines"]
+  E011 --> W101["W-101 issue todo: 07: the repository URL breaks across two lines"]
   W101 --> T230["T-230 todo: Set the repository URL on one line -> 07-close/index.md"]
+  E011 --> W102["W-102 issue todo: make check runs widths and overflow"]
+  W102 --> T231["T-231 todo: Add widths and overflow to the checks -> mk/deck.mk and README.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W098,T227,W099,T228,W100,T229,W101,T230 todo
+  class E011,W098,T227,W099,T228,W100,T229,W101,T230,W102,T231 todo
 ```
