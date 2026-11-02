@@ -61,6 +61,8 @@ discount, not before it: the rule came last, after the code had already picked o
 
 ![](build/03-chaos/doubling-512.png){width=100%}
 
+\footnotesize the curve of 01, continued: 512
+
 :::
 ::::
 
@@ -71,7 +73,9 @@ stock is gone. The number is now true: 2^9 = 512. The bigger number is the first
 
 ## Nine decisions, none deleted, all moved {paths=512}
 
-![](build/03-chaos/board.png){height=70%}
+![](build/03-chaos/board.png){height=62%}
+
+\footnotesize the retro six questions and the three nobody raised, one row each; the columns ahead are the sections ahead
 
 \theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
 
