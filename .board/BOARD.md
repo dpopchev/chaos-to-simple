@@ -1,8 +1,21 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 291 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 1 | done: 291 | pruned: 4
 
 ## Tree
+
+```text
+E-010         [todo]     deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
+  W-089  issue  [todo]     00: the section beats and the record -- T-199 [todo], T-200 [todo], T-201 [todo], T-202 [todo]
+  W-090  issue  [todo]     01: the storyboard opens the loop -- T-203 [todo], T-204 [todo], T-205 [todo]
+  W-091  issue  [todo]     01: measured captions on the evidence frames -- T-206 [todo], T-207 [todo], T-208 [todo]
+  W-092  issue  [todo]     02: the dispute as bubbles and one map -- T-209 [todo], T-210 [todo], T-211 [todo]
+  W-093  issue  [todo]     03: the room readable from the back -- T-212 [todo], T-213 [todo], T-214 [todo]
+  W-094  issue  [todo]     04: the homes without noise -- T-215 [todo], T-216 [todo], T-217 [todo]
+  W-095  issue  [todo]     05: the seam without guards -- T-218 [todo], T-219 [todo]
+  W-096  issue  [todo]     06: the measured frames -- T-220 [todo], T-221 [todo], T-222 [todo], T-223 [todo]
+  W-097  issue  [todo]     07: the repository link -- T-224 [todo]
+```
 
 ## Closed
 
@@ -525,9 +538,46 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
+  E010["E-010 todo: deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data"]
+  E010 --> W089["W-089 issue todo: 00: the section beats and the record"]
+  W089 --> T199["T-199 todo: Record the review remarks -> docs/deck-v3.md"]
+  W089 --> T200["T-200 todo: Highlight one stop on the agenda strip -> build/00-frontmatter/agenda-01.png .. agenda-06.png"]
+  W089 --> T201["T-201 todo: Template the section page -> 00-frontmatter/preamble.tex and build/00-frontmatter/beats.tex"]
+  W089 --> T202["T-202 todo: Recaption the opening frames -> 00-frontmatter/index.md"]
+  E010 --> W090["W-090 issue todo: 01: the storyboard opens the loop"]
+  W090 --> T203["T-203 todo: Move the birth of the bug to step 3 -> 01-bits/s01_bits/chaos.py and 01-bits/data/bubbles.csv"]
+  W090 --> T204["T-204 todo: Strip the asides and the headers from the step diffs -> build/01-bits/step-0.diff .. step-6.diff"]
+  W090 --> T205["T-205 todo: Open the loop on its own frame -> 01-bits/index.md, data/budget.csv and scripts/utils/test_counter_plan.py"]
+  E010 --> W091["W-091 issue todo: 01: measured captions on the evidence frames"]
+  W091 --> T206["T-206 todo: Run the two green tests from their own file -> 01-bits/tests/test_planted_bug.py and build/01-bits/coverage-summary.txt"]
+  W091 --> T207["T-207 todo: Title the finance chart with its totals -> build/01-bits/finance.png and 01-bits/index.md"]
+  W091 --> T208["T-208 todo: Legend the grid and pin the bug cell -> build/01-bits/grid.png and 01-bits/tests/test_tested_paths.py"]
+  E010 --> W092["W-092 issue todo: 02: the dispute as bubbles and one map"]
+  W092 --> T209["T-209 todo: Trim the matrix -> build/02-stacey/stacey-02.png and 02-stacey/data/labels.csv"]
+  W092 --> T210["T-210 todo: Bubble the two positions and the question -> 02-stacey/data/bubbles.csv and build/02-stacey/bubble-0.txt .. bubble-2.txt"]
+  W092 --> T211["T-211 todo: Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv"]
+  E010 --> W093["W-093 issue todo: 03: the room readable from the back"]
+  W093 --> T212["T-212 todo: Redraw the journey legibly -> build/03-chaos/diagrams/journey.png"]
+  W093 --> T213["T-213 todo: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md"]
+  W093 --> T214["T-214 todo: Head the waiting board columns -> build/03-chaos/board.png"]
+  E010 --> W094["W-094 issue todo: 04: the homes without noise"]
+  W094 --> T215["T-215 todo: Caption the stage diffs instead of headers -> scripts/utils/stagediff.py"]
+  W094 --> T216["T-216 todo: Show the q3 decision on the dispute frame -> build/04-what/dispute.txt and 04-what/index.md"]
+  W094 --> T217["T-217 todo: Show only the added body on the homes frame -> 04-what/index.md and 04-what/section.mk"]
+  E010 --> W095["W-095 issue todo: 05: the seam without guards"]
+  W095 --> T218["T-218 todo: Hide the exhaustiveness guards from the ports diff -> build/05-how/v5.diff"]
+  W095 --> T219["T-219 todo: Recaption the I3 frame and define the seam -> 05-how/index.md"]
+  E010 --> W096["W-096 issue todo: 06: the measured frames"]
+  W096 --> T220["T-220 todo: Refactor the 64-path tests onto two fixtures -> 06-simple/tests/test_core_paths.py and 06-simple/index.md"]
+  W096 --> T221["T-221 todo: Measure the eight worlds -> 06-simple/s06_simple/worlds.py and build/06-simple/worlds.txt"]
+  W096 --> T222["T-222 todo: Keep the seventh signature on one line -> 06-simple/s06_simple/seventh.py and build/06-simple/seventh.diff"]
+  W096 --> T223["T-223 todo: Legend the small slices of the number chart -> build/06-simple/paths.png"]
+  E010 --> W097["W-097 issue todo: 07: the repository link"]
+  W097 --> T224["T-224 todo: Link the repository on the Q&A frame -> 07-close/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E010,W089,T199,T200,T201,T202,W090,T203,T204,T205,W091,T206,T207,T208,W092,T209,T210,T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
