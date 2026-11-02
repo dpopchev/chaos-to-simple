@@ -5,7 +5,6 @@
 - 2026-10-30 E-001: standing: this machine has no xelatex format, no DejaVu and no mmdc -> the deck builds with lualatex and Adwaita Sans/Mono (both cover Cyrillic) and a warning placeholder stands in for each Mermaid diagram until mmdc is installed supersedes: E-001#1
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-11-01 E-004: standing: 00-frontmatter/preamble.tex:26 sets code blocks to \footnotesize, so only \fvset{fontsize=...} in a slide body shrinks code -> make overflow and make widths guard frame height and column width supersedes: W-029#1, W-031#1
-- 2026-11-01 E-005: standing: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run supersedes: E-005#1
 - 2026-11-02 E-007: standing: Font Awesome 7 Free Solid draws all nine actor icons in lualatex (fontspec) and matplotlib (fc-list path); fontawesome5 and Hack Nerd Font do too, at other codepoints -> scripts/utils/icons.py keeps one per font supersedes: E-007#2, W-053#1, W-053#2, W-053#3
 - 2026-11-02 E-007: standing: T-137 dropped the -> Decimal return annotation from chaos.py's def checkout so the line fits ruff's 100 columns with its step marker -> the 01 exhibit shows def checkout without a return type supersedes: E-007#17
 - 2026-11-02 E-007: standing: mmdc is installed since 2026-11-01 -> the E-002 Decision, not the toolchain, keeps Mermaid out supersedes: E-007#4
@@ -14,6 +13,7 @@
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
+- 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 
 ## Open questions
