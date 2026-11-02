@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-067 > T-172   | blocked: 0 | todo roots: 8 | done: 253 | pruned: 2
+open path: E-007 > W-067   | blocked: 0 | todo roots: 8 | done: 254 | pruned: 2
 
 ## Tree
 
@@ -23,7 +23,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-064  issue  [done]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [done], T-162 [done]
   W-065  issue  [done]     04: the diff ladder begins, the checkout stays on screen -- T-163 [done], T-164 [done], T-165 [done], T-166 [done]
   W-066  issue  [done]     05: the seam as the next edit of the same function -- T-167 [done], T-168 [done], T-169 [done], T-191 [done]
-  W-067  issue  [doing]    one assert per test, enforced by the build for the exhibit tests too -- T-170 [done], T-171 [done], T-172 [doing]   <- ACTIVE LEAF
+  W-067  issue  [doing]    one assert per test, enforced by the build for the exhibit tests too -- T-170 [done], T-171 [done], T-172 [done]
   W-068  issue  [todo]     06: the last rung, the seam cut, the paths counted, the seventh if -- T-173 [todo], T-174 [todo]
   W-069  issue  [todo]     lines and counter pinned to the plan -- T-175 [todo], T-176 [todo]
   W-071  bug    [done]     06 epilogue chart is width-capped in its 30% column, below 65% height, labels unreadable   (filed during T-125) -- T-178 [done]
@@ -429,7 +429,7 @@ flowchart TD
   E007 --> W067["W-067 issue doing: one assert per test, enforced by the build for the exhibit tests too"]
   W067 --> T170["T-170 done: Refactor the exhibit tests into one-assert functions and classes -> 01-bits/tests, 04-what/tests, 05-how/tests, 06-simple/tests"]
   W067 --> T171["T-171 done: Lift the exhibit exemption from the assert gate -> conftest.py"]
-  W067 --> T172["T-172 doing: Point the wounds run at the class names -> build/06-simple/wounds.txt -- ACTIVE LEAF"]
+  W067 --> T172["T-172 done: Point the wounds run at the class names -> build/06-simple/wounds.txt"]
   E007 --> W068["W-068 issue todo: 06: the last rung, the seam cut, the paths counted, the seventh if"]
   W068 --> T173["T-173 todo: Render the seventh-if diff -> build/06-simple/seventh.diff"]
   W068 --> T174["T-174 todo: Finish the 06 frames -> 06-simple/index.md"]
@@ -471,7 +471,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W067,T172 doing
-  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,T191,T170,T171,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
+  class E007,W067 doing
+  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,T191,T170,T171,T172,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
   class W068,T173,T174,W069,T175,T176,W078,T185,W084,T193,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
