@@ -66,8 +66,6 @@ Nothing was deleted, every decision only moved to the place that owns it.
 
 \fvset{fontsize=\scriptsize}
 
-\actor{marketing}
-
 ```{.text include=01-bits/data/squeeze.txt}
 ```
 
@@ -85,7 +83,7 @@ Nothing was deleted, every decision only moved to the place that owns it.
 :::
 ::: {.column width="40%"}
 
-![](build/06-simple/epilogue.png){height=58%}
+![](build/06-simple/epilogue.png){height=60%}
 
 :::
 ::::
