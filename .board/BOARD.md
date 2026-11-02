@@ -1,39 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007   | blocked: 0 | todo roots: 8 | done: 267 | pruned: 2
+open path: none   | blocked: 0 | todo roots: 8 | done: 268 | pruned: 2
 
 ## Tree
 
 ```text
-E-007         [doing]    deck v2: the stage, the counter one bit at a time, the checkout changing on screen
-  W-050  bug    [done]     06 We counted them shows the whole suite's count -- T-122 [done], T-123 [done]
-  W-051  bug    [done]     06 the number and epilogue charts render small with overlapping labels -- T-124 [done], T-125 [done]
-  W-052  issue  [done]     skeleton: the new frame plan builds end to end on stubs -- T-126 [done], T-127 [done], T-128 [done]
-  W-053  spike  [done]     the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font -- T-129 [done], T-130 [done]
-  W-054  issue  [done]     one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib -- T-131 [done], T-132 [done], T-133 [done]
-  W-055  issue  [done]     00: the business map and the agenda as a pictogram strip -- T-134 [done], T-135 [done], T-136 [done]
-  W-056  issue  [done]     01: the storyboard, the function written one request at a time -- T-137 [done], T-138 [done], T-139 [done], T-186 [done]
-  W-057  issue  [done]     01: past me's two tests and what coverage saw -- T-140 [done], T-141 [done], T-142 [done]
-  W-058  issue  [done]     01: finance found it, as a chart -- T-143 [done], T-144 [done], T-145 [done]
-  W-059  issue  [done]     01: the path nobody ran, and why nobody ran it -- T-146 [done], T-147 [done], T-148 [done]
-  W-060  issue  [done]     02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [done], T-150 [done], T-151 [done]
-  W-061  spike  [done]     the source behind the BOOM label -- T-152 [done], T-153 [done]
-  W-062  issue  [done]     03: the room as a journey, a log and a retro table -- T-154 [done], T-155 [done], T-156 [done], T-157 [done]
-  W-063  issue  [done]     03: the explosion to 512 in the style of 01 -- T-158 [done], T-159 [done], T-160 [done]
-  W-064  issue  [done]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [done], T-162 [done]
-  W-065  issue  [done]     04: the diff ladder begins, the checkout stays on screen -- T-163 [done], T-164 [done], T-165 [done], T-166 [done]
-  W-066  issue  [done]     05: the seam as the next edit of the same function -- T-167 [done], T-168 [done], T-169 [done], T-191 [done]
-  W-067  issue  [done]     one assert per test, enforced by the build for the exhibit tests too -- T-170 [done], T-171 [done], T-172 [done]
-  W-068  issue  [done]     06: the last rung, the seam cut, the paths counted, the seventh if -- T-173 [done], T-174 [done]
-  W-069  issue  [done]     lines and counter pinned to the plan -- T-175 [done], T-176 [done]
-  W-071  bug    [done]     06 epilogue chart is width-capped in its 30% column, below 65% height, labels unreadable   (filed during T-125) -- T-178 [done]
-  W-076  bug    [done]     05 seam draws the three providers in the shell grey with no pictogram   (filed during T-133) -- T-183 [done]
-  W-077  bug    [done]     make check fails on a fresh build/: lengths and widths read stub files they do not build   (filed during T-134) -- T-184 [done]
-  W-078  bug    [done]     05 effects listing prints the step markers of chaos.py   (filed during T-137) -- T-185 [done]
-  W-079  bug    [done]     01 coverage view renders as an unreadable thumbnail on the tests frame   (filed during T-142) -- T-187 [done]
-  W-080  bug    [done]     01 grid frame: the grid image prints over the frame title   (filed during T-148) -- T-188 [done]
-  W-084  bug    [done]     07 lost its Q&A bullets and notes in the skeleton rewrite   (filed during T-169) -- T-193 [done]
-  W-085  bug    [done]     06 epilogue: the Marketing badge prints over the frame title   (filed during T-174) -- T-194 [done]
 W-070  issue  [todo]     (standalone) chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
 W-072  bug    [todo]     (standalone) make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
 W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
@@ -297,6 +268,159 @@ closed 2026-11-01 -- outcome: the talk-day deck: every figure and frame readable
 - T-119 [done] Wrap the two long lines -> teaser.txt and the fee-digital snippet with no line over 71 characters
 - T-120 [done] Set the epilogue at \scriptsize -> 06-simple/index.md frame 'Epilogue: marketing's seventh if'
 
+### E-007 [done] deck v2: the stage, the counter one bit at a time, the checkout changing on screen
+
+closed 2026-11-02 -- outcome: make talk writes build/talk.pdf: 48 frames (1 title, 6 section, 41 content) that make budget accepts, STRICT=1 make talk passes with no stub left, and make check is green: board, ruff, pyright, pytest with one assert per test, ascii, lines, lengths, budget. -- ledger: ledgers/E-007.md
+
+#### W-050 bug [done] 06 We counted them shows the whole suite's count
+
+- T-122 [done] Restrict the counted run to the path tests -> build/06-simple/pytest-core.txt
+- T-123 [done] Point the frame at the measured count -> 06-simple/index.md
+
+#### W-051 bug [done] 06 the number and epilogue charts render small with overlapping labels
+
+- T-124 [done] Reshape the two chart figures -> build/06-simple/paths.png wide, build/06-simple/epilogue.png near-square
+- T-125 [done] Lay the two frames out in columns -> 06-simple/index.md
+
+#### W-052 issue [done] skeleton: the new frame plan builds end to end on stubs
+
+- T-126 [done] Add the artifact manifest, the stub writer and the strict guard -> make stubs
+- T-127 [done] Add the frame budget helper -> scripts/utils/budget.py
+- T-128 [done] Rewrite the eight index files to the frame plan -> 0*-*/index.md
+
+#### W-053 spike [done] the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font
+
+- T-129 [done] Probe the two renderers -> build/spike/fa-probe.pdf, build/spike/fa-probe.png
+- T-130 [done] Record the decision -> 00-frontmatter/README.md
+
+#### W-054 issue [done] one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib
+
+- T-131 [done] Add the actors and contexts datasets and the palette module -> scripts/utils/palette.py
+- T-132 [done] Generate the actor macros -> build/00-frontmatter/actors.tex
+- T-133 [done] Enforce the palette in figures -> scripts/utils/test_palette_usage.py
+
+#### W-055 issue [done] 00: the business map and the agenda as a pictogram strip
+
+- T-134 [done] Render the business map -> build/00-frontmatter/business-map.png
+- T-135 [done] Replace the route dataset and render the agenda strip -> build/00-frontmatter/agenda.png
+- T-136 [done] Finish the 00 frames -> 00-frontmatter/index.md
+
+#### W-056 issue [done] 01: the storyboard, the function written one request at a time
+
+- T-137 [done] Mark the steps in the exhibit and strip them on include -> 01-bits/s01_bits/chaos.py
+- T-138 [done] Render the step diffs and bubbles -> build/01-bits/step-0.diff .. step-6.diff, bubble-0.txt .. bubble-8.txt
+- T-139 [done] Finish the seven storyboard frames -> 01-bits/index.md frames 1 to 7
+- T-186 [done] Wrap the bubble words to the bubble column -> build/01-bits/bubble-0.txt .. bubble-8.txt
+
+#### W-057 issue [done] 01: past me's two tests and what coverage saw
+
+- T-140 [done] Simplify past me's tests and restrict the coverage run -> build/01-bits/coverage.txt
+- T-141 [done] Render the coverage view -> build/01-bits/coverage-view.png
+- T-142 [done] Finish the tests frame -> 01-bits/index.md frame 8
+
+#### W-058 issue [done] 01: finance found it, as a chart
+
+- T-143 [done] Add the October dataset with pinned totals -> 01-bits/data/october.csv
+- T-144 [done] Render the finance chart -> build/01-bits/finance.png, build/01-bits/finance.txt
+- T-145 [done] Finish the finance frame with the squeeze -> 01-bits/index.md frame 9
+
+#### W-059 issue [done] 01: the path nobody ran, and why nobody ran it
+
+- T-146 [done] Render the marked grid image -> build/01-bits/grid.png
+- T-147 [done] Render the doubling curve -> build/01-bits/doubling.png, build/01-bits/doubling.txt
+- T-148 [done] Finish the red-test and grid frames -> 01-bits/index.md frames 10 and 11
+
+#### W-060 issue [done] 02: the Stacey matrix as specified, radial with the Who diagonal
+
+- T-149 [done] Add the zones and labels datasets and the matrix renderer -> build/02-stacey/stacey.png
+- T-150 [done] Render the highlighted minimaps -> build/02-stacey/stacey-01.png .. stacey-06.png
+- T-151 [done] Finish the 02 frames -> 02-stacey/index.md
+
+#### W-061 spike [done] the source behind the BOOM label
+
+- T-152 [done] Collect candidate sources -> 02-stacey/data/boom-sources.md
+- T-153 [done] Record the decision and set the label -> 02-stacey/README.md, 02-stacey/data/labels.csv
+
+#### W-062 issue [done] 03: the room as a journey, a log and a retro table
+
+- T-154 [done] Replace the red cards with a dataset -> data/questions.csv
+- T-155 [done] Render the retro table -> build/03-chaos/retro.txt
+- T-156 [done] Draw the journey and write the room log -> build/03-chaos/diagrams/journey.png, 03-chaos/data/room.txt
+- T-157 [done] Finish the 03 frames 1 to 3 -> 03-chaos/index.md
+
+#### W-063 issue [done] 03: the explosion to 512 in the style of 01
+
+- T-158 [done] Render the nine-bit panels -> build/03-chaos/grid-9.png
+- T-159 [done] Extend the doubling curve to the room -> build/03-chaos/doubling-512.png
+- T-160 [done] Finish the explosion frame -> 03-chaos/index.md frame 4
+
+#### W-064 issue [done] the rules board, the artifact everyone sees from the room to the tests
+
+- T-161 [done] Render the board per stage -> build/03-chaos/board.png, build/04-what/board.png, build/05-how/board.png, build/07-close/board.png
+- T-162 [done] Place the board on four frames -> 03-chaos, 04-what, 05-how, 07-close index.md
+
+#### W-065 issue [done] 04: the diff ladder begins, the checkout stays on screen
+
+- T-163 [done] Add the staged checkouts with their tests -> 04-what/s04_what/checkout_fixed.py, 04-what/s04_what/checkout_v4.py
+- T-164 [done] Render the colour-coded checkout -> build/04-what/colorcode.png
+- T-165 [done] Render the diffs between stages -> build/04-what/fix.diff, build/04-what/v4.diff
+- T-166 [done] Finish the 04 frames -> 04-what/index.md
+
+#### W-066 issue [done] 05: the seam as the next edit of the same function
+
+- T-167 [done] Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py
+- T-168 [done] Render the v4-to-v5 diff -> build/05-how/v5.diff
+- T-169 [done] Finish the 05 frames -> 05-how/index.md
+- T-191 [done] Diff only the seam -> build/05-how/v5.diff
+
+#### W-067 issue [done] one assert per test, enforced by the build for the exhibit tests too
+
+- T-170 [done] Refactor the exhibit tests into one-assert functions and classes -> 01-bits/tests, 04-what/tests, 05-how/tests, 06-simple/tests
+- T-171 [done] Lift the exhibit exemption from the assert gate -> conftest.py
+- T-172 [done] Point the wounds run at the class names -> build/06-simple/wounds.txt
+
+#### W-068 issue [done] 06: the last rung, the seam cut, the paths counted, the seventh if
+
+- T-173 [done] Render the seventh-if diff -> build/06-simple/seventh.diff
+- T-174 [done] Finish the 06 frames -> 06-simple/index.md
+
+#### W-069 issue [done] lines and counter pinned to the plan
+
+- T-175 [done] Add the counter helper -> scripts/utils/counter.py
+- T-176 [done] Pin the deck's counters to the route -> scripts/utils/test_counter_plan.py
+
+#### W-071 bug [done] 06 epilogue chart is width-capped in its 30% column, below 65% height, labels unreadable   (filed during T-125)
+
+- T-178 [done] Wrap the fee-digital signature and give the chart a 40% column -> 06-simple/s06_simple/seventh.py, 06-simple/index.md
+
+#### W-076 bug [done] 05 seam draws the three providers in the shell grey with no pictogram   (filed during T-133)
+
+- T-183 [done] Colour the seam's ports by actor with their pictograms -> build/05-how/ports.png
+
+#### W-077 bug [done] make check fails on a fresh build/: lengths and widths read stub files they do not build   (filed during T-134)
+
+- T-184 [done] Run stubs before lengths and widths -> mk/deck.mk
+
+#### W-078 bug [done] 05 effects listing prints the step markers of chaos.py   (filed during T-137)
+
+- T-185 [done] Strip the step markers in effects_lines -> build/05-how/effects.txt
+
+#### W-079 bug [done] 01 coverage view renders as an unreadable thumbnail on the tests frame   (filed during T-142)
+
+- T-187 [done] Stack the coverage view and give it half the frame -> build/01-bits/coverage-view.png, 01-bits/index.md
+
+#### W-080 bug [done] 01 grid frame: the grid image prints over the frame title   (filed during T-148)
+
+- T-188 [done] Fit the grid frame under its title -> 01-bits/index.md
+
+#### W-084 bug [done] 07 lost its Q&A bullets and notes in the skeleton rewrite   (filed during T-169)
+
+- T-193 [done] Restore the 07 bullets and notes -> 07-close/index.md
+
+#### W-085 bug [done] 06 epilogue: the Marketing badge prints over the frame title   (filed during T-174)
+
+- T-194 [done] Fit the epilogue under its title -> 06-simple/index.md
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -359,100 +483,6 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E007["E-007 doing: deck v2: the stage, the counter one bit at a time, the checkout changing on screen"]
-  E007 --> W050["W-050 bug done: 06 We counted them shows the whole suite's count"]
-  W050 --> T122["T-122 done: Restrict the counted run to the path tests -> build/06-simple/pytest-core.txt"]
-  W050 --> T123["T-123 done: Point the frame at the measured count -> 06-simple/index.md"]
-  E007 --> W051["W-051 bug done: 06 the number and epilogue charts render small with overlapping labels"]
-  W051 --> T124["T-124 done: Reshape the two chart figures -> build/06-simple/paths.png wide, build/06-simple/epilogue.png near-square"]
-  W051 --> T125["T-125 done: Lay the two frames out in columns -> 06-simple/index.md"]
-  E007 --> W052["W-052 issue done: skeleton: the new frame plan builds end to end on stubs"]
-  W052 --> T126["T-126 done: Add the artifact manifest, the stub writer and the strict guard -> make stubs"]
-  W052 --> T127["T-127 done: Add the frame budget helper -> scripts/utils/budget.py"]
-  W052 --> T128["T-128 done: Rewrite the eight index files to the frame plan -> 0*-*/index.md"]
-  E007 --> W053["W-053 spike done: the pictogram rendering path: fontawesome5, the Font Awesome OTF or Hack Nerd Font"]
-  W053 --> T129["T-129 done: Probe the two renderers -> build/spike/fa-probe.pdf, build/spike/fa-probe.png"]
-  W053 --> T130["T-130 done: Record the decision -> 00-frontmatter/README.md"]
-  E007 --> W054["W-054 issue done: one palette: actors and contexts with colours and pictograms shared by LaTeX and matplotlib"]
-  W054 --> T131["T-131 done: Add the actors and contexts datasets and the palette module -> scripts/utils/palette.py"]
-  W054 --> T132["T-132 done: Generate the actor macros -> build/00-frontmatter/actors.tex"]
-  W054 --> T133["T-133 done: Enforce the palette in figures -> scripts/utils/test_palette_usage.py"]
-  E007 --> W055["W-055 issue done: 00: the business map and the agenda as a pictogram strip"]
-  W055 --> T134["T-134 done: Render the business map -> build/00-frontmatter/business-map.png"]
-  W055 --> T135["T-135 done: Replace the route dataset and render the agenda strip -> build/00-frontmatter/agenda.png"]
-  W055 --> T136["T-136 done: Finish the 00 frames -> 00-frontmatter/index.md"]
-  E007 --> W056["W-056 issue done: 01: the storyboard, the function written one request at a time"]
-  W056 --> T137["T-137 done: Mark the steps in the exhibit and strip them on include -> 01-bits/s01_bits/chaos.py"]
-  W056 --> T138["T-138 done: Render the step diffs and bubbles -> build/01-bits/step-0.diff .. step-6.diff, bubble-0.txt .. bubble-8.txt"]
-  W056 --> T139["T-139 done: Finish the seven storyboard frames -> 01-bits/index.md frames 1 to 7"]
-  W056 --> T186["T-186 done: Wrap the bubble words to the bubble column -> build/01-bits/bubble-0.txt .. bubble-8.txt"]
-  E007 --> W057["W-057 issue done: 01: past me's two tests and what coverage saw"]
-  W057 --> T140["T-140 done: Simplify past me's tests and restrict the coverage run -> build/01-bits/coverage.txt"]
-  W057 --> T141["T-141 done: Render the coverage view -> build/01-bits/coverage-view.png"]
-  W057 --> T142["T-142 done: Finish the tests frame -> 01-bits/index.md frame 8"]
-  E007 --> W058["W-058 issue done: 01: finance found it, as a chart"]
-  W058 --> T143["T-143 done: Add the October dataset with pinned totals -> 01-bits/data/october.csv"]
-  W058 --> T144["T-144 done: Render the finance chart -> build/01-bits/finance.png, build/01-bits/finance.txt"]
-  W058 --> T145["T-145 done: Finish the finance frame with the squeeze -> 01-bits/index.md frame 9"]
-  E007 --> W059["W-059 issue done: 01: the path nobody ran, and why nobody ran it"]
-  W059 --> T146["T-146 done: Render the marked grid image -> build/01-bits/grid.png"]
-  W059 --> T147["T-147 done: Render the doubling curve -> build/01-bits/doubling.png, build/01-bits/doubling.txt"]
-  W059 --> T148["T-148 done: Finish the red-test and grid frames -> 01-bits/index.md frames 10 and 11"]
-  E007 --> W060["W-060 issue done: 02: the Stacey matrix as specified, radial with the Who diagonal"]
-  W060 --> T149["T-149 done: Add the zones and labels datasets and the matrix renderer -> build/02-stacey/stacey.png"]
-  W060 --> T150["T-150 done: Render the highlighted minimaps -> build/02-stacey/stacey-01.png .. stacey-06.png"]
-  W060 --> T151["T-151 done: Finish the 02 frames -> 02-stacey/index.md"]
-  E007 --> W061["W-061 spike done: the source behind the BOOM label"]
-  W061 --> T152["T-152 done: Collect candidate sources -> 02-stacey/data/boom-sources.md"]
-  W061 --> T153["T-153 done: Record the decision and set the label -> 02-stacey/README.md, 02-stacey/data/labels.csv"]
-  E007 --> W062["W-062 issue done: 03: the room as a journey, a log and a retro table"]
-  W062 --> T154["T-154 done: Replace the red cards with a dataset -> data/questions.csv"]
-  W062 --> T155["T-155 done: Render the retro table -> build/03-chaos/retro.txt"]
-  W062 --> T156["T-156 done: Draw the journey and write the room log -> build/03-chaos/diagrams/journey.png, 03-chaos/data/room.txt"]
-  W062 --> T157["T-157 done: Finish the 03 frames 1 to 3 -> 03-chaos/index.md"]
-  E007 --> W063["W-063 issue done: 03: the explosion to 512 in the style of 01"]
-  W063 --> T158["T-158 done: Render the nine-bit panels -> build/03-chaos/grid-9.png"]
-  W063 --> T159["T-159 done: Extend the doubling curve to the room -> build/03-chaos/doubling-512.png"]
-  W063 --> T160["T-160 done: Finish the explosion frame -> 03-chaos/index.md frame 4"]
-  E007 --> W064["W-064 issue done: the rules board, the artifact everyone sees from the room to the tests"]
-  W064 --> T161["T-161 done: Render the board per stage -> build/03-chaos/board.png, build/04-what/board.png, build/05-how/board.png, build/07-close/board.png"]
-  W064 --> T162["T-162 done: Place the board on four frames -> 03-chaos, 04-what, 05-how, 07-close index.md"]
-  E007 --> W065["W-065 issue done: 04: the diff ladder begins, the checkout stays on screen"]
-  W065 --> T163["T-163 done: Add the staged checkouts with their tests -> 04-what/s04_what/checkout_fixed.py, 04-what/s04_what/checkout_v4.py"]
-  W065 --> T164["T-164 done: Render the colour-coded checkout -> build/04-what/colorcode.png"]
-  W065 --> T165["T-165 done: Render the diffs between stages -> build/04-what/fix.diff, build/04-what/v4.diff"]
-  W065 --> T166["T-166 done: Finish the 04 frames -> 04-what/index.md"]
-  E007 --> W066["W-066 issue done: 05: the seam as the next edit of the same function"]
-  W066 --> T167["T-167 done: Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py"]
-  W066 --> T168["T-168 done: Render the v4-to-v5 diff -> build/05-how/v5.diff"]
-  W066 --> T169["T-169 done: Finish the 05 frames -> 05-how/index.md"]
-  W066 --> T191["T-191 done: Diff only the seam -> build/05-how/v5.diff"]
-  E007 --> W067["W-067 issue done: one assert per test, enforced by the build for the exhibit tests too"]
-  W067 --> T170["T-170 done: Refactor the exhibit tests into one-assert functions and classes -> 01-bits/tests, 04-what/tests, 05-how/tests, 06-simple/tests"]
-  W067 --> T171["T-171 done: Lift the exhibit exemption from the assert gate -> conftest.py"]
-  W067 --> T172["T-172 done: Point the wounds run at the class names -> build/06-simple/wounds.txt"]
-  E007 --> W068["W-068 issue done: 06: the last rung, the seam cut, the paths counted, the seventh if"]
-  W068 --> T173["T-173 done: Render the seventh-if diff -> build/06-simple/seventh.diff"]
-  W068 --> T174["T-174 done: Finish the 06 frames -> 06-simple/index.md"]
-  E007 --> W069["W-069 issue done: lines and counter pinned to the plan"]
-  W069 --> T175["T-175 done: Add the counter helper -> scripts/utils/counter.py"]
-  W069 --> T176["T-176 done: Pin the deck's counters to the route -> scripts/utils/test_counter_plan.py"]
-  E007 --> W071["W-071 bug done: 06 epilogue chart is width-capped in its 30% column, below 65% height, labels unreadable"]
-  W071 --> T178["T-178 done: Wrap the fee-digital signature and give the chart a 40% column -> 06-simple/s06_simple/seventh.py, 06-simple/index.md"]
-  E007 --> W076["W-076 bug done: 05 seam draws the three providers in the shell grey with no pictogram"]
-  W076 --> T183["T-183 done: Colour the seam's ports by actor with their pictograms -> build/05-how/ports.png"]
-  E007 --> W077["W-077 bug done: make check fails on a fresh build/: lengths and widths read stub files they do not build"]
-  W077 --> T184["T-184 done: Run stubs before lengths and widths -> mk/deck.mk"]
-  E007 --> W078["W-078 bug done: 05 effects listing prints the step markers of chaos.py"]
-  W078 --> T185["T-185 done: Strip the step markers in effects_lines -> build/05-how/effects.txt"]
-  E007 --> W079["W-079 bug done: 01 coverage view renders as an unreadable thumbnail on the tests frame"]
-  W079 --> T187["T-187 done: Stack the coverage view and give it half the frame -> build/01-bits/coverage-view.png, 01-bits/index.md"]
-  E007 --> W080["W-080 bug done: 01 grid frame: the grid image prints over the frame title"]
-  W080 --> T188["T-188 done: Fit the grid frame under its title -> 01-bits/index.md"]
-  E007 --> W084["W-084 bug done: 07 lost its Q&A bullets and notes in the skeleton rewrite"]
-  W084 --> T193["T-193 done: Restore the 07 bullets and notes -> 07-close/index.md"]
-  E007 --> W085["W-085 bug done: 06 epilogue: the Marketing badge prints over the frame title"]
-  W085 --> T194["T-194 done: Fit the epilogue under its title -> 06-simple/index.md"]
   W070["W-070 issue todo, standalone: chart labels: spread_apart gets its own test"]
   W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
   W072["W-072 bug todo, standalone: make lengths crashes on an include of a missing file the filter would render as a STUB"]
@@ -474,7 +504,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007 doing
-  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,T191,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W071,T178,W076,T183,W077,T184,W078,T185,W079,T187,W080,T188,W084,T193,W085,T194 done
   class W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```

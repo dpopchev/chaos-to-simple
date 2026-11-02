@@ -6,23 +6,13 @@
 - 2026-10-30 W-015: standing: T-026's lines target says 'Fail on a slide line over the width limit' in make help at f72bf3c -> T-024 rewrites it to the six-lines check when it replaces the placeholder
 - 2026-11-01 E-004: standing: 00-frontmatter/preamble.tex:26 sets code blocks to \footnotesize, so only \fvset{fontsize=...} in a slide body shrinks code -> make overflow and make widths guard frame height and column width supersedes: W-029#1, W-031#1
 - 2026-11-01 E-005: standing: board close runs make check and make deliverable, neither of which runs make overflow, make widths or make lines (T-107 closed with 04 overfull, W-048) -> the coordinator runs all three at each criterion run supersedes: E-005#1
-- 2026-11-02 E-007: fact: T-137 dropped the -> Decimal return annotation from chaos.py's def checkout so the line fits ruff's 100 columns with its step marker -> the 01 exhibit shows def checkout without a return type; restoring it wraps the def (24 lines)
-- 2026-11-02 E-007: fact: counts.txt holds no 72, the example-name tests exist and make lines checks both columns -> the pasted T-060, T-064 and T-078 were not filed
-- 2026-11-02 E-007: fact: fontawesome5.sty and three Font Awesome OTF faces are installed since 2026-11-01, Hack Nerd Font under \~/.local/share/fonts -> W-053 picks the font, the labelled box stays the fallback
-- 2026-11-02 E-007: fact: mmdc is installed since 2026-11-01 (the E-001 finding is stale) -> the E-002 Decision, not the toolchain, keeps Mermaid out
-- 2026-11-02 E-007: fact: october.csv sums to 1,214 free orders and 6,070 BGN, and every date in bubbles, incidents and october falls in its week on the calendar 2026-07-27 + 7 x (N - 1) -> test_october and one calendar test per file pin them
-- 2026-11-02 E-007: fact: pdfinfo and pdftoppm are absent, gs is present and counts pages (49 today) -> every page check uses gs
-- 2026-11-02 E-007: fact: rules.csv shell rows named payment, warehouse and mail as contexts, none a contexts.csv key -> they become shell; the actor comes through cast.csv requested_by
-- 2026-11-02 E-007: fact: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py
-- 2026-11-02 E-007: fact: the data the briefs copy lives in local/briefs/e007/ (untracked), one file per target path -> a lane copies, never retypes
-- 2026-11-02 E-007: fact: the pasted route.csv put 01 and 06 on the diagonal and 01, 02 beyond radius 1 -> corrected coordinates in local/briefs/e007/data/route.csv, the BOOM band open above 0.75
-- 2026-11-02 E-007: fact: the pasted tested.csv I1 row was 000001; the bug path sets b0 and b2, 000101 as the grid prints it -> the corrected row is in local/briefs/e007
-- 2026-11-02 E-007: fact: the talk is 2026-11-05 (00-frontmatter/meta.yaml) and the fallback deck is v0.6.1 -> a work item that cannot land by the evening of 2026-11-04 is parked, never rushed
-- 2026-11-02 E-007: fact: the talk-day fallback deck is main at 9ecaab0 (W-050, W-051, W-071 landed) -> the developer tags it v0.6.1; W-052 stubs the deck from here
-- 2026-11-02 W-053: fact: lualatex draws all nine actor icons with no Missing character via fontawesome5 (its own FA5 OTF), fontspec Font Awesome 7 Free Solid and fontspec Hack Nerd Font -> both installed fonts serve lualatex
-- 2026-11-02 W-053: fact: matplotlib draws all nine actor icons from Font Awesome 7 Free-Solid-900.otf and from HackNerdFont-Regular.ttf, loaded by fc-list path -> one named font serves both renderers; FA7 Free is the one fc-list finds first
-- 2026-11-02 W-053: fact: otf-font-awesome is Font Awesome 7 Free, not 6, icons in its Solid face; Nerd Fonts moves warehouse, store, layer-group to ED92, EE17, EEA8 -> scripts/utils/icons.py keeps a codepoint per font, read with fontTools
-- 2026-11-02 W-061: fact: no source read states 8:1; Brooks, The Tar Pit (1975) states at least 3x per step and 9x program -> programming systems product; Cagan (SVPG 2012) puts a live-data prototype at 20-50% of production; Zimmerman 2001 gives no figure -> 02-stacey/data/boom-sources.md
+- 2026-11-02 E-007: standing: Font Awesome 7 Free Solid draws all nine actor icons in lualatex (fontspec) and matplotlib (fc-list path); fontawesome5 and Hack Nerd Font do too, at other codepoints -> scripts/utils/icons.py keeps one per font supersedes: E-007#2, W-053#1, W-053#2, W-053#3
+- 2026-11-02 E-007: standing: T-137 dropped the -> Decimal return annotation from chaos.py's def checkout so the line fits ruff's 100 columns with its step marker -> the 01 exhibit shows def checkout without a return type supersedes: E-007#17
+- 2026-11-02 E-007: standing: mmdc is installed since 2026-11-01 -> the E-002 Decision, not the toolchain, keeps Mermaid out supersedes: E-007#4
+- 2026-11-02 E-007: standing: no source read states 8:1; Brooks, The Tar Pit (1975): 9x program -> programming systems product; Cagan (SVPG 2012): a prototype at 20-50% of production -> 02-stacey/data/boom-sources.md supersedes: W-061#1
+- 2026-11-02 E-007: standing: october.csv sums to 1,214 free orders and 6,070 BGN; every date in bubbles, incidents and october falls in its week on the calendar 2026-07-27 + 7 x (N - 1) -> test_october and the calendar tests pin them supersedes: E-007#5
+- 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
+- 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -31,23 +21,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-02 E-007: W-050 and W-051 land first; the developer tags v0.6.1 as the talk-day fallback deck before W-052 starts, since the skeleton stubs main until W-069 lands (developer, 2026-11-01)
-- 2026-11-02 E-007: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 32 hours) (developer, 2026-11-02)
-- 2026-11-02 E-007: figures stay matplotlib, E-002 stands: the manifest rows journey, moves and ports are produced by scripts.figures, not mmdc (developer, 2026-11-01)
-- 2026-11-02 E-007: the deck is 45 minutes and 48 frames (title, six section frames, 41 content); 07 keeps no section frame, E-005 C7 stands (developer, 2026-11-01)
-- 2026-11-02 E-007: the one-assert gate covers the exhibit tests too: W-067 lifts the E-001 exemption in conftest.py; the category-marker exemption stays (developer, 2026-11-01)
-- 2026-11-02 W-053: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex, its fc-list path in matplotlib; ICONS in scripts/utils/icons.py maps a name to its codepoint; fontawesome5 is the second choice, Hack Nerd Font the third, a labelled box the fallback if fc-list finds none
-- 2026-11-02 W-053: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex, its fc-list path in matplotlib; ICONS in scripts/utils/icons.py maps a name to its codepoint; fontawesome5 is the second choice, Hack Nerd Font the third, a labelled box the fallback if fc-list finds none
-- 2026-11-02 W-061: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 The Tar Pit (1975): a programming systems product costs nine times the program; labels.csv boom_quote reads 9x the program (Brooks 1975); the 8:1 hunch is not used, since no source read states it
-- 2026-11-02 W-061: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 The Tar Pit (1975): a programming systems product costs nine times the program; labels.csv boom_quote reads 9x the program (Brooks 1975); the 8:1 hunch is not used, since no source read states it
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-007: W-071 filed under E-007 from W-051's criterion run; it lands before W-052 so the talk-day fallback sha carries both charts
-- 2026-11-02 E-007: W-076 filed under E-007 from W-054's criterion run; it lands before W-055
-- 2026-11-02 E-007: W-077 filed under E-007 from T-134's close gate; W-055 blocked on it
-- 2026-11-02 E-007: W-078 filed under E-007 from T-137: effects.txt prints the step markers
-- 2026-11-02 E-007: W-079 filed under E-007 from W-057's criterion run
-- 2026-11-02 E-007: W-080 filed under E-007 from W-059's criterion run (grid over the title); W-081 filed standalone (make overflow misses it)
-- 2026-11-02 E-007: W-084 filed under E-007 from T-169: the skeleton dropped the 07 Q&A bullets and notes
-- 2026-11-02 E-007: W-085 filed under E-007 from W-068's criterion run (badge over the epilogue title)
-- 2026-11-02 E-007: ten todo Checks of the form make artifacts && test -s or ls now start with make clean-build, since make stubs leaves a placeholder at every manifest path that would pass them
+- none recorded
