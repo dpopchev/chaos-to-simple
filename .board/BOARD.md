@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-009 > W-088   | blocked: 0 | todo roots: 0 | done: 289 | pruned: 4
+open path: E-009   | blocked: 0 | todo roots: 0 | done: 290 | pruned: 4
 
 ## Tree
 
 ```text
 E-009         [doing]    backlog after v0.8.0: the strict include test and the in-tree bytecode
   W-086  issue  [done]     lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [done]
-  W-088  bug    [doing]    stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [done]
+  W-088  bug    [done]     stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [done]
 ```
 
 ## Closed
@@ -522,13 +522,13 @@ flowchart TD
   E009["E-009 doing: backlog after v0.8.0: the strict include test and the in-tree bytecode"]
   E009 --> W086["W-086 issue done: lengths: the STRICT failure on a missing include gets its own test"]
   W086 --> T195["T-195 done: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
-  E009 --> W088["W-088 bug doing: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
+  E009 --> W088["W-088 bug done: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
   W088 --> T198["T-198 done: Remove the in-tree bytecode in make clean-python -> mk/python.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E009,W088 doing
-  class W086,T195,T198 done
+  class E009 doing
+  class W086,T195,W088,T198 done
 ```
