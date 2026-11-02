@@ -37,12 +37,13 @@ def test_declined_sends_no_mail() -> None:
     assert mailer.sent == []
 
 
-def test_bounce_still_accepts() -> None:
-    result = checkout(an_order(), TODAY, FakeGateway(), FakeInventory(), FakeMailer(bounces=True))
-    assert isinstance(result, Accepted)
+def test_bounce_accepts_unconfirmed() -> None:
+    gateway = FakeGateway()
+    result = checkout(an_order(), TODAY, gateway, FakeInventory(), FakeMailer(bounces=True))
+    assert result == Accepted(gateway.charged[0], confirmed=False)
 
 
 def test_success_charges_the_total() -> None:
     gateway = FakeGateway()
     result = checkout(an_order(), TODAY, gateway, FakeInventory(), FakeMailer())
-    assert result == Accepted(gateway.charged[0])
+    assert result == Accepted(gateway.charged[0], confirmed=True)

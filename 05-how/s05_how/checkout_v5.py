@@ -27,6 +27,7 @@ from s05_how.ports import (
 @dataclass(frozen=True)
 class Accepted:
     total: Money
+    confirmed: bool
 
 
 @dataclass(frozen=True)
@@ -67,8 +68,10 @@ def checkout(
         case _ as unreachable:
             assert_never(unreachable)
     match mailer.send(order.email, total):
-        case Sent() | Bounced():
-            return Accepted(total)
+        case Sent():
+            return Accepted(total, confirmed=True)
+        case Bounced():
+            return Accepted(total, confirmed=False)
         case _ as unreachable:
             assert_never(unreachable)
 
