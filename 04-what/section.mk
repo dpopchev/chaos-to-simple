@@ -17,17 +17,12 @@ $(BUILD)/04-what/colorcode.png: 01-bits/s01_bits/chaos.py data/cast.csv data/rul
 	@$(RUN) python -m scripts.figures colorcode --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/04-what/fix.diff $(BUILD)/04-what/v4.diff
+ARTIFACTS += $(BUILD)/04-what/fix.diff
 
 $(BUILD)/04-what/fix.diff: 01-bits/s01_bits/chaos.py 04-what/s04_what/checkout_fixed.py 04-what/section.mk scripts/paths.py scripts/utils/stagediff.py
 	@$(RUN) python -m scripts.paths diff --from 01-bits/s01_bits/chaos.py \
 		--to 04-what/s04_what/checkout_fixed.py --snippet checkout \
 		--label-from 'checkout v1' --label-to fixed --out $@
-	$(call log_done,$@ written)
-
-$(BUILD)/04-what/v4.diff: 04-what/s04_what/checkout_fixed.py 04-what/s04_what/checkout_v4.py 04-what/section.mk scripts/paths.py scripts/utils/stagediff.py
-	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_fixed.py \
-		--to 04-what/s04_what/checkout_v4.py --snippet checkout --added-only --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/04-what/dispute.txt

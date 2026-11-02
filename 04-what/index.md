@@ -16,6 +16,8 @@ The colours show where each if comes from before anyone reads its name.
 ```{.diff include=build/04-what/fix.diff cap=18}
 ```
 
+one name: discounted goods, a value pricing returns -- the first boundary
+
 ::: notes
 The threshold now reads the discounted goods, so I1 closes.
 The diff is the whole fix: one name changes, and the rest of the function stays as it was.
@@ -31,21 +33,13 @@ The diff is the whole fix: one name changes, and the rest of the function stays 
 ```{.python include=04-what/s04_what/shipping.py snippet=fee}
 ```
 
-Values, never flags.
+the rule belongs to shipping, Zone is a sum type: the checker counts that bit
 
 ::: notes
 The sentence decided in the room is now a value. coupon.is_valid_on(today), in pricing.py, is the q1 sentence.
 The fee is charged on the discounted goods, and no flag carries the decision across contexts.
-:::
-
-## A bit as a type {paths=512}
-
-```{.python include=04-what/s04_what/shipping.py snippet=zone}
-```
-
-::: notes
-Zone has two states, so the type is a sum and not a flag.
-The type checker counts this bit: a state with no case is an error, not a silent default.
+Zone has two states, so the type is a sum and not a flag: a state with no case is an error, not a silent default.
+Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type checker counts the bit. Put it back.
 :::
 
 ## Bounded contexts: every bit has a home {paths=512}
@@ -53,13 +47,15 @@ The type checker counts this bit: a state with no case is an error, not a silent
 \fvset{fontsize=\scriptsize}
 
 :::: {.columns}
-::: {.column width="62%"}
+::: {.column width="75%"}
 
-```{.diff include=build/04-what/v4.diff cap=30}
+checkout_fixed.py -> checkout_v4.py
+
+```{.python include=04-what/s04_what/checkout_v4.py snippet=checkout cap=18}
 ```
 
 :::
-::: {.column width="38%"}
+::: {.column width="25%"}
 
 pricing: \actor{marketing} \actor{loyalty}
 

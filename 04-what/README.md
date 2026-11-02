@@ -14,11 +14,10 @@ place; contracts between contexts are values, never flags.
 
 ## Slides
 
-- [x] Color-coded, the ifs get names: `colorcode.png`
-- [x] The first fix: `fix.diff`
-- [x] The dispute closes: `dispute.txt` (the q3 card), `snippet=fee`, the takeaway "Values, never flags"
-- [x] A bit as a type: `snippet=zone`
-- [x] Bounded contexts: every bit has a home: the added body of `v4.diff` beside the four context lines with faces
+- [x] Color-coded, the ifs get names: `colorcode.png`, legend headed 'who asked' and 'home'
+- [x] The first fix: `fix.diff`, captioned 'one name: discounted goods, a value pricing returns -- the first boundary'
+- [x] The dispute closes: `dispute.txt` (the q3 card), `snippet=fee`, captioned 'the rule belongs to shipping, Zone is a sum type: the checker counts that bit'; the Live demo sits in its notes (no Zone frame)
+- [x] Bounded contexts: every bit has a home: `checkout_v4.py` `snippet=checkout` as plain code under 'checkout_fixed.py -> checkout_v4.py', beside the four context lines with faces
 - [x] Bounded contexts, the moves: the contract line under moves.png, glued to the frame
 
 ## Live
