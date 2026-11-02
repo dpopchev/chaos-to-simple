@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-013 > W-122 > T-282   | blocked: 0 | todo roots: 0 | done: 412 | pruned: 4
+open path: E-013 > W-122   | blocked: 0 | todo roots: 0 | done: 413 | pruned: 4
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-013 > W-122 > T-282   | blocked: 0 | todo roots: 0 | done: 412 | pr
 E-013         [doing]    Deck v4 polish: the nine findings of the E-012 verification landed before the dry run
   W-120  bug    [done]     the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [done]
   W-121  issue  [done]     01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [done]
-  W-122  bug    [doing]    01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [doing]   <- ACTIVE LEAF
+  W-122  bug    [doing]    01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [done]
   W-123  bug    [todo]     the board's first header overflows its cell   (filed during T-257) -- T-283 [todo]
   W-124  issue  [todo]     04: the moves notes still speak of the board   (filed during T-263) -- T-284 [todo]
   W-125  bug    [todo]     05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [todo]
@@ -734,7 +734,7 @@ flowchart TD
   E013 --> W121["W-121 issue done: 01: the step code at scriptsize in a wider column"]
   W121 --> T281["T-281 done: Widen the step code column -> 01-bits/index.md"]
   E013 --> W122["W-122 bug doing: 01: the bug-run rule masks pytest's exit with || true"]
-  W122 --> T282["T-282 doing: Accept only a failed test -> the bug-run rule in 01-bits/section.mk -- ACTIVE LEAF"]
+  W122 --> T282["T-282 done: Accept only a failed test -> the bug-run rule in 01-bits/section.mk"]
   E013 --> W123["W-123 bug todo: the board's first header overflows its cell"]
   W123 --> T283["T-283 todo: Break the first header -> scripts/utils/board.py"]
   E013 --> W124["W-124 issue todo: 04: the moves notes still speak of the board"]
@@ -753,7 +753,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E013,W122,T282 doing
-  class W120,T280,W121,T281 done
+  class E013,W122 doing
+  class W120,T280,W121,T281,T282 done
   class W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
 ```
