@@ -1,8 +1,29 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 340 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 1 | done: 340 | pruned: 4
 
 ## Tree
+
+```text
+E-012         [todo]     Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
+  W-103  issue  [todo]     EUR: every amount reads EUR -- T-232 [todo], T-233 [todo], T-234 [todo]
+  W-104  issue  [todo]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [todo], T-236 [todo], T-237 [todo], T-238 [todo]
+  W-105  issue  [todo]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [todo], T-240 [todo], T-241 [todo], T-242 [todo]
+  W-106  issue  [todo]     01: the storyboard counts policies -- T-243 [todo], T-244 [todo], T-245 [todo]
+  W-107  issue  [todo]     01: checkout done, the two tests, the six-bit number -- T-246 [todo], T-247 [todo]
+  W-108  issue  [todo]     01: finance R1 against R2, and its test -- T-248 [todo], T-249 [todo]
+  W-109  issue  [todo]     02: R1 and R2 above the line, the decision frame -- T-250 [todo], T-251 [todo], T-252 [todo]
+  W-110  issue  [todo]     03: the journey as the customer certainty, the retro subdomains -- T-253 [todo], T-254 [todo], T-255 [todo]
+  W-111  issue  [todo]     03: the honest count panels and the board continuity -- T-256 [todo], T-257 [todo], T-258 [todo]
+  W-112  issue  [todo]     04: tactical to strategic in five frames -- T-259 [todo], T-260 [todo], T-261 [todo]
+  W-113  issue  [todo]     04: the moves frame, core = the What, shell = the How -- T-262 [todo], T-263 [todo]
+  W-114  issue  [todo]     05: the test first -- T-264 [todo], T-265 [todo], T-266 [todo]
+  W-115  issue  [todo]     05: the ports answer with values, the moves table explained -- T-267 [todo], T-268 [todo]
+  W-116  issue  [todo]     06: cut along the seam -- T-269 [todo], T-270 [todo]
+  W-117  issue  [todo]     06: the wounds as a post-mortem -- T-271 [todo], T-272 [todo], T-273 [todo]
+  W-118  issue  [todo]     07: the call to action and the thank-you -- T-274 [todo], T-275 [todo]
+  W-119  issue  [todo]     action titles on every content frame, topic titles on the section pages -- T-276 [todo], T-277 [todo], T-278 [todo], T-279 [todo]
+```
 
 ## Closed
 
@@ -608,9 +629,76 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
+  E012["E-012 todo: Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR"]
+  E012 --> W103["W-103 issue todo: EUR: every amount reads EUR"]
+  W103 --> T232["T-232 todo: Record the review and the frame plan -> docs/deck-v4.md"]
+  W103 --> T233["T-233 todo: Rename the money helper -> eur() in 04-what/s04_what/money.py and its importers"]
+  W103 --> T234["T-234 todo: Rewrite the amounts -> EUR in the data, the exhibits, the notes and the READMEs"]
+  E012 --> W104["W-104 issue todo: one diff renderer: -, +, ~, ... under a version caption; the storyboard whole"]
+  W104 --> T235["T-235 todo: Mark changed and elided lines -> snippet_diff emits ~ and ... in scripts/utils/stagediff.py"]
+  W104 --> T236["T-236 todo: Show the whole function per step -> step_view in scripts/utils/storyboard.py"]
+  W104 --> T237["T-237 todo: Colour the prefixes -> 00-frontmatter/filters/diffs.lua and the preamble macros"]
+  W104 --> T238["T-238 todo: Fit the whole function -> the 01, 04, 05 and 06 includes with their captions"]
+  E012 --> W105["W-105 issue todo: 00: the map as a flow of policies, the agenda explained, the icons guarded"]
+  W105 --> T239["T-239 todo: Outline the core and label the flows -> business_map in scripts/utils/stage.py"]
+  W105 --> T240["T-240 todo: Colour the stops by band and explain the marks -> agenda_strip and stacey.draw"]
+  W105 --> T241["T-241 todo: Put the path glyph by each counter and in the footer -> stage.py, palette.actors_tex, 00-frontmatter/preamble.tex, 00-frontmatter/index.md"]
+  W105 --> T242["T-242 todo: Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py"]
+  E012 --> W106["W-106 issue todo: 01: the storyboard counts policies"]
+  W106 --> T243["T-243 todo: Count the tally -> tally_line in scripts/utils/storyboard.py and build/01-bits/tally-N.txt"]
+  W106 --> T244["T-244 todo: Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan"]
+  W106 --> T245["T-245 todo: Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py"]
+  E012 --> W107["W-107 issue todo: 01: checkout done, the two tests, the six-bit number"]
+  W107 --> T246["T-246 todo: Price the next if -> next_doubling in scripts/utils/paths.py and build/01-bits/next.txt"]
+  W107 --> T247["T-247 todo: Rework the three frames -> 01-bits/index.md"]
+  E012 --> W108["W-108 issue todo: 01: finance R1 against R2, and its test"]
+  W108 --> T248["T-248 todo: Name the readings on the chart -> finance.draw legend and title, the frame caption and notes"]
+  W108 --> T249["T-249 todo: Show the finance test as a plain test with its run -> 01-bits/tests/test_planted_bug.py, 01-bits/section.mk, 01-bits/index.md, data/artifacts.csv"]
+  E012 --> W109["W-109 issue todo: 02: R1 and R2 above the line, the decision frame"]
+  W109 --> T250["T-250 todo: Tag the readings -> a tag column in the bubbles csv and the bubble head"]
+  W109 --> T251["T-251 todo: Enlarge the zone texts -> scripts/utils/stacey.py"]
+  W109 --> T252["T-252 todo: Write the two frames -> 02-stacey/index.md"]
+  E012 --> W110["W-110 issue todo: 03: the journey as the customer certainty, the retro subdomains"]
+  W110 --> T253["T-253 todo: Weigh the drops -> mood(steps, questions) in scripts/utils/figures.py"]
+  W110 --> T254["T-254 todo: Add the subdomain -> data/questions.csv, Question and retro_table"]
+  W110 --> T255["T-255 todo: Caption the room and the retro -> 03-chaos/index.md"]
+  E012 --> W111["W-111 issue todo: 03: the honest count panels and the board continuity"]
+  W111 --> T256["T-256 todo: Name the worlds -> world_name(bits, rules) and the grid_panels titles"]
+  W111 --> T257["T-257 todo: Head the board by the route -> headers(route) in scripts/utils/board.py"]
+  W111 --> T258["T-258 todo: Caption the two frames -> 03-chaos/index.md"]
+  E012 --> W112["W-112 issue todo: 04: tactical to strategic in five frames"]
+  W112 --> T259["T-259 todo: Split the legend -> legend_groups and the two columns of colorcode()"]
+  W112 --> T260["T-260 todo: Trim the b2 comment -> 04-what/s04_what/shipping.py and 06-simple/s06_simple/seventh.py"]
+  W112 --> T261["T-261 todo: Rewrite the five frames -> 04-what/index.md, 04-what/section.mk, data/artifacts.csv, data/budget.csv, 04-what/README.md"]
+  E012 --> W113["W-113 issue todo: 04: the moves frame, core = the What, shell = the How"]
+  W113 --> T262["T-262 todo: Group the bands -> band_groups and the brackets of moves_figure"]
+  W113 --> T263["T-263 todo: Widen the frame -> 04-what/index.md"]
+  E012 --> W114["W-114 issue todo: 05: the test first"]
+  W114 --> T264["T-264 todo: Write the I3 test against v4 -> 05-how/tests/test_i3.py"]
+  W114 --> T265["T-265 todo: Capture the run -> build/05-how/i3-run.txt in 05-how/section.mk and data/artifacts.csv"]
+  W114 --> T266["T-266 todo: Reorder 05 -> 05-how/index.md and 05-how/README.md"]
+  E012 --> W115["W-115 issue todo: 05: the ports answer with values, the moves table explained"]
+  W115 --> T267["T-267 todo: Return confirmed -> Accepted(total, confirmed) in 05-how/s05_how/checkout_v5.py"]
+  W115 --> T268["T-268 todo: Name the moves -> the table and the ports title in 05-how/index.md"]
+  E012 --> W116["W-116 issue todo: 06: cut along the seam"]
+  W116 --> T269["T-269 todo: Diff the seam and trim the run -> build/06-simple/seam.diff and pytest-core-summary.txt in 06-simple/section.mk"]
+  W116 --> T270["T-270 todo: Write the seam frame and merge the 192 frames -> 06-simple/index.md, scripts/utils/test_counter_plan.py, 06-simple/README.md"]
+  E012 --> W117["W-117 issue todo: 06: the wounds as a post-mortem"]
+  W117 --> T271["T-271 todo: Add the decision and the principle -> data/incidents.csv, Incident, data/README.md"]
+  W117 --> T272["T-272 todo: Render the post-mortem -> postmortem_table, scripts.paths postmortem, 06-simple/section.mk, data/artifacts.csv"]
+  W117 --> T273["T-273 todo: Show it -> 06-simple/index.md"]
+  E012 --> W118["W-118 issue todo: 07: the call to action and the thank-you"]
+  W118 --> T274["T-274 todo: Write the two frames -> 07-close/index.md, data/budget.csv, 07-close/README.md"]
+  W118 --> T275["T-275 todo: Count the pages -> build/talk.pdf at 50 and README.md"]
+  E012 --> W119["W-119 issue todo: action titles on every content frame, topic titles on the section pages"]
+  W119 --> T276["T-276 todo: Write the titles -> the Planned titles section of docs/deck-v4.md"]
+  W119 --> T277["T-277 todo: Retitle 01, 02 and 03 -> their index.md and scripts/utils/test_counter_plan.py"]
+  W119 --> T278["T-278 todo: Retitle 04, 05, 06 and 07 -> their index.md and the counter plan"]
+  W119 --> T279["T-279 todo: Gate the title length -> scripts/utils/titles.py, scripts/check_titles.py, make titles in mk/deck.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E012,W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
 ```

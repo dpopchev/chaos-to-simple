@@ -23,7 +23,14 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- none recorded
+- 2026-11-02 E-012: 50 pages: Zone (page 30 at 2d453f0, pre-approved by D5) is pruned and its sentence folds into the dispute caption; the measurement frame, the seam frame and the two close frames are added (developer, 2026-11-02)
+- 2026-11-02 E-012: EUR replaces BGN in the sources only: data, exhibits, code, notes, READMEs; the docs/ review records, the board ledgers and the VAT id BG123456789 stay (developer, 2026-11-02)
+- 2026-11-02 E-012: P1 (CODE and WAREHOUSE text fallbacks) is not reproduced on this machine: fc-list resolves the Solid file and both glyphs draw; D4 is met by font_file choosing the icon file by its glyphs (W-105 T-242) (developer, 2026-11-02)
+- 2026-11-02 E-012: R1 is marketing's reading (of the cart, before the coupon: what the code did), R2 is logistics' (of what they pay, after: what finance expected) (developer, 2026-11-02)
+- 2026-11-02 E-012: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-02)
+- 2026-11-02 E-012: the 02 matrix stays at 85% with the line beside it, bottom-aligned, zone texts at 12pt: P3's line-under does not fit at 85%, so E-010#d2 stands (developer, 2026-11-02)
+- 2026-11-02 E-012: the call to action names linkedin.com/in/dpopchev and the CraftsmansDay and JourneymansDay post series as written; the developer corrects them before W-118 starts if wrong (developer, 2026-11-02)
+- 2026-11-02 E-012: the eight-word title gate (make titles, W-119 T-279) keeps the action-title rule mechanically (developer, 2026-11-02)
 
 ## Deviations
 - none recorded
