@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008   | blocked: 0 | todo roots: 0 | done: 272 | pruned: 2
+open path: E-008   | blocked: 0 | todo roots: 1 | done: 272 | pruned: 2
 
 ## Tree
 
@@ -14,6 +14,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-081  bug    [todo]     make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
   W-082  issue  [todo]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [todo]
   W-083  bug    [todo]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
+W-086  issue  [todo]     (standalone) lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [todo]
 ```
 
 ## Closed
@@ -501,6 +502,8 @@ flowchart TD
   W082 --> T190["T-190 todo: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
   E008 --> W083["W-083 bug todo: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
   W083 --> T192["T-192 todo: Write stubs with an epoch mtime -> scripts/utils/stubs.py"]
+  W086["W-086 issue todo, standalone: lengths: the STRICT failure on a missing include gets its own test"]
+  W086 --> T195["T-195 todo: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -508,5 +511,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E008 doing
   class W070,T177,W072,T179 done
-  class W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
+  class W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192,W086,T195 todo
 ```
