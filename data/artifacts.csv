@@ -68,6 +68,7 @@ build/05-how/ports.png,png,scripts.figures seam
 build/05-how/effects.txt,txt,scripts.paths effects
 build/05-how/v5.diff,diff,scripts.paths diff
 build/05-how/board.png,png,scripts.figures board --stage 05
+build/05-how/i3-run.txt,txt,pytest 05-how/tests/test_i3.py
 build/06-simple/pytest-core.txt,txt,pytest
 build/06-simple/wounds.txt,txt,pytest -rp -k
 build/06-simple/paths.png,png,scripts.paths chart

@@ -6,6 +6,23 @@ $(BUILD)/05-how/effects.txt: data/cast.csv 01-bits/s01_bits/chaos.py scripts/pat
 	@$(RUN) python -m scripts.paths effects --cast data/cast.csv --source 01-bits/s01_bits/chaos.py --out $@
 	$(call log_done,$@ written)
 
+# The I3 run: pytest must fail exactly once (status 1); the assert line and the summary are kept.
+ARTIFACTS += $(BUILD)/05-how/i3-run.txt
+
+$(BUILD)/05-how/i3-run.txt: 05-how/tests/test_i3.py 04-what/s04_what/checkout_v4.py 05-how/section.mk
+	@mkdir -p $(@D)
+	@tmp=$$(mktemp); \
+	status=0; \
+	$(RUN) pytest 05-how/tests/test_i3.py --runxfail -q --no-header -p no:cacheprovider \
+	  > $$tmp 2>&1 || status=$$?; \
+	if [ "$$status" -ne 1 ]; then \
+	  cat $$tmp; rm -f $$tmp; \
+	  echo "i3-run: expected pytest status 1 (one failed test), got $$status" >&2; exit 1; \
+	fi; \
+	grep -E '^E +(Assertion|assert)|^[0-9]+ failed' $$tmp | sed -E 's/ in [0-9.]+s.*$$//; s/, [0-9]+ warnings?$$//' > $@; \
+	rm -f $$tmp
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/05-how/board.png
 
 $(BUILD)/05-how/board.png: data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py
