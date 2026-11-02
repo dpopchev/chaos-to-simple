@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-083   | blocked: 0 | todo roots: 2 | done: 279 | pruned: 4
+open path: E-008   | blocked: 0 | todo roots: 2 | done: 280 | pruned: 4
 
 ## Tree
 
@@ -13,7 +13,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-075  issue  [done]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [done]
   W-081  bug    [pruned]   make overflow passes a frame whose content beamer shifts over the title   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]   (filed during T-148) -- T-189 [pruned]   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]
   W-082  issue  [done]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [done]
-  W-083  bug    [doing]    make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [done]
+  W-083  bug    [done]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [done]
   W-087  bug    [todo]     make overflow passes a frame that fits its text height but whose [T]-column image reaches the title   (filed during T-189) -- T-196 [todo], T-197 [todo]
 W-086  issue  [todo]     (standalone) lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [todo]
 W-088  bug    [todo]     (standalone) stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [todo]
@@ -502,7 +502,7 @@ flowchart TD
   W081 --> T189["T-189 pruned: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
   E008 --> W082["W-082 issue done: remove the dead growth chart and its paths subcommand"]
   W082 --> T190["T-190 done: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
-  E008 --> W083["W-083 bug doing: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
+  E008 --> W083["W-083 bug done: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
   W083 --> T192["T-192 done: Write stubs with an epoch mtime -> scripts/utils/stubs.py"]
   E008 --> W087["W-087 bug todo: make overflow passes a frame that fits its text height but whose [T]-column image reaches the title"]
   W087 --> T196["T-196 todo: Print each frame's slack in the overflow build -> 00-frontmatter/slack-probe.tex"]
@@ -516,8 +516,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W083 doing
-  class W070,T177,W072,T179,W073,T180,W075,T182,W082,T190,T192 done
+  class E008 doing
+  class W070,T177,W072,T179,W073,T180,W075,T182,W082,T190,W083,T192 done
   class W074,T181,W087,T196,T197,W086,T195,W088,T198 todo
   class W081,T189 pruned
 ```
