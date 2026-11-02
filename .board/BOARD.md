@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 7 | done: 390 | pruned: 4
+open path: E-012 > W-116 > T-269   | blocked: 0 | todo roots: 7 | done: 390 | pruned: 4
 
 ## Tree
 
@@ -19,7 +19,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-113  issue  [done]     04: the moves frame, core = the What, shell = the How -- T-262 [done], T-263 [done]
   W-114  issue  [done]     05: the test first -- T-264 [done], T-265 [done], T-266 [done]
   W-115  issue  [done]     05: the ports answer with values, the moves table explained -- T-267 [done], T-268 [done]
-  W-116  issue  [todo]     06: cut along the seam -- T-269 [todo], T-270 [todo]
+  W-116  issue  [doing]    06: cut along the seam -- T-269 [doing]   <- ACTIVE LEAF, T-270 [todo]
   W-117  issue  [todo]     06: the wounds as a post-mortem -- T-271 [todo], T-272 [todo], T-273 [todo]
   W-118  issue  [todo]     07: the call to action and the thank-you -- T-274 [todo], T-275 [todo]
   W-119  issue  [todo]     action titles on every content frame, topic titles on the section pages -- T-276 [todo], T-277 [todo], T-278 [todo], T-279 [todo]
@@ -687,8 +687,8 @@ flowchart TD
   E012 --> W115["W-115 issue done: 05: the ports answer with values, the moves table explained"]
   W115 --> T267["T-267 done: Return confirmed -> Accepted(total, confirmed) in 05-how/s05_how/checkout_v5.py"]
   W115 --> T268["T-268 done: Name the moves -> the table and the ports title in 05-how/index.md"]
-  E012 --> W116["W-116 issue todo: 06: cut along the seam"]
-  W116 --> T269["T-269 todo: Diff the seam and trim the run -> build/06-simple/seam.diff and pytest-core-summary.txt in 06-simple/section.mk"]
+  E012 --> W116["W-116 issue doing: 06: cut along the seam"]
+  W116 --> T269["T-269 doing: Diff the seam and trim the run -> build/06-simple/seam.diff and pytest-core-summary.txt in 06-simple/section.mk -- ACTIVE LEAF"]
   W116 --> T270["T-270 todo: Write the seam frame and merge the 192 frames -> 06-simple/index.md, scripts/utils/test_counter_plan.py, 06-simple/README.md"]
   E012 --> W117["W-117 issue todo: 06: the wounds as a post-mortem"]
   W117 --> T271["T-271 todo: Add the decision and the principle -> data/incidents.csv, Incident, data/README.md"]
@@ -721,7 +721,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012 doing
+  class E012,W116,T269 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268 done
-  class W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286 todo
+  class T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286 todo
 ```
