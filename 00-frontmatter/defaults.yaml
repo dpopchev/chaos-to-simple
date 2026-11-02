@@ -10,6 +10,7 @@ include-in-header:
   - 00-frontmatter/preamble.tex
 filters:
   - 00-frontmatter/filters/include-code-files.lua
+  - 00-frontmatter/filters/diffs.lua
   - 00-frontmatter/filters/speakers.lua
   - 00-frontmatter/filters/paths-footer.lua
 resource-path:

@@ -21,6 +21,12 @@
   \vskip0pt%
 }
 
+% Diff lines (diffs.lua): removed red, added green, changed dark yellow, elided grey.
+\newcommand{\diffdel}[1]{\textcolor[HTML]{B3261E}{#1}}
+\newcommand{\diffadd}[1]{\textcolor[HTML]{1B7F37}{#1}}
+\newcommand{\diffchg}[1]{\textcolor[HTML]{9A6700}{#1}}
+\newcommand{\diffcut}[1]{\textcolor[HTML]{6E7781}{#1}}
+
 % The line: #1 the believed line in grey over #2 the learned line in bold, at the frame bottom.
 % Both texts come verbatim from data/lines.csv; make lines checks that they are verbatim.
 \newcommand{\theline}[2]{\vfill{\color{gray}#1}\par\textbf{#2}}
