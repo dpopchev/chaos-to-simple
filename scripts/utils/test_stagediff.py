@@ -34,14 +34,26 @@ def test_snippet_diff_leaves_the_step_marker_out(tmp_path: Path) -> None:
 @pytest.mark.view
 def test_snippet_diff_start_cuts_both_snippets_at_the_first_matching_line(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
-    assert snippet_diff(old, "s", new, "s", start="b =").splitlines()[2:] == [
-        "@@ -1 +1 @@",
-        "-b = 2",
-        "+b = 3",
-    ]
+    assert snippet_diff(old, "s", new, "s", start="b =").splitlines()[1:] == ["-b = 2", "+b = 3"]
 
 
 @pytest.mark.view
-def test_snippet_diff_labels_with_file_names_only(tmp_path: Path) -> None:
+def test_snippet_diff_opens_with_the_file_names(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
-    assert snippet_diff(old, "s", new, "s").splitlines()[:2] == ["--- old.py", "+++ new.py"]
+    assert snippet_diff(old, "s", new, "s").splitlines()[0] == "old.py -> new.py"
+
+
+@pytest.mark.view
+def test_snippet_diff_has_no_hunk_header(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    headers = ("---", "+++", "@@")
+    assert [r for r in snippet_diff(old, "s", new, "s").splitlines() if r.startswith(headers)] == []
+
+
+@pytest.mark.view
+def test_snippet_diff_added_only_keeps_the_plus_lines(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert snippet_diff(old, "s", new, "s", added_only=True).splitlines() == [
+        "old.py -> new.py",
+        "+b = 3",
+    ]

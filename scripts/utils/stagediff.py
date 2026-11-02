@@ -27,16 +27,20 @@ def snippet_diff(
     to_path: Path,
     to_snippet: str,
     start: str | None = None,
+    added_only: bool = False,
 ) -> str:
-    """Return the unified diff of two snippets, labelled by file name with no timestamps.
+    """Return the captioned diff of two snippets: '<from> -> <to>', then the body lines.
 
-    With start, each snippet is cut to begin at its first line containing that text.
+    The ---, +++ and @@ lines are left out. With start, each snippet is cut to begin at its
+    first line containing that text. With added_only, only the + lines follow the caption.
     """
-    return "".join(
-        difflib.unified_diff(
-            _from_start(snippet_lines(from_path, from_snippet), start),
-            _from_start(snippet_lines(to_path, to_snippet), start),
-            fromfile=from_path.name,
-            tofile=to_path.name,
-        )
+    rows = difflib.unified_diff(
+        _from_start(snippet_lines(from_path, from_snippet), start),
+        _from_start(snippet_lines(to_path, to_snippet), start),
+        fromfile=from_path.name,
+        tofile=to_path.name,
     )
+    body = [row for row in rows if not row.startswith(("---", "+++", "@@"))]
+    if added_only:
+        body = [row for row in body if row.startswith("+")]
+    return "".join([f"{from_path.name} -> {to_path.name}\n", *body])
