@@ -7,6 +7,12 @@ $(BUILD)/03-chaos/rules.txt: data/rules.csv data/cast.csv scripts/paths.py scrip
 	@$(RUN) python -m scripts.paths rules --rules data/rules.csv --columns bit,who,rule --cast data/cast.csv --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/03-chaos/retro.txt
+
+$(BUILD)/03-chaos/retro.txt: data/questions.csv data/actors.csv scripts/paths.py scripts/utils/retro.py
+	@$(RUN) python -m scripts.paths retro --questions data/questions.csv --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/03-chaos/growth.png: data/cast.csv scripts/paths.py scripts/utils/paths.py scripts/utils/style.py
 	@$(RUN) python -m scripts.paths growth --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

@@ -21,6 +21,7 @@
     python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
+    python -m scripts.paths retro --questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -53,6 +54,7 @@ from scripts.utils.paths import (
     stacked_bar,
     wounds_selector,
 )
+from scripts.utils.retro import load_questions, retro_table
 from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
 
 
@@ -87,9 +89,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             "doubling",
             "growth",
             "wounds",
+            "retro",
             "storyboard",
         ],
     )
+    parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
@@ -152,6 +156,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])
+    elif args.what == "retro":
+        text = retro_table(load_questions(args.questions))
     elif args.what == "wounds":
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "counts":
