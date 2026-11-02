@@ -29,7 +29,7 @@ NOTES     := $(BUILD)/talk-notes.pdf
 SECTION ?=
 TITLE   ?=
 
-CHECKS       += ascii lines lengths budget
+CHECKS += ascii lines lengths budget widths overflow
 DELIVERABLES += deliverable-talk
 
 # A section that generates artifacts declares them in its own section.mk: it

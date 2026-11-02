@@ -64,7 +64,7 @@ list of files in the Makefile (a second place to keep in order), `slides.md` per
 make help                 every target with its description (the default goal)
 make doctor               which tools are present and the fonts found
 make sync                 uv environment with pytest, ruff, pyright, matplotlib
-make check                every check: board, ruff, pyright, pytest, ascii
+make check                every check: board, ruff, pyright, pytest, ascii, lines, lengths, budget, widths, overflow
 make talk                 check, then build build/talk.pdf
 make test K=<expression>  pytest -k: only the tests matching the expression
 make lines                fail on a slide line over the limit
