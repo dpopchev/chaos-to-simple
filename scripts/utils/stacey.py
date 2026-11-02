@@ -14,7 +14,6 @@ from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
 from scripts.utils.palette import colour_of
-from scripts.utils.stage import COUNTER_COLOUR
 
 Side = Literal["above", "on", "below"]
 
@@ -82,6 +81,12 @@ def zone_of(x: float, y: float, zones: Sequence[Zone]) -> str:
     radius = math.hypot(x, y)
     inner = [z for z in zones[:-1] if radius < z.r_max]
     return inner[0].key if inner else zones[-1].key
+
+
+def band_colour(x: float, y: float, zones: Sequence[Zone]) -> str:
+    """Return the palette key colouring the band that holds the point."""
+    keys = [z.key for z in zones]
+    return ZONE_COLOURS[keys.index(zone_of(x, y, zones))]
 
 
 def side_of(x: float, y: float) -> Side:
@@ -172,7 +177,7 @@ def draw(
     font = icon_file()
     for spot in route:
         faded = highlight is not None and spot.section != highlight
-        face = colour_of(COUNTER_COLOUR[spot.counter])
+        face = colour_of(band_colour(spot.x, spot.y, zones))
         alpha = 0.25 if faded else 1.0
         ax.add_patch(
             Circle(

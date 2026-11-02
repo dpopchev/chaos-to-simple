@@ -6,9 +6,11 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.palette import load_actors
+from scripts.utils.palette import colour_of, load_actors
 from scripts.utils.paths import load_cast, load_incidents, load_rules
+from scripts.utils.stacey import load_zones
 from scripts.utils.stage import (
+    GREY,
     agenda_strip,
     business_map,
     edge_words,
@@ -16,9 +18,11 @@ from scripts.utils.stage import (
     load_route,
     map_legend,
     stop_alpha,
+    stop_face,
 )
 
 DATA = Path(__file__).resolve().parents[2] / "data"
+ZONES = load_zones(DATA.parent / "02-stacey" / "data" / "zones.csv")
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 
 
@@ -78,6 +82,18 @@ def test_agenda_strip_writes_a_png(tmp_path: Path) -> None:
         tmp_path / "agenda.png",
     )
     assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.model
+def test_stop_face_is_the_band_colour() -> None:
+    stop = load_route(DATA / "route.csv")[1]
+    assert stop_face(stop, ZONES) == colour_of("payment")
+
+
+@pytest.mark.model
+def test_stop_face_is_grey_for_a_stop_off_the_matrix() -> None:
+    stop = load_route(DATA / "route.csv")[0]
+    assert stop_face(stop, ZONES) == GREY
 
 
 @pytest.mark.model

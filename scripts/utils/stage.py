@@ -13,6 +13,7 @@ from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
 from scripts.utils.palette import Actor, colour_of
 from scripts.utils.paths import CastRow, Incident, Rule
+from scripts.utils.stacey import ZONE_COLOURS, Zone, band_colour, load_zones
 
 CUSTOMER_WORDS = "places an order"
 BOX_W, BOX_H = 2.7, 0.8
@@ -30,13 +31,23 @@ class Stop:
     icon: str
     counter: str
     incident: str
+    x: float | None = None
+    y: float | None = None
 
 
 def load_route(path: Path) -> tuple[Stop, ...]:
     """Read the stops of the agenda from data/route.csv, in section order."""
     with path.open(newline="", encoding="ascii") as fh:
         return tuple(
-            Stop(row["section"], row["label"], row["icon"], row["counter"], row["incident"])
+            Stop(
+                row["section"],
+                row["label"],
+                row["icon"],
+                row["counter"],
+                row["incident"],
+                float(row["x"]) if row["x"] else None,
+                float(row["y"]) if row["y"] else None,
+            )
             for row in csv.DictReader(fh)
         )
 
@@ -46,8 +57,16 @@ def incident_marks(incidents: Iterable[Incident]) -> dict[str, str]:
     return {i.told_in: i.id for i in incidents}
 
 
-COUNTER_COLOUR = {"?": "payment", "64": "logistics", "512": "marketing", "72": "accounting"}
+ZONES_CSV = Path(__file__).resolve().parents[2] / "02-stacey" / "data" / "zones.csv"
+GREY = "#7F7F7F"
 STOP_W, STOP_H, PITCH = 0.9, 1.5, 1.05
+
+
+def stop_face(stop: Stop, zones: Sequence[Zone]) -> str:
+    """Return the colour of the Stacey band the stop sits in, grey for a stop off the matrix."""
+    if stop.x is None or stop.y is None:
+        return GREY
+    return colour_of(band_colour(stop.x, stop.y, zones))
 
 
 FADED = 0.25
@@ -63,8 +82,12 @@ def agenda_strip(
     incidents: Iterable[Incident],
     out: Path,
     highlight: str | None = None,
+    zones: Sequence[Zone] | None = None,
 ) -> Path:
     """Draw the agenda: a box per stop left to right, pictogram and label inside, counter below.
+
+    A stop is coloured by its Stacey band (the zones of 02-stacey by default); a legend under
+    the strip explains the incident mark and the four bands.
 
     A stop whose section an incident is told in carries that incident's mark on its corner.
     With a highlight, that stop gets a black edge and every other stop fades with its counter.
@@ -75,11 +98,12 @@ def agenda_strip(
     from matplotlib.patches import FancyBboxPatch
 
     marks = incident_marks(incidents)
+    bands = tuple(zones) if zones is not None else load_zones(ZONES_CSV)
     font = icon_file()
-    fig, ax = plt.subplots(figsize=(11.0, 3.2), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(11.0, 4.0), dpi=style.DPI)
     for i, stop in enumerate(route):
         x = i * PITCH
-        face = colour_of(COUNTER_COLOUR[stop.counter])
+        face = stop_face(stop, bands)
         ink = label_ink(face)
         alpha = stop_alpha(stop.section, highlight)
         picked = highlight is not None and stop.section == highlight
@@ -151,8 +175,33 @@ def agenda_strip(
                 bbox={"boxstyle": "circle,pad=0.3", "facecolor": "black", "edgecolor": "none"},
                 zorder=5,
             )
+    ax.text(
+        -0.45,
+        -1.6,
+        "I1",
+        ha="center",
+        va="center",
+        fontsize=9,
+        fontweight="bold",
+        color="white",
+        bbox={"boxstyle": "circle,pad=0.3", "facecolor": "black", "edgecolor": "none"},
+    )
+    ax.text(-0.2, -1.6, "I1 I2 I3: the incident told at this stop", va="center", fontsize=11)
+    for j, zone in enumerate(bands):
+        cx = -0.55 + j * 2.1
+        ax.add_patch(
+            FancyBboxPatch(
+                (cx, -2.0),
+                0.35,
+                0.25,
+                boxstyle="round,pad=0.02,rounding_size=0.05",
+                facecolor=colour_of(ZONE_COLOURS[j]),
+                edgecolor="none",
+            )
+        )
+        ax.text(cx + 0.45, -1.875, zone.label, va="center", fontsize=11)
     ax.set_xlim(-0.6, (len(route) - 1) * PITCH + 0.6)
-    ax.set_ylim(-1.3, 1.1)
+    ax.set_ylim(-2.2, 1.1)
     ax.set_aspect("equal")
     ax.axis("off")
     fig.tight_layout()
