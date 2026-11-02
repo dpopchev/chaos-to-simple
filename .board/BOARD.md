@@ -1,19 +1,20 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 9 | done: 408 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 1 | done: 408 | pruned: 4
 
 ## Tree
 
 ```text
-W-120  bug    [todo]     (standalone) the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
-W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
-W-122  bug    [todo]     (standalone) 01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
-W-123  bug    [todo]     (standalone) the board's first header overflows its cell   (filed during T-257) -- T-283 [todo]
-W-124  issue  [todo]     (standalone) 04: the moves notes still speak of the board   (filed during T-263) -- T-284 [todo]
-W-125  bug    [todo]     (standalone) 05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [todo]
-W-126  issue  [todo]     (standalone) 05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [todo]
-W-127  bug    [todo]     (standalone) 06: the seam diff shows every line changed, against its caption   (filed during T-269) -- T-287 [todo], T-288 [todo]
-W-129  bug    [todo]     (standalone) make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [todo]
+E-013         [todo]     Deck v4 polish: the nine findings of the E-012 verification landed before the dry run
+  W-120  bug    [todo]     the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
+  W-121  issue  [todo]     01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
+  W-122  bug    [todo]     01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
+  W-123  bug    [todo]     the board's first header overflows its cell   (filed during T-257) -- T-283 [todo]
+  W-124  issue  [todo]     04: the moves notes still speak of the board   (filed during T-263) -- T-284 [todo]
+  W-125  bug    [todo]     05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [todo]
+  W-126  issue  [todo]     05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [todo]
+  W-127  bug    [todo]     06: the seam diff shows every line changed, against its caption   (filed during T-269) -- T-287 [todo], T-288 [todo]
+  W-129  bug    [todo]     make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [todo]
 ```
 
 ## Closed
@@ -727,29 +728,30 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  W120["W-120 bug todo, standalone: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
+  E013["E-013 todo: Deck v4 polish: the nine findings of the E-012 verification landed before the dry run"]
+  E013 --> W120["W-120 bug todo: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
   W120 --> T280["T-280 todo: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
-  W121["W-121 issue todo, standalone: 01: the step code at scriptsize in a wider column"]
+  E013 --> W121["W-121 issue todo: 01: the step code at scriptsize in a wider column"]
   W121 --> T281["T-281 todo: Widen the step code column -> 01-bits/index.md"]
-  W122["W-122 bug todo, standalone: 01: the bug-run rule masks pytest's exit with || true"]
+  E013 --> W122["W-122 bug todo: 01: the bug-run rule masks pytest's exit with || true"]
   W122 --> T282["T-282 todo: Accept only a failed test -> the bug-run rule in 01-bits/section.mk"]
-  W123["W-123 bug todo, standalone: the board's first header overflows its cell"]
+  E013 --> W123["W-123 bug todo: the board's first header overflows its cell"]
   W123 --> T283["T-283 todo: Break the first header -> scripts/utils/board.py"]
-  W124["W-124 issue todo, standalone: 04: the moves notes still speak of the board"]
+  E013 --> W124["W-124 issue todo: 04: the moves notes still speak of the board"]
   W124 --> T284["T-284 todo: Rewrite the moves notes -> 04-what/index.md"]
-  W125["W-125 bug todo, standalone: 05: the I3 snippet shows its xfail decorator"]
+  E013 --> W125["W-125 bug todo: 05: the I3 snippet shows its xfail decorator"]
   W125 --> T285["T-285 todo: Move the i3 marker below the decorator -> 05-how/tests/test_i3.py"]
-  W126["W-126 issue todo, standalone: 05: effects.txt is built but no slide includes it"]
+  E013 --> W126["W-126 issue todo: 05: effects.txt is built but no slide includes it"]
   W126 --> T286["T-286 todo: Remove the effects artifact -> 05-how/section.mk and data/artifacts.csv"]
-  W127["W-127 bug todo, standalone: 06: the seam diff shows every line changed, against its caption"]
+  E013 --> W127["W-127 bug todo: 06: the seam diff shows every line changed, against its caption"]
   W127 --> T287["T-287 todo: Dedent after the start cut -> snippet_diff in scripts/utils/stagediff.py"]
   W127 --> T288["T-288 todo: Align v5's matches with the shell -> 05-how/s05_how/checkout_v5.py"]
-  W129["W-129 bug todo, standalone: make overflow names no frame when a title wraps"]
+  E013 --> W129["W-129 bug todo: make overflow names no frame when a title wraps"]
   W129 --> T290["T-290 todo: Read a wrapped frame title -> scripts/utils/overflow.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
+  class E013,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
 ```
