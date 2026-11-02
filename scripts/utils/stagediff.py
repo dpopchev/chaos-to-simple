@@ -14,12 +14,28 @@ def snippet_lines(path: Path, name: str) -> list[str]:
     return [f"{row}\n" for row in text.splitlines()]
 
 
-def snippet_diff(from_path: Path, from_snippet: str, to_path: Path, to_snippet: str) -> str:
-    """Return the unified diff of two snippets, labelled by file name with no timestamps."""
+def _from_start(lines: list[str], start: str | None) -> list[str]:
+    """Cut lines to begin at the first one containing start; all of them when start is None."""
+    if start is None:
+        return lines
+    return lines[next(i for i, row in enumerate(lines) if start in row) :]
+
+
+def snippet_diff(
+    from_path: Path,
+    from_snippet: str,
+    to_path: Path,
+    to_snippet: str,
+    start: str | None = None,
+) -> str:
+    """Return the unified diff of two snippets, labelled by file name with no timestamps.
+
+    With start, each snippet is cut to begin at its first line containing that text.
+    """
     return "".join(
         difflib.unified_diff(
-            snippet_lines(from_path, from_snippet),
-            snippet_lines(to_path, to_snippet),
+            _from_start(snippet_lines(from_path, from_snippet), start),
+            _from_start(snippet_lines(to_path, to_snippet), start),
             fromfile=from_path.name,
             tofile=to_path.name,
         )

@@ -22,7 +22,8 @@
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths retro --questions data/questions.csv --out build/03-chaos/retro.txt
-    python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T] --out F.diff
+    python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
+        [--start TEXT] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -100,6 +101,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--to", dest="to_path", type=Path, default=None)
     parser.add_argument("--snippet", default=None, help="snippet of --from (and of --to)")
     parser.add_argument("--to-snippet", default=None, help="snippet of --to when it differs")
+    parser.add_argument("--start", default=None, help="diff: start at the first line with TEXT")
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
@@ -147,7 +149,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             parser.error("diff needs --from, --to, --snippet and --out")
         args.out.parent.mkdir(parents=True, exist_ok=True)
         to_snippet = args.to_snippet or args.snippet
-        diff = snippet_diff(args.from_path, args.snippet, args.to_path, to_snippet)
+        diff = snippet_diff(args.from_path, args.snippet, args.to_path, to_snippet, args.start)
         args.out.write_text(diff, encoding="ascii")
         return 0
 

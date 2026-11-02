@@ -32,6 +32,16 @@ def test_snippet_diff_leaves_the_step_marker_out(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_snippet_diff_start_cuts_both_snippets_at_the_first_matching_line(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert snippet_diff(old, "s", new, "s", start="b =").splitlines()[2:] == [
+        "@@ -1 +1 @@",
+        "-b = 2",
+        "+b = 3",
+    ]
+
+
+@pytest.mark.view
 def test_snippet_diff_labels_with_file_names_only(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
     assert snippet_diff(old, "s", new, "s").splitlines()[:2] == ["--- old.py", "+++ new.py"]
