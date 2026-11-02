@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-073   | blocked: 0 | todo roots: 1 | done: 273 | pruned: 2
+open path: E-008   | blocked: 0 | todo roots: 1 | done: 274 | pruned: 2
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-008 > W-073   | blocked: 0 | todo roots: 1 | done: 273 | pruned: 2
 E-008         [doing]    backlog after deck v2: the build guards, the rebuild rule and the cleanups
   W-070  issue  [done]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [done]
   W-072  bug    [done]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
-  W-073  bug    [doing]    05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [done]
+  W-073  bug    [done]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [done]
   W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
   W-075  issue  [todo]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
   W-081  bug    [todo]     make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
@@ -490,7 +490,7 @@ flowchart TD
   W070 --> T177["T-177 done: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
   E008 --> W072["W-072 bug done: make lengths crashes on an include of a missing file the filter would render as a STUB"]
   W072 --> T179["T-179 done: Skip a missing include with a warning -> scripts/check_lengths.py"]
-  E008 --> W073["W-073 bug doing: 05 ports.png is not rebuilt when data/cast.csv changes"]
+  E008 --> W073["W-073 bug done: 05 ports.png is not rebuilt when data/cast.csv changes"]
   W073 --> T180["T-180 done: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
   E008 --> W074["W-074 bug todo: make check passes on a tree that ruff format would change"]
   W074 --> T181["T-181 todo: Format the tree and gate it in make check -> mk/python.mk"]
@@ -509,7 +509,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W073 doing
-  class W070,T177,W072,T179,T180 done
+  class E008 doing
+  class W070,T177,W072,T179,W073,T180 done
   class W074,T181,W075,T182,W081,T189,W082,T190,W083,T192,W086,T195 todo
 ```
