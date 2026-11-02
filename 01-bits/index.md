@@ -49,7 +49,7 @@ customer's line aloud: that is all.
 ::::
 
 ::: notes
-Marketing asked for the autumn coupon: 10 BGN off with the code AUTUMN. The if adds the
+Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The if adds the
 first decision, a coupon that is valid until a date, so the footer doubles to 2 paths.
 Read the marketing line aloud and ask who thinks it is a small change.
 :::
@@ -103,7 +103,7 @@ line aloud and point out that the two discounts now stack.
 ::::
 
 ::: notes
-Logistics asked for free shipping from 50 BGN, because carts are left over 5 BGN of
+Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
 postage. The third if adds a threshold on the subtotal, so the footer doubles to 8 paths.
 Read the logistics line aloud and ask the room why the carts are left.
 :::
@@ -130,7 +130,7 @@ Read the logistics line aloud and ask the room why the carts are left.
 ::::
 
 ::: notes
-Logistics adds the rate abroad: 20 BGN, not 5, because every parcel to Vienna loses money.
+Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
 The fourth if sends a second destination down its own path, so the footer doubles to 16
 paths. Read the second logistics line aloud and say that the shipping rules now branch twice.
 :::
@@ -157,7 +157,7 @@ paths. Read the second logistics line aloud and say that the shipping rules now 
 ::::
 
 ::: notes
-Marketing asked for gift wrap at 3 BGN, with just one more if. The fifth if adds an
+Marketing asked for gift wrap at 3 EUR, with just one more if. The fifth if adds an
 optional extra to the total, so the footer doubles to 32 paths. Read the marketing line
 aloud, the one that promised just one more if.
 :::
@@ -249,7 +249,7 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 ::: notes
 Finance noticed, not the tests: October's four weeks, received shipping income against the
-shortfall, 1,214 orders and 6,070 BGN, all in the chart title. Then marketing, the same
+shortfall, 1,214 orders and 6,070 EUR, all in the chart title. Then marketing, the same
 morning, asks for one more if, with no idea what the last one cost. Read the bubble after a
 pause.
 :::

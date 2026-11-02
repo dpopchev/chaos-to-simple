@@ -3,6 +3,6 @@ To: engineering
 Date: 2026-11-02
 Subject: shipping cost, October
 
-Shipping charged to customers: 0 BGN on 1,214 domestic orders with under 50 BGN of
-goods. Our cost 5 BGN each, 6,070 BGN. All 1,214 used the autumn coupon. No customer
+Shipping charged to customers: 0 EUR on 1,214 domestic orders with under 50 EUR of
+goods. Our cost 5 EUR each, 6,070 EUR. All 1,214 used the autumn coupon. No customer
 has complained. Was this intended?

@@ -70,11 +70,11 @@ stock is gone. The number is now true: 2^9 = 512. The bigger number is the first
 
 ::: notes
 Nine decisions came out of the room, one row each on the board. Each one has a sentence and a home.
-Coupon: a coupon valid today takes 10 BGN off the goods, in pricing.
+Coupon: a coupon valid today takes 10 EUR off the goods, in pricing.
 Member: a loyalty member gets 10% off, applied after the coupon, in pricing.
-Free shipping: shipping is free from 50 BGN of discounted goods, in shipping.
-Zone: domestic shipping is 5 BGN, international 20 BGN, in shipping.
-Gift wrap: gift wrap adds 3 BGN to the parcel, in shipping.
+Free shipping: shipping is free from 50 EUR of discounted goods, in shipping.
+Zone: domestic shipping is 5 EUR, international 20 EUR, in shipping.
+Gift wrap: gift wrap adds 3 EUR to the parcel, in shipping.
 VAT: orders with a VAT ID are exempt, the rest pay 20 percent, in tax.
 Charge, reserve and confirm: the payment, the warehouse and the mailer answer, in shell.
 None of the nine is deleted; each one is moved to its home. The board comes back at the end of 04,

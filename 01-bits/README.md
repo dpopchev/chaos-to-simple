@@ -23,7 +23,7 @@ campaign on time, one if at a time.
 - `tests/test_planted_bug.py`: the planted bug, xfail strict, in a file of its own
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
 - `data/october.csv`: the four October weeks of expected and received shipping income
-- `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 BGN, and its calendar
+- `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 EUR, and its calendar
 - `index.md`: the twelve slides
 
 ## Uses
@@ -46,9 +46,9 @@ campaign on time, one if at a time.
 - [x] 1. Step 0, no ifs, paths=1: the customer's bubble over the skeleton diff
 - [x] 2. Step 1, one if, paths=2: marketing's AUTUMN coupon, `step-1.diff`
 - [x] 3. Step 2, two ifs, paths=4: the loyalty program's member discount, `step-2.diff`
-- [x] 4. Step 3, three ifs, paths=8: free shipping from 50 BGN, `step-3.diff`
-- [x] 5. Step 4, four ifs, paths=16: shipping abroad at 20 BGN, `step-4.diff`
-- [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 BGN, `step-5.diff`
+- [x] 4. Step 3, three ifs, paths=8: free shipping from 50 EUR, `step-3.diff`
+- [x] 5. Step 4, four ifs, paths=16: shipping abroad at 20 EUR, `step-4.diff`
+- [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 EUR, `step-5.diff`
 - [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, the accounting bubble beside `step-6.diff`
 - [x] 8. Checkout done, paths=64: the dev and marketing bubbles over the question "How many tests would make you sure?"
 - [x] 9. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
