@@ -50,7 +50,7 @@ def test_the_bits_section_opens_on_the_storyboard() -> None:
 
 @pytest.mark.view
 def test_the_checkout_done_frame_inherits_64() -> None:
-    assert frames("01")[7] == ("Checkout done", 64)
+    assert frames("01")[8] == ("Checkout done", 64)
 
 
 @pytest.mark.view

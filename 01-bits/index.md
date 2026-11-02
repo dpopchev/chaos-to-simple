@@ -1,6 +1,24 @@
 # Six if statements, 64 paths
 
-## Step 0: no ifs {paths=1}
+## A policy is one bit and every bit doubles the paths: count them before you trust a badge {paths=?}
+
+**paths = 2^policies**
+
+Sequential policies multiply: 2 x 2 x 2 x 2 x 2 x 2
+
+Alternatives (elif, match) add: 2 + 2 + 2
+
+Two sequential policies as if/elif: 4 paths become 3
+
+The footer counts from here.
+
+::: notes
+Say the rule once: every policy request is one bit, and every bit doubles the paths. Give the
+three counting lines, then say that the footer counts from here, starting at 1 for the
+plain checkout.
+:::
+
+## No policy yet: one path {paths=1}
 
 \fvset{fontsize=\tiny}
 
@@ -15,6 +33,9 @@
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-0.txt}
+```
+
 ```{.diff include=build/01-bits/step-0.diff cap=24}
 ```
 
@@ -23,11 +44,11 @@
 
 ::: notes
 The customer asked for the plain checkout: pick the books, pay, get them shipped. This
-skeleton has the three calls and no decision, so the footer reads 1 path. Read the
+skeleton has the three calls and no policy, so the footer reads 1 path. Read the
 customer's line aloud: that is all.
 :::
 
-## Step 1: one if {paths=2}
+## Policy 1: the autumn coupon adds one bit: 2^1 paths {paths=2}
 
 \fvset{fontsize=\tiny}
 
@@ -42,6 +63,9 @@ customer's line aloud: that is all.
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-1.txt}
+```
+
 ```{.diff include=build/01-bits/step-1.diff cap=24}
 ```
 
@@ -49,12 +73,12 @@ customer's line aloud: that is all.
 ::::
 
 ::: notes
-Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The if adds the
-first decision, a coupon that is valid until a date, so the footer doubles to 2 paths.
-Read the marketing line aloud and ask who thinks it is a small change.
+Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first policy
+request adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
+the marketing line aloud and ask who thinks it is a small change.
 :::
 
-## Step 2: two ifs {paths=4}
+## Policy 2: the member discount adds one bit: 2^2 paths {paths=4}
 
 \fvset{fontsize=\tiny}
 
@@ -69,6 +93,9 @@ Read the marketing line aloud and ask who thinks it is a small change.
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-2.txt}
+```
+
 ```{.diff include=build/01-bits/step-2.diff cap=24}
 ```
 
@@ -77,11 +104,11 @@ Read the marketing line aloud and ask who thinks it is a small change.
 
 ::: notes
 The loyalty program asked for 10 percent off for members, after the coupon. The second
-if adds a decision about membership, so the footer doubles to 4 paths. Read the loyalty
-line aloud and point out that the two discounts now stack.
+policy request adds a decision about membership, so the footer doubles to 4 paths. Read
+the loyalty line aloud and point out that the two discounts now stack.
 :::
 
-## Step 3: three ifs {paths=8}
+## Policy 3: free shipping from 50 EUR adds one bit: 2^3 paths {paths=8}
 
 \fvset{fontsize=\tiny}
 
@@ -96,6 +123,9 @@ line aloud and point out that the two discounts now stack.
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-3.txt}
+```
+
 ```{.diff include=build/01-bits/step-3.diff cap=24}
 ```
 
@@ -104,11 +134,11 @@ line aloud and point out that the two discounts now stack.
 
 ::: notes
 Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
-postage. The third if adds a threshold on the subtotal, so the footer doubles to 8 paths.
-Read the logistics line aloud and ask the room why the carts are left.
+postage. The third policy request adds a threshold on the subtotal, so the footer doubles
+to 8 paths. Read the logistics line aloud and ask the room why the carts are left.
 :::
 
-## Step 4: four ifs {paths=16}
+## Policy 4: shipping abroad adds one bit: 2^4 paths {paths=16}
 
 \fvset{fontsize=\tiny}
 
@@ -123,6 +153,9 @@ Read the logistics line aloud and ask the room why the carts are left.
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-4.txt}
+```
+
 ```{.diff include=build/01-bits/step-4.diff cap=24}
 ```
 
@@ -131,11 +164,12 @@ Read the logistics line aloud and ask the room why the carts are left.
 
 ::: notes
 Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
-The fourth if sends a second destination down its own path, so the footer doubles to 16
-paths. Read the second logistics line aloud and say that the shipping rules now branch twice.
+The fourth policy request sends a second destination down its own path, so the footer
+doubles to 16 paths. Read the second logistics line aloud and say that the shipping rules
+now branch twice.
 :::
 
-## Step 5: five ifs {paths=32}
+## Policy 5: gift wrap adds one bit: 2^5 paths {paths=32}
 
 \fvset{fontsize=\tiny}
 
@@ -150,6 +184,9 @@ paths. Read the second logistics line aloud and say that the shipping rules now 
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-5.txt}
+```
+
 ```{.diff include=build/01-bits/step-5.diff cap=24}
 ```
 
@@ -157,12 +194,12 @@ paths. Read the second logistics line aloud and say that the shipping rules now 
 ::::
 
 ::: notes
-Marketing asked for gift wrap at 3 EUR, with just one more if. The fifth if adds an
-optional extra to the total, so the footer doubles to 32 paths. Read the marketing line
-aloud, the one that promised just one more if.
+Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
+request adds an optional extra to the total, so the footer doubles to 32 paths. Read the
+marketing line aloud, the one that promised just one more.
 :::
 
-## Step 6: six ifs {paths=64}
+## Policy 6: no VAT for companies adds one bit: 2^6 paths {paths=64}
 
 \fvset{fontsize=\tiny}
 
@@ -177,6 +214,9 @@ aloud, the one that promised just one more if.
 :::
 ::: {.column width="65%"}
 
+```{.text include=build/01-bits/tally-6.txt}
+```
+
 ```{.diff include=build/01-bits/step-6.diff cap=24}
 ```
 
@@ -185,7 +225,8 @@ aloud, the one that promised just one more if.
 
 ::: notes
 Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
-if adds the VAT rate, so the footer doubles to 64 paths. Read the accounting line aloud.
+policy request adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
+line aloud.
 :::
 
 ## Checkout done {paths=64}
