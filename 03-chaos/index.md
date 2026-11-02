@@ -19,9 +19,13 @@ them. Each drop is a place where the rule was not written down yet.
 ```{.text .speakers include=03-chaos/data/room.txt cap=18}
 ```
 
+the first attempt at settling the policies together
+
 ::: notes
 Dev is silent until the end of the chat; the other four departments carry the argument.
 Pause before the last line. Chat moment: which question would you have asked?
+Reading plan: read the Logistics first line aloud, then the Marketing answer; skip to
+'Who reads the log?'; then the silence, and let the room hear it.
 :::
 
 ## The retro {paths=64}
@@ -31,7 +35,10 @@ Pause before the last line. Chat moment: which question would you have asked?
 ```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
 ```
 
+q4 to q6 are business decisions too: with the providers, in the generic subdomains
+
 ::: notes
+The subdomain column is the map of page 2: q1 to q3 are core, q4 to q6 generic.
 Question 3 had two positions: does the coupon that expired on Sunday count on Sunday or on
 Monday. The code decided for them, and that is incident I2. The room decided after the
 discount, not before it: the rule came last, after the code had already picked one side.
