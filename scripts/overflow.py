@@ -11,7 +11,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.overflow import overfull_frames
+from scripts.utils.overflow import SLACK_THRESHOLD_PT, overfull_frames, tight_frames
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -22,12 +22,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--log", type=Path, required=True)
     args = parser.parse_args(argv)
 
-    frames = overfull_frames(
-        args.tex.read_text(encoding="utf-8"), args.log.read_text(encoding="utf-8", errors="replace")
-    )
-    for title in frames:
+    tex = args.tex.read_text(encoding="utf-8")
+    log = args.log.read_text(encoding="utf-8", errors="replace")
+    overfull = overfull_frames(tex, log)
+    tight = tight_frames(tex, log)
+    for title in overfull:
         sys.stdout.write(f"overflow: {title}\n")
-    return 1 if frames else 0
+    for title in tight:
+        sys.stdout.write(f"overflow: {title} (slack under {SLACK_THRESHOLD_PT}pt)\n")
+    return 1 if overfull or tight else 0
 
 
 if __name__ == "__main__":

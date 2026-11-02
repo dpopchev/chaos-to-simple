@@ -7,6 +7,8 @@ import re
 _BEGIN = re.compile(r"\\begin\{frame\}(?:<[^>]*>)?(?:\[[^\]]*\])?(?:\{(?P<title>.*)\})?")
 _END = r"\end{frame}"
 _OVERFULL = re.compile(r"Overfull \\vbox \([^)]*\) detected at line (?P<line>\d+)")
+_SLACK = re.compile(r"^slack: (?P<line>\d+) (?P<pt>-?\d+(?:\.\d+)?)pt", re.MULTILINE)
+SLACK_THRESHOLD_PT = 3.0  # the developer's Decision on W-087
 
 
 def _frames(tex: str) -> list[tuple[int, str]]:
@@ -20,6 +22,19 @@ def _frames(tex: str) -> list[tuple[int, str]]:
         elif text.strip() == _END:
             frames.append((number, title))
     return frames
+
+
+def tight_frames(tex: str, log: str, threshold: float = SLACK_THRESHOLD_PT) -> tuple[str, ...]:
+    """Return the titles of the frames whose least slack is under the threshold, in deck order.
+
+    A frame can be typeset more than once, so its slack is the minimum over its lines.
+    """
+    frames = _frames(tex)
+    least: dict[str, float] = {}
+    for m in _SLACK.finditer(log):
+        title = next((t for end, t in frames if end >= int(m.group("line"))), "")
+        least[title] = min(float(m.group("pt")), least.get(title, float("inf")))
+    return tuple(title for _, title in frames if least.get(title, threshold) < threshold)
 
 
 def overfull_frames(tex: str, log: str) -> tuple[str, ...]:
