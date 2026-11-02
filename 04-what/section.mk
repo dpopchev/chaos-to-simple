@@ -1,6 +1,5 @@
-# 04-what -- the contexts table is a build artifact, joined from the rules and the cast, so the
-# numbers on the slides are measured, not typed. A plain `#` keeps it out of make help.
-ARTIFACTS += $(BUILD)/04-what/contexts.txt $(BUILD)/04-what/moves.png
+# 04-what -- the slide figures and diffs are build artifacts. A plain `#` keeps it out of make help.
+ARTIFACTS += $(BUILD)/04-what/moves.png
 
 $(BUILD)/04-what/moves.png: data/rules.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.figures moves --rules data/rules.csv --out $@
@@ -25,17 +24,13 @@ $(BUILD)/04-what/fix.diff: 01-bits/s01_bits/chaos.py 04-what/s04_what/checkout_f
 		--to 04-what/s04_what/checkout_fixed.py --snippet checkout --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/04-what/v4.diff: 04-what/s04_what/checkout_fixed.py 04-what/s04_what/checkout_v4.py scripts/paths.py scripts/utils/stagediff.py
+$(BUILD)/04-what/v4.diff: 04-what/s04_what/checkout_fixed.py 04-what/s04_what/checkout_v4.py 04-what/section.mk scripts/paths.py scripts/utils/stagediff.py
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_fixed.py \
-		--to 04-what/s04_what/checkout_v4.py --snippet checkout --out $@
+		--to 04-what/s04_what/checkout_v4.py --snippet checkout --added-only --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/04-what/dispute.txt
 
 $(BUILD)/04-what/dispute.txt: data/questions.csv scripts/paths.py scripts/utils/retro.py
 	@$(RUN) python -m scripts.paths retro --only q3 --questions data/questions.csv --out $@
-	$(call log_done,$@ written)
-
-$(BUILD)/04-what/contexts.txt: data/rules.csv data/cast.csv scripts/paths.py scripts/utils/paths.py
-	@$(RUN) python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

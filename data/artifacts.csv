@@ -54,7 +54,6 @@ build/data/splits.txt,txt,scripts.paths splits
 build/04-what/colorcode.png,png,scripts.figures colorcode
 build/04-what/fix.diff,diff,scripts.paths diff
 build/04-what/v4.diff,diff,scripts.paths diff
-build/04-what/contexts.txt,txt,scripts.paths contexts
 build/04-what/moves.png,png,scripts.figures moves
 build/04-what/board.png,png,scripts.figures board --stage 04
 build/05-how/ports.png,png,scripts.figures seam

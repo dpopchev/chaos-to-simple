@@ -61,9 +61,6 @@ The type checker counts this bit: a state with no case is an error, not a silent
 :::
 ::: {.column width="38%"}
 
-```{.text include=build/04-what/contexts.txt}
-```
-
 pricing: \actor{marketing} \actor{loyalty}
 
 shipping: \actor{logistics} \actor{marketing}

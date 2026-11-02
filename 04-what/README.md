@@ -18,7 +18,7 @@ place; contracts between contexts are values, never flags.
 - [x] The first fix: `fix.diff`
 - [x] The dispute closes: `dispute.txt` (the q3 card), `snippet=fee`, the takeaway "Values, never flags"
 - [x] A bit as a type: `snippet=zone`
-- [x] Bounded contexts: every bit has a home: `v4.diff` beside `contexts.txt` with faces
+- [x] Bounded contexts: every bit has a home: the added body of `v4.diff` beside the four context lines with faces
 - [x] Bounded contexts, the moves: the contract line under moves.png, glued to the frame
 
 ## Live
