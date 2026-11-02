@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 3 | done: 372 | pruned: 4
+open path: E-012 > W-111 > T-256   | blocked: 0 | todo roots: 3 | done: 372 | pruned: 4
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-108  issue  [done]     01: finance R1 against R2, and its test -- T-248 [done], T-249 [done]
   W-109  issue  [done]     02: R1 and R2 above the line, the decision frame -- T-250 [done], T-251 [done], T-252 [done]
   W-110  issue  [done]     03: the journey as the customer certainty, the retro subdomains -- T-253 [done], T-254 [done], T-255 [done]
-  W-111  issue  [todo]     03: the honest count panels and the board continuity -- T-256 [todo], T-257 [todo], T-258 [todo]
+  W-111  issue  [doing]    03: the honest count panels and the board continuity -- T-256 [doing]   <- ACTIVE LEAF, T-257 [todo], T-258 [todo]
   W-112  issue  [todo]     04: tactical to strategic in five frames -- T-259 [todo], T-260 [todo], T-261 [todo]
   W-113  issue  [todo]     04: the moves frame, core = the What, shell = the How -- T-262 [todo], T-263 [todo]
   W-114  issue  [todo]     05: the test first -- T-264 [todo], T-265 [todo], T-266 [todo]
@@ -665,8 +665,8 @@ flowchart TD
   W110 --> T253["T-253 done: Weigh the drops -> mood(steps, questions) in scripts/utils/figures.py"]
   W110 --> T254["T-254 done: Add the subdomain -> data/questions.csv, Question and retro_table"]
   W110 --> T255["T-255 done: Caption the room and the retro -> 03-chaos/index.md"]
-  E012 --> W111["W-111 issue todo: 03: the honest count panels and the board continuity"]
-  W111 --> T256["T-256 todo: Name the worlds -> world_name(bits, rules) and the grid_panels titles"]
+  E012 --> W111["W-111 issue doing: 03: the honest count panels and the board continuity"]
+  W111 --> T256["T-256 doing: Name the worlds -> world_name(bits, rules) and the grid_panels titles -- ACTIVE LEAF"]
   W111 --> T257["T-257 todo: Head the board by the route -> headers(route) in scripts/utils/board.py"]
   W111 --> T258["T-258 todo: Caption the two frames -> 03-chaos/index.md"]
   E012 --> W112["W-112 issue todo: 04: tactical to strategic in five frames"]
@@ -709,7 +709,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012 doing
+  class E012,W111,T256 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255 done
-  class W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282 todo
+  class T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282 todo
 ```
