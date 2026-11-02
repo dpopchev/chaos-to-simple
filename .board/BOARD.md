@@ -1,20 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010   | blocked: 0 | todo roots: 4 | done: 328 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 4 | done: 329 | pruned: 4
 
 ## Tree
 
 ```text
-E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
-  W-089  issue  [done]     00: the section beats and the record -- T-199 [done], T-200 [done], T-201 [done], T-202 [done]
-  W-090  issue  [done]     01: the storyboard opens the loop -- T-203 [done], T-204 [done], T-205 [done], T-225 [done]
-  W-091  issue  [done]     01: measured captions on the evidence frames -- T-206 [done], T-207 [done], T-208 [done]
-  W-092  issue  [done]     02: the dispute as bubbles and one map -- T-209 [done], T-210 [done], T-211 [done], T-226 [done]
-  W-093  issue  [done]     03: the room readable from the back -- T-212 [done], T-213 [done], T-214 [done]
-  W-094  issue  [done]     04: the homes without noise -- T-215 [done], T-216 [done], T-217 [done]
-  W-095  issue  [done]     05: the seam without guards -- T-218 [done], T-219 [done]
-  W-096  issue  [done]     06: the measured frames -- T-220 [done], T-221 [done], T-222 [done], T-223 [done]
-  W-097  issue  [done]     07: the repository link -- T-224 [done]
 W-098  issue  [todo]     (standalone) 04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
 W-099  issue  [todo]     (standalone) remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
 W-100  issue  [todo]     (standalone) 06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
@@ -480,6 +470,65 @@ closed 2026-11-02 -- outcome: make check is green on main with a named test of r
 
 - T-198 [done] Remove the in-tree bytecode in make clean-python -> mk/python.mk
 
+### E-010 [done] deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
+
+closed 2026-11-02 -- outcome: make talk writes build/talk.pdf: 48 pages (1 title, 6 templated section beats, 41 content frames with 01 at 12 and 02 at 2) carrying every remark of the 2026-11-02 review, recorded in docs/deck-v3.md, with make check, overflow, widths and lengths green. -- ledger: ledgers/E-010.md
+
+#### W-089 issue [done] 00: the section beats and the record
+
+- T-199 [done] Record the review remarks -> docs/deck-v3.md
+- T-200 [done] Highlight one stop on the agenda strip -> build/00-frontmatter/agenda-01.png .. agenda-06.png
+- T-201 [done] Template the section page -> 00-frontmatter/preamble.tex and build/00-frontmatter/beats.tex
+- T-202 [done] Recaption the opening frames -> 00-frontmatter/index.md
+
+#### W-090 issue [done] 01: the storyboard opens the loop
+
+- T-203 [done] Move the birth of the bug to step 3 -> 01-bits/s01_bits/chaos.py and 01-bits/data/bubbles.csv
+- T-204 [done] Strip the asides and the headers from the step diffs -> build/01-bits/step-0.diff .. step-6.diff
+- T-205 [done] Open the loop on its own frame -> 01-bits/index.md, data/budget.csv and scripts/utils/test_counter_plan.py
+- T-225 [done] Fit the step-3 diff to its column -> 01-bits/index.md
+
+#### W-091 issue [done] 01: measured captions on the evidence frames
+
+- T-206 [done] Run the two green tests from their own file -> 01-bits/tests/test_planted_bug.py and build/01-bits/coverage-summary.txt
+- T-207 [done] Title the finance chart with its totals -> build/01-bits/finance.png and 01-bits/index.md
+- T-208 [done] Legend the grid and pin the bug cell -> build/01-bits/grid.png and 01-bits/tests/test_tested_paths.py
+
+#### W-092 issue [done] 02: the dispute as bubbles and one map
+
+- T-209 [done] Trim the matrix -> build/02-stacey/stacey-02.png and 02-stacey/data/labels.csv
+- T-210 [done] Bubble the two positions and the question -> 02-stacey/data/bubbles.csv and build/02-stacey/bubble-0.txt .. bubble-2.txt
+- T-211 [done] Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv
+- T-226 [done] Fit the matrix at 85% height -> 02-stacey/index.md and scripts/utils/stacey.py
+
+#### W-093 issue [done] 03: the room readable from the back
+
+- T-212 [done] Redraw the journey legibly -> build/03-chaos/diagrams/journey.png
+- T-213 [done] Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md
+- T-214 [done] Head the waiting board columns -> build/03-chaos/board.png
+
+#### W-094 issue [done] 04: the homes without noise
+
+- T-215 [done] Caption the stage diffs instead of headers -> scripts/utils/stagediff.py
+- T-216 [done] Show the q3 decision on the dispute frame -> build/04-what/dispute.txt and 04-what/index.md
+- T-217 [done] Show only the added body on the homes frame -> 04-what/index.md and 04-what/section.mk
+
+#### W-095 issue [done] 05: the seam without guards
+
+- T-218 [done] Hide the exhaustiveness guards from the ports diff -> build/05-how/v5.diff
+- T-219 [done] Recaption the I3 frame and define the seam -> 05-how/index.md
+
+#### W-096 issue [done] 06: the measured frames
+
+- T-220 [done] Refactor the 64-path tests onto two fixtures -> 06-simple/tests/test_core_paths.py and 06-simple/index.md
+- T-221 [done] Measure the eight worlds -> 06-simple/s06_simple/worlds.py and build/06-simple/worlds.txt
+- T-222 [done] Keep the seventh signature on one line -> 06-simple/s06_simple/seventh.py and build/06-simple/seventh.diff
+- T-223 [done] Legend the small slices of the number chart -> build/06-simple/paths.png
+
+#### W-097 issue [done] 07: the repository link
+
+- T-224 [done] Link the repository on the Q&A frame -> 07-close/index.md
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -542,44 +591,6 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E010["E-010 doing: deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data"]
-  E010 --> W089["W-089 issue done: 00: the section beats and the record"]
-  W089 --> T199["T-199 done: Record the review remarks -> docs/deck-v3.md"]
-  W089 --> T200["T-200 done: Highlight one stop on the agenda strip -> build/00-frontmatter/agenda-01.png .. agenda-06.png"]
-  W089 --> T201["T-201 done: Template the section page -> 00-frontmatter/preamble.tex and build/00-frontmatter/beats.tex"]
-  W089 --> T202["T-202 done: Recaption the opening frames -> 00-frontmatter/index.md"]
-  E010 --> W090["W-090 issue done: 01: the storyboard opens the loop"]
-  W090 --> T203["T-203 done: Move the birth of the bug to step 3 -> 01-bits/s01_bits/chaos.py and 01-bits/data/bubbles.csv"]
-  W090 --> T204["T-204 done: Strip the asides and the headers from the step diffs -> build/01-bits/step-0.diff .. step-6.diff"]
-  W090 --> T205["T-205 done: Open the loop on its own frame -> 01-bits/index.md, data/budget.csv and scripts/utils/test_counter_plan.py"]
-  W090 --> T225["T-225 done: Fit the step-3 diff to its column -> 01-bits/index.md"]
-  E010 --> W091["W-091 issue done: 01: measured captions on the evidence frames"]
-  W091 --> T206["T-206 done: Run the two green tests from their own file -> 01-bits/tests/test_planted_bug.py and build/01-bits/coverage-summary.txt"]
-  W091 --> T207["T-207 done: Title the finance chart with its totals -> build/01-bits/finance.png and 01-bits/index.md"]
-  W091 --> T208["T-208 done: Legend the grid and pin the bug cell -> build/01-bits/grid.png and 01-bits/tests/test_tested_paths.py"]
-  E010 --> W092["W-092 issue done: 02: the dispute as bubbles and one map"]
-  W092 --> T209["T-209 done: Trim the matrix -> build/02-stacey/stacey-02.png and 02-stacey/data/labels.csv"]
-  W092 --> T210["T-210 done: Bubble the two positions and the question -> 02-stacey/data/bubbles.csv and build/02-stacey/bubble-0.txt .. bubble-2.txt"]
-  W092 --> T211["T-211 done: Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv"]
-  W092 --> T226["T-226 done: Fit the matrix at 85% height -> 02-stacey/index.md and scripts/utils/stacey.py"]
-  E010 --> W093["W-093 issue done: 03: the room readable from the back"]
-  W093 --> T212["T-212 done: Redraw the journey legibly -> build/03-chaos/diagrams/journey.png"]
-  W093 --> T213["T-213 done: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md"]
-  W093 --> T214["T-214 done: Head the waiting board columns -> build/03-chaos/board.png"]
-  E010 --> W094["W-094 issue done: 04: the homes without noise"]
-  W094 --> T215["T-215 done: Caption the stage diffs instead of headers -> scripts/utils/stagediff.py"]
-  W094 --> T216["T-216 done: Show the q3 decision on the dispute frame -> build/04-what/dispute.txt and 04-what/index.md"]
-  W094 --> T217["T-217 done: Show only the added body on the homes frame -> 04-what/index.md and 04-what/section.mk"]
-  E010 --> W095["W-095 issue done: 05: the seam without guards"]
-  W095 --> T218["T-218 done: Hide the exhaustiveness guards from the ports diff -> build/05-how/v5.diff"]
-  W095 --> T219["T-219 done: Recaption the I3 frame and define the seam -> 05-how/index.md"]
-  E010 --> W096["W-096 issue done: 06: the measured frames"]
-  W096 --> T220["T-220 done: Refactor the 64-path tests onto two fixtures -> 06-simple/tests/test_core_paths.py and 06-simple/index.md"]
-  W096 --> T221["T-221 done: Measure the eight worlds -> 06-simple/s06_simple/worlds.py and build/06-simple/worlds.txt"]
-  W096 --> T222["T-222 done: Keep the seventh signature on one line -> 06-simple/s06_simple/seventh.py and build/06-simple/seventh.diff"]
-  W096 --> T223["T-223 done: Legend the small slices of the number chart -> build/06-simple/paths.png"]
-  E010 --> W097["W-097 issue done: 07: the repository link"]
-  W097 --> T224["T-224 done: Link the repository on the Q&A frame -> 07-close/index.md"]
   W098["W-098 issue todo, standalone: 04: the homes diff at a readable size"]
   W098 --> T227["T-227 todo: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
   W099["W-099 issue todo, standalone: remove the unused contexts table and its paths subcommand"]
@@ -593,7 +604,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 done
   class W098,T227,W099,T228,W100,T229,W101,T230 todo
 ```

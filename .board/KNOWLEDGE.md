@@ -14,7 +14,7 @@
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
-- 2026-11-02 W-092: fact: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#1
+- 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -23,12 +23,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-02 E-010: AC4: the 02 matrix stays at 85% height with the line glued beside it, not under it (at most 74% fits under); W-092's recorded Outcome reads 'under' and is read through this Decision (developer, 2026-11-02)
-- 2026-11-02 E-010: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-02)
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-010: T-203 Action amended again: the moved line makes step-3.diff 16 lines over the lengths cap of 14 until T-204 strips its headers, so T-203 sets cap=16 on that include and T-204 removes it (lane hand-back, gate refusal)
-- 2026-11-02 E-010: T-203 Action amended mid-Task: the marker move makes subtotal = goods a logistics line in shipping, so test_a_skeleton_line_has_no_context in scripts/utils/test_colorcode.py moves to the step-0 line total = goods + shipping; Check unchanged (lane hand-back)
-- 2026-11-02 E-010: T-223 Output amended after its commit: it named only the PNG, so the scope gate refused scripts/utils/test_paths.py; the Output now names scripts/utils/paths.py and scripts/utils/test_paths.py, the Check unchanged
-- 2026-11-02 E-010: T-225 filed under W-090 from T-204's hand-back: make widths fails on Step 3 (87 > 77, 83 > 77) since T-203 put the def and coupon lines in the step-3 diff's context; the frame goes to tiny like Steps 0 to 2
-- 2026-11-02 E-010: T-226 filed under W-092 before its landing: T-211 set the matrix at 74% since 85% overflowed with the line glued under it; the criterion's 85% is kept, reached by cropping the figure's margins and setting the line beside the matrix
+- none recorded
