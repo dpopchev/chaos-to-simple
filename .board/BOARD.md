@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-106 > T-244   | blocked: 0 | todo roots: 1 | done: 355 | pruned: 4
+open path: E-012 > W-106 > T-245   | blocked: 0 | todo roots: 1 | done: 356 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-103  issue  [done]     EUR: every amount reads EUR -- T-232 [done], T-233 [done], T-234 [done]
   W-104  issue  [done]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [done], T-237 [done], T-238 [done]
   W-105  issue  [done]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [done], T-240 [done], T-241 [done], T-242 [done]
-  W-106  issue  [doing]    01: the storyboard counts policies -- T-243 [done], T-244 [doing]   <- ACTIVE LEAF, T-245 [todo]
+  W-106  issue  [doing]    01: the storyboard counts policies -- T-243 [done], T-244 [done], T-245 [doing]   <- ACTIVE LEAF
   W-107  issue  [todo]     01: checkout done, the two tests, the six-bit number -- T-246 [todo], T-247 [todo]
   W-108  issue  [todo]     01: finance R1 against R2, and its test -- T-248 [todo], T-249 [todo]
   W-109  issue  [todo]     02: R1 and R2 above the line, the decision frame -- T-250 [todo], T-251 [todo], T-252 [todo]
@@ -647,8 +647,8 @@ flowchart TD
   W105 --> T242["T-242 done: Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py"]
   E012 --> W106["W-106 issue doing: 01: the storyboard counts policies"]
   W106 --> T243["T-243 done: Count the tally -> tally_line in scripts/utils/storyboard.py and build/01-bits/tally-N.txt"]
-  W106 --> T244["T-244 doing: Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan -- ACTIVE LEAF"]
-  W106 --> T245["T-245 todo: Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py"]
+  W106 --> T244["T-244 done: Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan"]
+  W106 --> T245["T-245 doing: Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py -- ACTIVE LEAF"]
   E012 --> W107["W-107 issue todo: 01: checkout done, the two tests, the six-bit number"]
   W107 --> T246["T-246 todo: Price the next if -> next_doubling in scripts/utils/paths.py and build/01-bits/next.txt"]
   W107 --> T247["T-247 todo: Rework the three frames -> 01-bits/index.md"]
@@ -703,7 +703,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W106,T244 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,T243 done
-  class T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280 todo
+  class E012,W106,T245 doing
+  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,T243,T244 done
+  class W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280 todo
 ```
