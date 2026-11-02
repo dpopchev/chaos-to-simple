@@ -31,9 +31,18 @@ first.
 
 ## The agenda was a map {paths=64}
 
-![](build/02-stacey/stacey-02.png){height=74%}
+:::: {.columns}
+::: {.column width="62%"}
+
+![](build/02-stacey/stacey-02.png){height=85%}
+
+:::
+::: {.column width="38%"}
 
 \theline{A bug is fixed with a test}{Before fixing the How, check whether the What is agreed.}
+
+:::
+::::
 
 ::: notes
 Read the matrix from the origin: both axes start certain. The x axis is the How, the y axis
