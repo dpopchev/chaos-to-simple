@@ -11,12 +11,18 @@ ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt
 
 # The xfail is lifted (--runxfail) so the slide shows the failure the suite hides; the exit
-# status is ignored and only the assert lines and the summary stay, without the timing.
-$(BUILD)/01-bits/bug-run.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_planted_bug.py
+# status must be 1 (one test failed) or the recipe fails; only the assert lines and the
+# summary stay, without the timing.
+$(BUILD)/01-bits/bug-run.txt: 01-bits/section.mk 01-bits/s01_bits/chaos.py \
+    01-bits/tests/test_planted_bug.py
 	@mkdir -p $(@D)
-	@{ $(RUN) pytest 01-bits/tests/test_planted_bug.py --runxfail -q --no-header \
-	  -p no:cacheprovider || true; } | grep -E '^E +Assertion|^[0-9]+ failed' \
-	  | sed -E 's/ in [0-9.]+s$$//' > $@
+	@log=$$(mktemp); status=0; \
+	$(RUN) pytest 01-bits/tests/test_planted_bug.py --runxfail -q --no-header \
+	  -p no:cacheprovider > $$log || status=$$?; \
+	if [ $$status -ne 1 ]; then rm -f $$log; \
+	  echo "bug-run: pytest exited $$status, expected 1 (one failed test)" >&2; exit 1; fi; \
+	grep -E '^E +Assertion|^[0-9]+ failed' $$log \
+	  | sed -E 's/ in [0-9.]+s$$//' > $@; rm -f $$log
 	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/finance.png: 01-bits/data/october.csv \
