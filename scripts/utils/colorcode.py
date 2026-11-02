@@ -21,6 +21,7 @@ WIDTH, HEIGHT = 10.0, 6.0
 TOP, BOTTOM = 5.85, 1.35
 TEXT_X, BAR_W = 0.45, 0.14
 FONT_SIZE = 12
+LEGEND_TOP, LEGEND_PITCH = 1.22, 0.2
 
 
 @dataclass(frozen=True)
@@ -62,6 +63,16 @@ def owned_lines(
         else:
             out.append(OwnedLine(text, row.requested_by, context_of[row.bit]))
     return tuple(out)
+
+
+def legend_groups(
+    actors: Mapping[str, Actor], contexts: Mapping[str, Context]
+) -> tuple[tuple[str, tuple[str, ...]], ...]:
+    """Return the legend's headed groups of palette keys: who asked, the home, the ports."""
+    asked = tuple(k for k, a in actors.items() if a.kind in ("customer", "department"))
+    homes = tuple(k for k in contexts if k != "tangled")
+    ports = tuple(k for k, a in actors.items() if a.kind == "provider")
+    return (("who asked", asked), ("home", homes), ("the ports (external teams)", ports))
 
 
 def colorcode(
@@ -108,24 +119,35 @@ def colorcode(
             ha="left",
             color="black",
         )
-    chips = [(key, a.label, colour_of(key), a.icon) for key, a in actors.items()]
-    chips += [(key, c.label, colour_of(key), "") for key, c in contexts.items() if key != "tangled"]
-    per_row = 5
-    cell = (WIDTH - 0.4) / per_row
-    for i, (_, label, face, icon) in enumerate(chips):
-        x = 0.2 + (i % per_row) * cell
-        y = 1.0 - (i // per_row) * 0.42
-        ax.add_patch(Rectangle((x, y - 0.14), 0.32, 0.28, facecolor=face, edgecolor="none"))
+    groups = dict(legend_groups(actors, contexts))
+    labels = {key: (a.label, a.icon) for key, a in actors.items()}
+    labels |= {key: (c.label, "") for key, c in contexts.items()}
+
+    def chip(key: str, x: float, y: float) -> None:
+        label, icon = labels[key]
+        face = colour_of(key)
+        ax.add_patch(Rectangle((x, y - 0.08), 0.2, 0.16, facecolor=face, edgecolor="none"))
         if icon and font is not None:
             ax.text(
-                x + 0.16,
+                x + 0.1,
                 y,
                 glyph(icon, FONT_AWESOME),
                 ha="center",
                 va="center",
-                fontproperties=FontProperties(fname=font, size=10),
+                fontproperties=FontProperties(fname=font, size=6),
                 color=label_ink(face),
             )
-        ax.text(x + 0.4, y, label, ha="left", va="center", fontsize=9)
+        ax.text(x + 0.27, y, label, ha="left", va="center", fontsize=9)
+
+    def block(heading: str, x: float, top: float, sub_columns: int) -> float:
+        ax.text(x, top, heading, ha="left", va="center", fontsize=9, fontweight="bold")
+        keys = groups[heading]
+        for i, key in enumerate(keys):
+            chip(key, x + (i % sub_columns) * 2.4, top - 0.2 - (i // sub_columns) * LEGEND_PITCH)
+        return top - 0.2 - (-(-len(keys) // sub_columns)) * LEGEND_PITCH
+
+    block("who asked", 0.2, LEGEND_TOP, 1)
+    below = block("home", WIDTH / 2, LEGEND_TOP, 2)
+    block("the ports (external teams)", WIDTH / 2, below - 0.05, 2)
     style.save(fig, out)
     return out

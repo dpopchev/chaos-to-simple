@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.colorcode import OwnedLine, colorcode, owned_lines
+from scripts.utils.colorcode import OwnedLine, colorcode, legend_groups, owned_lines
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import load_cast, load_rules
 
@@ -63,3 +63,13 @@ def test_a_skeleton_line_has_no_context() -> None:
 def test_colorcode_writes_a_png(tmp_path: Path) -> None:
     out = colorcode(_lines(), load_actors(), load_contexts(), tmp_path / "x" / "c.png")
     assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.model
+def test_legend_groups_actors_and_contexts() -> None:
+    groups = legend_groups(load_actors(), load_contexts())
+    assert {heading: keys for heading, keys in groups} == {
+        "who asked": ("customer", "marketing", "loyalty", "logistics", "accounting"),
+        "home": ("pricing", "shipping", "tax", "shell"),
+        "the ports (external teams)": ("payment", "warehouse", "mailer"),
+    }
