@@ -39,5 +39,6 @@
 - 2026-11-02 E-012: T-232's lane wrote docs/deck-v4.md before its red run; the red is taken from the Check on the tree at b79e8f4 (the file absent: 'No such file or directory', exit 2), reproduced by the coordinator; the Check itself is unchanged
 - 2026-11-02 E-012: T-233's Action named the importers' test folders, not their files, so its scope gate refused nine test files the rename had to touch; the Action was amended to name each file, Check unchanged
 - 2026-11-02 E-012: T-234's Action gained scripts/utils/test_storyboard.py, a BGN fixture the plan's grep missed and its Check's grep covers; Check unchanged
+- 2026-11-02 E-012: T-236 also sets Steps 4-6 at \tiny: the prefixed whole function is 88 columns, over make widths' 77 at scriptsize; T-238 keeps checking the one size against make overflow; Checks unchanged
 - 2026-11-02 E-012: W-104's briefs amended before start: T-236's step view opens on its 'checkout vA -> vB' caption (the filter bolds a first line); T-237's Check greps a use of \diffchg, not its definition; T-238's Check matches the indented return line
 - 2026-11-02 E-012: the cap=24 on the 01 step includes moved from T-238 to T-236: the whole-function step files fail make lengths (cap 14) the moment T-236 writes them, so T-236 could not close on the gate; Checks unchanged
