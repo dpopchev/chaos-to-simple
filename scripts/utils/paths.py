@@ -502,17 +502,20 @@ def bar_headroom(top: int) -> float:
     return top * 1.2
 
 
-def slice_label_point(x: float, bottom: float, value: float) -> tuple[float, float]:
-    """Where a thin slice's label sits: beside the bar, level with the slice's middle."""
-    return (x + 0.33, bottom + value / 2)
+def is_small(value: int, top: int) -> bool:
+    """Whether a slice is too thin for a label inside it: under 8% of the top."""
+    return value < 0.08 * top
 
 
-def spread_apart(ys: Sequence[float], gap: float) -> list[float]:
-    """Push ascending label heights upward until neighbours sit at least gap apart."""
-    placed: list[float] = []
-    for y in ys:
-        placed.append(max(y, placed[-1] + gap) if placed else y)
-    return placed
+def small_slices(bars: Sequence[Bar], top: int) -> tuple[Segment, ...]:
+    """The thin slices in bar order, a slice of the same name and value once."""
+    thin = (seg for _, segments in bars for seg in segments if is_small(seg[1], top))
+    return tuple(dict.fromkeys(thin))
+
+
+def legend_entries(bars: Sequence[Bar], top: int) -> tuple[str, ...]:
+    """The 'name: value' text of each slice under 8% of the top, in bar order."""
+    return tuple(f"{name}: {value}" for name, value in small_slices(bars, top))
 
 
 def segment_colour(name: str) -> str:
@@ -536,17 +539,17 @@ def stacked_bar(
 ) -> None:
     """A stacked bar per way of counting, every segment labelled with its exact count.
 
-    A segment under 8% of the top gets its label beside the bar, level with the slice.
+    A segment under 8% of the top is named in a legend box right of the bars, no leader line.
     """
     from scripts.utils import style
 
     style.apply()
     import matplotlib.pyplot as plt
+    from matplotlib.patches import Patch
 
     top = max(sum(value for _, value in segments) for _, segments in bars)
+    small = small_slices(bars, top)
     fig, ax = plt.subplots(figsize=figsize, dpi=style.DPI)
-    gap = bar_headroom(top) * 1.5 * fontsize / (0.75 * figsize[1] * 72)
-    aside: list[tuple[str, tuple[float, float]]] = []
     for x, (label, segments) in enumerate(bars):
         bottom = 0
         for name, value in segments:
@@ -571,7 +574,7 @@ def stacked_bar(
                     fontsize=fontsize,
                     color=ink,
                 )
-            elif value >= 0.08 * top:
+            elif not is_small(value, top):
                 ax.text(
                     x,
                     middle,
@@ -581,23 +584,7 @@ def stacked_bar(
                     fontsize=fontsize,
                     color=ink,
                 )
-            else:
-                aside.append((f"{name}: {value}", slice_label_point(x, bottom, value)))
             bottom += value
-        points = [point for _, point in aside]
-        for (text, (lx, ly)), y in zip(
-            aside, spread_apart([py for _, py in points], gap), strict=True
-        ):
-            ax.annotate(
-                text,
-                (lx - 0.03, ly),
-                xytext=(lx + 0.05, y),
-                ha="left",
-                va="center",
-                fontsize=fontsize,
-                arrowprops={"arrowstyle": "-", "color": "0.5", "linewidth": 0.8},
-            )
-        aside.clear()
         ax.text(
             x, bottom, str(bottom), ha="center", va="bottom", fontsize=fontsize, fontweight="bold"
         )
@@ -609,5 +596,16 @@ def stacked_bar(
     ax.tick_params(labelsize=fontsize)
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
+    if small:
+        ax.legend(
+            handles=[
+                Patch(facecolor=segment_colour(name), edgecolor="white", label=f"{name}: {value}")
+                for name, value in small
+            ],
+            loc="center left",
+            bbox_to_anchor=(1.0, 0.5),
+            frameon=True,
+            fontsize=fontsize,
+        )
     fig.tight_layout()
     style.save(fig, out)
