@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import re
+import sys
 import textwrap
 from collections.abc import Callable
+from pathlib import Path
 
 # The deck's code size is \footnotesize (preamble.tex AtBeginEnvironment Shaded).
 BASE_POINTS = 8
@@ -20,6 +22,21 @@ _FVSET = re.compile(r"\\fvset\{fontsize=\\(?P<size>\w+)")
 
 
 _STEP_MARKER = re.compile(r"\s*# \[step: \d\]\s*$")
+
+
+def read_include(root: Path, path: str, strict: bool) -> str:
+    """Read an included file under root; a missing one is a stub, empty, unless strict.
+
+    A stub prints '[WARN] stub include: <path>' as the include filter does;
+    strict raises FileNotFoundError naming the path.
+    """
+    target = root / path
+    if target.exists():
+        return target.read_text(encoding="utf-8")
+    if strict:
+        raise FileNotFoundError(f"include not found: {path}")
+    sys.stdout.write(f"[WARN] stub include: {path}\n")
+    return ""
 
 
 def strip_step_markers(text: str) -> str:

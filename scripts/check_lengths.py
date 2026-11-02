@@ -6,16 +6,13 @@
 from __future__ import annotations
 
 import argparse
+import os
 import sys
 from collections.abc import Sequence
 from pathlib import Path
 
 from scripts.utils.lengths import too_long
-
-
-def read_text(root: Path, path: str) -> str:
-    """Read an included file under root; a missing one raises naming its path."""
-    return (root / path).read_text(encoding="utf-8")
+from scripts.utils.widths import read_include
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -26,12 +23,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--cap", type=int, default=14)
     args = parser.parse_args(argv)
 
+    strict = bool(os.environ.get("STRICT"))
     long: list[str] = []
     for index in sorted(args.root.glob("[0-9][0-9]-*/index.md")):
         long.extend(
             too_long(
                 index.read_text(encoding="utf-8"),
-                lambda path: read_text(args.root, path),
+                lambda path: read_include(args.root, path, strict),
                 args.cap,
                 f"{index.parent.name}/index.md",
             )

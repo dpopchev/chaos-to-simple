@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
+from scripts.check_lengths import main
 from scripts.utils.lengths import too_long
 
 BLOCK = "a\nb\nc\nd\n"
@@ -29,6 +32,17 @@ def test_too_long_counts_non_blank_lines_only() -> None:
 def test_too_long_does_not_count_a_bare_step_marker() -> None:
     texts = {"a.py": "a\n# [step: 2]\nb\nc\n"}
     assert too_long(_slide(""), texts.__getitem__, 3) == ()
+
+
+@pytest.mark.edge
+def test_lengths_skips_a_missing_include(
+    tmp_path: Path, capsys: pytest.CaptureFixture[str], monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.delenv("STRICT", raising=False)
+    (tmp_path / "01-x").mkdir()
+    (tmp_path / "01-x" / "index.md").write_text(_slide(""), encoding="utf-8")
+    code = main(["--root", str(tmp_path)])
+    assert (code, capsys.readouterr().out) == (0, "[WARN] stub include: a.py\n")
 
 
 @pytest.mark.view
