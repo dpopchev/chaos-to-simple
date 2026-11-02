@@ -10,9 +10,9 @@ from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 
-from s04_what.money import Money, bgn
+from s04_what.money import Money, eur
 
-COUPON_VALUE = bgn(10)
+COUPON_VALUE = eur(10)
 MEMBER_FACTOR = Decimal("0.90")
 
 
@@ -35,7 +35,7 @@ def discounted_goods(goods: Money, coupon: Coupon | None, member: bool, today: d
         total = total - COUPON_VALUE
     if member:  # b1, after the coupon: the red card said so
         total = total * MEMBER_FACTOR
-    return max(total, bgn(0))  # a decision hidden in max(): a negative price is not a price
+    return max(total, eur(0))  # a decision hidden in max(): a negative price is not a price
 
 
 # [/snippet]

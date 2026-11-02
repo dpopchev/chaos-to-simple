@@ -9,13 +9,13 @@ from typing import Any
 
 import pytest
 
-from s04_what.money import bgn
+from s04_what.money import eur
 from s04_what.shipping import Zone
 from s06_simple.core import Request
 
 PLAIN = Request(
     skus=("book",),
-    goods=bgn(20),
+    goods=eur(20),
     email="a@example.com",
     coupon=None,
     member=False,
@@ -37,7 +37,7 @@ def plain() -> Request:
 
 @pytest.fixture
 def order() -> Callable[..., Request]:
-    """The plain request with some fields changed: order(goods=bgn(60), member=True)."""
+    """The plain request with some fields changed: order(goods=eur(60), member=True)."""
 
     def make(**changes: Any) -> Request:
         return replace(PLAIN, **changes)

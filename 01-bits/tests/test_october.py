@@ -24,14 +24,14 @@ class TestOctober:
         assert sum(int(r["got_free_shipping"]) for r in rows) == 1214
 
     def test_shortfall_sums_to_6070(self, rows: list[dict[str, str]]) -> None:
-        assert sum(int(r["expected_bgn"]) - int(r["received_bgn"]) for r in rows) == 6070
+        assert sum(int(r["expected_eur"]) - int(r["received_eur"]) for r in rows) == 6070
 
     def test_expected_is_should_pay_times_5(self, rows: list[dict[str, str]]) -> None:
-        assert all(int(r["expected_bgn"]) == int(r["should_pay_shipping"]) * PRICE for r in rows)
+        assert all(int(r["expected_eur"]) == int(r["should_pay_shipping"]) * PRICE for r in rows)
 
     def test_received_is_paid_orders_times_5(self, rows: list[dict[str, str]]) -> None:
         assert all(
-            int(r["received_bgn"])
+            int(r["received_eur"])
             == (int(r["should_pay_shipping"]) - int(r["got_free_shipping"])) * PRICE
             for r in rows
         )

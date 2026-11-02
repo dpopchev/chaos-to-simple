@@ -12,7 +12,7 @@ from dataclasses import dataclass
 from datetime import date
 from pathlib import Path
 
-from s04_what.money import bgn
+from s04_what.money import eur
 from s04_what.shipping import Zone
 from s05_how.fakes import FakeGateway, FakeInventory, FakeMailer
 from s06_simple.core import Request
@@ -77,7 +77,7 @@ def table(measured: Sequence[WorldRow]) -> str:
 def plain_request() -> Request:
     return Request(
         skus=("book",),
-        goods=bgn(20),
+        goods=eur(20),
         email="a@example.com",
         coupon=None,
         member=False,

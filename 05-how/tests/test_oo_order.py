@@ -4,7 +4,7 @@ from datetime import date
 
 import pytest
 
-from s04_what.money import bgn
+from s04_what.money import eur
 from s04_what.pricing import Coupon
 from s05_how.oo_checkout import Checkout
 
@@ -15,7 +15,7 @@ TODAY = date(2026, 11, 5)
 class TestCallOrder:
     @pytest.fixture
     def checkout(self) -> Checkout:
-        return Checkout(bgn(60), Coupon(TODAY), member=True, today=TODAY)
+        return Checkout(eur(60), Coupon(TODAY), member=True, today=TODAY)
 
     def test_coupon_first_follows_the_rule(self, checkout: Checkout) -> None:
         checkout.apply_coupon()

@@ -1,4 +1,4 @@
-week,iso_week,monday,should_pay_shipping,got_free_shipping,expected_bgn,received_bgn
+week,iso_week,monday,should_pay_shipping,got_free_shipping,expected_eur,received_eur
 11,41,2026-10-05,410,198,2050,1060
 12,42,2026-10-12,563,287,2815,1380
 13,43,2026-10-19,640,341,3200,1495

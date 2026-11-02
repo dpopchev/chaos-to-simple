@@ -6,7 +6,7 @@ from datetime import date
 
 import pytest
 
-from s04_what.money import bgn
+from s04_what.money import eur
 from s04_what.pricing import Coupon
 from s04_what.shipping import GIFT_WRAP, Zone
 from s04_what.tax import VatId
@@ -20,7 +20,7 @@ def request_from_bits(bits: int) -> Request:
     """Bit k of the path number sets decision bk; 000000 is the plainest order."""
     return Request(
         skus=("book",),
-        goods=bgn(100) if bits & 0b000100 else bgn(20),  # b2: the threshold is reachable
+        goods=eur(100) if bits & 0b000100 else eur(20),  # b2: the threshold is reachable
         email="a@example.com",
         coupon=Coupon(valid_until=TODAY) if bits & 0b000001 else None,  # b0
         member=bool(bits & 0b000010),  # b1

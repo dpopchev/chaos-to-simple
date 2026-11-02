@@ -11,7 +11,7 @@ from datetime import date, timedelta
 from decimal import Decimal
 from pathlib import Path
 
-from s04_what.money import bgn
+from s04_what.money import eur
 from s04_what.pricing import Coupon
 from s04_what.shipping import Zone
 from s04_what.tax import VatId
@@ -35,31 +35,31 @@ def test_every_core_example_has_a_test() -> None:
 
 
 def test_coupon_valid_today(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(60), coupon=valid(today)), today).goods == 50
+    assert price(order(goods=eur(60), coupon=valid(today)), today).goods == 50
 
 
 def test_coupon_expired_yesterday(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(60), coupon=expired(today)), today).goods == 60
+    assert price(order(goods=eur(60), coupon=expired(today)), today).goods == 60
 
 
 def test_member_after_coupon(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(60), coupon=valid(today), member=True), today).goods == 45
+    assert price(order(goods=eur(60), coupon=valid(today), member=True), today).goods == 45
 
 
 def test_coupon_never_below_zero(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(5), coupon=valid(today)), today).goods == 0
+    assert price(order(goods=eur(5), coupon=valid(today)), today).goods == 0
 
 
 # [snippet: wound-i1]
 def test_free_shipping_after_discount(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(55), coupon=valid(today)), today).shipping == 5
+    assert price(order(goods=eur(55), coupon=valid(today)), today).shipping == 5
 
 
 # [/snippet]
 
 
 def test_free_shipping_at_threshold(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(50)), today).shipping == 0
+    assert price(order(goods=eur(50)), today).shipping == 0
 
 
 def test_international_zone(order: Order, today: date) -> None:
@@ -67,13 +67,13 @@ def test_international_zone(order: Order, today: date) -> None:
 
 
 def test_gift_wrap_on_free_shipping(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(100), gift_wrap=True), today).shipping == 3
+    assert price(order(goods=eur(100), gift_wrap=True), today).shipping == 3
 
 
 def test_vat_without_id(order: Order, today: date) -> None:
-    assert price(order(goods=bgn(40)), today).total == Decimal("54.00")
+    assert price(order(goods=eur(40)), today).total == Decimal("54.00")
 
 
 def test_vat_exempt_with_id(order: Order, today: date) -> None:
-    exempt = order(goods=bgn(40), vat_id=VatId("BG123456789"))
+    exempt = order(goods=eur(40), vat_id=VatId("BG123456789"))
     assert price(exempt, today).total == Decimal("45.00")

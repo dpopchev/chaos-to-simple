@@ -7,7 +7,7 @@ from datetime import date
 from typing import assert_never
 
 from s01_bits.chaos import Order
-from s04_what.money import Money, bgn
+from s04_what.money import Money, eur
 from s04_what.pricing import Coupon, discounted_goods
 from s04_what.shipping import Zone, shipping_fee
 from s04_what.tax import VatId, total_with_vat
@@ -45,7 +45,7 @@ def checkout(
     inventory: Inventory,
     mailer: Mailer,
 ) -> CheckoutResult:
-    goods = sum((line.price * line.qty for line in order.lines), bgn(0))
+    goods = sum((line.price * line.qty for line in order.lines), eur(0))
     coupon = Coupon(order.coupon_valid_until) if order.coupon_valid_until else None
     zone = Zone.INTERNATIONAL if order.international else Zone.DOMESTIC
     vat_id = VatId(order.vat_id) if order.vat_id else None

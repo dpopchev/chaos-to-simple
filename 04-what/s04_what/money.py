@@ -9,7 +9,7 @@ type Money = Decimal
 CENT = Decimal("0.01")
 
 
-def bgn(amount: int | str) -> Money:
+def eur(amount: int | str) -> Money:
     return Decimal(amount)
 
 
