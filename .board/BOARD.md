@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 8 | done: 397 | pruned: 4
+open path: E-012 > W-118 > T-274   | blocked: 0 | todo roots: 8 | done: 397 | pruned: 4
 
 ## Tree
 
@@ -21,7 +21,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-115  issue  [done]     05: the ports answer with values, the moves table explained -- T-267 [done], T-268 [done]
   W-116  issue  [done]     06: cut along the seam -- T-269 [done], T-270 [done]
   W-117  issue  [done]     06: the wounds as a post-mortem -- T-271 [done], T-272 [done], T-273 [done]
-  W-118  issue  [todo]     07: the call to action and the thank-you -- T-274 [todo], T-275 [todo]
+  W-118  issue  [doing]    07: the call to action and the thank-you -- T-274 [doing]   <- ACTIVE LEAF, T-275 [todo]
   W-119  issue  [todo]     action titles on every content frame, topic titles on the section pages -- T-276 [todo], T-277 [todo], T-278 [todo], T-279 [todo]
 W-120  bug    [todo]     (standalone) the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
 W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
@@ -695,8 +695,8 @@ flowchart TD
   W117 --> T271["T-271 done: Add the decision and the principle -> data/incidents.csv, Incident, data/README.md"]
   W117 --> T272["T-272 done: Render the post-mortem -> postmortem_table, scripts.paths postmortem, 06-simple/section.mk, data/artifacts.csv"]
   W117 --> T273["T-273 done: Show it -> 06-simple/index.md"]
-  E012 --> W118["W-118 issue todo: 07: the call to action and the thank-you"]
-  W118 --> T274["T-274 todo: Write the two frames -> 07-close/index.md, data/budget.csv, 07-close/README.md"]
+  E012 --> W118["W-118 issue doing: 07: the call to action and the thank-you"]
+  W118 --> T274["T-274 doing: Write the two frames -> 07-close/index.md, data/budget.csv, 07-close/README.md -- ACTIVE LEAF"]
   W118 --> T275["T-275 todo: Count the pages -> build/talk.pdf at 50 and README.md"]
   E012 --> W119["W-119 issue todo: action titles on every content frame, topic titles on the section pages"]
   W119 --> T276["T-276 todo: Write the titles -> the Planned titles section of docs/deck-v4.md"]
@@ -725,7 +725,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012 doing
+  class E012,W118,T274 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273 done
-  class W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288 todo
+  class T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288 todo
 ```
