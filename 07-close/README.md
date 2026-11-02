@@ -13,8 +13,10 @@ Beat: three lines to take home, where to read more, prepared answers.
 ## Slides
 
 - [x] What I should have known from the start: one frame, the learned column read aloud
+- [x] Follow the series and bring your own checkout: the LinkedIn link on one line, the post series, the invitation to reach out
 - [x] Q&A: two columns, the three bullets left and board.png right; the repository link is on the frame
 - [x] Q&A notes: six prepared answers and two live demos (make test K=TestCallOrder; grid.png, then make test K=two_ifs)
+- [x] Thank you: the questions, DEV.BG and the Python user group
 
 ## Done when
 

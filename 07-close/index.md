@@ -13,6 +13,17 @@
 read the learned column only
 :::
 
+## Follow the series and bring your own checkout {paths=72}
+
+- \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}
+- the CraftsmansDay and JourneymansDay post series: one section at a time
+- reach out: we go over your specific problem
+
+::: notes
+- The posts take one section at a time; the series is the long version of tonight.
+- Bring a function of your own: we count its paths together.
+:::
+
 ## Q&A {paths=72}
 
 :::::: {.columns}
@@ -40,4 +51,13 @@ read the learned column only
 - "Where does the digital-books if go": replay the chat answer.
 - Live demo 1: make test K=TestCallOrder, for 45 against 44.
 - Live demo 2: show build/01-bits/grid.png, then make test K=two_ifs.
+:::
+
+## Thank you {paths=72}
+
+- to you, for the questions
+- to DEV.BG and the Python user group, for the stage
+
+::: notes
+Stop here; leave the slide up while people leave.
 :::
