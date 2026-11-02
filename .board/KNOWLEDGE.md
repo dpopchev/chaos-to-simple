@@ -21,10 +21,9 @@
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
-- 2026-11-02 T-230: open: the URL at the 40% column needs a smaller size or a wider column to show whole on page 48
 
 ## Decisions
-- 2026-11-02 E-011: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 3 hours) (developer, 2026-11-02)
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-011: T-230 Action amended mid-Task: the URL in an mbox clips at the 40% column edge (lane hand-back, page 48 render), so the column widens to 45% and the URL line is set footnotesize; the criterion is unchanged
+- none recorded
