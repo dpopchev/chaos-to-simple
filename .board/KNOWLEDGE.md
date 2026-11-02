@@ -28,4 +28,4 @@
 - 2026-11-02 E-013: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
 
 ## Deviations
-- none recorded
+- 2026-11-02 E-013: W-129 taken before W-127 at the re-aim after W-126: a probe with T-287 and T-288 applied in memory leaves seam.diff 3 context lines (stagediff's _elided collapses a run over two), so AC1's 'at least 6' needs the developer; W-129 is independent
