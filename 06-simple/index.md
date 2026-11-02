@@ -1,18 +1,39 @@
 # Simple: functional core, imperative shell
 
-## Sixty-four paths, three invariants: 192 tests {paths=512}
+## Cut along the seam {paths=512}
 
-```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
+\fvset{fontsize=\tiny}
+
+:::: {.columns}
+::: {.column width="52%"}
+
+```{.python include=06-simple/s06_simple/core.py snippet=price}
 ```
 
+:::
+::: {.column width="48%"}
+
+```{.diff include=build/06-simple/seam.diff cap=28}
+```
+
+:::
+::::
+
+the only change: the pure part moves out
+
 ::: notes
-The core has no if of its own, every bit stays where it was named.
-64 paths, one test each, three invariants per path, and the count is measured.
+The pure part moves out into price, and the shell keeps the three calls.
+Nothing else changed: same decisions, one place each.
 :::
 
 ## Sixty-four paths, three invariants: 192 tests {paths=512}
 
-```{.text include=build/06-simple/pytest-core.txt}
+\fvset{fontsize=\scriptsize}
+
+```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
+```
+
+```{.text include=build/06-simple/pytest-core-summary.txt}
 ```
 
 ::: notes

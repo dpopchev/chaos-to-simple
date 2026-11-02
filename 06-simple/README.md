@@ -15,8 +15,8 @@ Beat: put the bits where they belong, count again. 64 core paths tested by enume
 
 Six slides, each with speaker notes.
 
-- [x] Sixty-four paths, three invariants: 192 tests: `snippet=from-bits`
-- [x] Sixty-four paths, three invariants: 192 tests: `build/06-simple/pytest-core.txt`
+- [x] Cut along the seam: `snippet=price` (core.py) beside `build/06-simple/seam.diff` (checkout v5 -> shell)
+- [x] Sixty-four paths, three invariants: 192 tests: `snippet=from-bits` over `build/06-simple/pytest-core-summary.txt`
 - [x] Eight worlds, four outcomes: `snippet=eight` (worlds.py) beside `build/06-simple/worlds.txt`
 - [x] The wounds close by name: `snippet=wound-i1`, `snippet=wound-i3`, `build/06-simple/wounds.txt`
 - [x] The number: the chart, `build/data/splits.txt` and the line "No decision is ever deleted, only moved"

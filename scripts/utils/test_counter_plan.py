@@ -80,4 +80,4 @@ def test_the_core_title_counts_the_invariant_tests() -> None:
     body = source.split("class TestEveryCorePath:")[1]
     measured = 64 * len(re.findall(r"^    def test_", body, re.MULTILINE))
     titles = [t for t, _ in frames("06") if t.startswith("Sixty-four paths")]
-    assert titles == [f"Sixty-four paths, three invariants: {measured} tests"] * 2
+    assert titles == [f"Sixty-four paths, three invariants: {measured} tests"]
