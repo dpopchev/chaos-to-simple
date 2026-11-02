@@ -28,8 +28,8 @@ def send(email: str, total: Decimal) -> None:
     """The mail server, doing nothing."""
 
 
-# [snippet: bug]
 @pytest.mark.xfail(strict=True, reason="planted bug: the threshold reads the subtotal")
+# [snippet: bug]
 def test_free_shipping_after_discount() -> None:
     order = Order(
         lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY

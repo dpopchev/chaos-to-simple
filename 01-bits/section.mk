@@ -8,6 +8,16 @@ ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01
 ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES) $(BUILD)/01-bits/next.txt
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
+ARTIFACTS += $(BUILD)/01-bits/bug-run.txt
+
+# The xfail is lifted (--runxfail) so the slide shows the failure the suite hides; the exit
+# status is ignored and only the assert lines and the summary stay, without the timing.
+$(BUILD)/01-bits/bug-run.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_planted_bug.py
+	@mkdir -p $(@D)
+	@{ $(RUN) pytest 01-bits/tests/test_planted_bug.py --runxfail -q --no-header \
+	  -p no:cacheprovider || true; } | grep -E '^E +Assertion|^[0-9]+ failed' \
+	  | sed -E 's/ in [0-9.]+s$$//' > $@
+	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/finance.png: 01-bits/data/october.csv \
     scripts/figures.py scripts/utils/finance.py scripts/utils/style.py

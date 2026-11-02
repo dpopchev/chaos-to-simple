@@ -306,14 +306,20 @@ with no idea what the last one cost.
 
 ## The path nobody ran {paths=64}
 
+the test finance and marketing wrote from R2: 60.00
+
 ```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
 ```
 
+```{.text include=build/01-bits/bug-run.txt}
+```
+
 ::: notes
-Run it live. `make test K=test_chaos` shows 2 passed, `make test K=test_planted_bug` shows
-1 xfailed: the bug test sits in its own file, marked xfail, so the suite stays green. Then
-`uv run pytest 01-bits/tests/test_planted_bug.py --runxfail`
-shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted goods.
+The slide shows a plain test and its run: 54.00 against 60.00. Run it live and it matches.
+`make test K=test_chaos` shows 2 passed, `make test K=test_planted_bug` shows 1 xfailed: the
+bug test sits in its own file, marked xfail, so the suite stays green. Then
+`uv run pytest 01-bits/tests/test_planted_bug.py --runxfail` shows the same 54.00 against
+60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
 ## A path is a six-bit number {paths=64}
