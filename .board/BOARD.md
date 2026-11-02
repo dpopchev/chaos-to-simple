@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 1 | done: 358 | pruned: 4
+open path: E-012   | blocked: 0 | todo roots: 2 | done: 358 | pruned: 4
 
 ## Tree
 
@@ -24,6 +24,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-118  issue  [todo]     07: the call to action and the thank-you -- T-274 [todo], T-275 [todo]
   W-119  issue  [todo]     action titles on every content frame, topic titles on the section pages -- T-276 [todo], T-277 [todo], T-278 [todo], T-279 [todo]
 W-120  bug    [todo]     (standalone) the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
+W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
 ```
 
 ## Closed
@@ -698,6 +699,8 @@ flowchart TD
   W119 --> T279["T-279 todo: Gate the title length -> scripts/utils/titles.py, scripts/check_titles.py, make titles in mk/deck.mk"]
   W120["W-120 bug todo, standalone: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
   W120 --> T280["T-280 todo: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
+  W121["W-121 issue todo, standalone: 01: the step code at scriptsize in a wider column"]
+  W121 --> T281["T-281 todo: Widen the step code column -> 01-bits/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -705,5 +708,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E012 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245 done
-  class W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280 todo
+  class W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281 todo
 ```
