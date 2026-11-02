@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-090 > T-204   | blocked: 0 | todo roots: 0 | done: 297 | pruned: 4
+open path: E-010 > W-090 > T-205   | blocked: 0 | todo roots: 0 | done: 298 | pruned: 4
 
 ## Tree
 
 ```text
 E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
   W-089  issue  [done]     00: the section beats and the record -- T-199 [done], T-200 [done], T-201 [done], T-202 [done]
-  W-090  issue  [doing]    01: the storyboard opens the loop -- T-203 [done], T-204 [doing]   <- ACTIVE LEAF, T-205 [todo]
+  W-090  issue  [doing]    01: the storyboard opens the loop -- T-203 [done], T-204 [done], T-205 [doing]   <- ACTIVE LEAF
   W-091  issue  [todo]     01: measured captions on the evidence frames -- T-206 [todo], T-207 [todo], T-208 [todo]
   W-092  issue  [todo]     02: the dispute as bubbles and one map -- T-209 [todo], T-210 [todo], T-211 [todo]
   W-093  issue  [todo]     03: the room readable from the back -- T-212 [todo], T-213 [todo], T-214 [todo]
@@ -546,8 +546,8 @@ flowchart TD
   W089 --> T202["T-202 done: Recaption the opening frames -> 00-frontmatter/index.md"]
   E010 --> W090["W-090 issue doing: 01: the storyboard opens the loop"]
   W090 --> T203["T-203 done: Move the birth of the bug to step 3 -> 01-bits/s01_bits/chaos.py and 01-bits/data/bubbles.csv"]
-  W090 --> T204["T-204 doing: Strip the asides and the headers from the step diffs -> build/01-bits/step-0.diff .. step-6.diff -- ACTIVE LEAF"]
-  W090 --> T205["T-205 todo: Open the loop on its own frame -> 01-bits/index.md, data/budget.csv and scripts/utils/test_counter_plan.py"]
+  W090 --> T204["T-204 done: Strip the asides and the headers from the step diffs -> build/01-bits/step-0.diff .. step-6.diff"]
+  W090 --> T205["T-205 doing: Open the loop on its own frame -> 01-bits/index.md, data/budget.csv and scripts/utils/test_counter_plan.py -- ACTIVE LEAF"]
   E010 --> W091["W-091 issue todo: 01: measured captions on the evidence frames"]
   W091 --> T206["T-206 todo: Run the two green tests from their own file -> 01-bits/tests/test_planted_bug.py and build/01-bits/coverage-summary.txt"]
   W091 --> T207["T-207 todo: Title the finance chart with its totals -> build/01-bits/finance.png and 01-bits/index.md"]
@@ -579,7 +579,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W090,T204 doing
-  class W089,T199,T200,T201,T202,T203 done
-  class T205,W091,T206,T207,T208,W092,T209,T210,T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
+  class E010,W090,T205 doing
+  class W089,T199,T200,T201,T202,T203,T204 done
+  class W091,T206,T207,T208,W092,T209,T210,T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
