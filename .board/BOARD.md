@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-013   | blocked: 0 | todo roots: 0 | done: 410 | pruned: 4
+open path: E-013 > W-121 > T-281   | blocked: 0 | todo roots: 0 | done: 410 | pruned: 4
 
 ## Tree
 
 ```text
 E-013         [doing]    Deck v4 polish: the nine findings of the E-012 verification landed before the dry run
   W-120  bug    [done]     the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [done]
-  W-121  issue  [todo]     01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
+  W-121  issue  [doing]    01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [doing]   <- ACTIVE LEAF
   W-122  bug    [todo]     01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
   W-123  bug    [todo]     the board's first header overflows its cell   (filed during T-257) -- T-283 [todo]
   W-124  issue  [todo]     04: the moves notes still speak of the board   (filed during T-263) -- T-284 [todo]
@@ -731,8 +731,8 @@ flowchart TD
   E013["E-013 doing: Deck v4 polish: the nine findings of the E-012 verification landed before the dry run"]
   E013 --> W120["W-120 bug done: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
   W120 --> T280["T-280 done: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
-  E013 --> W121["W-121 issue todo: 01: the step code at scriptsize in a wider column"]
-  W121 --> T281["T-281 todo: Widen the step code column -> 01-bits/index.md"]
+  E013 --> W121["W-121 issue doing: 01: the step code at scriptsize in a wider column"]
+  W121 --> T281["T-281 doing: Widen the step code column -> 01-bits/index.md -- ACTIVE LEAF"]
   E013 --> W122["W-122 bug todo: 01: the bug-run rule masks pytest's exit with || true"]
   W122 --> T282["T-282 todo: Accept only a failed test -> the bug-run rule in 01-bits/section.mk"]
   E013 --> W123["W-123 bug todo: the board's first header overflows its cell"]
@@ -753,7 +753,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E013 doing
+  class E013,W121,T281 doing
   class W120,T280 done
-  class W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
+  class W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
 ```
