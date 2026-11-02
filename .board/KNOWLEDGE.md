@@ -45,4 +45,5 @@
 - 2026-11-02 E-012: T-263's commit 8f22000 also widens the bracket spacing in scripts/utils/figures.py, which amends T-262's closed output (scope rule 4): the bracket hit the shipping label at frame size; recorded on T-263's brief, not moved, since history is forward-only; Checks unchanged
 - 2026-11-02 E-012: T-265's brief now captures pytest's exit and accepts only 1 instead of ignoring it, the || true that W-122 removes from the bug-run rule; Check unchanged
 - 2026-11-02 E-012: W-104's briefs amended before start: T-236's step view opens on its 'checkout vA -> vB' caption (the filter bolds a first line); T-237's Check greps a use of \diffchg, not its definition; T-238's Check matches the indented return line
+- 2026-11-02 E-012: W-128 filed under the root: W-118's Then quoted 'reach out with your own checkout' while T-274's brief gave 'reach out: we go over your specific problem'; the burn runs it before W-119
 - 2026-11-02 E-012: the cap=24 on the 01 step includes moved from T-238 to T-236: the whole-function step files fail make lengths (cap 14) the moment T-236 writes them, so T-236 could not close on the gate; Checks unchanged
