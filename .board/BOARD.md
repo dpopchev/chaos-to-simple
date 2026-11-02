@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-107 > T-247   | blocked: 0 | todo roots: 2 | done: 359 | pruned: 4
+open path: E-012 > W-107   | blocked: 0 | todo roots: 2 | done: 360 | pruned: 4
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-104  issue  [done]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [done], T-237 [done], T-238 [done]
   W-105  issue  [done]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [done], T-240 [done], T-241 [done], T-242 [done]
   W-106  issue  [done]     01: the storyboard counts policies -- T-243 [done], T-244 [done], T-245 [done]
-  W-107  issue  [doing]    01: checkout done, the two tests, the six-bit number -- T-246 [done], T-247 [doing]   <- ACTIVE LEAF
+  W-107  issue  [doing]    01: checkout done, the two tests, the six-bit number -- T-246 [done], T-247 [done]
   W-108  issue  [todo]     01: finance R1 against R2, and its test -- T-248 [todo], T-249 [todo]
   W-109  issue  [todo]     02: R1 and R2 above the line, the decision frame -- T-250 [todo], T-251 [todo], T-252 [todo]
   W-110  issue  [todo]     03: the journey as the customer certainty, the retro subdomains -- T-253 [todo], T-254 [todo], T-255 [todo]
@@ -652,7 +652,7 @@ flowchart TD
   W106 --> T245["T-245 done: Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py"]
   E012 --> W107["W-107 issue doing: 01: checkout done, the two tests, the six-bit number"]
   W107 --> T246["T-246 done: Price the next if -> next_doubling in scripts/utils/paths.py and build/01-bits/next.txt"]
-  W107 --> T247["T-247 doing: Rework the three frames -> 01-bits/index.md -- ACTIVE LEAF"]
+  W107 --> T247["T-247 done: Rework the three frames -> 01-bits/index.md"]
   E012 --> W108["W-108 issue todo: 01: finance R1 against R2, and its test"]
   W108 --> T248["T-248 todo: Name the readings on the chart -> finance.draw legend and title, the frame caption and notes"]
   W108 --> T249["T-249 todo: Show the finance test as a plain test with its run -> 01-bits/tests/test_planted_bug.py, 01-bits/section.mk, 01-bits/index.md, data/artifacts.csv"]
@@ -706,7 +706,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W107,T247 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,T246 done
+  class E012,W107 doing
+  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,T246,T247 done
   class W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281 todo
 ```
