@@ -13,8 +13,7 @@
 - 2026-11-02 E-007: standing: october.csv sums to 1,214 free orders and 6,070 BGN; every date in bubbles, incidents and october falls in its week on the calendar 2026-07-27 + 7 x (N - 1) -> test_october and the calendar tests pin them supersedes: E-007#5
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
-- 2026-11-02 W-081: fact: T-189 probe -- a too-tall frame already fails make overflow; W-059's grid frame had 0.70pt slack, no vbox line, its [T]-column image rose about 1ex into the title -> AC3's Then holds; the real case needs a frame-slack probe
-- 2026-11-02 W-087: fact: the slack threshold is 3pt by the developer's Decision -> T-197 fails make overflow below 3pt; main's 3.24pt frame stays green supersedes: W-087#1
+- 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -23,10 +22,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-02 E-008: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
-- 2026-11-02 E-008: repoint: W-081 pruned as refuted, successor W-087; AC3 re-pointed to W-087 (developer, 2026-11-02)
-- 2026-11-02 W-087: slack threshold 3pt: catches W-059's 0.70pt frame, keeps main's tightest (3.24pt) green (developer, 2026-11-02)
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-008: AC3 re-pointed from W-081 (pruned, refuted) to W-087, adopted from standalone; W-074 now depends on W-087 in W-081's place
-- 2026-11-02 E-008: T-182's Action amended to name scripts/utils/figures.py and scripts/utils/paths.py, the callers its 'every caller under scripts/' meant; the scope gate refused the close without the literal paths (as E-004#v1); Check unchanged
+- none recorded

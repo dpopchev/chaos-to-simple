@@ -1,20 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008   | blocked: 0 | todo roots: 2 | done: 285 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 2 | done: 286 | pruned: 4
 
 ## Tree
 
 ```text
-E-008         [doing]    backlog after deck v2: the build guards, the rebuild rule and the cleanups
-  W-070  issue  [done]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [done]
-  W-072  bug    [done]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
-  W-073  bug    [done]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [done]
-  W-074  bug    [done]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [done]
-  W-075  issue  [done]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [done]
-  W-081  bug    [pruned]   make overflow passes a frame whose content beamer shifts over the title   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]   (filed during T-148) -- T-189 [pruned]   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]
-  W-082  issue  [done]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [done]
-  W-083  bug    [done]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [done]
-  W-087  bug    [done]     make overflow passes a frame that fits its text height but whose [T]-column image reaches the title   (filed during T-189) -- T-196 [done], T-197 [done]
 W-086  issue  [todo]     (standalone) lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [todo]
 W-088  bug    [todo]     (standalone) stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [todo]
 ```
@@ -425,6 +415,47 @@ closed 2026-11-02 -- outcome: make talk writes build/talk.pdf: 48 frames (1 titl
 
 - T-194 [done] Fit the epilogue under its title -> 06-simple/index.md
 
+### E-008 [done] backlog after deck v2: the build guards, the rebuild rule and the cleanups
+
+closed 2026-11-02 -- outcome: make check is green on main with ruff format --check among its gates; make stubs writes epoch-dated stubs, make lengths warns on a missing include, make overflow names a frame shifted over its title, make artifacts redraws ports.png after a cast.csv edit, and scripts hold a named spread_apart test, a top-level icons import in palette.py and no growth_chart. -- ledger: ledgers/E-008.md
+
+#### W-070 issue [done] chart labels: spread_apart gets its own test   (filed during T-124)
+
+- T-177 [done] Pin spread_apart with a test -> scripts/utils/test_paths.py
+
+#### W-072 bug [done] make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128)
+
+- T-179 [done] Skip a missing include with a warning -> scripts/check_lengths.py
+
+#### W-073 bug [done] 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131)
+
+- T-180 [done] List the cast as a prerequisite of the seam -> 05-how/section.mk
+
+#### W-074 bug [done] make check passes on a tree that ruff format would change   (filed during T-132)
+
+- T-181 [done] Format the tree and gate it in make check -> mk/python.mk
+
+#### W-075 issue [done] scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132)
+
+- T-182 [done] Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py
+
+#### W-081 bug [pruned] make overflow passes a frame whose content beamer shifts over the title   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]   (filed during T-148)
+
+- T-189 [pruned] Catch a frame shifted over its title -> scripts/utils/overflow.py   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]
+
+#### W-082 issue [done] remove the dead growth chart and its paths subcommand   (filed during T-156)
+
+- T-190 [done] Remove growth_chart and the growth subcommand -> scripts/paths.py
+
+#### W-083 bug [done] make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168)
+
+- T-192 [done] Write stubs with an epoch mtime -> scripts/utils/stubs.py
+
+#### W-087 bug [done] make overflow passes a frame that fits its text height but whose [T]-column image reaches the title   (filed during T-189)
+
+- T-196 [done] Print each frame's slack in the overflow build -> 00-frontmatter/slack-probe.tex
+- T-197 [done] Name a frame under the slack threshold -> scripts/utils/overflow.py
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -487,26 +518,6 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E008["E-008 doing: backlog after deck v2: the build guards, the rebuild rule and the cleanups"]
-  E008 --> W070["W-070 issue done: chart labels: spread_apart gets its own test"]
-  W070 --> T177["T-177 done: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
-  E008 --> W072["W-072 bug done: make lengths crashes on an include of a missing file the filter would render as a STUB"]
-  W072 --> T179["T-179 done: Skip a missing include with a warning -> scripts/check_lengths.py"]
-  E008 --> W073["W-073 bug done: 05 ports.png is not rebuilt when data/cast.csv changes"]
-  W073 --> T180["T-180 done: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
-  E008 --> W074["W-074 bug done: make check passes on a tree that ruff format would change"]
-  W074 --> T181["T-181 done: Format the tree and gate it in make check -> mk/python.mk"]
-  E008 --> W075["W-075 issue done: scripts.utils.style imports palette, so palette imports icons lazily"]
-  W075 --> T182["T-182 done: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
-  E008 --> W081["W-081 bug pruned: make overflow passes a frame whose content beamer shifts over the title"]
-  W081 --> T189["T-189 pruned: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
-  E008 --> W082["W-082 issue done: remove the dead growth chart and its paths subcommand"]
-  W082 --> T190["T-190 done: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
-  E008 --> W083["W-083 bug done: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
-  W083 --> T192["T-192 done: Write stubs with an epoch mtime -> scripts/utils/stubs.py"]
-  E008 --> W087["W-087 bug done: make overflow passes a frame that fits its text height but whose [T]-column image reaches the title"]
-  W087 --> T196["T-196 done: Print each frame's slack in the overflow build -> 00-frontmatter/slack-probe.tex"]
-  W087 --> T197["T-197 done: Name a frame under the slack threshold -> scripts/utils/overflow.py"]
   W086["W-086 issue todo, standalone: lengths: the STRICT failure on a missing include gets its own test"]
   W086 --> T195["T-195 todo: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
   W088["W-088 bug todo, standalone: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
@@ -516,8 +527,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008 doing
-  class W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W082,T190,W083,T192,W087,T196,T197 done
   class W086,T195,W088,T198 todo
-  class W081,T189 pruned
 ```
