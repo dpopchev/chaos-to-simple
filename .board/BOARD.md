@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-011 > W-101 > T-230   | blocked: 0 | todo roots: 0 | done: 337 | pruned: 4
+open path: E-011 > W-101   | blocked: 0 | todo roots: 0 | done: 338 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-011         [doing]    the v0.9.0 backlog and the layout gates
   W-098  issue  [done]     04: the homes diff at a readable size   (filed during T-217) -- T-227 [done]
   W-099  issue  [done]     remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [done]
   W-100  issue  [done]     06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [done]
-  W-101  issue  [doing]    07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [doing]   <- ACTIVE LEAF
+  W-101  issue  [doing]    07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [done]
   W-102  issue  [done]     make check runs widths and overflow -- T-231 [done]
 ```
 
@@ -601,7 +601,7 @@ flowchart TD
   E011 --> W100["W-100 issue done: 06: the number chart's core label and doubled shell entry"]
   W100 --> T229["T-229 done: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py"]
   E011 --> W101["W-101 issue doing: 07: the repository URL breaks across two lines"]
-  W101 --> T230["T-230 doing: Set the repository URL on one line -> 07-close/index.md -- ACTIVE LEAF"]
+  W101 --> T230["T-230 done: Set the repository URL on one line -> 07-close/index.md"]
   E011 --> W102["W-102 issue done: make check runs widths and overflow"]
   W102 --> T231["T-231 done: Add widths and overflow to the checks -> mk/deck.mk and README.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -609,6 +609,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E011,W101,T230 doing
-  class W098,T227,W099,T228,W100,T229,W102,T231 done
+  class E011,W101 doing
+  class W098,T227,W099,T228,W100,T229,T230,W102,T231 done
 ```
