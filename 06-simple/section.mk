@@ -35,7 +35,8 @@ $(BUILD)/06-simple/worlds.txt: $(wildcard 04-what/s04_what/*.py) $(wildcard 05-h
 
 $(BUILD)/06-simple/seventh.diff: 04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/shipping.py --to 06-simple/s06_simple/seventh.py \
-		--snippet fee --to-snippet fee-digital --out $@
+		--snippet fee --to-snippet fee-digital \
+		--label-from shipping_fee --label-to '+ digital' --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/epilogue.txt: $(RULES) data/seventh.csv scripts/paths.py scripts/utils/paths.py
