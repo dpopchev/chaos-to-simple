@@ -19,7 +19,6 @@ from scripts.utils.paths import (
     bits_by,
     cast_table,
     cell_kinds,
-    contexts_table,
     count_report,
     doubling_chart,
     doubling_table,
@@ -393,56 +392,6 @@ class TestCastTableNamesTheRequester:
 
     @pytest.mark.edge
     def test_cast_table_has_no_trailing_spaces(self, lines: list[str]) -> None:
-        assert all(line == line.rstrip() for line in lines)
-
-
-CONTEXTS_RULES = (
-    "bit,scope,context,name,rule,code\n"
-    "b0,core,pricing,coupon,A coupon,coupon\n"
-    "b1,core,pricing,member,A member,member\n"
-    "b2,core,shipping,zone,A zone,zone\n"
-    "s0,shell,shell,charge,A charge,charge\n"
-)
-
-CONTEXTS_CAST = (
-    "bit,step,week,requested_by,words,aside,fragment\n"
-    "b0,1,3,marketing,a,,x\n"
-    "b1,2,5,loyalty,b,,y\n"
-    "b2,3,6,marketing,c,,z\n"
-    "s0,0,1,mailer,d,,w\n"
-)
-
-
-class TestContextsTableJoinsRulesAndCast:
-    @pytest.fixture
-    def lines(self, tmp_path: Path) -> list[str]:
-        rules_path = tmp_path / "rules.csv"
-        cast_path = tmp_path / "cast.csv"
-        rules_path.write_text(CONTEXTS_RULES, encoding="ascii")
-        cast_path.write_text(CONTEXTS_CAST, encoding="ascii")
-        return contexts_table(load_rules(rules_path), load_cast(cast_path)).splitlines()
-
-    @pytest.mark.model
-    def test_contexts_table_header_names_four_columns(self, lines: list[str]) -> None:
-        assert lines[0].split() == ["context", "bits", "paths", "who"]
-
-    @pytest.mark.model
-    def test_contexts_table_pricing_has_two_bits_four_paths_two_requesters(
-        self, lines: list[str]
-    ) -> None:
-        assert lines[1].split(None, 1)[1].split(None, 3) == [
-            "b0",
-            "b1",
-            "4",
-            "Marketing, Loyalty program",
-        ]
-
-    @pytest.mark.model
-    def test_contexts_table_shell_context_is_asked_by_its_provider(self, lines: list[str]) -> None:
-        assert lines[3].split() == ["shell", "s0", "2", "Mailer"]
-
-    @pytest.mark.edge
-    def test_contexts_table_has_no_trailing_spaces(self, lines: list[str]) -> None:
         assert all(line == line.rstrip() for line in lines)
 
 

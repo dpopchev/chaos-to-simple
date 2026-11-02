@@ -14,8 +14,6 @@
         --out build/01-bits/cast.txt
     python -m scripts.paths effects --cast data/cast.csv --source 01-bits/s01_bits/chaos.py \\
         --out build/05-how/effects.txt
-    python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv \\
-        --out build/04-what/contexts.txt
     python -m scripts.paths doubling --cast data/cast.csv [--upto N] \\
         --out build/01-bits/doubling.txt
     python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
@@ -42,7 +40,6 @@ from scripts.utils.palette import load_actors
 from scripts.utils.paths import (
     bars_from_rules,
     cast_table,
-    contexts_table,
     count_report,
     doubling_table,
     effects_lines,
@@ -95,7 +92,6 @@ def main(argv: Sequence[str] | None = None) -> int:
             "epilogue-chart",
             "cast",
             "effects",
-            "contexts",
             "doubling",
             "wounds",
             "retro",
@@ -185,8 +181,6 @@ def main(argv: Sequence[str] | None = None) -> int:
         text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "effects":
         text = effects_lines(load_cast(args.cast), args.source.read_text(encoding="ascii"))
-    elif args.what == "contexts":
-        text = contexts_table(load_rules(args.rules), load_cast(args.cast))
     elif args.what == "doubling":
         text = doubling_table(load_cast(args.cast), args.upto)
     elif args.what == "epilogue":
