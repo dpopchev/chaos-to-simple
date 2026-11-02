@@ -10,24 +10,44 @@
 ```{.text include=build/05-how/effects.txt}
 ```
 
+::: notes
+I3 comes first, before any design word. Charge before reserve was the bug, and nobody decided it.
+The numbered effect lines show the order the code happened to run in.
+:::
+
 ## Past me reached for a class {paths=512}
 
 ```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
+
+::: notes
+Past me reached for a class, so the order of the steps hid in its state.
+Each method reads and changes the same fields, and the call sequence became a bit nobody could see.
+:::
 
 ## The bit nobody wrote down {paths=512}
 
 ```{.python include=05-how/tests/test_oo_order.py snippet=order-bit}
 ```
 
+::: notes
+The call order is a bit nobody wrote down: 45 against 44 from the same inputs.
+Live demo: make test K=TestCallOrder. The first test follows the rule, the second one differs.
+:::
+
 ## Command Query Separation draws the seam {paths=512}
 
 ```{.python include=05-how/s05_how/ports.py snippet=types}
 ```
 
+::: notes
+Command query separation: a query asks, a command answers with a value, never both.
+Every answer is a value the caller can match on, so the order stops living in state.
+:::
+
 ## The ports, as a picture {paths=512}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -42,6 +62,11 @@
 
 :::
 ::::
+
+::: notes
+The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
+The diff is only the seam, so the picture and the code say the same thing.
+:::
 
 ## A boundary that passes values adds paths; one that passes flags multiplies them {paths=512}
 
@@ -66,5 +91,10 @@
 
 :::
 ::::
+
+::: notes
+The moves table: each move adds a path or hides one.
+Guard clauses and sum types add paths you can count; flags and mutable state hide them.
+:::
 
 \theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}

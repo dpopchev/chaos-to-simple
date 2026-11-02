@@ -25,7 +25,7 @@ pure core and the effectful shell.
 
 ## Live
 
-`uv run pytest 05-how/tests -k order -v`: 45 against 44 from the same inputs.
+`make test K=TestCallOrder`: 45 against 44 from the same inputs, one test per order.
 
 ## Done when
 
