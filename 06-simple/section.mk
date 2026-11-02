@@ -25,6 +25,13 @@ $(BUILD)/06-simple/paths.png: $(RULES) scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths chart --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/06-simple/seventh.diff
+
+$(BUILD)/06-simple/seventh.diff: 04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
+	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/shipping.py --to 06-simple/s06_simple/seventh.py \
+		--snippet fee --to-snippet fee-digital --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/06-simple/epilogue.txt: $(RULES) data/seventh.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths epilogue --rules $(RULES) --seventh data/seventh.csv --out $@
 	$(call log_done,$@ written)

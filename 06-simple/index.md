@@ -44,7 +44,7 @@
 
 STUB: 01-bits/data/squeeze.txt
 
-```{.diff include=build/06-simple/seventh.diff}
+```{.diff include=build/06-simple/seventh.diff cap=18}
 ```
 
 ```{.text include=build/06-simple/epilogue.txt}

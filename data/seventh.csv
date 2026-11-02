@@ -1,2 +1,2 @@
-bit,scope,context,name,rule,code
-b6,core,shipping,digital,Digital books ship free,digital
+bit,scope,context,name,rule,code,requested_by,week
+b6,core,shipping,digital,Digital books ship free and take no gift wrap,digital,marketing,15
