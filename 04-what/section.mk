@@ -12,6 +12,12 @@ $(BUILD)/04-what/board.png: data/rules.csv data/questions.csv data/examples.csv 
 	@$(RUN) python -m scripts.figures board --stage 4 --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/04-what/colorcode.png
+
+$(BUILD)/04-what/colorcode.png: 01-bits/s01_bits/chaos.py data/cast.csv data/rules.csv data/actors.csv data/contexts.csv scripts/figures.py scripts/utils/colorcode.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures colorcode --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/04-what/contexts.txt: data/rules.csv data/cast.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)
