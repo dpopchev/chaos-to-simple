@@ -57,13 +57,17 @@ def route_headers() -> tuple[str, ...]:
 
 @pytest.mark.model
 def test_headers_carry_the_route_labels() -> None:
-    assert route_headers() == (
-        "03 Room: raised",
+    assert route_headers()[1:] == (
         "03 Room: sentence",
         "04 Homes",
         "05 Seam",
         "06 Core and shell",
     )
+
+
+@pytest.mark.model
+def test_first_header_breaks_after_the_label() -> None:
+    assert route_headers()[0] == "03 Room\nraised"
 
 
 @pytest.mark.model
