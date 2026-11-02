@@ -1,9 +1,7 @@
-"""Two tests, 100% branch coverage, and the bug they never meet.
+"""Two tests and 100% branch coverage of a function with 64 paths.
 
-make artifacts runs only the regular order and the order with everything under
-coverage and puts the report on the slide. The third test is the bug; it is
-expected to fail (xfail, strict) so the suite stays green while the bug stays
-visible.
+make artifacts runs this file under coverage and puts the report on the slide. The bug they
+never meet lives in test_planted_bug.py.
 """
 
 from __future__ import annotations
@@ -11,8 +9,6 @@ from __future__ import annotations
 from collections.abc import Sequence
 from datetime import date
 from decimal import Decimal
-
-import pytest
 
 from s01_bits.chaos import Line, Order, checkout
 
@@ -50,19 +46,6 @@ def test_order_with_everything() -> None:
     )
     total = checkout(order, TODAY, charge, reserve, send)
     assert total == Decimal("84.00")  # (100 - 10) * 0.90 + 0 shipping + 3 wrap, no VAT
-
-
-# [/snippet]
-
-
-# [snippet: bug]
-@pytest.mark.xfail(strict=True, reason="planted bug: the threshold reads the subtotal")
-def test_free_shipping_after_discount() -> None:
-    order = Order(
-        lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY
-    )
-    total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("60.00")  # (55 - 10 + 5) * 1.20: 45 of goods do not earn free shipping
 
 
 # [/snippet]

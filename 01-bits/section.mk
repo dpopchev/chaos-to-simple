@@ -46,7 +46,7 @@ $(BUILD)/01-bits/doubling.txt: data/cast.csv scripts/paths.py scripts/utils/path
 
 $(BUILD)/01-bits/coverage.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_chaos.py
 	@mkdir -p $(@D)
-	@$(RUN) pytest 01-bits/tests -q --no-header -k 'test_regular_order or test_order_with_everything' \
+	@$(RUN) pytest 01-bits/tests/test_chaos.py -q --no-header \
 	  --cov=s01_bits.chaos --cov-branch \
 	  --cov-report=term-missing > $@
 	$(call log_done,$@ written)

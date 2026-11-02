@@ -19,7 +19,8 @@ campaign on time, one if at a time.
 
 - `s01_bits/chaos.py`: the exhibit, the checkout as past me left it
 - `s01_bits/two_ifs.py`: the two-ifs zoom-in
-- `tests/test_chaos.py`: two deceptive tests and the planted bug, xfail strict
+- `tests/test_chaos.py`: the two deceptive tests, green
+- `tests/test_planted_bug.py`: the planted bug, xfail strict, in a file of its own
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
 - `data/october.csv`: the four October weeks of expected and received shipping income
 - `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 BGN, and its calendar
@@ -52,21 +53,22 @@ campaign on time, one if at a time.
 - [x] 8. Checkout done, paths=64: the dev and marketing bubbles over the question "How many tests would make you sure?"
 - [x] 9. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
 - [x] 10. Finance found it, paths=64: `finance.png` with `finance.txt` as the caption, marketing's squeeze bubble under it
-- [x] 11. The path nobody ran, paths=64: the `bug` snippet of `test_chaos.py`, run live with `--runxfail`
+- [x] 11. The path nobody ran, paths=64: the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
 - [x] 12. A path is a six-bit number, paths=64: `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
 
 ## Live
 
-1. `make test K=test_chaos`: 2 passed, 1 xfailed; `build/01-bits/coverage.txt` runs only
-   `test_regular_order` and `test_order_with_everything` over `s01_bits.chaos`: 2 passed.
-2. `uv run pytest 01-bits/tests -k free_shipping_after_discount --runxfail`: the assertion
+1. `make test K=test_chaos`: 2 passed; `build/01-bits/coverage.txt` runs
+   `01-bits/tests/test_chaos.py` over `s01_bits.chaos`: 2 passed, nothing deselected.
+2. `make test K=test_planted_bug`: 1 xfailed.
+3. `uv run pytest 01-bits/tests/test_planted_bug.py --runxfail`: the assertion
    shows 54.00 against 60.00.
 
 ## Done when
 
 - Given the two `test_chaos` tests, when run under branch coverage, then the report says 2 passed and
   `chaos.py` at 100%; `coverage-summary.txt` keeps both lines.
-- Given the planted bug test, when run normally, then the suite is green (xfail) and
+- Given the planted bug test in `test_planted_bug.py`, when run normally, then the suite is green (xfail) and
   `--runxfail` shows 54.00 against 60.00.
 - Given the grid slide, when shown, then 000000 and 111111 can be pointed at.
 - Given `index.md`, when counted, then it holds twelve `## ` slides.

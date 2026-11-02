@@ -256,12 +256,13 @@ if, with no idea what the last one cost.
 
 ## The path nobody ran {paths=64}
 
-```{.python include=01-bits/tests/test_chaos.py snippet=bug}
+```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
 ```
 
 ::: notes
-Run it live. `make test K=test_chaos` shows 2 passed, 1 xfailed: the bug test is marked
-xfail, so the suite stays green. Then `uv run pytest 01-bits/tests -k free_shipping_after_discount --runxfail`
+Run it live. `make test K=test_chaos` shows 2 passed, `make test K=test_planted_bug` shows
+1 xfailed: the bug test sits in its own file, marked xfail, so the suite stays green. Then
+`uv run pytest 01-bits/tests/test_planted_bug.py --runxfail`
 shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
