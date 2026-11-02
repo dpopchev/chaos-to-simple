@@ -1,16 +1,16 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 329 | pruned: 4
+open path: E-011 > W-102 > T-231   | blocked: 0 | todo roots: 0 | done: 329 | pruned: 4
 
 ## Tree
 
 ```text
-E-011         [todo]     the v0.9.0 backlog and the layout gates
+E-011         [doing]    the v0.9.0 backlog and the layout gates
   W-098  issue  [todo]     04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
   W-099  issue  [todo]     remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
   W-100  issue  [todo]     06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
   W-101  issue  [todo]     07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
-  W-102  issue  [todo]     make check runs widths and overflow -- T-231 [todo]
+  W-102  issue  [doing]    make check runs widths and overflow -- T-231 [doing]   <- ACTIVE LEAF
 ```
 
 ## Closed
@@ -593,7 +593,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E011["E-011 todo: the v0.9.0 backlog and the layout gates"]
+  E011["E-011 doing: the v0.9.0 backlog and the layout gates"]
   E011 --> W098["W-098 issue todo: 04: the homes diff at a readable size"]
   W098 --> T227["T-227 todo: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
   E011 --> W099["W-099 issue todo: remove the unused contexts table and its paths subcommand"]
@@ -602,12 +602,13 @@ flowchart TD
   W100 --> T229["T-229 todo: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py"]
   E011 --> W101["W-101 issue todo: 07: the repository URL breaks across two lines"]
   W101 --> T230["T-230 todo: Set the repository URL on one line -> 07-close/index.md"]
-  E011 --> W102["W-102 issue todo: make check runs widths and overflow"]
-  W102 --> T231["T-231 todo: Add widths and overflow to the checks -> mk/deck.mk and README.md"]
+  E011 --> W102["W-102 issue doing: make check runs widths and overflow"]
+  W102 --> T231["T-231 doing: Add widths and overflow to the checks -> mk/deck.mk and README.md -- ACTIVE LEAF"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E011,W098,T227,W099,T228,W100,T229,W101,T230,W102,T231 todo
+  class E011,W102,T231 doing
+  class W098,T227,W099,T228,W100,T229,W101,T230 todo
 ```
