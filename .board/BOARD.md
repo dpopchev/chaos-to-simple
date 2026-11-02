@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-092 > T-210   | blocked: 0 | todo roots: 0 | done: 306 | pruned: 4
+open path: E-010 > W-092 > T-211   | blocked: 0 | todo roots: 0 | done: 307 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
   W-089  issue  [done]     00: the section beats and the record -- T-199 [done], T-200 [done], T-201 [done], T-202 [done]
   W-090  issue  [done]     01: the storyboard opens the loop -- T-203 [done], T-204 [done], T-205 [done], T-225 [done]
   W-091  issue  [done]     01: measured captions on the evidence frames -- T-206 [done], T-207 [done], T-208 [done]
-  W-092  issue  [doing]    02: the dispute as bubbles and one map -- T-209 [done], T-210 [doing]   <- ACTIVE LEAF, T-211 [todo]
+  W-092  issue  [doing]    02: the dispute as bubbles and one map -- T-209 [done], T-210 [done], T-211 [doing]   <- ACTIVE LEAF
   W-093  issue  [todo]     03: the room readable from the back -- T-212 [todo], T-213 [todo], T-214 [todo]
   W-094  issue  [todo]     04: the homes without noise -- T-215 [todo], T-216 [todo], T-217 [todo]
   W-095  issue  [todo]     05: the seam without guards -- T-218 [todo], T-219 [todo]
@@ -555,8 +555,8 @@ flowchart TD
   W091 --> T208["T-208 done: Legend the grid and pin the bug cell -> build/01-bits/grid.png and 01-bits/tests/test_tested_paths.py"]
   E010 --> W092["W-092 issue doing: 02: the dispute as bubbles and one map"]
   W092 --> T209["T-209 done: Trim the matrix -> build/02-stacey/stacey-02.png and 02-stacey/data/labels.csv"]
-  W092 --> T210["T-210 doing: Bubble the two positions and the question -> 02-stacey/data/bubbles.csv and build/02-stacey/bubble-0.txt .. bubble-2.txt -- ACTIVE LEAF"]
-  W092 --> T211["T-211 todo: Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv"]
+  W092 --> T210["T-210 done: Bubble the two positions and the question -> 02-stacey/data/bubbles.csv and build/02-stacey/bubble-0.txt .. bubble-2.txt"]
+  W092 --> T211["T-211 doing: Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv -- ACTIVE LEAF"]
   E010 --> W093["W-093 issue todo: 03: the room readable from the back"]
   W093 --> T212["T-212 todo: Redraw the journey legibly -> build/03-chaos/diagrams/journey.png"]
   W093 --> T213["T-213 todo: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md"]
@@ -580,7 +580,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W092,T210 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,T209 done
-  class T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
+  class E010,W092,T211 doing
+  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,T209,T210 done
+  class W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
