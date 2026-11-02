@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-011   | blocked: 0 | todo roots: 0 | done: 335 | pruned: 4
+open path: E-011 > W-100 > T-229   | blocked: 0 | todo roots: 0 | done: 335 | pruned: 4
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-011   | blocked: 0 | todo roots: 0 | done: 335 | pruned: 4
 E-011         [doing]    the v0.9.0 backlog and the layout gates
   W-098  issue  [done]     04: the homes diff at a readable size   (filed during T-217) -- T-227 [done]
   W-099  issue  [done]     remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [done]
-  W-100  issue  [todo]     06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
+  W-100  issue  [doing]    06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [doing]   <- ACTIVE LEAF
   W-101  issue  [todo]     07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
   W-102  issue  [done]     make check runs widths and overflow -- T-231 [done]
 ```
@@ -598,8 +598,8 @@ flowchart TD
   W098 --> T227["T-227 done: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
   E011 --> W099["W-099 issue done: remove the unused contexts table and its paths subcommand"]
   W099 --> T228["T-228 done: Remove contexts_table and the contexts subcommand -> scripts/utils/paths.py and scripts/paths.py"]
-  E011 --> W100["W-100 issue todo: 06: the number chart's core label and doubled shell entry"]
-  W100 --> T229["T-229 todo: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py"]
+  E011 --> W100["W-100 issue doing: 06: the number chart's core label and doubled shell entry"]
+  W100 --> T229["T-229 doing: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py -- ACTIVE LEAF"]
   E011 --> W101["W-101 issue todo: 07: the repository URL breaks across two lines"]
   W101 --> T230["T-230 todo: Set the repository URL on one line -> 07-close/index.md"]
   E011 --> W102["W-102 issue done: make check runs widths and overflow"]
@@ -609,7 +609,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E011 doing
+  class E011,W100,T229 doing
   class W098,T227,W099,T228,W102,T231 done
-  class W100,T229,W101,T230 todo
+  class W101,T230 todo
 ```
