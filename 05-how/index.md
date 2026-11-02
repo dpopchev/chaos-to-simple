@@ -37,7 +37,7 @@
 :::
 ::: {.column width="55%"}
 
-```{.diff include=build/05-how/v5.diff}
+```{.diff include=build/05-how/v5.diff cap=41}
 ```
 
 :::
