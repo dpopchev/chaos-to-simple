@@ -74,6 +74,8 @@ build/06-simple/wounds.txt,txt,pytest -rp -k
 build/06-simple/paths.png,png,scripts.paths chart
 build/06-simple/worlds.txt,txt,python -m s06_simple.worlds
 build/06-simple/seventh.diff,diff,scripts.paths diff
+build/06-simple/seam.diff,diff,scripts.paths diff
+build/06-simple/pytest-core-summary.txt,txt,tail -n 4 pytest-core.txt
 build/06-simple/epilogue.txt,txt,scripts.paths epilogue
 build/06-simple/epilogue.png,png,scripts.paths epilogue-chart
 build/07-close/board.png,png,scripts.figures board --stage 06
