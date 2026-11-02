@@ -9,7 +9,7 @@ campaign on time, one if at a time.
 
 ## Minutes
 
-7
+11
 
 ## Footer counter
 
@@ -23,7 +23,7 @@ campaign on time, one if at a time.
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
 - `data/october.csv`: the four October weeks of expected and received shipping income
 - `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 BGN, and its calendar
-- `index.md`: the eleven slides
+- `index.md`: the twelve slides
 
 ## Uses
 
@@ -48,11 +48,12 @@ campaign on time, one if at a time.
 - [x] 4. Step 3, three ifs, paths=8: free shipping from 50 BGN, `step-3.diff`
 - [x] 5. Step 4, four ifs, paths=16: shipping abroad at 20 BGN, `step-4.diff`
 - [x] 6. Step 5, five ifs, paths=32: gift wrap at 3 BGN, `step-5.diff`
-- [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, with the dev and marketing bubbles, `step-6.diff`
-- [x] 8. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
-- [x] 9. Finance found it, paths=64: `finance.png` with `finance.txt` as the caption, marketing's squeeze bubble under it
-- [x] 10. The path nobody ran, paths=64: the `bug` snippet of `test_chaos.py`, run live with `--runxfail`
-- [x] 11. A path is a six-bit number, paths=64: `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
+- [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, the accounting bubble beside `step-6.diff`
+- [x] 8. Checkout done, paths=64: the dev and marketing bubbles over the question "How many tests would make you sure?"
+- [x] 9. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
+- [x] 10. Finance found it, paths=64: `finance.png` with `finance.txt` as the caption, marketing's squeeze bubble under it
+- [x] 11. The path nobody ran, paths=64: the `bug` snippet of `test_chaos.py`, run live with `--runxfail`
+- [x] 12. A path is a six-bit number, paths=64: `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
 
 ## Live
 
@@ -68,7 +69,7 @@ campaign on time, one if at a time.
 - Given the planted bug test, when run normally, then the suite is green (xfail) and
   `--runxfail` shows 54.00 against 60.00.
 - Given the grid slide, when shown, then 000000 and 111111 can be pointed at.
-- Given `index.md`, when counted, then it holds eleven `## ` slides.
+- Given `index.md`, when counted, then it holds twelve `## ` slides.
 
 ## Open
 

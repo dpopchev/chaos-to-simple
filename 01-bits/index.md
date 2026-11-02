@@ -174,16 +174,6 @@ aloud, the one that promised just one more if.
 ```{.text include=build/01-bits/bubble-6.txt}
 ```
 
-\actor{dev}
-
-```{.text include=build/01-bits/bubble-7.txt}
-```
-
-\actor{marketing}
-
-```{.text include=build/01-bits/bubble-8.txt}
-```
-
 :::
 ::: {.column width="65%"}
 
@@ -195,8 +185,27 @@ aloud, the one that promised just one more if.
 
 ::: notes
 Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
-if adds the VAT rate, so the footer doubles to 64 paths. Read the accounting, dev and
-marketing lines aloud, then ask the chat how many tests it takes until you are sure.
+if adds the VAT rate, so the footer doubles to 64 paths. Read the accounting line aloud.
+:::
+
+## Checkout done {paths=64}
+
+\actor{dev}
+
+```{.text include=build/01-bits/bubble-7.txt}
+```
+
+\actor{marketing}
+
+```{.text include=build/01-bits/bubble-8.txt}
+```
+
+\vfill
+
+**How many tests would make you sure?**
+
+::: notes
+Read the dev and marketing lines aloud, then ask the chat the question and pause.
 :::
 
 ## Two tests. Coverage says 100% {paths=64}

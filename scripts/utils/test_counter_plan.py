@@ -49,6 +49,11 @@ def test_the_bits_section_opens_on_the_storyboard() -> None:
 
 
 @pytest.mark.view
+def test_the_checkout_done_frame_inherits_64() -> None:
+    assert frames("01")[7] == ("Checkout done", 64)
+
+
+@pytest.mark.view
 @pytest.mark.parametrize("section", ["01", "02", "03", "04", "05", "07"])
 def test_the_counter_never_falls_inside_a_section(section: str) -> None:
     assert monotone(paths_of(index_text(section)))
