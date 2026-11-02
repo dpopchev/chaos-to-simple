@@ -22,7 +22,6 @@ from scripts.utils.paths import (
     count_report,
     doubling_chart,
     doubling_table,
-    effects_lines,
     epilogue_bars,
     epilogue_report,
     grid,
@@ -615,21 +614,3 @@ def test_growth_ends_at_week_10_with_64_paths() -> None:
 @pytest.mark.model
 def test_growth_skips_the_shell_rows() -> None:
     assert len(growth(DOUBLING_CAST)) == 6
-
-
-@pytest.mark.model
-def test_effects_lines_number_the_three_shell_calls() -> None:
-    cast = [
-        CastRow("b0", 1, 3, "marketing", "a", "", "if a"),
-        CastRow("s0", 0, None, "payment", "b", "", "charge(total)"),
-        CastRow("s1", 0, None, "warehouse", "c", "", "reserve(x)"),
-    ]
-    source = "if a:\n    pass\n    charge(total)  # declined?\n    reserve(x)  # gone?\n"
-    assert effects_lines(cast, source) == "3  charge(total)  # declined?\n4  reserve(x)  # gone?\n"
-
-
-@pytest.mark.view
-def test_effects_lines_strip_the_step_marker() -> None:
-    cast = [CastRow("s0", 0, None, "payment", "b", "", "charge(total)")]
-    source = "charge(total)  # declined?  # [step: 0]\n"
-    assert effects_lines(cast, source) == "1  charge(total)  # declined?\n"

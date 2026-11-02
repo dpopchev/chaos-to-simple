@@ -1,10 +1,6 @@
 # 05-how -- the seam is drawn in Python from the shell rows, so the slide shows a built figure.
 # A plain `#` keeps it out of make help.
-ARTIFACTS += $(BUILD)/05-how/ports.png $(BUILD)/05-how/effects.txt
-
-$(BUILD)/05-how/effects.txt: data/cast.csv 01-bits/s01_bits/chaos.py scripts/paths.py scripts/utils/paths.py
-	@$(RUN) python -m scripts.paths effects --cast data/cast.csv --source 01-bits/s01_bits/chaos.py --out $@
-	$(call log_done,$@ written)
+ARTIFACTS += $(BUILD)/05-how/ports.png
 
 # The I3 run: pytest must fail exactly once (status 1); the assert line and the summary are kept.
 ARTIFACTS += $(BUILD)/05-how/i3-run.txt
