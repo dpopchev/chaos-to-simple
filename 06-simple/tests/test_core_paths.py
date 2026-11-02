@@ -10,7 +10,7 @@ from s04_what.money import bgn
 from s04_what.pricing import Coupon
 from s04_what.shipping import GIFT_WRAP, Zone
 from s04_what.tax import VatId
-from s06_simple.core import Request, price
+from s06_simple.core import Priced, Request, price
 
 TODAY = date(2026, 11, 5)
 
@@ -36,17 +36,21 @@ def request_from_bits(bits: int) -> Request:
 # [snippet: from-bits]
 @pytest.mark.parametrize("bits", range(64), ids=lambda b: f"{b:06b}")
 class TestEveryCorePath:
-    def test_discounts_never_add(self, bits: int) -> None:
-        request, priced = request_from_bits(bits), price(request_from_bits(bits), TODAY)
-        assert 0 <= priced.goods <= request.goods
+    @pytest.fixture
+    def order(self, bits: int) -> Request:
+        return request_from_bits(bits)
 
-    def test_shipping_is_free_iff_discounted_goods_reach_50(self, bits: int) -> None:
-        request, priced = request_from_bits(bits), price(request_from_bits(bits), TODAY)
-        wrap = GIFT_WRAP if request.gift_wrap else 0
-        assert (priced.shipping - wrap == 0) == (priced.goods >= 50)
+    @pytest.fixture
+    def priced(self, order: Request) -> Priced:
+        return price(order, TODAY)
 
-    def test_vat_never_reduces_the_total(self, bits: int) -> None:
-        priced = price(request_from_bits(bits), TODAY)
+    def test_discounts_never_add(self, order: Request, priced: Priced) -> None:
+        assert 0 <= priced.goods <= order.goods
+
+    def test_shipping_is_free_iff_discounted_goods_reach_50(self, order: Request, priced: Priced):
+        assert (priced.shipping - GIFT_WRAP * order.gift_wrap == 0) == (priced.goods >= 50)
+
+    def test_vat_never_reduces_the_total(self, priced: Priced) -> None:
         assert priced.total >= priced.goods + priced.shipping
 
 

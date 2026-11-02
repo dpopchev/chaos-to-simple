@@ -1,6 +1,6 @@
 # Simple: functional core, imperative shell
 
-## Sixty-four paths, one test each {paths=512}
+## Sixty-four paths, three invariants: 192 tests {paths=512}
 
 ```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
@@ -10,7 +10,7 @@ The core has no if of its own, every bit stays where it was named.
 64 paths, one test each, three invariants per path, and the count is measured.
 :::
 
-## Sixty-four paths, each invariant a test {paths=512}
+## Sixty-four paths, three invariants: 192 tests {paths=512}
 
 ```{.text include=build/06-simple/pytest-core.txt}
 ```

@@ -72,3 +72,12 @@ def test_the_simple_frames_before_the_number_carry_512() -> None:
 @pytest.mark.view
 def test_the_room_frames_before_the_honest_count_carry_64() -> None:
     assert before("03", "The honest count") == [64, 64, 64]
+
+
+@pytest.mark.view
+def test_the_core_title_counts_the_invariant_tests() -> None:
+    source = (ROOT / "06-simple/tests/test_core_paths.py").read_text(encoding="utf-8")
+    body = source.split("class TestEveryCorePath:")[1]
+    measured = 64 * len(re.findall(r"^    def test_", body, re.MULTILINE))
+    titles = [t for t, _ in frames("06") if t.startswith("Sixty-four paths")]
+    assert titles == [f"Sixty-four paths, three invariants: {measured} tests"] * 2
