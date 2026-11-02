@@ -91,9 +91,13 @@ def test_journey_writes_a_png(tmp_path: Path) -> None:
 
 
 @pytest.mark.model
-def test_mood_drops_one_level_at_each_questioned_step() -> None:
-    steps = (JourneyStep("customer", "x", None), JourneyStep("payment", "y", "s0"))
-    assert mood(steps, QUESTIONS) == (0, -1)
+def test_mood_drops_twice_as_much_on_an_effect() -> None:
+    steps = (
+        JourneyStep("customer", "x", None),
+        JourneyStep("marketing", "y", "b0"),
+        JourneyStep("payment", "z", "s0"),
+    )
+    assert mood(steps, QUESTIONS) == (0, -1, -3)
 
 
 @pytest.mark.model

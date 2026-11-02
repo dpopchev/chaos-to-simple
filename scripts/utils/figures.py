@@ -314,11 +314,12 @@ def question_ids(
 
 
 def mood(steps: Sequence[JourneyStep], questions: Sequence[Question]) -> tuple[int, ...]:
-    """Return the mood level at each step: 0 at the start, one lower after each open question."""
+    """Return the certainty level per step: a question drops 2 on an s-bit, 1 on a b-bit."""
     level = 0
     levels: list[int] = []
-    for qid in question_ids(steps, questions):
-        level -= 1 if qid else 0
+    for step, qid in zip(steps, question_ids(steps, questions), strict=True):
+        if qid:
+            level -= 2 if step.bit and step.bit.startswith("s") else 1
         levels.append(level)
     return tuple(levels)
 
@@ -339,8 +340,8 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
     font = icon_file()
     fig, ax = plt.subplots(figsize=(12.0, 5.0), dpi=style.DPI)
     xs = [i * pitch for i in range(len(JOURNEY))]
-    ys = [1.5 + 0.55 * (level + len(JOURNEY)) / 2 for level in levels]
-    ax.plot(xs, ys, color="dimgrey", linewidth=2.5, zorder=2)
+    ys = [1.5 + 0.3 * (level + 9) for level in levels]
+    ax.plot([-box_w / 2, *xs], [ys[0], *ys], color="dimgrey", linewidth=2.5, zorder=2)
     for i, step in enumerate(JOURNEY):
         actor = actors[step.actor]
         face = colour_of(step.actor)
@@ -407,7 +408,14 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
                 color=colour_of("payment"),
                 zorder=4,
             )
-    ax.text(-box_w / 2, max(ys) + 0.55, "mood", fontsize=14, style="italic", color="dimgrey")
+    ax.text(
+        -box_w / 2,
+        max(ys) + 0.55,
+        "the customer's certainty",
+        fontsize=14,
+        style="italic",
+        color="dimgrey",
+    )
     ax.set_xlim(-box_w / 2 - 0.2, xs[-1] + box_w / 2 + 0.2)
     ax.set_ylim(-2.4, max(ys) + 0.9)
     ax.axis("off")
