@@ -20,7 +20,6 @@
         --out build/01-bits/doubling.txt
     python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
-    python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths retro --questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] --out F.diff
@@ -46,8 +45,6 @@ from scripts.utils.paths import (
     epilogue_bars,
     epilogue_report,
     grid,
-    growth,
-    growth_chart,
     load_cast,
     load_incidents,
     load_rules,
@@ -90,7 +87,6 @@ def main(argv: Sequence[str] | None = None) -> int:
             "effects",
             "contexts",
             "doubling",
-            "growth",
             "wounds",
             "retro",
             "storyboard",
@@ -151,12 +147,6 @@ def main(argv: Sequence[str] | None = None) -> int:
         to_snippet = args.to_snippet or args.snippet
         diff = snippet_diff(args.from_path, args.snippet, args.to_path, to_snippet, args.start)
         args.out.write_text(diff, encoding="ascii")
-        return 0
-
-    if args.what == "growth":
-        if args.out is None:
-            parser.error("growth needs --out")
-        growth_chart(args.out, growth(load_cast(args.cast)))
         return 0
 
     if args.what == "rules":

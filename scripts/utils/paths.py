@@ -493,47 +493,6 @@ def epilogue_bars(rules: Sequence[Rule], seventh: Sequence[Rule]) -> tuple[Bar, 
     return (("before", before[1]), ("after", after[1]))
 
 
-def growth_chart(out: Path, points: Sequence[Growth]) -> Path:
-    """Draw bits and paths over the weeks as two lines, every point labelled with its count.
-
-    Points sharing a week get their labels pushed apart, so none sits on another.
-    """
-    from scripts.utils import style
-
-    style.apply()
-    import matplotlib.pyplot as plt
-
-    weeks = [p.week for p in points]
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
-    for name, values, colour in (
-        ("paths", [p.paths for p in points], colour_of("marketing")),
-        ("bits", [p.bits for p in points], colour_of("logistics")),
-    ):
-        ax.plot(weeks, values, marker="o", color=colour, label=name)
-        for i, (week, value) in enumerate(zip(weeks, values, strict=True)):
-            second = i > 0 and weeks[i - 1] == week
-            first = i + 1 < len(weeks) and weeks[i + 1] == week
-            dx = 8 if second else -8 if first else 0
-            ha = "left" if second else "right" if first else "center"
-            ax.annotate(
-                str(value),
-                (week, value),
-                textcoords="offset points",
-                xytext=(dx, -14 if name == "bits" else 8),
-                ha=ha,
-                fontsize=9,
-                color=colour,
-            )
-    ax.set_xlabel("week")
-    ax.set_ylabel("count")
-    ax.set_xticks(range(min(weeks), max(weeks) + 1))
-    ax.set_ylim(-6, max(p.paths for p in points) * 1.12)
-    ax.legend(frameon=False, loc="upper left")
-    fig.tight_layout()
-    style.save(fig, out)
-    return out
-
-
 def bar_headroom(top: int) -> float:
     """The upper y limit of a stacked bar chart, with room above the tallest bar for its total."""
     return top * 1.2
