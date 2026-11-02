@@ -16,14 +16,15 @@ read the learned column only
 ## Q&A {paths=72}
 
 :::::: {.columns}
-::: {.column width="40%"}
+::: {.column width="45%"}
 
-- The repository github.com/dpopchev/chaos-to-simple: slides, every snippet tested, 64 + 8 tests to run yourself
+- \mbox{\footnotesize\url{github.com/dpopchev/chaos-to-simple}}\
+  slides, every snippet tested, 64 + 8 tests to run yourself
 - The Friday posts: one section at a time, starting with the arithmetic
 - The two earlier talks: metaprogramming; DDD, CQRS and TDD
 
 :::
-::: {.column width="60%"}
+::: {.column width="55%"}
 
 ![](build/07-close/board.png){height=70%}
 
