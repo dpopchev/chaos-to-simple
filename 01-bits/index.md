@@ -273,6 +273,10 @@ shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted 
 
 ![](build/01-bits/grid.png){height=52%}
 
+\small
+
+bits read as the six conditions, left b5 to right b0
+
 :::
 ::: {.column width="50%"}
 

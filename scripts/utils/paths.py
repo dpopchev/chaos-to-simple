@@ -348,14 +348,14 @@ def grid_image(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) 
 
     style.apply()
     import matplotlib.pyplot as plt
-    from matplotlib.patches import Rectangle
+    from matplotlib.patches import Patch, Rectangle
 
     fills = {
         "tested": colour_of("accounting"),
         "bug": colour_of("payment"),
         "untested": colour_of("customer"),
     }
-    fig, ax = plt.subplots(figsize=(6.0, 6.0), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(6.0, 6.4), dpi=style.DPI)
     for n, kind in enumerate(cell_kinds(bits, tested, bug)):
         r, c = divmod(n, GRID_SIDE)
         y = GRID_SIDE - 1 - r
@@ -375,7 +375,13 @@ def grid_image(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) 
     ax.set_ylim(0, GRID_SIDE)
     ax.set_aspect("equal")
     ax.axis("off")
-    fig.tight_layout(pad=0.2)
+    legend = (
+        Patch(facecolor=fills["tested"], label="tested"),
+        Patch(facecolor=fills["bug"], label="the path finance found"),
+        Patch(facecolor=fills["untested"], label="never run"),
+    )
+    fig.legend(handles=legend, loc="lower center", ncol=3, frameon=False, fontsize=11)
+    fig.tight_layout(pad=0.2, rect=(0, 0.06, 1, 1))
     style.save(fig, out)
     return out
 
