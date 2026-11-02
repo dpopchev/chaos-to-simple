@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-066 > T-191   | blocked: 1 | todo roots: 8 | done: 248 | pruned: 2
+open path: E-007 > W-066 > T-169   | blocked: 0 | todo roots: 8 | done: 249 | pruned: 2
 
 ## Tree
 
@@ -22,7 +22,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-063  issue  [done]     03: the explosion to 512 in the style of 01 -- T-158 [done], T-159 [done], T-160 [done]
   W-064  issue  [done]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [done], T-162 [done]
   W-065  issue  [done]     04: the diff ladder begins, the checkout stays on screen -- T-163 [done], T-164 [done], T-165 [done], T-166 [done]
-  W-066  issue  [doing]    05: the seam as the next edit of the same function -- T-167 [done], T-168 [done], T-169 [blocked]   [blocked since 2026-11-02, waiting on T-191: v5.diff is 41 lines, too tall beside the ports picture; T-191 cuts it to the seam], T-191 [doing]   <- ACTIVE LEAF
+  W-066  issue  [doing]    05: the seam as the next edit of the same function -- T-167 [done], T-168 [done], T-169 [doing]   <- ACTIVE LEAF, T-191 [done]
   W-067  issue  [todo]     one assert per test, enforced by the build for the exhibit tests too -- T-170 [todo], T-171 [todo], T-172 [todo]
   W-068  issue  [todo]     06: the last rung, the seam cut, the paths counted, the seventh if -- T-173 [todo], T-174 [todo]
   W-069  issue  [todo]     lines and counter pinned to the plan -- T-175 [todo], T-176 [todo]
@@ -423,8 +423,8 @@ flowchart TD
   E007 --> W066["W-066 issue doing: 05: the seam as the next edit of the same function"]
   W066 --> T167["T-167 done: Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py"]
   W066 --> T168["T-168 done: Render the v4-to-v5 diff -> build/05-how/v5.diff"]
-  W066 --> T169["T-169 blocked on T-191: Finish the 05 frames -> 05-how/index.md"]
-  W066 --> T191["T-191 doing: Diff only the seam -> build/05-how/v5.diff -- ACTIVE LEAF"]
+  W066 --> T169["T-169 doing: Finish the 05 frames -> 05-how/index.md -- ACTIVE LEAF"]
+  W066 --> T191["T-191 done: Diff only the seam -> build/05-how/v5.diff"]
   E007 --> W067["W-067 issue todo: one assert per test, enforced by the build for the exhibit tests too"]
   W067 --> T170["T-170 todo: Refactor the exhibit tests into one-assert functions and classes -> 01-bits/tests, 04-what/tests, 05-how/tests, 06-simple/tests"]
   W067 --> T171["T-171 todo: Lift the exhibit exemption from the assert gate -> conftest.py"]
@@ -468,8 +468,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W066,T191 doing
-  class T169 blocked
-  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,T167,T168,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
+  class E007,W066,T169 doing
+  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,T167,T168,T191,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
   class W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
