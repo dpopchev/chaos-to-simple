@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-063 > T-159   | blocked: 0 | todo roots: 7 | done: 235 | pruned: 2
+open path: E-007 > W-063 > T-160   | blocked: 0 | todo roots: 7 | done: 236 | pruned: 2
 
 ## Tree
 
@@ -19,7 +19,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-060  issue  [done]     02: the Stacey matrix as specified, radial with the Who diagonal -- T-149 [done], T-150 [done], T-151 [done]
   W-061  spike  [done]     the source behind the BOOM label -- T-152 [done], T-153 [done]
   W-062  issue  [done]     03: the room as a journey, a log and a retro table -- T-154 [done], T-155 [done], T-156 [done], T-157 [done]
-  W-063  issue  [doing]    03: the explosion to 512 in the style of 01 -- T-158 [done], T-159 [doing]   <- ACTIVE LEAF, T-160 [todo]
+  W-063  issue  [doing]    03: the explosion to 512 in the style of 01 -- T-158 [done], T-159 [done], T-160 [doing]   <- ACTIVE LEAF
   W-064  issue  [todo]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [todo], T-162 [todo]
   W-065  issue  [todo]     04: the diff ladder begins, the checkout stays on screen -- T-163 [todo], T-164 [todo], T-165 [todo], T-166 [todo]
   W-066  issue  [todo]     05: the seam as the next edit of the same function -- T-167 [todo], T-168 [todo], T-169 [todo]
@@ -409,8 +409,8 @@ flowchart TD
   W062 --> T157["T-157 done: Finish the 03 frames 1 to 3 -> 03-chaos/index.md"]
   E007 --> W063["W-063 issue doing: 03: the explosion to 512 in the style of 01"]
   W063 --> T158["T-158 done: Render the nine-bit panels -> build/03-chaos/grid-9.png"]
-  W063 --> T159["T-159 doing: Extend the doubling curve to the room -> build/03-chaos/doubling-512.png -- ACTIVE LEAF"]
-  W063 --> T160["T-160 todo: Finish the explosion frame -> 03-chaos/index.md frame 4"]
+  W063 --> T159["T-159 done: Extend the doubling curve to the room -> build/03-chaos/doubling-512.png"]
+  W063 --> T160["T-160 doing: Finish the explosion frame -> 03-chaos/index.md frame 4 -- ACTIVE LEAF"]
   E007 --> W064["W-064 issue todo: the rules board, the artifact everyone sees from the room to the tests"]
   W064 --> T161["T-161 todo: Render the board per stage -> build/03-chaos/board.png, build/04-what/board.png, build/05-how/board.png, build/07-close/board.png"]
   W064 --> T162["T-162 todo: Place the board on four frames -> 03-chaos, 04-what, 05-how, 07-close index.md"]
@@ -464,7 +464,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007,W063,T159 doing
-  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,T158,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
-  class T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190 todo
+  class E007,W063,T160 doing
+  class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,T158,T159,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
+  class W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190 todo
 ```
