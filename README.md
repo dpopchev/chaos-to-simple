@@ -112,3 +112,8 @@ Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pando
 | epilogue, one function, 10 bits | 512 -> 1024 (+512) |
 | epilogue, core 7 bits + shell 3 bits | 72 -> 136 (+64) |
 | epilogue, shipping 4 bits joins the contexts | 22 -> 30 (+8) |
+
+The footer counter plan, pinned by `scripts/utils/test_counter_plan.py`: 01 opens
+1, 2, 4, 8, 16, 32, 64; each section ends at its `data/route.csv` counter and never
+falls inside it (06 aside); 03's room frames carry 64 until The honest count reveals
+512; 06's frames carry 512 until The number reveals 72.

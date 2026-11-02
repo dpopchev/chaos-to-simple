@@ -1,6 +1,6 @@
 # Simple: functional core, imperative shell
 
-## Sixty-four paths, one test each {paths=72}
+## Sixty-four paths, one test each {paths=512}
 
 ```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
@@ -10,7 +10,7 @@ The core has no if of its own, every bit stays where it was named.
 64 paths, one test each, three invariants per path, and the count is measured.
 :::
 
-## Sixty-four paths, each invariant a test {paths=72}
+## Sixty-four paths, each invariant a test {paths=512}
 
 ```{.text include=build/06-simple/pytest-core.txt}
 ```
@@ -20,7 +20,7 @@ The core has no if of its own, every bit stays where it was named.
 64 paths, one test each, three invariants per path, and the count is measured.
 :::
 
-## Eight worlds, four outcomes {paths=72}
+## Eight worlds, four outcomes {paths=512}
 
 ```{.python include=06-simple/tests/test_shell.py snippet=eight}
 ```
@@ -30,7 +30,7 @@ Eight shell worlds collapse to four outcomes.
 No charge when stock is gone, no mail when the card is refused.
 :::
 
-## The wounds close by name {paths=72}
+## The wounds close by name {paths=512}
 
 \fvset{fontsize=\scriptsize}
 

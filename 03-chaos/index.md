@@ -1,6 +1,6 @@
 # From chaos to complex
 
-## The journey of one order {paths=?}
+## The journey of one order {paths=64}
 
 ![](build/03-chaos/diagrams/journey.png){height=80%}
 
@@ -12,7 +12,7 @@ The mood drops at every step that raised a question, q1 to q6, in the order the 
 them. Each drop is a place where the rule was not written down yet.
 :::
 
-## The room {paths=?}
+## The room {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
@@ -24,7 +24,7 @@ Dev is silent until the end of the chat; the other four departments carry the ar
 Pause before the last line. Chat moment: which question would you have asked?
 :::
 
-## The retro {paths=?}
+## The retro {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
