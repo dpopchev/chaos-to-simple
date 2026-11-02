@@ -268,7 +268,7 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
 
     unit, band_x, band_h = 1.5, 5.0, 0.7
     n = len(moves)
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(11.0, 3.6), dpi=style.DPI)
     mid = (n - 1) / 2
     ax.add_patch(
         FancyBboxPatch(

@@ -75,7 +75,7 @@ Every bit has a home and a face: each context names the people who asked for its
 
 ## Bounded contexts, the moves {paths=512}
 
-![](build/04-what/moves.png){height=50%}
+![](build/04-what/moves.png){width=80%}
 
 the contexts are the core, the ports are the shell: one cut, two names
 
