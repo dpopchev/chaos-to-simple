@@ -14,6 +14,9 @@ Free shipping from 50. Of what?
 ```{.text include=build/02-stacey/bubble-1.txt}
 ```
 
+\begingroup\footnotesize\textit{one function, one reading: the code picked R1 and nobody chose}\par\endgroup
+\vspace{-11pt}
+
 \noindent\rule{\linewidth}{0.4pt}
 
 \actor{dev}
@@ -29,9 +32,9 @@ settles it. The developer's question comes before anyone agreed the rule; agree 
 first.
 :::
 
-## The agenda was a map {paths=64}
+## Above the line: a decision, not a test {paths=64}
 
-:::: {.columns}
+:::: {.columns align=bottom}
 ::: {.column width="62%"}
 
 ![](build/02-stacey/stacey-02.png){height=85%}
@@ -39,6 +42,7 @@ first.
 :::
 ::: {.column width="38%"}
 
+\vfill
 \theline{A bug is fixed with a test}{Before fixing the How, check whether the What is agreed.}
 
 :::

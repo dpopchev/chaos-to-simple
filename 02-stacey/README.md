@@ -13,8 +13,8 @@ two axes; each later section is one move on the map.
 
 ## Slides
 
-- [x] I wanted to write a test: the question, the marketing and logistics bubbles above a rule, the dev bubble below
-- [x] The agenda was a map: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
+- [x] I wanted to write a test: the question, the R1 Marketing and R2 Logistics bubbles, the line 'one function, one reading: the code picked R1 and nobody chose', a rule, the dev bubble below
+- [x] Above the line: a decision, not a test: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
 
 ## The matrix
 
