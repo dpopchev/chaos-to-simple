@@ -16,7 +16,7 @@ them. Each drop is a place where the rule was not written down yet.
 
 \fvset{fontsize=\scriptsize}
 
-```{.text include=03-chaos/data/room.txt cap=18}
+```{.text .speakers include=03-chaos/data/room.txt cap=18}
 ```
 
 ::: notes
@@ -28,7 +28,7 @@ Pause before the last line. Chat moment: which question would you have asked?
 
 \fvset{fontsize=\scriptsize}
 
-```{.text include=build/03-chaos/retro.txt}
+```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt}
 ```
 
 ::: notes
