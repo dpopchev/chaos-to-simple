@@ -96,7 +96,7 @@ line aloud and point out that the two discounts now stack.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-3.diff cap=16}
+```{.diff include=build/01-bits/step-3.diff}
 ```
 
 :::

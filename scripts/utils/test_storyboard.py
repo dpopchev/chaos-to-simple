@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import pytest
@@ -14,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = (ROOT / "01-bits/s01_bits/chaos.py").read_text(encoding="ascii")
 CAST = load_cast(ROOT / "data/cast.csv")
 STEPS = range(1, 7)
+ASIDE = re.compile(r"  # .*$", re.MULTILINE)
 
 
 def added(n: int) -> list[str]:
@@ -28,13 +30,13 @@ def added(n: int) -> list[str]:
 def marked(n: int) -> list[str]:
     """The lines of the exhibit marked for step n, markers stripped."""
     rows = [row for row in SOURCE.splitlines() if row.endswith(f"# [step: {n}]")]
-    return strip_step_markers("\n".join(rows)).splitlines()
+    return [ASIDE.sub("", row) for row in strip_step_markers("\n".join(rows)).splitlines()]
 
 
 @pytest.mark.view
 def test_step_six_is_the_full_function_stripped() -> None:
     expected = snippet_text(strip_step_markers(SOURCE), "checkout").strip()
-    assert step_lines(SOURCE, 6) == expected
+    assert step_lines(SOURCE, 6) == ASIDE.sub("", expected)
 
 
 @pytest.mark.view
@@ -56,8 +58,14 @@ def test_step_zero_diff_is_the_skeleton_from_nothing() -> None:
 
 
 @pytest.mark.view
-def test_step_diff_carries_no_timestamp_header() -> None:
-    assert step_diff(SOURCE, 3).splitlines()[:2] == ["--- step-2", "+++ step-3"]
+def test_step_diff_has_no_header() -> None:
+    lines = step_diff(SOURCE, 3).splitlines()
+    assert not any(line.startswith(("---", "+++", "@@")) for line in lines)
+
+
+@pytest.mark.view
+def test_step_lines_drop_the_narrator_asides() -> None:
+    assert "what if" not in step_lines(SOURCE, 6)
 
 
 @pytest.mark.view
