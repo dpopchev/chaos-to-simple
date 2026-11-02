@@ -31,6 +31,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
+- 2026-11-01 W-061: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 The Tar Pit (1975): a programming systems product costs nine times the program; labels.csv boom_quote reads 9x the program (Brooks 1975); the 8:1 hunch is not used, since no source read states it
 - 2026-11-02 E-007: W-050 and W-051 land first; the developer tags v0.6.1 as the talk-day fallback deck before W-052 starts, since the skeleton stubs main until W-069 lands (developer, 2026-11-01)
 - 2026-11-02 E-007: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 32 hours) (developer, 2026-11-02)
 - 2026-11-02 E-007: figures stay matplotlib, E-002 stands: the manifest rows journey, moves and ports are produced by scripts.figures, not mmdc (developer, 2026-11-01)
@@ -38,6 +39,7 @@
 - 2026-11-02 E-007: the one-assert gate covers the exhibit tests too: W-067 lifts the E-001 exemption in conftest.py; the category-marker exemption stays (developer, 2026-11-01)
 - 2026-11-02 W-053: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex, its fc-list path in matplotlib; ICONS in scripts/utils/icons.py maps a name to its codepoint; fontawesome5 is the second choice, Hack Nerd Font the third, a labelled box the fallback if fc-list finds none
 - 2026-11-02 W-053: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex, its fc-list path in matplotlib; ICONS in scripts/utils/icons.py maps a name to its codepoint; fontawesome5 is the second choice, Hack Nerd Font the third, a labelled box the fallback if fc-list finds none
+- 2026-11-02 W-061: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 The Tar Pit (1975): a programming systems product costs nine times the program; labels.csv boom_quote reads 9x the program (Brooks 1975); the 8:1 hunch is not used, since no source read states it
 
 ## Deviations
 - 2026-11-02 E-007: W-071 filed under E-007 from W-051's criterion run; it lands before W-052 so the talk-day fallback sha carries both charts
