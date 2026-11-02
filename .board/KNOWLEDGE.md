@@ -14,6 +14,7 @@
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
+- 2026-11-02 E-012: fact: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 
 ## Open questions
