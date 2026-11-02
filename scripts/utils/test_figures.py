@@ -8,10 +8,8 @@ from pathlib import Path
 import pytest
 
 from s01_bits.two_ifs import ship
-from scripts.utils.examples import CardCounts
 from scripts.utils.figures import (
     TREE_LEAVES,
-    example_map,
     moves,
     moves_figure,
     ports_of,
@@ -57,12 +55,6 @@ def test_seam_writes_a_png(tmp_path: Path) -> None:
 @pytest.mark.edge
 def test_moves_figure_writes_a_png(tmp_path: Path) -> None:
     out = moves_figure(tmp_path / "moves.png", moves(load_rules(RULES_CSV)))
-    assert out.read_bytes().startswith(PNG_MAGIC)
-
-
-@pytest.mark.edge
-def test_example_map_writes_a_png(tmp_path: Path) -> None:
-    out = example_map(tmp_path / "map.png", CardCounts(2, 0, 1, 1), CardCounts(3, 2, 4, 1))
     assert out.read_bytes().startswith(PNG_MAGIC)
 
 

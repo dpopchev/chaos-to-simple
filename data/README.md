@@ -1,17 +1,18 @@
 # data: facts shared by more than one section
 
 Only data that two or more sections read lives here. Data one section reads lives in
-that section (`03-chaos/data/` holds the red cards, nobody else needs them).
+that section (`03-chaos/data/` holds the room log, nobody else needs it).
 
 | File | Columns | Read by |
 |---|---|---|
-| `rules.csv` | `bit, scope, context, name, rule, code` | 03 (example map, counts), 04 (glossary), 06 (chart), `scripts/paths.py` |
+| `rules.csv` | `bit, scope, context, name, rule, code` | 03 (counts), 04 (glossary), 06 (chart), `scripts/paths.py` |
 | `seventh.csv` | `bit, scope, context, name, rule, code` | 06 (epilogue: the seventh core if, counted beside `rules.csv`), `scripts/paths.py` |
 | `actors.csv` | `actor, kind, label, color, icon, context` | the one home of every actor's colour (hex, no `#`), label and icon name; `scripts/utils/palette.py` |
 | `contexts.csv` | `context, kind, label, color` | the one home of every context's colour and label; `scripts/utils/palette.py`, `scripts/utils/style.py` |
 | `cast.csv` | `bit, step, week, requested_by, words, aside, fragment` | 01 (the cast table by source line, the doubling by week), 04 (who asked for each bit), `scripts/paths.py`; `requested_by` is an `actors.csv` key, tables print its label |
 | `incidents.csv` | `id, week, date, told_in, decided_in, closed_in, closed_by, kind, cost` | 00 (the incident marks of the agenda by `told_in`), 06 (the wounds close by name: `closed_by` tests are run), `scripts/paths.py` |
-| `examples.csv` | `scope, bit, name, given, then` | 03 (green cards), 06 (every `name` must have a `test_<name>`) |
+| `examples.csv` | `scope, bit, name, given, then` | 06 (every `name` must have a `test_<name>`), `scripts/utils/examples.py` |
+| `questions.csv` | `id, question, raised_by, bit, status, decision` | 03 (the retro table: the six questions the room raised, each with the decision that closed it; `raised_by` is an `actors.csv` or `contexts.csv` key) |
 | `route.csv` | `section, label, icon, counter, incident, x, y` | 00 (the agenda strip): `scripts/utils/stage.py` draws one box per section with its `icon` pictogram (a name `scripts/utils/icons.py` maps), `label` and `counter` under it; `incident` is the incident id told in that section (`incidents.csv` `told_in` decides the mark drawn); `x, y` place the section on the Stacey square (certainty on the How, agreement on the What, empty for 00 and 07) |
 | `artifacts.csv` | `path, kind, producer` | `make stubs`: every build path the slides include, its kind (png, txt, diff, tex) and what builds it; a path no make rule builds gets a placeholder, `STRICT=1` fails on it |
 | `budget.csv` | `section, frames, minutes` | `make budget`: the frames each section's `index.md` holds (its `## ` lines) and the minutes it gets; frames sum 41, minutes 45 (the title frames of 00 and 07 are not counted) |
