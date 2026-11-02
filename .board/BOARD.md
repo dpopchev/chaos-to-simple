@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-094 > T-215   | blocked: 0 | todo roots: 0 | done: 314 | pruned: 4
+open path: E-010 > W-094 > T-216   | blocked: 0 | todo roots: 0 | done: 315 | pruned: 4
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
   W-091  issue  [done]     01: measured captions on the evidence frames -- T-206 [done], T-207 [done], T-208 [done]
   W-092  issue  [done]     02: the dispute as bubbles and one map -- T-209 [done], T-210 [done], T-211 [done], T-226 [done]
   W-093  issue  [done]     03: the room readable from the back -- T-212 [done], T-213 [done], T-214 [done]
-  W-094  issue  [doing]    04: the homes without noise -- T-215 [doing]   <- ACTIVE LEAF, T-216 [todo], T-217 [todo]
+  W-094  issue  [doing]    04: the homes without noise -- T-215 [done], T-216 [doing]   <- ACTIVE LEAF, T-217 [todo]
   W-095  issue  [todo]     05: the seam without guards -- T-218 [todo], T-219 [todo]
   W-096  issue  [todo]     06: the measured frames -- T-220 [todo], T-221 [todo], T-222 [todo], T-223 [todo]
   W-097  issue  [todo]     07: the repository link -- T-224 [todo]
@@ -563,8 +563,8 @@ flowchart TD
   W093 --> T213["T-213 done: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md"]
   W093 --> T214["T-214 done: Head the waiting board columns -> build/03-chaos/board.png"]
   E010 --> W094["W-094 issue doing: 04: the homes without noise"]
-  W094 --> T215["T-215 doing: Caption the stage diffs instead of headers -> scripts/utils/stagediff.py -- ACTIVE LEAF"]
-  W094 --> T216["T-216 todo: Show the q3 decision on the dispute frame -> build/04-what/dispute.txt and 04-what/index.md"]
+  W094 --> T215["T-215 done: Caption the stage diffs instead of headers -> scripts/utils/stagediff.py"]
+  W094 --> T216["T-216 doing: Show the q3 decision on the dispute frame -> build/04-what/dispute.txt and 04-what/index.md -- ACTIVE LEAF"]
   W094 --> T217["T-217 todo: Show only the added body on the homes frame -> 04-what/index.md and 04-what/section.mk"]
   E010 --> W095["W-095 issue todo: 05: the seam without guards"]
   W095 --> T218["T-218 todo: Hide the exhaustiveness guards from the ports diff -> build/05-how/v5.diff"]
@@ -581,7 +581,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W094,T215 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214 done
-  class T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
+  class E010,W094,T216 doing
+  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,T215 done
+  class T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
