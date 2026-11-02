@@ -24,6 +24,8 @@
 
 ## Decisions
 - 2026-11-02 E-008: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
+- 2026-11-02 E-008: repoint: W-081 pruned as refuted, successor W-087; AC3 re-pointed to W-087 (developer, 2026-11-02)
 
 ## Deviations
+- 2026-11-02 E-008: AC3 re-pointed from W-081 (pruned, refuted) to W-087, adopted from standalone; W-074 now depends on W-087 in W-081's place
 - 2026-11-02 E-008: T-182's Action amended to name scripts/utils/figures.py and scripts/utils/paths.py, the callers its 'every caller under scripts/' meant; the scope gate refused the close without the literal paths (as E-004#v1); Check unchanged
