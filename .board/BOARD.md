@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007   | blocked: 0 | todo roots: 7 | done: 246 | pruned: 2
+open path: E-007 > W-066 > T-167   | blocked: 0 | todo roots: 7 | done: 246 | pruned: 2
 
 ## Tree
 
@@ -22,7 +22,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-063  issue  [done]     03: the explosion to 512 in the style of 01 -- T-158 [done], T-159 [done], T-160 [done]
   W-064  issue  [done]     the rules board, the artifact everyone sees from the room to the tests -- T-161 [done], T-162 [done]
   W-065  issue  [done]     04: the diff ladder begins, the checkout stays on screen -- T-163 [done], T-164 [done], T-165 [done], T-166 [done]
-  W-066  issue  [todo]     05: the seam as the next edit of the same function -- T-167 [todo], T-168 [todo], T-169 [todo]
+  W-066  issue  [doing]    05: the seam as the next edit of the same function -- T-167 [doing]   <- ACTIVE LEAF, T-168 [todo], T-169 [todo]
   W-067  issue  [todo]     one assert per test, enforced by the build for the exhibit tests too -- T-170 [todo], T-171 [todo], T-172 [todo]
   W-068  issue  [todo]     06: the last rung, the seam cut, the paths counted, the seventh if -- T-173 [todo], T-174 [todo]
   W-069  issue  [todo]     lines and counter pinned to the plan -- T-175 [todo], T-176 [todo]
@@ -419,8 +419,8 @@ flowchart TD
   W065 --> T164["T-164 done: Render the colour-coded checkout -> build/04-what/colorcode.png"]
   W065 --> T165["T-165 done: Render the diffs between stages -> build/04-what/fix.diff, build/04-what/v4.diff"]
   W065 --> T166["T-166 done: Finish the 04 frames -> 04-what/index.md"]
-  E007 --> W066["W-066 issue todo: 05: the seam as the next edit of the same function"]
-  W066 --> T167["T-167 todo: Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py"]
+  E007 --> W066["W-066 issue doing: 05: the seam as the next edit of the same function"]
+  W066 --> T167["T-167 doing: Add the stage-5 checkout with its tests -> 05-how/s05_how/checkout_v5.py -- ACTIVE LEAF"]
   W066 --> T168["T-168 todo: Render the v4-to-v5 diff -> build/05-how/v5.diff"]
   W066 --> T169["T-169 todo: Finish the 05 frames -> 05-how/index.md"]
   E007 --> W067["W-067 issue todo: one assert per test, enforced by the build for the exhibit tests too"]
@@ -464,7 +464,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E007 doing
+  class E007,W066,T167 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
-  class W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190 todo
+  class T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190 todo
 ```
