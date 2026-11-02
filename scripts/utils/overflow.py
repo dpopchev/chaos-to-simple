@@ -15,7 +15,13 @@ def _frames(tex: str) -> list[tuple[int, str]]:
     """Return (closing line number, title) for each frame, in deck order."""
     frames: list[tuple[int, str]] = []
     title = ""
-    for number, text in enumerate(tex.splitlines(), start=1):
+    pending = ""
+    for number, line in enumerate(tex.splitlines(), start=1):
+        text = f"{pending} {line.strip()}" if pending else line
+        if (pending or "\\begin{frame}" in line) and text.count("{") > text.count("}"):
+            pending = text.rstrip()
+            continue
+        pending = ""
         begin = _BEGIN.search(text)
         if begin:
             title = begin.group("title") or ""
