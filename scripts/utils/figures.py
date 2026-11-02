@@ -254,6 +254,12 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     return out
 
 
+def band_groups(moves: Sequence[Move]) -> tuple[tuple[str, int], ...]:
+    """Count the bands under the core and the shell labels."""
+    shell = sum(1 for move in moves if move.home == "shell")
+    return (("core: the What", len(moves) - shell), ("shell: the How, the ports", shell))
+
+
 def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
     """Draw checkout() as one box and one band per home, its width by bits, its count on it."""
     style.apply()
@@ -297,7 +303,29 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             color="white",
         )
         ax.text(band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16)
-    ax.set_xlim(0, 11.5)
+    bracket_x = band_x + max(move.bits for move in moves) * unit + 2.2
+    top = n - 1
+    for label, count in band_groups(moves):
+        if count == 0:
+            continue
+        bottom = top - count + 1
+        ax.plot(
+            [bracket_x - 0.15, bracket_x, bracket_x, bracket_x - 0.15],
+            [top + 0.3, top + 0.3, bottom - 0.3, bottom - 0.3],
+            color="black",
+            linewidth=1.5,
+        )
+        ax.text(
+            bracket_x + 0.2,
+            (top + bottom) / 2,
+            label,
+            ha="left",
+            va="center",
+            fontsize=14,
+            wrap=True,
+        )
+        top = bottom - 1
+    ax.set_xlim(0, bracket_x + 5.5)
     ax.set_ylim(-0.7, n - 0.3)
     ax.axis("off")
     fig.tight_layout()

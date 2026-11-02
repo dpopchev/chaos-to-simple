@@ -12,6 +12,7 @@ from scripts.utils.figures import (
     JOURNEY,
     TREE_LEAVES,
     JourneyStep,
+    band_groups,
     journey,
     mood,
     moves,
@@ -38,6 +39,12 @@ QUESTIONS = [
 @pytest.mark.model
 def test_moves_sum_to_nine() -> None:
     assert sum(move.bits for move in moves(load_rules(RULES_CSV))) == 9
+
+
+@pytest.mark.model
+def test_band_groups_splits_core_and_shell() -> None:
+    groups = band_groups(moves(load_rules(RULES_CSV)))
+    assert groups == (("core: the What", 3), ("shell: the How, the ports", 1))
 
 
 @pytest.mark.model
