@@ -23,7 +23,7 @@ plain checkout.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{customer}
 
@@ -31,7 +31,9 @@ plain checkout.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-0.txt}
 ```
@@ -53,7 +55,7 @@ customer's line aloud: that is all.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{marketing}
 
@@ -61,7 +63,9 @@ customer's line aloud: that is all.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-1.txt}
 ```
@@ -83,7 +87,7 @@ the marketing line aloud and ask who thinks it is a small change.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{loyalty}
 
@@ -91,7 +95,9 @@ the marketing line aloud and ask who thinks it is a small change.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-2.txt}
 ```
@@ -113,7 +119,7 @@ the loyalty line aloud and point out that the two discounts now stack.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{logistics}
 
@@ -121,7 +127,9 @@ the loyalty line aloud and point out that the two discounts now stack.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-3.txt}
 ```
@@ -143,7 +151,7 @@ to 8 paths. Read the logistics line aloud and ask the room why the carts are lef
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{logistics}
 
@@ -151,7 +159,9 @@ to 8 paths. Read the logistics line aloud and ask the room why the carts are lef
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-4.txt}
 ```
@@ -174,7 +184,7 @@ now branch twice.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{marketing}
 
@@ -182,7 +192,9 @@ now branch twice.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-5.txt}
 ```
@@ -204,7 +216,7 @@ marketing line aloud, the one that promised just one more.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="35%"}
+::: {.column width="25%"}
 
 \actor{accounting}
 
@@ -212,7 +224,9 @@ marketing line aloud, the one that promised just one more.
 ```
 
 :::
-::: {.column width="65%"}
+::: {.column width="75%"}
+
+\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-6.txt}
 ```
