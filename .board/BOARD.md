@@ -32,6 +32,7 @@ E-007         [doing]    deck v2: the stage, the counter one bit at a time, the 
   W-078  bug    [todo]     05 effects listing prints the step markers of chaos.py   (filed during T-137) -- T-185 [todo]
   W-079  bug    [done]     01 coverage view renders as an unreadable thumbnail on the tests frame   (filed during T-142) -- T-187 [done]
   W-080  bug    [done]     01 grid frame: the grid image prints over the frame title   (filed during T-148) -- T-188 [done]
+  W-084  bug    [todo]     07 lost its Q&A bullets and notes in the skeleton rewrite   (filed during T-169) -- T-193 [todo]
 W-070  issue  [todo]     (standalone) chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
 W-072  bug    [todo]     (standalone) make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
 W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
@@ -447,6 +448,8 @@ flowchart TD
   W079 --> T187["T-187 done: Stack the coverage view and give it half the frame -> build/01-bits/coverage-view.png, 01-bits/index.md"]
   E007 --> W080["W-080 bug done: 01 grid frame: the grid image prints over the frame title"]
   W080 --> T188["T-188 done: Fit the grid frame under its title -> 01-bits/index.md"]
+  E007 --> W084["W-084 bug todo: 07 lost its Q&A bullets and notes in the skeleton rewrite"]
+  W084 --> T193["T-193 todo: Restore the 07 bullets and notes -> 07-close/index.md"]
   W070["W-070 issue todo, standalone: chart labels: spread_apart gets its own test"]
   W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
   W072["W-072 bug todo, standalone: make lengths crashes on an include of a missing file the filter would render as a STUB"]
@@ -470,5 +473,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E007,W066 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,W062,T154,T155,T156,T157,W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,T167,T168,T169,T191,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
-  class W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
+  class W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W084,T193,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
