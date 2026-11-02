@@ -38,6 +38,18 @@
 \newcommand{\actor}[1]{\csname actor@#1\endcsname}
 \input{build/00-frontmatter/actors.tex}
 
+% The section page (W-089): the agenda strip with the current stop highlighted over the
+% believed line of the section, both from build/00-frontmatter/beats.tex.
+\input{build/00-frontmatter/beats.tex}
+\AtBeginSection{%
+  \begin{frame}{\insertsection}%
+    \centering
+    \includegraphics[width=0.9\textwidth]{\csname strip@\thesection\endcsname}%
+    \vfill
+    {\color{gray}I believed: \csname believed@\thesection\endcsname}%
+  \end{frame}%
+}
+
 % Code blocks a size smaller, so a twenty-line snippet fits a 16:9 frame.
 \usepackage{etoolbox}
 \AtBeginEnvironment{Shaded}{\footnotesize}

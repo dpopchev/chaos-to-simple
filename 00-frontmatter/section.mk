@@ -2,6 +2,11 @@
 # A plain `#` keeps it out of make help.
 ARTIFACTS += $(BUILD)/00-frontmatter/agenda.png $(BUILD)/00-frontmatter/actors.tex $(BUILD)/00-frontmatter/business-map.png
 ARTIFACTS += $(foreach n,01 02 03 04 05 06,$(BUILD)/00-frontmatter/agenda-$(n).png)
+ARTIFACTS += $(BUILD)/00-frontmatter/beats.tex
+
+$(BUILD)/00-frontmatter/beats.tex: scripts/beats_tex.py scripts/utils/beats.py scripts/utils/lines.py data/lines.csv
+	@$(RUN) python -m scripts.beats_tex --lines data/lines.csv --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/00-frontmatter/business-map.png: scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/style.py data/actors.csv data/cast.csv data/rules.csv
 	@$(RUN) python -m scripts.figures business-map --out $@

@@ -15,3 +15,5 @@ resource-path:
   - .
   - build
 highlight-style: tango
+variables:
+  section-titles: false

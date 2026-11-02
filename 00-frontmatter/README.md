@@ -11,6 +11,8 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `meta.yaml` | title, author, date, language, theme, fonts | the title or the language changes |
 | `defaults.yaml` | pandoc options: beamer, lualatex, slide level 2, filters, resource path | a filter or an engine option changes |
 | `preamble.tex` | footer path counter, smaller code font, no navigation symbols | the footer or the look changes |
+| `build/00-frontmatter/beats.tex` | generated from `data/lines.csv`: the believed line and the strip name of each section, read by the section page in `preamble.tex` | the lines change |
+| `build/00-frontmatter/agenda-NN.png` | the agenda strip with stop NN highlighted, one per section, shown on its section page | the route changes |
 | `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range | never, unless the marker syntax changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
 | `index.md` | the opening: the business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
