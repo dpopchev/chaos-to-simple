@@ -11,6 +11,7 @@ from scripts.utils.palette import colour_of
 
 FIGSIZE = (8.0, 3.5)
 FONTSIZE = 12
+LEGEND = ("received: the code, R1 before the coupon", "missing: finance, R2 after the coupon")
 
 
 @dataclass(frozen=True)
@@ -49,7 +50,7 @@ def totals(weeks: Sequence[Week]) -> tuple[int, int]:
 def title(weeks: Sequence[Week]) -> str:
     """Return the chart title quoting the October totals, with thousands separators."""
     orders, eur = totals(weeks)
-    return f"October: {eur:,} EUR of shipping never charged, {orders:,} parcels"
+    return f"October: {eur:,} EUR of shipping nowhere to be found, {orders:,} parcels"
 
 
 def draw(weeks: Sequence[Week], out: Path) -> Path:
@@ -63,8 +64,8 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=style.DPI)
     for x, w in enumerate(weeks):
         for name, bottom, value, key, ink in (
-            ("received", 0, w.received_eur, "logistics", "white"),
-            ("missing", w.received_eur, w.shortfall_eur, "marketing", "black"),
+            (LEGEND[0], 0, w.received_eur, "logistics", "white"),
+            (LEGEND[1], w.received_eur, w.shortfall_eur, "marketing", "black"),
         ):
             ax.bar(
                 x,

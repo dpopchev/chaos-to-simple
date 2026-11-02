@@ -284,7 +284,9 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 \fvset{fontsize=\scriptsize}
 
-![](build/01-bits/finance.png){height=65%}
+finance backtracked the gap to the checkout: a software fault?
+
+![](build/01-bits/finance.png){height=58%}
 
 \vfill
 
@@ -295,9 +297,11 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 ::: notes
 Finance noticed, not the tests: October's four weeks, received shipping income against the
-shortfall, 1,214 orders and 6,070 EUR, all in the chart title. Then marketing, the same
-morning, asks for one more if, with no idea what the last one cost. Read the bubble after a
-pause.
+shortfall, 1,214 orders and 6,070 EUR nowhere to be found, all in the chart title. The legend
+names the two readings: received is the code, R1, marketing's reading of the cart before the
+coupon; missing is finance, R2, logistics' reading of what they pay, after the coupon. Read
+the chart, stop, then reveal the bubble: marketing, the same morning, asks for one more if,
+with no idea what the last one cost.
 :::
 
 ## The path nobody ran {paths=64}

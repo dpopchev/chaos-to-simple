@@ -28,9 +28,9 @@ def test_totals_are_the_pinned_shortfall() -> None:
 
 
 @pytest.mark.view
-def test_title_carries_the_pinned_totals() -> None:
+def test_title_names_the_gap() -> None:
     assert title(load_october(OCTOBER)) == (
-        "October: 6,070 EUR of shipping never charged, 1,214 parcels"
+        "October: 6,070 EUR of shipping nowhere to be found, 1,214 parcels"
     )
 
 
