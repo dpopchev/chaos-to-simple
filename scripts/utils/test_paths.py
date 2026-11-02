@@ -43,6 +43,7 @@ from scripts.utils.paths import (
     stacked_bar,
     stock_gone,
     tangled,
+    world_name,
     wounds_selector,
 )
 
@@ -239,15 +240,30 @@ def test_stock_is_gone_when_s1_is_set() -> None:
     assert [t for t in panel_titles(3) if stock_gone(t)] == ["010", "011", "110", "111"]
 
 
+@pytest.mark.model
+def test_world_name_reads_the_set_bits(repo_rules: list[Rule]) -> None:
+    names = {bits: world_name(bits, repo_rules) for bits in panel_titles(3)}
+    assert names == {
+        "000": "all answered",
+        "001": "card declined",
+        "010": "stock gone",
+        "011": "stock gone, card declined",
+        "100": "mail bounced",
+        "101": "mail bounced, card declined",
+        "110": "mail bounced, stock gone",
+        "111": "mail bounced, stock gone, card declined",
+    }
+
+
 @pytest.mark.view
-def test_grid_panels_writes_a_png(tmp_path: Path) -> None:
-    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png")
+def test_grid_panels_writes_a_png(tmp_path: Path, repo_rules: list[Rule]) -> None:
+    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png", repo_rules)
     assert out.read_bytes().startswith(b"\x89PNG")
 
 
 @pytest.mark.view
-def test_grid_panels_is_wider_than_tall(tmp_path: Path) -> None:
-    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png")
+def test_grid_panels_is_wider_than_tall(tmp_path: Path, repo_rules: list[Rule]) -> None:
+    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png", repo_rules)
     assert 1.0 < pixel_ratio(out) < 1.8
 
 

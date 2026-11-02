@@ -139,6 +139,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             [r.bits for r in rows if r.kind == "tested"],
             [r.bits for r in rows if r.kind == "bug"],
             args.out,
+            rules,
         )
         return 0
     if args.what == "moves":

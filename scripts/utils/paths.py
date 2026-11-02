@@ -8,6 +8,7 @@ split has, the 64-path grid, and the stacked bar.
 from __future__ import annotations
 
 import csv
+import textwrap
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, fields
 from pathlib import Path
@@ -381,6 +382,16 @@ def panel_titles(shell_bits: int) -> tuple[str, ...]:
     return tuple(f"{n:0{shell_bits}b}" for n in range(tangled(shell_bits)))
 
 
+SHELL_WORLDS = {"s0": "card declined", "s1": "stock gone", "s2": "mail bounced"}
+
+
+def world_name(bits: str, rules: Sequence[Rule]) -> str:
+    """Name a panel by its set shell effects, the bits written s2 s1 s0 left to right."""
+    shell = [r.bit for r in rules if r.scope == "shell"]
+    set_bits = [bit for n, bit in enumerate(shell) if bits[-1 - n] == "1"]
+    return ", ".join(SHELL_WORLDS[bit] for bit in reversed(set_bits)) or "all answered"
+
+
 def stock_gone(title: str) -> bool:
     """Whether the panel is a configuration where the warehouse answers OutOfStock (s1 set)."""
     return title[-2] == "1"
@@ -392,10 +403,11 @@ def grid_panels(
     tested: Sequence[str],
     bug: Sequence[str],
     out: Path,
+    rules: Sequence[Rule],
 ) -> Path:
     """Draw one 8x8 panel per shell configuration; panel 0 marks the tested and bug cells.
 
-    Every stock-gone panel is framed in the payment colour and titled by its shell bits.
+    Every stock-gone panel is framed in the payment colour and titled by its bits and world.
     """
     from scripts.utils import style
     from scripts.utils.coverage_view import GRID_SIDE
@@ -437,13 +449,13 @@ def grid_panels(
         ax.set_aspect("equal")
         ax.axis("off")
         ax.set_title(
-            title,
-            fontsize=16,
+            textwrap.fill(f"{title} {world_name(title, rules)}", 22),
+            fontsize=7,
             family="monospace",
             fontweight="bold",
             color=colour_of("payment") if framed else "black",
         )
-    fig.tight_layout(pad=0.3)
+    fig.tight_layout(pad=0.3, h_pad=2.6, rect=(0, 0, 1, 0.97))
     style.save(fig, out)
     return out
 
