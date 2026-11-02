@@ -26,7 +26,7 @@ def _by_text(start: str) -> OwnedLine:
 
 @pytest.mark.edge
 def test_owned_lines_cover_the_whole_checkout_snippet() -> None:
-    assert len(_lines()) == 21
+    assert len(_lines()) == 23
 
 
 @pytest.mark.model
