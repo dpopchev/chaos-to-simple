@@ -11,7 +11,7 @@ def shipping_fee(discounted_goods: Money, zone: Zone, gift_wrap: bool, digital: 
     if digital:  # b6: nothing to ship
         return eur(0)
     fee = base_fee(zone)
-    if discounted_goods >= FREE_SHIPPING_FROM:  # b2, on the discounted goods: the bug, fixed
+    if discounted_goods >= FREE_SHIPPING_FROM:  # b2
         fee = eur(0)
     if gift_wrap:  # b4
         fee = fee + GIFT_WRAP

@@ -38,7 +38,7 @@ def base_fee(zone: Zone) -> Money:  # b3
 # [snippet: fee]
 def shipping_fee(discounted_goods: Money, zone: Zone, gift_wrap: bool) -> Money:
     fee = base_fee(zone)
-    if discounted_goods >= FREE_SHIPPING_FROM:  # b2, on the discounted goods: the bug, fixed
+    if discounted_goods >= FREE_SHIPPING_FROM:  # b2
         fee = eur(0)
     if gift_wrap:  # b4
         fee = fee + GIFT_WRAP
