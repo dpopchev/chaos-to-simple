@@ -263,6 +263,12 @@ def test_small_slices_go_to_the_legend() -> None:
     assert legend_entries(bars, 92) == ("tiny: 2", "shell: 4")
 
 
+@pytest.mark.model
+def test_legend_names_the_shell_once(repo_rules: list[Rule]) -> None:
+    entries = legend_entries(bars_from_rules(repo_rules), 512)
+    assert [e for e in entries if e.startswith("shell")] == ["shell: 8"]
+
+
 class TestStackedBarWritesAPng:
     @pytest.fixture
     def out(self, tmp_path: Path, repo_rules: list[Rule]) -> Path:

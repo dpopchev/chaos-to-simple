@@ -495,7 +495,11 @@ def is_small(value: int, top: int) -> bool:
 def small_slices(bars: Sequence[Bar], top: int) -> tuple[Segment, ...]:
     """The thin slices in bar order, a slice of the same name and value once."""
     thin = (seg for _, segments in bars for seg in segments if is_small(seg[1], top))
-    return tuple(dict.fromkeys(thin))
+    merged: dict[tuple[str, int], str] = {}
+    for name, value in thin:
+        key = (name.split()[0], value)  # the first word picks the colour (segment_colour)
+        merged[key] = min(merged.get(key, name), name, key=len)
+    return tuple((name, key[1]) for key, name in merged.items())
 
 
 def legend_entries(bars: Sequence[Bar], top: int) -> tuple[str, ...]:
@@ -513,6 +517,9 @@ def segment_colour(name: str) -> str:
     if words[-1] == "tangled":
         return colour_of("tangled")
     return colour_of("dev" if words[0] == "core" else words[0])
+
+
+FIT = 0.85  # an in-bar label may fill this share of its bar's width
 
 
 def stacked_bar(
@@ -535,45 +542,6 @@ def stacked_bar(
     top = max(sum(value for _, value in segments) for _, segments in bars)
     small = small_slices(bars, top)
     fig, ax = plt.subplots(figsize=figsize, dpi=style.DPI)
-    for x, (label, segments) in enumerate(bars):
-        bottom = 0
-        for name, value in segments:
-            ax.bar(
-                x,
-                value,
-                bottom=bottom,
-                width=0.6,
-                color=segment_colour(name),
-                edgecolor="white",
-                linewidth=0.8,
-            )
-            middle = bottom + value / 2
-            ink = "white" if name.startswith("core") else "black"  # the core is the black dev
-            if value >= 0.2 * top:
-                ax.text(
-                    x,
-                    middle,
-                    f"{name}:\n{value}",
-                    ha="center",
-                    va="center",
-                    fontsize=fontsize,
-                    color=ink,
-                )
-            elif not is_small(value, top):
-                ax.text(
-                    x,
-                    middle,
-                    f"{name}: {value}",
-                    ha="center",
-                    va="center",
-                    fontsize=fontsize,
-                    color=ink,
-                )
-            bottom += value
-        ax.text(
-            x, bottom, str(bottom), ha="center", va="bottom", fontsize=fontsize, fontweight="bold"
-        )
-        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=fontsize)
     ax.set_xticks([])
     ax.set_xlim(-0.5, len(bars) - 0.2)
     ax.set_ylim(0, bar_headroom(top))
@@ -592,5 +560,51 @@ def stacked_bar(
             frameon=True,
             fontsize=fontsize,
         )
+    fig.tight_layout()
+    fig.canvas.draw()  # a first draw gives text extents a renderer
+    bar_px = ax.transData.transform((0.3, 0))[0] - ax.transData.transform((-0.3, 0))[0]
+    for x, (label, segments) in enumerate(bars):
+        bottom = 0
+        for name, value in segments:
+            ax.bar(
+                x,
+                value,
+                bottom=bottom,
+                width=0.6,
+                color=segment_colour(name),
+                edgecolor="white",
+                linewidth=0.8,
+            )
+            middle = bottom + value / 2
+            ink = "white" if name.startswith("core") else "black"  # the core is the black dev
+            if not is_small(value, top):
+                wrapped = value >= 0.2 * top
+                label_text = ax.text(
+                    x,
+                    middle,
+                    f"{name}:\n{value}" if wrapped else f"{name}: {value}",
+                    ha="center",
+                    va="center",
+                    fontsize=fontsize,
+                    color=ink,
+                )
+                if label_text.get_window_extent().width > FIT * bar_px:
+                    label_text.set_text(f"{name}:\n{value}")
+                slice_px = (
+                    ax.transData.transform((0, bottom + value))[1]
+                    - ax.transData.transform((0, bottom))[1]
+                )
+                size = fontsize
+                while (
+                    label_text.get_window_extent().width > FIT * bar_px
+                    or label_text.get_window_extent().height > FIT * slice_px
+                ):
+                    size -= 1
+                    label_text.set_fontsize(size)
+            bottom += value
+        ax.text(
+            x, bottom, str(bottom), ha="center", va="bottom", fontsize=fontsize, fontweight="bold"
+        )
+        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=fontsize)
     fig.tight_layout()
     style.save(fig, out)
