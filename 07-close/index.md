@@ -17,7 +17,7 @@ read the learned column only
 
 - \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}
 - the CraftsmansDay and JourneymansDay post series: one section at a time
-- reach out: we go over your specific problem
+- reach out with your own checkout: we go over your specific problem
 
 ::: notes
 - The posts take one section at a time; the series is the long version of tonight.
