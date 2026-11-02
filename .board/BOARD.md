@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-013   | blocked: 0 | todo roots: 0 | done: 422 | pruned: 4
+open path: E-013 > W-129 > T-290   | blocked: 0 | todo roots: 0 | done: 422 | pruned: 4
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-013         [doing]    Deck v4 polish: the nine findings of the E-012 verifica
   W-125  bug    [done]     05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [done]
   W-126  issue  [done]     05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [done]
   W-127  bug    [todo]     06: the seam diff shows every line changed, against its caption   (filed during T-269) -- T-287 [todo], T-288 [todo]
-  W-129  bug    [todo]     make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [todo]
+  W-129  bug    [doing]    make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [doing]   <- ACTIVE LEAF
 ```
 
 ## Closed
@@ -746,14 +746,14 @@ flowchart TD
   E013 --> W127["W-127 bug todo: 06: the seam diff shows every line changed, against its caption"]
   W127 --> T287["T-287 todo: Dedent after the start cut -> snippet_diff in scripts/utils/stagediff.py"]
   W127 --> T288["T-288 todo: Align v5's matches with the shell -> 05-how/s05_how/checkout_v5.py"]
-  E013 --> W129["W-129 bug todo: make overflow names no frame when a title wraps"]
-  W129 --> T290["T-290 todo: Read a wrapped frame title -> scripts/utils/overflow.py"]
+  E013 --> W129["W-129 bug doing: make overflow names no frame when a title wraps"]
+  W129 --> T290["T-290 doing: Read a wrapped frame title -> scripts/utils/overflow.py -- ACTIVE LEAF"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E013 doing
+  class E013,W129,T290 doing
   class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286 done
-  class W127,T287,T288,W129,T290 todo
+  class W127,T287,T288 todo
 ```
