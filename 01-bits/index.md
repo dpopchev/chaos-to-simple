@@ -238,10 +238,9 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 \fvset{fontsize=\scriptsize}
 
-![](build/01-bits/finance.png){height=55%}
+![](build/01-bits/finance.png){height=65%}
 
-```{.text include=build/01-bits/finance.txt}
-```
+\vfill
 
 \actor{marketing}
 
@@ -250,8 +249,9 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 ::: notes
 Finance noticed, not the tests: October's four weeks, received shipping income against the
-shortfall, 1,214 orders and 6,070 BGN. Then marketing, the same morning, asks for one more
-if, with no idea what the last one cost.
+shortfall, 1,214 orders and 6,070 BGN, all in the chart title. Then marketing, the same
+morning, asks for one more if, with no idea what the last one cost. Read the bubble after a
+pause.
 :::
 
 ## The path nobody ran {paths=64}

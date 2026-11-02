@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from scripts.utils.finance import draw, load_october, report, totals
+from scripts.utils.finance import draw, load_october, title, totals
 
 OCTOBER = Path(__file__).resolve().parents[2] / "01-bits" / "data" / "october.csv"
 
@@ -28,9 +28,9 @@ def test_totals_are_the_pinned_shortfall() -> None:
 
 
 @pytest.mark.view
-def test_report_is_two_lines_with_thousands_separators() -> None:
-    assert report(load_october(OCTOBER)) == (
-        "1,214 orders got free shipping\n6,070 BGN of shipping income never arrived\n"
+def test_title_carries_the_pinned_totals() -> None:
+    assert title(load_october(OCTOBER)) == (
+        "October: 6,070 BGN of shipping never charged, 1,214 parcels"
     )
 
 

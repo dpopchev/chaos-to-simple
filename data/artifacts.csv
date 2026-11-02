@@ -29,7 +29,6 @@ build/01-bits/coverage.txt,txt,pytest --cov
 build/01-bits/coverage-summary.txt,txt,grep over coverage.txt
 build/01-bits/coverage-view.png,png,scripts.figures coverage-view
 build/01-bits/finance.png,png,scripts.figures finance
-build/01-bits/finance.txt,txt,scripts.figures finance
 build/01-bits/grid.png,png,scripts.figures grid-image
 build/01-bits/doubling.png,png,scripts.figures doubling
 build/01-bits/doubling.txt,txt,scripts.paths doubling

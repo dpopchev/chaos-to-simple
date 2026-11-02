@@ -35,7 +35,7 @@ from scripts.utils.figures import (
     tree,
 )
 from scripts.utils.finance import draw as draw_finance
-from scripts.utils.finance import load_october, report
+from scripts.utils.finance import load_october
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import (
     doubling_chart,
@@ -114,7 +114,6 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "finance":
         weeks = load_october(args.october)
         draw_finance(weeks, args.out)
-        args.out.with_suffix(".txt").write_text(report(weeks), encoding="ascii")
         return 0
     if args.what == "coverage-view":
         draw(load_tested(args.tested), args.out)

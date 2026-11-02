@@ -6,10 +6,9 @@ STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/doubling.txt
 ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES)
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
-ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png \
-  $(BUILD)/01-bits/finance.txt
+ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 
-$(BUILD)/01-bits/finance.png $(BUILD)/01-bits/finance.txt &: 01-bits/data/october.csv \
+$(BUILD)/01-bits/finance.png: 01-bits/data/october.csv \
     scripts/figures.py scripts/utils/finance.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures finance --october 01-bits/data/october.csv \
 	  --out $(BUILD)/01-bits/finance.png

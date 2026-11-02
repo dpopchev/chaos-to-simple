@@ -52,7 +52,7 @@ campaign on time, one if at a time.
 - [x] 7. Step 6, six ifs, paths=64: the VAT ID rule, the accounting bubble beside `step-6.diff`
 - [x] 8. Checkout done, paths=64: the dev and marketing bubbles over the question "How many tests would make you sure?"
 - [x] 9. Two tests, coverage says 100%, paths=64: the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
-- [x] 10. Finance found it, paths=64: `finance.png` with `finance.txt` as the caption, marketing's squeeze bubble under it
+- [x] 10. Finance found it, paths=64: `finance.png` titled with the October totals, marketing's squeeze bubble as the last line
 - [x] 11. The path nobody ran, paths=64: the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
 - [x] 12. A path is a six-bit number, paths=64: `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
 

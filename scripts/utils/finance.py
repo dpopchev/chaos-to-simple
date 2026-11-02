@@ -46,10 +46,10 @@ def totals(weeks: Sequence[Week]) -> tuple[int, int]:
     return (sum(w.free_orders for w in weeks), sum(w.shortfall_bgn for w in weeks))
 
 
-def report(weeks: Sequence[Week]) -> str:
-    """Return the two-line summary the slide quotes, with thousands separators."""
+def title(weeks: Sequence[Week]) -> str:
+    """Return the chart title quoting the October totals, with thousands separators."""
     orders, bgn = totals(weeks)
-    return f"{orders:,} orders got free shipping\n{bgn:,} BGN of shipping income never arrived\n"
+    return f"October: {bgn:,} BGN of shipping never charged, {orders:,} parcels"
 
 
 def draw(weeks: Sequence[Week], out: Path) -> Path:
@@ -95,6 +95,7 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
             fontweight="bold",
         )
     ax.set_xticks(range(len(weeks)), [f"Mon {w.monday}" for w in weeks], fontsize=FONTSIZE)
+    ax.set_title(title(weeks), fontsize=FONTSIZE, fontweight="bold")
     ax.set_ylim(0, top * 1.2)
     ax.set_ylabel("shipping income, BGN", fontsize=FONTSIZE)
     ax.tick_params(labelsize=FONTSIZE)
