@@ -67,3 +67,16 @@ stock is gone. The number is now true: 2^9 = 512. The bigger number is the first
 ![](build/03-chaos/board.png){height=70%}
 
 \theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
+
+::: notes
+Nine decisions came out of the room, one row each on the board. Each one has a sentence and a home.
+Coupon: a coupon valid today takes 10 BGN off the goods, in pricing.
+Member: a loyalty member gets 10% off, applied after the coupon, in pricing.
+Free shipping: shipping is free from 50 BGN of discounted goods, in shipping.
+Zone: domestic shipping is 5 BGN, international 20 BGN, in shipping.
+Gift wrap: gift wrap adds 3 BGN to the parcel, in shipping.
+VAT: orders with a VAT ID are exempt, the rest pay 20 percent, in tax.
+Charge, reserve and confirm: the payment, the warehouse and the mailer answer, in shell.
+None of the nine is deleted; each one is moved to its home. The board comes back at the end of 04,
+at the end of 05 and on the Q&A frame, and every test is green by then.
+:::

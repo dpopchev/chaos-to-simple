@@ -55,7 +55,7 @@
 :::
 ::: {.column width="50%"}
 
-![](build/04-what/board.png){height=55%}
+![](build/04-what/board.png){height=30%}
 
 :::
 ::::

@@ -47,6 +47,9 @@
 
 \footnotesize
 
+:::: {.columns}
+::: {.column width="62%"}
+
 | move | sign |
 |---|---|
 | guard clause | + 1 |
@@ -56,6 +59,12 @@
 | mutable state read in a later step | hidden x |
 | `try`/`except` around I/O inside the rules | hidden x |
 
-![](build/05-how/board.png){height=22%}
+:::
+::: {.column width="38%"}
+
+![](build/05-how/board.png){height=30%}
+
+:::
+::::
 
 \theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
