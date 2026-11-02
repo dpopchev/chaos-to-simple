@@ -18,6 +18,18 @@ $(BUILD)/04-what/colorcode.png: 01-bits/s01_bits/chaos.py data/cast.csv data/rul
 	@$(RUN) python -m scripts.figures colorcode --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/04-what/fix.diff $(BUILD)/04-what/v4.diff
+
+$(BUILD)/04-what/fix.diff: 01-bits/s01_bits/chaos.py 04-what/s04_what/checkout_fixed.py scripts/paths.py scripts/utils/stagediff.py
+	@$(RUN) python -m scripts.paths diff --from 01-bits/s01_bits/chaos.py \
+		--to 04-what/s04_what/checkout_fixed.py --snippet checkout --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/04-what/v4.diff: 04-what/s04_what/checkout_fixed.py 04-what/s04_what/checkout_v4.py scripts/paths.py scripts/utils/stagediff.py
+	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_fixed.py \
+		--to 04-what/s04_what/checkout_v4.py --snippet checkout --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/04-what/contexts.txt: data/rules.csv data/cast.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

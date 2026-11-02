@@ -1,0 +1,37 @@
+"""snippet_diff: the unified diff of one named snippet between two files."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from scripts.utils.stagediff import snippet_diff
+
+OLD = "x = 1\n# [snippet: s]\n    a = 1  # [step: 2]\n    b = 2\n# [/snippet]\n"
+NEW = "# [snippet: s]\n    a = 1\n    b = 3\n# [/snippet]\ny = 2\n"
+
+
+def _pair(tmp_path: Path) -> tuple[Path, Path]:
+    old, new = tmp_path / "old.py", tmp_path / "new.py"
+    old.write_text(OLD, encoding="ascii")
+    new.write_text(NEW, encoding="ascii")
+    return old, new
+
+
+@pytest.mark.view
+def test_snippet_diff_marks_the_changed_line(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert "+b = 3" in snippet_diff(old, "s", new, "s").splitlines()
+
+
+@pytest.mark.view
+def test_snippet_diff_leaves_the_step_marker_out(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert "step" not in snippet_diff(old, "s", new, "s")
+
+
+@pytest.mark.view
+def test_snippet_diff_labels_with_file_names_only(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert snippet_diff(old, "s", new, "s").splitlines()[:2] == ["--- old.py", "+++ new.py"]

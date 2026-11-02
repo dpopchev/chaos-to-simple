@@ -22,6 +22,7 @@
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths growth --cast data/cast.csv --out build/03-chaos/growth.png
     python -m scripts.paths retro --questions data/questions.csv --out build/03-chaos/retro.txt
+    python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -55,6 +56,7 @@ from scripts.utils.paths import (
     wounds_selector,
 )
 from scripts.utils.retro import load_questions, retro_table
+from scripts.utils.stagediff import snippet_diff
 from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
 
 
@@ -91,8 +93,13 @@ def main(argv: Sequence[str] | None = None) -> int:
             "wounds",
             "retro",
             "storyboard",
+            "diff",
         ],
     )
+    parser.add_argument("--from", dest="from_path", type=Path, default=None)
+    parser.add_argument("--to", dest="to_path", type=Path, default=None)
+    parser.add_argument("--snippet", default=None, help="snippet of --from (and of --to)")
+    parser.add_argument("--to-snippet", default=None, help="snippet of --to when it differs")
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
@@ -133,6 +140,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.out is None:
             parser.error("storyboard needs --out, a directory")
         write_storyboard(args.source, args.bubbles, args.actors, args.out)
+        return 0
+
+    if args.what == "diff":
+        if args.out is None or args.from_path is None or args.to_path is None or not args.snippet:
+            parser.error("diff needs --from, --to, --snippet and --out")
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        to_snippet = args.to_snippet or args.snippet
+        diff = snippet_diff(args.from_path, args.snippet, args.to_path, to_snippet)
+        args.out.write_text(diff, encoding="ascii")
         return 0
 
     if args.what == "growth":
