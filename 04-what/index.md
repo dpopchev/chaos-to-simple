@@ -80,8 +80,9 @@ Every bit has a home and a face: each context names the people who asked for its
 the contexts are the core, the ports are the shell: one cut, two names
 
 ::: notes
-Each home is a context, and the board shows the nine decisions moved.
-None is deleted: each one has a new home and is still on the record.
+The three contexts are the core, the What; the shell holds the three ports, the How.
+One cut, two names: the DDD map and the functional core are the same split.
+None of the nine decisions is deleted: each has a new home and stays on the record.
 :::
 
 \theline{Naming is cosmetics}{Every if was somebody's sentence. Write it down, give it a home, pass values between homes.}
