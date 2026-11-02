@@ -28,6 +28,7 @@
 - 2026-11-02 E-012: P1 (CODE and WAREHOUSE text fallbacks) is not reproduced on this machine: fc-list resolves the Solid file and both glyphs draw; D4 is met by font_file choosing the icon file by its glyphs (W-105 T-242) (developer, 2026-11-02)
 - 2026-11-02 E-012: R1 is marketing's reading (of the cart, before the coupon: what the code did), R2 is logistics' (of what they pay, after: what finance expected) (developer, 2026-11-02)
 - 2026-11-02 E-012: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-02)
+- 2026-11-02 E-012: from the review: D5 dry run Tuesday 2026-11-03 evening with a timer, first cuts if it overruns page 21 and 37 folded into 38; D6 the believed line stays on the section page and the last frame; D7 the slides stay English (developer, 2026-11-02)
 - 2026-11-02 E-012: the 02 matrix stays at 85% with the line beside it, bottom-aligned, zone texts at 12pt: P3's line-under does not fit at 85%, so E-010#d2 stands (developer, 2026-11-02)
 - 2026-11-02 E-012: the call to action names linkedin.com/in/dpopchev and the CraftsmansDay and JourneymansDay post series as written; the developer corrects them before W-118 starts if wrong (developer, 2026-11-02)
 - 2026-11-02 E-012: the eight-word title gate (make titles, W-119 T-279) keeps the action-title rule mechanically (developer, 2026-11-02)
