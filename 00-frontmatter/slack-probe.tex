@@ -1,0 +1,8 @@
+% Print each frame's slack to the log: "slack: <input line> <pt left under the frame box>".
+% Read only by make overflow (pandoc -H); make talk never includes it.
+\usepackage{etoolbox}
+\makeatletter
+\pretocmd{\beamer@autobreakframebox}{%
+  \typeout{slack: \the\inputlineno\space
+    \the\dimexpr\textheight-\ht\beamer@framebox-\dp\beamer@framebox\relax}}{}{}
+\makeatother

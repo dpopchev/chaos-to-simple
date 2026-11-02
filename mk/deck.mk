@@ -123,11 +123,12 @@ lengths: $(ARTIFACTS) | stubs ## Fail naming each included block over its line c
 	$(call log_done,every included block is within its line cap)
 
 OVERFLOW := local/state/overflow
+SLACK    := $(FRONT)/slack-probe.tex
 
 .PHONY: overflow
-overflow: $(DECK_INPUTS) ## Fail naming each beamer frame that runs past the frame bottom
+overflow: $(DECK_INPUTS) $(SLACK) ## Fail naming each beamer frame that runs past the frame bottom
 	@mkdir -p $(OVERFLOW)
-	@$(PANDOC) --defaults $(DEFAULTS) -t beamer -s $(INDEXES) -o $(OVERFLOW)/talk.tex
+	@$(PANDOC) --defaults $(DEFAULTS) -H $(SLACK) -t beamer -s $(INDEXES) -o $(OVERFLOW)/talk.tex
 	@lualatex -interaction=nonstopmode -output-directory $(OVERFLOW) $(OVERFLOW)/talk.tex >/dev/null
 	@$(RUN) python -m scripts.overflow --tex $(OVERFLOW)/talk.tex --log $(OVERFLOW)/talk.log
 	$(call log_done,no overfull frame)
