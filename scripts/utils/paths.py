@@ -80,7 +80,7 @@ def load_incidents(path: Path) -> tuple[Incident, ...]:
 
 def wounds_selector(incidents: Iterable[Incident]) -> str:
     """The pytest -k selector of the incidents closed by a test, in csv order."""
-    return " or ".join(i.closed_by for i in incidents if i.closed_by.startswith("test_"))
+    return " or ".join(i.closed_by for i in incidents if i.closed_by.startswith(("test_", "Test")))
 
 
 def line_of(fragment: str, source: str) -> int:

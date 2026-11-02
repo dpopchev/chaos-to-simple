@@ -356,6 +356,12 @@ def test_wounds_selector_skips_a_closed_by_that_is_no_test() -> None:
 
 
 @pytest.mark.model
+def test_wounds_selector_keeps_a_closed_by_that_is_a_test_class() -> None:
+    incidents = (Incident("I3", "18", "d3", "05", "03", "06", "TestB", "effect", "z"),)
+    assert wounds_selector(incidents) == "TestB"
+
+
+@pytest.mark.model
 def test_cast_line_of_finds_the_one_line() -> None:
     assert line_of("call(x)", CAST_SOURCE) == 4
 
