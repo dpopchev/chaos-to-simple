@@ -2,31 +2,38 @@
 
 from __future__ import annotations
 
-from collections.abc import Sequence
+import textwrap
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
-from scripts.utils.palette import colour_of, icon_of, label_of
+from scripts.utils.palette import Actor, colour_of, icon_of, label_of
 from scripts.utils.paths import CastRow, Rule
+from scripts.utils.retro import Question
 
-ACTORS = ("Customer", "Shop", "Warehouse", "Payment provider", "Mailer")
-# Palette key of each lifeline, in ACTORS order.
-STORY_KEYS = ("customer", "dev", "warehouse", "payment", "mailer")
 
-# (sender, receiver, text, is_answer): the nine sentences of the domain story, top to bottom.
-SENTENCES = (
-    (0, 1, "1. places an order: cart, coupon, address, VAT ID", False),
-    (1, 1, "2. prices the order: six rules", False),
-    (1, 2, "3. reserves the parcel", False),
-    (2, 1, "4. Reserved or OutOfStock", True),
-    (1, 3, "5. charges the total", False),
-    (3, 1, "6. Charged or Declined", True),
-    (1, 4, "7. sends the confirmation", False),
-    (4, 1, "8. Sent or Bounced", True),
-    (1, 0, "9. Accepted or Rejected", True),
+@dataclass(frozen=True)
+class JourneyStep:
+    """One step of Maria's order: the actor who acts, what it does, the bit it decides."""
+
+    actor: str
+    text: str
+    bit: str | None
+
+
+# Maria orders two books with the autumn coupon to an address in Sofia.
+JOURNEY = (
+    JourneyStep("customer", "Maria picks two books", None),
+    JourneyStep("marketing", "the autumn coupon applies", "b0"),
+    JourneyStep("loyalty", "the member discount applies", "b1"),
+    JourneyStep("logistics", "free shipping from 50?", "b2"),
+    JourneyStep("accounting", "VAT for Sofia", None),
+    JourneyStep("payment", "the card is charged", "s0"),
+    JourneyStep("warehouse", "the parcel is reserved", "s1"),
+    JourneyStep("mailer", "the confirmation is sent", "s2"),
 )
 
 
@@ -301,42 +308,112 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
     return out
 
 
-def story(out: Path) -> None:
-    """Draw the domain story as a sequence: five lifelines, nine sentences top to bottom."""
+def question_ids(
+    steps: Sequence[JourneyStep], questions: Sequence[Question]
+) -> tuple[str | None, ...]:
+    """Return the id of the question raised on each step's bit, None where none was."""
+    raised = {q.bit: q.id for q in questions}
+    return tuple(raised.get(step.bit) if step.bit else None for step in steps)
+
+
+def mood(steps: Sequence[JourneyStep], questions: Sequence[Question]) -> tuple[int, ...]:
+    """Return the mood level at each step: 0 at the start, one lower after each open question."""
+    level = 0
+    levels: list[int] = []
+    for qid in question_ids(steps, questions):
+        level -= 1 if qid else 0
+        levels.append(level)
+    return tuple(levels)
+
+
+def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Path) -> Path:
+    """Draw the journey of one order: an actor box per step, the mood line above it.
+
+    The mood line drops at each step that raised a question, labelled with the question id.
+    """
     style.apply()
     import matplotlib.pyplot as plt
+    from matplotlib.font_manager import FontProperties
+    from matplotlib.patches import FancyBboxPatch
 
-    colours = [colour_of(key) for key in STORY_KEYS]
-    n = len(SENTENCES)
-    fig, ax = plt.subplots(figsize=(11.0, 6.2), dpi=style.DPI)
-    top = 0.5
-    bottom = -(n + 0.5)
-    for i, name in enumerate(ACTORS):
-        ax.plot([i, i], [top, bottom], color=colours[i], linewidth=1)
-        ax.text(
-            i,
-            top + 0.15,
-            name,
-            ha="center",
-            va="bottom",
-            fontsize=15,
-            color="black" if STORY_KEYS[i] == "mailer" else "white",
-            bbox={"boxstyle": "round,pad=0.4", "facecolor": colours[i], "edgecolor": "none"},
+    pitch, box_w, box_h = 1.3, 1.2, 1.3
+    levels = mood(JOURNEY, questions)
+    ids = question_ids(JOURNEY, questions)
+    font = icon_file()
+    fig, ax = plt.subplots(figsize=(10.0, 5.0), dpi=style.DPI)
+    xs = [i * pitch for i in range(len(JOURNEY))]
+    ys = [1.5 + 0.55 * (level + len(JOURNEY)) / 2 for level in levels]
+    ax.plot(xs, ys, color="dimgrey", linewidth=2.5, zorder=2)
+    for i, step in enumerate(JOURNEY):
+        actor = actors[step.actor]
+        face = colour_of(step.actor)
+        ink = label_ink(face)
+        ax.add_patch(
+            FancyBboxPatch(
+                (xs[i] - box_w / 2, -box_h / 2),
+                box_w,
+                box_h,
+                boxstyle="round,pad=0.03,rounding_size=0.1",
+                facecolor=face,
+                edgecolor="none",
+                zorder=3,
+            )
         )
-    for row, (src, dst, text, answer) in enumerate(SENTENCES):
-        y = -(row + 0.5)
-        colour = colours[src]
-        style_line = "--" if answer else "-"
-        props = {"arrowstyle": "-|>", "color": colour, "linestyle": style_line, "linewidth": 1.8}
-        if src == dst:
-            loop = {**props, "connectionstyle": "arc3,rad=-1.6"}
-            ax.annotate("", (dst, y - 0.4), (src, y), arrowprops=loop)
-            ax.text(src + 0.25, y - 0.2, text, ha="left", va="center", fontsize=12)
-            continue
-        ax.annotate("", (dst, y), (src, y), arrowprops=props)
-        ax.text((src + dst) / 2, y + 0.12, text, ha="center", va="bottom", fontsize=12)
-    ax.set_xlim(-0.6, len(ACTORS) - 0.4)
-    ax.set_ylim(bottom, top + 0.9)
+        if font is not None:
+            ax.text(
+                xs[i],
+                0.27,
+                glyph(actor.icon, FONT_AWESOME),
+                ha="center",
+                va="center",
+                fontproperties=FontProperties(fname=font, size=22),
+                color=ink,
+                zorder=4,
+            )
+        ax.text(
+            xs[i],
+            -0.3 if font is not None else 0.0,
+            textwrap.fill(actor.label.replace(" (the shop)", ""), 11),
+            ha="center",
+            va="center",
+            fontsize=9,
+            color=ink,
+            zorder=4,
+        )
+        ax.text(
+            xs[i],
+            -box_h / 2 - 0.1,
+            textwrap.fill(step.text, 14),
+            ha="center",
+            va="top",
+            fontsize=10,
+            zorder=4,
+        )
+        qid = ids[i]
+        ax.plot(
+            xs[i],
+            ys[i],
+            "o",
+            color=colour_of("payment") if qid else "dimgrey",
+            markersize=11 if qid else 7,
+            zorder=3,
+        )
+        if qid:
+            ax.text(
+                xs[i],
+                ys[i] - 0.28,
+                qid,
+                ha="center",
+                va="top",
+                fontsize=12,
+                fontweight="bold",
+                color=colour_of("payment"),
+                zorder=4,
+            )
+    ax.text(-box_w / 2, max(ys) + 0.55, "mood", fontsize=12, style="italic", color="dimgrey")
+    ax.set_xlim(-box_w / 2 - 0.2, xs[-1] + box_w / 2 + 0.2)
+    ax.set_ylim(-2.4, max(ys) + 0.9)
     ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)
+    return out

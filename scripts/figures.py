@@ -10,7 +10,7 @@ python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
 python -m scripts.figures stacey --highlight 02 --out build/02-stacey/stacey-02.png
-python -m scripts.figures story --out build/03-chaos/story.png
+python -m scripts.figures journey --out build/03-chaos/diagrams/journey.png
 python -m scripts.figures tree --out build/01-bits/tree.png
 """
 
@@ -22,17 +22,18 @@ from pathlib import Path
 
 from scripts.utils.coverage_view import BITS, draw, load_tested
 from scripts.utils.figures import (
+    journey,
     moves,
     moves_figure,
     ports_of,
     seam,
-    story,
     tree,
 )
 from scripts.utils.finance import draw as draw_finance
 from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
 from scripts.utils.paths import doubling_chart, grid_image, load_cast, load_incidents, load_rules
+from scripts.utils.retro import load_questions
 from scripts.utils.stacey import draw as draw_stacey
 from scripts.utils.stacey import load_labels, load_spots, load_zones
 from scripts.utils.stage import agenda_strip, business_map, load_route
@@ -51,8 +52,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         "grid-image",
         "moves",
         "seam",
+        "journey",
         "stacey",
-        "story",
         "tree",
     ]
     parser.add_argument("what", choices=choices)
@@ -60,6 +61,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"), help="moves: rules")
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"), help="seam: cast")
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"), help="actors")
+    parser.add_argument(
+        "--questions", type=Path, default=Path("data/questions.csv"), help="journey: questions"
+    )
     parser.add_argument("--route", type=Path, default=Path("data/route.csv"), help="agenda: stops")
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
@@ -114,7 +118,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.highlight,
         )
         return 0
-    {"story": story, "tree": tree}[args.what](args.out)
+    if args.what == "journey":
+        journey(load_questions(args.questions), load_actors(args.actors), args.out)
+        return 0
+    tree(args.out)
     return 0
 
 
