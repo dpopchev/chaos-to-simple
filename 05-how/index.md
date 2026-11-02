@@ -59,7 +59,7 @@ Command query separation: a query asks, a command answers with a value, never bo
 Every answer is a value the caller can match on, so the order stops living in state.
 :::
 
-## The ports, as a picture {paths=512}
+## Every effect answers with a value {paths=512}
 
 \fvset{fontsize=\tiny}
 
@@ -86,25 +86,14 @@ The diff is only the seam, so the picture and the code say the same thing.
 
 \footnotesize
 
-:::: {.columns}
-::: {.column width="62%"}
-
-| move | sign |
-|---|---|
-| guard clause | + 1 |
-| `elif` / `match` over a sum type | + k |
-| extract a pure function that returns a value | + |
-| pass a flag across a boundary | x |
-| mutable state read in a later step | hidden x |
-| `try`/`except` around I/O inside the rules | hidden x |
-
-:::
-::: {.column width="38%"}
-
-![](build/05-how/board.png){height=30%}
-
-:::
-::::
+| move | sign | in this talk |
+|---|---|---|
+| guard clause | + 1 | `max(total, 0)` in pricing |
+| `elif` / `match` over a sum type | + k | `Zone` in `base_fee` |
+| extract a pure function that returns a value | + | `shipping_fee` returns the fee |
+| pass a flag across a boundary | x | subtotal into the threshold (I1) |
+| mutable state read in a later step | hidden x | `self.total`, 45 against 44 |
+| `try`/`except` around I/O inside the rules | hidden x | the log nobody reads (I3) |
 
 ::: notes
 The moves table: each move adds a path or hides one.
