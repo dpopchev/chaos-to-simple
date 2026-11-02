@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.stacey import load_labels, load_zones, side_of, zone_of
+from scripts.utils.stacey import draw, load_labels, load_spots, load_zones, side_of, zone_of
 
 ROOT = Path(__file__).resolve().parents[2]
 ZONES = load_zones(ROOT / "02-stacey" / "data" / "zones.csv")
@@ -60,3 +60,10 @@ def sourced_or_digit_free(text: str) -> bool:
 @pytest.mark.model
 def test_the_boom_quote_names_its_source_or_holds_no_digit() -> None:
     assert sourced_or_digit_free(LABELS["boom_quote"])
+
+
+@pytest.mark.model
+def test_stacey_writes_a_png(tmp_path: Path) -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    out = draw(route, ZONES, LABELS, tmp_path / "m.png", highlight="02")
+    assert out.read_bytes().startswith(b"\x89PNG")

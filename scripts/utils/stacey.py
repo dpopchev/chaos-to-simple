@@ -20,7 +20,7 @@ Side = Literal["above", "on", "below"]
 
 ZONE_COLOURS = ("accounting", "logistics", "marketing", "payment")
 LIMIT = 1.1
-FIGURE = (8.0, 8.2)
+FIGURE = (8.0, 8.1)
 
 
 @dataclass(frozen=True)
@@ -126,42 +126,26 @@ def draw(
     quote = labels["boom_quote"]
     for zone in zones:
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
-        ax.text(mid, -0.035, zone.label, ha="center", va="top", fontsize=15, fontweight="bold")
-        below = -0.11
-        if zone is zones[-1] and quote:
-            # The recorded quote sits between the band's name and its below text.
-            ax.text(mid, -0.08, quote, ha="center", va="top", fontsize=10)
-            below = -0.125
-        # Below the diagonal is below the axis: the band's below text sits under its name.
-        ax.text(
-            mid,
-            below,
-            textwrap.fill(zone.below, 22),
-            ha="center",
-            va="top",
-            fontsize=9.5,
-            style="italic",
-        )
         if zone is zones[0]:
-            # The innermost band is narrow: its above text hugs the y axis.
-            ax.text(
-                0.012,
-                0.19,
-                textwrap.fill(zone.above, 15),
-                ha="left",
-                va="center",
-                fontsize=8.5,
-                style="italic",
-                zorder=3,
-            )
-            continue
+            # The innermost band is narrow: its name and above text hug the y axis.
+            cx, cy, align, wrap, size = 0.012, 0.215, "left", 16, 8
+        else:
+            cx = max(mid * math.cos(math.radians(76)), 0.15)
+            cy = mid * math.sin(math.radians(76))
+            align, wrap, size = "center", 22, 9
+        # The band name sits in its arc above the in-arc text; the last is followed by the quote.
+        ax.text(cx, cy, zone.label, ha=align, va="bottom", fontsize=13, fontweight="bold", zorder=3)
+        top = cy
+        if zone is zones[-1] and quote:
+            ax.text(cx, top, quote, ha=align, va="top", fontsize=9, zorder=3)
+            top -= 0.04
         ax.text(
-            mid * math.cos(math.radians(76)),
-            mid * math.sin(math.radians(76)),
-            textwrap.fill(zone.above, 16),
-            ha="center",
-            va="center",
-            fontsize=9,
+            cx,
+            top,
+            textwrap.fill(zone.above, wrap),
+            ha=align,
+            va="top",
+            fontsize=size,
             style="italic",
             zorder=3,
         )
@@ -227,7 +211,7 @@ def draw(
             zorder=5,
             bbox={"facecolor": "white", "alpha": 0.7 * alpha, "edgecolor": "none", "pad": 1.5},
         )
-    ax.text(LIMIT / 2, -0.27, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey")
+    ax.text(LIMIT / 2, -0.02, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey")
     ax.text(
         -0.04,
         LIMIT / 2,
@@ -239,7 +223,7 @@ def draw(
         rotation=90,
     )
     ax.set_xlim(-0.08, LIMIT)
-    ax.set_ylim(-0.3, LIMIT)
+    ax.set_ylim(-0.1, LIMIT)
     ax.set_aspect("equal")
     ax.axis("off")
     fig.tight_layout()

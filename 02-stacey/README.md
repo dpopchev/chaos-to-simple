@@ -28,6 +28,10 @@ distance from the origin (`data/zones.csv`):
 | Complex | 0.50 to 0.75 | move down: decide the What first | move down: settle the How first |
 | Chaos (BOOM) | 0.75 and beyond | joint venture; no boundary; nobody can say how long | joint venture; no boundary; nobody can say how long |
 
+Each band's name is drawn inside its arc, above its above-the-diagonal text; the Chaos
+(BOOM) name is followed by the quote. Nothing is drawn under the x axis but its label; the
+below column of `zones.csv` is kept for the notes, not drawn.
+
 The diagonal y = x is labelled Who (`data/labels.csv`): above it stakeholders decide and
 agree, below it developers decide. The route puts 01 and 02 above the diagonal, 03 on it,
 and 04 to 06 below it.
@@ -36,7 +40,7 @@ and 04 to 06 below it.
 
 The candidate sources and what each states are in `data/boom-sources.md` (W-061).
 
-Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar Pit" (1975): a programming systems product costs nine times the program; `data/labels.csv` boom_quote reads "9x the program (Brooks 1975)"; the 8:1 hunch is not used, since no source read states it.
+Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar Pit" (1975): a programming systems product costs nine times the program; `data/labels.csv` boom_quote reads "program to product: 9x (Brooks, 1975)"; the 8:1 hunch is not used, since no source read states it.
 
 ## Done when
 
