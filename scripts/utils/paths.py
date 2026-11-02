@@ -139,12 +139,23 @@ def growth(cast: Sequence[CastRow]) -> tuple[Growth, ...]:
     return tuple(Growth(w, bits, tangled(bits)) for bits, w in enumerate(weeks, start=1))
 
 
+def room_curve(
+    points: Sequence[Growth], room_week: int, shell_bits: int = 3
+) -> tuple[list[int], list[int]]:
+    """The growth steps held flat to the room week, then the jump with the shell bits counted."""
+    weeks = [p.week for p in points]
+    paths = [p.paths for p in points]
+    room = tangled(points[-1].bits + shell_bits)
+    return [*weeks, room_week, room_week], [*paths, paths[-1], room]
+
+
 def doubling_chart(
     cast: Sequence[CastRow], out: Path, tested: int = 2, room_week: int | None = None
 ) -> Path:
     """Draw paths per week as a step line and the flat tested line beside it, near-square.
 
-    room_week, when set, ends the curve there instead of at the last core bit's week.
+    room_week, when set, holds the curve flat to that week and jumps to the room's 512 on a
+    log2 axis, so every doubling stays visible.
     """
     from scripts.utils import style
 
@@ -158,7 +169,25 @@ def doubling_chart(
     curve = colour_of("marketing")
     flat = colour_of("payment")
     fig, ax = plt.subplots(figsize=(6.0, 6.0), dpi=style.DPI)
-    ax.step([*weeks, end], [*paths, paths[-1]], where="post", color=curve, linewidth=3)
+    if room_week is None:
+        ax.step([*weeks, end], [*paths, paths[-1]], where="post", color=curve, linewidth=3)
+    else:
+        room_weeks, room_paths = room_curve(points, room_week)
+        ax.plot(room_weeks, room_paths, drawstyle="steps-post", color=curve, linewidth=3)
+        ax.plot([room_week], [room_paths[-1]], "o", color=curve, markersize=8)
+        ax.set_yscale("log", base=2)
+        ax.set_yticks([2**n for n in range(1, 10)])
+        ax.set_yticklabels([str(2**n) for n in range(1, 10)])
+        ax.annotate(
+            str(room_paths[-1]),
+            (room_week, room_paths[-1]),
+            textcoords="offset points",
+            xytext=(-8, -4),
+            ha="right",
+            va="top",
+            fontsize=14,
+            color=curve,
+        )
     ax.plot(weeks, paths, "o", color=curve, markersize=8)
     ax.hlines(tested, weeks[0] - 0.5, end, color=flat, linewidth=3)
     for week, value in zip(weeks, paths, strict=True):
@@ -178,7 +207,11 @@ def doubling_chart(
     ax.tick_params(labelsize=14)
     ax.set_xticks(range(weeks[0], end + 1))
     ax.set_xlim(weeks[0] - 0.5, end + 0.5)
-    ax.set_ylim(0, paths[-1] * 1.15)
+    if room_week is None:
+        ax.set_ylim(0, paths[-1] * 1.15)
+    else:
+        ax.minorticks_off()
+        ax.set_ylim(1.5, room_curve(points, room_week)[1][-1] * 1.4)
     fig.tight_layout()
     style.save(fig, out)
     return out

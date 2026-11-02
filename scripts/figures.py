@@ -82,6 +82,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--labels", type=Path, default=Path("02-stacey/data/labels.csv"))
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
     parser.add_argument("--tested", type=Path, default=Path("01-bits/data/tested.csv"))
+    parser.add_argument("--room", type=int, default=None, help="doubling: the room's week")
     args = parser.parse_args(argv)
 
     if args.what == "finance":
@@ -93,7 +94,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         draw(load_tested(args.tested), args.out)
         return 0
     if args.what == "doubling":
-        doubling_chart(load_cast(args.cast), args.out)
+        doubling_chart(load_cast(args.cast), args.out, room_week=args.room)
         return 0
     if args.what == "grid-image":
         rows = load_tested(args.tested)

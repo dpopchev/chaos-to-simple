@@ -36,6 +36,7 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
     panel_titles,
+    room_curve,
     rules_table,
     slice_label_point,
     split,
@@ -564,6 +565,24 @@ def test_doubling_upto_two_rows_has_two_rows() -> None:
 @pytest.mark.view
 def test_doubling_chart_is_near_square(tmp_path: Path) -> None:
     out = doubling_chart(DOUBLING_CAST, tmp_path / "doubling.png")
+    assert pixel_ratio(out) == pytest.approx(1.0, abs=0.1)
+
+
+@pytest.mark.model
+def test_room_curve_jumps_to_512_at_the_room_week() -> None:
+    weeks, paths = room_curve(growth(DOUBLING_CAST), 16)
+    assert (weeks[-1], paths[-1]) == (16, 512)
+
+
+@pytest.mark.model
+def test_room_curve_stays_at_64_until_the_room_week() -> None:
+    weeks, paths = room_curve(growth(DOUBLING_CAST), 16)
+    assert (weeks[-2], paths[-2]) == (16, 64)
+
+
+@pytest.mark.view
+def test_room_chart_is_near_square(tmp_path: Path) -> None:
+    out = doubling_chart(DOUBLING_CAST, tmp_path / "room.png", room_week=16)
     assert pixel_ratio(out) == pytest.approx(1.0, abs=0.1)
 
 
