@@ -8,7 +8,7 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.paths import load_cast
-from scripts.utils.storyboard import BubbleRow, bubble, step_diff, step_lines
+from scripts.utils.storyboard import BubbleRow, bubble, step_diff, step_lines, step_view
 from scripts.utils.widths import snippet_text, strip_step_markers
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -50,6 +50,12 @@ def test_each_step_adds_exactly_the_lines_marked_for_it(n: int) -> None:
 def test_each_step_adds_its_cast_fragment(n: int) -> None:
     fragment = next(row.fragment for row in CAST if row.step == n)
     assert fragment in "\n".join(added(n))
+
+
+@pytest.mark.view
+def test_step_view_marks_only_the_lines_of_its_step() -> None:
+    view = step_view(SOURCE, 3).splitlines()[1:]
+    assert [row[2:] for row in view if row.startswith("+ ")] == marked(3)
 
 
 @pytest.mark.view

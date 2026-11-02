@@ -45,6 +45,22 @@ def step_lines(source: str, n: int) -> str:
     return "\n".join(kept)
 
 
+def step_view(source: str, n: int) -> str:
+    """Return the whole checkout at step n under its caption, the lines of step n marked '+ '.
+
+    The caption is 'checkout v{n-1} -> v{n}', or 'checkout v0' for step 0; the other lines
+    take two spaces, so each body line keeps its source indentation after the prefix.
+    """
+    caption = f"checkout v{n - 1} -> v{n}" if n > 0 else "checkout v0"
+    body: list[str] = []
+    for row in source.splitlines():
+        found = _MARKER.search(row)
+        if found and int(found.group("n")) <= n:
+            mark = "+ " if int(found.group("n")) == n else "  "
+            body.append(mark + _ASIDE.sub("", _MARKER.sub("", row)))
+    return "\n".join([caption, *body]) + "\n"
+
+
 def step_diff(source: str, n: int) -> str:
     """Return the unified diff from step n-1 to step n, without file or hunk headers.
 

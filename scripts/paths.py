@@ -56,7 +56,7 @@ from scripts.utils.paths import (
 )
 from scripts.utils.retro import load_questions, question_card, retro_table
 from scripts.utils.stagediff import snippet_diff
-from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
+from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_view
 
 
 def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -> None:
@@ -64,7 +64,7 @@ def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -
     text = source.read_text(encoding="ascii")
     out_dir.mkdir(parents=True, exist_ok=True)
     for n in range(STEPS):
-        (out_dir / f"step-{n}.diff").write_text(step_diff(text, n), encoding="ascii")
+        (out_dir / f"step-{n}.diff").write_text(step_view(text, n), encoding="ascii")
     write_bubbles(bubbles, actors, out_dir)
 
 
