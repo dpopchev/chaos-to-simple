@@ -76,9 +76,35 @@ def test_font_available_asks_for_the_icon_face() -> None:
     assert asked == ["Font Awesome 7 Free:style=Solid"]
 
 
+def everything(path: Path) -> set[int]:
+    """Fake charmap: a file that holds every codepoint."""
+    return {point.font_awesome for point in ICONS.values()}
+
+
+def without_code(path: Path) -> set[int]:
+    """Fake charmap: the regular file lacks the code icon, the solid file holds all."""
+    held = everything(path)
+    return held - {ICONS["code"].font_awesome} if "Regular" in path.name else held
+
+
+@pytest.mark.model
+def test_font_file_skips_a_file_missing_a_glyph() -> None:
+    listing = "/fonts/Free-Regular-400.otf\n/fonts/Free-Solid-900.otf\n"
+    assert font_file(FONT_AWESOME, lambda pattern: listing, without_code) == Path(
+        "/fonts/Free-Solid-900.otf"
+    )
+
+
+@pytest.mark.model
+def test_font_file_names_the_files_it_tried() -> None:
+    with pytest.raises(FontMissingError, match="Free-Regular-400"):
+        font_file(FONT_AWESOME, lambda pattern: "/fonts/Free-Regular-400.otf\n", lambda p: set())
+
+
 @pytest.mark.model
 def test_font_file_keeps_a_path_with_spaces() -> None:
-    assert font_file(FONT_AWESOME, lambda pattern: SOLID) == Path("/fonts/a b-Solid.otf")
+    found = font_file(FONT_AWESOME, lambda pattern: SOLID, everything)
+    assert found == Path("/fonts/a b-Solid.otf")
 
 
 @pytest.mark.model

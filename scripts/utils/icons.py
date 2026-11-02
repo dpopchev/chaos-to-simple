@@ -9,7 +9,7 @@ of their Font Awesome codepoints (warehouse, store, layer-group), so the two dif
 from __future__ import annotations
 
 import subprocess
-from collections.abc import Callable
+from collections.abc import Callable, Collection
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Literal, assert_never
@@ -23,6 +23,8 @@ FAMILIES: tuple[Family, ...] = (FONT_AWESOME, NERD)
 
 # fontconfig pattern -> the font files it matches, one per line.
 Find = Callable[[str], str]
+# font file -> the codepoints it draws.
+Charmap = Callable[[Path], Collection[int]]
 
 
 @dataclass(frozen=True)
@@ -122,12 +124,32 @@ def font_available(family: Family, find: Find) -> bool:
     return bool(find(pattern(family)).strip())
 
 
-def font_file(family: Family, find: Find) -> Path:
-    """Return the first font file of the icon face of family; raise FontMissingError if none."""
+def ft2font_charmap(path: Path) -> Collection[int]:
+    """Return the codepoints the font file draws, read with matplotlib's FreeType."""
+    from matplotlib.ft2font import FT2Font
+
+    return FT2Font(str(path)).get_charmap().keys()
+
+
+def icon_points(family: Family) -> set[int]:
+    """Return the codepoints of every ICONS entry in family."""
+    return {p.font_awesome if family == FONT_AWESOME else p.nerd for p in ICONS.values()}
+
+
+def font_file(family: Family, find: Find, charmap: Charmap = ft2font_charmap) -> Path:
+    """Return the first font file of the icon face of family that draws every icon.
+
+    A file sorted first that lacks a glyph (a Regular file beside the Solid one) is skipped;
+    raise FontMissingError naming the files tried when none draws them all.
+    """
     files = sorted(line for line in find(pattern(family)).splitlines() if line.strip())
     if not files:
         raise FontMissingError(f"fontconfig finds no file for {pattern(family)!r}")
-    return Path(files[0])
+    needed = icon_points(family)
+    for name in files:
+        if needed <= set(charmap(Path(name))):
+            return Path(name)
+    raise FontMissingError(f"no file draws every icon of {family!r}; tried {', '.join(files)}")
 
 
 def probe(out_png: Path, family: Family, font: Path) -> Path:
