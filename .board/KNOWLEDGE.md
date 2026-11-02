@@ -49,4 +49,5 @@
 - 2026-11-02 E-007: W-079 filed under E-007 from W-057's criterion run
 - 2026-11-02 E-007: W-080 filed under E-007 from W-059's criterion run (grid over the title); W-081 filed standalone (make overflow misses it)
 - 2026-11-02 E-007: W-084 filed under E-007 from T-169: the skeleton dropped the 07 Q&A bullets and notes
+- 2026-11-02 E-007: W-085 filed under E-007 from W-068's criterion run (badge over the epilogue title)
 - 2026-11-02 E-007: ten todo Checks of the form make artifacts && test -s or ls now start with make clean-build, since make stubs leaves a placeholder at every manifest path that would pass them
