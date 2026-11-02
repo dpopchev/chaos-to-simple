@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-096   | blocked: 0 | todo roots: 2 | done: 325 | pruned: 4
+open path: E-010   | blocked: 0 | todo roots: 2 | done: 326 | pruned: 4
 
 ## Tree
 
@@ -13,7 +13,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
   W-093  issue  [done]     03: the room readable from the back -- T-212 [done], T-213 [done], T-214 [done]
   W-094  issue  [done]     04: the homes without noise -- T-215 [done], T-216 [done], T-217 [done]
   W-095  issue  [done]     05: the seam without guards -- T-218 [done], T-219 [done]
-  W-096  issue  [doing]    06: the measured frames -- T-220 [done], T-221 [done], T-222 [done], T-223 [done]
+  W-096  issue  [done]     06: the measured frames -- T-220 [done], T-221 [done], T-222 [done], T-223 [done]
   W-097  issue  [todo]     07: the repository link -- T-224 [todo]
 W-098  issue  [todo]     (standalone) 04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
 W-099  issue  [todo]     (standalone) remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
@@ -571,7 +571,7 @@ flowchart TD
   E010 --> W095["W-095 issue done: 05: the seam without guards"]
   W095 --> T218["T-218 done: Hide the exhaustiveness guards from the ports diff -> build/05-how/v5.diff"]
   W095 --> T219["T-219 done: Recaption the I3 frame and define the seam -> 05-how/index.md"]
-  E010 --> W096["W-096 issue doing: 06: the measured frames"]
+  E010 --> W096["W-096 issue done: 06: the measured frames"]
   W096 --> T220["T-220 done: Refactor the 64-path tests onto two fixtures -> 06-simple/tests/test_core_paths.py and 06-simple/index.md"]
   W096 --> T221["T-221 done: Measure the eight worlds -> 06-simple/s06_simple/worlds.py and build/06-simple/worlds.txt"]
   W096 --> T222["T-222 done: Keep the seventh signature on one line -> 06-simple/s06_simple/seventh.py and build/06-simple/seventh.diff"]
@@ -587,7 +587,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W096 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,T220,T221,T222,T223 done
+  class E010 doing
+  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223 done
   class W097,T224,W098,T227,W099,T228 todo
 ```
