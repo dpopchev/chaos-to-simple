@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from pathlib import Path
+
 import pytest
 
-from scripts.utils.widths import too_wide
+from scripts.utils.widths import read_include, too_wide
 
 SLIDE = """## Beside a figure
 
@@ -18,6 +20,12 @@ SLIDE = """## Beside a figure
 :::
 ::::
 """
+
+
+@pytest.mark.edge
+def test_read_include_fails_on_a_missing_file_when_strict(tmp_path: Path) -> None:
+    with pytest.raises(FileNotFoundError, match=r"missing\.txt"):
+        read_include(tmp_path, "missing.txt", strict=True)
 
 
 @pytest.mark.view
