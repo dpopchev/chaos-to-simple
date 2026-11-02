@@ -18,6 +18,7 @@ from scripts.utils.retro import Question
 COLUMNS = ("room", "sentence", "home", "code", "test")
 # Stage 03 shows the first two columns, 04 three, 05 four, 06 all five.
 STAGES = {3: 2, 4: 3, 5: 4, 6: 5}
+HEADERS = ("03 room", "03 sentence", "04 home", "05 answer", "06 test")
 WIDTHS = (0.07, 0.38, 0.13, 0.2, 0.22)
 TEST_FUNCTION = re.compile(r"^(?:def (test_\w+)\(|class (Test\w+)[(:])", re.MULTILINE)
 
@@ -53,7 +54,7 @@ def board_rows(
     return tuple(
         BoardRow(
             rule.bit,
-            room.get(rule.bit, ""),
+            room.get(rule.bit, rule.bit),
             rule.rule,
             rule.context,
             rule.code,
@@ -61,6 +62,12 @@ def board_rows(
         )
         for rule in rules
     )
+
+
+def header_text(col: int, stage: int) -> str:
+    """Name column col by the stage that reveals it; a column past stage gets 'later' below."""
+    name = HEADERS[col]
+    return name if col < STAGES[stage] else f"{name}\nlater"
 
 
 def tests_defined(tests_dir: Path) -> dict[str, object]:
@@ -119,9 +126,9 @@ def board(rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path) -> P
                 linespacing=1.15,
             )
 
-    for col, name in enumerate(COLUMNS):
+    for col in range(len(COLUMNS)):
         head = colour_of("shell") if col < shown else None
-        cell(col, 0, name if col < shown else "", head, 12, "white")
+        cell(col, 0, header_text(col, stage), head, 12, "white" if col < shown else "dimgray")
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,

@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.board import board, board_rows, example_tests, missing_of
+from scripts.utils.board import board, board_rows, example_tests, header_text, missing_of
 from scripts.utils.board import tests_defined as defined_tests
 from scripts.utils.paths import load_rules
 from scripts.utils.retro import load_questions
@@ -46,8 +46,13 @@ def test_room_of_the_coupon_bit_is_question_q1() -> None:
 
 
 @pytest.mark.model
-def test_a_bit_without_a_question_has_an_empty_room() -> None:
-    assert rows()[3].room == ""
+def test_a_bit_without_a_question_shows_its_bit() -> None:
+    assert rows()[3].room == "b3"
+
+
+@pytest.mark.model
+def test_waiting_columns_are_headed_later() -> None:
+    assert header_text(2, 3) == "04 home\nlater"
 
 
 @pytest.mark.edge
