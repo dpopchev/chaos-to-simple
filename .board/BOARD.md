@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008   | blocked: 0 | todo roots: 1 | done: 278 | pruned: 4
+open path: E-008   | blocked: 0 | todo roots: 2 | done: 278 | pruned: 4
 
 ## Tree
 
@@ -16,6 +16,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-083  bug    [todo]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
   W-087  bug    [todo]     make overflow passes a frame that fits its text height but whose [T]-column image reaches the title   (filed during T-189) -- T-196 [todo], T-197 [todo]
 W-086  issue  [todo]     (standalone) lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [todo]
+W-088  bug    [todo]     (standalone) stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [todo]
 ```
 
 ## Closed
@@ -508,6 +509,8 @@ flowchart TD
   W087 --> T197["T-197 todo: Name a frame under the slack threshold -> scripts/utils/overflow.py"]
   W086["W-086 issue todo, standalone: lengths: the STRICT failure on a missing include gets its own test"]
   W086 --> T195["T-195 todo: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
+  W088["W-088 bug todo, standalone: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
+  W088 --> T198["T-198 todo: Remove the in-tree bytecode in make clean-python -> mk/python.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -515,6 +518,6 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E008 doing
   class W070,T177,W072,T179,W073,T180,W075,T182,W082,T190 done
-  class W074,T181,W083,T192,W087,T196,T197,W086,T195 todo
+  class W074,T181,W083,T192,W087,T196,T197,W086,T195,W088,T198 todo
   class W081,T189 pruned
 ```
