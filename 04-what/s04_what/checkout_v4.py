@@ -14,7 +14,11 @@ from s04_what.tax import VatId, total_with_vat
 # [snippet: checkout]
 def checkout(order: Order, today: date, charge: Charge, reserve: Reserve, send: Send):
     goods = sum((line.price * line.qty for line in order.lines), bgn(0))
-    coupon = Coupon(order.coupon_valid_until) if order.coupon_valid_until else None
+    coupon = (
+        Coupon(order.coupon_valid_until)  # no date, no coupon
+        if order.coupon_valid_until
+        else None
+    )
     zone = Zone.INTERNATIONAL if order.international else Zone.DOMESTIC
     vat_id = VatId(order.vat_id) if order.vat_id else None
     net_goods = discounted_goods(goods, coupon, order.member, today)

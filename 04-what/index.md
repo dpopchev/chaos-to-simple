@@ -50,7 +50,7 @@ The type checker counts this bit: a state with no case is an error, not a silent
 
 ## Bounded contexts: every bit has a home {paths=512}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="62%"}
