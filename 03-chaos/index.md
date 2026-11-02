@@ -42,20 +42,25 @@ discount, not before it: the rule came last, after the code had already picked o
 \fvset{fontsize=\scriptsize}
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="62%"}
 
-![](build/03-chaos/grid-9.png){height=60%}
-
-![](build/03-chaos/doubling-512.png){height=30%}
-
-:::
-::: {.column width="50%"}
+![](build/03-chaos/grid-9.png){width=100%}
 
 ```{.text include=build/data/counts.txt}
 ```
 
 :::
+::: {.column width="38%"}
+
+![](build/03-chaos/doubling-512.png){width=100%}
+
+:::
 ::::
+
+::: notes
+The grid you saw in 01 was one of eight. The four framed panels are the ones where the
+stock is gone. The number is now true: 2^9 = 512. The bigger number is the first good news.
+:::
 
 ## Nine decisions, none deleted, all moved {paths=512}
 

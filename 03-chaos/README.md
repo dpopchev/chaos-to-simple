@@ -16,7 +16,7 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 - [x] The journey of one order: `build/03-chaos/diagrams/journey.png`
 - [x] The room: the chat log, `03-chaos/data/room.txt`
 - [x] The retro: the six questions as a table, `build/03-chaos/retro.txt`
-- [x] The honest count: `build/data/counts.txt`
+- [x] The honest count (frame 4): `build/03-chaos/grid-9.png`, `build/03-chaos/doubling-512.png`, `build/data/counts.txt`
 - [x] First change: bit, who, rule, with the line glued at its foot: `build/data/rules.txt`
 
 ## Live
