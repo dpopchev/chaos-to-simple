@@ -1,18 +1,19 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 8 | done: 268 | pruned: 2
+open path: none   | blocked: 0 | todo roots: 1 | done: 268 | pruned: 2
 
 ## Tree
 
 ```text
-W-070  issue  [todo]     (standalone) chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
-W-072  bug    [todo]     (standalone) make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
-W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
-W-074  bug    [todo]     (standalone) make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
-W-075  issue  [todo]     (standalone) scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
-W-081  bug    [todo]     (standalone) make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
-W-082  issue  [todo]     (standalone) remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [todo]
-W-083  bug    [todo]     (standalone) make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
+E-008         [todo]     backlog after deck v2: the build guards, the rebuild rule and the cleanups
+  W-070  issue  [todo]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
+  W-072  bug    [todo]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
+  W-073  bug    [todo]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
+  W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
+  W-075  issue  [todo]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
+  W-081  bug    [todo]     make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
+  W-082  issue  [todo]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [todo]
+  W-083  bug    [todo]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
 ```
 
 ## Closed
@@ -483,26 +484,27 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  W070["W-070 issue todo, standalone: chart labels: spread_apart gets its own test"]
+  E008["E-008 todo: backlog after deck v2: the build guards, the rebuild rule and the cleanups"]
+  E008 --> W070["W-070 issue todo: chart labels: spread_apart gets its own test"]
   W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
-  W072["W-072 bug todo, standalone: make lengths crashes on an include of a missing file the filter would render as a STUB"]
+  E008 --> W072["W-072 bug todo: make lengths crashes on an include of a missing file the filter would render as a STUB"]
   W072 --> T179["T-179 todo: Skip a missing include with a warning -> scripts/check_lengths.py"]
-  W073["W-073 bug todo, standalone: 05 ports.png is not rebuilt when data/cast.csv changes"]
+  E008 --> W073["W-073 bug todo: 05 ports.png is not rebuilt when data/cast.csv changes"]
   W073 --> T180["T-180 todo: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
-  W074["W-074 bug todo, standalone: make check passes on a tree that ruff format would change"]
+  E008 --> W074["W-074 bug todo: make check passes on a tree that ruff format would change"]
   W074 --> T181["T-181 todo: Format the tree and gate it in make check -> mk/python.mk"]
-  W075["W-075 issue todo, standalone: scripts.utils.style imports palette, so palette imports icons lazily"]
+  E008 --> W075["W-075 issue todo: scripts.utils.style imports palette, so palette imports icons lazily"]
   W075 --> T182["T-182 todo: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
-  W081["W-081 bug todo, standalone: make overflow passes a frame whose content beamer shifts over the title"]
+  E008 --> W081["W-081 bug todo: make overflow passes a frame whose content beamer shifts over the title"]
   W081 --> T189["T-189 todo: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
-  W082["W-082 issue todo, standalone: remove the dead growth chart and its paths subcommand"]
+  E008 --> W082["W-082 issue todo: remove the dead growth chart and its paths subcommand"]
   W082 --> T190["T-190 todo: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
-  W083["W-083 bug todo, standalone: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
+  E008 --> W083["W-083 bug todo: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
   W083 --> T192["T-192 todo: Write stubs with an epoch mtime -> scripts/utils/stubs.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
+  class E008,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
