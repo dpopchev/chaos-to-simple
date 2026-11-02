@@ -3,15 +3,17 @@
 from __future__ import annotations
 
 import csv
+import re
 from pathlib import Path
 
 import pytest
 
-from scripts.utils.stacey import boom_label, load_labels, load_zones, side_of, zone_of
+from scripts.utils.stacey import load_labels, load_zones, side_of, zone_of
 
 ROOT = Path(__file__).resolve().parents[2]
 ZONES = load_zones(ROOT / "02-stacey" / "data" / "zones.csv")
 LABELS = load_labels(ROOT / "02-stacey" / "data" / "labels.csv")
+SOURCED = re.compile(r"\([^()]*\b\d{4}\)")
 
 
 def stop(section: str) -> tuple[float, float]:
@@ -50,6 +52,11 @@ def test_stop_06_is_below_the_diagonal() -> None:
     assert side_of(*stop("06")) == "below"
 
 
+def sourced_or_digit_free(text: str) -> bool:
+    """Tell whether a label names its source as a year in parentheses, or carries no number."""
+    return SOURCED.search(text) is not None or not any(c.isdigit() for c in text)
+
+
 @pytest.mark.model
-def test_the_boom_label_holds_no_digit_while_the_quote_is_empty() -> None:
-    assert not any(c.isdigit() for c in boom_label(LABELS, ZONES))
+def test_the_boom_quote_names_its_source_or_holds_no_digit() -> None:
+    assert sourced_or_digit_free(LABELS["boom_quote"])

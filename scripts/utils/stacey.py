@@ -91,12 +91,6 @@ def side_of(x: float, y: float) -> Side:
     return "above" if y > x else "below"
 
 
-def boom_label(labels: Mapping[str, str], zones: Sequence[Zone]) -> str:
-    """Return the BOOM band's label, with the recorded quote when there is one."""
-    quote = labels["boom_quote"]
-    return f"{zones[-1].label}\n{quote}" if quote else zones[-1].label
-
-
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],
@@ -121,15 +115,18 @@ def draw(
         LIMIT - 0.04, LIMIT - 0.08, labels["diagonal"], ha="center", va="center", fontsize=20,
         fontweight="bold", color="dimgrey", rotation=45, zorder=6,
     )
+    quote = labels["boom_quote"]
     for zone in zones:
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
-        ax.text(
-            mid, -0.035, boom_label(labels, zones) if zone is zones[-1] else zone.label,
-            ha="center", va="top", fontsize=15, fontweight="bold",
-        )
+        ax.text(mid, -0.035, zone.label, ha="center", va="top", fontsize=15, fontweight="bold")
+        below = -0.11
+        if zone is zones[-1] and quote:
+            # The recorded quote sits between the band's name and its below text.
+            ax.text(mid, -0.08, quote, ha="center", va="top", fontsize=10)
+            below = -0.125
         # Below the diagonal is below the axis: the band's below text sits under its name.
         ax.text(
-            mid, -0.11, textwrap.fill(zone.below, 22), ha="center", va="top", fontsize=9.5,
+            mid, below, textwrap.fill(zone.below, 22), ha="center", va="top", fontsize=9.5,
             style="italic",
         )
         if zone is zones[0]:

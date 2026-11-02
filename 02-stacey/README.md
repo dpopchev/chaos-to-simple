@@ -34,7 +34,9 @@ and 04 to 06 below it.
 
 ## Sources
 
-The BOOM label carries no number until W-061 records a source for it.
+The candidate sources and what each states are in `data/boom-sources.md` (W-061).
+
+Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar Pit" (1975): a programming systems product costs nine times the program; `data/labels.csv` boom_quote reads "9x the program (Brooks 1975)"; the 8:1 hunch is not used, since no source read states it.
 
 ## Done when
 

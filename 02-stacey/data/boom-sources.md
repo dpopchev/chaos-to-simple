@@ -22,5 +22,6 @@ Not verified (seen only in search summaries or secondary pages, no primary page 
 - Ralph Stacey's own text (Strategic Management and Organisational Dynamics, 1996 and
   later editions): no copy was read, so no claim is made for it.
 
-Decision: pending. Until a source is verified, labels.csv keeps boom_quote empty and the
-BOOM label carries no numbers.
+Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar Pit" (1975): a
+programming systems product costs nine times the program; labels.csv boom_quote reads
+"9x the program (Brooks 1975)"; the 8:1 hunch is not used, since no source read states it.
