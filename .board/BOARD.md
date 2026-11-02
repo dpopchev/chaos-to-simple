@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010   | blocked: 0 | todo roots: 3 | done: 328 | pruned: 4
+open path: E-010   | blocked: 0 | todo roots: 4 | done: 328 | pruned: 4
 
 ## Tree
 
@@ -18,6 +18,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
 W-098  issue  [todo]     (standalone) 04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
 W-099  issue  [todo]     (standalone) remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
 W-100  issue  [todo]     (standalone) 06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
+W-101  issue  [todo]     (standalone) 07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
 ```
 
 ## Closed
@@ -585,6 +586,8 @@ flowchart TD
   W099 --> T228["T-228 todo: Remove contexts_table and the contexts subcommand -> scripts/utils/paths.py and scripts/paths.py"]
   W100["W-100 issue todo, standalone: 06: the number chart's core label and doubled shell entry"]
   W100 --> T229["T-229 todo: Fit the core label and merge the shell entry -> scripts/utils/paths.py and scripts/utils/test_paths.py"]
+  W101["W-101 issue todo, standalone: 07: the repository URL breaks across two lines"]
+  W101 --> T230["T-230 todo: Set the repository URL on one line -> 07-close/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -592,5 +595,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E010 doing
   class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 done
-  class W098,T227,W099,T228,W100,T229 todo
+  class W098,T227,W099,T228,W100,T229,W101,T230 todo
 ```
