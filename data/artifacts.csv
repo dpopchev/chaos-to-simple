@@ -16,6 +16,13 @@ build/01-bits/step-3.diff,diff,scripts.paths storyboard
 build/01-bits/step-4.diff,diff,scripts.paths storyboard
 build/01-bits/step-5.diff,diff,scripts.paths storyboard
 build/01-bits/step-6.diff,diff,scripts.paths storyboard
+build/01-bits/tally-0.txt,txt,scripts.paths storyboard
+build/01-bits/tally-1.txt,txt,scripts.paths storyboard
+build/01-bits/tally-2.txt,txt,scripts.paths storyboard
+build/01-bits/tally-3.txt,txt,scripts.paths storyboard
+build/01-bits/tally-4.txt,txt,scripts.paths storyboard
+build/01-bits/tally-5.txt,txt,scripts.paths storyboard
+build/01-bits/tally-6.txt,txt,scripts.paths storyboard
 build/01-bits/bubble-0.txt,txt,scripts.paths storyboard
 build/01-bits/bubble-1.txt,txt,scripts.paths storyboard
 build/01-bits/bubble-2.txt,txt,scripts.paths storyboard

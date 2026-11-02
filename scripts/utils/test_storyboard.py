@@ -8,7 +8,14 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.paths import load_cast
-from scripts.utils.storyboard import BubbleRow, bubble, step_diff, step_lines, step_view
+from scripts.utils.storyboard import (
+    BubbleRow,
+    bubble,
+    step_diff,
+    step_lines,
+    step_view,
+    tally_line,
+)
 from scripts.utils.widths import snippet_text, strip_step_markers
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -86,6 +93,11 @@ def test_bubble_wraps_at_the_column_width() -> None:
     row = BubbleRow(1, 3, "2026-08-11", "marketing", words)
     lines = bubble(row, {"marketing": "Marketing"}).splitlines()
     assert max(map(len, lines)) <= 34
+
+
+@pytest.mark.view
+def test_tally_line_doubles_the_paths() -> None:
+    assert tally_line(3) == "checkout v3: 3 policies, 8 paths, 2 tests"
 
 
 @pytest.mark.view

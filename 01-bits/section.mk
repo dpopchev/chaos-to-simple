@@ -1,6 +1,7 @@
 # 01-bits -- the coverage report, the 64-path grid and the storyboard are build artifacts, so
 # the numbers on the slides are measured, not typed. A plain `#` keeps it out of make help.
 STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
+  $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/tally-$(k).txt) \
   $(foreach k,0 1 2 3 4 5 6 7 8,$(BUILD)/01-bits/bubble-$(k).txt)
 
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/doubling.txt

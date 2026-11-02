@@ -74,6 +74,11 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(body) + "\n"
 
 
+def tally_line(n: int, tests: int = 2) -> str:
+    """Return the tally over the step view: policies, the paths they double to, the tests."""
+    return f"checkout v{n}: {n} policies, {2**n} paths, {tests} tests"
+
+
 def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:
     """Return the bubble text: actor label and date, then the words wrapped at width."""
     words = textwrap.fill(row.words, width=width)
