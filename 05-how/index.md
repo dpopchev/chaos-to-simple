@@ -1,6 +1,6 @@
-# Complicated on the How: decoupling, cohesion, FP vs OO, CQS
+# 05 Seam: decoupling, cohesion, FP vs OO, CQS
 
-## I3: cards charged for parcels the warehouse did not have {paths=512}
+## I3 charged cards for missing stock because charge ran before reserve {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -20,7 +20,7 @@ I3 comes first, before any design word. Support raised the flag: cards charged f
 The test writes the rule down against checkout v4, and the run under it shows the order the code happened to take: charge, then reserve.
 :::
 
-## The bit nobody wrote down {paths=512}
+## The call order is a bit nobody wrote down, giving 45 against 44 from the same inputs {paths=512}
 
 ```{.python include=05-how/tests/test_oo_order.py snippet=order-bit}
 ```
@@ -30,7 +30,7 @@ The call order is a bit nobody wrote down: 45 against 44 from the same inputs.
 Live demo: make test K=TestCallOrder. The first test follows the rule, the second one differs.
 :::
 
-## Past me reached for a class {paths=512}
+## A class hid the call order in its state, the same bug as I3 in pricing {paths=512}
 
 ```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
@@ -43,7 +43,7 @@ Each method reads and changes the same fields, and the call sequence became a bi
 It is the same bug as I3, pricing edition.
 :::
 
-## Command Query Separation draws the seam {paths=512}
+## Command Query Separation draws the seam by making every answer a value {paths=512}
 
 query: pure, returns a value
 
@@ -59,7 +59,7 @@ Command query separation: a query asks, a command answers with a value, never bo
 Every answer is a value the caller can match on, so the order stops living in state.
 :::
 
-## Every effect answers with a value {paths=512}
+## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
 
 \fvset{fontsize=\tiny}
 
@@ -82,7 +82,7 @@ The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every a
 The diff is only the seam, so the picture and the code say the same thing.
 :::
 
-## A boundary that passes values adds paths; one that passes flags multiplies them {paths=512}
+## Passing values across a boundary adds paths you can count, passing flags multiplies them {paths=512}
 
 \footnotesize
 

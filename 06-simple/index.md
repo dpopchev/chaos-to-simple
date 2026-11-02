@@ -1,6 +1,6 @@
-# Simple: functional core, imperative shell
+# 06 Core and shell: functional core, imperative shell
 
-## Cut along the seam {paths=512}
+## Moving the pure part out into price cuts along the seam and changes nothing else {paths=512}
 
 \fvset{fontsize=\tiny}
 
@@ -26,7 +26,7 @@ The pure part moves out into price, and the shell keeps the three calls.
 Nothing else changed: same decisions, one place each.
 :::
 
-## Sixty-four paths, three invariants: 192 tests {paths=512}
+## Every one of 64 paths holds three invariants, so the core runs 192 tests {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -41,7 +41,7 @@ The core has no if of its own, every bit stays where it was named.
 64 paths, one test each, three invariants per path, and the count is measured.
 :::
 
-## Eight worlds, four outcomes {paths=512}
+## Eight shell worlds collapse to four outcomes, with no charge when stock is gone {paths=512}
 
 \fvset{fontsize=\tiny}
 
@@ -65,7 +65,7 @@ Eight shell worlds collapse to four outcomes.
 No charge when stock is gone, no mail when the card is refused.
 :::
 
-## The wounds close by name {paths=512}
+## I1 and I3 each close by name as a test, and the seam keeps both from returning {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -82,9 +82,9 @@ I1 and I3 close by name, each wound is now a test with its own name.
 The core has no if of its own, so neither wound can come back through a decision.
 :::
 
-## The number {paths=72}
+## The split cuts 512 paths to 72 while branch coverage stays at 100% as before {paths=72}
 
-![](build/06-simple/paths.png){height=65%}
+![](build/06-simple/paths.png){height=61%}
 
 ```{.text include=build/data/splits.txt}
 ```
@@ -96,7 +96,7 @@ No decision is ever deleted, only moved
 Nothing was deleted, every decision only moved to the place that owns it.
 :::
 
-## Epilogue: marketing's seventh if {paths=72}
+## Marketing's seventh if lands in shipping and costs 8 paths, not 512 {paths=72}
 
 \fvset{fontsize=\scriptsize}
 
@@ -117,7 +117,7 @@ Nothing was deleted, every decision only moved to the place that owns it.
 :::
 ::: {.column width="40%"}
 
-![](build/06-simple/epilogue.png){height=60%}
+![](build/06-simple/epilogue.png){height=56%}
 
 :::
 ::::

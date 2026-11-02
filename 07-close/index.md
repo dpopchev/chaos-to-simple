@@ -1,4 +1,4 @@
-## What I should have known from the start {paths=72}
+## Six beliefs I held at the start each gave way to the lesson I should have known {paths=72}
 
 \small
 
@@ -13,7 +13,7 @@
 read the learned column only
 :::
 
-## Follow the series and bring your own checkout {paths=72}
+## Follow the series one section at a time, then bring your own checkout to review {paths=72}
 
 - \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}
 - the CraftsmansDay and JourneymansDay post series: one section at a time
@@ -24,7 +24,7 @@ read the learned column only
 - Bring a function of your own: we count its paths together.
 :::
 
-## Q&A {paths=72}
+## Q&A: ask anything about the tests, the repository, the posts or the earlier talks {paths=72}
 
 :::::: {.columns}
 ::: {.column width="45%"}
@@ -53,7 +53,7 @@ read the learned column only
 - Live demo 2: show build/01-bits/grid.png, then make test K=two_ifs.
 :::
 
-## Thank you {paths=72}
+## Thank you to the audience for the questions and to DEV.BG for the stage {paths=72}
 
 - to you, for the questions
 - to DEV.BG and the Python user group, for the stage

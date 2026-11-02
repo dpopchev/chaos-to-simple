@@ -1,6 +1,6 @@
-# Complicated on the What: one language, bounded contexts
+# 04 Homes: one language, bounded contexts
 
-## Color-coded, the ifs get names {paths=512}
+## Coloring every line by who asked for it shows which context each if belongs to {paths=512}
 
 ![](build/04-what/colorcode.png){height=80%}
 
@@ -9,7 +9,7 @@ Every line is coloured by who asked for it and by the context that owns it.
 The colours show where each if comes from before anyone reads its name.
 :::
 
-## The first fix {paths=512}
+## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -23,7 +23,7 @@ The threshold now reads the discounted goods, so I1 closes.
 The diff is the whole fix: one name changes, and the rest of the function stays as it was.
 :::
 
-## The dispute closes {paths=512}
+## Shipping owns the dispute's rule and a sum type lets the checker count its bit {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -42,7 +42,7 @@ Zone has two states, so the type is a sum and not a flag: a state with no case i
 Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type checker counts the bit. Put it back.
 :::
 
-## Bounded contexts: every bit has a home {paths=512}
+## Each bit now has a home in pricing, shipping, tax or shell, named by who asked {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
@@ -73,7 +73,7 @@ The same function now makes three context calls, and its effects are still inlin
 Every bit has a home and a face: each context names the people who asked for its rules.
 :::
 
-## Bounded contexts, the moves {paths=512}
+## All nine decisions moved home: the contexts are the core, the ports are the shell {paths=512}
 
 ![](build/04-what/moves.png){width=80%}
 
