@@ -30,7 +30,6 @@ JOURNEY = (
     JourneyStep("marketing", "the autumn coupon applies", "b0"),
     JourneyStep("loyalty", "the member discount applies", "b1"),
     JourneyStep("logistics", "free shipping from 50?", "b2"),
-    JourneyStep("accounting", "VAT for Sofia", None),
     JourneyStep("payment", "the card is charged", "s0"),
     JourneyStep("warehouse", "the parcel is reserved", "s1"),
     JourneyStep("mailer", "the confirmation is sent", "s2"),
@@ -334,11 +333,11 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
     from matplotlib.font_manager import FontProperties
     from matplotlib.patches import FancyBboxPatch
 
-    pitch, box_w, box_h = 1.3, 1.2, 1.3
+    pitch, box_w, box_h = 1.7, 1.6, 1.3
     levels = mood(JOURNEY, questions)
     ids = question_ids(JOURNEY, questions)
     font = icon_file()
-    fig, ax = plt.subplots(figsize=(10.0, 5.0), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(12.0, 5.0), dpi=style.DPI)
     xs = [i * pitch for i in range(len(JOURNEY))]
     ys = [1.5 + 0.55 * (level + len(JOURNEY)) / 2 for level in levels]
     ax.plot(xs, ys, color="dimgrey", linewidth=2.5, zorder=2)
@@ -374,17 +373,17 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
             textwrap.fill(actor.label.replace(" (the shop)", ""), 11),
             ha="center",
             va="center",
-            fontsize=9,
+            fontsize=12,
             color=ink,
             zorder=4,
         )
         ax.text(
             xs[i],
             -box_h / 2 - 0.1,
-            textwrap.fill(step.text, 14),
+            textwrap.fill(step.text, 16),
             ha="center",
             va="top",
-            fontsize=10,
+            fontsize=14,
             zorder=4,
         )
         qid = ids[i]
@@ -403,12 +402,12 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
                 qid,
                 ha="center",
                 va="top",
-                fontsize=12,
+                fontsize=16,
                 fontweight="bold",
                 color=colour_of("payment"),
                 zorder=4,
             )
-    ax.text(-box_w / 2, max(ys) + 0.55, "mood", fontsize=12, style="italic", color="dimgrey")
+    ax.text(-box_w / 2, max(ys) + 0.55, "mood", fontsize=14, style="italic", color="dimgrey")
     ax.set_xlim(-box_w / 2 - 0.2, xs[-1] + box_w / 2 + 0.2)
     ax.set_ylim(-2.4, max(ys) + 0.9)
     ax.axis("off")

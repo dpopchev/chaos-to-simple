@@ -109,5 +109,10 @@ def test_question_ids_label_the_questioned_steps() -> None:
 
 
 @pytest.mark.model
+def test_journey_has_seven_steps() -> None:
+    assert len(JOURNEY) == 7
+
+
+@pytest.mark.model
 def test_journey_steps_each_name_a_palette_actor() -> None:
     assert {s.actor for s in JOURNEY} <= set(load_actors())

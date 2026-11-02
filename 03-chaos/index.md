@@ -2,7 +2,7 @@
 
 ## The journey of one order {paths=64}
 
-![](build/03-chaos/diagrams/journey.png){height=80%}
+![](build/03-chaos/diagrams/journey.png){width=90%}
 
 ::: notes
 One order, one afternoon. Maria buys two books and the coupon goes to Sofia, who places the
