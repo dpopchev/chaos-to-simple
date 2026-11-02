@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-075 > T-182   | blocked: 0 | todo roots: 1 | done: 274 | pruned: 2
+open path: E-008 > W-075   | blocked: 0 | todo roots: 1 | done: 275 | pruned: 2
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-072  bug    [done]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
   W-073  bug    [done]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [done]
   W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
-  W-075  issue  [doing]    scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [doing]   <- ACTIVE LEAF
+  W-075  issue  [doing]    scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [done]
   W-081  bug    [todo]     make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
   W-082  issue  [todo]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [todo]
   W-083  bug    [todo]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
@@ -495,7 +495,7 @@ flowchart TD
   E008 --> W074["W-074 bug todo: make check passes on a tree that ruff format would change"]
   W074 --> T181["T-181 todo: Format the tree and gate it in make check -> mk/python.mk"]
   E008 --> W075["W-075 issue doing: scripts.utils.style imports palette, so palette imports icons lazily"]
-  W075 --> T182["T-182 doing: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py -- ACTIVE LEAF"]
+  W075 --> T182["T-182 done: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
   E008 --> W081["W-081 bug todo: make overflow passes a frame whose content beamer shifts over the title"]
   W081 --> T189["T-189 todo: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
   E008 --> W082["W-082 issue todo: remove the dead growth chart and its paths subcommand"]
@@ -509,7 +509,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W075,T182 doing
-  class W070,T177,W072,T179,W073,T180 done
+  class E008,W075 doing
+  class W070,T177,W072,T179,W073,T180,T182 done
   class W074,T181,W081,T189,W082,T190,W083,T192,W086,T195 todo
 ```

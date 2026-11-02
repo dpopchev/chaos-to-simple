@@ -24,4 +24,4 @@
 - 2026-11-02 E-008: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
 
 ## Deviations
-- none recorded
+- 2026-11-02 E-008: T-182's Action amended to name scripts/utils/figures.py and scripts/utils/paths.py, the callers its 'every caller under scripts/' meant; the scope gate refused the close without the literal paths (as E-004#v1); Check unchanged
