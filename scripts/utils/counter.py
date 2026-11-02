@@ -18,8 +18,9 @@ def paths_of(index_text: str) -> list[Value]:
 
 
 def storyboard_ok(values: Sequence[Value]) -> bool:
-    """Say whether the first seven values are 1, 2, 4, 8, 16, 32, 64."""
-    return list(values[: len(STORYBOARD)]) == STORYBOARD
+    """Say whether the first seven values, past leading '?', are 1, 2, 4, 8, 16, 32, 64."""
+    rest = list(itertools.dropwhile(lambda v: v == "?", values))
+    return rest[: len(STORYBOARD)] == STORYBOARD
 
 
 def monotone(values: Sequence[Value]) -> bool:
