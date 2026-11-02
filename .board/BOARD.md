@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-109 > T-252   | blocked: 0 | todo roots: 3 | done: 366 | pruned: 4
+open path: E-012 > W-109   | blocked: 0 | todo roots: 3 | done: 367 | pruned: 4
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-106  issue  [done]     01: the storyboard counts policies -- T-243 [done], T-244 [done], T-245 [done]
   W-107  issue  [done]     01: checkout done, the two tests, the six-bit number -- T-246 [done], T-247 [done]
   W-108  issue  [done]     01: finance R1 against R2, and its test -- T-248 [done], T-249 [done]
-  W-109  issue  [doing]    02: R1 and R2 above the line, the decision frame -- T-250 [done], T-251 [done], T-252 [doing]   <- ACTIVE LEAF
+  W-109  issue  [doing]    02: R1 and R2 above the line, the decision frame -- T-250 [done], T-251 [done], T-252 [done]
   W-110  issue  [todo]     03: the journey as the customer certainty, the retro subdomains -- T-253 [todo], T-254 [todo], T-255 [todo]
   W-111  issue  [todo]     03: the honest count panels and the board continuity -- T-256 [todo], T-257 [todo], T-258 [todo]
   W-112  issue  [todo]     04: tactical to strategic in five frames -- T-259 [todo], T-260 [todo], T-261 [todo]
@@ -660,7 +660,7 @@ flowchart TD
   E012 --> W109["W-109 issue doing: 02: R1 and R2 above the line, the decision frame"]
   W109 --> T250["T-250 done: Tag the readings -> a tag column in the bubbles csv and the bubble head"]
   W109 --> T251["T-251 done: Enlarge the zone texts -> scripts/utils/stacey.py"]
-  W109 --> T252["T-252 doing: Write the two frames -> 02-stacey/index.md -- ACTIVE LEAF"]
+  W109 --> T252["T-252 done: Write the two frames -> 02-stacey/index.md"]
   E012 --> W110["W-110 issue todo: 03: the journey as the customer certainty, the retro subdomains"]
   W110 --> T253["T-253 todo: Weigh the drops -> mood(steps, questions) in scripts/utils/figures.py"]
   W110 --> T254["T-254 todo: Add the subdomain -> data/questions.csv, Question and retro_table"]
@@ -709,7 +709,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W109,T252 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,T250,T251 done
+  class E012,W109 doing
+  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,T250,T251,T252 done
   class W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282 todo
 ```
