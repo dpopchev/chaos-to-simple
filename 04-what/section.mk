@@ -30,6 +30,12 @@ $(BUILD)/04-what/v4.diff: 04-what/s04_what/checkout_fixed.py 04-what/s04_what/ch
 		--to 04-what/s04_what/checkout_v4.py --snippet checkout --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/04-what/dispute.txt
+
+$(BUILD)/04-what/dispute.txt: data/questions.csv scripts/paths.py scripts/utils/retro.py
+	@$(RUN) python -m scripts.paths retro --only q3 --questions data/questions.csv --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/04-what/contexts.txt: data/rules.csv data/cast.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths contexts --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

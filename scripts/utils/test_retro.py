@@ -6,7 +6,8 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.retro import Question, load_questions, retro_table
+from scripts.utils.palette import label_of
+from scripts.utils.retro import Question, load_questions, question_card, retro_table
 
 QUESTIONS = Path(__file__).resolve().parents[2] / "data/questions.csv"
 # id 2 + question 35 + who 15 plus three gaps of 2.
@@ -55,6 +56,16 @@ def test_retro_table_fits_the_deck_frame() -> None:
 @pytest.mark.view
 def test_retro_table_is_within_the_block_cap() -> None:
     assert len(table()) <= 14
+
+
+@pytest.mark.model
+def test_question_card_holds_the_decision() -> None:
+    q3 = load_questions(QUESTIONS)[2]
+    lines = question_card(q3, label_of).splitlines()
+    assert (lines[0].startswith("q3"), any("after the discount" in line for line in lines[1:])) == (
+        True,
+        True,
+    )
 
 
 @pytest.mark.model

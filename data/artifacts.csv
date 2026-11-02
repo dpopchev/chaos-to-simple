@@ -44,6 +44,7 @@ build/02-stacey/bubble-1.txt,txt,scripts.paths bubbles
 build/02-stacey/bubble-2.txt,txt,scripts.paths bubbles
 build/03-chaos/diagrams/journey.png,png,scripts.figures journey
 build/03-chaos/retro.txt,txt,scripts.paths retro
+build/04-what/dispute.txt,txt,scripts.paths retro --only q3
 build/03-chaos/grid-9.png,png,scripts.figures grid-panels
 build/03-chaos/doubling-512.png,png,scripts.figures doubling --room
 build/03-chaos/board.png,png,scripts.figures board --stage 03

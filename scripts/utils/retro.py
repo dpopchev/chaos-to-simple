@@ -17,6 +17,8 @@ QUESTION_WIDTH = 35
 WHO_WIDTH = 15
 DECIDED_WIDTH = 46
 GAP = "  "
+# The decision of a card wraps at the width of the retro's decided column plus its question.
+CARD_WIDTH = 80
 
 
 @dataclass(frozen=True)
@@ -71,6 +73,12 @@ def _row(cells: Sequence[str], widths: Sequence[int]) -> list[str]:
         ).rstrip()
         for i in range(height)
     ]
+
+
+def question_card(q: Question, label: Callable[[str], str] = label_of) -> str:
+    """One question as a card: id, question and who raised it, the decision wrapped under."""
+    head = f"{q.id}  {q.question}  [{label(q.raised_by)}]"
+    return "\n".join([head, "", *_wrap(q.decision, CARD_WIDTH)]) + "\n"
 
 
 def retro_table(questions: Sequence[Question], label: Callable[[str], str] = label_of) -> str:

@@ -23,6 +23,8 @@
     python -m scripts.paths bubbles --bubbles 02-stacey/data/bubbles.csv --actors data/actors.csv \\
         --out build/02-stacey
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
+    python -m scripts.paths retro --only q3 --questions data/questions.csv \\
+        --out build/04-what/dispute.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] [--added-only] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
@@ -55,7 +57,7 @@ from scripts.utils.paths import (
     stacked_bar,
     wounds_selector,
 )
-from scripts.utils.retro import load_questions, retro_table
+from scripts.utils.retro import load_questions, question_card, retro_table
 from scripts.utils.stagediff import snippet_diff
 from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
 
@@ -108,6 +110,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--to-snippet", default=None, help="snippet of --to when it differs")
     parser.add_argument("--start", default=None, help="diff: start at the first line with TEXT")
     parser.add_argument("--added-only", action="store_true", help="diff: keep only the + lines")
+    parser.add_argument("--only", default=None, help="retro: the card of this question id")
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
@@ -183,7 +186,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])
     elif args.what == "retro":
-        text = retro_table(load_questions(args.questions))
+        questions = load_questions(args.questions)
+        if args.only is None:
+            text = retro_table(questions)
+        else:
+            text = question_card(next(q for q in questions if q.id == args.only))
     elif args.what == "wounds":
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "counts":

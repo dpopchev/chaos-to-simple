@@ -25,14 +25,16 @@ The diff is the whole fix: one name changes, and the rest of the function stays 
 
 \fvset{fontsize=\scriptsize}
 
-```{.python include=04-what/s04_what/pricing.py snippet=coupon}
+```{.text include=build/04-what/dispute.txt}
 ```
 
 ```{.python include=04-what/s04_what/shipping.py snippet=fee}
 ```
 
+Values, never flags.
+
 ::: notes
-The sentence decided in the room is now a value: coupon.is_valid_on(today).
+The sentence decided in the room is now a value. coupon.is_valid_on(today), in pricing.py, is the q1 sentence.
 The fee is charged on the discounted goods, and no flag carries the decision across contexts.
 :::
 
