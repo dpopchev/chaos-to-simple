@@ -23,7 +23,7 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.board import board, board_rows, example_tests
+from scripts.utils.board import board, board_rows, example_tests, headers
 from scripts.utils.colorcode import colorcode, owned_lines
 from scripts.utils.coverage_view import BITS, draw, load_tested
 from scripts.utils.figures import (
@@ -104,7 +104,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         rows = board_rows(
             load_rules(args.rules), load_questions(args.questions), example_tests(args.examples)
         )
-        board(rows, args.stage, args.out, args.tests)
+        board(rows, args.stage, args.out, args.tests, headers(load_route(args.route)))
         return 0
     if args.what == "colorcode":
         source = args.source.read_text(encoding="ascii")

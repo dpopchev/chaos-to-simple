@@ -14,11 +14,13 @@ from scripts.utils.examples import missing_tests
 from scripts.utils.palette import colour_of, label_of
 from scripts.utils.paths import Rule
 from scripts.utils.retro import Question
+from scripts.utils.stage import Stop
 
 COLUMNS = ("room", "sentence", "home", "code", "test")
 # Stage 03 shows the first two columns, 04 three, 05 four, 06 all five.
 STAGES = {3: 2, 4: 3, 5: 4, 6: 5}
-HEADERS = ("03 room", "03 sentence", "04 home", "05 answer", "06 test")
+ROOM_SUFFIXES = (": raised", ": sentence")
+HEADER_SECTIONS = ("03", "03", "04", "05", "06")
 WIDTHS = (0.07, 0.38, 0.13, 0.2, 0.22)
 TEST_FUNCTION = re.compile(r"^(?:def (test_\w+)\(|class (Test\w+)[(:])", re.MULTILINE)
 
@@ -64,9 +66,16 @@ def board_rows(
     )
 
 
-def header_text(col: int, stage: int) -> str:
+def headers(route: Sequence[Stop]) -> tuple[str, ...]:
+    """Head the five columns by the route labels; the two room columns share section 03."""
+    label = {stop.section: f"{stop.section} {stop.label}" for stop in route}
+    suffix = {0: ROOM_SUFFIXES[0], 1: ROOM_SUFFIXES[1]}
+    return tuple(label[s] + suffix.get(col, "") for col, s in enumerate(HEADER_SECTIONS))
+
+
+def header_text(col: int, stage: int, heads: Sequence[str]) -> str:
     """Name column col by the stage that reveals it; a column past stage gets 'later' below."""
-    name = HEADERS[col]
+    name = heads[col]
     return name if col < STAGES[stage] else f"{name}\nlater"
 
 
@@ -86,7 +95,9 @@ def missing_of(rows: Sequence[BoardRow], tests_dir: Path) -> list[str]:
     return missing_tests([name for row in rows for name in row.tests], tests_defined(tests_dir))
 
 
-def board(rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path) -> Path:
+def board(
+    rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path, heads: Sequence[str]
+) -> Path:
     """Draw the board at stage 3, 4, 5 or 6; hidden columns stay empty grey cells."""
     if stage not in STAGES:
         raise ValueError(f"unknown stage {stage}; expected one of {tuple(STAGES)}")
@@ -128,7 +139,8 @@ def board(rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path) -> P
 
     for col in range(len(COLUMNS)):
         head = colour_of("shell") if col < shown else None
-        cell(col, 0, header_text(col, stage), head, 12, "white" if col < shown else "dimgray")
+        ink = "white" if col < shown else "dimgray"
+        cell(col, 0, header_text(col, stage, heads), head, 12, ink)
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,
