@@ -13,6 +13,7 @@ from dataclasses import dataclass, fields
 from pathlib import Path
 
 from scripts.utils.palette import colour_of, label_of
+from scripts.utils.widths import strip_step_markers
 
 
 @dataclass(frozen=True)
@@ -96,7 +97,9 @@ def effects_lines(cast: Sequence[CastRow], source: str) -> str:
     lines = source.splitlines()
     placed = sorted((line_of(c.fragment, source), c) for c in cast if c.bit.startswith("s"))
     width = max((len(str(n)) for n, _ in placed), default=0)
-    return "".join(f"{str(n).rjust(width)}  {lines[n - 1].strip()}\n" for n, _ in placed)
+    return "".join(
+        f"{str(n).rjust(width)}  {strip_step_markers(lines[n - 1]).strip()}\n" for n, _ in placed
+    )
 
 
 def cast_table(cast: Sequence[CastRow], source: str) -> str:

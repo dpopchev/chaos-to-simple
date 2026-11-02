@@ -630,3 +630,10 @@ def test_effects_lines_number_the_three_shell_calls() -> None:
     ]
     source = "if a:\n    pass\n    charge(total)  # declined?\n    reserve(x)  # gone?\n"
     assert effects_lines(cast, source) == "3  charge(total)  # declined?\n4  reserve(x)  # gone?\n"
+
+
+@pytest.mark.view
+def test_effects_lines_strip_the_step_marker() -> None:
+    cast = [CastRow("s0", 0, None, "payment", "b", "", "charge(total)")]
+    source = "charge(total)  # declined?  # [step: 0]\n"
+    assert effects_lines(cast, source) == "1  charge(total)  # declined?\n"
