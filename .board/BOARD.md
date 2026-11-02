@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-082 > T-190   | blocked: 0 | todo roots: 1 | done: 276 | pruned: 4
+open path: E-008 > W-082   | blocked: 0 | todo roots: 1 | done: 277 | pruned: 4
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
   W-075  issue  [done]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [done]
   W-081  bug    [pruned]   make overflow passes a frame whose content beamer shifts over the title   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]   (filed during T-148) -- T-189 [pruned]   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]
-  W-082  issue  [doing]    remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [doing]   <- ACTIVE LEAF
+  W-082  issue  [doing]    remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [done]
   W-083  bug    [todo]     make stubs leaves a stub newer than a new rule's inputs, so make skips the real build   (filed during T-168) -- T-192 [todo]
   W-087  bug    [todo]     make overflow passes a frame that fits its text height but whose [T]-column image reaches the title   (filed during T-189) -- T-196 [todo], T-197 [todo]
 W-086  issue  [todo]     (standalone) lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [todo]
@@ -500,7 +500,7 @@ flowchart TD
   E008 --> W081["W-081 bug pruned: make overflow passes a frame whose content beamer shifts over the title"]
   W081 --> T189["T-189 pruned: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
   E008 --> W082["W-082 issue doing: remove the dead growth chart and its paths subcommand"]
-  W082 --> T190["T-190 doing: Remove growth_chart and the growth subcommand -> scripts/paths.py -- ACTIVE LEAF"]
+  W082 --> T190["T-190 done: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
   E008 --> W083["W-083 bug todo: make stubs leaves a stub newer than a new rule's inputs, so make skips the real build"]
   W083 --> T192["T-192 todo: Write stubs with an epoch mtime -> scripts/utils/stubs.py"]
   E008 --> W087["W-087 bug todo: make overflow passes a frame that fits its text height but whose [T]-column image reaches the title"]
@@ -513,8 +513,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W082,T190 doing
-  class W070,T177,W072,T179,W073,T180,W075,T182 done
+  class E008,W082 doing
+  class W070,T177,W072,T179,W073,T180,W075,T182,T190 done
   class W074,T181,W083,T192,W087,T196,T197,W086,T195 todo
   class W081,T189 pruned
 ```
