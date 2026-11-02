@@ -15,7 +15,7 @@ that section (`03-chaos/data/` holds the room log, nobody else needs it).
 | `questions.csv` | `id, question, raised_by, bit, status, decision, subdomain` | 03 (the retro table: the six questions the room raised, each with the decision that closed it; `subdomain` is core for q1-q3 and generic for q4-q6; `raised_by` is an `actors.csv` key: accounting, loyalty, logistics or dev) |
 | `route.csv` | `section, label, icon, counter, incident, x, y` | 00 (the agenda strip): `scripts/utils/stage.py` draws one box per section with its `icon` pictogram (a name `scripts/utils/icons.py` maps), `label` and `counter` under it; `incident` is the incident id told in that section (`incidents.csv` `told_in` decides the mark drawn); `x, y` place the section on the Stacey square (certainty on the How, agreement on the What, empty for 00 and 07) |
 | `artifacts.csv` | `path, kind, producer` | `make stubs`: every build path the slides include, its kind (png, txt, diff, tex) and what builds it; a path no make rule builds gets a placeholder, `STRICT=1` fails on it |
-| `budget.csv` | `section, frames, minutes` | `make budget`: the frames each section's `index.md` holds (its `## ` lines) and the minutes it gets; frames sum 41, minutes 45 (the title frames of 00 and 07 are not counted) |
+| `budget.csv` | `section, frames, minutes` | `make budget`: the frames each section's `index.md` holds (its `## ` lines) and the minutes it gets; frames sum 43, minutes 45 (the title frames of 00 and 07 are not counted) |
 | `lines.csv` | `section, believed, learned` | `make lines` (each learned line must stand in its section's `index.md` and in `07-close/index.md`; believed is the claim the talk flips) |
 
 ## Conventions
