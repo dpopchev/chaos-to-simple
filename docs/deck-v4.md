@@ -134,3 +134,60 @@ new   07       the thank-you                                    W-118
 ```
 
 Budget after the plan (data/budget.csv): 00 2/3, 01 13/12, 02 2/3, 03 5/6, 04 5/6, 05 6/6, 06 6/6, 07 4/3 -- 43 content frames, 45 minutes; with the title and six section pages, 50.
+
+## Planned titles
+
+The rule (W-119): every content frame (each `## ` outside 00-frontmatter) carries an action title -- core finding + driven by + impact or action, at least eight words. The title page, the two 00 frames and the six section pages (`# <NN> <route label>: <claim>`, labels from data/route.csv) keep topic titles; 07 has no section page. Pages are those of the 50-page build at e8418df. Q&A and Thank you are worded so each still reads as Q&A and as the thanks.
+
+| page | section | old title | new title |
+|---|---|---|---|
+| 1 | title | Python: From chaos to simple, one bit at a time | unchanged |
+| 2 | 00 | The business map | unchanged |
+| 3 | 00 | Agenda, in the order the bits fall | unchanged |
+| 4 | 01 (s) | Six if statements, 64 paths | 01 Bits: six policies, 64 paths |
+| 5 | 01 | A policy is one bit and every bit doubles the paths: count them before you trust a badge | unchanged |
+| 6 | 01 | No policy yet: one path | The plain checkout has three calls and no policy, so it has one path |
+| 7 | 01 | Policy 1: the autumn coupon adds one bit: 2^1 paths | The autumn coupon adds the first bit, so the checkout now has 2 paths |
+| 8 | 01 | Policy 2: the member discount adds one bit: 2^2 paths | The member discount stacks on the coupon and doubles the checkout to 4 paths |
+| 9 | 01 | Policy 3: free shipping from 50 EUR adds one bit: 2^3 paths | Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths |
+| 10 | 01 | Policy 4: shipping abroad adds one bit: 2^4 paths | Shipping abroad adds a fourth bit and the checkout reaches 16 paths |
+| 11 | 01 | Policy 5: gift wrap adds one bit: 2^5 paths | Gift wrap, promised as just one more change, brings the checkout to 32 paths |
+| 12 | 01 | Policy 6: no VAT for companies adds one bit: 2^6 paths | No VAT for companies adds the sixth bit and the checkout reaches 64 paths |
+| 13 | 01 | Checkout done | Six policies done and 64 paths live, so how many tests would make you sure? |
+| 14 | 01 | Two tests. Coverage says 100% | Two tests reach 100% branch coverage yet run only 2 of 64 combinations |
+| 15 | 01 | Finance found it, not the tests | Finance traced 6,070 EUR of missing shipping to the checkout, a software fault |
+| 16 | 01 | The path nobody ran | Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran |
+| 17 | 01 | A path is a six-bit number | A path is a six-bit number, so every new policy doubles the paths to count |
+| 18 | 02 (s) | Stacey matrix: agreement on the What, certainty on the How | 02 Map: Stacey matrix, agreement on the What, certainty on the How |
+| 19 | 02 | I wanted to write a test | Marketing and logistics read free shipping differently, so no test settles it |
+| 20 | 02 | Above the line: a decision, not a test | The shipping dispute sits above the line: a decision for the room, not a test |
+| 21 | 03 (s) | From chaos to complex | 03 Room: from chaos to complex |
+| 22 | 03 | The journey of one order | The mood of one order drops at six questions, each a rule nobody wrote down |
+| 23 | 03 | The room | Four departments carry the argument in one room while dev stays silent to the end |
+| 24 | 03 | The retro | The retro names six business decisions, three core and three in generic subdomains |
+| 25 | 03 | The honest count | Counting the nine decisions honestly gives 512 paths, not 64, the first good news |
+| 26 | 03 | Nine decisions, none deleted, all moved | Nine decisions came out of the room, and each moves to a home, none deleted |
+| 27 | 04 (s) | Complicated on the What: one language, bounded contexts | 04 Homes: one language, bounded contexts |
+| 28 | 04 | Color-coded, the ifs get names | Coloring every line by who asked for it shows which context each if belongs to |
+| 29 | 04 | The first fix | One renamed value, the discounted goods, closes I1 and draws the first boundary |
+| 30 | 04 | The dispute closes | Shipping owns the dispute's rule and a sum type lets the checker count its bit |
+| 31 | 04 | Bounded contexts: every bit has a home | Each bit now has a home in pricing, shipping, tax or shell, named by who asked |
+| 32 | 04 | Bounded contexts, the moves | All nine decisions moved home: the contexts are the core, the ports are the shell |
+| 33 | 05 (s) | Complicated on the How: decoupling, cohesion, FP vs OO, CQS | 05 Seam: decoupling, cohesion, FP vs OO, CQS |
+| 34 | 05 | I3: cards charged for parcels the warehouse did not have | I3 charged cards for missing stock because charge ran before reserve |
+| 35 | 05 | The bit nobody wrote down | The call order is a bit nobody wrote down, giving 45 against 44 from the same inputs |
+| 36 | 05 | Past me reached for a class | A class hid the call order in its state, the same bug as I3 in pricing |
+| 37 | 05 | Command Query Separation draws the seam | Command Query Separation draws the seam by making every answer a value |
+| 38 | 05 | Every effect answers with a value | Each effect answers with a value, so reserve runs first and every answer is matched |
+| 39 | 05 | A boundary that passes values adds paths; one that passes flags multiplies them | Passing values across a boundary adds paths you can count, passing flags multiplies them |
+| 40 | 06 (s) | Simple: functional core, imperative shell | 06 Core and shell: functional core, imperative shell |
+| 41 | 06 | Cut along the seam | Moving the pure part out into price cuts along the seam and changes nothing else |
+| 42 | 06 | Sixty-four paths, three invariants: 192 tests | Every one of 64 paths holds three invariants, so the core runs 192 tests |
+| 43 | 06 | Eight worlds, four outcomes | Eight shell worlds collapse to four outcomes, with no charge when stock is gone |
+| 44 | 06 | The wounds close by name | I1 and I3 each close by name as a test, and the seam keeps both from returning |
+| 45 | 06 | The number | The split cuts 512 paths to 72 while branch coverage stays at 100% as before |
+| 46 | 06 | Epilogue: marketing's seventh if | Marketing's seventh if lands in shipping and costs 8 paths, not 512 |
+| 47 | 07 | What I should have known from the start | Six beliefs I held at the start each gave way to the lesson I should have known |
+| 48 | 07 | Follow the series and bring your own checkout | Follow the series one section at a time, then bring your own checkout to review |
+| 49 | 07 | Q&A | Q&A: ask anything about the tests, the repository, the posts or the earlier talks |
+| 50 | 07 | Thank you | Thank you to the audience for the questions and to DEV.BG for the stage |
