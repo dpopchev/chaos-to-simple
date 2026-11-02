@@ -18,7 +18,7 @@ read the learned column only
 :::::: {.columns}
 ::: {.column width="40%"}
 
-- The repository: slides, every snippet tested, 64 + 8 tests to run yourself
+- The repository github.com/dpopchev/chaos-to-simple: slides, every snippet tested, 64 + 8 tests to run yourself
 - The Friday posts: one section at a time, starting with the arithmetic
 - The two earlier talks: metaprogramming; DDD, CQRS and TDD
 

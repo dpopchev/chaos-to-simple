@@ -13,7 +13,7 @@ Beat: three lines to take home, where to read more, prepared answers.
 ## Slides
 
 - [x] What I should have known from the start: one frame, the learned column read aloud
-- [x] Q&A: two columns, the three bullets left and board.png right; the repository link is still open
+- [x] Q&A: two columns, the three bullets left and board.png right; the repository link is on the frame
 - [x] Q&A notes: six prepared answers and two live demos (make test K=TestCallOrder; grid.png, then make test K=two_ifs)
 
 ## Done when
