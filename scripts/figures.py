@@ -1,6 +1,7 @@
 """Draw the deck's diagrams: make artifacts calls this.
 
 python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
+python -m scripts.figures board --stage 3 --out build/03-chaos/board.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures doubling --cast data/cast.csv --out build/01-bits/doubling.png
@@ -21,6 +22,7 @@ import argparse
 from collections.abc import Sequence
 from pathlib import Path
 
+from scripts.utils.board import board, board_rows, example_tests
 from scripts.utils.coverage_view import BITS, draw, load_tested
 from scripts.utils.figures import (
     journey,
@@ -53,6 +55,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     choices = [
         "agenda",
+        "board",
         "business-map",
         "coverage-view",
         "doubling",
@@ -83,8 +86,17 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
     parser.add_argument("--tested", type=Path, default=Path("01-bits/data/tested.csv"))
     parser.add_argument("--room", type=int, default=None, help="doubling: the room's week")
+    parser.add_argument("--stage", type=int, default=6, help="board: the stage 3, 4, 5 or 6")
+    parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
+    parser.add_argument("--tests", type=Path, default=Path("06-simple/tests"), help="board: tests")
     args = parser.parse_args(argv)
 
+    if args.what == "board":
+        rows = board_rows(
+            load_rules(args.rules), load_questions(args.questions), example_tests(args.examples)
+        )
+        board(rows, args.stage, args.out, args.tests)
+        return 0
     if args.what == "finance":
         weeks = load_october(args.october)
         draw_finance(weeks, args.out)

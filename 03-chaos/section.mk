@@ -26,6 +26,12 @@ $(BUILD)/03-chaos/doubling-512.png: data/cast.csv scripts/figures.py scripts/uti
 	@$(RUN) python -m scripts.figures doubling --cast data/cast.csv --room 16 --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/03-chaos/board.png
+
+$(BUILD)/03-chaos/board.png: data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures board --stage 3 --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/03-chaos/diagrams/journey.png: data/questions.csv data/actors.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures journey --questions data/questions.csv --out $@
 	$(call log_done,$@ written)
