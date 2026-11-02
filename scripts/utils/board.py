@@ -19,7 +19,7 @@ COLUMNS = ("room", "sentence", "home", "code", "test")
 # Stage 03 shows the first two columns, 04 three, 05 four, 06 all five.
 STAGES = {3: 2, 4: 3, 5: 4, 6: 5}
 WIDTHS = (0.07, 0.38, 0.13, 0.2, 0.22)
-TEST_FUNCTION = re.compile(r"^def (test_\w+)\(", re.MULTILINE)
+TEST_FUNCTION = re.compile(r"^(?:def (test_\w+)\(|class (Test\w+)[(:])", re.MULTILINE)
 
 
 @dataclass(frozen=True)
@@ -68,7 +68,9 @@ def tests_defined(tests_dir: Path) -> dict[str, object]:
     return {
         name: True
         for path in sorted(tests_dir.glob("test_*.py"))
-        for name in TEST_FUNCTION.findall(path.read_text(encoding="utf-8"))
+        for found in TEST_FUNCTION.findall(path.read_text(encoding="utf-8"))
+        for name in found
+        if name
     }
 
 

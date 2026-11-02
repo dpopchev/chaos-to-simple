@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 
 from scripts.utils.board import board, board_rows, example_tests, missing_of
+from scripts.utils.board import tests_defined as defined_tests
 from scripts.utils.paths import load_rules
 from scripts.utils.retro import load_questions
 
@@ -26,6 +27,12 @@ def rows():
 @pytest.mark.model
 def test_stage_06_has_no_missing_test() -> None:
     assert missing_of(rows(), TESTS) == []
+
+
+@pytest.mark.model
+def test_tests_defined_reads_a_test_class(tmp_path: Path) -> None:
+    (tmp_path / "test_x.py").write_text("class TestOutOfStock:\n    pass\n", encoding="utf-8")
+    assert "TestOutOfStock" in defined_tests(tmp_path)
 
 
 @pytest.mark.model

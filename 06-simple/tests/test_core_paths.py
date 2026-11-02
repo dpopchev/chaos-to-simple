@@ -35,13 +35,19 @@ def request_from_bits(bits: int) -> Request:
 
 # [snippet: from-bits]
 @pytest.mark.parametrize("bits", range(64), ids=lambda b: f"{b:06b}")
-def test_every_core_path_holds_the_invariants(bits: int) -> None:
-    request = request_from_bits(bits)
-    priced = price(request, TODAY)
-    wrap = GIFT_WRAP if request.gift_wrap else 0
-    assert 0 <= priced.goods <= request.goods  # discounts never add and never go below zero
-    assert (priced.shipping - wrap == 0) == (priced.goods >= 50)  # free iff discounted >= 50
-    assert priced.total >= priced.goods + priced.shipping  # VAT never reduces the total
+class TestEveryCorePath:
+    def test_discounts_never_add(self, bits: int) -> None:
+        request, priced = request_from_bits(bits), price(request_from_bits(bits), TODAY)
+        assert 0 <= priced.goods <= request.goods
+
+    def test_shipping_is_free_iff_discounted_goods_reach_50(self, bits: int) -> None:
+        request, priced = request_from_bits(bits), price(request_from_bits(bits), TODAY)
+        wrap = GIFT_WRAP if request.gift_wrap else 0
+        assert (priced.shipping - wrap == 0) == (priced.goods >= 50)
+
+    def test_vat_never_reduces_the_total(self, bits: int) -> None:
+        priced = price(request_from_bits(bits), TODAY)
+        assert priced.total >= priced.goods + priced.shipping
 
 
 # [/snippet]

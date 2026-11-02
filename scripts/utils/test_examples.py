@@ -35,3 +35,9 @@ def test_missing_tests_names_the_gap() -> None:
     namespace = {"test_coupon_valid_today": object()}
     names = ["coupon_valid_today", "happy_path_accepts"]
     assert missing_tests(names, namespace) == ["happy_path_accepts"]
+
+
+@pytest.mark.model
+def test_missing_tests_accepts_a_test_class() -> None:
+    namespace = {"TestCouponValidToday": object()}
+    assert missing_tests(["coupon_valid_today"], namespace) == []

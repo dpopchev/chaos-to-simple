@@ -18,23 +18,57 @@ PLAIN_TOTAL = Decimal("30.00")  # (20 + 5) * 1.20
 
 
 # [snippet: eight]
-@pytest.mark.parametrize("bits", range(8), ids=lambda b: f"{b:03b}")
-def test_every_shell_configuration(bits: int, plain: Request, today: date) -> None:
-    gateway = FakeGateway(declines=bool(bits & 0b001))  # s0
-    inventory = FakeInventory(out_of_stock=bool(bits & 0b010))  # s1
-    mailer = FakeMailer(bounces=bool(bits & 0b100))  # s2
-    outcome = checkout(plain, today, gateway, inventory, mailer)
-    if inventory.out_of_stock:
-        assert outcome == Rejected("out of stock: book")
-        assert gateway.charged == []  # nothing moves for a parcel that does not exist
-    elif gateway.declines:
-        assert outcome == Rejected("payment declined: card refused")
-        assert mailer.sent == []
-    else:
-        assert outcome == Accepted(PLAIN_TOTAL, "pay-1", confirmed=not mailer.bounces)
+def world(bits: int) -> tuple[FakeGateway, FakeInventory, FakeMailer]:
+    return (
+        FakeGateway(declines=bool(bits & 0b001)),  # s0
+        FakeInventory(out_of_stock=bool(bits & 0b010)),  # s1
+        FakeMailer(bounces=bool(bits & 0b100)),  # s2
+    )
 
 
 # [/snippet]
+
+OUT_OF_STOCK = [b for b in range(8) if b & 0b010]
+DECLINED = [b for b in range(8) if b & 0b001 and not b & 0b010]
+ACCEPTED = [b for b in range(8) if not b & 0b011]
+
+
+def ids(bits: int) -> str:
+    return f"{bits:03b}"
+
+
+@pytest.mark.parametrize("bits", OUT_OF_STOCK, ids=ids)
+class TestOutOfStock:
+    def test_rejects(self, bits: int, plain: Request, today: date) -> None:
+        outcome = checkout(plain, today, *world(bits))
+        assert outcome == Rejected("out of stock: book")
+
+    def test_charges_nothing(self, bits: int, plain: Request, today: date) -> None:
+        gateway, inventory, mailer = world(bits)
+        checkout(plain, today, gateway, inventory, mailer)
+        assert gateway.charged == []  # nothing moves for a parcel that does not exist
+
+
+@pytest.mark.parametrize("bits", DECLINED, ids=ids)
+class TestDeclined:
+    def test_rejects(self, bits: int, plain: Request, today: date) -> None:
+        outcome = checkout(plain, today, *world(bits))
+        assert outcome == Rejected("payment declined: card refused")
+
+    def test_sends_no_mail(self, bits: int, plain: Request, today: date) -> None:
+        gateway, inventory, mailer = world(bits)
+        checkout(plain, today, gateway, inventory, mailer)
+        assert mailer.sent == []
+
+
+@pytest.mark.parametrize("bits", ACCEPTED, ids=ids)
+class TestAccepted:
+    def test_accepts_and_confirms_unless_the_mail_bounces(
+        self, bits: int, plain: Request, today: date
+    ) -> None:
+        gateway, inventory, mailer = world(bits)
+        outcome = checkout(plain, today, gateway, inventory, mailer)
+        assert outcome == Accepted(PLAIN_TOTAL, "pay-1", confirmed=not mailer.bounces)
 
 
 def test_every_shell_example_has_a_test() -> None:
@@ -42,21 +76,39 @@ def test_every_shell_example_has_a_test() -> None:
 
 
 # [snippet: wound-i3]
-def test_out_of_stock_rejects_before_payment(plain: Request, today: date) -> None:
-    gateway = FakeGateway()
-    outcome = checkout(plain, today, gateway, FakeInventory(out_of_stock=True), FakeMailer())
-    assert outcome == Rejected("out of stock: book")
-    assert gateway.charged == []
+class TestOutOfStockRejectsBeforePayment:
+    @pytest.fixture
+    def gateway(self) -> FakeGateway:
+        return FakeGateway()
+
+    @pytest.fixture
+    def outcome(self, gateway: FakeGateway, plain: Request, today: date) -> object:
+        return checkout(plain, today, gateway, FakeInventory(out_of_stock=True), FakeMailer())
+
+    def test_rejected(self, outcome: object) -> None:
+        assert outcome == Rejected("out of stock: book")
+
+    def test_nothing_charged(self, outcome: object, gateway: FakeGateway) -> None:
+        assert gateway.charged == []
 
 
 # [/snippet]
 
 
-def test_declined_payment_rejects(plain: Request, today: date) -> None:
-    mailer = FakeMailer()
-    outcome = checkout(plain, today, FakeGateway(declines=True), FakeInventory(), mailer)
-    assert outcome == Rejected("payment declined: card refused")
-    assert mailer.sent == []
+class TestDeclinedPaymentRejects:
+    @pytest.fixture
+    def mailer(self) -> FakeMailer:
+        return FakeMailer()
+
+    @pytest.fixture
+    def outcome(self, mailer: FakeMailer, plain: Request, today: date) -> object:
+        return checkout(plain, today, FakeGateway(declines=True), FakeInventory(), mailer)
+
+    def test_rejected(self, outcome: object) -> None:
+        assert outcome == Rejected("payment declined: card refused")
+
+    def test_no_mail_sent(self, outcome: object, mailer: FakeMailer) -> None:
+        assert mailer.sent == []
 
 
 def test_bounced_mail_still_accepts(plain: Request, today: date) -> None:

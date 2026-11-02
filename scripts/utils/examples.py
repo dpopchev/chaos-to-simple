@@ -12,6 +12,15 @@ def example_names(path: Path, scope: str) -> list[str]:
         return [row["name"] for row in csv.DictReader(fh) if row["scope"] == scope]
 
 
+def class_name(name: str) -> str:
+    """Return the test class name of an example name: out_of_stock -> TestOutOfStock."""
+    return "Test" + "".join(part.capitalize() for part in name.split("_"))
+
+
 def missing_tests(names: Iterable[str], namespace: Mapping[str, object]) -> list[str]:
-    """Names without a test_<name> in the namespace (a test module's globals())."""
-    return [name for name in names if f"test_{name}" not in namespace]
+    """Names with neither a test_<name> function nor a Test<CamelName> class in the namespace."""
+    return [
+        name
+        for name in names
+        if f"test_{name}" not in namespace and class_name(name) not in namespace
+    ]
