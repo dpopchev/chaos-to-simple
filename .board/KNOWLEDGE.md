@@ -13,12 +13,14 @@
 - 2026-11-02 E-007: standing: october.csv sums to 1,214 free orders and 6,070 BGN; every date in bubbles, incidents and october falls in its week on the calendar 2026-07-27 + 7 x (N - 1) -> test_october and the calendar tests pin them supersedes: E-007#5
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
+- 2026-11-02 W-081: fact: T-189 probe -- a too-tall frame already fails make overflow; W-059's grid frame had 0.70pt slack, no vbox line, its [T]-column image rose about 1ex into the title -> AC3's Then holds; the real case needs a frame-slack probe
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
+- 2026-11-02 W-087: open: the slack threshold -- 1ex (about 4.5pt) as proposed, against 3.24pt on main's tightest frame ('Nine decisions, none deleted, all moved'), which would then fail
 
 ## Decisions
 - 2026-11-02 E-008: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
