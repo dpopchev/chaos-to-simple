@@ -25,4 +25,4 @@
 - 2026-11-02 E-010: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-02)
 
 ## Deviations
-- none recorded
+- 2026-11-02 E-010: T-203 Action amended mid-Task: the marker move makes subtotal = goods a logistics line in shipping, so test_a_skeleton_line_has_no_context in scripts/utils/test_colorcode.py moves to the step-0 line total = goods + shipping; Check unchanged (lane hand-back)
