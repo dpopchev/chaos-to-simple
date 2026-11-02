@@ -16,6 +16,7 @@
         --out build/05-how/effects.txt
     python -m scripts.paths doubling --cast data/cast.csv [--upto N] \\
         --out build/01-bits/doubling.txt
+    python -m scripts.paths next --bits 6 --out build/01-bits/next.txt
     python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths bubbles --bubbles 02-stacey/data/bubbles.csv --actors data/actors.csv \\
@@ -49,6 +50,7 @@ from scripts.utils.paths import (
     load_cast,
     load_incidents,
     load_rules,
+    next_doubling,
     rules_table,
     splits_report,
     stacked_bar,
@@ -94,6 +96,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "cast",
             "effects",
             "doubling",
+            "next",
             "wounds",
             "retro",
             "storyboard",
@@ -187,6 +190,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         text = effects_lines(load_cast(args.cast), args.source.read_text(encoding="ascii"))
     elif args.what == "doubling":
         text = doubling_table(load_cast(args.cast), args.upto)
+    elif args.what == "next":
+        text = next_doubling(args.bits) + "\n"
     elif args.what == "epilogue":
         before = load_rules(args.rules)
         text = epilogue_report(before, [*before, *load_rules(args.seventh)])

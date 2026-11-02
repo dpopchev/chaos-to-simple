@@ -114,6 +114,11 @@ def cast_table(cast: Sequence[CastRow], source: str) -> str:
     return "\n".join(lines) + "\n"
 
 
+def next_doubling(bits: int) -> str:
+    """Price the next if: the paths today and the paths one more bit would make."""
+    return f"{tangled(bits)} paths today, one more if: {tangled(bits + 1)}"
+
+
 def doubling_table(cast: Sequence[CastRow], upto: int | None = None) -> str:
     """The first upto core bits (all when None) in csv order: week, who, bits, 2**bits paths."""
     core = [c for c in cast if c.bit.startswith("b")][:upto]

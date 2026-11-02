@@ -34,6 +34,7 @@ from scripts.utils.paths import (
     load_cast,
     load_incidents,
     load_rules,
+    next_doubling,
     panel_titles,
     room_curve,
     rules_table,
@@ -66,6 +67,11 @@ def sample_rules(tmp_path: Path) -> list[Rule]:
 @pytest.fixture
 def repo_rules() -> list[Rule]:
     return load_rules(REPO_RULES)
+
+
+@pytest.mark.model
+def test_next_doubling_names_128() -> None:
+    assert next_doubling(6) == "64 paths today, one more if: 128"
 
 
 @pytest.mark.model

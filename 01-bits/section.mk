@@ -5,7 +5,7 @@ STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
   $(foreach k,0 1 2 3 4 5 6 7 8,$(BUILD)/01-bits/bubble-$(k).txt)
 
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/doubling.txt
-ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES)
+ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES) $(BUILD)/01-bits/next.txt
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 
@@ -42,6 +42,10 @@ $(BUILD)/01-bits/coverage-summary.txt: $(BUILD)/01-bits/coverage.txt
 
 $(BUILD)/01-bits/doubling.txt: data/cast.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths doubling --cast data/cast.csv --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/01-bits/next.txt: scripts/paths.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths next --bits 6 --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/coverage.txt: 01-bits/s01_bits/chaos.py 01-bits/tests/test_chaos.py
