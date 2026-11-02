@@ -241,6 +241,9 @@ line aloud.
 ```{.text include=build/01-bits/bubble-8.txt}
 ```
 
+```{.text include=build/01-bits/next.txt}
+```
+
 \vfill
 
 **How many tests would make you sure?**
@@ -262,10 +265,12 @@ Read the dev and marketing lines aloud, then ask the chat the question and pause
 :::
 ::: {.column width="46%"}
 
-![](build/01-bits/coverage-view.png){height=62%}
+![](build/01-bits/coverage-view.png){height=70%}
 
 :::
 ::::
+
+both values of every bit: 100% branch coverage, 2 of 64 combinations
 
 ```{.text include=build/01-bits/coverage-summary.txt}
 ```
@@ -312,7 +317,7 @@ shows 54.00 against 60.00. The threshold reads the subtotal, not the discounted 
 :::: {.columns}
 ::: {.column width="50%"}
 
-![](build/01-bits/grid.png){height=52%}
+![](build/01-bits/grid.png){height=60%}
 
 \small
 
@@ -321,15 +326,13 @@ bits read as the six conditions, left b5 to right b0
 :::
 ::: {.column width="50%"}
 
-![](build/01-bits/doubling.png){height=52%}
-
 \small
 
-Sequential ifs multiply: 2 x 2 x 2 x 2 x 2 x 2
+Sequential policies multiply: 2 x 2 x 2 x 2 x 2 x 2
 
 Alternatives (elif, match) add: 2 + 2 + 2
 
-Two sequential ifs as if/elif: 4 paths become 3
+Two sequential policies as if/elif: 4 paths become 3
 
 :::
 ::::
@@ -338,6 +341,5 @@ Two sequential ifs as if/elif: 4 paths become 3
 
 ::: notes
 Point at 000000 and 111111 on the grid: the two tests, both green. Then point at 000101,
-the I1 path, red: the bug. The curve doubled with every request, while the tested
-cells stayed at 2.
+the I1 path, red: the bug.
 :::
