@@ -1,4 +1,4 @@
-# Six if statements, 64 paths
+# 01 Bits: six policies, 64 paths
 
 ## A policy is one bit and every bit doubles the paths: count them before you trust a badge {paths=?}
 
@@ -18,7 +18,7 @@ three counting lines, then say that the footer counts from here, starting at 1 f
 plain checkout.
 :::
 
-## No policy yet: one path {paths=1}
+## The plain checkout has three calls and no policy, so it has one path {paths=1}
 
 \fvset{fontsize=\tiny}
 
@@ -48,7 +48,7 @@ skeleton has the three calls and no policy, so the footer reads 1 path. Read the
 customer's line aloud: that is all.
 :::
 
-## Policy 1: the autumn coupon adds one bit: 2^1 paths {paths=2}
+## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}
 
 \fvset{fontsize=\tiny}
 
@@ -78,7 +78,7 @@ request adds a coupon that is valid until a date, so the footer doubles to 2 pat
 the marketing line aloud and ask who thinks it is a small change.
 :::
 
-## Policy 2: the member discount adds one bit: 2^2 paths {paths=4}
+## The member discount stacks on the coupon and doubles the checkout to 4 paths {paths=4}
 
 \fvset{fontsize=\tiny}
 
@@ -108,7 +108,7 @@ policy request adds a decision about membership, so the footer doubles to 4 path
 the loyalty line aloud and point out that the two discounts now stack.
 :::
 
-## Policy 3: free shipping from 50 EUR adds one bit: 2^3 paths {paths=8}
+## Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths {paths=8}
 
 \fvset{fontsize=\tiny}
 
@@ -138,7 +138,7 @@ postage. The third policy request adds a threshold on the subtotal, so the foote
 to 8 paths. Read the logistics line aloud and ask the room why the carts are left.
 :::
 
-## Policy 4: shipping abroad adds one bit: 2^4 paths {paths=16}
+## Shipping abroad adds a fourth bit and the checkout reaches 16 paths {paths=16}
 
 \fvset{fontsize=\tiny}
 
@@ -169,7 +169,7 @@ doubles to 16 paths. Read the second logistics line aloud and say that the shipp
 now branch twice.
 :::
 
-## Policy 5: gift wrap adds one bit: 2^5 paths {paths=32}
+## Gift wrap, promised as just one more change, brings the checkout to 32 paths {paths=32}
 
 \fvset{fontsize=\tiny}
 
@@ -199,7 +199,7 @@ request adds an optional extra to the total, so the footer doubles to 32 paths. 
 marketing line aloud, the one that promised just one more.
 :::
 
-## Policy 6: no VAT for companies adds one bit: 2^6 paths {paths=64}
+## No VAT for companies adds the sixth bit and the checkout reaches 64 paths {paths=64}
 
 \fvset{fontsize=\tiny}
 
@@ -229,7 +229,7 @@ policy request adds the VAT rate, so the footer doubles to 64 paths. Read the ac
 line aloud.
 :::
 
-## Checkout done {paths=64}
+## Six policies done and 64 paths live, so how many tests would make you sure? {paths=64}
 
 \actor{dev}
 
@@ -252,7 +252,7 @@ line aloud.
 Read the dev and marketing lines aloud, then ask the chat the question and pause.
 :::
 
-## Two tests. Coverage says 100% {paths=64}
+## Two tests reach 100% branch coverage yet run only 2 of 64 combinations {paths=64}
 
 \fvset{fontsize=\tiny}
 
@@ -265,7 +265,7 @@ Read the dev and marketing lines aloud, then ask the chat the question and pause
 :::
 ::: {.column width="46%"}
 
-![](build/01-bits/coverage-view.png){height=70%}
+![](build/01-bits/coverage-view.png){height=60%}
 
 :::
 ::::
@@ -280,13 +280,13 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
 :::
 
-## Finance found it, not the tests {paths=64}
+## Finance traced 6,070 EUR of missing shipping to the checkout, a software fault {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
 finance backtracked the gap to the checkout: a software fault?
 
-![](build/01-bits/finance.png){height=58%}
+![](build/01-bits/finance.png){height=54%}
 
 \vfill
 
@@ -304,7 +304,7 @@ the chart, stop, then reveal the bubble: marketing, the same morning, asks for o
 with no idea what the last one cost.
 :::
 
-## The path nobody ran {paths=64}
+## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
 
 the test finance and marketing wrote from R2: 60.00
 
@@ -322,12 +322,12 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
-## A path is a six-bit number {paths=64}
+## A path is a six-bit number, so every new policy doubles the paths to count {paths=64}
 
 :::: {.columns}
 ::: {.column width="50%"}
 
-![](build/01-bits/grid.png){height=60%}
+![](build/01-bits/grid.png){height=56%}
 
 \small
 

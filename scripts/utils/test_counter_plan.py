@@ -50,7 +50,8 @@ def test_the_bits_section_opens_on_the_storyboard() -> None:
 
 @pytest.mark.view
 def test_the_checkout_done_frame_inherits_64() -> None:
-    assert frames("01")[8] == ("Checkout done", 64)
+    title = "Six policies done and 64 paths live, so how many tests would make you sure?"
+    assert frames("01")[8] == (title, 64)
 
 
 @pytest.mark.view
@@ -71,7 +72,8 @@ def test_the_simple_frames_before_the_number_carry_512() -> None:
 
 @pytest.mark.view
 def test_the_room_frames_before_the_honest_count_carry_64() -> None:
-    assert before("03", "The honest count") == [64, 64, 64]
+    title = "Counting the nine decisions honestly gives 512 paths, not 64, the first good news"
+    assert before("03", title) == [64, 64, 64]
 
 
 @pytest.mark.view

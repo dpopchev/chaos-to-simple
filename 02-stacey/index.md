@@ -1,8 +1,12 @@
-# Stacey matrix: agreement on the What, certainty on the How
+# 02 Map: Stacey matrix, agreement on the What, certainty on the How
 
-## I wanted to write a test {paths=64}
+## Marketing and logistics read free shipping differently, so no test settles it {paths=64}
+
+\fvset{fontsize=\scriptsize}
 
 Free shipping from 50. Of what?
+
+\vspace{-6pt}
 
 \actor{marketing}
 
@@ -32,12 +36,12 @@ settles it. The developer's question comes before anyone agreed the rule; agree 
 first.
 :::
 
-## Above the line: a decision, not a test {paths=64}
+## The shipping dispute sits above the line: a decision for the room, not a test {paths=64}
 
 :::: {.columns align=bottom}
 ::: {.column width="62%"}
 
-![](build/02-stacey/stacey-02.png){height=85%}
+![](build/02-stacey/stacey-02.png){height=80%}
 
 :::
 ::: {.column width="38%"}

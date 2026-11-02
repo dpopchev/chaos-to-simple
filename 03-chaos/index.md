@@ -1,6 +1,6 @@
-# From chaos to complex
+# 03 Room: from chaos to complex
 
-## The journey of one order {paths=64}
+## The mood of one order drops at six questions, each a rule nobody wrote down {paths=64}
 
 ![](build/03-chaos/diagrams/journey.png){width=90%}
 
@@ -12,7 +12,7 @@ The mood drops at every step that raised a question, q1 to q6, in the order the 
 them. Each drop is a place where the rule was not written down yet.
 :::
 
-## The room {paths=64}
+## Four departments carry the argument in one room while dev stays silent to the end {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
@@ -28,7 +28,7 @@ Reading plan: read the Logistics first line aloud, then the Marketing answer; sk
 'Who reads the log?'; then the silence, and let the room hear it.
 :::
 
-## The retro {paths=64}
+## The retro names six business decisions, three core and three in generic subdomains {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
@@ -44,14 +44,14 @@ Monday. The code decided for them, and that is incident I2. The room decided aft
 discount, not before it: the rule came last, after the code had already picked one side.
 :::
 
-## The honest count {paths=512}
+## Counting the nine decisions honestly gives 512 paths, not 64, the first good news {paths=512}
 
 \fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="62%"}
 
-![](build/03-chaos/grid-9.png){width=100%}
+![](build/03-chaos/grid-9.png){width=88%}
 
 ```{.text include=build/data/counts.txt}
 ```
@@ -71,9 +71,9 @@ The grid you saw in 01 was one of eight. The four framed panels are the ones whe
 stock is gone. The number is now true: 2^9 = 512. The bigger number is the first good news.
 :::
 
-## Nine decisions, none deleted, all moved {paths=512}
+## Nine decisions came out of the room, and each moves to a home, none deleted {paths=512}
 
-![](build/03-chaos/board.png){height=62%}
+![](build/03-chaos/board.png){height=56%}
 
 \footnotesize the retro six questions and the three nobody raised, one row each; the columns ahead are the sections ahead
 
