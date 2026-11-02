@@ -7,26 +7,17 @@
 ```{.text include=05-how/data/incident.txt}
 ```
 
-```{.text include=build/05-how/effects.txt}
+```{.python include=05-how/tests/test_i3.py snippet=i3}
 ```
 
-charge before reserve: the order was the bug, nobody decided it
-
-decided in the room two weeks earlier (q5): the code had not heard
-
-::: notes
-I3 comes first, before any design word. Charge before reserve was the bug, and nobody decided it.
-The numbered effect lines show the order the code happened to run in.
-:::
-
-## Past me reached for a class {paths=512}
-
-```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
+```{.text include=build/05-how/i3-run.txt}
 ```
 
+support raised the flag, the test points at the shell: reserve before charge (q5)
+
 ::: notes
-Past me reached for a class, so the order of the steps hid in its state.
-Each method reads and changes the same fields, and the call sequence became a bit nobody could see.
+I3 comes first, before any design word. Support raised the flag: cards charged for parcels the warehouse did not have.
+The test writes the rule down against checkout v4, and the run under it shows the order the code happened to take: charge, then reserve.
 :::
 
 ## The bit nobody wrote down {paths=512}
@@ -37,6 +28,19 @@ Each method reads and changes the same fields, and the call sequence became a bi
 ::: notes
 The call order is a bit nobody wrote down: 45 against 44 from the same inputs.
 Live demo: make test K=TestCallOrder. The first test follows the rule, the second one differs.
+:::
+
+## Past me reached for a class {paths=512}
+
+```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
+```
+
+same bug, pricing edition: the order hidden in state
+
+::: notes
+Past me reached for a class, so the order of the steps hid in its state.
+Each method reads and changes the same fields, and the call sequence became a bit nobody could see.
+It is the same bug as I3, pricing edition.
 :::
 
 ## Command Query Separation draws the seam {paths=512}
