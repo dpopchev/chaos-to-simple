@@ -11,22 +11,12 @@ import pytest
 from s05_how.fakes import FakeGateway, FakeInventory, FakeMailer
 from s06_simple.core import Request
 from s06_simple.shell import Accepted, Rejected, checkout
+from s06_simple.worlds import world
 from scripts.utils.examples import example_names, missing_tests
 
 EXAMPLES = Path(__file__).resolve().parents[2] / "data" / "examples.csv"
 PLAIN_TOTAL = Decimal("30.00")  # (20 + 5) * 1.20
 
-
-# [snippet: eight]
-def world(bits: int) -> tuple[FakeGateway, FakeInventory, FakeMailer]:
-    return (
-        FakeGateway(declines=bool(bits & 0b001)),  # s0
-        FakeInventory(out_of_stock=bool(bits & 0b010)),  # s1
-        FakeMailer(bounces=bool(bits & 0b100)),  # s2
-    )
-
-
-# [/snippet]
 
 OUT_OF_STOCK = [b for b in range(8) if b & 0b010]
 DECLINED = [b for b in range(8) if b & 0b001 and not b & 0b010]

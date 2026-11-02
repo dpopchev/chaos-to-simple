@@ -22,8 +22,22 @@ The core has no if of its own, every bit stays where it was named.
 
 ## Eight worlds, four outcomes {paths=512}
 
-```{.python include=06-simple/tests/test_shell.py snippet=eight}
+\fvset{fontsize=\tiny}
+
+:::: {.columns}
+::: {.column width="55%"}
+
+```{.python include=06-simple/s06_simple/worlds.py snippet=eight}
 ```
+
+:::
+::: {.column width="45%"}
+
+```{.text include=build/06-simple/worlds.txt}
+```
+
+:::
+::::
 
 ::: notes
 Eight shell worlds collapse to four outcomes.

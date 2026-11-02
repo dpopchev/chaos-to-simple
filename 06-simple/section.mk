@@ -25,7 +25,13 @@ $(BUILD)/06-simple/paths.png: $(RULES) scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths chart --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/06-simple/seventh.diff
+ARTIFACTS += $(BUILD)/06-simple/seventh.diff $(BUILD)/06-simple/worlds.txt
+
+$(BUILD)/06-simple/worlds.txt: $(wildcard 04-what/s04_what/*.py) $(wildcard 05-how/s05_how/*.py) \
+    $(wildcard 06-simple/s06_simple/*.py)
+	@mkdir -p $(@D)
+	@PYTHONPATH=01-bits:04-what:05-how:06-simple $(RUN) python -m s06_simple.worlds --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/seventh.diff: 04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/shipping.py --to 06-simple/s06_simple/seventh.py \
