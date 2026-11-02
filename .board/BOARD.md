@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 268 | pruned: 2
+open path: E-008 > W-070 > T-177   | blocked: 0 | todo roots: 0 | done: 268 | pruned: 2
 
 ## Tree
 
 ```text
-E-008         [todo]     backlog after deck v2: the build guards, the rebuild rule and the cleanups
-  W-070  issue  [todo]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [todo]
+E-008         [doing]    backlog after deck v2: the build guards, the rebuild rule and the cleanups
+  W-070  issue  [doing]    chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [doing]   <- ACTIVE LEAF
   W-072  bug    [todo]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [todo]
   W-073  bug    [todo]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [todo]
   W-074  bug    [todo]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
@@ -484,9 +484,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E008["E-008 todo: backlog after deck v2: the build guards, the rebuild rule and the cleanups"]
-  E008 --> W070["W-070 issue todo: chart labels: spread_apart gets its own test"]
-  W070 --> T177["T-177 todo: Pin spread_apart with a test -> scripts/utils/test_paths.py"]
+  E008["E-008 doing: backlog after deck v2: the build guards, the rebuild rule and the cleanups"]
+  E008 --> W070["W-070 issue doing: chart labels: spread_apart gets its own test"]
+  W070 --> T177["T-177 doing: Pin spread_apart with a test -> scripts/utils/test_paths.py -- ACTIVE LEAF"]
   E008 --> W072["W-072 bug todo: make lengths crashes on an include of a missing file the filter would render as a STUB"]
   W072 --> T179["T-179 todo: Skip a missing include with a warning -> scripts/check_lengths.py"]
   E008 --> W073["W-073 bug todo: 05 ports.png is not rebuilt when data/cast.csv changes"]
@@ -506,5 +506,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
+  class E008,W070,T177 doing
+  class W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190,W083,T192 todo
 ```
