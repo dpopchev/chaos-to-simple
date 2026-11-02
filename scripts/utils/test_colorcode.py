@@ -56,7 +56,7 @@ def test_the_charge_call_is_in_the_shell() -> None:
 
 @pytest.mark.model
 def test_a_skeleton_line_has_no_context() -> None:
-    assert _by_text("subtotal = goods").context is None
+    assert _by_text("total = goods + shipping").context is None
 
 
 @pytest.mark.edge
