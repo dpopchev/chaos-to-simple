@@ -41,6 +41,7 @@ from scripts.utils.paths import (
     slice_label_point,
     split,
     splits_report,
+    spread_apart,
     stacked_bar,
     stock_gone,
     tangled,
@@ -637,3 +638,8 @@ def test_effects_lines_strip_the_step_marker() -> None:
     cast = [CastRow("s0", 0, None, "payment", "b", "", "charge(total)")]
     source = "charge(total)  # declined?  # [step: 0]\n"
     assert effects_lines(cast, source) == "1  charge(total)  # declined?\n"
+
+
+@pytest.mark.view
+def test_spread_apart_keeps_the_gap() -> None:
+    assert spread_apart([1.0, 1.2], gap=0.5) == [1.0, 1.5]
