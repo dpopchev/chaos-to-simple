@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-008 > W-074   | blocked: 0 | todo roots: 2 | done: 284 | pruned: 4
+open path: E-008   | blocked: 0 | todo roots: 2 | done: 285 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-008         [doing]    backlog after deck v2: the build guards, the rebuild ru
   W-070  issue  [done]     chart labels: spread_apart gets its own test   (filed during T-124) -- T-177 [done]
   W-072  bug    [done]     make lengths crashes on an include of a missing file the filter would render as a STUB   (filed during T-128) -- T-179 [done]
   W-073  bug    [done]     05 ports.png is not rebuilt when data/cast.csv changes   (filed during T-131) -- T-180 [done]
-  W-074  bug    [doing]    make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [done]
+  W-074  bug    [done]     make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [done]
   W-075  issue  [done]     scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [done]
   W-081  bug    [pruned]   make overflow passes a frame whose content beamer shifts over the title   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]   (filed during T-148) -- T-189 [pruned]   [pruned: hypothesis refuted by T-189's probe; the real case is a frame with under 1ex slack whose [T]-column image reaches the title]
   W-082  issue  [done]     remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [done]
@@ -494,7 +494,7 @@ flowchart TD
   W072 --> T179["T-179 done: Skip a missing include with a warning -> scripts/check_lengths.py"]
   E008 --> W073["W-073 bug done: 05 ports.png is not rebuilt when data/cast.csv changes"]
   W073 --> T180["T-180 done: List the cast as a prerequisite of the seam -> 05-how/section.mk"]
-  E008 --> W074["W-074 bug doing: make check passes on a tree that ruff format would change"]
+  E008 --> W074["W-074 bug done: make check passes on a tree that ruff format would change"]
   W074 --> T181["T-181 done: Format the tree and gate it in make check -> mk/python.mk"]
   E008 --> W075["W-075 issue done: scripts.utils.style imports palette, so palette imports icons lazily"]
   W075 --> T182["T-182 done: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
@@ -516,8 +516,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E008,W074 doing
-  class W070,T177,W072,T179,W073,T180,T181,W075,T182,W082,T190,W083,T192,W087,T196,T197 done
+  class E008 doing
+  class W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W082,T190,W083,T192,W087,T196,T197 done
   class W086,T195,W088,T198 todo
   class W081,T189 pruned
 ```
