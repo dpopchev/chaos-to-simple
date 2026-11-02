@@ -29,7 +29,7 @@ NOTES     := $(BUILD)/talk-notes.pdf
 SECTION ?=
 TITLE   ?=
 
-CHECKS += ascii lines lengths budget widths overflow
+CHECKS += ascii lines lengths budget titles widths overflow
 DELIVERABLES += deliverable-talk
 
 # A section that generates artifacts declares them in its own section.mk: it
@@ -111,6 +111,11 @@ lines: ## Check the six should-have-known lines in their sections and in 07
 budget: ## Fail naming each section whose frame count differs from data/budget.csv
 	@$(RUN) python -m scripts.check_budget --root .
 	$(call log_done,every section holds its budgeted frames)
+
+.PHONY: titles
+titles: ## Fail naming each content frame title under eight words
+	@$(RUN) python -m scripts.check_titles --root .
+	$(call log_done,every content frame title has eight words)
 
 .PHONY: widths
 widths: $(ARTIFACTS) | stubs ## Fail naming each included line wider than its column

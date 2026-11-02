@@ -67,11 +67,12 @@ list of files in the Makefile (a second place to keep in order), `slides.md` per
 make help                 every target with its description (the default goal)
 make doctor               which tools are present and the fonts found
 make sync                 uv environment with pytest, ruff, pyright, matplotlib
-make check                every check: board, ruff, pyright, pytest, ascii, lines, lengths, budget, widths, overflow
+make check                every check: board, ruff, pyright, pytest, ascii, lines, lengths, budget, titles, widths, overflow
 make talk                 check, then build build/talk.pdf
 make test K=<expression>  pytest -k: only the tests matching the expression
 make lines                fail on a slide line over the limit
 make budget               fail on a section whose frame count differs from data/budget.csv
+make titles               fail on a content frame title under eight words
 make lengths              fail on an included block over its line cap
 make deliverable          every deliverable: build/talk.pdf, not empty
 make draft                the PDF without the checks, for layout work
