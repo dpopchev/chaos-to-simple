@@ -303,7 +303,7 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             color="white",
         )
         ax.text(band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16)
-    bracket_x = band_x + max(move.bits for move in moves) * unit + 2.2
+    bracket_x = band_x + max(move.bits for move in moves) * unit + 3.4
     top = n - 1
     for label, count in band_groups(moves):
         if count == 0:
@@ -322,10 +322,9 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             ha="left",
             va="center",
             fontsize=14,
-            wrap=True,
         )
         top = bottom - 1
-    ax.set_xlim(0, bracket_x + 5.5)
+    ax.set_xlim(0, bracket_x + 7.5)
     ax.set_ylim(-0.7, n - 0.3)
     ax.axis("off")
     fig.tight_layout()

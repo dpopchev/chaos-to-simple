@@ -75,18 +75,9 @@ Every bit has a home and a face: each context names the people who asked for its
 
 ## Bounded contexts, the moves {paths=512}
 
-:::: {.columns}
-::: {.column width="50%"}
+![](build/04-what/moves.png){height=50%}
 
-![](build/04-what/moves.png){height=55%}
-
-:::
-::: {.column width="50%"}
-
-![](build/04-what/board.png){height=30%}
-
-:::
-::::
+the contexts are the core, the ports are the shell: one cut, two names
 
 ::: notes
 Each home is a context, and the board shows the nine decisions moved.
