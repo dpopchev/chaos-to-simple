@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-093 > T-212   | blocked: 0 | todo roots: 0 | done: 310 | pruned: 4
+open path: E-010 > W-093 > T-213   | blocked: 0 | todo roots: 0 | done: 311 | pruned: 4
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
   W-090  issue  [done]     01: the storyboard opens the loop -- T-203 [done], T-204 [done], T-205 [done], T-225 [done]
   W-091  issue  [done]     01: measured captions on the evidence frames -- T-206 [done], T-207 [done], T-208 [done]
   W-092  issue  [done]     02: the dispute as bubbles and one map -- T-209 [done], T-210 [done], T-211 [done], T-226 [done]
-  W-093  issue  [doing]    03: the room readable from the back -- T-212 [doing]   <- ACTIVE LEAF, T-213 [todo], T-214 [todo]
+  W-093  issue  [doing]    03: the room readable from the back -- T-212 [done], T-213 [doing]   <- ACTIVE LEAF, T-214 [todo]
   W-094  issue  [todo]     04: the homes without noise -- T-215 [todo], T-216 [todo], T-217 [todo]
   W-095  issue  [todo]     05: the seam without guards -- T-218 [todo], T-219 [todo]
   W-096  issue  [todo]     06: the measured frames -- T-220 [todo], T-221 [todo], T-222 [todo], T-223 [todo]
@@ -559,8 +559,8 @@ flowchart TD
   W092 --> T211["T-211 done: Rewrite the 02 frames -> 02-stacey/index.md and data/budget.csv"]
   W092 --> T226["T-226 done: Fit the matrix at 85% height -> 02-stacey/index.md and scripts/utils/stacey.py"]
   E010 --> W093["W-093 issue doing: 03: the room readable from the back"]
-  W093 --> T212["T-212 doing: Redraw the journey legibly -> build/03-chaos/diagrams/journey.png -- ACTIVE LEAF"]
-  W093 --> T213["T-213 todo: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md"]
+  W093 --> T212["T-212 done: Redraw the journey legibly -> build/03-chaos/diagrams/journey.png"]
+  W093 --> T213["T-213 doing: Colour the speakers of an exhibit block -> 00-frontmatter/filters/speakers.lua and 03-chaos/index.md -- ACTIVE LEAF"]
   W093 --> T214["T-214 todo: Head the waiting board columns -> build/03-chaos/board.png"]
   E010 --> W094["W-094 issue todo: 04: the homes without noise"]
   W094 --> T215["T-215 todo: Caption the stage diffs instead of headers -> scripts/utils/stagediff.py"]
@@ -581,7 +581,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W093,T212 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226 done
-  class T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
+  class E010,W093,T213 doing
+  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,T212 done
+  class T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
