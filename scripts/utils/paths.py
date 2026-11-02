@@ -344,6 +344,80 @@ def grid_image(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) 
     return out
 
 
+def panel_titles(shell_bits: int) -> tuple[str, ...]:
+    """One title per shell configuration, the bits s2 s1 s0 counted up from all zero."""
+    return tuple(f"{n:0{shell_bits}b}" for n in range(tangled(shell_bits)))
+
+
+def stock_gone(title: str) -> bool:
+    """Whether the panel is a configuration where the warehouse answers OutOfStock (s1 set)."""
+    return title[-2] == "1"
+
+
+def grid_panels(
+    core_bits: int,
+    shell_bits: int,
+    tested: Sequence[str],
+    bug: Sequence[str],
+    out: Path,
+) -> Path:
+    """Draw one 8x8 panel per shell configuration; panel 0 marks the tested and bug cells.
+
+    Every stock-gone panel is framed in the payment colour and titled by its shell bits.
+    """
+    from scripts.utils import style
+    from scripts.utils.coverage_view import GRID_SIDE
+
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Rectangle
+
+    fills = {
+        "tested": colour_of("accounting"),
+        "bug": colour_of("payment"),
+        "untested": colour_of("customer"),
+    }
+    titles = panel_titles(shell_bits)
+    columns = 4
+    rows = len(titles) // columns
+    fig, axes = plt.subplots(rows, columns, figsize=(6.4, 3.8), dpi=style.DPI)
+    for n, (ax, title) in enumerate(zip(axes.flat, titles, strict=True)):
+        kinds = cell_kinds(core_bits, tested if n == 0 else [], bug if n == 0 else [])
+        for k, kind in enumerate(kinds):
+            r, c = divmod(k, GRID_SIDE)
+            ax.add_patch(
+                Rectangle(
+                    (c, GRID_SIDE - 1 - r), 0.9, 0.9, facecolor=fills[kind], edgecolor="none"
+                )
+            )
+        framed = stock_gone(title)
+        if framed:
+            ax.add_patch(
+                Rectangle(
+                    (-0.35, -0.35),
+                    GRID_SIDE + 0.6,
+                    GRID_SIDE + 0.6,
+                    fill=False,
+                    edgecolor=colour_of("payment"),
+                    linewidth=3.5,
+                )
+            )
+        ax.set_xlim(-0.5, GRID_SIDE + 0.5)
+        ax.set_ylim(-0.5, GRID_SIDE + 0.5)
+        ax.set_aspect("equal")
+        ax.axis("off")
+        ax.set_title(
+            title,
+            fontsize=16,
+            family="monospace",
+            fontweight="bold",
+            color=colour_of("payment") if framed else "black",
+        )
+    fig.tight_layout(pad=0.3)
+    style.save(fig, out)
+    return out
+
+
 Segment = tuple[str, int]
 Bar = tuple[str, Sequence[Segment]]
 

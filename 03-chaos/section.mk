@@ -13,6 +13,12 @@ $(BUILD)/03-chaos/retro.txt: data/questions.csv data/actors.csv scripts/paths.py
 	@$(RUN) python -m scripts.paths retro --questions data/questions.csv --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/03-chaos/grid-9.png
+
+$(BUILD)/03-chaos/grid-9.png: data/rules.csv 01-bits/data/tested.csv scripts/figures.py scripts/utils/paths.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures grid-panels --rules data/rules.csv --tested 01-bits/data/tested.csv --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/03-chaos/diagrams/journey.png: data/questions.csv data/actors.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures journey --questions data/questions.csv --out $@
 	$(call log_done,$@ written)

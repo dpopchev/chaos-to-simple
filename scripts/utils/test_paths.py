@@ -28,17 +28,20 @@ from scripts.utils.paths import (
     epilogue_report,
     grid,
     grid_image,
+    grid_panels,
     growth,
     growth_chart,
     line_of,
     load_cast,
     load_incidents,
     load_rules,
+    panel_titles,
     rules_table,
     slice_label_point,
     split,
     splits_report,
     stacked_bar,
+    stock_gone,
     tangled,
     wounds_selector,
 )
@@ -214,6 +217,33 @@ class TestGridImageMarksThreeCells:
 def test_grid_image_is_near_square(tmp_path: Path) -> None:
     out = grid_image(6, ["000000", "111111"], ["000101"], tmp_path / "grid.png")
     assert pixel_ratio(out) == pytest.approx(1.0, abs=0.1)
+
+
+@pytest.mark.model
+def test_panel_titles_count_the_shell_bits_up() -> None:
+    assert panel_titles(3) == ("000", "001", "010", "011", "100", "101", "110", "111")
+
+
+@pytest.mark.model
+def test_four_panels_have_the_stock_gone() -> None:
+    assert sum(stock_gone(t) for t in panel_titles(3)) == 4
+
+
+@pytest.mark.model
+def test_stock_is_gone_when_s1_is_set() -> None:
+    assert [t for t in panel_titles(3) if stock_gone(t)] == ["010", "011", "110", "111"]
+
+
+@pytest.mark.view
+def test_grid_panels_writes_a_png(tmp_path: Path) -> None:
+    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png")
+    assert out.read_bytes().startswith(b"\x89PNG")
+
+
+@pytest.mark.view
+def test_grid_panels_is_wider_than_tall(tmp_path: Path) -> None:
+    out = grid_panels(6, 3, ["000000", "111111"], ["000101"], tmp_path / "panels.png")
+    assert 1.0 < pixel_ratio(out) < 1.8
 
 
 @pytest.mark.model

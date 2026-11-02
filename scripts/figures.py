@@ -6,6 +6,7 @@ python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures doubling --cast data/cast.csv --out build/01-bits/doubling.png
 python -m scripts.figures finance --out build/01-bits/finance.png
 python -m scripts.figures grid-image --out build/01-bits/grid.png
+python -m scripts.figures grid-panels --rules data/rules.csv --out build/03-chaos/grid-9.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
@@ -32,7 +33,14 @@ from scripts.utils.figures import (
 from scripts.utils.finance import draw as draw_finance
 from scripts.utils.finance import load_october, report
 from scripts.utils.palette import load_actors
-from scripts.utils.paths import doubling_chart, grid_image, load_cast, load_incidents, load_rules
+from scripts.utils.paths import (
+    doubling_chart,
+    grid_image,
+    grid_panels,
+    load_cast,
+    load_incidents,
+    load_rules,
+)
 from scripts.utils.retro import load_questions
 from scripts.utils.stacey import draw as draw_stacey
 from scripts.utils.stacey import load_labels, load_spots, load_zones
@@ -50,6 +58,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "doubling",
         "finance",
         "grid-image",
+        "grid-panels",
         "moves",
         "seam",
         "journey",
@@ -90,6 +99,17 @@ def main(argv: Sequence[str] | None = None) -> int:
         rows = load_tested(args.tested)
         grid_image(
             BITS,
+            [r.bits for r in rows if r.kind == "tested"],
+            [r.bits for r in rows if r.kind == "bug"],
+            args.out,
+        )
+        return 0
+    if args.what == "grid-panels":
+        rules = load_rules(args.rules)
+        rows = load_tested(args.tested)
+        grid_panels(
+            sum(r.scope == "core" for r in rules),
+            sum(r.scope == "shell" for r in rules),
             [r.bits for r in rows if r.kind == "tested"],
             [r.bits for r in rows if r.kind == "bug"],
             args.out,
