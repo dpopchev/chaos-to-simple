@@ -10,8 +10,9 @@ from scripts.utils.palette import label_of
 from scripts.utils.retro import Question, load_questions, question_card, retro_table
 
 QUESTIONS = Path(__file__).resolve().parents[2] / "data/questions.csv"
-# id 2 + question 35 + who 15 plus three gaps of 2.
-DECIDED_AT = 2 + 35 + 15 + 6
+# id 2 + question 31 + who 13 plus three gaps of 2, then subdomain 9 and a gap.
+SUBDOMAIN_AT = 2 + 31 + 13 + 6
+DECIDED_AT = SUBDOMAIN_AT + 9 + 2
 
 
 def table() -> list[str]:
@@ -24,13 +25,26 @@ def test_load_questions_reads_the_six_rows() -> None:
 
 
 @pytest.mark.model
-def test_retro_table_heads_the_four_columns() -> None:
-    assert table()[0].split() == ["id", "question", "who", "decided"]
+def test_retro_table_heads_the_five_columns() -> None:
+    assert table()[0].split() == ["id", "question", "who", "subdomain", "decided"]
 
 
 @pytest.mark.model
 def test_retro_table_names_the_raiser_by_label() -> None:
-    assert "Loyalty program" in retro_table(load_questions(QUESTIONS))
+    assert "Loyalty" in retro_table(load_questions(QUESTIONS))
+
+
+@pytest.mark.model
+def test_retro_table_names_the_subdomain() -> None:
+    rows = [line for line in table() if line.startswith("q")]
+    assert [row[SUBDOMAIN_AT : SUBDOMAIN_AT + 9].strip() for row in rows] == [
+        "core",
+        "core",
+        "core",
+        "generic",
+        "generic",
+        "generic",
+    ]
 
 
 def decided_column() -> str:
@@ -55,7 +69,8 @@ def test_retro_table_fits_the_deck_frame() -> None:
 
 @pytest.mark.view
 def test_retro_table_is_within_the_block_cap() -> None:
-    assert len(table()) <= 14
+    """The cap matches cap=18 on the retro include in 03-chaos/index.md."""
+    assert len(table()) <= 18
 
 
 @pytest.mark.model

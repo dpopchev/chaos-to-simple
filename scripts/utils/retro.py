@@ -11,11 +11,12 @@ from pathlib import Path
 
 from scripts.utils.palette import label_of
 
-COLUMNS = ("id", "question", "who", "decided")
-# Column widths for the deck frame: 2 + 35 + 15 + 46 plus three gaps of 2 is 104.
-QUESTION_WIDTH = 35
-WHO_WIDTH = 15
-DECIDED_WIDTH = 46
+COLUMNS = ("id", "question", "who", "subdomain", "decided")
+# Column widths for the deck frame: 2 + 31 + 13 + 9 + 41 plus four gaps of 2 is 104.
+QUESTION_WIDTH = 31
+WHO_WIDTH = 13
+SUBDOMAIN_WIDTH = 9
+DECIDED_WIDTH = 41
 GAP = "  "
 # The decision of a card wraps at the width of the retro's decided column plus its question.
 CARD_WIDTH = 80
@@ -29,6 +30,7 @@ class Question:
     bit: str
     status: str
     decision: str
+    subdomain: str = ""
 
 
 def load_questions(path: Path) -> list[Question]:
@@ -42,6 +44,7 @@ def load_questions(path: Path) -> list[Question]:
                 row["bit"],
                 row["status"],
                 row["decision"],
+                row["subdomain"],
             )
             for row in csv.DictReader(fh)
         ]
@@ -82,9 +85,9 @@ def question_card(q: Question, label: Callable[[str], str] = label_of) -> str:
 
 
 def retro_table(questions: Sequence[Question], label: Callable[[str], str] = label_of) -> str:
-    """The table of id, question, who raised it and what was decided; long cells wrap."""
-    widths = (2, QUESTION_WIDTH, WHO_WIDTH, DECIDED_WIDTH)
+    """The table of id, question, who raised it, its subdomain and the decision; long cells wrap."""
+    widths = (2, QUESTION_WIDTH, WHO_WIDTH, SUBDOMAIN_WIDTH, DECIDED_WIDTH)
     lines = _row(COLUMNS, widths)
     for q in questions:
-        lines += _row((q.id, q.question, label(q.raised_by), q.decision), widths)
+        lines += _row((q.id, q.question, label(q.raised_by), q.subdomain, q.decision), widths)
     return "\n".join(lines) + "\n"

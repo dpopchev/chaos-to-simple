@@ -28,7 +28,7 @@ Pause before the last line. Chat moment: which question would you have asked?
 
 \fvset{fontsize=\scriptsize}
 
-```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt}
+```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
 ```
 
 ::: notes
