@@ -7,15 +7,15 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 |---|---|
 | Minutes | 5.5 |
 | Footer counter | `64` on entry, `512` from "The honest count" |
-| Owns | `diagrams/story.mmd` (the domain story as a sequence diagram), `data/questions.md` (the red cards and where each was answered) |
+| Owns | `data/room.txt` (the room chat log), `data/questions.csv` at the repository root (the six questions) |
 | Uses | `data/rules.csv`, `data/examples.csv` (shared: 04 and 06 read them too) |
 | Produces | nothing of its own; includes the shared `build/data/rules.txt` and `build/data/counts.txt` |
 
 ## Slides
 
-- [x] The room: one story, nine sentences: `build/03-chaos/story.png`
-- [x] The six questions, decided: the red cards, with the three effects in rows 4-6
-- [x] The six questions, as a map: `build/03-chaos/example_map.png`
+- [x] The journey of one order: `build/03-chaos/diagrams/journey.png`
+- [x] The room: the chat log, `03-chaos/data/room.txt`
+- [x] The retro: the six questions as a table, `build/03-chaos/retro.txt`
 - [x] The honest count: `build/data/counts.txt`
 - [x] First change: bit, who, rule, with the line glued at its foot: `build/data/rules.txt`
 
