@@ -129,6 +129,16 @@ def test_actors_tex_without_an_icon_font_leaves_the_glyph_empty() -> None:
 
 
 @pytest.mark.model
+def test_actors_tex_defines_the_path_glyph_as_a_character_code() -> None:
+    assert '\\newcommand{\\pathglyph}{\\symbol{"F126}}' in _tex(FONT_AWESOME)
+
+
+@pytest.mark.edge
+def test_actors_tex_without_an_icon_font_leaves_the_path_glyph_empty() -> None:
+    assert "\\newcommand{\\pathglyph}{}" in _tex(None)
+
+
+@pytest.mark.model
 def test_context_colour_gives_five_distinct_colours() -> None:
     assert len({context_colour(name) for name in CONTEXTS}) == 5
 

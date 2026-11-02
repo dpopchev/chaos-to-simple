@@ -14,7 +14,7 @@ of the map is the shape of the teams, and the arrows are the calls the code make
 
 ## Agenda, in the order the bits fall {paths=?}
 
-The number under each stop is the paths we have to reason about.
+The number under each stop, and in the footer, is the paths we have to reason about.
 
 ![](build/00-frontmatter/agenda.png){height=80%}
 

@@ -143,8 +143,19 @@ def agenda_strip(
             alpha=alpha,
             zorder=4,
         )
+        if font is not None:
+            ax.text(
+                x - 0.3,
+                -STOP_H / 2 - 0.22,
+                glyph("code-branch", FONT_AWESOME),
+                ha="center",
+                va="center",
+                fontproperties=FontProperties(fname=font, size=12),
+                alpha=alpha,
+                zorder=4,
+            )
         ax.text(
-            x,
+            x + (0.1 if font is not None else 0.0),
             -STOP_H / 2 - 0.22,
             stop.counter,
             ha="center",
