@@ -101,6 +101,12 @@ def test_tally_line_doubles_the_paths() -> None:
 
 
 @pytest.mark.view
+def test_bubble_head_carries_the_tag() -> None:
+    row = BubbleRow(0, 0, "", "marketing", "Of the cart.", "R1")
+    assert bubble(row, {"marketing": "Marketing"}) == "R1 Marketing\nOf the cart.\n"
+
+
+@pytest.mark.view
 def test_bubble_without_a_date_reads_the_label_alone() -> None:
     row = BubbleRow(2, 0, "", "dev", "Which test do I write?")
     assert bubble(row, {"dev": "Dev (the shop)"}) == "Dev (the shop)\nWhich test do I write?\n"

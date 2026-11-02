@@ -24,13 +24,14 @@ class BubbleRow:
     when: str
     actor: str
     words: str
+    tag: str = ""
 
 
 def load_bubbles(path: Path) -> list[BubbleRow]:
     """Read the nine bubbles in file order."""
     with path.open(newline="", encoding="ascii") as fh:
         return [
-            BubbleRow(int(r["step"]), int(r["week"]), r["when"], r["actor"], r["words"])
+            BubbleRow(int(r["step"]), int(r["week"]), r["when"], r["actor"], r["words"], r["tag"])
             for r in csv.DictReader(fh)
         ]
 
@@ -82,5 +83,6 @@ def tally_line(n: int, tests: int = 2) -> str:
 def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:
     """Return the bubble text: actor label and date, then the words wrapped at width."""
     words = textwrap.fill(row.words, width=width)
-    head = f"{labels[row.actor]}, {row.when}" if row.when else labels[row.actor]
+    label = f"{row.tag} {labels[row.actor]}" if row.tag else labels[row.actor]
+    head = f"{label}, {row.when}" if row.when else label
     return f"{head}\n{words}\n"
