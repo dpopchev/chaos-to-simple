@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-007 > W-062 > T-157   | blocked: 0 | todo roots: 6 | done: 232 | pruned: 2
+open path: E-007 > W-062 > T-157   | blocked: 0 | todo roots: 7 | done: 232 | pruned: 2
 
 ## Tree
 
@@ -38,6 +38,7 @@ W-073  bug    [todo]     (standalone) 05 ports.png is not rebuilt when data/cast
 W-074  bug    [todo]     (standalone) make check passes on a tree that ruff format would change   (filed during T-132) -- T-181 [todo]
 W-075  issue  [todo]     (standalone) scripts.utils.style imports palette, so palette imports icons lazily   (filed during T-132) -- T-182 [todo]
 W-081  bug    [todo]     (standalone) make overflow passes a frame whose content beamer shifts over the title   (filed during T-148) -- T-189 [todo]
+W-082  issue  [todo]     (standalone) remove the dead growth chart and its paths subcommand   (filed during T-156) -- T-190 [todo]
 ```
 
 ## Closed
@@ -456,6 +457,8 @@ flowchart TD
   W075 --> T182["T-182 todo: Break the style-palette import cycle -> scripts/utils/style.py, scripts/utils/palette.py"]
   W081["W-081 bug todo, standalone: make overflow passes a frame whose content beamer shifts over the title"]
   W081 --> T189["T-189 todo: Catch a frame shifted over its title -> scripts/utils/overflow.py"]
+  W082["W-082 issue todo, standalone: remove the dead growth chart and its paths subcommand"]
+  W082 --> T190["T-190 todo: Remove growth_chart and the growth subcommand -> scripts/paths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -463,5 +466,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E007,W062,T157 doing
   class W050,T122,T123,W051,T124,T125,W052,T126,T127,T128,W053,T129,T130,W054,T131,T132,T133,W055,T134,T135,T136,W056,T137,T138,T139,T186,W057,T140,T141,T142,W058,T143,T144,T145,W059,T146,T147,T148,W060,T149,T150,T151,W061,T152,T153,T154,T155,T156,W071,T178,W076,T183,W077,T184,W079,T187,W080,T188 done
-  class W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189 todo
+  class W063,T158,T159,T160,W064,T161,T162,W065,T163,T164,T165,T166,W066,T167,T168,T169,W067,T170,T171,T172,W068,T173,T174,W069,T175,T176,W078,T185,W070,T177,W072,T179,W073,T180,W074,T181,W075,T182,W081,T189,W082,T190 todo
 ```
