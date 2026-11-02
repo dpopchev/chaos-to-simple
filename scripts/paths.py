@@ -27,6 +27,7 @@
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] [--added-only] [--hide PATTERN] [--label-from A --label-to B] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
+    python -m scripts.paths postmortem --incidents data/incidents.csv --out F.txt
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
 
@@ -51,6 +52,7 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
     next_doubling,
+    postmortem_table,
     rules_table,
     splits_report,
     stacked_bar,
@@ -98,6 +100,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "doubling",
             "next",
             "wounds",
+            "postmortem",
             "retro",
             "storyboard",
             "bubbles",
@@ -203,6 +206,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             text = question_card(next(q for q in questions if q.id == args.only))
     elif args.what == "wounds":
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
+    elif args.what == "postmortem":
+        text = postmortem_table(load_incidents(args.incidents))
     elif args.what == "counts":
         text = count_report(load_rules(args.rules))
     elif args.what == "splits":

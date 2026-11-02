@@ -36,6 +36,7 @@ from scripts.utils.paths import (
     load_rules,
     next_doubling,
     panel_titles,
+    postmortem_table,
     room_curve,
     rules_table,
     split,
@@ -390,6 +391,22 @@ def test_wounds_selector_skips_a_closed_by_that_is_no_test() -> None:
         Incident("I3", "18", "d3", "05", "03", "06", "test_b", "effect", "z", "d", "p"),
     )
     assert wounds_selector(incidents) == "test_a or test_b"
+
+
+@pytest.mark.view
+def test_postmortem_table_names_the_three_incidents() -> None:
+    incidents = (
+        Incident("I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x", "decide a", "keep a"),
+        Incident("I2", "15", "d2", "02", "03", "04", "rules.csv b2", "decision", "y", "d b", "p b"),
+        Incident("I3", "18", "d3", "05", "03", "06", "TestB", "effect", "z", "decide c", "keep c"),
+    )
+    lines = postmortem_table(incidents).splitlines()
+    assert [re.split(r" {2,}", line) for line in lines] == [
+        ["id", "decision", "principle", "closed by"],
+        ["I1", "decide a", "keep a", "test_a"],
+        ["I2", "d b", "p b", "rules.csv b2"],
+        ["I3", "decide c", "keep c", "TestB"],
+    ]
 
 
 @pytest.mark.model

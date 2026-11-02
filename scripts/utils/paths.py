@@ -8,6 +8,7 @@ split has, the 64-path grid, and the stacked bar.
 from __future__ import annotations
 
 import csv
+import re
 import textwrap
 from collections.abc import Iterable, Sequence
 from dataclasses import dataclass, fields
@@ -85,6 +86,42 @@ def load_incidents(path: Path) -> tuple[Incident, ...]:
 def wounds_selector(incidents: Iterable[Incident]) -> str:
     """The pytest -k selector of the incidents closed by a test, in csv order."""
     return " or ".join(i.closed_by for i in incidents if i.closed_by.startswith(("test_", "Test")))
+
+
+POSTMORTEM_WIDTHS = (3, 36, 30, 29)  # 3 + 36 + 30 + 29 + three gaps of 2 is 104
+POSTMORTEM_HEADER = ("id", "decision", "principle", "closed by")
+
+
+def _wrap_cell(cell: str, width: int) -> list[str]:
+    """Wrap a cell; a long name breaks after an underscore or before a capital."""
+    if " " in cell or len(cell) <= width:
+        return textwrap.wrap(cell, width) or [""]
+    lines = [""]
+    for part in re.split(r"(?<=_)|(?<=[a-z])(?=[A-Z])", cell):
+        if lines[-1] and len(lines[-1]) + len(part) > width:
+            lines.append("")
+        lines[-1] += part
+    return lines
+
+
+def _postmortem_row(cells: Sequence[str]) -> list[str]:
+    """Wrap each cell to its column and join the wrapped lines side by side."""
+    wrapped = [_wrap_cell(c, w) for c, w in zip(cells, POSTMORTEM_WIDTHS, strict=True)]
+    return [
+        "  ".join(
+            (lines[i] if i < len(lines) else "").ljust(w)
+            for lines, w in zip(wrapped, POSTMORTEM_WIDTHS, strict=True)
+        ).rstrip()
+        for i in range(max(len(lines) for lines in wrapped))
+    ]
+
+
+def postmortem_table(incidents: Iterable[Incident]) -> str:
+    """The post-mortem: one row per incident, with its decision, principle and closing test."""
+    lines = _postmortem_row(POSTMORTEM_HEADER)
+    for i in incidents:
+        lines += _postmortem_row((i.id, i.decision, i.principle, i.closed_by))
+    return "\n".join(lines) + "\n"
 
 
 def line_of(fragment: str, source: str) -> int:
