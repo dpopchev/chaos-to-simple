@@ -83,7 +83,7 @@ line aloud and point out that the two discounts now stack.
 
 ## Step 3: three ifs {paths=8}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="35%"}
