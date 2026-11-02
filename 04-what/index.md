@@ -8,7 +8,7 @@
 
 \fvset{fontsize=\scriptsize}
 
-```{.diff include=build/04-what/fix.diff}
+```{.diff include=build/04-what/fix.diff cap=18}
 ```
 
 ## The dispute closes {paths=512}
@@ -33,7 +33,7 @@
 :::: {.columns}
 ::: {.column width="50%"}
 
-```{.diff include=build/04-what/v4.diff}
+```{.diff include=build/04-what/v4.diff cap=30}
 ```
 
 :::
