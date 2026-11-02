@@ -80,3 +80,9 @@ def test_bubble_wraps_at_the_column_width() -> None:
     row = BubbleRow(1, 3, "2026-08-11", "marketing", words)
     lines = bubble(row, {"marketing": "Marketing"}).splitlines()
     assert max(map(len, lines)) <= 34
+
+
+@pytest.mark.view
+def test_bubble_without_a_date_reads_the_label_alone() -> None:
+    row = BubbleRow(2, 0, "", "dev", "Which test do I write?")
+    assert bubble(row, {"dev": "Dev (the shop)"}) == "Dev (the shop)\nWhich test do I write?\n"

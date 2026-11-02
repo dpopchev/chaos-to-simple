@@ -61,4 +61,5 @@ def step_diff(source: str, n: int) -> str:
 def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:
     """Return the bubble text: actor label and date, then the words wrapped at width."""
     words = textwrap.fill(row.words, width=width)
-    return f"{labels[row.actor]}, {row.when}\n{words}\n"
+    head = f"{labels[row.actor]}, {row.when}" if row.when else labels[row.actor]
+    return f"{head}\n{words}\n"

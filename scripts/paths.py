@@ -20,7 +20,9 @@
         --out build/01-bits/doubling.txt
     python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \\
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
-    python -m scripts.paths retro --questions data/questions.csv --out build/03-chaos/retro.txt
+    python -m scripts.paths bubbles --bubbles 02-stacey/data/bubbles.csv --actors data/actors.csv \\
+        --out build/02-stacey
+    python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
@@ -61,10 +63,16 @@ from scripts.utils.storyboard import STEPS, bubble, load_bubbles, step_diff
 def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -> None:
     """Write step-0..6.diff and bubble-0..8.txt into out_dir."""
     text = source.read_text(encoding="ascii")
-    labels = {key: actor.label for key, actor in load_actors(actors).items()}
     out_dir.mkdir(parents=True, exist_ok=True)
     for n in range(STEPS):
         (out_dir / f"step-{n}.diff").write_text(step_diff(text, n), encoding="ascii")
+    write_bubbles(bubbles, actors, out_dir)
+
+
+def write_bubbles(bubbles: Path, actors: Path, out_dir: Path) -> None:
+    """Write bubble-N.txt, one per row of the bubbles CSV, into out_dir."""
+    labels = {key: actor.label for key, actor in load_actors(actors).items()}
+    out_dir.mkdir(parents=True, exist_ok=True)
     for n, row in enumerate(load_bubbles(bubbles)):
         (out_dir / f"bubble-{n}.txt").write_text(bubble(row, labels), encoding="ascii")
 
@@ -90,6 +98,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "wounds",
             "retro",
             "storyboard",
+            "bubbles",
             "diff",
         ],
     )
@@ -138,6 +147,12 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.out is None:
             parser.error("storyboard needs --out, a directory")
         write_storyboard(args.source, args.bubbles, args.actors, args.out)
+        return 0
+
+    if args.what == "bubbles":
+        if args.out is None:
+            parser.error("bubbles needs --out, a directory")
+        write_bubbles(args.bubbles, args.actors, args.out)
         return 0
 
     if args.what == "diff":
