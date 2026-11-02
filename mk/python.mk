@@ -27,7 +27,7 @@ ifneq ($(wildcard shared/.),)
 export PYTHONPATH := $(CURDIR)
 endif
 
-CHECKS += lint typecheck test
+CHECKS += lint format-check typecheck test
 CLEANS += clean-python
 
 $(PYVER):
@@ -49,6 +49,11 @@ format: ## Ruff format and import ordering
 	@$(RUN) ruff format .
 	@$(RUN) ruff check --fix --select I .
 	$(call log_done,formatted)
+
+.PHONY: format-check
+format-check: ## Ruff format check without changes
+	@$(RUN) ruff format --check .
+	$(call log_done,ruff format clean)
 
 .PHONY: typecheck
 typecheck: ## Pyright over the configured paths
