@@ -15,7 +15,7 @@
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-0.diff}
+```{.diff include=build/01-bits/step-0.diff cap=24}
 ```
 
 :::
@@ -42,7 +42,7 @@ customer's line aloud: that is all.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-1.diff}
+```{.diff include=build/01-bits/step-1.diff cap=24}
 ```
 
 :::
@@ -69,7 +69,7 @@ Read the marketing line aloud and ask who thinks it is a small change.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-2.diff}
+```{.diff include=build/01-bits/step-2.diff cap=24}
 ```
 
 :::
@@ -96,7 +96,7 @@ line aloud and point out that the two discounts now stack.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-3.diff}
+```{.diff include=build/01-bits/step-3.diff cap=24}
 ```
 
 :::
@@ -123,7 +123,7 @@ Read the logistics line aloud and ask the room why the carts are left.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-4.diff}
+```{.diff include=build/01-bits/step-4.diff cap=24}
 ```
 
 :::
@@ -150,7 +150,7 @@ paths. Read the second logistics line aloud and say that the shipping rules now 
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-5.diff}
+```{.diff include=build/01-bits/step-5.diff cap=24}
 ```
 
 :::
@@ -177,7 +177,7 @@ aloud, the one that promised just one more if.
 :::
 ::: {.column width="65%"}
 
-```{.diff include=build/01-bits/step-6.diff}
+```{.diff include=build/01-bits/step-6.diff cap=24}
 ```
 
 :::
