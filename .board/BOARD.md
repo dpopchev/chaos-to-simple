@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-010 > W-097   | blocked: 0 | todo roots: 3 | done: 327 | pruned: 4
+open path: E-010   | blocked: 0 | todo roots: 3 | done: 328 | pruned: 4
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, 
   W-094  issue  [done]     04: the homes without noise -- T-215 [done], T-216 [done], T-217 [done]
   W-095  issue  [done]     05: the seam without guards -- T-218 [done], T-219 [done]
   W-096  issue  [done]     06: the measured frames -- T-220 [done], T-221 [done], T-222 [done], T-223 [done]
-  W-097  issue  [doing]    07: the repository link -- T-224 [done]
+  W-097  issue  [done]     07: the repository link -- T-224 [done]
 W-098  issue  [todo]     (standalone) 04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
 W-099  issue  [todo]     (standalone) remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
 W-100  issue  [todo]     (standalone) 06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
@@ -577,7 +577,7 @@ flowchart TD
   W096 --> T221["T-221 done: Measure the eight worlds -> 06-simple/s06_simple/worlds.py and build/06-simple/worlds.txt"]
   W096 --> T222["T-222 done: Keep the seventh signature on one line -> 06-simple/s06_simple/seventh.py and build/06-simple/seventh.diff"]
   W096 --> T223["T-223 done: Legend the small slices of the number chart -> build/06-simple/paths.png"]
-  E010 --> W097["W-097 issue doing: 07: the repository link"]
+  E010 --> W097["W-097 issue done: 07: the repository link"]
   W097 --> T224["T-224 done: Link the repository on the Q&A frame -> 07-close/index.md"]
   W098["W-098 issue todo, standalone: 04: the homes diff at a readable size"]
   W098 --> T227["T-227 todo: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
@@ -590,7 +590,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W097 doing
-  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,T224 done
+  class E010 doing
+  class W089,T199,T200,T201,T202,W090,T203,T204,T205,T225,W091,T206,T207,T208,W092,T209,T210,T211,T226,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 done
   class W098,T227,W099,T228,W100,T229 todo
 ```
