@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-013 > W-125 > T-285   | blocked: 0 | todo roots: 0 | done: 418 | pruned: 4
+open path: E-013 > W-125   | blocked: 0 | todo roots: 0 | done: 419 | pruned: 4
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-013         [doing]    Deck v4 polish: the nine findings of the E-012 verifica
   W-122  bug    [done]     01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [done]
   W-123  bug    [done]     the board's first header overflows its cell   (filed during T-257) -- T-283 [done]
   W-124  issue  [done]     04: the moves notes still speak of the board   (filed during T-263) -- T-284 [done]
-  W-125  bug    [doing]    05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [doing]   <- ACTIVE LEAF
+  W-125  bug    [doing]    05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [done]
   W-126  issue  [todo]     05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [todo]
   W-127  bug    [todo]     06: the seam diff shows every line changed, against its caption   (filed during T-269) -- T-287 [todo], T-288 [todo]
   W-129  bug    [todo]     make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [todo]
@@ -740,7 +740,7 @@ flowchart TD
   E013 --> W124["W-124 issue done: 04: the moves notes still speak of the board"]
   W124 --> T284["T-284 done: Rewrite the moves notes -> 04-what/index.md"]
   E013 --> W125["W-125 bug doing: 05: the I3 snippet shows its xfail decorator"]
-  W125 --> T285["T-285 doing: Move the i3 marker below the decorator -> 05-how/tests/test_i3.py -- ACTIVE LEAF"]
+  W125 --> T285["T-285 done: Move the i3 marker below the decorator -> 05-how/tests/test_i3.py"]
   E013 --> W126["W-126 issue todo: 05: effects.txt is built but no slide includes it"]
   W126 --> T286["T-286 todo: Remove the effects artifact -> 05-how/section.mk and data/artifacts.csv"]
   E013 --> W127["W-127 bug todo: 06: the seam diff shows every line changed, against its caption"]
@@ -753,7 +753,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E013,W125,T285 doing
-  class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284 done
+  class E013,W125 doing
+  class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,T285 done
   class W126,T286,W127,T287,T288,W129,T290 todo
 ```
