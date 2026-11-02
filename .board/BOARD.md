@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-011   | blocked: 0 | todo roots: 0 | done: 331 | pruned: 4
+open path: E-011 > W-098 > T-227   | blocked: 0 | todo roots: 0 | done: 331 | pruned: 4
 
 ## Tree
 
 ```text
 E-011         [doing]    the v0.9.0 backlog and the layout gates
-  W-098  issue  [todo]     04: the homes diff at a readable size   (filed during T-217) -- T-227 [todo]
+  W-098  issue  [doing]    04: the homes diff at a readable size   (filed during T-217) -- T-227 [doing]   <- ACTIVE LEAF
   W-099  issue  [todo]     remove the unused contexts table and its paths subcommand   (filed during T-217) -- T-228 [todo]
   W-100  issue  [todo]     06: the number chart's core label and doubled shell entry   (filed during T-223) -- T-229 [todo]
   W-101  issue  [todo]     07: the repository URL breaks across two lines   (filed during T-224) -- T-230 [todo]
@@ -594,8 +594,8 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ```mermaid
 flowchart TD
   E011["E-011 doing: the v0.9.0 backlog and the layout gates"]
-  E011 --> W098["W-098 issue todo: 04: the homes diff at a readable size"]
-  W098 --> T227["T-227 todo: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md"]
+  E011 --> W098["W-098 issue doing: 04: the homes diff at a readable size"]
+  W098 --> T227["T-227 doing: Wrap the coupon line and raise the homes diff -> 04-what/s04_what/checkout_v4.py and 04-what/index.md -- ACTIVE LEAF"]
   E011 --> W099["W-099 issue todo: remove the unused contexts table and its paths subcommand"]
   W099 --> T228["T-228 todo: Remove contexts_table and the contexts subcommand -> scripts/utils/paths.py and scripts/paths.py"]
   E011 --> W100["W-100 issue todo: 06: the number chart's core label and doubled shell entry"]
@@ -609,7 +609,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E011 doing
+  class E011,W098,T227 doing
   class W102,T231 done
-  class W098,T227,W099,T228,W100,T229,W101,T230 todo
+  class W099,T228,W100,T229,W101,T230 todo
 ```
