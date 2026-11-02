@@ -14,7 +14,7 @@
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
-- 2026-11-02 E-012: fact: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it
+- 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 - 2026-11-02 W-127: fact: since W-119 the seam frame's title reads 'Moving the pure part out into price cuts along the seam and changes nothing else' over a diff that marks every line -> the defect is now the frame's headline claim
 
@@ -25,27 +25,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-02 E-012: 50 pages: Zone (page 30 at 2d453f0, pre-approved by D5) is pruned and its sentence folds into the dispute caption; the measurement frame, the seam frame and the two close frames are added (developer, 2026-11-02)
-- 2026-11-02 E-012: EUR replaces BGN in the sources only: data, exhibits, code, notes, READMEs; the docs/ review records, the board ledgers and the VAT id BG123456789 stay (developer, 2026-11-02)
-- 2026-11-02 E-012: P1 (CODE and WAREHOUSE text fallbacks) is not reproduced on this machine: fc-list resolves the Solid file and both glyphs draw; D4 is met by font_file choosing the icon file by its glyphs (W-105 T-242) (developer, 2026-11-02)
-- 2026-11-02 E-012: R1 is marketing's reading (of the cart, before the coupon: what the code did), R2 is logistics' (of what they pay, after: what finance expected) (developer, 2026-11-02)
-- 2026-11-02 E-012: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-02)
-- 2026-11-02 E-012: from the review: D5 dry run Tuesday 2026-11-03 evening with a timer, first cuts if it overruns page 21 and 37 folded into 38; D6 the believed line stays on the section page and the last frame; D7 the slides stay English (developer, 2026-11-02)
-- 2026-11-02 E-012: the 02 matrix stays at 85% with the line beside it, bottom-aligned, zone texts at 12pt: P3's line-under does not fit at 85%, so E-010#d2 stands (developer, 2026-11-02)
-- 2026-11-02 E-012: the call to action names linkedin.com/in/dpopchev and the CraftsmansDay and JourneymansDay post series as written; the developer corrects them before W-118 starts if wrong (developer, 2026-11-02)
-- 2026-11-02 E-012: the eight-word title gate (make titles, W-119 T-279) keeps the action-title rule mechanically (developer, 2026-11-02)
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-012: 34 open Tasks of E-012 named a file in their title only and the scope gate reads Action and Output; each Output now ends '(files: ...)' with those paths, Checks unchanged
-- 2026-11-02 E-012: T-232's lane wrote docs/deck-v4.md before its red run; the red is taken from the Check on the tree at b79e8f4 (the file absent: 'No such file or directory', exit 2), reproduced by the coordinator; the Check itself is unchanged
-- 2026-11-02 E-012: T-233's Action named the importers' test folders, not their files, so its scope gate refused nine test files the rename had to touch; the Action was amended to name each file, Check unchanged
-- 2026-11-02 E-012: T-234's Action gained scripts/utils/test_storyboard.py, a BGN fixture the plan's grep missed and its Check's grep covers; Check unchanged
-- 2026-11-02 E-012: T-236 also sets Steps 4-6 at \tiny: the prefixed whole function is 88 columns, over make widths' 77 at scriptsize; T-238 keeps checking the one size against make overflow; Checks unchanged
-- 2026-11-02 E-012: T-247 kept the two-tests frame at 54/46 columns, not the brief's 50/50, since 50% fails make widths (87 > 83); and its lane amended a Co-Authored-By trailer out of its first commit before the close, nothing pushed, no attribution on main
-- 2026-11-02 E-012: T-254: the five-column retro wraps to 17 lines, over make lengths' default 14; the retro include takes cap=18 as the room include already does, its cap test pins 18, make overflow stays the fit gate; Check unchanged
-- 2026-11-02 E-012: T-263's commit 8f22000 also widens the bracket spacing in scripts/utils/figures.py, which amends T-262's closed output (scope rule 4): the bracket hit the shipping label at frame size; recorded on T-263's brief, not moved, since history is forward-only; Checks unchanged
-- 2026-11-02 E-012: T-265's brief now captures pytest's exit and accepts only 1 instead of ignoring it, the || true that W-122 removes from the bug-run rule; Check unchanged
-- 2026-11-02 E-012: W-104's briefs amended before start: T-236's step view opens on its 'checkout vA -> vB' caption (the filter bolds a first line); T-237's Check greps a use of \diffchg, not its definition; T-238's Check matches the indented return line
-- 2026-11-02 E-012: W-119 is dispatched whole at sonnet, medium: T-276's Output is .md only (haiku by the dispatch rule) but writing 43 action titles needs every frame read; T-279's Output names README.md for its target list
-- 2026-11-02 E-012: W-128 filed under the root: W-118's Then quoted 'reach out with your own checkout' while T-274's brief gave 'reach out: we go over your specific problem'; the burn runs it before W-119
-- 2026-11-02 E-012: the cap=24 on the 01 step includes moved from T-238 to T-236: the whole-function step files fail make lengths (cap 14) the moment T-236 writes them, so T-236 could not close on the gate; Checks unchanged
+- none recorded

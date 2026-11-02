@@ -1,29 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 9 | done: 407 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 9 | done: 408 | pruned: 4
 
 ## Tree
 
 ```text
-E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
-  W-103  issue  [done]     EUR: every amount reads EUR -- T-232 [done], T-233 [done], T-234 [done]
-  W-104  issue  [done]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [done], T-237 [done], T-238 [done]
-  W-105  issue  [done]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [done], T-240 [done], T-241 [done], T-242 [done]
-  W-106  issue  [done]     01: the storyboard counts policies -- T-243 [done], T-244 [done], T-245 [done]
-  W-107  issue  [done]     01: checkout done, the two tests, the six-bit number -- T-246 [done], T-247 [done]
-  W-108  issue  [done]     01: finance R1 against R2, and its test -- T-248 [done], T-249 [done]
-  W-109  issue  [done]     02: R1 and R2 above the line, the decision frame -- T-250 [done], T-251 [done], T-252 [done]
-  W-110  issue  [done]     03: the journey as the customer certainty, the retro subdomains -- T-253 [done], T-254 [done], T-255 [done]
-  W-111  issue  [done]     03: the honest count panels and the board continuity -- T-256 [done], T-257 [done], T-258 [done]
-  W-112  issue  [done]     04: tactical to strategic in five frames -- T-259 [done], T-260 [done], T-261 [done]
-  W-113  issue  [done]     04: the moves frame, core = the What, shell = the How -- T-262 [done], T-263 [done]
-  W-114  issue  [done]     05: the test first -- T-264 [done], T-265 [done], T-266 [done]
-  W-115  issue  [done]     05: the ports answer with values, the moves table explained -- T-267 [done], T-268 [done]
-  W-116  issue  [done]     06: cut along the seam -- T-269 [done], T-270 [done]
-  W-117  issue  [done]     06: the wounds as a post-mortem -- T-271 [done], T-272 [done], T-273 [done]
-  W-118  issue  [done]     07: the call to action and the thank-you -- T-274 [done], T-275 [done]
-  W-119  issue  [done]     action titles on every content frame, topic titles on the section pages -- T-276 [done], T-277 [done], T-278 [done], T-279 [done]
-  W-128  bug    [done]     07: the call to action lacks 'reach out with your own checkout'   (filed during T-274) -- T-289 [done]
 W-120  bug    [todo]     (standalone) the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
 W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
 W-122  bug    [todo]     (standalone) 01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
@@ -577,6 +558,113 @@ closed 2026-11-02 -- outcome: make check runs widths and overflow and is green o
 
 - T-231 [done] Add widths and overflow to the checks -> mk/deck.mk and README.md
 
+### E-012 [done] Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
+
+closed 2026-11-02 -- outcome: make talk builds build/talk.pdf at 50 pages (43 content frames per data/budget.csv), green on make check, every remark of docs/deck-v4.md landed by a work item or pruned by a Decision. -- ledger: ledgers/E-012.md
+
+#### W-103 issue [done] EUR: every amount reads EUR
+
+- T-232 [done] Record the review and the frame plan -> docs/deck-v4.md
+- T-233 [done] Rename the money helper -> eur() in 04-what/s04_what/money.py and its importers
+- T-234 [done] Rewrite the amounts -> EUR in the data, the exhibits, the notes and the READMEs
+
+#### W-104 issue [done] one diff renderer: -, +, \~, ... under a version caption; the storyboard whole
+
+- T-235 [done] Mark changed and elided lines -> snippet_diff emits \~ and ... in scripts/utils/stagediff.py
+- T-236 [done] Show the whole function per step -> step_view in scripts/utils/storyboard.py
+- T-237 [done] Colour the prefixes -> 00-frontmatter/filters/diffs.lua and the preamble macros
+- T-238 [done] Fit the whole function -> the 01, 04, 05 and 06 includes with their captions
+
+#### W-105 issue [done] 00: the map as a flow of policies, the agenda explained, the icons guarded
+
+- T-239 [done] Outline the core and label the flows -> business_map in scripts/utils/stage.py
+- T-240 [done] Colour the stops by band and explain the marks -> agenda_strip and stacey.draw
+- T-241 [done] Put the path glyph by each counter and in the footer -> stage.py, palette.actors_tex, 00-frontmatter/preamble.tex, 00-frontmatter/index.md
+- T-242 [done] Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py
+
+#### W-106 issue [done] 01: the storyboard counts policies
+
+- T-243 [done] Count the tally -> tally_line in scripts/utils/storyboard.py and build/01-bits/tally-N.txt
+- T-244 [done] Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan
+- T-245 [done] Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py
+
+#### W-107 issue [done] 01: checkout done, the two tests, the six-bit number
+
+- T-246 [done] Price the next if -> next_doubling in scripts/utils/paths.py and build/01-bits/next.txt
+- T-247 [done] Rework the three frames -> 01-bits/index.md
+
+#### W-108 issue [done] 01: finance R1 against R2, and its test
+
+- T-248 [done] Name the readings on the chart -> finance.draw legend and title, the frame caption and notes
+- T-249 [done] Show the finance test as a plain test with its run -> 01-bits/tests/test_planted_bug.py, 01-bits/section.mk, 01-bits/index.md, data/artifacts.csv
+
+#### W-109 issue [done] 02: R1 and R2 above the line, the decision frame
+
+- T-250 [done] Tag the readings -> a tag column in the bubbles csv and the bubble head
+- T-251 [done] Enlarge the zone texts -> scripts/utils/stacey.py
+- T-252 [done] Write the two frames -> 02-stacey/index.md
+
+#### W-110 issue [done] 03: the journey as the customer certainty, the retro subdomains
+
+- T-253 [done] Weigh the drops -> mood(steps, questions) in scripts/utils/figures.py
+- T-254 [done] Add the subdomain -> data/questions.csv, Question and retro_table
+- T-255 [done] Caption the room and the retro -> 03-chaos/index.md
+
+#### W-111 issue [done] 03: the honest count panels and the board continuity
+
+- T-256 [done] Name the worlds -> world_name(bits, rules) and the grid_panels titles
+- T-257 [done] Head the board by the route -> headers(route) in scripts/utils/board.py
+- T-258 [done] Caption the two frames -> 03-chaos/index.md
+
+#### W-112 issue [done] 04: tactical to strategic in five frames
+
+- T-259 [done] Split the legend -> legend_groups and the two columns of colorcode()
+- T-260 [done] Trim the b2 comment -> 04-what/s04_what/shipping.py and 06-simple/s06_simple/seventh.py
+- T-261 [done] Rewrite the five frames -> 04-what/index.md, 04-what/section.mk, data/artifacts.csv, data/budget.csv, 04-what/README.md
+
+#### W-113 issue [done] 04: the moves frame, core = the What, shell = the How
+
+- T-262 [done] Group the bands -> band_groups and the brackets of moves_figure
+- T-263 [done] Widen the frame -> 04-what/index.md
+
+#### W-114 issue [done] 05: the test first
+
+- T-264 [done] Write the I3 test against v4 -> 05-how/tests/test_i3.py
+- T-265 [done] Capture the run -> build/05-how/i3-run.txt in 05-how/section.mk and data/artifacts.csv
+- T-266 [done] Reorder 05 -> 05-how/index.md and 05-how/README.md
+
+#### W-115 issue [done] 05: the ports answer with values, the moves table explained
+
+- T-267 [done] Return confirmed -> Accepted(total, confirmed) in 05-how/s05_how/checkout_v5.py
+- T-268 [done] Name the moves -> the table and the ports title in 05-how/index.md
+
+#### W-116 issue [done] 06: cut along the seam
+
+- T-269 [done] Diff the seam and trim the run -> build/06-simple/seam.diff and pytest-core-summary.txt in 06-simple/section.mk
+- T-270 [done] Write the seam frame and merge the 192 frames -> 06-simple/index.md, scripts/utils/test_counter_plan.py, 06-simple/README.md
+
+#### W-117 issue [done] 06: the wounds as a post-mortem
+
+- T-271 [done] Add the decision and the principle -> data/incidents.csv, Incident, data/README.md
+- T-272 [done] Render the post-mortem -> postmortem_table, scripts.paths postmortem, 06-simple/section.mk, data/artifacts.csv
+- T-273 [done] Show it -> 06-simple/index.md
+
+#### W-118 issue [done] 07: the call to action and the thank-you
+
+- T-274 [done] Write the two frames -> 07-close/index.md, data/budget.csv, 07-close/README.md
+- T-275 [done] Count the pages -> build/talk.pdf at 50 and README.md
+
+#### W-119 issue [done] action titles on every content frame, topic titles on the section pages
+
+- T-276 [done] Write the titles -> the Planned titles section of docs/deck-v4.md
+- T-277 [done] Retitle 01, 02 and 03 -> their index.md and scripts/utils/test_counter_plan.py
+- T-278 [done] Retitle 04, 05, 06 and 07 -> their index.md and the counter plan
+- T-279 [done] Gate the title length -> scripts/utils/titles.py, scripts/check_titles.py, make titles in mk/deck.mk
+
+#### W-128 bug [done] 07: the call to action lacks 'reach out with your own checkout'   (filed during T-274)
+
+- T-289 [done] Reword the third bullet -> 07-close/index.md
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -639,74 +727,6 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E012["E-012 doing: Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR"]
-  E012 --> W103["W-103 issue done: EUR: every amount reads EUR"]
-  W103 --> T232["T-232 done: Record the review and the frame plan -> docs/deck-v4.md"]
-  W103 --> T233["T-233 done: Rename the money helper -> eur() in 04-what/s04_what/money.py and its importers"]
-  W103 --> T234["T-234 done: Rewrite the amounts -> EUR in the data, the exhibits, the notes and the READMEs"]
-  E012 --> W104["W-104 issue done: one diff renderer: -, +, ~, ... under a version caption; the storyboard whole"]
-  W104 --> T235["T-235 done: Mark changed and elided lines -> snippet_diff emits ~ and ... in scripts/utils/stagediff.py"]
-  W104 --> T236["T-236 done: Show the whole function per step -> step_view in scripts/utils/storyboard.py"]
-  W104 --> T237["T-237 done: Colour the prefixes -> 00-frontmatter/filters/diffs.lua and the preamble macros"]
-  W104 --> T238["T-238 done: Fit the whole function -> the 01, 04, 05 and 06 includes with their captions"]
-  E012 --> W105["W-105 issue done: 00: the map as a flow of policies, the agenda explained, the icons guarded"]
-  W105 --> T239["T-239 done: Outline the core and label the flows -> business_map in scripts/utils/stage.py"]
-  W105 --> T240["T-240 done: Colour the stops by band and explain the marks -> agenda_strip and stacey.draw"]
-  W105 --> T241["T-241 done: Put the path glyph by each counter and in the footer -> stage.py, palette.actors_tex, 00-frontmatter/preamble.tex, 00-frontmatter/index.md"]
-  W105 --> T242["T-242 done: Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py"]
-  E012 --> W106["W-106 issue done: 01: the storyboard counts policies"]
-  W106 --> T243["T-243 done: Count the tally -> tally_line in scripts/utils/storyboard.py and build/01-bits/tally-N.txt"]
-  W106 --> T244["T-244 done: Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan"]
-  W106 --> T245["T-245 done: Write the measurement frame and the seven policy frames -> 01-bits/index.md, data/budget.csv, 01-bits/README.md, scripts/utils/test_counter_plan.py"]
-  E012 --> W107["W-107 issue done: 01: checkout done, the two tests, the six-bit number"]
-  W107 --> T246["T-246 done: Price the next if -> next_doubling in scripts/utils/paths.py and build/01-bits/next.txt"]
-  W107 --> T247["T-247 done: Rework the three frames -> 01-bits/index.md"]
-  E012 --> W108["W-108 issue done: 01: finance R1 against R2, and its test"]
-  W108 --> T248["T-248 done: Name the readings on the chart -> finance.draw legend and title, the frame caption and notes"]
-  W108 --> T249["T-249 done: Show the finance test as a plain test with its run -> 01-bits/tests/test_planted_bug.py, 01-bits/section.mk, 01-bits/index.md, data/artifacts.csv"]
-  E012 --> W109["W-109 issue done: 02: R1 and R2 above the line, the decision frame"]
-  W109 --> T250["T-250 done: Tag the readings -> a tag column in the bubbles csv and the bubble head"]
-  W109 --> T251["T-251 done: Enlarge the zone texts -> scripts/utils/stacey.py"]
-  W109 --> T252["T-252 done: Write the two frames -> 02-stacey/index.md"]
-  E012 --> W110["W-110 issue done: 03: the journey as the customer certainty, the retro subdomains"]
-  W110 --> T253["T-253 done: Weigh the drops -> mood(steps, questions) in scripts/utils/figures.py"]
-  W110 --> T254["T-254 done: Add the subdomain -> data/questions.csv, Question and retro_table"]
-  W110 --> T255["T-255 done: Caption the room and the retro -> 03-chaos/index.md"]
-  E012 --> W111["W-111 issue done: 03: the honest count panels and the board continuity"]
-  W111 --> T256["T-256 done: Name the worlds -> world_name(bits, rules) and the grid_panels titles"]
-  W111 --> T257["T-257 done: Head the board by the route -> headers(route) in scripts/utils/board.py"]
-  W111 --> T258["T-258 done: Caption the two frames -> 03-chaos/index.md"]
-  E012 --> W112["W-112 issue done: 04: tactical to strategic in five frames"]
-  W112 --> T259["T-259 done: Split the legend -> legend_groups and the two columns of colorcode()"]
-  W112 --> T260["T-260 done: Trim the b2 comment -> 04-what/s04_what/shipping.py and 06-simple/s06_simple/seventh.py"]
-  W112 --> T261["T-261 done: Rewrite the five frames -> 04-what/index.md, 04-what/section.mk, data/artifacts.csv, data/budget.csv, 04-what/README.md"]
-  E012 --> W113["W-113 issue done: 04: the moves frame, core = the What, shell = the How"]
-  W113 --> T262["T-262 done: Group the bands -> band_groups and the brackets of moves_figure"]
-  W113 --> T263["T-263 done: Widen the frame -> 04-what/index.md"]
-  E012 --> W114["W-114 issue done: 05: the test first"]
-  W114 --> T264["T-264 done: Write the I3 test against v4 -> 05-how/tests/test_i3.py"]
-  W114 --> T265["T-265 done: Capture the run -> build/05-how/i3-run.txt in 05-how/section.mk and data/artifacts.csv"]
-  W114 --> T266["T-266 done: Reorder 05 -> 05-how/index.md and 05-how/README.md"]
-  E012 --> W115["W-115 issue done: 05: the ports answer with values, the moves table explained"]
-  W115 --> T267["T-267 done: Return confirmed -> Accepted(total, confirmed) in 05-how/s05_how/checkout_v5.py"]
-  W115 --> T268["T-268 done: Name the moves -> the table and the ports title in 05-how/index.md"]
-  E012 --> W116["W-116 issue done: 06: cut along the seam"]
-  W116 --> T269["T-269 done: Diff the seam and trim the run -> build/06-simple/seam.diff and pytest-core-summary.txt in 06-simple/section.mk"]
-  W116 --> T270["T-270 done: Write the seam frame and merge the 192 frames -> 06-simple/index.md, scripts/utils/test_counter_plan.py, 06-simple/README.md"]
-  E012 --> W117["W-117 issue done: 06: the wounds as a post-mortem"]
-  W117 --> T271["T-271 done: Add the decision and the principle -> data/incidents.csv, Incident, data/README.md"]
-  W117 --> T272["T-272 done: Render the post-mortem -> postmortem_table, scripts.paths postmortem, 06-simple/section.mk, data/artifacts.csv"]
-  W117 --> T273["T-273 done: Show it -> 06-simple/index.md"]
-  E012 --> W118["W-118 issue done: 07: the call to action and the thank-you"]
-  W118 --> T274["T-274 done: Write the two frames -> 07-close/index.md, data/budget.csv, 07-close/README.md"]
-  W118 --> T275["T-275 done: Count the pages -> build/talk.pdf at 50 and README.md"]
-  E012 --> W119["W-119 issue done: action titles on every content frame, topic titles on the section pages"]
-  W119 --> T276["T-276 done: Write the titles -> the Planned titles section of docs/deck-v4.md"]
-  W119 --> T277["T-277 done: Retitle 01, 02 and 03 -> their index.md and scripts/utils/test_counter_plan.py"]
-  W119 --> T278["T-278 done: Retitle 04, 05, 06 and 07 -> their index.md and the counter plan"]
-  W119 --> T279["T-279 done: Gate the title length -> scripts/utils/titles.py, scripts/check_titles.py, make titles in mk/deck.mk"]
-  E012 --> W128["W-128 bug done: 07: the call to action lacks 'reach out with your own checkout'"]
-  W128 --> T289["T-289 done: Reword the third bullet -> 07-close/index.md"]
   W120["W-120 bug todo, standalone: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
   W120 --> T280["T-280 todo: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
   W121["W-121 issue todo, standalone: 01: the step code at scriptsize in a wider column"]
@@ -731,7 +751,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W128,T289 done
   class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 todo
 ```
