@@ -5,7 +5,7 @@ two axes; each later section is one move on the map.
 
 | | |
 |---|---|
-| Minutes | 3 |
+| Minutes | 3 (2 frames) |
 | Footer counter | stays at `64` |
 | Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk` |
 | Uses | nothing |
@@ -13,8 +13,8 @@ two axes; each later section is one move on the map.
 
 ## Slides
 
-- [x] I wanted to write a test: the question, two answers
-- [x] The agenda was a map: the route, with the line glued at its foot: check whether the What is agreed
+- [x] I wanted to write a test: the question, the marketing and logistics bubbles above a rule, the dev bubble below
+- [x] The agenda was a map: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
 
 ## The matrix
 
@@ -44,6 +44,9 @@ Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar P
 
 ## Done when
 
+- Given `make talk budget`, when they finish, then 02 holds two frames: the marketing and
+  logistics bubbles above a rule with the dev bubble 'Which test do I write?' below it, then
+  the matrix with 02 highlighted at 85% height and the line glued under it.
 - Given `make diagrams`, when it finishes, then the quadrant chart shows four labelled
   points along the route from chaos to simple.
 - Given the route slide, when section 06 ends, then the same picture can be shown again
