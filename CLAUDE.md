@@ -6,8 +6,9 @@ the layout and the build are in README.md.
 ## Gate deviations
 
 - Exhibit code and tests under `NN-*/sNN_*/` and `NN-*/tests/` are talk content: linted,
-  type-checked and run, but exempt from the one-assert and category-marker gates
-  (`scripts/conftest.py` filters by path; `scripts/` meets every gate). Decision on E-001.
+  type-checked and run, but exempt from the category-marker gate only; the one-assert gate
+  covers them too (`conftest.py` filters the markers by path; `scripts/` meets every gate).
+  Decisions on E-001 (the exemption) and E-007 (the one-assert lift).
 - The deck draws its figures in Python with matplotlib and seaborn, not Mermaid, by the
   developer's Decision on E-002.
 - `scripts/paths.py`, `scripts/figures.py` and `scripts/check_ascii.py` are entry points run as `python -m scripts.<name>`

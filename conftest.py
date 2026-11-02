@@ -11,9 +11,10 @@ level) or scripts/conftest.py (helper level).
 
 It sits at the repository root, so pytest loads it for every run: the ini options
 `stats_file`, `suite_budget_s` and `suite_budget_fail` exist even for a run that collects only
-one section's tests, which no longer warns about an unknown config option (W-003). Only tests
-under scripts/ are checked: the exhibit tests under NN-*/tests/ are talk content, exempt from
-the one-assert and category-marker gates by the Decision on E-001.
+one section's tests, which no longer warns about an unknown config option (W-003). The one-assert
+check covers every collected test, the exhibit tests under NN-*/tests/ included (Decision on
+E-007); the unittest.mock and category-marker checks stay on tests under scripts/, the exhibit
+tests being talk content exempt from them (Decision on E-001).
 """
 
 import ast
@@ -103,9 +104,11 @@ def _imports_mock(source: str) -> bool:
 
 def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item]) -> None:
     helpers = config.rootpath / "scripts"
-    items = [item for item in items if item.path.is_relative_to(helpers)]
+    scripted = [item for item in items if item.path.is_relative_to(helpers)]
     modules = {
-        item.nodeid.split("::")[0]: item.path for item in items if isinstance(item, pytest.Function)
+        item.nodeid.split("::")[0]: item.path
+        for item in scripted
+        if isinstance(item, pytest.Function)
     }
     mocked = sorted(
         module
@@ -131,7 +134,7 @@ def pytest_collection_modifyitems(config: pytest.Config, items: list[pytest.Item
     categories = _registered_categories(config)
     unsorted = {
         item.nodeid.split("[")[0]: why
-        for item in items  # a doctest carries no marker; only test functions are sorted
+        for item in scripted  # a doctest carries no marker; only test functions are sorted
         if categories
         and isinstance(item, pytest.Function)
         and (why := _category_offence(item, categories))

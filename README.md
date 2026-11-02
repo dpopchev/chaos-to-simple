@@ -96,6 +96,8 @@ Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pando
   matplotlib and seaborn in the one deck style of `scripts/utils/style.py`. Charts are
   stacked bars with exact counts on the segments, drawn from `data/rules.csv`; never
   plain, grouped or pie.
+- One assert per test, exhibit tests included; only the category-marker gate exempts the
+  exhibit tests under `NN-*/tests/` (Decision on E-007).
 - Snippet markers in Python: `# [snippet: name]` and `# [/snippet]`, no nesting.
 - A new section with code is registered in `pyproject.toml` (`testpaths`, `pythonpath`,
   ruff `src`, pyright `include`/`extraPaths`): the one place that lists sections with code.
