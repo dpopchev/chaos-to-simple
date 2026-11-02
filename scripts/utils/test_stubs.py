@@ -61,6 +61,14 @@ def test_write_stub_writes_the_warning_line_for_a_diff(tmp_path: Path) -> None:
 
 
 @pytest.mark.edge
+@pytest.mark.parametrize("kind", ["png", "txt"])
+def test_stub_is_older_than_any_source(tmp_path: Path, kind: str) -> None:
+    out = tmp_path / f"a.{kind}"
+    write_stub(out, kind)
+    assert out.stat().st_mtime == 0
+
+
+@pytest.mark.edge
 def test_write_stub_rejects_an_unknown_kind(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="unknown kind"):
         write_stub(tmp_path / "x.bin", "bin")

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import os
 from collections.abc import Iterable
 from dataclasses import dataclass
 from pathlib import Path
@@ -40,6 +41,7 @@ def write_stub(path: Path, kind: str) -> None:
     """Write the placeholder of one kind at path, creating its folders.
 
     A png reads STUB and the path; a txt, diff or tex holds one warning line.
+    The mtime is the epoch, so any real rule's prerequisites are newer.
     Raises ValueError for a kind that has no placeholder.
     """
     if kind != "png" and kind not in TEXT_KINDS:
@@ -51,5 +53,6 @@ def write_stub(path: Path, kind: str) -> None:
         draw.rectangle((10, 10, PNG_SIZE[0] - 10, PNG_SIZE[1] - 10), outline="red", width=8)
         draw.text((60, 60), f"STUB\n{path}", fill="black", font_size=64)
         image.save(path)
-        return
-    path.write_text(f"[WARN] not implemented yet: {path}\n", encoding="ascii")
+    else:
+        path.write_text(f"[WARN] not implemented yet: {path}\n", encoding="ascii")
+    os.utime(path, (0, 0))
