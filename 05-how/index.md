@@ -10,6 +10,10 @@
 ```{.text include=build/05-how/effects.txt}
 ```
 
+charge before reserve: the order was the bug, nobody decided it
+
+decided in the room two weeks earlier (q5): the code had not heard
+
 ::: notes
 I3 comes first, before any design word. Charge before reserve was the bug, and nobody decided it.
 The numbered effect lines show the order the code happened to run in.
@@ -37,8 +41,14 @@ Live demo: make test K=TestCallOrder. The first test follows the rule, the secon
 
 ## Command Query Separation draws the seam {paths=512}
 
+query: pure, returns a value
+
+command: an effect, answers with a value
+
 ```{.python include=05-how/s05_how/ports.py snippet=types}
 ```
+
+make every answer a value
 
 ::: notes
 Command query separation: a query asks, a command answers with a value, never both.

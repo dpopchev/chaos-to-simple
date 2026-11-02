@@ -16,10 +16,10 @@ pure core and the effectful shell.
 
 ## Slides
 
-- [x] I3: the incident, then the numbered effect lines: `build/05-how/effects.txt`
+- [x] I3: the incident, then the numbered effect lines and the caption with its q5 line: `build/05-how/effects.txt`
 - [x] Past me reached for a class: `snippet=oo`
 - [x] The bit nobody wrote down: `snippet=order-bit`
-- [x] Command Query Separation draws the seam: `snippet=types`
+- [x] Command Query Separation draws the seam: two definitions, `snippet=types`, the refrain
 - [x] The ports, as a picture
 - [x] A boundary that passes values adds paths: the moves table, with the line glued at its foot
 
