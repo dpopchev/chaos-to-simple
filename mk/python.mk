@@ -100,6 +100,7 @@ test-stats: ## Show the recorded test durations
 	$(call log_done,suite stats from the stats_file in pyproject.toml)
 
 .PHONY: clean-python
-clean-python: ## Remove the python tool caches in local/
+clean-python: ## Remove the python tool caches in local/ and the in-tree bytecode
 	@rm -rf $(LOCAL)/pycache $(LOCAL)/.pytest_cache $(LOCAL)/.ruff_cache $(LOCAL)/.mypy_cache $(LOCAL)/.hypothesis
-	$(call log_done,removed the python tool caches in $(LOCAL)/)
+	@find scripts $(wildcard 0*-*) -name __pycache__ -type d -prune -exec rm -rf {} +
+	$(call log_done,removed the python tool caches in $(LOCAL)/ and the in-tree __pycache__ folders)
