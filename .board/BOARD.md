@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 5 | done: 387 | pruned: 4
+open path: E-012   | blocked: 0 | todo roots: 7 | done: 387 | pruned: 4
 
 ## Tree
 
@@ -28,6 +28,8 @@ W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider
 W-122  bug    [todo]     (standalone) 01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
 W-123  bug    [todo]     (standalone) the board's first header overflows its cell   (filed during T-257) -- T-283 [todo]
 W-124  issue  [todo]     (standalone) 04: the moves notes still speak of the board   (filed during T-263) -- T-284 [todo]
+W-125  bug    [todo]     (standalone) 05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [todo]
+W-126  issue  [todo]     (standalone) 05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [todo]
 ```
 
 ## Closed
@@ -710,6 +712,10 @@ flowchart TD
   W123 --> T283["T-283 todo: Break the first header -> scripts/utils/board.py"]
   W124["W-124 issue todo, standalone: 04: the moves notes still speak of the board"]
   W124 --> T284["T-284 todo: Rewrite the moves notes -> 04-what/index.md"]
+  W125["W-125 bug todo, standalone: 05: the I3 snippet shows its xfail decorator"]
+  W125 --> T285["T-285 todo: Move the i3 marker below the decorator -> 05-how/tests/test_i3.py"]
+  W126["W-126 issue todo, standalone: 05: effects.txt is built but no slide includes it"]
+  W126 --> T286["T-286 todo: Remove the effects artifact -> 05-how/section.mk and data/artifacts.csv"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -717,5 +723,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E012 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266 done
-  class W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284 todo
+  class W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286 todo
 ```
