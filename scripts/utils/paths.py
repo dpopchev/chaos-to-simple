@@ -485,7 +485,7 @@ def bars_from_rules(rules: Sequence[Rule]) -> list[Bar]:
 def epilogue_bars(rules: Sequence[Rule], seventh: Sequence[Rule]) -> tuple[Bar, Bar]:
     """The contexts + shell bar before and after the seventh rule joins, shell segment last.
 
-    Segments follow the context order of the deck palette (style.CONTEXTS), so
+    Segments follow the context order of the deck palette (palette.CONTEXTS), so
     stacked_bar's colours match context_colour.
     """
     before = bars_from_rules(rules)[2]

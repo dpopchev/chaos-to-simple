@@ -8,10 +8,12 @@ import pytest
 
 from scripts.utils.icons import FONT_AWESOME, Family
 from scripts.utils.palette import (
+    CONTEXTS,
     Actor,
     Context,
     actors_tex,
     colour_of,
+    context_colour,
     icon_of,
     label_of,
     load_actors,
@@ -124,3 +126,13 @@ def test_actors_tex_writes_the_glyph_as_a_character_code() -> None:
 @pytest.mark.edge
 def test_actors_tex_without_an_icon_font_leaves_the_glyph_empty() -> None:
     assert "\\defineactor{customer}{Customer}{customer}{}" in _tex(None)
+
+
+@pytest.mark.model
+def test_context_colour_gives_five_distinct_colours() -> None:
+    assert len({context_colour(name) for name in CONTEXTS}) == 5
+
+
+@pytest.mark.model
+def test_context_colour_reads_contexts_csv() -> None:
+    assert context_colour("pricing") == "#7B3F9E"

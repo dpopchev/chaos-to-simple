@@ -10,10 +10,8 @@ import csv
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
-from typing import TYPE_CHECKING
 
-if TYPE_CHECKING:
-    from scripts.utils.icons import Family
+from scripts.utils.icons import Family, glyph
 
 DATA = Path(__file__).resolve().parents[2] / "data"
 ACTORS_CSV = DATA / "actors.csv"
@@ -80,6 +78,16 @@ def colour_of(key: str) -> str:
     raise ValueError(f"unknown palette key {key!r}")
 
 
+CONTEXTS = tuple(load_contexts())
+
+
+def context_colour(name: str) -> str:
+    """Return the colour of a context from data/contexts.csv; raise ValueError if unknown."""
+    if name not in CONTEXTS:
+        raise ValueError(f"unknown context {name!r}; expected one of {CONTEXTS}")
+    return colour_of(name)
+
+
 def label_of(key: str) -> str:
     """Return the label of an actor or a context key; raise ValueError for an unknown key."""
     if key in _actors():
@@ -106,9 +114,6 @@ def actors_tex(
     The glyph is a character code, so the file stays ASCII; it is empty when icon_font
     is None, and the preamble then draws the labelled box alone.
     """
-    # icons imports style, style imports this module: the import waits for the call.
-    from scripts.utils.icons import glyph
-
     colours = [
         f"\\definecolor{{{item.key}}}{{HTML}}{{{item.color}}}"
         for item in (*actors.values(), *contexts.values())

@@ -7,7 +7,7 @@ from pathlib import Path
 import matplotlib.pyplot as plt
 import pytest
 
-from scripts.utils.style import CONTEXTS, FIGSIZE, FONT, apply, context_colour, save
+from scripts.utils.style import FIGSIZE, FONT, apply, save
 
 
 @pytest.mark.model
@@ -20,16 +20,6 @@ def test_apply_sets_the_first_font_family_to_the_deck_font() -> None:
 def test_apply_sets_the_figure_size() -> None:
     apply()
     assert tuple(plt.rcParams["figure.figsize"]) == FIGSIZE
-
-
-@pytest.mark.model
-def test_context_colour_gives_five_distinct_colours() -> None:
-    assert len({context_colour(name) for name in CONTEXTS}) == 5
-
-
-@pytest.mark.model
-def test_context_colour_reads_contexts_csv() -> None:
-    assert context_colour("pricing") == "#7B3F9E"
 
 
 @pytest.mark.edge
