@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 291 | pruned: 4
+open path: E-010 > W-089 > T-199   | blocked: 0 | todo roots: 0 | done: 291 | pruned: 4
 
 ## Tree
 
 ```text
-E-010         [todo]     deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
-  W-089  issue  [todo]     00: the section beats and the record -- T-199 [todo], T-200 [todo], T-201 [todo], T-202 [todo]
+E-010         [doing]    deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data
+  W-089  issue  [doing]    00: the section beats and the record -- T-199 [doing]   <- ACTIVE LEAF, T-200 [todo], T-201 [todo], T-202 [todo]
   W-090  issue  [todo]     01: the storyboard opens the loop -- T-203 [todo], T-204 [todo], T-205 [todo]
   W-091  issue  [todo]     01: measured captions on the evidence frames -- T-206 [todo], T-207 [todo], T-208 [todo]
   W-092  issue  [todo]     02: the dispute as bubbles and one map -- T-209 [todo], T-210 [todo], T-211 [todo]
@@ -538,9 +538,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E010["E-010 todo: deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data"]
-  E010 --> W089["W-089 issue todo: 00: the section beats and the record"]
-  W089 --> T199["T-199 todo: Record the review remarks -> docs/deck-v3.md"]
+  E010["E-010 doing: deck v3: the 2026-11-02 review -- story gaps, figures, code on slides, build and data"]
+  E010 --> W089["W-089 issue doing: 00: the section beats and the record"]
+  W089 --> T199["T-199 doing: Record the review remarks -> docs/deck-v3.md -- ACTIVE LEAF"]
   W089 --> T200["T-200 todo: Highlight one stop on the agenda strip -> build/00-frontmatter/agenda-01.png .. agenda-06.png"]
   W089 --> T201["T-201 todo: Template the section page -> 00-frontmatter/preamble.tex and build/00-frontmatter/beats.tex"]
   W089 --> T202["T-202 todo: Recaption the opening frames -> 00-frontmatter/index.md"]
@@ -579,5 +579,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E010,W089,T199,T200,T201,T202,W090,T203,T204,T205,W091,T206,T207,T208,W092,T209,T210,T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
+  class E010,W089,T199 doing
+  class T200,T201,T202,W090,T203,T204,T205,W091,T206,T207,T208,W092,T209,T210,T211,W093,T212,T213,T214,W094,T215,T216,T217,W095,T218,T219,W096,T220,T221,T222,T223,W097,T224 todo
 ```
