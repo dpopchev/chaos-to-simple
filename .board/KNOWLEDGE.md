@@ -14,17 +14,18 @@
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 W-081: fact: T-189 probe -- a too-tall frame already fails make overflow; W-059's grid frame had 0.70pt slack, no vbox line, its [T]-column image rose about 1ex into the title -> AC3's Then holds; the real case needs a frame-slack probe
+- 2026-11-02 W-087: fact: the slack threshold is 3pt by the developer's Decision -> T-197 fails make overflow below 3pt; main's 3.24pt frame stays green supersedes: W-087#1
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
-- 2026-11-02 W-087: open: the slack threshold -- 1ex (about 4.5pt) as proposed, against 3.24pt on main's tightest frame ('Nine decisions, none deleted, all moved'), which would then fail
 
 ## Decisions
 - 2026-11-02 E-008: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
 - 2026-11-02 E-008: repoint: W-081 pruned as refuted, successor W-087; AC3 re-pointed to W-087 (developer, 2026-11-02)
+- 2026-11-02 W-087: slack threshold 3pt: catches W-059's 0.70pt frame, keeps main's tightest (3.24pt) green (developer, 2026-11-02)
 
 ## Deviations
 - 2026-11-02 E-008: AC3 re-pointed from W-081 (pruned, refuted) to W-087, adopted from standalone; W-074 now depends on W-087 in W-081's place
