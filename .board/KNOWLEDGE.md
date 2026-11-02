@@ -20,6 +20,7 @@
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
+- 2026-11-02 W-092: open: AC4 asks for the matrix at 85% height with the line glued under it; at most 74% fits with the line under, 85% fits only with the line beside -- which does the developer keep?
 
 ## Decisions
 - 2026-11-02 E-010: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-02)
