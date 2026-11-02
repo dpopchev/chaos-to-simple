@@ -16,10 +16,10 @@ $(BUILD)/00-frontmatter/actors.tex: scripts/actors_tex.py scripts/utils/palette.
 	@$(RUN) python -m scripts.actors_tex --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/00-frontmatter/agenda.png: scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/icons.py scripts/utils/style.py data/route.csv data/incidents.csv
+$(BUILD)/00-frontmatter/agenda.png: scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/icons.py scripts/utils/style.py data/route.csv data/incidents.csv 02-stacey/data/zones.csv scripts/utils/stacey.py
 	@$(RUN) python -m scripts.figures agenda --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/00-frontmatter/agenda-%.png: scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/icons.py scripts/utils/style.py data/route.csv data/incidents.csv
+$(BUILD)/00-frontmatter/agenda-%.png: scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/icons.py scripts/utils/style.py data/route.csv data/incidents.csv 02-stacey/data/zones.csv scripts/utils/stacey.py
 	@$(RUN) python -m scripts.figures agenda --highlight $* --out $@
 	$(call log_done,$@ written)
