@@ -14,9 +14,11 @@ place; contracts between contexts are values, never flags.
 
 ## Slides
 
+- [x] Color-coded, the ifs get names: `colorcode.png`
+- [x] The first fix: `fix.diff`
 - [x] The dispute closes: `snippet=coupon`, `snippet=fee`, the takeaway "Values, never flags"
 - [x] A bit as a type: `snippet=zone`
-- [x] Bounded contexts: every bit has a home
+- [x] Bounded contexts: every bit has a home: `v4.diff` beside `contexts.txt` with faces
 - [x] Bounded contexts, the moves: the contract line under moves.png, glued to the frame
 
 ## Live
