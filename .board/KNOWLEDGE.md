@@ -14,15 +14,16 @@
 - 2026-11-02 E-007: standing: pdfinfo and pdftoppm are absent, gs is present and counts pages -> every page check uses gs supersedes: E-007#3
 - 2026-11-02 E-007: standing: scripts/tests does not exist; helper tests sit beside their module -> every new test is scripts/utils/test_<m>.py supersedes: E-007#9
 - 2026-11-02 E-008: standing: make overflow fails a frame too tall (vbox warning) or with under 3pt of slack (developer's threshold); a [T]-column image rises about 1ex above its box -> keep each frame at 3pt slack or more supersedes: W-081#1, W-087#2
+- 2026-11-02 W-092: fact: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#1
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
-- 2026-11-02 W-092: open: AC4 asks for the matrix at 85% height with the line glued under it; at most 74% fits with the line under, 85% fits only with the line beside -- which does the developer keep?
 
 ## Decisions
+- 2026-11-02 E-010: AC4: the 02 matrix stays at 85% height with the line glued beside it, not under it (at most 74% fits under); W-092's recorded Outcome reads 'under' and is read through this Decision (developer, 2026-11-02)
 - 2026-11-02 E-010: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 8 hours) (developer, 2026-11-02)
 
 ## Deviations
