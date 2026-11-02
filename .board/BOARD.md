@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-009 > W-086 > T-195   | blocked: 0 | todo roots: 0 | done: 286 | pruned: 4
+open path: E-009 > W-086   | blocked: 0 | todo roots: 0 | done: 287 | pruned: 4
 
 ## Tree
 
 ```text
 E-009         [doing]    backlog after v0.8.0: the strict include test and the in-tree bytecode
-  W-086  issue  [doing]    lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [doing]   <- ACTIVE LEAF
+  W-086  issue  [doing]    lengths: the STRICT failure on a missing include gets its own test   (filed during T-179) -- T-195 [done]
   W-088  bug    [todo]     stale in-tree __pycache__ keeps a grep Check red after a symbol is removed   (filed during T-190) -- T-198 [todo]
 ```
 
@@ -521,7 +521,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 flowchart TD
   E009["E-009 doing: backlog after v0.8.0: the strict include test and the in-tree bytecode"]
   E009 --> W086["W-086 issue doing: lengths: the STRICT failure on a missing include gets its own test"]
-  W086 --> T195["T-195 doing: Pin the strict failure of read_include -> scripts/utils/test_widths.py -- ACTIVE LEAF"]
+  W086 --> T195["T-195 done: Pin the strict failure of read_include -> scripts/utils/test_widths.py"]
   E009 --> W088["W-088 bug todo: stale in-tree __pycache__ keeps a grep Check red after a symbol is removed"]
   W088 --> T198["T-198 todo: Remove the in-tree bytecode in make clean-python -> mk/python.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -529,6 +529,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E009,W086,T195 doing
+  class E009,W086 doing
+  class T195 done
   class W088,T198 todo
 ```
