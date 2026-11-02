@@ -1,4 +1,4 @@
-id,week,date,told_in,decided_in,closed_in,closed_by,kind,cost
-I1,15,2026-11-02,01,03,06,test_free_shipping_after_discount,rule,"1,214 orders; 6,070 EUR"
-I2,15,2026-11-04,02,03,04,rules.csv b2,decision,one meeting nobody had called
-I3,18,2026-11-24,05,03,06,TestOutOfStockRejectsBeforePayment,effect,41 refunds of six working days each
+id,week,date,told_in,decided_in,closed_in,closed_by,kind,cost,decision,principle
+I1,15,2026-11-02,01,03,06,test_free_shipping_after_discount,rule,"1,214 orders; 6,070 EUR",the threshold reads the value pricing returns,"cohesion: one rule, one home"
+I2,15,2026-11-04,02,03,04,rules.csv b2,decision,one meeting nobody had called,"logistics owns the rule, decided in the room",agreement: the What before the How
+I3,18,2026-11-24,05,03,06,TestOutOfStockRejectsBeforePayment,effect,41 refunds of six working days each,"reserve before charge, every answer a value",decoupling: CQS at the seam

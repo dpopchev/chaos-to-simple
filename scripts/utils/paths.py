@@ -72,6 +72,8 @@ class Incident:
     closed_by: str
     kind: str
     cost: str
+    decision: str
+    principle: str
 
 
 def load_incidents(path: Path) -> tuple[Incident, ...]:
