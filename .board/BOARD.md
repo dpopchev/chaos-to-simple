@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-104 > T-236   | blocked: 0 | todo roots: 0 | done: 345 | pruned: 4
+open path: E-012 > W-104 > T-237   | blocked: 0 | todo roots: 0 | done: 346 | pruned: 4
 
 ## Tree
 
 ```text
 E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
   W-103  issue  [done]     EUR: every amount reads EUR -- T-232 [done], T-233 [done], T-234 [done]
-  W-104  issue  [doing]    one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [doing]   <- ACTIVE LEAF, T-237 [todo], T-238 [todo]
+  W-104  issue  [doing]    one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [done], T-237 [doing]   <- ACTIVE LEAF, T-238 [todo]
   W-105  issue  [todo]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [todo], T-240 [todo], T-241 [todo], T-242 [todo]
   W-106  issue  [todo]     01: the storyboard counts policies -- T-243 [todo], T-244 [todo], T-245 [todo]
   W-107  issue  [todo]     01: checkout done, the two tests, the six-bit number -- T-246 [todo], T-247 [todo]
@@ -636,8 +636,8 @@ flowchart TD
   W103 --> T234["T-234 done: Rewrite the amounts -> EUR in the data, the exhibits, the notes and the READMEs"]
   E012 --> W104["W-104 issue doing: one diff renderer: -, +, ~, ... under a version caption; the storyboard whole"]
   W104 --> T235["T-235 done: Mark changed and elided lines -> snippet_diff emits ~ and ... in scripts/utils/stagediff.py"]
-  W104 --> T236["T-236 doing: Show the whole function per step -> step_view in scripts/utils/storyboard.py -- ACTIVE LEAF"]
-  W104 --> T237["T-237 todo: Colour the prefixes -> 00-frontmatter/filters/diffs.lua and the preamble macros"]
+  W104 --> T236["T-236 done: Show the whole function per step -> step_view in scripts/utils/storyboard.py"]
+  W104 --> T237["T-237 doing: Colour the prefixes -> 00-frontmatter/filters/diffs.lua and the preamble macros -- ACTIVE LEAF"]
   W104 --> T238["T-238 todo: Fit the whole function -> the 01, 04, 05 and 06 includes with their captions"]
   E012 --> W105["W-105 issue todo: 00: the map as a flow of policies, the agenda explained, the icons guarded"]
   W105 --> T239["T-239 todo: Outline the core and label the flows -> business_map in scripts/utils/stage.py"]
@@ -700,7 +700,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W104,T236 doing
-  class W103,T232,T233,T234,T235 done
-  class T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
+  class E012,W104,T237 doing
+  class W103,T232,T233,T234,T235,T236 done
+  class T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
 ```
