@@ -119,7 +119,7 @@ def doubling_table(cast: Sequence[CastRow], upto: int | None = None) -> str:
     core = [c for c in cast if c.bit.startswith("b")][:upto]
     rows = [("week", "who", "bits", "paths")]
     for bits, c in enumerate(core, start=1):
-        rows.append((str(c.week), label_of(c.requested_by),str(bits), str(tangled(bits))))
+        rows.append((str(c.week), label_of(c.requested_by), str(bits), str(tangled(bits))))
     widths = [max(len(row[i]) for row in rows) for i in range(4)]
     lines = [
         "  ".join(cell.ljust(widths[i]) for i, cell in enumerate(row)).rstrip() for row in rows
@@ -422,9 +422,7 @@ def grid_panels(
         for k, kind in enumerate(kinds):
             r, c = divmod(k, GRID_SIDE)
             ax.add_patch(
-                Rectangle(
-                    (c, GRID_SIDE - 1 - r), 0.9, 0.9, facecolor=fills[kind], edgecolor="none"
-                )
+                Rectangle((c, GRID_SIDE - 1 - r), 0.9, 0.9, facecolor=fills[kind], edgecolor="none")
             )
         framed = stock_gone(title)
         if framed:

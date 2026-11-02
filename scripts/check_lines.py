@@ -1,6 +1,6 @@
 """make lines: fail when a should-have-known line is missing from its section or from 07.
 
-    python -m scripts.check_lines --root .
+python -m scripts.check_lines --root .
 """
 
 from __future__ import annotations

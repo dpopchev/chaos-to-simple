@@ -297,9 +297,7 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             fontsize=20,
             color="white",
         )
-        ax.text(
-            band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16
-        )
+        ax.text(band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16)
     ax.set_xlim(0, 11.5)
     ax.set_ylim(-0.7, n - 0.3)
     ax.axis("off")

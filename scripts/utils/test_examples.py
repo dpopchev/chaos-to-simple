@@ -7,9 +7,7 @@ import pytest
 from scripts.utils.examples import example_names, missing_tests
 
 SAMPLE = (
-    "scope,bit,name,given,then\n"
-    "core,b0,coupon_valid_today,g,t\n"
-    "shell,s0,happy_path_accepts,g,t\n"
+    "scope,bit,name,given,then\ncore,b0,coupon_valid_today,g,t\nshell,s0,happy_path_accepts,g,t\n"
 )
 
 

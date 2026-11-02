@@ -1,6 +1,6 @@
 """make widths: fail naming each included line wider than the column it sits in.
 
-    python -m scripts.check_widths --root . --full 104
+python -m scripts.check_widths --root . --full 104
 """
 
 from __future__ import annotations

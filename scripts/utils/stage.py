@@ -100,8 +100,14 @@ def agenda_strip(route: Sequence[Stop], incidents: Iterable[Incident], out: Path
             zorder=4,
         )
         ax.text(
-            x, -STOP_H / 2 - 0.22, stop.counter, ha="center", va="center", fontsize=14,
-            fontweight="bold", zorder=4,
+            x,
+            -STOP_H / 2 - 0.22,
+            stop.counter,
+            ha="center",
+            va="center",
+            fontsize=14,
+            fontweight="bold",
+            zorder=4,
         )
         if i + 1 < len(route):
             ax.annotate(

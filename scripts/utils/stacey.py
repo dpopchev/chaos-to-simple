@@ -112,8 +112,16 @@ def draw(
         )
     ax.plot([0, LIMIT], [0, LIMIT], color="dimgrey", linewidth=2, linestyle="--", zorder=2)
     ax.text(
-        LIMIT - 0.04, LIMIT - 0.08, labels["diagonal"], ha="center", va="center", fontsize=20,
-        fontweight="bold", color="dimgrey", rotation=45, zorder=6,
+        LIMIT - 0.04,
+        LIMIT - 0.08,
+        labels["diagonal"],
+        ha="center",
+        va="center",
+        fontsize=20,
+        fontweight="bold",
+        color="dimgrey",
+        rotation=45,
+        zorder=6,
     )
     quote = labels["boom_quote"]
     for zone in zones:
@@ -126,27 +134,55 @@ def draw(
             below = -0.125
         # Below the diagonal is below the axis: the band's below text sits under its name.
         ax.text(
-            mid, below, textwrap.fill(zone.below, 22), ha="center", va="top", fontsize=9.5,
+            mid,
+            below,
+            textwrap.fill(zone.below, 22),
+            ha="center",
+            va="top",
+            fontsize=9.5,
             style="italic",
         )
         if zone is zones[0]:
             # The innermost band is narrow: its above text hugs the y axis.
             ax.text(
-                0.012, 0.19, textwrap.fill(zone.above, 15), ha="left", va="center", fontsize=8.5,
-                style="italic", zorder=3,
+                0.012,
+                0.19,
+                textwrap.fill(zone.above, 15),
+                ha="left",
+                va="center",
+                fontsize=8.5,
+                style="italic",
+                zorder=3,
             )
             continue
         ax.text(
-            mid * math.cos(math.radians(76)), mid * math.sin(math.radians(76)),
-            textwrap.fill(zone.above, 16), ha="center", va="center", fontsize=9, style="italic",
+            mid * math.cos(math.radians(76)),
+            mid * math.sin(math.radians(76)),
+            textwrap.fill(zone.above, 16),
+            ha="center",
+            va="center",
+            fontsize=9,
+            style="italic",
             zorder=3,
         )
     ax.text(
-        0.02, LIMIT - 0.02, labels["above"], ha="left", va="top", fontsize=13, color="dimgrey",
+        0.02,
+        LIMIT - 0.02,
+        labels["above"],
+        ha="left",
+        va="top",
+        fontsize=13,
+        color="dimgrey",
         zorder=6,
     )
     ax.text(
-        LIMIT - 0.02, 0.02, labels["below"], ha="right", va="bottom", fontsize=13, color="dimgrey",
+        LIMIT - 0.02,
+        0.02,
+        labels["below"],
+        ha="right",
+        va="bottom",
+        fontsize=13,
+        color="dimgrey",
         zorder=6,
     )
     font = icon_file()
@@ -156,30 +192,50 @@ def draw(
         alpha = 0.25 if faded else 1.0
         ax.add_patch(
             Circle(
-                (spot.x, spot.y), 0.045, facecolor=face, alpha=alpha, zorder=4,
-                edgecolor="black" if spot.section == highlight else "none", linewidth=3,
+                (spot.x, spot.y),
+                0.045,
+                facecolor=face,
+                alpha=alpha,
+                zorder=4,
+                edgecolor="black" if spot.section == highlight else "none",
+                linewidth=3,
             )
         )
         if font is not None and not faded:
             ax.text(
-                spot.x, spot.y, glyph(spot.icon, FONT_AWESOME), ha="center", va="center",
-                fontproperties=FontProperties(fname=font, size=17), color=label_ink(face), zorder=5,
+                spot.x,
+                spot.y,
+                glyph(spot.icon, FONT_AWESOME),
+                ha="center",
+                va="center",
+                fontproperties=FontProperties(fname=font, size=17),
+                color=label_ink(face),
+                zorder=5,
             )
         beside = side_of(spot.x, spot.y) == "below"
         ax.text(
             spot.x + 0.06 if beside else spot.x,
             spot.y if beside else spot.y - 0.07,
-            textwrap.fill(f"{spot.section} {spot.label}", 9) if beside else
-            f"{spot.section} {spot.label}",
-            ha="left" if beside else "center", va="center" if beside else "top",
-            fontsize=12, fontweight="bold", alpha=alpha, zorder=5,
+            textwrap.fill(f"{spot.section} {spot.label}", 9)
+            if beside
+            else f"{spot.section} {spot.label}",
+            ha="left" if beside else "center",
+            va="center" if beside else "top",
+            fontsize=12,
+            fontweight="bold",
+            alpha=alpha,
+            zorder=5,
             bbox={"facecolor": "white", "alpha": 0.7 * alpha, "edgecolor": "none", "pad": 1.5},
         )
+    ax.text(LIMIT / 2, -0.27, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey")
     ax.text(
-        LIMIT / 2, -0.27, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey"
-    )
-    ax.text(
-        -0.04, LIMIT / 2, labels["y_axis"], ha="right", va="center", fontsize=13, color="dimgrey",
+        -0.04,
+        LIMIT / 2,
+        labels["y_axis"],
+        ha="right",
+        va="center",
+        fontsize=13,
+        color="dimgrey",
         rotation=90,
     )
     ax.set_xlim(-0.08, LIMIT)

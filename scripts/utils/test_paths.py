@@ -446,7 +446,7 @@ class TestContextsTableJoinsRulesAndCast:
         assert all(line == line.rstrip() for line in lines)
 
 
-SEVENTH_RULES =Path(__file__).resolve().parents[2] / "data" / "seventh.csv"
+SEVENTH_RULES = Path(__file__).resolve().parents[2] / "data" / "seventh.csv"
 
 
 class TestEpilogueCountsTheSeventhIf:
@@ -480,9 +480,7 @@ class TestEpilogueBarsGrowShippingOnly:
     @pytest.mark.model
     def test_epilogue_bars_grow_shipping_only(self, bars: tuple[Bar, Bar]) -> None:
         before, after = (dict(segments) for _, segments in bars)
-        assert {k: after[k] - before[k] for k in before if after[k] != before[k]} == {
-            "shipping": 8
-        }
+        assert {k: after[k] - before[k] for k in before if after[k] != before[k]} == {"shipping": 8}
 
     @pytest.mark.model
     def test_epilogue_bars_total_22_and_30(self, bars: tuple[Bar, Bar]) -> None:

@@ -1,6 +1,6 @@
 """make budget: fail when a section holds a different number of frames than data/budget.csv.
 
-    python -m scripts.check_budget --root .
+python -m scripts.check_budget --root .
 """
 
 from __future__ import annotations

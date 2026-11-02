@@ -73,9 +73,7 @@ def _row(cells: Sequence[str], widths: Sequence[int]) -> list[str]:
     ]
 
 
-def retro_table(
-    questions: Sequence[Question], label: Callable[[str], str] = label_of
-) -> str:
+def retro_table(questions: Sequence[Question], label: Callable[[str], str] = label_of) -> str:
     """The table of id, question, who raised it and what was decided; long cells wrap."""
     widths = (2, QUESTION_WIDTH, WHO_WIDTH, DECIDED_WIDTH)
     lines = _row(COLUMNS, widths)

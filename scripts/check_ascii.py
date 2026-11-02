@@ -1,7 +1,7 @@
 """make ascii: fail when code, config, data or prose carries a byte above 127.
 
-    python -m scripts.check_ascii --root .              everything, slides included
-    python -m scripts.check_ascii --root . --skip-slides once the slides are in Bulgarian
+python -m scripts.check_ascii --root .              everything, slides included
+python -m scripts.check_ascii --root . --skip-slides once the slides are in Bulgarian
 """
 
 from __future__ import annotations

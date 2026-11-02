@@ -1,6 +1,6 @@
 """make lengths: fail naming each included block with more lines than its cap.
 
-    python -m scripts.check_lengths --root . --cap 14
+python -m scripts.check_lengths --root . --cap 14
 """
 
 from __future__ import annotations

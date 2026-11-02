@@ -19,9 +19,7 @@ class Line:
 
 def load_lines(path: Path) -> list[Line]:
     with path.open(newline="", encoding="ascii") as fh:
-        return [
-            Line(row["section"], row["believed"], row["learned"]) for row in csv.DictReader(fh)
-        ]
+        return [Line(row["section"], row["believed"], row["learned"]) for row in csv.DictReader(fh)]
 
 
 def _squeeze(text: str) -> str:
