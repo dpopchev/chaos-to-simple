@@ -8,6 +8,7 @@ from pathlib import Path
 
 import pytest
 
+from scripts.utils import stacey
 from scripts.utils.stacey import draw, load_labels, load_spots, load_zones, side_of, zone_of
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -60,6 +61,11 @@ def sourced_or_digit_free(text: str) -> bool:
 @pytest.mark.model
 def test_the_boom_quote_names_its_source_or_holds_no_digit() -> None:
     assert sourced_or_digit_free(LABELS["boom_quote"])
+
+
+@pytest.mark.model
+def test_zone_text_size_is_12() -> None:
+    assert stacey.ZONE_TEXT_SIZE == 12
 
 
 @pytest.mark.model

@@ -20,6 +20,8 @@ Side = Literal["above", "on", "below"]
 ZONE_COLOURS = ("accounting", "logistics", "marketing", "payment")
 LIMIT = 1.1
 FIGURE = (8.0, 8.1)
+ZONE_NAME_SIZE = 15
+ZONE_TEXT_SIZE = 12
 
 
 @dataclass(frozen=True)
@@ -133,21 +135,31 @@ def draw(
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
         if zone is zones[0]:
             # The innermost band is narrow: its name and above text hug the y axis.
-            cx, cy, align, wrap, size = 0.012, 0.215, "left", 16, 8
+            cx, cy, align, wrap = 0.012, 0.215, "left", 12
         else:
             cx = max(mid * math.cos(math.radians(76)), 0.15)
             cy = mid * math.sin(math.radians(76))
-            align, wrap, size = "center", 22, 9
+            align, wrap = "center", 22
+        size = ZONE_TEXT_SIZE
         # The band name sits in its arc above the in-arc text; the last is followed by the quote.
-        ax.text(cx, cy, zone.label, ha=align, va="bottom", fontsize=13, fontweight="bold", zorder=3)
+        ax.text(
+            cx,
+            cy,
+            zone.label,
+            ha=align,
+            va="bottom",
+            fontsize=ZONE_NAME_SIZE,
+            fontweight="bold",
+            zorder=3,
+        )
         top = cy
         if zone is zones[-1] and quote:
-            ax.text(cx, top, quote, ha=align, va="top", fontsize=9, zorder=3)
+            ax.text(cx, top, quote, ha=align, va="top", fontsize=size, zorder=3)
             top -= 0.04
         ax.text(
             cx,
             top,
-            textwrap.fill(zone.above, wrap),
+            textwrap.fill(zone.above, wrap, break_long_words=False),
             ha=align,
             va="top",
             fontsize=size,
@@ -228,7 +240,7 @@ def draw(
         rotation=90,
     )
     ax.set_xlim(-0.08, LIMIT)
-    ax.set_ylim(-0.1, LIMIT)
+    ax.set_ylim(-0.07, LIMIT)
     ax.set_aspect("equal")
     ax.axis("off")
     fig.tight_layout()
