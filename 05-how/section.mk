@@ -16,7 +16,8 @@ ARTIFACTS += $(BUILD)/05-how/v5.diff
 
 $(BUILD)/05-how/v5.diff: 04-what/s04_what/checkout_v4.py 05-how/s05_how/checkout_v5.py scripts/paths.py scripts/utils/stagediff.py 05-how/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_v4.py \
-		--to 05-how/s05_how/checkout_v5.py --snippet checkout --start 'total = total_with_vat' --out $@
+		--to 05-how/s05_how/checkout_v5.py --snippet checkout --start 'total = total_with_vat' \
+		--hide 'assert_never|case _ as unreachable' --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/05-how/ports.png: data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py

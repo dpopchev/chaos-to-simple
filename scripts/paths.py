@@ -26,7 +26,7 @@
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
-        [--start TEXT] [--added-only] --out F.diff
+        [--start TEXT] [--added-only] [--hide PATTERN] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
@@ -110,6 +110,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--to-snippet", default=None, help="snippet of --to when it differs")
     parser.add_argument("--start", default=None, help="diff: start at the first line with TEXT")
     parser.add_argument("--added-only", action="store_true", help="diff: keep only the + lines")
+    parser.add_argument("--hide", default=None, help="diff: drop snippet lines matching PATTERN")
     parser.add_argument("--only", default=None, help="retro: the card of this question id")
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
@@ -165,7 +166,13 @@ def main(argv: Sequence[str] | None = None) -> int:
         args.out.parent.mkdir(parents=True, exist_ok=True)
         to_snippet = args.to_snippet or args.snippet
         diff = snippet_diff(
-            args.from_path, args.snippet, args.to_path, to_snippet, args.start, args.added_only
+            args.from_path,
+            args.snippet,
+            args.to_path,
+            to_snippet,
+            args.start,
+            args.added_only,
+            args.hide,
         )
         args.out.write_text(diff, encoding="ascii")
         return 0

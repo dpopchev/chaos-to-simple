@@ -51,6 +51,12 @@ def test_snippet_diff_has_no_hunk_header(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_snippet_diff_hide_drops_the_matching_lines(tmp_path: Path) -> None:
+    old, new = _pair(tmp_path)
+    assert snippet_diff(old, "s", new, "s", hide="b = 3").splitlines()[1:] == [" a = 1", "-b = 2"]
+
+
+@pytest.mark.view
 def test_snippet_diff_added_only_keeps_the_plus_lines(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
     assert snippet_diff(old, "s", new, "s", added_only=True).splitlines() == [
