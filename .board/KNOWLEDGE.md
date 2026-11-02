@@ -34,4 +34,4 @@
 - 2026-11-02 E-012: the eight-word title gate (make titles, W-119 T-279) keeps the action-title rule mechanically (developer, 2026-11-02)
 
 ## Deviations
-- none recorded
+- 2026-11-02 E-012: T-232's lane wrote docs/deck-v4.md before its red run; the red is taken from the Check on the tree at b79e8f4 (the file absent: 'No such file or directory', exit 2), reproduced by the coordinator; the Check itself is unchanged

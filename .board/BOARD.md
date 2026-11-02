@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-103 > T-232   | blocked: 0 | todo roots: 0 | done: 340 | pruned: 4
+open path: E-012 > W-103 > T-233   | blocked: 0 | todo roots: 0 | done: 341 | pruned: 4
 
 ## Tree
 
 ```text
 E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
-  W-103  issue  [doing]    EUR: every amount reads EUR -- T-232 [doing]   <- ACTIVE LEAF, T-233 [todo], T-234 [todo]
+  W-103  issue  [doing]    EUR: every amount reads EUR -- T-232 [done], T-233 [doing]   <- ACTIVE LEAF, T-234 [todo]
   W-104  issue  [todo]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [todo], T-236 [todo], T-237 [todo], T-238 [todo]
   W-105  issue  [todo]     00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [todo], T-240 [todo], T-241 [todo], T-242 [todo]
   W-106  issue  [todo]     01: the storyboard counts policies -- T-243 [todo], T-244 [todo], T-245 [todo]
@@ -631,8 +631,8 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 flowchart TD
   E012["E-012 doing: Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR"]
   E012 --> W103["W-103 issue doing: EUR: every amount reads EUR"]
-  W103 --> T232["T-232 doing: Record the review and the frame plan -> docs/deck-v4.md -- ACTIVE LEAF"]
-  W103 --> T233["T-233 todo: Rename the money helper -> eur() in 04-what/s04_what/money.py and its importers"]
+  W103 --> T232["T-232 done: Record the review and the frame plan -> docs/deck-v4.md"]
+  W103 --> T233["T-233 doing: Rename the money helper -> eur() in 04-what/s04_what/money.py and its importers -- ACTIVE LEAF"]
   W103 --> T234["T-234 todo: Rewrite the amounts -> EUR in the data, the exhibits, the notes and the READMEs"]
   E012 --> W104["W-104 issue todo: one diff renderer: -, +, ~, ... under a version caption; the storyboard whole"]
   W104 --> T235["T-235 todo: Mark changed and elided lines -> snippet_diff emits ~ and ... in scripts/utils/stagediff.py"]
@@ -700,6 +700,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W103,T232 doing
-  class T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
+  class E012,W103,T233 doing
+  class T232 done
+  class T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
 ```
