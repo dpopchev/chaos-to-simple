@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012 > W-105 > T-241   | blocked: 0 | todo roots: 0 | done: 351 | pruned: 4
+open path: E-012 > W-105 > T-242   | blocked: 0 | todo roots: 0 | done: 352 | pruned: 4
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-012 > W-105 > T-241   | blocked: 0 | todo roots: 0 | done: 351 | pr
 E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titles, one diff renderer, the R1/R2 thread, the seam, the close, EUR
   W-103  issue  [done]     EUR: every amount reads EUR -- T-232 [done], T-233 [done], T-234 [done]
   W-104  issue  [done]     one diff renderer: -, +, ~, ... under a version caption; the storyboard whole -- T-235 [done], T-236 [done], T-237 [done], T-238 [done]
-  W-105  issue  [doing]    00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [done], T-240 [done], T-241 [doing]   <- ACTIVE LEAF, T-242 [todo]
+  W-105  issue  [doing]    00: the map as a flow of policies, the agenda explained, the icons guarded -- T-239 [done], T-240 [done], T-241 [done], T-242 [doing]   <- ACTIVE LEAF
   W-106  issue  [todo]     01: the storyboard counts policies -- T-243 [todo], T-244 [todo], T-245 [todo]
   W-107  issue  [todo]     01: checkout done, the two tests, the six-bit number -- T-246 [todo], T-247 [todo]
   W-108  issue  [todo]     01: finance R1 against R2, and its test -- T-248 [todo], T-249 [todo]
@@ -642,8 +642,8 @@ flowchart TD
   E012 --> W105["W-105 issue doing: 00: the map as a flow of policies, the agenda explained, the icons guarded"]
   W105 --> T239["T-239 done: Outline the core and label the flows -> business_map in scripts/utils/stage.py"]
   W105 --> T240["T-240 done: Colour the stops by band and explain the marks -> agenda_strip and stacey.draw"]
-  W105 --> T241["T-241 doing: Put the path glyph by each counter and in the footer -> stage.py, palette.actors_tex, 00-frontmatter/preamble.tex, 00-frontmatter/index.md -- ACTIVE LEAF"]
-  W105 --> T242["T-242 todo: Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py"]
+  W105 --> T241["T-241 done: Put the path glyph by each counter and in the footer -> stage.py, palette.actors_tex, 00-frontmatter/preamble.tex, 00-frontmatter/index.md"]
+  W105 --> T242["T-242 doing: Choose the icon file by its glyphs -> font_file in scripts/utils/icons.py -- ACTIVE LEAF"]
   E012 --> W106["W-106 issue todo: 01: the storyboard counts policies"]
   W106 --> T243["T-243 todo: Count the tally -> tally_line in scripts/utils/storyboard.py and build/01-bits/tally-N.txt"]
   W106 --> T244["T-244 todo: Let the storyboard open on a measurement frame -> counter.storyboard_ok and test_counter_plan"]
@@ -700,7 +700,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012,W105,T241 doing
-  class W103,T232,T233,T234,W104,T235,T236,T237,T238,T239,T240 done
-  class T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
+  class E012,W105,T242 doing
+  class W103,T232,T233,T234,W104,T235,T236,T237,T238,T239,T240,T241 done
+  class W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275,W119,T276,T277,T278,T279 todo
 ```
