@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-012   | blocked: 0 | todo roots: 8 | done: 400 | pruned: 4
+open path: E-012 > W-128 > T-289   | blocked: 0 | todo roots: 8 | done: 400 | pruned: 4
 
 ## Tree
 
@@ -23,7 +23,7 @@ E-012         [doing]    Deck v4: the review of 2026-11-02 landed -- action titl
   W-117  issue  [done]     06: the wounds as a post-mortem -- T-271 [done], T-272 [done], T-273 [done]
   W-118  issue  [done]     07: the call to action and the thank-you -- T-274 [done], T-275 [done]
   W-119  issue  [todo]     action titles on every content frame, topic titles on the section pages -- T-276 [todo], T-277 [todo], T-278 [todo], T-279 [todo]
-  W-128  bug    [todo]     07: the call to action lacks 'reach out with your own checkout'   (filed during T-274) -- T-289 [todo]
+  W-128  bug    [doing]    07: the call to action lacks 'reach out with your own checkout'   (filed during T-274) -- T-289 [doing]   <- ACTIVE LEAF
 W-120  bug    [todo]     (standalone) the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [todo]
 W-121  issue  [todo]     (standalone) 01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [todo]
 W-122  bug    [todo]     (standalone) 01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [todo]
@@ -704,8 +704,8 @@ flowchart TD
   W119 --> T277["T-277 todo: Retitle 01, 02 and 03 -> their index.md and scripts/utils/test_counter_plan.py"]
   W119 --> T278["T-278 todo: Retitle 04, 05, 06 and 07 -> their index.md and the counter plan"]
   W119 --> T279["T-279 todo: Gate the title length -> scripts/utils/titles.py, scripts/check_titles.py, make titles in mk/deck.mk"]
-  E012 --> W128["W-128 bug todo: 07: the call to action lacks 'reach out with your own checkout'"]
-  W128 --> T289["T-289 todo: Reword the third bullet -> 07-close/index.md"]
+  E012 --> W128["W-128 bug doing: 07: the call to action lacks 'reach out with your own checkout'"]
+  W128 --> T289["T-289 doing: Reword the third bullet -> 07-close/index.md -- ACTIVE LEAF"]
   W120["W-120 bug todo, standalone: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
   W120 --> T280["T-280 todo: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
   W121["W-121 issue todo, standalone: 01: the step code at scriptsize in a wider column"]
@@ -728,7 +728,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E012 doing
+  class E012,W128,T289 doing
   class W103,T232,T233,T234,W104,T235,T236,T237,T238,W105,T239,T240,T241,T242,W106,T243,T244,T245,W107,T246,T247,W108,T248,T249,W109,T250,T251,T252,W110,T253,T254,T255,W111,T256,T257,T258,W112,T259,T260,T261,W113,T262,T263,W114,T264,T265,T266,W115,T267,T268,W116,T269,T270,W117,T271,T272,T273,W118,T274,T275 done
-  class W119,T276,T277,T278,T279,W128,T289,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288 todo
+  class W119,T276,T277,T278,T279,W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288 todo
 ```
