@@ -111,9 +111,11 @@ def _view(heading: str, before: list[str], after: list[str], n: int) -> str:
 def step_view(source: str, n: int) -> str:
     """Return the checkout at step n: a heading, then the scope row and the +/- rows.
 
-    The heading is 'checkout vN: N policies, 2^N paths, L lines'. Step 0 is every row as +.
+    The heading is 'checkout vN: N policies, 2^N paths, L lines' ('1 policy' for N = 1).
+    Step 0 is every row as +.
     """
-    heading = f"checkout v{n}: {n} policies, 2^{n} paths, {code_length(source, n)} lines"
+    noun = "policy" if n == 1 else "policies"
+    heading = f"checkout v{n}: {n} {noun}, 2^{n} paths, {code_length(source, n)} lines"
     before = step_lines(source, n - 1).splitlines() if n > 0 else []
     return _view(heading, before, step_lines(source, n).splitlines(), n)
 
