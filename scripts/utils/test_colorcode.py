@@ -82,6 +82,14 @@ def test_legend_groups_actors_and_contexts() -> None:
 
 
 @pytest.mark.model
+def test_ports_chips_carry_no_kind() -> None:
+    actors, contexts = load_actors(), load_contexts()
+    ports = dict(legend_groups(actors, contexts))["the ports (generic, external teams)"]
+    labels = [chip_label(key, actors, contexts) for key in ports]
+    assert not any("(" in label for label in labels)
+
+
+@pytest.mark.model
 def test_legend_names_the_kinds() -> None:
     actors, contexts = load_actors(), load_contexts()
     home = dict(legend_groups(actors, contexts))["home"]

@@ -81,10 +81,10 @@ def legend_groups(
 
 
 def chip_label(key: str, actors: Mapping[str, Actor], contexts: Mapping[str, Context]) -> str:
-    """Return a context's legend label with its kind, '<label> (<kind>)'; an actor's label alone."""
-    if key in contexts:
-        return f"{contexts[key].label} ({contexts[key].kind})"
-    return actors[key].label
+    """Return an actor's label alone; a context's with its kind, '<label> (<kind>)'."""
+    if key in actors:
+        return actors[key].label
+    return f"{contexts[key].label} ({contexts[key].kind})"
 
 
 def colorcode(
