@@ -1,18 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015   | blocked: 0 | todo roots: 4 | done: 504 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 4 | done: 505 | pruned: 6
 
 ## Tree
 
 ```text
-E-015         [doing]    backlog after deck v5: the palette rebuild rule and five page fixes
-  W-145  bug    [done]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
-  W-146  issue  [done]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [done]
-  W-147  issue  [done]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [done]
-  W-148  issue  [done]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [done], T-346 [pruned]   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files], T-347 [done]
-  W-149  bug    [done]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [done]
-  W-150  issue  [done]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [done]
-  W-151  bug    [done]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [done]
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
 W-154  bug    [todo]     (standalone) The storyboard headings read 2^6 paths as 26 with a hat   (filed during T-345) -- T-348 [todo]
@@ -801,6 +793,43 @@ closed 2026-11-03 -- outcome: The developer runs make talk and reads one legend,
 - T-328 [done] Cut the long test snippet -> 06-simple/tests/test_core_paths.py from-bits at 14 lines, no cap
 - T-329 [done] Caption where each snippet goes and what tests it -> 06-simple/index.md pages 41 to 46
 
+### E-015 [done] backlog after deck v5: the palette rebuild rule and five page fixes
+
+closed 2026-11-03 -- outcome: make talk builds the deck on main with make check green; a label change in data/contexts.csv rebuilds every palette-reading figure, and pages 3, 6 to 12, 28, 29 and 46 read as filed: the 06 stop clear of band text, the diffs at scriptsize or larger, the three ports chips by actor, the test that runs under its 1 passed, the epilogue title clear of the bubble. -- ledger: ledgers/E-015.md
+
+#### W-145 bug [done] Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330)
+
+- T-331 [done] Add the palette prerequisites -> every figure rule in the NN-*/section.mk files
+
+#### W-146 issue [done] The colour-code ports chips name their kind unevenly   (filed during T-298)
+
+- T-332 [done] Label the ports chips by actor -> colorcode.legend_groups ports chips
+
+#### W-147 issue [done] The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301)
+
+- T-333 [done] Move the Simple text off the 06 stop -> stacey.draw text placement
+
+#### W-148 issue [done] The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311)
+
+- T-336 [pruned] Stack the diffs at full width -> 01-bits/index.md pages 6 to 12   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split]
+- T-343 [done] Render a story block in three shades -> story.lua, preamble colours
+- T-344 [done] Show the scope and the changes under one heading -> storyboard step and test views
+- T-345 [done] Lay out the storyboard frames -> 01-bits/index.md pages 6 to 13, data/budget.csv
+- T-346 [pruned] Count the page 7 frame in the storyboard plan -> scripts/utils/counter.py STORYBOARD, scripts/utils/test_counter_plan.py   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files]
+- T-347 [done] Count the page 7 frame in the storyboard plan and its tests -> scripts/utils/counter.py, scripts/utils/test_counter_plan.py, scripts/utils/test_counter.py
+
+#### W-149 bug [done] Page 29 shows finance's test text over the green run of another test   (filed during T-323)
+
+- T-338 [done] Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29
+
+#### W-150 issue [done] The epilogue title's second line collides with the bubble under it   (filed during T-327)
+
+- T-339 [done] Fit the epilogue title on one line -> 06-simple/index.md page 46 title
+
+#### W-151 bug [done] 01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331)
+
+- T-340 [done] Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -863,26 +892,6 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E015["E-015 doing: backlog after deck v5: the palette rebuild rule and five page fixes"]
-  E015 --> W145["W-145 bug done: Figure rules miss the palette files, so a colour or label change leaves stale figures"]
-  W145 --> T331["T-331 done: Add the palette prerequisites -> every figure rule in the NN-*/section.mk files"]
-  E015 --> W146["W-146 issue done: The colour-code ports chips name their kind unevenly"]
-  W146 --> T332["T-332 done: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
-  E015 --> W147["W-147 issue done: The Simple band text runs under the 06 stop of the Stacey matrix"]
-  W147 --> T333["T-333 done: Move the Simple text off the 06 stop -> stacey.draw text placement"]
-  E015 --> W148["W-148 issue done: The storyboard frames shrank their code to tiny with half the frame empty"]
-  W148 --> T336["T-336 pruned: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
-  W148 --> T343["T-343 done: Render a story block in three shades -> story.lua, preamble colours"]
-  W148 --> T344["T-344 done: Show the scope and the changes under one heading -> storyboard step and test views"]
-  W148 --> T345["T-345 done: Lay out the storyboard frames -> 01-bits/index.md pages 6 to 13, data/budget.csv"]
-  W148 --> T346["T-346 pruned: Count the page 7 frame in the storyboard plan -> scripts/utils/counter.py STORYBOARD, scripts/utils/test_counter_plan.py"]
-  W148 --> T347["T-347 done: Count the page 7 frame in the storyboard plan and its tests -> scripts/utils/counter.py, scripts/utils/test_counter_plan.py, scripts/utils/test_counter.py"]
-  E015 --> W149["W-149 bug done: Page 29 shows finance's test text over the green run of another test"]
-  W149 --> T338["T-338 done: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
-  E015 --> W150["W-150 issue done: The epilogue title's second line collides with the bubble under it"]
-  W150 --> T339["T-339 done: Fit the epilogue title on one line -> 06-simple/index.md page 46 title"]
-  E015 --> W151["W-151 bug done: 01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale"]
-  W151 --> T340["T-340 done: Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk"]
   W152["W-152 bug todo, standalone: The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's"]
   W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
   W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
@@ -896,8 +905,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015 doing
-  class W145,T331,W146,T332,W147,T333,W148,T343,T344,T345,T347,W149,T338,W150,T339,W151,T340 done
   class W152,T341,W153,T342,W154,T348,W155,T349 todo
-  class T336,T346 pruned
 ```
