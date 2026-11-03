@@ -86,7 +86,7 @@ $(BUILD)/data/rules.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths rules --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/data/counts.txt: $(RULES) scripts/paths.py scripts/utils/paths.py
+$(BUILD)/data/counts.txt: $(RULES) data/contexts.csv scripts/paths.py scripts/utils/paths.py
 	@$(RUN) python -m scripts.paths counts --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 

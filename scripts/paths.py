@@ -40,7 +40,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.palette import load_actors
+from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import (
     bars_from_rules,
     cast_table,
@@ -257,7 +257,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.what == "postmortem":
         text = postmortem_table(load_incidents(args.incidents))
     elif args.what == "counts":
-        text = count_report(load_rules(args.rules))
+        text = count_report(load_rules(args.rules), load_contexts())
     elif args.what == "splits":
         text = splits_report(load_rules(args.rules))
     else:

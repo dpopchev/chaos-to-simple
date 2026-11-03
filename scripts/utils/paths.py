@@ -10,11 +10,11 @@ from __future__ import annotations
 import csv
 import re
 import textwrap
-from collections.abc import Iterable, Sequence
+from collections.abc import Iterable, Mapping, Sequence
 from dataclasses import dataclass, fields
 from pathlib import Path
 
-from scripts.utils.palette import colour_of, label_of
+from scripts.utils.palette import Context, colour_of, label_of
 
 
 @dataclass(frozen=True)
@@ -293,17 +293,20 @@ def rules_table(
     return "\n".join(lines) + "\n"
 
 
-def count_report(rules: Sequence[Rule]) -> str:
-    """The scope table and the honest count of one function, ending at 2^n."""
+def count_report(rules: Sequence[Rule], contexts: Mapping[str, Context]) -> str:
+    """The kind table and the honest count of one function, ending at 2^n.
+
+    Each row carries its context's kind from contexts.csv; the shell is fulfilment.
+    """
     core = [r for r in rules if r.scope == "core"]
     shell = [r for r in rules if r.scope == "shell"]
-    contexts = bits_by(core, "context")
-    lines = ["scope  context   bits        paths"]
-    for context, n in contexts.items():
+    lines = ["kind        context      bits        paths"]
+    for context, n in bits_by(core, "context").items():
         names = " ".join(r.bit for r in core if r.context == context)
-        lines.append(f"core   {context:<9} {names:<11} {tangled(n):>5}")
+        lines.append(f"{contexts[context].kind:<10}  {context:<12} {names:<11} {tangled(n):>5}")
     shell_names = " ".join(r.bit for r in shell)
-    lines.append(f"shell  effects   {shell_names:<11} {tangled(len(shell)):>5}")
+    kind = contexts["fulfilment"].kind
+    lines.append(f"{kind:<10}  {'fulfilment':<12} {shell_names:<11} {tangled(len(shell)):>5}")
     lines.append("")
     n = len(rules)
     lines.append(f"one function, {n} bits:  2^{n} = {tangled(n)}")

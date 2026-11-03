@@ -9,6 +9,7 @@ import pytest
 from PIL import Image
 
 from scripts.paths import main
+from scripts.utils.palette import load_contexts
 from scripts.utils.paths import (
     Bar,
     CastRow,
@@ -114,16 +115,27 @@ def test_bits_by_context_counts_each_context(sample_rules: list[Rule]) -> None:
 class TestCountReportEndsAtTheHonestCount:
     @pytest.fixture
     def report(self, sample_rules: list[Rule]) -> str:
-        return count_report(sample_rules)
+        return count_report(sample_rules, load_contexts())
 
     @pytest.mark.edge
     def test_one_function_multiplies(self, report: str) -> None:
         assert "one function, 4 bits:  2^4 = 16" in report
 
+    @pytest.mark.edge
+    def test_count_report_heads_by_kind(self, report: str) -> None:
+        assert report.splitlines()[2].startswith("supporting  shipping")
+
 
 @pytest.mark.edge
 def test_count_report_ends_at_512(repo_rules: list[Rule]) -> None:
-    assert count_report(repo_rules).splitlines()[-1] == "one function, 9 bits:  2^9 = 512"
+    last = count_report(repo_rules, load_contexts()).splitlines()[-1]
+    assert last == "one function, 9 bits:  2^9 = 512"
+
+
+@pytest.mark.edge
+def test_count_report_fits_the_column(repo_rules: list[Rule]) -> None:
+    widest = max(map(len, count_report(repo_rules, load_contexts()).splitlines()))
+    assert widest <= 73
 
 
 class TestSplitsReportHasTheTwoSplitLines:
