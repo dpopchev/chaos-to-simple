@@ -340,9 +340,7 @@ coupon, so a rule decided it, not the customers.
 
 ## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
 
-revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the threshold read the cart before the coupon
-
-the test finance and marketing wrote from it: 60.00
+from the breakdown: 1,214 free parcels, each with the coupon, the cart at 50 EUR or more before it, the goods under 50 after it; one of them: 55 EUR of books, the coupon, domestic
 
 ```{.python heading-file=build/01-bits/tests-bug.txt include=01-bits/tests/test_planted_bug.py snippet=bug}
 ```
@@ -351,7 +349,7 @@ the test finance and marketing wrote from it: 60.00
 ```
 
 ::: notes
-The slide repeats the condition, then shows a plain test and its run: 54.00 against 60.00. Run it live and it matches.
+The order is read off page 16's breakdown table: the cart at 50 EUR or more, the coupon on, the goods under 50 after it. The slide shows a plain test of that order and its run: 54.00 against 60.00. Run it live and it matches.
 `make test K=test_chaos` shows 2 passed, `make test K=test_planted_bug` shows 1 xfailed: the
 bug test sits in its own file, marked xfail, so the suite stays green. Then
 `uv run pytest 01-bits/tests/test_planted_bug.py --runxfail` shows the same 54.00 against
