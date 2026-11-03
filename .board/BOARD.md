@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015   | blocked: 0 | todo roots: 2 | done: 493 | pruned: 4
+open path: E-015 > W-148 > T-336   | blocked: 0 | todo roots: 2 | done: 493 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-145  bug    [done]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
   W-146  issue  [done]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [done]
   W-147  issue  [done]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [done]
-  W-148  issue  [todo]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
+  W-148  issue  [doing]    The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [doing]   <- ACTIVE LEAF
   W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
@@ -868,8 +868,8 @@ flowchart TD
   W146 --> T332["T-332 done: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
   E015 --> W147["W-147 issue done: The Simple band text runs under the 06 stop of the Stacey matrix"]
   W147 --> T333["T-333 done: Move the Simple text off the 06 stop -> stacey.draw text placement"]
-  E015 --> W148["W-148 issue todo: The storyboard frames shrank their code to tiny with half the frame empty"]
-  W148 --> T336["T-336 todo: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
+  E015 --> W148["W-148 issue doing: The storyboard frames shrank their code to tiny with half the frame empty"]
+  W148 --> T336["T-336 doing: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12 -- ACTIVE LEAF"]
   E015 --> W149["W-149 bug todo: Page 29 shows finance's test text over the green run of another test"]
   W149 --> T338["T-338 todo: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
   E015 --> W150["W-150 issue todo: The epilogue title's second line collides with the bubble under it"]
@@ -885,7 +885,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015 doing
+  class E015,W148,T336 doing
   class W145,T331,W146,T332,W147,T333 done
-  class W148,T336,W149,T338,W150,T339,W151,T340,W152,T341,W153,T342 todo
+  class W149,T338,W150,T339,W151,T340,W152,T341,W153,T342 todo
 ```
