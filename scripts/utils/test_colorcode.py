@@ -6,7 +6,13 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.colorcode import OwnedLine, colorcode, legend_groups, owned_lines
+from scripts.utils.colorcode import (
+    OwnedLine,
+    chip_label,
+    colorcode,
+    legend_groups,
+    owned_lines,
+)
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import load_cast, load_rules
 
@@ -70,6 +76,19 @@ def test_legend_groups_actors_and_contexts() -> None:
     groups = legend_groups(load_actors(), load_contexts())
     assert {heading: keys for heading, keys in groups} == {
         "who asked": ("customer", "marketing", "loyalty", "logistics", "accounting"),
-        "home": ("pricing", "shipping", "fulfilment", "tax", "payment", "warehouse", "mail"),
-        "the ports (external teams)": ("payment", "warehouse", "mailer"),
+        "home": ("pricing", "shipping", "fulfilment", "tax"),
+        "the ports (generic, external teams)": ("payment", "warehouse", "mailer"),
     }
+
+
+@pytest.mark.model
+def test_legend_names_the_kinds() -> None:
+    actors, contexts = load_actors(), load_contexts()
+    home = dict(legend_groups(actors, contexts))["home"]
+    labels = [chip_label(key, actors, contexts) for key in home]
+    assert [label.rsplit("(", 1)[1] for label in labels] == [
+        "core)",
+        "supporting)",
+        "supporting)",
+        "generic)",
+    ]

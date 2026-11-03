@@ -10,7 +10,7 @@ from pathlib import Path
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
-from scripts.utils.palette import Actor, Context, colour_of
+from scripts.utils.palette import Actor, Context, colour_of, kind_style
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.widths import snippet_text, strip_step_markers
 
@@ -22,6 +22,8 @@ TOP, BOTTOM = 5.85, 1.35
 TEXT_X, BAR_W = 0.45, 0.14
 FONT_SIZE = 12
 LEGEND_TOP, LEGEND_PITCH = 1.22, 0.2
+LEGEND_X, SUB_PITCH = 3.9, 3.0
+PORTS_HEADING = "the ports (generic, external teams)"
 
 
 @dataclass(frozen=True)
@@ -68,11 +70,21 @@ def owned_lines(
 def legend_groups(
     actors: Mapping[str, Actor], contexts: Mapping[str, Context]
 ) -> tuple[tuple[str, tuple[str, ...]], ...]:
-    """Return the legend's headed groups of palette keys: who asked, the home, the ports."""
+    """Return the legend's headed groups of palette keys: who asked, the home, the ports.
+
+    The home is the core and supporting contexts plus tax; the provider contexts are the ports.
+    """
     asked = tuple(k for k, a in actors.items() if a.kind in ("customer", "department"))
-    homes = tuple(k for k in contexts if k != "tangled")
+    homes = tuple(k for k, c in contexts.items() if c.kind in ("core", "supporting") or k == "tax")
     ports = tuple(k for k, a in actors.items() if a.kind == "provider")
-    return (("who asked", asked), ("home", homes), ("the ports (external teams)", ports))
+    return (("who asked", asked), ("home", homes), (PORTS_HEADING, ports))
+
+
+def chip_label(key: str, actors: Mapping[str, Actor], contexts: Mapping[str, Context]) -> str:
+    """Return a context's legend label with its kind, '<label> (<kind>)'; an actor's label alone."""
+    if key in contexts:
+        return f"{contexts[key].label} ({contexts[key].kind})"
+    return actors[key].label
 
 
 def colorcode(
@@ -120,13 +132,24 @@ def colorcode(
             color="black",
         )
     groups = dict(legend_groups(actors, contexts))
-    labels = {key: (a.label, a.icon) for key, a in actors.items()}
-    labels |= {key: (c.label, "") for key, c in contexts.items()}
+    icons = {key: a.icon for key, a in actors.items()}
 
     def chip(key: str, x: float, y: float) -> None:
-        label, icon = labels[key]
+        label = chip_label(key, actors, contexts)
+        icon = icons.get(key, "") if key not in contexts else ""
         face = colour_of(key)
-        ax.add_patch(Rectangle((x, y - 0.08), 0.2, 0.16, facecolor=face, edgecolor="none"))
+        look = kind_style(contexts[key].kind) if key in contexts else None
+        ax.add_patch(
+            Rectangle(
+                (x, y - 0.08),
+                0.2,
+                0.16,
+                facecolor=face,
+                edgecolor=look.edge if look else "none",
+                linestyle=look.linestyle if look else "solid",
+                linewidth=1.5,
+            )
+        )
         if icon and font is not None:
             ax.text(
                 x + 0.1,
@@ -143,11 +166,12 @@ def colorcode(
         ax.text(x, top, heading, ha="left", va="center", fontsize=9, fontweight="bold")
         keys = groups[heading]
         for i, key in enumerate(keys):
-            chip(key, x + (i % sub_columns) * 2.4, top - 0.2 - (i // sub_columns) * LEGEND_PITCH)
+            col, row = i % sub_columns, i // sub_columns
+            chip(key, x + col * SUB_PITCH, top - 0.2 - row * LEGEND_PITCH)
         return top - 0.2 - (-(-len(keys) // sub_columns)) * LEGEND_PITCH
 
     block("who asked", 0.2, LEGEND_TOP, 1)
-    below = block("home", WIDTH / 2, LEGEND_TOP, 2)
-    block("the ports (external teams)", WIDTH / 2, below - 0.05, 2)
+    below = block("home", LEGEND_X, LEGEND_TOP, 2)
+    block(PORTS_HEADING, LEGEND_X, below - 0.05, 2)
     style.save(fig, out)
     return out
