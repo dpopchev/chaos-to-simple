@@ -28,8 +28,8 @@ dev = [
 
 [tool.pytest.ini_options]
 # The helpers' tests sit under scripts/; each section that carries code adds its
-# tests directory. Sections without code (02, 03, 07) are absent on purpose.
-testpaths = ["scripts", "01-bits/tests", "04-what/tests", "05-how/tests", "06-simple/tests"]
+# tests directory. Sections without code (03, 07) are absent on purpose; 02 holds tests only.
+testpaths = ["scripts", "01-bits/tests", "02-stacey/tests", "04-what/tests", "05-how/tests", "06-simple/tests"]
 pythonpath = [".", "01-bits", "04-what", "05-how", "06-simple"]
 # importlib: test basenames may repeat across directories; helpers still import
 # by module name through `pythonpath`.
@@ -63,7 +63,7 @@ cache-dir = "local/.ruff_cache"
 select = ["E", "F", "I", "B", "UP", "N", "SIM", "RUF"]
 
 [tool.pyright]
-include = ["scripts", "01-bits", "04-what", "05-how", "06-simple"]
+include = ["scripts", "01-bits", "02-stacey/tests", "04-what", "05-how", "06-simple"]
 extraPaths = [".", "01-bits", "04-what", "05-how", "06-simple"]
 exclude = ["**/__pycache__", ".venv", "build", "local"]
 pythonVersion = "3.14"

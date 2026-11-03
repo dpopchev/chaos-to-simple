@@ -7,7 +7,7 @@ two axes; each later section is one move on the map.
 |---|---|
 | Minutes | 3 (2 frames) |
 | Footer counter | stays at `64` |
-| Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk` |
+| Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk`; `02-stacey/tests/test_readings.py` holds the R1 and R2 tests (snippets `r1`, `r2`) run against `s01_bits.chaos` |
 | Uses | nothing |
 | Produces | `build/02-stacey/stacey.png` |
 
