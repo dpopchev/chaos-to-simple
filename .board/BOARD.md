@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-140 > T-318   | blocked: 0 | todo roots: 4 | done: 468 | pruned: 4
+open path: E-014 > W-140   | blocked: 0 | todo roots: 4 | done: 469 | pruned: 4
 
 ## Tree
 
@@ -16,7 +16,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-137  issue  [done]     01: the tests under each request, page 14 in step -- T-310 [done], T-311 [done], T-335 [done]
   W-138  issue  [done]     01: finance finds it, the condition, the test -- T-312 [done], T-313 [done], T-314 [done]
   W-139  issue  [done]     01: the grid that doubles, the badge named -- T-315 [done], T-316 [done]
-  W-140  issue  [doing]    02: two readings, two tests that cannot both pass -- T-317 [done], T-318 [doing]   <- ACTIVE LEAF
+  W-140  issue  [doing]    02: two readings, two tests that cannot both pass -- T-317 [done], T-318 [done]
   W-141  issue  [todo]     03: why the order was replayed, where the room clashed -- T-319 [todo], T-320 [todo], T-321 [todo]
   W-142  issue  [todo]     04: the fix is v7, the contexts v8, each under its tally -- T-322 [todo], T-323 [todo], T-324 [todo]
   W-143  issue  [todo]     05: v8 to v9 compact, every snippet with its home and its test -- T-325 [todo], T-326 [todo]
@@ -821,7 +821,7 @@ flowchart TD
   W139 --> T316["T-316 done: Reword the frame -> 01-bits/index.md page 17 with the strip and the badge named"]
   E014 --> W140["W-140 issue doing: 02: two readings, two tests that cannot both pass"]
   W140 --> T317["T-317 done: Write the two readings as tests -> 02-stacey/tests/test_readings.py registered in pyproject.toml"]
-  W140 --> T318["T-318 doing: Show each test beside its bubble -> 02-stacey/index.md page 19 -- ACTIVE LEAF"]
+  W140 --> T318["T-318 done: Show each test beside its bubble -> 02-stacey/index.md page 19"]
   E014 --> W141["W-141 issue todo: 03: why the order was replayed, where the room clashed"]
   W141 --> T319["T-319 todo: Scale the certainty axis -> figures.journey with the ticks certain, unsure, lost"]
   W141 --> T320["T-320 todo: Say why the order was replayed -> 03-chaos/index.md page 22 caption and notes"]
@@ -850,7 +850,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W140,T318 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,T317 done
+  class E014,W140 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,T317,T318 done
   class W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
 ```
