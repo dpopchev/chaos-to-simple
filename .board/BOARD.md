@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015   | blocked: 0 | todo roots: 0 | done: 491 | pruned: 4
+open path: E-015   | blocked: 0 | todo roots: 1 | done: 491 | pruned: 4
 
 ## Tree
 
@@ -13,6 +13,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
+W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 ```
 
 ## Closed
@@ -874,6 +875,8 @@ flowchart TD
   W150 --> T339["T-339 todo: Fit the epilogue title on one line -> 06-simple/index.md page 46 title"]
   E015 --> W151["W-151 bug todo: 01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale"]
   W151 --> T340["T-340 todo: Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk"]
+  W152["W-152 bug todo, standalone: The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's"]
+  W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -881,5 +884,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E015 doing
   class W145,T331,W146,T332 done
-  class W147,T333,W148,T336,W149,T338,W150,T339,W151,T340 todo
+  class W147,T333,W148,T336,W149,T338,W150,T339,W151,T340,W152,T341 todo
 ```
