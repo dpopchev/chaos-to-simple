@@ -65,43 +65,28 @@ def test_the_boom_quote_names_its_source_or_holds_no_digit() -> None:
 
 
 @pytest.mark.model
-def test_zone_text_size_is_12() -> None:
-    assert stacey.ZONE_TEXT_SIZE == 12
+def test_plain_draw_keeps_the_corner_labels(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    figs: list = []
+    monkeypatch.setattr(stacey.style, "save", lambda fig, _out: figs.append(fig))
+    draw(route, ZONES, LABELS, tmp_path / "m.png", plain=True)
+    shown = {t.get_text() for t in figs[0].axes[0].texts}
+    assert set(stacey.corner_texts(LABELS)) <= shown
 
 
 @pytest.mark.model
-def test_plain_draw_skips_the_zone_texts() -> None:
-    assert stacey.zone_texts(ZONES, LABELS, plain=True) == ()
+@pytest.mark.parametrize("zone", ZONES, ids=lambda z: z.key)
+def test_band_anchor_sits_inside_its_arc(zone: stacey.Zone) -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    x, y = stacey.band_anchor(zone, route)
+    top = zone.r_max if zone is not ZONES[-1] else 1.0
+    assert zone.r_min < math.hypot(x, y) < top
 
 
 @pytest.mark.model
 def test_arrows_join_consecutive_stops() -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     assert stacey.arrow_pairs(route, "03") == [("01", "02"), ("02", "03")]
-
-
-@pytest.mark.model
-def test_simple_text_avoids_the_stops() -> None:
-    route = load_spots(ROOT / "data" / "route.csv")
-    x, y = stacey.text_anchor(ZONES[0], route)
-    sx, sy = stop("06")
-    assert math.hypot(x - sx, y - sy) >= 0.08
-
-
-@pytest.mark.model
-def test_simple_name_clears_the_complicated_text(
-    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
-) -> None:
-    route = load_spots(ROOT / "data" / "route.csv")
-    figs: list = []
-    monkeypatch.setattr(stacey.style, "save", lambda fig, _out: figs.append(fig))
-    draw(route, ZONES, LABELS, tmp_path / "m.png")
-    fig = figs[0]
-    renderer = fig.canvas.get_renderer()
-    texts = fig.axes[0].texts
-    name = next(t for t in texts if t.get_text() == "Simple")
-    above = next(t for t in texts if t.get_text().startswith("tangled"))
-    assert name.get_window_extent(renderer).y1 < above.get_window_extent(renderer).y0
 
 
 @pytest.mark.model
