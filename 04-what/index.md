@@ -13,12 +13,21 @@ This is how the code will move, one home at a time.
 
 ## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
 
-\fvset{fontsize=\scriptsize}
+\fvset{fontsize=\tiny}
+
+```{.text include=build/04-what/tally-7.txt}
+```
 
 ```{.diff include=build/04-what/fix.diff cap=18}
 ```
 
-one name: discounted goods, a value pricing returns -- the first boundary
+```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
+```
+
+```{.text include=build/04-what/fix-run.txt}
+```
+
+q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary
 
 ::: notes
 The threshold now reads the discounted goods, so I1 closes.

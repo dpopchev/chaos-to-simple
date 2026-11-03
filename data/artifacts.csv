@@ -71,7 +71,9 @@ build/data/rules.txt,txt,scripts.paths rules
 build/data/counts.txt,txt,scripts.paths counts
 build/data/splits.txt,txt,scripts.paths splits
 build/04-what/colorcode.png,png,scripts.figures colorcode
-build/04-what/fix.diff,diff,scripts.paths diff
+build/04-what/fix.diff,diff,scripts.paths diff --compact
+build/04-what/tally-7.txt,txt,scripts.paths tally --version 7
+build/04-what/fix-run.txt,txt,pytest -k test_i1_example_pays_shipping
 build/04-what/moves.png,png,scripts.figures moves
 build/04-what/board.png,png,scripts.figures board --stage 04
 build/05-how/ports.png,png,scripts.figures seam
