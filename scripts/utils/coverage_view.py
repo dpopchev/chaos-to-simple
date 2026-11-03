@@ -45,6 +45,75 @@ def differing_bits(left: str, right: str) -> tuple[int, ...]:
     return tuple(b for b in range(BITS) if left[BITS - 1 - b] != right[BITS - 1 - b])
 
 
+def growth_panels(
+    bits: int, tested: Sequence[str], bug: Sequence[str]
+) -> tuple[tuple[int, dict[str, str]], ...]:
+    """Give the grids of 0 to bits bits as (n, cells): each n-bit string is tested, bug or never.
+
+    The all-zeros and all-ones strings are tested in every panel; the last panel takes the
+    tested and bug codes as grid_image does.
+    """
+    panels = []
+    for n in range(bits + 1):
+        strings = [f"{i:0{n}b}" if n else "" for i in range(2**n)]
+        if n == bits:
+            cells = {
+                s: "bug" if s in bug else "tested" if s in tested else "never" for s in strings
+            }
+        else:
+            edge = {"0" * n, "1" * n}
+            cells = {s: "tested" if s in edge else "never" for s in strings}
+        panels.append((n, cells))
+    return tuple(panels)
+
+
+def grid_growth(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) -> Path:
+    """Draw the grids of 0 to bits bits left to right, 2^n = N under each, two rows."""
+    style.apply()
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Rectangle
+
+    fills = {
+        "tested": colour_of("accounting"),
+        "bug": colour_of("payment"),
+        "never": colour_of("customer"),
+    }
+    panels = growth_panels(bits, tested, bug)
+    per_row = (len(panels) + 1) // 2
+    fig, ax = plt.subplots(figsize=(8.0, 4.6), dpi=style.DPI)
+    slot, gap = 8.0, 3.0
+    for index, (n, cells) in enumerate(panels):
+        row, col = divmod(index, per_row)
+        x0 = col * (slot + gap)
+        y0 = -row * (slot + gap + 1.5)
+        cols, rows = 2 ** ((n + 1) // 2), 2 ** (n // 2)
+        size = slot / max(cols, rows)
+        for i, kind in enumerate(cells.values()):
+            r, c = divmod(i, cols)
+            ax.add_patch(
+                Rectangle(
+                    (
+                        x0 + (slot - cols * size) / 2 + c * size,
+                        y0 - (r + 1) * size - (slot - rows * size) / 2,
+                    ),
+                    size * 0.92,
+                    size * 0.92,
+                    facecolor=fills[kind],
+                    edgecolor="none",
+                )
+            )
+        ax.text(
+            x0 + slot / 2, y0 - slot - 0.8, f"2^{n} = {2**n}", ha="center", va="top", fontsize=15
+        )
+    ax.set_xlim(-0.2, per_row * (slot + gap) - gap + 0.2)
+    ax.set_ylim(-2 * slot - gap - 1.5 - 2.2, 0.2)
+    ax.set_aspect("equal")
+    ax.axis("off")
+    fig.tight_layout(pad=0.3)
+    style.save(fig, out)
+    return out
+
+
 def draw(rows: Sequence[TestedRow], out: Path) -> Path:
     """Draw the two views stacked: columns marked covered above, the grid of 64 paths below."""
     style.apply()

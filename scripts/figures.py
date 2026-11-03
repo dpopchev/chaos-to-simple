@@ -8,6 +8,7 @@ python -m scripts.figures counting --out build/01-bits/counting.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures doubling --cast data/cast.csv --out build/01-bits/doubling.png
 python -m scripts.figures finance --out build/01-bits/finance.png
+python -m scripts.figures grid-growth --out build/01-bits/grid-growth.png
 python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures grid-panels --rules data/rules.csv --out build/03-chaos/grid-9.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
@@ -27,7 +28,7 @@ from pathlib import Path
 from scripts.utils.board import board, board_rows, example_tests, headers
 from scripts.utils.colorcode import colorcode, owned_lines
 from scripts.utils.counting import counting_figure
-from scripts.utils.coverage_view import BITS, draw, load_tested
+from scripts.utils.coverage_view import BITS, draw, grid_growth, load_tested
 from scripts.utils.figures import (
     journey,
     moves,
@@ -66,6 +67,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "coverage-view",
         "doubling",
         "finance",
+        "grid-growth",
         "grid-image",
         "grid-panels",
         "moves",
@@ -132,6 +134,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "grid-image":
         rows = load_tested(args.tested)
         grid_image(
+            BITS,
+            [r.bits for r in rows if r.kind == "tested"],
+            [r.bits for r in rows if r.kind == "bug"],
+            args.out,
+        )
+        return 0
+    if args.what == "grid-growth":
+        rows = load_tested(args.tested)
+        grid_growth(
             BITS,
             [r.bits for r in rows if r.kind == "tested"],
             [r.bits for r in rows if r.kind == "bug"],
