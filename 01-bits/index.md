@@ -2,6 +2,14 @@
 
 ## A policy is one bit and every bit doubles the paths: count them before you trust a badge {paths=?}
 
+:::: {.columns}
+::: {.column width="58%"}
+
+![](build/01-bits/counting.png){height=70%}
+
+:::
+::: {.column width="42%"}
+
 **paths = 2^policies**
 
 Sequential policies multiply: 2 x 2 x 2 x 2 x 2 x 2
@@ -10,12 +18,16 @@ Alternatives (elif, match) add: 2 + 2 + 2
 
 Two sequential policies as if/elif: 4 paths become 3
 
+:::
+::::
+
 The footer counts from here.
 
 ::: notes
-Say the rule once: every policy request is one bit, and every bit doubles the paths. Give the
-three counting lines, then say that the footer counts from here, starting at 1 for the
-plain checkout.
+Say the rule once: every policy request is one bit, and every bit doubles the paths. Walk the
+diagram left to right: two sequential ifs multiply, 2 x 2, into four paths, bits 00 to 11; the
+if/elif adds, 2 + 1, into three paths; the general form is the product of each block's
+alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
 :::
 
 ## The plain checkout has three calls and no policy, so it has one path {paths=1}
