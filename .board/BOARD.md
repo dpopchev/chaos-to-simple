@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-135 > T-306   | blocked: 0 | todo roots: 3 | done: 449 | pruned: 4
+open path: E-014 > W-135   | blocked: 0 | todo roots: 3 | done: 450 | pruned: 4
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-132  issue  [done]     04: the moves and the colour code under the kinds -- T-297 [done], T-298 [done], T-299 [done]
   W-133  issue  [done]     00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [done], T-301 [done], T-302 [done]
   W-134  issue  [done]     03: the new view after the room -- T-303 [done], T-304 [done]
-  W-135  issue  [doing]    01: how the paths are counted, as a block diagram -- T-305 [done], T-306 [doing]   <- ACTIVE LEAF
+  W-135  issue  [doing]    01: how the paths are counted, as a block diagram -- T-305 [done], T-306 [done]
   W-136  issue  [todo]     01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [todo], T-308 [todo], T-309 [todo]
   W-137  issue  [todo]     01: the tests under each request, page 14 in step -- T-310 [todo], T-311 [todo]
   W-138  issue  [todo]     01: finance finds it, the condition, the test -- T-312 [todo], T-313 [todo], T-314 [todo]
@@ -801,7 +801,7 @@ flowchart TD
   W134 --> T304["T-304 done: Tie the board to the explosion -> 03-chaos/index.md page 26 caption"]
   E014 --> W135["W-135 issue doing: 01: how the paths are counted, as a block diagram"]
   W135 --> T305["T-305 done: Count the paths of a block graph -> scripts/utils/counting.py with paths_of and the figure"]
-  W135 --> T306["T-306 doing: Show the diagram on the counting frame -> 01-bits/index.md page 5 -- ACTIVE LEAF"]
+  W135 --> T306["T-306 done: Show the diagram on the counting frame -> 01-bits/index.md page 5"]
   E014 --> W136["W-136 issue todo: 01: the storyboard as compact +/- diffs with the length in the tally"]
   W136 --> T307["T-307 todo: Add the compact diff mode -> stagediff.snippet_diff(compact=True) and diffs.lua on ---"]
   W136 --> T308["T-308 todo: Render the steps as compact diffs -> storyboard.step_view and tally_line with the length"]
@@ -845,7 +845,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W135,T306 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,T305 done
+  class E014,W135 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,T305,T306 done
   class W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
 ```
