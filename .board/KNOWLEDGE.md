@@ -17,6 +17,7 @@
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 - 2026-11-03 W-148: fact: page 6 (whole v0, 24 diff lines) stacked at scriptsize runs 30.5pt over the frame, 33.5pt short of 3pt slack; pages 7 to 12 fit -> one frame cannot hold v0 and its tests at scriptsize
+- 2026-11-03 W-148: fact: story.lua (383e26d) writes Python rows with pandoc.write and no highlight_style (rejected by pandoc 3.11); the \KeywordTok macros and Verbatim come from the deck's own highlighted blocks -> a deck with no other highlighted block would not compile its story blocks
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
