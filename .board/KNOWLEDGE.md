@@ -30,6 +30,7 @@
 - 2026-11-03 E-014: T-294 amended mid-Task: the retro's subdomain column is 9 wide and supporting has 10, so scripts/utils/retro.py joins its files (subdomain 10, decided 40, the table stays 104); Check unchanged (lane hand-back)
 - 2026-11-03 E-014: T-295: data/incidents.csv already had a kind column (rule, decision, effect), so the new column is named subdomain, as in questions.csv; the post-mortem prints it under the header kind (lane hand-back)
 - 2026-11-03 E-014: T-297 Output amended to name scripts/figures.py: the coordinator's go word named it, the brief did not, and the scope gate reads each commit (55d57fc touched it, 144c1a0 reverted the line); Check unchanged
+- 2026-11-03 E-014: T-310's Action corrected before dispatch: the step-3 everything order totals 81.00 ((100 - 10) x 0.90, free shipping, no VAT until step 6), not 97.20 as planned
 - 2026-11-03 E-014: T-330 filed under W-130 after T-291's hand-back: the four new context labels did not match the developer's pasted data (Order fulfilment, Payment provider, Warehouse system, Mail delivery)
 - 2026-11-03 E-014: T-330 hand-back: the colour-code legend clips its ports rows since T-291 put the provider contexts in the home group; T-298's Action amended to keep only core, supporting and tax in it (Check unchanged); the stale-figure finding filed standalone as W-145
 - 2026-11-03 E-014: T-334 amended mid-Task: the edge --- breaks test_step_diff_is_compact (T-308's pin) and W-136 holds 4 Tasks, so T-334 also updates that test in scripts/utils/test_storyboard.py; Check unchanged (lane hand-back)
