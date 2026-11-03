@@ -29,6 +29,7 @@
 - 2026-11-03 W-170: open: the tests heading counts every non-blank line of the matched test files (page 15: 34 lines of test_chaos.py), not the snippet shown; count the snippet instead, or keep the file count
 - 2026-11-04 W-173: open: page 16's title 'Finance traced 6,070 EUR ... to orders the coupon took under 50 EUR' draws the conclusion the memo no longer does; retitle to what finance counted, or keep
 - 2026-11-04 W-174: open: page 17's title 'Finance's R2 test expects 60.00 and gets 54.00' credits finance with a test now built from engineering's breakdown; retitle with page 16's, or keep
+- 2026-11-04 W-176: open: page 49's epilogue chart reads small in its 40% column and its labels are black on the dark shipping and fulfilment blue; widen the column or flip the ink, or keep
 
 ## Decisions
 - 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
