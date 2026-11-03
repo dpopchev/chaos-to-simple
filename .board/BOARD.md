@@ -1,13 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-154   | blocked: 0 | todo roots: 3 | done: 506 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 3 | done: 507 | pruned: 6
 
 ## Tree
 
 ```text
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
-W-154  bug    [doing]    (standalone) The storyboard headings read 2^6 paths as 26 with a hat   (filed during T-345) -- T-348 [done]
 W-155  issue  [todo]     (standalone) The v1 storyboard heading reads 1 policies   (filed during T-345) -- T-349 [todo]
 ```
 
@@ -889,6 +888,12 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 - T-087 [done] Draw every chart text at 22 points -> stacked_bar texts at fontsize 22
 - T-088 [done] Look at the epilogue slide at 22 points -> local/state/epilogue-22.png read
 
+### W-154 bug [done] (standalone) The storyboard headings read 2^6 paths as 26 with a hat
+
+closed 2026-11-03 -- outcome: Given the deck, When make talk, Then the checkout headings on pages 6 and 8 to 13 read 2^0 to 2^6 paths with a visible caret, no accent over the exponent. -- ledger: ledgers/W-154.md
+
+- T-348 [done] Escape the caret as text -> 00-frontmatter/filters/story.lua escape_tex
+
 ## Diagram
 ```mermaid
 flowchart TD
@@ -896,8 +901,6 @@ flowchart TD
   W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
   W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
   W153 --> T342["T-342 todo: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
-  W154["W-154 bug doing, standalone: The storyboard headings read 2^6 paths as 26 with a hat"]
-  W154 --> T348["T-348 done: Escape the caret as text -> 00-frontmatter/filters/story.lua escape_tex"]
   W155["W-155 issue todo, standalone: The v1 storyboard heading reads 1 policies"]
   W155 --> T349["T-349 todo: Say policy for one -> scripts/utils/storyboard.py step view heading"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -905,7 +908,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W154 doing
-  class T348 done
   class W152,T341,W153,T342,W155,T349 todo
 ```
