@@ -2,7 +2,7 @@
 
 ## The mood of one order drops at six questions, each a rule nobody wrote down {paths=64}
 
-\begingroup\footnotesize finance traced 6,070 EUR to orders like this one, so the room replayed one order step by step and asked at each step: who decided this?\par\endgroup
+\begingroup\footnotesize finance traced 6,070 EUR to orders like this one, so the room replayed one order and scored each step: who decided this?\par\endgroup
 
 ![](build/03-chaos/diagrams/journey.png){width=90%}
 
@@ -10,8 +10,10 @@
 One order, one afternoon. Maria buys two books and the coupon goes to Sofia, who places the
 order for her. Follow the order left to right: the cart, the coupon, the free-shipping line,
 the member discount, the payment, the warehouse, the mail.
-The mood drops at every step that raised a question, q1 to q6, in the order the room asked
-them. Each drop is a place where the rule was not written down yet.
+The line is how sure the room was. In the retro the room replayed Maria's order step by step
+and scored each step: an unwritten rule costs 1, an unhandled answer of an effect costs 2.
+It drops at every step that raised a question, q1 to q6, in the order the room asked them.
+Each drop is a place where the rule was not written down yet.
 :::
 
 ## Four departments carry the argument in one room while dev stays silent to the end {paths=64}

@@ -408,6 +408,11 @@ def axis_ticks(levels: Sequence[int]) -> tuple[tuple[float, str], ...]:
     )
 
 
+def journey_legend() -> str:
+    """Return the legend text: who scored the line and the cost of each drop (see mood)."""
+    return "scored in the retro:\nan unwritten rule -1,\nan unhandled answer -2"
+
+
 def caption_lines(text: str, width: int) -> list[str]:
     """Wrap a step caption to lines of at most width characters."""
     return textwrap.wrap(text, width)
@@ -500,10 +505,21 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
     ax.text(
         -box_w / 2,
         max(ys) + 0.55,
-        "the customer's certainty",
+        "how sure the room was, replaying Maria's order",
         fontsize=14,
         style="italic",
         color="dimgrey",
+    )
+    ax.text(
+        xs[-1] + box_w / 2,
+        max(ys) + 0.55,
+        journey_legend(),
+        ha="right",
+        va="top",
+        fontsize=12,
+        color="dimgrey",
+        bbox={"boxstyle": "round,pad=0.4", "facecolor": "white", "edgecolor": "grey"},
+        zorder=4,
     )
     axis_x = -box_w / 2 - 0.35
     ticks = axis_ticks(levels)

@@ -16,6 +16,7 @@ from scripts.utils.figures import (
     band_groups,
     caption_lines,
     journey,
+    journey_legend,
     mood,
     moves,
     moves_figure,
@@ -135,6 +136,11 @@ def test_journey_axis_ticks() -> None:
 def test_journey_captions_fit_the_box() -> None:
     widest = max(len(line) for s in JOURNEY for line in caption_lines(s.text, 14))
     assert widest <= 14
+
+
+@pytest.mark.model
+def test_journey_legend_names_the_scoring() -> None:
+    assert "scored in the retro" in journey_legend()
 
 
 @pytest.mark.model
