@@ -42,9 +42,10 @@ def test_legend_reads_finances_count_income_and_the_difference() -> None:
 
 
 @pytest.mark.view
-def test_cues_count_no_free_parcel_without_the_coupon() -> None:
-    total = next(r for r in cues(load_october(OCTOBER)).splitlines() if r.startswith("total"))
-    assert total.endswith(" 0")
+def test_cues_cart_column_equals_the_free_count() -> None:
+    rows = [r.split() for r in cues(load_october(OCTOBER)).splitlines()]
+    counted = [r for r in rows if len(r) == 5 and (r[0].isdigit() or r[0] == "total")]
+    assert [r[2] for r in counted] == [r[4] for r in counted]
 
 
 @pytest.mark.view

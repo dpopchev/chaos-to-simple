@@ -43,6 +43,9 @@ class TestOctober:
             for r in rows
         )
 
+    def test_cart_before_coupon_sums_to_1214(self, rows: list[dict[str, str]]) -> None:
+        assert sum(int(r["cart_50_before_coupon"]) for r in rows) == 1214
+
     def test_memo_quotes_the_sheet(self) -> None:
         memo = MEMO.read_text()
         assert all(figure in memo for figure in ("2,315", "1,101", "5,505", "6,070"))

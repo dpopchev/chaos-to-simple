@@ -1,5 +1,5 @@
-week,iso_week,monday,should_pay_shipping,got_free_shipping,expected_eur,received_eur,free_with_coupon,free_without_coupon
-11,41,2026-10-05,410,198,2050,1060,198,0
-12,42,2026-10-12,563,287,2815,1380,287,0
-13,43,2026-10-19,640,341,3200,1495,341,0
-14,44,2026-10-26,702,388,3510,1570,388,0
+week,iso_week,monday,should_pay_shipping,got_free_shipping,expected_eur,received_eur,free_with_coupon,free_without_coupon,cart_50_before_coupon
+11,41,2026-10-05,410,198,2050,1060,198,0,198
+12,42,2026-10-12,563,287,2815,1380,287,0,287
+13,43,2026-10-19,640,341,3200,1495,341,0,341
+14,44,2026-10-26,702,388,3510,1570,388,0,388
