@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-176 > T-407   | blocked: 0 | todo roots: 1 | done: 591 | pruned: 7
+open path: E-017 > W-176 > T-408   | blocked: 0 | todo roots: 1 | done: 592 | pruned: 7
 
 ## Tree
 
@@ -13,7 +13,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-173  issue  [done]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [done], T-399 [done], T-400 [done], T-401 [done]
   W-174  issue  [done]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [done], T-403 [pruned]   [pruned: its Check grep -c 'one of them' could not fail: page 19 already holds 'every one of them'; refiled with a specific Check], T-404 [done], T-427 [done]
   W-175  issue  [done]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [done], T-406 [done]
-  W-176  issue  [doing]    horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [doing]   <- ACTIVE LEAF, T-408 [todo], T-409 [todo]
+  W-176  issue  [doing]    horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [done], T-408 [doing]   <- ACTIVE LEAF, T-409 [todo]
   W-177  issue  [todo]     00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [todo], T-411 [todo], T-412 [todo]
   W-178  issue  [todo]     00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos -- T-413 [todo], T-414 [todo]
   W-179  issue  [todo]     icons at their labels' height in the actor boxes and the figure chips -- T-415 [todo], T-416 [todo]
@@ -1041,8 +1041,8 @@ flowchart TD
   W175 --> T405["T-405 done: Write the cyclomatic footer -> 01-bits/index.md page 6 and 01-bits/README.md"]
   W175 --> T406["T-406 done: Label each grid with its tested share -> coverage_view.panel_label and grid_growth"]
   E017 --> W176["W-176 issue doing: horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie"]
-  W176 --> T407["T-407 doing: Flip the stacked bar -> paths.stacked_bar with barh -- ACTIVE LEAF"]
-  W176 --> T408["T-408 todo: Refuse a vertical bar or a pie in the helpers -> scripts/utils/test_charts.py"]
+  W176 --> T407["T-407 done: Flip the stacked bar -> paths.stacked_bar with barh"]
+  W176 --> T408["T-408 doing: Refuse a vertical bar or a pie in the helpers -> scripts/utils/test_charts.py -- ACTIVE LEAF"]
   W176 --> T409["T-409 todo: Fit pages 48 and 49 -> 06-simple/index.md image sizes"]
   E017 --> W177["W-177 issue todo: 00 business map (page 3): the shop taller, each department box its icon and its requests inside"]
   W177 --> T410["T-410 todo: Put the requests inside an icon-only department box -> stage.business_map"]
@@ -1074,8 +1074,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W176,T407 doing
-  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406 done
-  class T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
+  class E017,W176,T408 doing
+  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,T407 done
+  class T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
   class T403 pruned
 ```
