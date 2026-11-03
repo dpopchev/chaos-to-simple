@@ -6,16 +6,13 @@
 :::: {.columns}
 ::: {.column width="52%"}
 
-```{.python heading="core.py: price()" include=06-simple/s06_simple/core.py snippet=price}
+```{.python heading-file=build/06-simple/price.txt include=06-simple/s06_simple/core.py snippet=price}
 ```
 
 :::
 ::: {.column width="48%"}
 
-```{.text include=build/06-simple/tally-10.txt}
-```
-
-```{.python heading="shell.py: checkout()" include=06-simple/s06_simple/shell.py snippet=checkout cap=22}
+```{.python heading-file=build/06-simple/shell.txt include=06-simple/s06_simple/shell.py snippet=checkout cap=22}
 ```
 
 :::
@@ -30,7 +27,7 @@ The pure part moves out into price; the shell keeps v9's three matches word for 
 ## Every one of 64 paths holds three invariants, so the core runs 192 tests {paths=512}
 
 
-```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
+```{.python heading-file=build/06-simple/tests-core.txt include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
 
 06-simple/tests/test_core_paths.py: 64 paths x 3 invariants, tested by itself; the other two invariants in the file
@@ -49,7 +46,7 @@ The core has no if of its own, every bit stays where it was named.
 :::: {.columns}
 ::: {.column width="45%"}
 
-```{.python include=06-simple/s06_simple/worlds.py snippet=eight}
+```{.python heading-file=build/06-simple/worlds-code.txt include=06-simple/s06_simple/worlds.py snippet=eight}
 ```
 
 \begingroup\footnotesize 06-simple/s06_simple/worlds.py in fulfilment; tested by test_worlds.py\par\endgroup

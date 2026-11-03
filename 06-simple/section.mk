@@ -41,7 +41,7 @@ $(BUILD)/06-simple/worlds.txt: $(wildcard 04-what/s04_what/*.py) $(wildcard 05-h
 $(BUILD)/06-simple/seventh.diff: $(PALETTE) 04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/shipping.py --to 06-simple/s06_simple/seventh.py \
 		--snippet fee --to-snippet fee-digital \
-		--label-from shipping_fee --label-to '+ digital' --compact --out $@
+		--name shipping_fee --version 11 --policies 4 --paths 16 --compact --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/06-simple/seam.diff $(BUILD)/06-simple/pytest-core-summary.txt
@@ -52,12 +52,31 @@ $(BUILD)/06-simple/seam.diff: $(PALETTE) 05-how/s05_how/checkout_v5.py 06-simple
 		--label-from 'checkout v9' --label-to 'v10' --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/06-simple/tally-10.txt
+ARTIFACTS += $(BUILD)/06-simple/price.txt $(BUILD)/06-simple/shell.txt \
+    $(BUILD)/06-simple/tests-core.txt $(BUILD)/06-simple/worlds-code.txt
 
-$(BUILD)/06-simple/tally-10.txt: $(PALETTE) 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+$(BUILD)/06-simple/price.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    06-simple/s06_simple/core.py
+	@$(RUN) python -m scripts.paths tally-code --name price --version 10 --policies 6 --paths 64 \
+		--source 06-simple/s06_simple/core.py --snippet price --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/shell.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    06-simple/s06_simple/shell.py
+	@$(RUN) python -m scripts.paths tally-code --name checkout --version 10 --policies 3 --paths 8 \
+		--source 06-simple/s06_simple/shell.py --snippet checkout --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/tests-core.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
     $(wildcard 06-simple/tests/*.py)
-	@$(RUN) python -m scripts.paths tally --version 10 --policies 9 --paths 72 \
-		--tests-dir 06-simple/tests --out $@
+	@$(RUN) python -m scripts.paths tally --version 10 --tests-dir 06-simple/tests \
+		--only test_core_paths --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/worlds-code.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    06-simple/s06_simple/worlds.py
+	@$(RUN) python -m scripts.paths tally-code --name world --version 10 --policies 3 --paths 8 \
+		--source 06-simple/s06_simple/worlds.py --snippet eight --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/pytest-core-summary.txt: $(BUILD)/06-simple/pytest-core.txt 06-simple/section.mk
