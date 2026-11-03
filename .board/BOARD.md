@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014   | blocked: 0 | todo roots: 4 | done: 464 | pruned: 4
+open path: E-014 > W-139 > T-315   | blocked: 0 | todo roots: 4 | done: 464 | pruned: 4
 
 ## Tree
 
@@ -15,7 +15,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-136  issue  [done]     01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [done], T-308 [done], T-309 [done], T-334 [done]
   W-137  issue  [done]     01: the tests under each request, page 14 in step -- T-310 [done], T-311 [done], T-335 [done]
   W-138  issue  [done]     01: finance finds it, the condition, the test -- T-312 [done], T-313 [done], T-314 [done]
-  W-139  issue  [todo]     01: the grid that doubles, the badge named -- T-315 [todo], T-316 [todo]
+  W-139  issue  [doing]    01: the grid that doubles, the badge named -- T-315 [doing]   <- ACTIVE LEAF, T-316 [todo]
   W-140  issue  [todo]     02: two readings, two tests that cannot both pass -- T-317 [todo], T-318 [todo]
   W-141  issue  [todo]     03: why the order was replayed, where the room clashed -- T-319 [todo], T-320 [todo], T-321 [todo]
   W-142  issue  [todo]     04: the fix is v7, the contexts v8, each under its tally -- T-322 [todo], T-323 [todo], T-324 [todo]
@@ -816,8 +816,8 @@ flowchart TD
   W138 --> T312["T-312 done: Relabel the finance chart -> finance.LEGEND expected, received, missing"]
   W138 --> T313["T-313 done: Foreshadow the conflict on the done frame -> 01-bits/index.md page 13"]
   W138 --> T314["T-314 done: Run the thread memo, condition, test -> 01-bits/index.md pages 15 and 16"]
-  E014 --> W139["W-139 issue todo: 01: the grid that doubles, the badge named"]
-  W139 --> T315["T-315 todo: Draw the growing grids -> coverage_view.grid_growth and build/01-bits/grid-growth.png"]
+  E014 --> W139["W-139 issue doing: 01: the grid that doubles, the badge named"]
+  W139 --> T315["T-315 doing: Draw the growing grids -> coverage_view.grid_growth and build/01-bits/grid-growth.png -- ACTIVE LEAF"]
   W139 --> T316["T-316 todo: Reword the frame -> 01-bits/index.md page 17 with the strip and the badge named"]
   E014 --> W140["W-140 issue todo: 02: two readings, two tests that cannot both pass"]
   W140 --> T317["T-317 todo: Write the two readings as tests -> 02-stacey/tests/test_readings.py registered in pyproject.toml"]
@@ -850,7 +850,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014 doing
+  class E014,W139,T315 doing
   class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314 done
-  class W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
+  class T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
 ```
