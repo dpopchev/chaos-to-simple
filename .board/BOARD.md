@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 0 | done: 575 | pruned: 6
+open path: E-017 > W-172 > T-395   | blocked: 0 | todo roots: 1 | done: 575 | pruned: 6
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-169  issue  [done]     one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [done]
   W-170  issue  [done]     measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [done], T-390 [done]
   W-171  issue  [done]     every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [done], T-392 [done], T-393 [done], T-394 [done]
-  W-172  issue  [todo]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [todo], T-396 [todo], T-397 [todo]
+  W-172  issue  [doing]    exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [doing]   <- ACTIVE LEAF, T-396 [todo], T-397 [todo]
   W-173  issue  [todo]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [todo], T-399 [todo], T-400 [todo], T-401 [todo]
   W-174  issue  [todo]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [todo], T-403 [todo], T-404 [todo]
   W-175  issue  [todo]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [todo], T-406 [todo]
@@ -20,6 +20,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-180  issue  [todo]     05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath -- T-417 [todo], T-418 [todo]
   W-181  issue  [todo]     05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured -- T-419 [todo], T-420 [todo], T-421 [todo]
   W-182  issue  [todo]     06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured -- T-422 [todo], T-423 [todo], T-424 [todo]
+W-183  issue  [todo]     (standalone) build/05-how/tests-9.txt is built and in the manifest but no slide shows it   (filed during T-393) -- T-425 [todo]
 ```
 
 ## Closed
@@ -1021,8 +1022,8 @@ flowchart TD
   W171 --> T392["T-392 done: Head the 04 exhibits -> 04-what/section.mk and index.md"]
   W171 --> T393["T-393 done: Head the 05 exhibits -> 05-how/section.mk and index.md"]
   W171 --> T394["T-394 done: Head the 06 exhibits -> 06-simple/section.mk and index.md"]
-  E017 --> W172["W-172 issue todo: exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert"]
-  W172 --> T395["T-395 todo: Docstring the 01 and 02 exhibit tests -> test_chaos.py, test_memo_orders.py, test_readings.py"]
+  E017 --> W172["W-172 issue doing: exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert"]
+  W172 --> T395["T-395 doing: Docstring the 01 and 02 exhibit tests -> test_chaos.py, test_memo_orders.py, test_readings.py -- ACTIVE LEAF"]
   W172 --> T396["T-396 todo: Docstring the 04, 05 and 06 exhibit tests -> test_checkout_stages.py, test_oo_order.py, test_shell.py"]
   W172 --> T397["T-397 todo: Keep the frames within their caps -> index.md cap= values and make lengths"]
   E017 --> W173["W-173 issue todo: 01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition"]
@@ -1062,12 +1063,14 @@ flowchart TD
   W182 --> T422["T-422 todo: Count the ifs and matches per module -> scripts/utils/imports.py decision_rows and build/06-simple/ifs.txt"]
   W182 --> T423["T-423 todo: Write the contract frame -> 06-simple/index.md before 'Moving the pure part out'"]
   W182 --> T424["T-424 todo: Write the measured-ifs frame and the budget -> 06-simple/index.md after the worlds frame, data/budget.csv 06 at 8, 06-simple/README.md"]
+  W183["W-183 issue todo, standalone: build/05-how/tests-9.txt is built and in the manifest but no slide shows it"]
+  W183 --> T425["T-425 todo: Remove the unused tests-9 rule -> 05-how/section.mk and data/artifacts.csv without tests-9"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
+  class E017,W172,T395 doing
   class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394 done
-  class W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
+  class T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W183,T425 todo
 ```
