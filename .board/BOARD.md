@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-142 > T-323   | blocked: 0 | todo roots: 4 | done: 476 | pruned: 4
+open path: E-014 > W-142 > T-324   | blocked: 0 | todo roots: 4 | done: 477 | pruned: 4
 
 ## Tree
 
@@ -18,7 +18,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-139  issue  [done]     01: the grid that doubles, the badge named -- T-315 [done], T-316 [done]
   W-140  issue  [done]     02: two readings, two tests that cannot both pass -- T-317 [done], T-318 [done]
   W-141  issue  [done]     03: why the order was replayed, where the room clashed -- T-319 [done], T-320 [done], T-321 [done], T-337 [done]
-  W-142  issue  [doing]    04: the fix is v7, the contexts v8, each under its tally -- T-322 [done], T-323 [doing]   <- ACTIVE LEAF, T-324 [todo]
+  W-142  issue  [doing]    04: the fix is v7, the contexts v8, each under its tally -- T-322 [done], T-323 [done], T-324 [doing]   <- ACTIVE LEAF
   W-143  issue  [todo]     05: v8 to v9 compact, every snippet with its home and its test -- T-325 [todo], T-326 [todo]
   W-144  issue  [todo]     06: v9 to v10 compact, the long snippet cut, every snippet with its home and its test -- T-327 [todo], T-328 [todo], T-329 [todo]
 W-145  bug    [todo]     (standalone) Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [todo]
@@ -829,8 +829,8 @@ flowchart TD
   W141 --> T337["T-337 done: Keep the journey captions apart -> figures.journey step text wrap"]
   E014 --> W142["W-142 issue doing: 04: the fix is v7, the contexts v8, each under its tally"]
   W142 --> T322["T-322 done: Tally any version -> storyboard.tally_line(version, policies, paths, tests) and scripts.paths tally"]
-  W142 --> T323["T-323 doing: Label the fix v6 to v7 with its test -> 04-what/section.mk fix.diff compact, tally-7.txt, page 29 -- ACTIVE LEAF"]
-  W142 --> T324["T-324 todo: Version the contexts checkout -> tally-8.txt and 04-what/index.md page 31"]
+  W142 --> T323["T-323 done: Label the fix v6 to v7 with its test -> 04-what/section.mk fix.diff compact, tally-7.txt, page 29"]
+  W142 --> T324["T-324 doing: Version the contexts checkout -> tally-8.txt and 04-what/index.md page 31 -- ACTIVE LEAF"]
   E014 --> W143["W-143 issue todo: 05: v8 to v9 compact, every snippet with its home and its test"]
   W143 --> T325["T-325 todo: Compact the v5 diff with its tally -> 05-how/section.mk labels checkout v8 to v9, tally-9.txt"]
   W143 --> T326["T-326 todo: Caption where each snippet goes and what tests it -> 05-how/index.md pages 35 to 38"]
@@ -851,7 +851,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W142,T323 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,T337,T322 done
-  class T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
+  class E014,W142,T324 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,T337,T322,T323 done
+  class W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
 ```
