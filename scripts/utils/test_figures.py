@@ -14,6 +14,7 @@ from scripts.utils.figures import (
     JourneyStep,
     axis_ticks,
     band_groups,
+    caption_lines,
     journey,
     mood,
     moves,
@@ -128,6 +129,12 @@ def test_question_ids_label_the_questioned_steps() -> None:
 def test_journey_axis_ticks() -> None:
     ticks = axis_ticks((0, -1, -2, -3, -5, -7, -9))
     assert [label for _, label in sorted(ticks, reverse=True)] == ["certain", "unsure", "lost"]
+
+
+@pytest.mark.model
+def test_journey_captions_fit_the_box() -> None:
+    widest = max(len(line) for s in JOURNEY for line in caption_lines(s.text, 14))
+    assert widest <= 14
 
 
 @pytest.mark.model

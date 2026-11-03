@@ -408,6 +408,11 @@ def axis_ticks(levels: Sequence[int]) -> tuple[tuple[float, str], ...]:
     )
 
 
+def caption_lines(text: str, width: int) -> list[str]:
+    """Wrap a step caption to lines of at most width characters."""
+    return textwrap.wrap(text, width)
+
+
 def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Path) -> Path:
     """Draw the journey of one order: an actor box per step, the mood line above it.
 
@@ -465,7 +470,7 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
         ax.text(
             xs[i],
             -box_h / 2 - 0.1,
-            textwrap.fill(step.text, 16),
+            "\n".join(caption_lines(step.text, 14)),
             ha="center",
             va="top",
             fontsize=14,
