@@ -48,8 +48,20 @@ The diff is the whole fix: one name changes, and the rest of the function stays 
 ```{.text include=build/04-what/dispute.txt}
 ```
 
-```{.python include=04-what/s04_what/shipping.py snippet=fee}
+:::: {.columns}
+::: {.column width="52%"}
+
+```{.python include=04-what/s04_what/shipping.py snippet=fee heading="shipping.py"}
 ```
+
+:::
+::: {.column width="48%"}
+
+```{.python include=04-what/tests/test_shipping.py snippet=fee-tests heading="test_shipping.py: 4 tests"}
+```
+
+:::
+::::
 
 the rule belongs to shipping, Zone is a sum type: the checker counts that bit
 

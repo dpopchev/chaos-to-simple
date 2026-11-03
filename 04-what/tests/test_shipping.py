@@ -4,6 +4,7 @@ from s04_what.money import eur
 from s04_what.shipping import Zone, shipping_fee
 
 
+# [snippet: fee-tests]
 def test_free_shipping_after_discount() -> None:
     assert shipping_fee(eur(45), Zone.DOMESTIC, gift_wrap=False) == 5
 
@@ -18,3 +19,6 @@ def test_international_zone() -> None:
 
 def test_gift_wrap_on_free_shipping() -> None:
     assert shipping_fee(eur(100), Zone.DOMESTIC, gift_wrap=True) == 3
+
+
+# [/snippet]
