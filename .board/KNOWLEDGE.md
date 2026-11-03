@@ -28,3 +28,4 @@
 
 ## Deviations
 - 2026-11-03 E-014: T-330 filed under W-130 after T-291's hand-back: the four new context labels did not match the developer's pasted data (Order fulfilment, Payment provider, Warehouse system, Mail delivery)
+- 2026-11-03 E-014: T-330 hand-back: the colour-code legend clips its ports rows since T-291 put the provider contexts in the home group; T-298's Action amended to keep only core, supporting and tax in it (Check unchanged); the stale-figure finding filed standalone as W-145
