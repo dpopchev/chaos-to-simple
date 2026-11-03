@@ -25,6 +25,8 @@ The test writes the rule down against checkout v4, and the run under it shows th
 ```{.python include=05-how/tests/test_oo_order.py snippet=order-bit}
 ```
 
+\begingroup\footnotesize 05-how/tests/test_oo_order.py: the call order of the next frame's class, tested by make test K=TestCallOrder\par\endgroup
+
 ::: notes
 The call order is a bit nobody wrote down: 45 against 44 from the same inputs.
 Live demo: make test K=TestCallOrder. The first test follows the rule, the second one differs.
@@ -34,6 +36,8 @@ Live demo: make test K=TestCallOrder. The first test follows the rule, the secon
 
 ```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
+
+\begingroup\footnotesize 05-how/s05_how/oo_checkout.py in pricing; tested by test_oo_order.py\par\endgroup
 
 same bug, pricing edition: the order hidden in state
 
@@ -51,6 +55,8 @@ command: an effect, answers with a value
 
 ```{.python include=05-how/s05_how/ports.py snippet=types}
 ```
+
+\begingroup\footnotesize 05-how/s05_how/ports.py in fulfilment; tested by test_ports.py\par\endgroup
 
 make every answer a value
 
@@ -76,6 +82,8 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 ```{.diff include=build/05-how/v5.diff cap=28}
 ```
+
+\begingroup\footnotesize 05-how/s05_how/checkout_v5.py in fulfilment; tested by test_checkout_v5.py and test_i3.py\par\endgroup
 
 :::
 ::::
