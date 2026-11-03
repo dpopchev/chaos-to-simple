@@ -17,14 +17,23 @@ This is how the code will move, one home at a time.
 ```{.text include=build/04-what/tally-7.txt}
 ```
 
+:::: {.columns}
+::: {.column width="50%"}
+
 ```{.diff include=build/04-what/fix.diff cap=18}
 ```
+
+:::
+::: {.column width="50%"}
 
 ```{.python include=04-what/tests/test_checkout_stages.py snippet=i1}
 ```
 
 ```{.text include=build/04-what/fix-run.txt}
 ```
+
+:::
+::::
 
 q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary; i1() is the 55 BGN order with the coupon
 
