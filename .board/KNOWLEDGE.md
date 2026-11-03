@@ -34,4 +34,5 @@
 - 2026-11-03 E-016: T-350 Action amended at close: three filters were named without 00-frontmatter/, so the scope gate refused; Check unchanged
 - 2026-11-03 E-016: T-351 Action gained the 06 worlds frame at 45/55: its .text table renders at 7pt since T-350 and the new widths rule names its 60-column rows; Check unchanged
 - 2026-11-03 E-016: T-353 Action gained page 7's request at full width: the unwrapped bubble (74 columns) overflowed its 30% column at widths; Check unchanged
+- 2026-11-03 E-016: T-373 Action gained the i1 comment on its own line in test_checkout_stages.py: the 91-column assert did not fit a 50% column; Check unchanged
 - 2026-11-03 E-016: W-167 bug filed at W-163's verification: the board shows at 65% width, its 16:9 figure height-bound; two Tasks reshape it at stage 3
