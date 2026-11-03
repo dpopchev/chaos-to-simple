@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-132 > T-297   | blocked: 0 | todo roots: 1 | done: 437 | pruned: 4
+open path: E-014 > W-132 > T-298   | blocked: 0 | todo roots: 1 | done: 438 | pruned: 4
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-014 > W-132 > T-297   | blocked: 0 | todo roots: 1 | done: 437 | pr
 E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview, compact diffs with their tests
   W-130  issue  [done]     00: one legend of three kinds, the map redrawn -- T-291 [done], T-292 [done], T-293 [done], T-330 [done]
   W-131  issue  [done]     03/06: the kinds in the retro, the post-mortem and the epilogue -- T-294 [done], T-295 [done], T-296 [done]
-  W-132  issue  [doing]    04: the moves and the colour code under the kinds -- T-297 [doing]   <- ACTIVE LEAF, T-298 [todo], T-299 [todo]
+  W-132  issue  [doing]    04: the moves and the colour code under the kinds -- T-297 [done], T-298 [doing]   <- ACTIVE LEAF, T-299 [todo]
   W-133  issue  [todo]     00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [todo], T-301 [todo], T-302 [todo]
   W-134  issue  [todo]     03: the new view after the room -- T-303 [todo], T-304 [todo]
   W-135  issue  [todo]     01: how the paths are counted, as a block diagram -- T-305 [todo], T-306 [todo]
@@ -787,8 +787,8 @@ flowchart TD
   W131 --> T295["T-295 done: Add the kind column to the post-mortem -> data/incidents.csv kind, paths.postmortem_table"]
   W131 --> T296["T-296 done: Close the epilogue on the supporting line -> 06-simple/index.md caption of frame 46"]
   E014 --> W132["W-132 issue doing: 04: the moves and the colour code under the kinds"]
-  W132 --> T297["T-297 doing: Group the moves by kind -> figures.band_groups reads the kinds, the checkout box outlined grey -- ACTIVE LEAF"]
-  W132 --> T298["T-298 todo: Name the kinds in the colour-code legend -> colorcode.legend_groups with a kind per home"]
+  W132 --> T297["T-297 done: Group the moves by kind -> figures.band_groups reads the kinds, the checkout box outlined grey"]
+  W132 --> T298["T-298 doing: Name the kinds in the colour-code legend -> colorcode.legend_groups with a kind per home -- ACTIVE LEAF"]
   W132 --> T299["T-299 todo: Recaption frames 28 and 32 -> 04-what/index.md captions and notes"]
   E014 --> W133["W-133 issue todo: 00/02: the Stacey overview on page 3, the plain matrix on page 20"]
   W133 --> T300["T-300 todo: Draw the quarters with ticks and a plain mode -> stacey.draw(plain=) with 0 to 100 axis ticks"]
@@ -839,7 +839,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W132,T297 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296 done
-  class T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331 todo
+  class E014,W132,T298 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,T297 done
+  class T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331 todo
 ```
