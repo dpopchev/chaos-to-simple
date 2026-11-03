@@ -21,7 +21,7 @@ The test writes the rule down against checkout v4, and the run under it shows th
 
 ## The call order is a bit nobody wrote down, giving 45 against 44 from the same inputs {paths=512}
 
-```{.python include=05-how/tests/test_oo_order.py snippet=order-bit}
+```{.python heading-file=build/05-how/tests-order.txt include=05-how/tests/test_oo_order.py snippet=order-bit}
 ```
 
 \begingroup\footnotesize 05-how/tests/test_oo_order.py: the call order of the next frame's class, tested by make test K=TestCallOrder\par\endgroup
@@ -33,7 +33,7 @@ Live demo: make test K=TestCallOrder. The first test follows the rule, the secon
 
 ## A class hid the call order in its state, the same bug as I3 in pricing {paths=512}
 
-```{.python include=05-how/s05_how/oo_checkout.py snippet=oo}
+```{.python heading-file=build/05-how/oo.txt include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
 
 \begingroup\footnotesize 05-how/s05_how/oo_checkout.py in pricing; tested by test_oo_order.py\par\endgroup
@@ -63,7 +63,7 @@ the seam: where asking ends and doing begins
 :::
 ::: {.column width="50%"}
 
-```{.python heading="the three ports" include=05-how/s05_how/ports.py snippet=ports}
+```{.python heading-file=build/05-how/ports-code.txt include=05-how/s05_how/ports.py snippet=ports}
 ```
 
 :::
@@ -90,9 +90,6 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 :::
 ::: {.column width="55%"}
-
-```{.text include=build/05-how/tally-9.txt}
-```
 
 ```{.diff include=build/05-how/v5.diff cap=28}
 ```

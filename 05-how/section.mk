@@ -31,15 +31,38 @@ $(BUILD)/05-how/v5.diff: $(PALETTE) 04-what/s04_what/checkout_v4.py 05-how/s05_h
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_v4.py \
 		--to 05-how/s05_how/checkout_v5.py --snippet checkout --start 'total = total_with_vat' \
 		--hide 'assert_never|case _ as unreachable' --compact \
-		--label-from 'checkout v8' --label-to 'v9' --out $@
+		--name checkout --version 9 --policies 9 --paths 512 --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/05-how/tally-9.txt
+ARTIFACTS += $(BUILD)/05-how/tests-9.txt
 
-$(BUILD)/05-how/tally-9.txt: $(PALETTE) 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+$(BUILD)/05-how/tests-9.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
     $(wildcard 05-how/tests/*.py)
-	@$(RUN) python -m scripts.paths tally --version 9 --policies 9 --paths 512 \
-		--tests-dir 05-how/tests --out $@
+	@$(RUN) python -m scripts.paths tally --version 9 --tests-dir 05-how/tests --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/05-how/tests-order.txt
+
+$(BUILD)/05-how/tests-order.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 05-how/tests/*.py)
+	@$(RUN) python -m scripts.paths tally --version 8 --tests-dir 05-how/tests \
+		--only test_oo_order --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/05-how/oo.txt
+
+$(BUILD)/05-how/oo.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    05-how/s05_how/oo_checkout.py
+	@$(RUN) python -m scripts.paths tally-code --name Checkout --version 8 --policies 2 --paths 4 \
+		--source 05-how/s05_how/oo_checkout.py --snippet oo --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/05-how/ports-code.txt
+
+$(BUILD)/05-how/ports-code.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    05-how/s05_how/ports.py
+	@$(RUN) python -m scripts.paths tally-code --name ports --version 9 --policies 3 --paths 8 \
+		--source 05-how/s05_how/ports.py --snippet ports --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/05-how/ports.png: $(PALETTE) data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
