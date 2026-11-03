@@ -143,6 +143,19 @@ def collaboration_polygon(r_min: float, r_max: float) -> list[tuple[float, float
     return [*left, *right]
 
 
+def tex_escape(text: str) -> str:
+    """Escape the LaTeX specials the zone texts can hold."""
+    return "".join(
+        {"&": r"\&", "%": r"\%", "_": r"\_", "#": r"\#", "$": r"\$"}.get(c, c) for c in text
+    )
+
+
+def zones_items(zones: Sequence[Zone]) -> str:
+    """Return a LaTeX itemize listing each band's label and its above-the-Who definition."""
+    items = [rf"\item \textbf{{{tex_escape(z.label)}}}: {tex_escape(z.above)}" for z in zones]
+    return "\n".join([r"\begin{itemize}\footnotesize", *items, r"\end{itemize}", ""])
+
+
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],

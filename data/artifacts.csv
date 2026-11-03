@@ -1,6 +1,7 @@
 path,kind,producer
 build/00-frontmatter/actors.tex,tex,scripts.actors_tex
 build/00-frontmatter/beats.tex,tex,scripts.beats_tex
+build/00-frontmatter/zones.tex,tex,scripts.zones_tex
 build/00-frontmatter/business-map.png,png,scripts.figures stage business-map
 build/00-frontmatter/agenda.png,png,scripts.figures stage agenda
 build/00-frontmatter/agenda-00.png,png,scripts.figures agenda --highlight 00

@@ -9,6 +9,12 @@ $(BUILD)/00-frontmatter/stacey-overview.png: $(PALETTE) scripts/figures.py scrip
 	@$(RUN) python -m scripts.figures stacey --arrows --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/00-frontmatter/zones.tex
+
+$(BUILD)/00-frontmatter/zones.tex: $(PALETTE) scripts/zones_tex.py scripts/utils/stacey.py 02-stacey/data/zones.csv
+	@$(RUN) python -m scripts.zones_tex --zones 02-stacey/data/zones.csv --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/00-frontmatter/beats.tex: $(PALETTE) scripts/beats_tex.py scripts/utils/beats.py scripts/utils/lines.py data/lines.csv
 	@$(RUN) python -m scripts.beats_tex --lines data/lines.csv --out $@
 	$(call log_done,$@ written)

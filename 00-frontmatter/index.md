@@ -31,18 +31,18 @@ made no distinction between them.
 ## The map of the talk {paths=?}
 
 :::: {.columns align=center}
-::: {.column width="62%"}
+::: {.column width="58%"}
 
 ![](build/00-frontmatter/stacey-overview.png){height=80%}
 
 :::
-::: {.column width="38%"}
+::: {.column width="42%"}
 
-\small
+\input{build/00-frontmatter/zones.tex}
 
-- The x axis: the How, certain to uncertain.
-- The y axis: the What, certain to uncertain.
-- The Who line: above it stakeholders decide and agree the What; below it developers settle the How.
+\footnotesize
+
+- The Who line: stakeholders decide above it, developers below; the grey band is collaboration, widest at Chaos.
 - The arrows: the talk's movement, 01 to 06.
 
 :::

@@ -97,6 +97,11 @@ def test_collaboration_band_narrows_toward_simple() -> None:
 
 
 @pytest.mark.model
+def test_zones_items_lists_four_bands() -> None:
+    assert stacey.zones_items(ZONES).count(r"\textbf") == 4
+
+
+@pytest.mark.model
 def test_stacey_writes_a_png(tmp_path: Path) -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     out = draw(route, ZONES, LABELS, tmp_path / "m.png", highlight="02")
