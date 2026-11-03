@@ -43,4 +43,5 @@
 - 2026-11-03 E-017: T-395 and T-396 Actions amended before W-172 starts: W-172's criterion greps every exhibit test, and test_planted_bug.py, test_two_ifs.py and test_worlds.py carried assert comments no Task named; Checks unchanged
 - 2026-11-04 E-017: T-397 Action amended at close: its brief said index.md without paths; page 22's spacing in 02-stacey/index.md was rebalanced after the -20pt vspace overlapped the bubble; Check unchanged
 - 2026-11-04 E-017: T-403 pruned and refiled as T-427: its frozen Check matched page 19's 'every one of them' and could never print 1; T-427 checks 'one of them: 55 EUR', same Action
+- 2026-11-04 E-017: T-418 pruned: the near-square seam figure fills its column at the existing height=60%; 75% overflows page 41
 - 2026-11-04 E-017: T-421 and T-423 Actions amended before start: their heading rules and manifest rows named section.mk and artifacts.csv without paths; Checks unchanged
