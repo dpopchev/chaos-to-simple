@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014   | blocked: 0 | todo roots: 1 | done: 433 | pruned: 4
+open path: E-014 > W-131 > T-294   | blocked: 0 | todo roots: 1 | done: 433 | pruned: 4
 
 ## Tree
 
 ```text
 E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview, compact diffs with their tests
   W-130  issue  [done]     00: one legend of three kinds, the map redrawn -- T-291 [done], T-292 [done], T-293 [done], T-330 [done]
-  W-131  issue  [todo]     03/06: the kinds in the retro, the post-mortem and the epilogue -- T-294 [todo], T-295 [todo], T-296 [todo]
+  W-131  issue  [doing]    03/06: the kinds in the retro, the post-mortem and the epilogue -- T-294 [doing]   <- ACTIVE LEAF, T-295 [todo], T-296 [todo]
   W-132  issue  [todo]     04: the moves and the colour code under the kinds -- T-297 [todo], T-298 [todo], T-299 [todo]
   W-133  issue  [todo]     00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [todo], T-301 [todo], T-302 [todo]
   W-134  issue  [todo]     03: the new view after the room -- T-303 [todo], T-304 [todo]
@@ -782,8 +782,8 @@ flowchart TD
   W130 --> T292["T-292 done: Draw the kinds on the business map -> stage.business_map with inner bands, the tax box and grey providers"]
   W130 --> T293["T-293 done: Caption and note frame 2 -> 00-frontmatter/index.md notes on the two arrow sides"]
   W130 --> T330["T-330 done: Restore the developer's context labels -> data/contexts.csv labels as pasted"]
-  E014 --> W131["W-131 issue todo: 03/06: the kinds in the retro, the post-mortem and the epilogue"]
-  W131 --> T294["T-294 todo: Reassign the retro subdomains -> data/questions.csv, the title and footnote of frame 24"]
+  E014 --> W131["W-131 issue doing: 03/06: the kinds in the retro, the post-mortem and the epilogue"]
+  W131 --> T294["T-294 doing: Reassign the retro subdomains -> data/questions.csv, the title and footnote of frame 24 -- ACTIVE LEAF"]
   W131 --> T295["T-295 todo: Add the kind column to the post-mortem -> data/incidents.csv kind, paths.postmortem_table"]
   W131 --> T296["T-296 todo: Close the epilogue on the supporting line -> 06-simple/index.md caption of frame 46"]
   E014 --> W132["W-132 issue todo: 04: the moves and the colour code under the kinds"]
@@ -839,7 +839,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014 doing
+  class E014,W131,T294 doing
   class W130,T291,T292,T293,T330 done
-  class W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331 todo
+  class T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331 todo
 ```
