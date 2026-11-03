@@ -309,12 +309,15 @@ line aloud. The diff shows the change alone, one line of context each side.
 ```{.text include=build/01-bits/next.txt}
 ```
 
+\begingroup\footnotesize\textit{logistics, week 6, aside: free shipping from 50 -- from what? nobody asked}\par\endgroup
+
 \vfill
 
 **How many tests would make you sure?**
 
 ::: notes
-Read the dev and marketing lines aloud, then ask the chat the question and pause.
+Read the dev and marketing lines aloud, then ask the chat the question and pause. Then point
+at the aside: two readings of from 50 are already in the code.
 :::
 
 ## Two tests reach 100% branch coverage yet run only 2 of 64 combinations {paths=64}
