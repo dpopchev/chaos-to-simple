@@ -95,7 +95,7 @@ def test_label_of_an_actor_is_its_label() -> None:
 
 @pytest.mark.model
 def test_label_of_a_context_is_its_label() -> None:
-    assert label_of("fulfilment") == "Fulfilment"
+    assert label_of("fulfilment") == "Order fulfilment"
 
 
 @pytest.mark.model
