@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 3 | done: 507 | pruned: 6
+open path: W-155 > T-349   | blocked: 0 | todo roots: 2 | done: 507 | pruned: 6
 
 ## Tree
 
 ```text
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
-W-155  issue  [todo]     (standalone) The v1 storyboard heading reads 1 policies   (filed during T-345) -- T-349 [todo]
+W-155  issue  [doing]    (standalone) The v1 storyboard heading reads 1 policies   (filed during T-345) -- T-349 [doing]   <- ACTIVE LEAF
 ```
 
 ## Closed
@@ -901,12 +901,13 @@ flowchart TD
   W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
   W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
   W153 --> T342["T-342 todo: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
-  W155["W-155 issue todo, standalone: The v1 storyboard heading reads 1 policies"]
-  W155 --> T349["T-349 todo: Say policy for one -> scripts/utils/storyboard.py step view heading"]
+  W155["W-155 issue doing, standalone: The v1 storyboard heading reads 1 policies"]
+  W155 --> T349["T-349 doing: Say policy for one -> scripts/utils/storyboard.py step view heading -- ACTIVE LEAF"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W152,T341,W153,T342,W155,T349 todo
+  class W155,T349 doing
+  class W152,T341,W153,T342 todo
 ```
