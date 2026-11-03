@@ -74,6 +74,12 @@ def test_plain_draw_skips_the_zone_texts() -> None:
 
 
 @pytest.mark.model
+def test_arrows_join_consecutive_stops() -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    assert stacey.arrow_pairs(route, "03") == [("01", "02"), ("02", "03")]
+
+
+@pytest.mark.model
 def test_stacey_writes_a_png(tmp_path: Path) -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     out = draw(route, ZONES, LABELS, tmp_path / "m.png", highlight="02")

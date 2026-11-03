@@ -1,7 +1,7 @@
 section,label,icon,counter,incident,x,y
 00,Stage,store,?,,,
 01,Bits,code-branch,64,I1,0.65,0.75
-02,Map,map,64,I2,0.45,0.75
+02,Map,map,64,I2,0.40,0.62
 03,Room,comments,512,,0.45,0.45
 04,Homes,home,512,,0.60,0.25
 05,Seam,cut,512,I3,0.25,0.20

@@ -42,6 +42,7 @@ build/01-bits/doubling.png,png,scripts.figures doubling
 build/01-bits/doubling.txt,txt,scripts.paths doubling
 build/01-bits/next.txt,txt,scripts.paths next
 build/02-stacey/stacey.png,png,scripts.figures stacey
+build/00-frontmatter/stacey-overview.png,png,scripts.figures stacey --arrows
 build/02-stacey/stacey-01.png,png,scripts.figures stacey --highlight 01
 build/02-stacey/stacey-02.png,png,scripts.figures stacey --highlight 02
 build/02-stacey/stacey-03.png,png,scripts.figures stacey --highlight 03

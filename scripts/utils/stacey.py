@@ -7,6 +7,7 @@ import math
 import textwrap
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
+from itertools import pairwise
 from pathlib import Path
 from typing import Literal
 
@@ -110,6 +111,14 @@ def zone_texts(zones: Sequence[Zone], labels: Mapping[str, str], plain: bool) ->
     )
 
 
+def arrow_pairs(route: Sequence[Spot], highlight: str | None) -> list[tuple[str, str]]:
+    """Return the (from, to) section pairs of consecutive stops, ending at the highlighted stop."""
+    pairs = [(a.section, b.section) for a, b in pairwise(route)]
+    if highlight is None:
+        return pairs
+    return [p for p in pairs if p[1] <= highlight]
+
+
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],
@@ -117,10 +126,12 @@ def draw(
     out: Path,
     highlight: str | None = None,
     plain: bool = False,
+    arrows: bool = False,
 ) -> Path:
     """Draw the matrix; with highlight, the stop of that section stands out and the rest fade.
 
     With plain, only the bands, their names, the Who diagonal, the axes and the stops are drawn.
+    With arrows, a grey arrow joins each stop to the next, up to the highlighted stop.
     """
     style.apply()
     import matplotlib.pyplot as plt
@@ -207,6 +218,23 @@ def draw(
             color="dimgrey",
             zorder=6,
         )
+    if arrows:
+        at = {s.section: s for s in route}
+        for a, b in arrow_pairs(route, highlight):
+            ax.annotate(
+                "",
+                xy=(at[b].x, at[b].y),
+                xytext=(at[a].x, at[a].y),
+                arrowprops={
+                    "arrowstyle": "-|>",
+                    "color": "grey",
+                    "linewidth": 2.5,
+                    "shrinkA": 17,
+                    "shrinkB": 17,
+                    "mutation_scale": 22,
+                },
+                zorder=3.5,
+            )
     font = icon_file()
     for spot in route:
         faded = highlight is not None and spot.section != highlight

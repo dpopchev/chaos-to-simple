@@ -84,6 +84,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
     parser.add_argument("--highlight", help="agenda, stacey: the section whose stop stands out")
+    parser.add_argument("--plain", action="store_true", help="stacey: bands and names only")
+    parser.add_argument("--arrows", action="store_true", help="stacey: arrows between the stops")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
     parser.add_argument("--labels", type=Path, default=Path("02-stacey/data/labels.csv"))
     parser.add_argument("--october", type=Path, default=Path("01-bits/data/october.csv"))
@@ -165,6 +167,8 @@ def main(argv: Sequence[str] | None = None) -> int:
             load_labels(args.labels),
             args.out,
             args.highlight,
+            args.plain,
+            args.arrows,
         )
         return 0
     if args.what == "journey":
