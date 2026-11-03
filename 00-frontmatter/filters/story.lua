@@ -11,7 +11,13 @@
 -- a space \diffscope). A Div with class request becomes the request box. The macros and the
 -- colours are in preamble.tex. Runs before diffs.lua, which skips the converted block.
 
-local ESCAPES = { ["\\"] = "\\textbackslash{}", ["{"] = "\\{", ["}"] = "\\}" }
+local ESCAPES = {
+  ["\\"] = "\\textbackslash{}",
+  ["{"] = "\\{",
+  ["}"] = "\\}",
+  ["^"] = "\\textasciicircum{}",
+  ["~"] = "\\textasciitilde{}",
+}
 
 local ROW = { ["+"] = "diffaddbg", ["-"] = "diffdelbg" }
 
