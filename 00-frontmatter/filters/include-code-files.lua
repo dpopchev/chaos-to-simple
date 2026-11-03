@@ -104,9 +104,32 @@ local LATEX_ESCAPES = {
   ["~"] = "\\textasciitilde{}",
 }
 
--- A heading= attribute becomes a \snippethead label ahead of the block, the attribute dropped.
+-- The heading text: heading-file= names a built file whose first line is the heading (an
+-- unreadable file errors, or reads "STUB: <path>" unless STRICT is set), else heading=.
+local function heading_text(cb)
+  local path = cb.attributes["heading-file"]
+  if path == nil then
+    return cb.attributes["heading"]
+  end
+  cb.attributes["heading-file"] = nil
+  local fh = io.open(path, "r")
+  if not fh then
+    local strict = os.getenv("STRICT")
+    if strict == nil or strict == "" then
+      io.stderr:write("include-code-files: STUB: " .. path .. "\n")
+      return "STUB: " .. path
+    end
+    error("include-code-files: cannot open " .. path)
+  end
+  local first = fh:read("l")
+  fh:close()
+  return first
+end
+
+-- A heading= or heading-file= attribute becomes a \snippethead label ahead of the block, the
+-- attribute dropped.
 local function with_heading(cb)
-  local heading = cb.attributes["heading"]
+  local heading = heading_text(cb)
   if heading == nil then
     return cb
   end
@@ -130,6 +153,7 @@ function CodeBlock(cb)
     cb.attributes["snippet"] = nil
     cb.attributes["start-line"] = nil
     cb.attributes["end-line"] = nil
+    cb.attributes["heading-file"] = nil
     return cb
   end
   local lines = read_lines(path)

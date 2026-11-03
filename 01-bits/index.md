@@ -284,7 +284,7 @@ Read the dev and marketing lines aloud, then ask the chat the question and pause
 :::: {.columns}
 ::: {.column width="54%"}
 
-```{.python include=01-bits/tests/test_chaos.py snippet=two-tests cap=24}
+```{.python heading-file=build/01-bits/tests-6.txt include=01-bits/tests/test_chaos.py snippet=two-tests cap=24}
 ```
 
 :::

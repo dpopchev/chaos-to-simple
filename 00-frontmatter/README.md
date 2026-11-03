@@ -13,7 +13,7 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `preamble.tex` | footer path counter, smaller code font, no navigation symbols | the footer or the look changes |
 | `build/00-frontmatter/beats.tex` | generated from `data/lines.csv`: the believed line and the strip name of each section, read by the section page in `preamble.tex` | the lines change |
 | `build/00-frontmatter/agenda-NN.png` | the agenda strip with stop NN highlighted, one per section, shown on its section page | the route changes |
-| `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range; an optional `heading="..."` attribute renders as a shaded `\snippethead` label above the block | never, unless the marker syntax changes |
+| `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range; an optional `heading="..."` attribute, or `heading-file=PATH` (the first line of a built file), renders as a shaded `\snippethead` label above the block | never, unless the marker syntax changes |
 | `filters/diffs.lua` | turns a `.diff` block into a Verbatim: the first line (the caption) the grey heading, lines starting `-`, `+`, `~`, `...` in red, green, dark yellow, grey (macros in `preamble.tex`); sized `\snippetsize` (`\tiny`, set once in `preamble.tex` with highlighted code and the storyboard) | the colouring or the size changes |
 | `filters/story.lua` | renders the request box only (a `.request` Div); a storyboard `.diff .python` block goes through `diffs.lua` like every diff | the request box changes |
 | `filters/speakers.lua` | turns a `.speakers` block into a Verbatim with each actor label (full or first word) in its colour from `data/actors.csv`; `highlight=q3` sets that row bold; sized `\exhibitsize` (`\scriptsize`, text exhibits) | the colouring or the size changes |
@@ -30,6 +30,10 @@ comment lines `# [snippet: checkout]` and `# [/snippet]`. Prefer snippet names o
 line ranges: a line range rots on the first edit above it, a name does not.
 Add `.numberLines` (`{.python .numberLines include=... snippet=checkout}`) and the
 numbers are the file's own line numbers, starting at the first line shown.
+
+A heading over the block is `heading="text"`, or `heading-file=build/01-bits/tests-6.txt`, which
+reads the first line of a built file, so a measured tally is never typed. Write it before
+`include=` in the fence, so `make widths` and `make lengths` keep matching the include.
 
 A source line may end with a step marker, `# [step: N]` (N from 0 to 6). The filter strips
 it on include, so no slide shows it; the step diffs read it to know which request added the

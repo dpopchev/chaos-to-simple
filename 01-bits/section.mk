@@ -11,7 +11,13 @@ ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/counting.png $(BUILD)/01-bits/grid-growth.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt $(BUILD)/01-bits/cues.txt
-ARTIFACTS += $(BUILD)/01-bits/memo-run.txt
+ARTIFACTS += $(BUILD)/01-bits/memo-run.txt $(BUILD)/01-bits/tests-6.txt
+
+$(BUILD)/01-bits/tests-6.txt: 01-bits/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 01-bits/tests/test_chaos.py)
+	@$(RUN) python -m scripts.paths tally --version 6 --tests-dir 01-bits/tests \
+		--only test_chaos --out $@
+	$(call log_done,$@ written)
 
 # The memo's four orders with the xfail lifted: the exit status must be 1 (one order fails);
 # only the four PASSED/FAILED lines, the node id trimmed to the parameter id, and the summary
