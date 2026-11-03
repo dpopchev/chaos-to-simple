@@ -32,3 +32,4 @@
 - 2026-11-03 E-014: T-297 Output amended to name scripts/figures.py: the coordinator's go word named it, the brief did not, and the scope gate reads each commit (55d57fc touched it, 144c1a0 reverted the line); Check unchanged
 - 2026-11-03 E-014: T-330 filed under W-130 after T-291's hand-back: the four new context labels did not match the developer's pasted data (Order fulfilment, Payment provider, Warehouse system, Mail delivery)
 - 2026-11-03 E-014: T-330 hand-back: the colour-code legend clips its ports rows since T-291 put the provider contexts in the home group; T-298's Action amended to keep only core, supporting and tax in it (Check unchanged); the stale-figure finding filed standalone as W-145
+- 2026-11-03 E-014: T-334 filed under W-136 after T-307's hand-back: compact_body marks only the elisions between hunks; the developer asked for --- wherever nothing changed
