@@ -1,23 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016   | blocked: 0 | todo roots: 1 | done: 558 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 1 | done: 559 | pruned: 6
 
 ## Tree
 
 ```text
-E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut
-  W-156  issue  [done]     snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [done], T-351 [done], T-352 [done]
-  W-157  issue  [done]     01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [done], T-354 [done], T-355 [done]
-  W-158  issue  [done]     01 counting: bits under their counts, the rule as a table -- T-356 [done], T-357 [done]
-  W-159  issue  [done]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [done], T-359 [done], T-360 [done]
-  W-160  issue  [done]     Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [done], T-362 [done], T-363 [done]
-  W-161  issue  [done]     01 finance: the cues beside the chart, the memo's four orders on their own frame -- T-364 [done], T-365 [done], T-366 [done], T-367 [done]
-  W-162  issue  [done]     02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [done], T-369 [done]
-  W-163  issue  [done]     03 room: the certainty sourced, the 512 grid explained, the board widened -- T-370 [done], T-371 [done], T-372 [done]
-  W-164  issue  [done]     04 homes: each snippet beside its test, the homes column compact -- T-373 [done], T-374 [done], T-375 [done]
-  W-165  issue  [done]     05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code -- T-376 [done], T-377 [done], T-378 [done]
-  W-166  issue  [done]     one kind per bit: counts, retro and wounds read the subdomain from contexts.csv -- T-379 [done], T-380 [done]
-  W-167  bug    [done]     03 board drawn at 65% width: the 16:9 figure is height-bound on its frame   (filed during T-372) -- T-381 [done], T-382 [done]
 W-168  bug    [todo]     (standalone) 04 fix caption names the I1 order in BGN while the deck counts EUR   (filed during T-373) -- T-383 [todo]
 ```
 
@@ -840,6 +827,79 @@ closed 2026-11-03 -- outcome: make talk builds the deck on main with make check 
 
 - T-340 [done] Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk
 
+### E-016 [done] The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut
+
+closed 2026-11-03 -- outcome: make talk builds a 53-page deck with one snippet style, the agenda after the title, the maps and matrices redrawn as reviewed, the cue, memo and deduction frames added, one kind per bit in counts, retro and wounds, and the seam cut shown as plain code, make check green. -- ledger: ledgers/E-016.md
+
+#### W-156 issue [done] snippet format: two sizes set once, an optional heading, no per-slide fvset
+
+- T-350 [done] Set the two sizes and the heading label -> preamble.tex macros and the heading= attribute
+- T-351 [done] Scale the width budget by block kind -> scripts/utils/widths.py reads the fence class
+- T-352 [done] Remove every per-slide size -> the fvset lines gone from 01..06 index.md
+
+#### W-157 issue [done] 01 storyboard: v0 on one frame, one line per bubble and row, no aside
+
+- T-353 [done] Write each bubble and diff row on one line -> storyboard.py unwrapped for 01
+- T-354 [done] Merge the v0 frames -> 01-bits/index.md at 13 frames with the counter plan
+- T-355 [done] Drop the aside from the done frame -> 01-bits/index.md without the logistics aside
+
+#### W-158 issue [done] 01 counting: bits under their counts, the rule as a table
+
+- T-356 [done] Align the counts and the bit strings -> counting.py rows on one monospace grid
+- T-357 [done] Rewrite the right column -> 01-bits/index.md page 5 as a footnotesize rule table
+
+#### W-159 issue [done] 00 opening: the agenda after the title, the map by subdomain kind
+
+- T-358 [done] Render the 00 agenda and open with it -> agenda-00.png and the first frame
+- T-359 [done] Draw the departments inside their bands -> stage.business_map with kind-labelled bands and owner chips
+- T-360 [done] List the policies on the left -> stage.business_map with one bullet per request
+
+#### W-160 issue [done] Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside
+
+- T-361 [done] Name the bands in place and carry the corners -> stacey.draw with one anchor per band
+- T-362 [done] Shade the collaboration band -> stacey.draw with a fading band on the Who line
+- T-363 [done] List the definitions beside the overview -> build/00-frontmatter/zones.tex in the right column
+
+#### W-161 issue [done] 01 finance: the cues beside the chart, the memo's four orders on their own frame
+
+- T-364 [done] Add the coupon columns and the cue table -> finance.cues and build/01-bits/cues.txt
+- T-365 [done] Lay the chart beside the cues -> 01-bits/index.md page 16 in two columns
+- T-366 [done] Test the four orders the memo implies -> 01-bits/tests/test_memo_orders.py and memo-run.txt
+- T-367 [done] Add the memo frame -> 01-bits/index.md after page 17 with the four orders
+
+#### W-162 issue [done] 02 deduction frame: from 54.00 against 60.00 to two readings
+
+- T-368 [done] Write the deduction frame -> 02-stacey/index.md with the two-readings table
+- T-369 [done] Update the 02 brief -> 02-stacey/README.md at three slides
+
+#### W-163 issue [done] 03 room: the certainty sourced, the 512 grid explained, the board widened
+
+- T-370 [done] Source the certainty line -> figures.journey with the room's scoring
+- T-371 [done] Explain the eight panels -> paths.grid_panels with a suptitle and world titles
+- T-372 [done] Widen the board -> board.py with narrow waiting columns at stage 3
+
+#### W-164 issue [done] 04 homes: each snippet beside its test, the homes column compact
+
+- T-373 [done] Put the fix beside its test -> 04-what/index.md page 30 in two columns
+- T-374 [done] Put the fee beside its test -> 04-what/index.md page 31 with the fee-tests snippet
+- T-375 [done] Compact the homes column -> 04-what/index.md page 32 without the file-name lines
+
+#### W-165 issue [done] 05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code
+
+- T-376 [done] Define the seam on page 38 -> 05-how/index.md with results beside ports
+- T-377 [done] Make the staged files differ by the extraction alone -> shell.py as v9 plus price()
+- T-378 [done] Show price() beside the shell as plain code -> 06-simple/index.md page 42
+
+#### W-166 issue [done] one kind per bit: counts, retro and wounds read the subdomain from contexts.csv
+
+- T-379 [done] Head the counts by kind -> paths.count_report from contexts.csv
+- T-380 [done] Derive each question's and incident's subdomain from its bit -> retro and postmortem through contexts.csv
+
+#### W-167 bug [done] 03 board drawn at 65% width: the 16:9 figure is height-bound on its frame   (filed during T-372)
+
+- T-381 [done] Shape the stage-3 board wide and short -> scripts/utils/board.py figure_size
+- T-382 [done] Show the board at full width -> 03-chaos/index.md page 29 width=100%
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -926,52 +986,6 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's chec
 ## Diagram
 ```mermaid
 flowchart TD
-  E016["E-016 doing: The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut"]
-  E016 --> W156["W-156 issue done: snippet format: two sizes set once, an optional heading, no per-slide fvset"]
-  W156 --> T350["T-350 done: Set the two sizes and the heading label -> preamble.tex macros and the heading= attribute"]
-  W156 --> T351["T-351 done: Scale the width budget by block kind -> scripts/utils/widths.py reads the fence class"]
-  W156 --> T352["T-352 done: Remove every per-slide size -> the fvset lines gone from 01..06 index.md"]
-  E016 --> W157["W-157 issue done: 01 storyboard: v0 on one frame, one line per bubble and row, no aside"]
-  W157 --> T353["T-353 done: Write each bubble and diff row on one line -> storyboard.py unwrapped for 01"]
-  W157 --> T354["T-354 done: Merge the v0 frames -> 01-bits/index.md at 13 frames with the counter plan"]
-  W157 --> T355["T-355 done: Drop the aside from the done frame -> 01-bits/index.md without the logistics aside"]
-  E016 --> W158["W-158 issue done: 01 counting: bits under their counts, the rule as a table"]
-  W158 --> T356["T-356 done: Align the counts and the bit strings -> counting.py rows on one monospace grid"]
-  W158 --> T357["T-357 done: Rewrite the right column -> 01-bits/index.md page 5 as a footnotesize rule table"]
-  E016 --> W159["W-159 issue done: 00 opening: the agenda after the title, the map by subdomain kind"]
-  W159 --> T358["T-358 done: Render the 00 agenda and open with it -> agenda-00.png and the first frame"]
-  W159 --> T359["T-359 done: Draw the departments inside their bands -> stage.business_map with kind-labelled bands and owner chips"]
-  W159 --> T360["T-360 done: List the policies on the left -> stage.business_map with one bullet per request"]
-  E016 --> W160["W-160 issue done: Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside"]
-  W160 --> T361["T-361 done: Name the bands in place and carry the corners -> stacey.draw with one anchor per band"]
-  W160 --> T362["T-362 done: Shade the collaboration band -> stacey.draw with a fading band on the Who line"]
-  W160 --> T363["T-363 done: List the definitions beside the overview -> build/00-frontmatter/zones.tex in the right column"]
-  E016 --> W161["W-161 issue done: 01 finance: the cues beside the chart, the memo's four orders on their own frame"]
-  W161 --> T364["T-364 done: Add the coupon columns and the cue table -> finance.cues and build/01-bits/cues.txt"]
-  W161 --> T365["T-365 done: Lay the chart beside the cues -> 01-bits/index.md page 16 in two columns"]
-  W161 --> T366["T-366 done: Test the four orders the memo implies -> 01-bits/tests/test_memo_orders.py and memo-run.txt"]
-  W161 --> T367["T-367 done: Add the memo frame -> 01-bits/index.md after page 17 with the four orders"]
-  E016 --> W162["W-162 issue done: 02 deduction frame: from 54.00 against 60.00 to two readings"]
-  W162 --> T368["T-368 done: Write the deduction frame -> 02-stacey/index.md with the two-readings table"]
-  W162 --> T369["T-369 done: Update the 02 brief -> 02-stacey/README.md at three slides"]
-  E016 --> W163["W-163 issue done: 03 room: the certainty sourced, the 512 grid explained, the board widened"]
-  W163 --> T370["T-370 done: Source the certainty line -> figures.journey with the room's scoring"]
-  W163 --> T371["T-371 done: Explain the eight panels -> paths.grid_panels with a suptitle and world titles"]
-  W163 --> T372["T-372 done: Widen the board -> board.py with narrow waiting columns at stage 3"]
-  E016 --> W164["W-164 issue done: 04 homes: each snippet beside its test, the homes column compact"]
-  W164 --> T373["T-373 done: Put the fix beside its test -> 04-what/index.md page 30 in two columns"]
-  W164 --> T374["T-374 done: Put the fee beside its test -> 04-what/index.md page 31 with the fee-tests snippet"]
-  W164 --> T375["T-375 done: Compact the homes column -> 04-what/index.md page 32 without the file-name lines"]
-  E016 --> W165["W-165 issue done: 05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code"]
-  W165 --> T376["T-376 done: Define the seam on page 38 -> 05-how/index.md with results beside ports"]
-  W165 --> T377["T-377 done: Make the staged files differ by the extraction alone -> shell.py as v9 plus price()"]
-  W165 --> T378["T-378 done: Show price() beside the shell as plain code -> 06-simple/index.md page 42"]
-  E016 --> W166["W-166 issue done: one kind per bit: counts, retro and wounds read the subdomain from contexts.csv"]
-  W166 --> T379["T-379 done: Head the counts by kind -> paths.count_report from contexts.csv"]
-  W166 --> T380["T-380 done: Derive each question's and incident's subdomain from its bit -> retro and postmortem through contexts.csv"]
-  E016 --> W167["W-167 bug done: 03 board drawn at 65% width: the 16:9 figure is height-bound on its frame"]
-  W167 --> T381["T-381 done: Shape the stage-3 board wide and short -> scripts/utils/board.py figure_size"]
-  W167 --> T382["T-382 done: Show the board at full width -> 03-chaos/index.md page 29 width=100%"]
   W168["W-168 bug todo, standalone: 04 fix caption names the I1 order in BGN while the deck counts EUR"]
   W168 --> T383["T-383 todo: Name the I1 order in EUR -> 04-what/index.md caption"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -979,7 +993,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016 doing
-  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380,W167,T381,T382 done
   class W168,T383 todo
 ```

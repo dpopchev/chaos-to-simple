@@ -16,7 +16,7 @@
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
-- 2026-11-03 E-016: fact: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> no Task; a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv
+- 2026-11-03 E-016: standing: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv supersedes: E-016#1
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -27,13 +27,7 @@
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
-- 2026-11-03 E-016: 2026-11-03 plan, agreed at go: code at \tiny, text exhibits at \scriptsize, both once in preamble.tex; headings above the code as a small shaded label; page 16 gets a cue table; 06's shell keeps v9's match shapes; the journey axis reads the room's certainty; 51 -> 53 pages
-- 2026-11-03 E-016: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-03)
+- none recorded
 
 ## Deviations
-- 2026-11-03 E-016: T-350 Action amended at close: three filters were named without 00-frontmatter/, so the scope gate refused; Check unchanged
-- 2026-11-03 E-016: T-351 Action gained the 06 worlds frame at 45/55: its .text table renders at 7pt since T-350 and the new widths rule names its 60-column rows; Check unchanged
-- 2026-11-03 E-016: T-353 Action gained page 7's request at full width: the unwrapped bubble (74 columns) overflowed its 30% column at widths; Check unchanged
-- 2026-11-03 E-016: T-373 Action gained the i1 comment on its own line in test_checkout_stages.py: the 91-column assert did not fit a 50% column; Check unchanged
-- 2026-11-03 E-016: T-377 Action gained page 42 without seam.diff: the diff of the whole body (27 lines) leaves under 3pt slack; T-378's Check now greps the shell snippet it adds, since the removal moved to T-377
-- 2026-11-03 E-016: W-167 bug filed at W-163's verification: the board shows at 65% width, its 16:9 figure height-bound; two Tasks reshape it at stage 3
+- none recorded
