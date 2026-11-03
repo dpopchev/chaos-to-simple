@@ -35,6 +35,7 @@ from scripts.utils.paths import (
     load_rules,
     next_doubling,
     panel_titles,
+    panels_suptitle,
     postmortem_table,
     room_curve,
     rules_table,
@@ -253,6 +254,11 @@ def test_world_name_reads_the_set_bits(repo_rules: list[Rule]) -> None:
         "110": "mail bounced, stock gone",
         "111": "mail bounced, stock gone, card declined",
     }
+
+
+@pytest.mark.model
+def test_grid_panels_suptitle_counts_eight_worlds() -> None:
+    assert panels_suptitle(6, 3).endswith("8 x 64 = 512")
 
 
 @pytest.mark.view

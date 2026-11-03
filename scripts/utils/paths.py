@@ -421,6 +421,16 @@ def world_name(bits: str, rules: Sequence[Rule]) -> str:
     return ", ".join(SHELL_WORLDS[bit] for bit in reversed(set_bits)) or "all answered"
 
 
+def panels_suptitle(core_bits: int, shell_bits: int) -> str:
+    """Say what the panels are: the core grid once per world of the shell effects."""
+    worlds = tangled(shell_bits)
+    cells = tangled(core_bits)
+    return (
+        f"the {cells} paths of 01, once per world of the three effects: "
+        f"{worlds} x {cells} = {worlds * cells}"
+    )
+
+
 def stock_gone(title: str) -> bool:
     """Whether the panel is a configuration where the warehouse answers OutOfStock (s1 set)."""
     return title[-2] == "1"
@@ -478,13 +488,13 @@ def grid_panels(
         ax.set_aspect("equal")
         ax.axis("off")
         ax.set_title(
-            textwrap.fill(f"{title} {world_name(title, rules)}", 22),
+            textwrap.fill(world_name(title, rules), 22),
             fontsize=7,
-            family="monospace",
             fontweight="bold",
             color=colour_of("payment") if framed else "black",
         )
-    fig.tight_layout(pad=0.3, h_pad=2.6, rect=(0, 0, 1, 0.97))
+    fig.suptitle(panels_suptitle(core_bits, shell_bits), fontsize=9, fontweight="bold")
+    fig.tight_layout(pad=0.3, h_pad=2.6, rect=(0, 0, 1, 0.94))
     style.save(fig, out)
     return out
 

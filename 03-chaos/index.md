@@ -54,6 +54,8 @@ discount, not before it: the rule came last, after the code had already picked o
 
 ![](build/03-chaos/grid-9.png){width=88%}
 
+\footnotesize same six bits; each answer of the three effects doubles the grid; the two tests still sit in one panel
+
 ```{.text include=build/data/counts.txt}
 ```
 
