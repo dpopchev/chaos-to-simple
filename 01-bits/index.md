@@ -319,23 +319,23 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 :::
 ::: {.column width="42%"}
 
-```{.text heading="orders under 50 EUR, by week" include=build/01-bits/cues.txt}
+```{.text heading="engineering: October orders, by week" include=build/01-bits/cues.txt}
 ```
 
 :::
 ::::
 
-**revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the threshold read the cart before the coupon**
+**revenue loss: 1,214 parcels shipped free after the coupon, every one with a cart of 50 EUR or more before it: the threshold read the cart before the coupon**
 
 ::: notes
-Finance noticed, not the tests: October's four weeks, received shipping income against the
-shortfall, 1,214 orders and 6,070 EUR nowhere to be found, all in the chart title. The legend
-is finance's: expected is their count of parcels under 50 EUR at 5 EUR, received is the
-income they booked, missing is the difference. The
-memo is the sheet, not a conclusion: finance's counts and sums, nothing more. Read
-the memo, then the chart, then the bold line: the condition, the threshold read the cart
-before the coupon. The table is the engineering cue: every free parcel carried the coupon,
-none without it, so a rule decided it, not the customers.
+Four steps, in order. First finance's sheet: the memo is the sheet, not a conclusion,
+their counts and sums only. Second the chart drawn from it: October's four weeks, received
+shipping income against the shortfall, 1,214 parcels and 6,070 EUR nowhere to be found; the
+legend is finance's: expected is their count of parcels under 50 EUR at 5 EUR, received is
+the income they booked, missing is the difference. Third engineering's breakdown of the same
+parcels, headed by its source: every free parcel carried the coupon and had a cart of 50 EUR
+or more before it. Last the bold line, the condition: the threshold read the cart before the
+coupon, so a rule decided it, not the customers.
 :::
 
 ## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
