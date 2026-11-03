@@ -50,6 +50,9 @@ build/01-bits/counting.png,png,scripts.figures counting
 build/01-bits/bug-run.txt,txt,pytest --runxfail
 build/01-bits/memo-run.txt,txt,pytest --runxfail
 build/01-bits/tests-6.txt,txt,scripts.paths tally --version 6
+build/01-bits/tests-bug.txt,txt,scripts.paths tally --version 6 --only test_planted_bug
+build/01-bits/tests-memo.txt,txt,scripts.paths tally --version 6 --only test_memo_orders
+build/02-stacey/tests-6.txt,txt,scripts.paths tally --version 6
 build/01-bits/grid.png,png,scripts.figures grid-image
 build/01-bits/grid-growth.png,png,scripts.figures grid-growth
 build/01-bits/doubling.png,png,scripts.figures doubling

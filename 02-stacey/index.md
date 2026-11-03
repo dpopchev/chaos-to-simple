@@ -33,7 +33,7 @@ words, each with a test.
 
 Free shipping from 50. Of what?
 
-\vspace{-6pt}
+\vspace{-8pt}
 
 
 :::: {.columns}
@@ -47,7 +47,7 @@ Free shipping from 50. Of what?
 :::
 ::: {.column width="53%"}
 
-```{.python include=02-stacey/tests/test_readings.py snippet=r1}
+```{.python heading-file=build/02-stacey/tests-6.txt include=02-stacey/tests/test_readings.py snippet=r1}
 ```
 
 :::
@@ -64,7 +64,7 @@ Free shipping from 50. Of what?
 :::
 ::: {.column width="53%"}
 
-```{.python include=02-stacey/tests/test_readings.py snippet=r2}
+```{.python heading-file=build/02-stacey/tests-6.txt include=02-stacey/tests/test_readings.py snippet=r2}
 ```
 
 :::

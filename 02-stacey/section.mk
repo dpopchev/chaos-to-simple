@@ -3,6 +3,12 @@
 ARTIFACTS += $(BUILD)/02-stacey/stacey.png \
 	$(foreach n,01 02 03 04 05 06,$(BUILD)/02-stacey/stacey-$(n).png) \
 	$(foreach k,0 1 2,$(BUILD)/02-stacey/bubble-$(k).txt)
+ARTIFACTS += $(BUILD)/02-stacey/tests-6.txt
+
+$(BUILD)/02-stacey/tests-6.txt: 02-stacey/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 02-stacey/tests/test_readings.py)
+	@$(RUN) python -m scripts.paths tally --version 6 --tests-dir 02-stacey/tests --out $@
+	$(call log_done,$@ written)
 
 $(foreach k,0 1 2,$(BUILD)/02-stacey/bubble-$(k).txt) &: $(PALETTE) 02-stacey/data/bubbles.csv \
 		data/actors.csv scripts/paths.py scripts/utils/storyboard.py

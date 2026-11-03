@@ -12,6 +12,19 @@ ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/counting.png $(BUILD)/01-bits/grid-growth.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt $(BUILD)/01-bits/cues.txt
 ARTIFACTS += $(BUILD)/01-bits/memo-run.txt $(BUILD)/01-bits/tests-6.txt
+ARTIFACTS += $(BUILD)/01-bits/tests-bug.txt $(BUILD)/01-bits/tests-memo.txt
+
+$(BUILD)/01-bits/tests-bug.txt: 01-bits/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 01-bits/tests/test_planted_bug.py)
+	@$(RUN) python -m scripts.paths tally --version 6 --tests-dir 01-bits/tests \
+		--only test_planted_bug --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/01-bits/tests-memo.txt: 01-bits/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 01-bits/tests/test_memo_orders.py)
+	@$(RUN) python -m scripts.paths tally --version 6 --tests-dir 01-bits/tests \
+		--only test_memo_orders --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/tests-6.txt: 01-bits/section.mk scripts/paths.py scripts/utils/storyboard.py \
     $(wildcard 01-bits/tests/test_chaos.py)

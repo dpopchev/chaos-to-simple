@@ -343,7 +343,7 @@ revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the thres
 
 the test finance and marketing wrote from it: 60.00
 
-```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
+```{.python heading-file=build/01-bits/tests-bug.txt include=01-bits/tests/test_planted_bug.py snippet=bug}
 ```
 
 ```{.text include=build/01-bits/bug-run.txt}
@@ -362,7 +362,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 :::: {.columns}
 ::: {.column width="62%"}
 
-```{.python heading="the four quadrants: coupon x 50 EUR" include=01-bits/tests/test_memo_orders.py snippet=memo-orders cap=18}
+```{.python heading-file=build/01-bits/tests-memo.txt include=01-bits/tests/test_memo_orders.py snippet=memo-orders cap=18}
 ```
 
 :::
