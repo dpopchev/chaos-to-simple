@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-170 > T-389   | blocked: 0 | todo roots: 0 | done: 567 | pruned: 6
+open path: E-017 > W-170 > T-390   | blocked: 0 | todo roots: 0 | done: 568 | pruned: 6
 
 ## Tree
 
 ```text
 E-017         [doing]    The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how
   W-169  issue  [done]     one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [done]
-  W-170  issue  [doing]    measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [doing]   <- ACTIVE LEAF, T-390 [todo]
+  W-170  issue  [doing]    measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [done], T-390 [doing]   <- ACTIVE LEAF
   W-171  issue  [todo]     every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [todo], T-392 [todo], T-393 [todo], T-394 [todo]
   W-172  issue  [todo]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [todo], T-396 [todo], T-397 [todo]
   W-173  issue  [todo]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [todo], T-399 [todo], T-400 [todo], T-401 [todo]
@@ -1014,8 +1014,8 @@ flowchart TD
   E017 --> W170["W-170 issue doing: measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff"]
   W170 --> T387["T-387 done: Head each storyboard view with the tally shape -> storyboard.step_view and suite_view"]
   W170 --> T388["T-388 done: Lead every stage diff with its def row -> stagediff.snippet_diff scope row"]
-  W170 --> T389["T-389 doing: Build the two tallies -> paths.py tally-code and tally with lines -- ACTIVE LEAF"]
-  W170 --> T390["T-390 todo: Read a heading from a built file -> include-code-files.lua heading-file="]
+  W170 --> T389["T-389 done: Build the two tallies -> paths.py tally-code and tally with lines"]
+  W170 --> T390["T-390 doing: Read a heading from a built file -> include-code-files.lua heading-file= -- ACTIVE LEAF"]
   E017 --> W171["W-171 issue todo: every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone"]
   W171 --> T391["T-391 todo: Head the 01 and 02 test exhibits -> 01-bits/section.mk, 02-stacey/section.mk tests tallies and the fences"]
   W171 --> T392["T-392 todo: Head the 04 exhibits -> 04-what/section.mk and index.md"]
@@ -1067,7 +1067,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W170,T389 doing
-  class W169,T384,T385,T386,T387,T388 done
-  class T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
+  class E017,W170,T390 doing
+  class W169,T384,T385,T386,T387,T388,T389 done
+  class W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
 ```
