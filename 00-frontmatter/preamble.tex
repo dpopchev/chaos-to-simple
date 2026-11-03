@@ -48,7 +48,7 @@
 % missing the glyph is empty and the labelled box stands alone.
 \usepackage{fontspec}
 % \iconfont is scaled to the label (W-179): measured at -r220 on page 8, MatchUppercase gives
-% a glyph as tall as the M; Scale=1.25 clears the M but takes the 3pt slack of the page 22
+% a glyph as tall as the M; a factor of 1.25 clears the M but takes the 3pt slack of the page 22
 % frame. \iconfontplain keeps the face's own size for the footer path glyph.
 \IfFontExistsTF{Font Awesome 7 Free Solid}{\newfontfamily\iconfont[Scale=MatchUppercase]{Font Awesome 7 Free Solid}\newfontfamily\iconfontplain{Font Awesome 7 Free Solid}}{\newcommand{\iconfont}{}\newcommand{\iconfontplain}{}}
 \usepackage{tcolorbox}
