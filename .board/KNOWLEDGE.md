@@ -16,6 +16,7 @@
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
+- 2026-11-03 W-148: fact: page 6 (whole v0, 24 diff lines) stacked at scriptsize runs 30.5pt over the frame, 33.5pt short of 3pt slack; pages 7 to 12 fit -> one frame cannot hold v0 and its tests at scriptsize
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -25,6 +26,8 @@
 
 ## Decisions
 - 2026-11-03 E-015: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-03)
+- 2026-11-03 W-148: layout: request block under the title (one shade), tests and checkout headings side by side (second shade) over their diffs (third shade); diff style always, scope row and changed rows only, Python-highlighted; page 6 split, pages 6 to 13; a row over 60 chars wrapped (developer)
 
 ## Deviations
+- 2026-11-03 E-015: W-148 re-planned at the halt: page 6 split (51 pages, budget 01 = 14), the storyboard redrawn as request block, headings and side-by-side Python diffs with scope and changed rows only, rows over 60 chars wrapped; AC3 rewritten, T-336 pruned for T-343 to T-345
 - 2026-11-03 E-015: W-151 filed under E-015 after W-145's criterion run failed at 80046d9: T-331's brief named the section.mk files of 00 and 02 to 07, not 01-bits, whose ten palette-reading rules still lack $(PALETTE); W-145's criterion is rerun when W-151 lands
