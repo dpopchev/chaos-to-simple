@@ -24,6 +24,7 @@
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
+- 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
 - 2026-11-03 E-016: 2026-11-03 plan, agreed at go: code at \tiny, text exhibits at \scriptsize, both once in preamble.tex; headings above the code as a small shaded label; page 16 gets a cue table; 06's shell keeps v9's match shapes; the journey axis reads the room's certainty; 51 -> 53 pages
