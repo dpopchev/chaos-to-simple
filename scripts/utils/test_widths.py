@@ -35,8 +35,23 @@ def test_too_wide_measures_a_line_without_its_step_marker() -> None:
 
 
 @pytest.mark.view
-def test_too_wide_names_a_line_past_its_column() -> None:
+def test_too_wide_budgets_a_text_block_at_the_exhibit_size() -> None:
     texts = {"a.py": "short\n" + "x" * 60 + "\n"}
+    slide = SLIDE.replace("{.python include=a.py}", "{.text include=a.py}")
+    assert too_wide(slide, texts.__getitem__, 104) == (
+        f"index.md Beside a figure: 60 > 59: {'x' * 60}",
+    )
+
+
+@pytest.mark.view
+def test_too_wide_budgets_a_code_block_at_the_snippet_size() -> None:
+    texts = {"a.py": "x" * 80 + "\n"}
+    assert too_wide(SLIDE, texts.__getitem__, 104) == ()
+
+
+@pytest.mark.view
+def test_too_wide_names_a_line_past_its_column() -> None:
+    texts = {"a.py": "short\n" + "x" * 90 + "\n"}
     assert too_wide(SLIDE, texts.__getitem__, 104) == (
-        f"index.md Beside a figure: 60 > 52: {'x' * 60}",
+        f"index.md Beside a figure: 90 > 83: {'x' * 90}",
     )
