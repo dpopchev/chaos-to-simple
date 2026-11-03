@@ -41,15 +41,23 @@ $(BUILD)/06-simple/worlds.txt: $(wildcard 04-what/s04_what/*.py) $(wildcard 05-h
 $(BUILD)/06-simple/seventh.diff: 04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/shipping.py --to 06-simple/s06_simple/seventh.py \
 		--snippet fee --to-snippet fee-digital \
-		--label-from shipping_fee --label-to '+ digital' --out $@
+		--label-from shipping_fee --label-to '+ digital' --compact --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/06-simple/seam.diff $(BUILD)/06-simple/pytest-core-summary.txt
 
 $(BUILD)/06-simple/seam.diff: 05-how/s05_how/checkout_v5.py 06-simple/s06_simple/shell.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 05-how/s05_how/checkout_v5.py --to 06-simple/s06_simple/shell.py \
-		--snippet checkout --start 'match inventory' --hide 'assert_never|case _ as unreachable' \
-		--label-from 'checkout v5' --label-to shell --out $@
+		--snippet checkout --start 'match inventory' --hide 'assert_never|case _ as unreachable' --compact \
+		--label-from 'checkout v9' --label-to 'v10' --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/06-simple/tally-10.txt
+
+$(BUILD)/06-simple/tally-10.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 06-simple/tests/*.py)
+	@$(RUN) python -m scripts.paths tally --version 10 --policies 9 --paths 72 \
+		--tests-dir 06-simple/tests --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/pytest-core-summary.txt: $(BUILD)/06-simple/pytest-core.txt 06-simple/section.mk

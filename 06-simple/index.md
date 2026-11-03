@@ -13,6 +13,9 @@
 :::
 ::: {.column width="48%"}
 
+```{.text include=build/06-simple/tally-10.txt}
+```
+
 ```{.diff include=build/06-simple/seam.diff cap=28}
 ```
 
