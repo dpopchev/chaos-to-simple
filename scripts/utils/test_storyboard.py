@@ -94,17 +94,17 @@ def test_step_view_keeps_only_the_scope_and_the_changes() -> None:
 
 @pytest.mark.view
 def test_step_view_heading_says_policy_for_one() -> None:
-    assert step_view(SOURCE, 1).splitlines()[0] == "checkout v1: 1 policy, 2^1 paths, 11 lines"
+    assert step_view(SOURCE, 1).splitlines()[0] == "checkout v1: 1 policy, 2 paths, 11 lines"
 
 
 @pytest.mark.view
 def test_step_view_heading_counts_policies_paths_and_lines() -> None:
-    assert step_view(SOURCE, 2).splitlines()[0] == "checkout v2: 2 policies, 2^2 paths, 13 lines"
+    assert step_view(SOURCE, 6).splitlines()[0] == "checkout v6: 6 policies, 64 paths, 22 lines"
 
 
 @pytest.mark.view
-def test_test_view_heading_counts_the_tests() -> None:
-    assert suite_view(SOURCE, 2).splitlines()[0] == "tests v2: 2 tests"
+def test_test_view_heading_counts_the_tests_and_lines() -> None:
+    assert suite_view(SOURCE, 6).splitlines()[0] == "tests v6: 2 tests, 16 lines"
 
 
 @pytest.mark.view

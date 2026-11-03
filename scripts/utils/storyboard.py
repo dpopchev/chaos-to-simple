@@ -111,19 +111,20 @@ def _view(heading: str, before: list[str], after: list[str], n: int) -> str:
 def step_view(source: str, n: int) -> str:
     """Return the checkout at step n: a heading, then the scope row and the +/- rows.
 
-    The heading is 'checkout vN: N policies, 2^N paths, L lines' ('1 policy' for N = 1).
+    The heading is 'checkout vN: N policies, <2**N> paths, L lines' ('1 policy' for N = 1).
     Step 0 is every row as +.
     """
     noun = "policy" if n == 1 else "policies"
-    heading = f"checkout v{n}: {n} {noun}, 2^{n} paths, {code_length(source, n)} lines"
+    heading = f"checkout v{n}: {n} {noun}, {2**n} paths, {code_length(source, n)} lines"
     before = step_lines(source, n - 1).splitlines() if n > 0 else []
     return _view(heading, before, step_lines(source, n).splitlines(), n)
 
 
 def suite_view(source: str, n: int) -> str:
-    """Return the tests of step n: the heading 'tests vN: K tests', then as step_view."""
+    """Return the tests of step n: the heading 'tests vN: K tests, L lines', then as step_view."""
     after = step_test(source, n)
-    heading = f"tests v{n}: {count_tests([after])} tests"
+    lines = sum(1 for row in after.splitlines() if row.strip())
+    heading = f"tests v{n}: {count_tests([after])} tests, {lines} lines"
     before = step_test(source, n - 1).splitlines() if n > 0 else []
     return _view(heading, before, after.splitlines(), n)
 
