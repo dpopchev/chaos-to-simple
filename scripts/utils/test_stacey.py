@@ -97,6 +97,11 @@ def test_collaboration_band_narrows_toward_simple() -> None:
 
 
 @pytest.mark.model
+def test_collaboration_band_is_a_line_in_simple() -> None:
+    assert stacey.collaboration_half_width(0.2) == 0.0
+
+
+@pytest.mark.model
 def test_zones_items_lists_four_bands() -> None:
     assert stacey.zones_items(ZONES).count(r"\textbf") == 4
 

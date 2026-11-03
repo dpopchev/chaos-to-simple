@@ -22,7 +22,8 @@ ZONE_COLOURS = ("accounting", "logistics", "marketing", "payment")
 LIMIT = 1.1
 FIGURE = (8.0, 8.1)
 ZONE_NAME_SIZE = 15
-COLLABORATION_WIDTH = 0.12
+COLLABORATION_WIDTH = 0.26
+SIMPLE_EDGE = 0.25
 COLLABORATION_ALPHA = (0.30, 0.20, 0.10, 0.04)
 
 
@@ -128,15 +129,20 @@ def band_anchor(zone: Zone, spots: Sequence[Spot]) -> tuple[float, float]:
     return radius * math.cos(math.radians(best)), radius * math.sin(math.radians(best))
 
 
-def collaboration_half_width(r: float) -> float:
-    """Return the half width of the collaboration band at radius r: 0 at Simple, 0.12 at r = 1."""
-    return COLLABORATION_WIDTH * min(max(r, 0.0), 1.0)
+def collaboration_half_width(r: float, inner: float = SIMPLE_EDGE) -> float:
+    """Return the half width of the band at radius r: 0 up to inner, the full width at r = 1."""
+    if r <= inner:
+        return 0.0
+    return COLLABORATION_WIDTH * (min(r, 1.0) - inner) / (1.0 - inner)
 
 
-def collaboration_polygon(r_min: float, r_max: float) -> list[tuple[float, float]]:
+def collaboration_polygon(
+    r_min: float, r_max: float, inner: float = SIMPLE_EDGE
+) -> list[tuple[float, float]]:
     """Return the corners of the band around y = x between two radii, in data units."""
     root = math.sqrt(2)
-    near, far = collaboration_half_width(r_min), collaboration_half_width(r_max)
+    near = collaboration_half_width(r_min, inner)
+    far = collaboration_half_width(r_max, inner)
     ends = ((r_min, near), (r_max, far))
     left = [((r - w) / root, (r + w) / root) for r, w in ends]
     right = [((r + w) / root, (r - w) / root) for r, w in reversed(ends)]
@@ -187,7 +193,7 @@ def draw(
     for zone, alpha in zip(zones, reversed(COLLABORATION_ALPHA), strict=True):
         ax.add_patch(
             Polygon(
-                collaboration_polygon(zone.r_min, min(zone.r_max, top)),
+                collaboration_polygon(zone.r_min, min(zone.r_max, top), zones[0].r_max),
                 facecolor="grey",
                 alpha=alpha,
                 edgecolor="none",
