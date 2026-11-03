@@ -84,6 +84,21 @@ def _elided(body: list[str]) -> list[str]:
     return out
 
 
+def compact_body(old: list[str], new: list[str]) -> list[str]:
+    """Return the - and + lines of a diff with one context line each side of a change.
+
+    A run of unchanged lines between two changes is one '---' line; a -/+ pair stays as is.
+    """
+    rows = list(difflib.unified_diff(old, new, n=1))[2:]
+    out: list[str] = []
+    for row in rows:
+        if not row.startswith("@@"):
+            out.append(row)
+        elif out:
+            out.append("---\n")
+    return out
+
+
 def snippet_diff(
     from_path: Path,
     from_snippet: str,
@@ -93,6 +108,7 @@ def snippet_diff(
     added_only: bool = False,
     hide: str | None = None,
     labels: tuple[str, str] | None = None,
+    compact: bool = False,
 ) -> str:
     """Return the captioned diff of two snippets: '<from> -> <to>', then the body lines.
 
@@ -100,10 +116,13 @@ def snippet_diff(
     first line containing that text. With added_only, only the + lines follow the caption.
     With hide, a regular expression, a snippet line matching it is dropped before diffing.
     Otherwise a -/+ pair is one '~ new' line and an unchanged run over two lines is '...'.
-    With labels, the caption names them instead of the files.
+    With labels, the caption names them instead of the files. With compact, see compact_body.
     """
     old = _unhidden(_from_start(snippet_lines(from_path, from_snippet), start), hide)
     new = _unhidden(_from_start(snippet_lines(to_path, to_snippet), start), hide)
+    if compact and not added_only:
+        caption = labels or (from_path.name, to_path.name)
+        return "".join([f"{caption[0]} -> {caption[1]}\n", *compact_body(old, new)])
     rows = difflib.unified_diff(
         old,
         new,

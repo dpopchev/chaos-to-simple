@@ -5,7 +5,7 @@
 --
 -- Runs after include-code-files.lua, so the block text is already filled. Line 1 is the caption
 -- (vA -> vB) and is set bold. Each later line is wrapped by its first character: - in \diffdel,
--- + in \diffadd, ~ in \diffchg, and a line starting ... in \diffcut; a context line stays plain.
+-- + in \diffadd, ~ in \diffchg, and a line starting ... or equal to --- in \diffcut; a context line stays plain.
 -- The block becomes a fancyvrb Verbatim (backslash and the two braces are command characters).
 -- The fontsize comes from \fvset, as for any code block; the four macros are in preamble.tex.
 
@@ -24,8 +24,10 @@ local function escape(text)
   return (text:gsub("[\\{}]", ESCAPES))
 end
 
+-- A body line starting with --- is diffcut, but a removed line whose text itself starts with --
+-- is - plus that text, so the rule tests the whole trimmed line == "---", never the prefix.
 local function macro_of(line)
-  if line:sub(1, 3) == "..." then
+  if line:sub(1, 3) == "..." or line:match("^%s*(.-)%s*$") == "---" then
     return "diffcut"
   end
   local first = line:sub(1, 1)

@@ -23,7 +23,8 @@
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
-        [--start TEXT] [--added-only] [--hide PATTERN] [--label-from A --label-to B] --out F.diff
+        [--start TEXT] [--added-only] [--compact] [--hide PATTERN]
+        [--label-from A --label-to B] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths postmortem --incidents data/incidents.csv --out F.txt
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
@@ -109,6 +110,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--to-snippet", default=None, help="snippet of --to when it differs")
     parser.add_argument("--start", default=None, help="diff: start at the first line with TEXT")
     parser.add_argument("--added-only", action="store_true", help="diff: keep only the + lines")
+    parser.add_argument("--compact", action="store_true", help="diff: +/- only, --- for a gap")
     parser.add_argument("--hide", default=None, help="diff: drop snippet lines matching PATTERN")
     parser.add_argument("--label-from", default=None, help="diff: caption left of ->")
     parser.add_argument("--label-to", default=None, help="diff: caption right of ->")
@@ -175,6 +177,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.added_only,
             args.hide,
             (args.label_from, args.label_to) if args.label_from and args.label_to else None,
+            args.compact,
         )
         args.out.write_text(diff, encoding="ascii")
         return 0

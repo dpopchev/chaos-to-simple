@@ -48,6 +48,24 @@ def test_snippet_diff_elides_an_unchanged_run(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_compact_diff(tmp_path: Path) -> None:
+    old, new = tmp_path / "old.py", tmp_path / "new.py"
+    middle = "".join(f"    m{i} = {i}\n" for i in range(5))
+    head, tail = "# [snippet: s]\n", "# [/snippet]\n"
+    old.write_text(f"{head}    a = 1\n{middle}    z = 1\n{tail}", encoding="ascii")
+    new.write_text(f"{head}    a = 2\n{middle}    z = 2\n{tail}", encoding="ascii")
+    assert snippet_diff(old, "s", new, "s", compact=True).splitlines()[1:] == [
+        "-a = 1",
+        "+a = 2",
+        " m0 = 0",
+        "---",
+        " m4 = 4",
+        "-z = 1",
+        "+z = 2",
+    ]
+
+
+@pytest.mark.view
 def test_snippet_diff_labels_replace_the_file_names_in_the_caption(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
     assert snippet_diff(old, "s", new, "s", labels=("v1", "v2")).splitlines()[0] == "v1 -> v2"
