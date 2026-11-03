@@ -67,6 +67,12 @@ def growth_panels(
     return tuple(panels)
 
 
+def panel_label(n: int, tested_cells: int) -> str:
+    """Label an n-bit grid with its size and the tested share at three significant digits."""
+    share = 100 * tested_cells / 2**n
+    return f"2^{n} = {2**n} ({tested_cells} tested, {share:.3g}%)"
+
+
 def grid_growth(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path) -> Path:
     """Draw the grids of 0 to bits bits left to right, 2^n = N under each, two rows."""
     style.apply()
@@ -102,9 +108,8 @@ def grid_growth(bits: int, tested: Sequence[str], bug: Sequence[str], out: Path)
                     edgecolor="none",
                 )
             )
-        ax.text(
-            x0 + slot / 2, y0 - slot - 0.8, f"2^{n} = {2**n}", ha="center", va="top", fontsize=15
-        )
+        label = panel_label(n, list(cells.values()).count("tested")).replace(" (", "\n(")
+        ax.text(x0 + slot / 2, y0 - slot - 0.8, label, ha="center", va="top", fontsize=14)
     ax.set_xlim(-0.2, per_row * (slot + gap) - gap + 0.2)
     ax.set_ylim(-2 * slot - gap - 1.5 - 2.2, 0.2)
     ax.set_aspect("equal")

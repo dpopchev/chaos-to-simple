@@ -405,7 +405,7 @@ bits read as the six conditions, left b5 to right b0
 
 \small
 
-every policy doubles the grid; the two tests stay in the corners, 000000 and 111111
+every policy doubles the grid and halves the two tests' share; they stay in the corners, 000000 and 111111
 
 :::
 ::::

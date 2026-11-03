@@ -14,6 +14,7 @@ from scripts.utils.coverage_view import (
     grid_growth,
     growth_panels,
     load_tested,
+    panel_label,
 )
 
 TESTED_CSV = Path(__file__).resolve().parents[2] / "01-bits" / "data" / "tested.csv"
@@ -61,6 +62,16 @@ def test_grid_growth_draws_a_wide_strip(tmp_path: Path) -> None:
     with Image.open(out) as img:
         width, height = img.size
     assert width > height
+
+
+@pytest.mark.view
+def test_panel_label_shows_the_tested_share() -> None:
+    assert panel_label(6, 2) == "2^6 = 64 (2 tested, 3.12%)"
+
+
+@pytest.mark.view
+def test_panel_label_at_one_cell() -> None:
+    assert panel_label(0, 1) == "2^0 = 1 (1 tested, 100%)"
 
 
 @pytest.mark.view
