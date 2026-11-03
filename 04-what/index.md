@@ -35,7 +35,7 @@ This is how the code will move, one home at a time.
 :::
 ::::
 
-q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary; i1() is the 55 BGN order with the coupon
+q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary; i1() is the 55 EUR order with the coupon
 
 ::: notes
 The threshold now reads the discounted goods, so I1 closes.
