@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015 > W-150 > T-339   | blocked: 0 | todo roots: 4 | done: 500 | pruned: 6
+open path: E-015 > W-150   | blocked: 0 | todo roots: 4 | done: 501 | pruned: 6
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-147  issue  [done]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [done]
   W-148  issue  [done]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [done], T-346 [pruned]   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files], T-347 [done]
   W-149  bug    [done]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [done]
-  W-150  issue  [doing]    The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [doing]   <- ACTIVE LEAF
+  W-150  issue  [doing]    The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [done]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
@@ -880,7 +880,7 @@ flowchart TD
   E015 --> W149["W-149 bug done: Page 29 shows finance's test text over the green run of another test"]
   W149 --> T338["T-338 done: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
   E015 --> W150["W-150 issue doing: The epilogue title's second line collides with the bubble under it"]
-  W150 --> T339["T-339 doing: Fit the epilogue title on one line -> 06-simple/index.md page 46 title -- ACTIVE LEAF"]
+  W150 --> T339["T-339 done: Fit the epilogue title on one line -> 06-simple/index.md page 46 title"]
   E015 --> W151["W-151 bug todo: 01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale"]
   W151 --> T340["T-340 todo: Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk"]
   W152["W-152 bug todo, standalone: The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's"]
@@ -896,8 +896,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015,W150,T339 doing
-  class W145,T331,W146,T332,W147,T333,W148,T343,T344,T345,T347,W149,T338 done
+  class E015,W150 doing
+  class W145,T331,W146,T332,W147,T333,W148,T343,T344,T345,T347,W149,T338,T339 done
   class W151,T340,W152,T341,W153,T342,W154,T348,W155,T349 todo
   class T336,T346 pruned
 ```
