@@ -19,6 +19,8 @@
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths bubbles --bubbles 02-stacey/data/bubbles.csv --actors data/actors.csv \\
         --out build/02-stacey
+    python -m scripts.paths tally --version 7 --policies 6 --paths 64 --tests-dir DIR \\
+        [--only REGEX] --out F.txt
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
@@ -33,6 +35,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from collections.abc import Sequence
 from pathlib import Path
@@ -62,6 +65,7 @@ from scripts.utils.storyboard import (
     STEPS,
     bubble,
     code_length,
+    count_tests,
     load_bubbles,
     step_test,
     step_view,
@@ -76,7 +80,7 @@ def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -
     for n in range(STEPS):
         (out_dir / f"step-{n}.diff").write_text(step_view(text, n), encoding="ascii")
         (out_dir / f"test-{n}.diff").write_text(test_view(text, n), encoding="ascii")
-        tally = tally_line(n, lines=code_length(text, n))
+        tally = tally_line(n, n, 2**n, 2, lines=code_length(text, n))
         (out_dir / f"tally-{n}.txt").write_text(tally + "\n", encoding="ascii")
     write_bubbles(bubbles, actors, out_dir)
 
@@ -89,6 +93,21 @@ def test_view(source: str, n: int) -> str:
     before = step_test(source, n - 1)
     body = compact_body(before.splitlines(keepends=True), after.splitlines(keepends=True))
     return "".join([f"tests v{n - 1} -> v{n}\n", *(row.rstrip("\n") + "\n" for row in body)])
+
+
+def tally_text(
+    version: int, policies: int, paths: int, tests_dirs: Sequence[Path], only: str | None
+) -> str:
+    """Return the tally line of a checkout version, its tests counted over the matched files."""
+    pattern = re.compile(only) if only else None
+    files = sorted(
+        path
+        for tests_dir in tests_dirs
+        for path in tests_dir.glob("test_*.py")
+        if pattern is None or pattern.search(path.name)
+    )
+    tests = count_tests(path.read_text(encoding="utf-8") for path in files)
+    return tally_line(version, policies, paths, tests) + "\n"
 
 
 def write_bubbles(bubbles: Path, actors: Path, out_dir: Path) -> None:
@@ -121,8 +140,15 @@ def main(argv: Sequence[str] | None = None) -> int:
             "retro",
             "storyboard",
             "bubbles",
+            "tally",
             "diff",
         ],
+    )
+    parser.add_argument("--version", type=int, default=None, help="tally: the checkout version")
+    parser.add_argument("--policies", type=int, default=None, help="tally: the policy count")
+    parser.add_argument("--paths", type=int, default=None, help="tally: the path count")
+    parser.add_argument(
+        "--tests-dir", type=Path, action="append", default=[], help="tally: a tests dir (repeat)"
     )
     parser.add_argument("--from", dest="from_path", type=Path, default=None)
     parser.add_argument("--to", dest="to_path", type=Path, default=None)
@@ -134,7 +160,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--hide", default=None, help="diff: drop snippet lines matching PATTERN")
     parser.add_argument("--label-from", default=None, help="diff: caption left of ->")
     parser.add_argument("--label-to", default=None, help="diff: caption right of ->")
-    parser.add_argument("--only", default=None, help="retro: the card of this question id")
+    parser.add_argument("--only", default=None, help="retro: a question id; tally: file regex")
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
@@ -181,6 +207,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         if args.out is None:
             parser.error("bubbles needs --out, a directory")
         write_bubbles(args.bubbles, args.actors, args.out)
+        return 0
+
+    if args.what == "tally":
+        if args.out is None or None in (args.version, args.policies, args.paths):
+            parser.error("tally needs --version, --policies, --paths and --out")
+        if not args.tests_dir:
+            parser.error("tally needs a --tests-dir")
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        text = tally_text(args.version, args.policies, args.paths, args.tests_dir, args.only)
+        args.out.write_text(text, encoding="ascii")
         return 0
 
     if args.what == "diff":

@@ -6,12 +6,13 @@ import csv
 import difflib
 import re
 import textwrap
-from collections.abc import Mapping
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass
 from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
+from scripts.utils.board import TEST_FUNCTION
 from scripts.utils.stagediff import compact_body
 
 STEPS = 7
@@ -79,10 +80,18 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(body) + "\n"
 
 
-def tally_line(n: int, tests: int = 2, lines: int | None = None) -> str:
-    """Return the tally: policies, the paths they double to, the tests, then the length if given."""
-    tally = f"checkout v{n}: {n} policies, {2**n} paths, {tests} tests"
+def tally_line(
+    version: int, policies: int, paths: int, tests: int, lines: int | None = None
+) -> str:
+    """Return the tally: policies, paths and tests of a version, then the length if given."""
+    tally = f"checkout v{version}: {policies} policies, {paths} paths, {tests} tests"
     return tally if lines is None else f"{tally}, {lines} lines"
+
+
+def count_tests(texts: Iterable[str]) -> int:
+    """Return how many distinct test functions and classes the test file texts define."""
+    found = (name for text in texts for pair in TEST_FUNCTION.findall(text) for name in pair)
+    return len({name for name in found if name})
 
 
 def code_length(source: str, n: int) -> int:

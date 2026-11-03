@@ -11,6 +11,7 @@ from scripts.utils.paths import load_cast
 from scripts.utils.storyboard import (
     BubbleRow,
     bubble,
+    count_tests,
     step_diff,
     step_lines,
     step_test,
@@ -135,13 +136,20 @@ def test_bubble_wraps_at_the_column_width() -> None:
 
 
 @pytest.mark.view
-def test_tally_line_doubles_the_paths() -> None:
-    assert tally_line(3) == "checkout v3: 3 policies, 8 paths, 2 tests"
+def test_tally_line_names_the_version_policies_paths_and_tests() -> None:
+    assert tally_line(7, 6, 64, 3) == "checkout v7: 6 policies, 64 paths, 3 tests"
 
 
 @pytest.mark.view
 def test_tally_line_ends_with_the_length() -> None:
-    assert tally_line(3, lines=15) == "checkout v3: 3 policies, 8 paths, 2 tests, 15 lines"
+    assert tally_line(3, 3, 8, 2, lines=15) == "checkout v3: 3 policies, 8 paths, 2 tests, 15 lines"
+
+
+@pytest.mark.view
+def test_tally_counts_tests_dir(tmp_path: Path) -> None:
+    (tmp_path / "test_a.py").write_text("def test_one():\n    pass\n\ndef test_two():\n    pass\n")
+    texts = [path.read_text() for path in sorted(tmp_path.glob("test_*.py"))]
+    assert count_tests(texts) == 2
 
 
 @pytest.mark.view
