@@ -56,9 +56,13 @@ def i1() -> Order:
 STAGES = [pytest.param(checkout_fixed, id="fixed"), pytest.param(checkout_v4, id="v4")]
 
 
+# [snippet: i1]
 @pytest.mark.parametrize("stage", STAGES)
 def test_i1_example_pays_shipping(stage: Checkout) -> None:
     assert stage(i1(), TODAY, charge, reserve, send) == Decimal("60.00")  # (45 + 5) * 1.20
+
+
+# [/snippet]
 
 
 @pytest.mark.parametrize("stage", STAGES)

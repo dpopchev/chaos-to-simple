@@ -21,13 +21,13 @@ This is how the code will move, one home at a time.
 ```{.diff include=build/04-what/fix.diff cap=18}
 ```
 
-```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
+```{.python include=04-what/tests/test_checkout_stages.py snippet=i1}
 ```
 
 ```{.text include=build/04-what/fix-run.txt}
 ```
 
-q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary
+q3 fixed: the threshold reads the discounted goods, a value pricing returns, the first boundary; i1() is the 55 BGN order with the coupon
 
 ::: notes
 The threshold now reads the discounted goods, so I1 closes.
