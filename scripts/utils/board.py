@@ -158,7 +158,8 @@ def board(
         head = colour_of("fulfilment") if col < shown else None
         ink = "white" if col < shown else "dimgray"
         narrow = stage == 3 and col >= shown
-        cell(col, 0, header_text(col, stage, heads), head, 6 if narrow else (10 if stage == 3 else 12), ink)
+        size = 6 if narrow else (10 if stage == 3 else 12)
+        cell(col, 0, header_text(col, stage, heads), head, size, ink)
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,
