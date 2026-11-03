@@ -22,6 +22,8 @@ ZONE_COLOURS = ("accounting", "logistics", "marketing", "payment")
 LIMIT = 1.1
 FIGURE = (8.0, 8.1)
 ZONE_NAME_SIZE = 15
+COLLABORATION_WIDTH = 0.12
+COLLABORATION_ALPHA = (0.30, 0.20, 0.10, 0.04)
 
 
 @dataclass(frozen=True)
@@ -126,6 +128,21 @@ def band_anchor(zone: Zone, spots: Sequence[Spot]) -> tuple[float, float]:
     return radius * math.cos(math.radians(best)), radius * math.sin(math.radians(best))
 
 
+def collaboration_half_width(r: float) -> float:
+    """Return the half width of the collaboration band at radius r: 0 at Simple, 0.12 at r = 1."""
+    return COLLABORATION_WIDTH * min(max(r, 0.0), 1.0)
+
+
+def collaboration_polygon(r_min: float, r_max: float) -> list[tuple[float, float]]:
+    """Return the corners of the band around y = x between two radii, in data units."""
+    root = math.sqrt(2)
+    near, far = collaboration_half_width(r_min), collaboration_half_width(r_max)
+    ends = ((r_min, near), (r_max, far))
+    left = [((r - w) / root, (r + w) / root) for r, w in ends]
+    right = [((r + w) / root, (r - w) / root) for r, w in reversed(ends)]
+    return [*left, *right]
+
+
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],
@@ -143,7 +160,7 @@ def draw(
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.font_manager import FontProperties
-    from matplotlib.patches import Circle, Wedge
+    from matplotlib.patches import Circle, Polygon, Wedge
 
     fig, ax = plt.subplots(figsize=FIGURE, dpi=style.DPI)
     for zone, key in reversed(list(zip(zones, ZONE_COLOURS, strict=True))):
@@ -152,6 +169,29 @@ def draw(
                 (0, 0), zone.r_max, 0, 90, facecolor=colour_of(key), alpha=0.28, edgecolor="white"
             )
         )
+    # Zones run innermost first; Chaos is last and gets the strongest shade.
+    top = LIMIT * math.sqrt(2)
+    for zone, alpha in zip(zones, reversed(COLLABORATION_ALPHA), strict=True):
+        ax.add_patch(
+            Polygon(
+                collaboration_polygon(zone.r_min, min(zone.r_max, top)),
+                facecolor="grey",
+                alpha=alpha,
+                edgecolor="none",
+                zorder=1.5,
+            )
+        )
+    ax.text(
+        LIMIT - 0.2,
+        LIMIT - 0.24,
+        "collaboration",
+        ha="center",
+        va="center",
+        fontsize=14,
+        color="dimgrey",
+        rotation=45,
+        zorder=6,
+    )
     ax.plot([0, LIMIT], [0, LIMIT], color="dimgrey", linewidth=2, linestyle="--", zorder=2)
     ax.text(
         LIMIT - 0.04,
