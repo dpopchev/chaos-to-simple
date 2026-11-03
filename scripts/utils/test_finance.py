@@ -35,8 +35,10 @@ def test_title_names_the_gap() -> None:
 
 
 @pytest.mark.view
-def test_legend_names_total_received_missing() -> None:
-    assert [name.split(":")[0] for name in LEGEND] == ["expected", "received", "missing"]
+def test_legend_reads_finances_count_income_and_the_difference() -> None:
+    words = [name.split(":")[0] for name in LEGEND]
+    code_talk = any("code" in name or "R1" in name for name in LEGEND)
+    assert (words, code_talk) == (["expected", "received", "missing"], False)
 
 
 @pytest.mark.view

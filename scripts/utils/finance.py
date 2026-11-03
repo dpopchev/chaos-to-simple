@@ -13,9 +13,9 @@ FIGSIZE = (8.0, 3.5)
 FONTSIZE = 12
 PARCEL_EUR = 5
 LEGEND = (
-    "expected: the bar, 5 EUR on every parcel",
-    "received: what the code charged (R1)",
-    "missing: what finance expected (R2)",
+    "expected: parcels under 50 EUR x 5 EUR, finance's count",
+    "received: shipping income booked",
+    "missing: expected minus received",
 )
 
 
@@ -81,7 +81,7 @@ def title(weeks: Sequence[Week]) -> str:
 
 
 def draw(weeks: Sequence[Week], out: Path) -> Path:
-    """Draw one stacked bar per week: received below, the shortfall above, exact EUR on each."""
+    """Draw one horizontal stacked bar per week: received, then the shortfall, EUR on each."""
     from scripts.utils import style
 
     style.apply()
@@ -89,58 +89,59 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
 
     top = max(w.expected_eur for w in weeks)
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=style.DPI)
-    for x, w in enumerate(weeks):
-        for name, bottom, value, key, ink in (
+    for y, w in enumerate(weeks):
+        for name, left, value, key, ink in (
             (LEGEND[1], 0, w.received_eur, "logistics", "white"),
             (LEGEND[2], w.received_eur, w.shortfall_eur, "marketing", "black"),
         ):
-            ax.bar(
-                x,
+            ax.barh(
+                y,
                 value,
-                bottom=bottom,
-                width=0.6,
+                left=left,
+                height=0.6,
                 color=colour_of(key),
                 edgecolor="white",
                 linewidth=0.8,
-                label=name if x == 0 else None,
+                label=name if y == 0 else None,
             )
             ax.text(
-                x,
-                bottom + value / 2,
+                left + value / 2,
+                y,
                 f"{value:,}",
                 ha="center",
                 va="center",
                 fontsize=FONTSIZE,
                 color=ink,
             )
-        ax.bar(
-            x,
+        ax.barh(
+            y,
             w.expected_eur,
-            width=0.6,
+            height=0.6,
             fill=False,
             edgecolor="black",
             linewidth=1.5,
-            label=LEGEND[0] if x == 0 else None,
+            label=LEGEND[0] if y == 0 else None,
         )
         ax.text(
-            x,
             w.expected_eur,
-            f"{w.expected_eur:,}",
-            ha="center",
-            va="bottom",
+            y,
+            f" {w.expected_eur:,}",
+            ha="left",
+            va="center",
             fontsize=FONTSIZE,
             fontweight="bold",
         )
-    ax.set_xticks(range(len(weeks)), [f"Mon {w.monday}" for w in weeks], fontsize=FONTSIZE)
+    ax.set_yticks(range(len(weeks)), [f"Mon {w.monday}" for w in weeks], fontsize=FONTSIZE)
+    ax.invert_yaxis()
     ax.set_title(title(weeks), fontsize=FONTSIZE, fontweight="bold")
-    ax.set_ylim(0, top * 1.55)
-    ax.set_ylabel("shipping income, EUR", fontsize=FONTSIZE)
+    ax.set_xlim(0, top * 1.2)
+    ax.set_xlabel("shipping income, EUR", fontsize=FONTSIZE)
     ax.tick_params(labelsize=FONTSIZE)
     by_name = dict(zip(*reversed(ax.get_legend_handles_labels()), strict=True))
     handles = [by_name[name] for name in LEGEND]
-    ax.legend(handles, LEGEND, frameon=False, loc="upper left", fontsize=FONTSIZE)
+    fig.legend(handles, LEGEND, frameon=False, loc="lower left", fontsize=FONTSIZE)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
-    fig.tight_layout()
+    fig.tight_layout(rect=(0, 0.33, 1, 1))
     style.save(fig, out)
     return out

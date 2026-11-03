@@ -330,8 +330,8 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 ::: notes
 Finance noticed, not the tests: October's four weeks, received shipping income against the
 shortfall, 1,214 orders and 6,070 EUR nowhere to be found, all in the chart title. The legend
-names the two readings: received is the code, R1, marketing's reading of the cart before the
-coupon; missing is finance, R2, logistics' reading of what they pay, after the coupon. The
+is finance's: expected is their count of parcels under 50 EUR at 5 EUR, received is the
+income they booked, missing is the difference. The
 memo is the sheet, not a conclusion: finance's counts and sums, nothing more. Read
 the memo, then the chart, then the bold line: the condition, the threshold read the cart
 before the coupon. The table is the engineering cue: every free parcel carried the coupon,
