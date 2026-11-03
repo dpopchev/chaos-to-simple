@@ -27,6 +27,24 @@
 \newcommand{\diffchg}[1]{\textcolor[HTML]{9A6700}{#1}}
 \newcommand{\diffcut}[1]{\textcolor[HTML]{6E7781}{#1}}
 
+% The storyboard (story.lua): three shades -- the code shade, the request box, the headings --
+% and the row backgrounds of a Python-highlighted diff (added, removed, scope).
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{fancyvrb}
+\definecolor{shadecolor}{HTML}{F4F4F4}
+\definecolor{requestbg}{HTML}{FFF4D6}
+\definecolor{headbg}{HTML}{DCE6F2}
+\definecolor{addbg}{HTML}{DDF4E0}
+\definecolor{delbg}{HTML}{FBE0DE}
+\newcommand{\storyhead}[1]{\tcbox[on line,boxsep=2pt,left=2pt,right=2pt,top=0pt,bottom=0pt,arc=2pt,
+  colback=headbg,colframe=headbg]{\textbf{#1}}\par}
+\newcommand{\diffaddbg}[1]{\colorbox{addbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
+\newcommand{\diffdelbg}[1]{\colorbox{delbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
+\newcommand{\diffscope}[1]{\colorbox{shadecolor}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
+\newtcolorbox{request}{colback=requestbg,colframe=requestbg,boxsep=2pt,left=2pt,right=2pt,top=0pt,
+  bottom=0pt,arc=2pt}
+
 % The line: #1 the believed line in grey over #2 the learned line in bold, at the frame bottom.
 % Both texts come verbatim from data/lines.csv; make lines checks that they are verbatim.
 \newcommand{\theline}[2]{\vfill{\color{gray}#1}\par\textbf{#2}}
