@@ -24,7 +24,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- none recorded
+- 2026-11-03 E-016: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-03)
 
 ## Deviations
 - none recorded

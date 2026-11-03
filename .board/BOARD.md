@@ -1,8 +1,23 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 513 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 1 | done: 513 | pruned: 6
 
 ## Tree
+
+```text
+E-016         [todo]     The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut
+  W-156  issue  [todo]     snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [todo], T-351 [todo], T-352 [todo]
+  W-157  issue  [todo]     01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [todo], T-354 [todo], T-355 [todo]
+  W-158  issue  [todo]     01 counting: bits under their counts, the rule as a table -- T-356 [todo], T-357 [todo]
+  W-159  issue  [todo]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [todo], T-359 [todo], T-360 [todo]
+  W-160  issue  [todo]     Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [todo], T-362 [todo], T-363 [todo]
+  W-161  issue  [todo]     01 finance: the cues beside the chart, the memo's four orders on their own frame -- T-364 [todo], T-365 [todo], T-366 [todo], T-367 [todo]
+  W-162  issue  [todo]     02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [todo], T-369 [todo]
+  W-163  issue  [todo]     03 room: the certainty sourced, the 512 grid explained, the board widened -- T-370 [todo], T-371 [todo], T-372 [todo]
+  W-164  issue  [todo]     04 homes: each snippet beside its test, the homes column compact -- T-373 [todo], T-374 [todo], T-375 [todo]
+  W-165  issue  [todo]     05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code -- T-376 [todo], T-377 [todo], T-378 [todo]
+  W-166  issue  [todo]     one kind per bit: counts, retro and wounds read the subdomain from contexts.csv -- T-379 [todo], T-380 [todo]
+```
 
 ## Closed
 
@@ -909,9 +924,53 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's chec
 ## Diagram
 ```mermaid
 flowchart TD
+  E016["E-016 todo: The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut"]
+  E016 --> W156["W-156 issue todo: snippet format: two sizes set once, an optional heading, no per-slide fvset"]
+  W156 --> T350["T-350 todo: Set the two sizes and the heading label -> preamble.tex macros and the heading= attribute"]
+  W156 --> T351["T-351 todo: Scale the width budget by block kind -> scripts/utils/widths.py reads the fence class"]
+  W156 --> T352["T-352 todo: Remove every per-slide size -> the fvset lines gone from 01..06 index.md"]
+  E016 --> W157["W-157 issue todo: 01 storyboard: v0 on one frame, one line per bubble and row, no aside"]
+  W157 --> T353["T-353 todo: Write each bubble and diff row on one line -> storyboard.py unwrapped for 01"]
+  W157 --> T354["T-354 todo: Merge the v0 frames -> 01-bits/index.md at 13 frames with the counter plan"]
+  W157 --> T355["T-355 todo: Drop the aside from the done frame -> 01-bits/index.md without the logistics aside"]
+  E016 --> W158["W-158 issue todo: 01 counting: bits under their counts, the rule as a table"]
+  W158 --> T356["T-356 todo: Align the counts and the bit strings -> counting.py rows on one monospace grid"]
+  W158 --> T357["T-357 todo: Rewrite the right column -> 01-bits/index.md page 5 as a footnotesize rule table"]
+  E016 --> W159["W-159 issue todo: 00 opening: the agenda after the title, the map by subdomain kind"]
+  W159 --> T358["T-358 todo: Render the 00 agenda and open with it -> agenda-00.png and the first frame"]
+  W159 --> T359["T-359 todo: Draw the departments inside their bands -> stage.business_map with kind-labelled bands and owner chips"]
+  W159 --> T360["T-360 todo: List the policies on the left -> stage.business_map with one bullet per request"]
+  E016 --> W160["W-160 issue todo: Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside"]
+  W160 --> T361["T-361 todo: Name the bands in place and carry the corners -> stacey.draw with one anchor per band"]
+  W160 --> T362["T-362 todo: Shade the collaboration band -> stacey.draw with a fading band on the Who line"]
+  W160 --> T363["T-363 todo: List the definitions beside the overview -> build/00-frontmatter/zones.tex in the right column"]
+  E016 --> W161["W-161 issue todo: 01 finance: the cues beside the chart, the memo's four orders on their own frame"]
+  W161 --> T364["T-364 todo: Add the coupon columns and the cue table -> finance.cues and build/01-bits/cues.txt"]
+  W161 --> T365["T-365 todo: Lay the chart beside the cues -> 01-bits/index.md page 16 in two columns"]
+  W161 --> T366["T-366 todo: Test the four orders the memo implies -> 01-bits/tests/test_memo_orders.py and memo-run.txt"]
+  W161 --> T367["T-367 todo: Add the memo frame -> 01-bits/index.md after page 17 with the four orders"]
+  E016 --> W162["W-162 issue todo: 02 deduction frame: from 54.00 against 60.00 to two readings"]
+  W162 --> T368["T-368 todo: Write the deduction frame -> 02-stacey/index.md with the two-readings table"]
+  W162 --> T369["T-369 todo: Update the 02 brief -> 02-stacey/README.md at three slides"]
+  E016 --> W163["W-163 issue todo: 03 room: the certainty sourced, the 512 grid explained, the board widened"]
+  W163 --> T370["T-370 todo: Source the certainty line -> figures.journey with the room's scoring"]
+  W163 --> T371["T-371 todo: Explain the eight panels -> paths.grid_panels with a suptitle and world titles"]
+  W163 --> T372["T-372 todo: Widen the board -> board.py with narrow waiting columns at stage 3"]
+  E016 --> W164["W-164 issue todo: 04 homes: each snippet beside its test, the homes column compact"]
+  W164 --> T373["T-373 todo: Put the fix beside its test -> 04-what/index.md page 30 in two columns"]
+  W164 --> T374["T-374 todo: Put the fee beside its test -> 04-what/index.md page 31 with the fee-tests snippet"]
+  W164 --> T375["T-375 todo: Compact the homes column -> 04-what/index.md page 32 without the file-name lines"]
+  E016 --> W165["W-165 issue todo: 05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code"]
+  W165 --> T376["T-376 todo: Define the seam on page 38 -> 05-how/index.md with results beside ports"]
+  W165 --> T377["T-377 todo: Make the staged files differ by the extraction alone -> shell.py as v9 plus price()"]
+  W165 --> T378["T-378 todo: Show price() beside the shell as plain code -> 06-simple/index.md page 42"]
+  E016 --> W166["W-166 issue todo: one kind per bit: counts, retro and wounds read the subdomain from contexts.csv"]
+  W166 --> T379["T-379 todo: Head the counts by kind -> paths.count_report from contexts.csv"]
+  W166 --> T380["T-380 todo: Derive each question's and incident's subdomain from its bit -> retro and postmortem through contexts.csv"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E016,W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
