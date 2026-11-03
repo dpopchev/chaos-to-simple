@@ -117,14 +117,17 @@ Nothing was deleted, every decision only moved to the place that owns it.
 :::
 ::: {.column width="40%"}
 
-![](build/06-simple/epilogue.png){height=56%}
+![](build/06-simple/epilogue.png){height=54%}
 
 :::
 ::::
+
+\footnotesize the seventh if is a supporting change, and a supporting change should be cheap; it was not, until the split
 
 \theline{One more if is cheap}{Decisions in the core, effects in the shell. The next if costs 8, not 512.}
 
 ::: notes
 Marketing's seventh if lands in shipping, one bit in one context: +8, not +512.
 The core stays untouched, the new decision sits in one place with its own tests.
+The shipping context is supporting, so +8 is what a supporting change should cost.
 :::
