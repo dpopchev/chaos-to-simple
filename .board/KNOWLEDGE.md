@@ -24,19 +24,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-03 E-014: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 16 hours) (developer, 2026-11-03)
+- none recorded
 
 ## Deviations
-- 2026-11-03 E-014: T-294 amended mid-Task: the retro's subdomain column is 9 wide and supporting has 10, so scripts/utils/retro.py joins its files (subdomain 10, decided 40, the table stays 104); Check unchanged (lane hand-back)
-- 2026-11-03 E-014: T-295: data/incidents.csv already had a kind column (rule, decision, effect), so the new column is named subdomain, as in questions.csv; the post-mortem prints it under the header kind (lane hand-back)
-- 2026-11-03 E-014: T-297 Output amended to name scripts/figures.py: the coordinator's go word named it, the brief did not, and the scope gate reads each commit (55d57fc touched it, 144c1a0 reverted the line); Check unchanged
-- 2026-11-03 E-014: T-310's Action corrected before dispatch: the step-3 everything order totals 81.00 ((100 - 10) x 0.90, free shipping, no VAT until step 6), not 97.20 as planned
-- 2026-11-03 E-014: T-318 amended before dispatch: T-317's r1 and r2 snippets reach about 90 columns, so T-318 rewraps them in 02-stacey/tests/test_readings.py (layout only) to fit beside the bubbles
-- 2026-11-03 E-014: T-324 Output amended to name data/artifacts.csv: the brief named the artifact row but not the file, so the scope gate refused the close (same gap as T-297)
-- 2026-11-03 E-014: T-330 filed under W-130 after T-291's hand-back: the four new context labels did not match the developer's pasted data (Order fulfilment, Payment provider, Warehouse system, Mail delivery)
-- 2026-11-03 E-014: T-330 hand-back: the colour-code legend clips its ports rows since T-291 put the provider contexts in the home group; T-298's Action amended to keep only core, supporting and tax in it (Check unchanged); the stale-figure finding filed standalone as W-145
-- 2026-11-03 E-014: T-334 amended mid-Task: the edge --- breaks test_step_diff_is_compact (T-308's pin) and W-136 holds 4 Tasks, so T-334 also updates that test in scripts/utils/test_storyboard.py; Check unchanged (lane hand-back)
-- 2026-11-03 E-014: T-334 filed under W-136 after T-307's hand-back: compact_body marks only the elisions between hunks; the developer asked for --- wherever nothing changed
-- 2026-11-03 E-014: T-335 Output amended mid-Task: T-311 capped test-6.diff at 8 against its length + 2 rule; the per-step regular total makes it 10, so T-335 raises that one cap in 01-bits/index.md; Check unchanged (lane hand-back)
-- 2026-11-03 E-014: T-335 filed under W-137 after T-310's hand-back: the brief kept test_regular_order at 54.00 on every step, a test that fails against v0 to v5 (45.00 until VAT); the total is now computed per step
-- 2026-11-03 E-014: T-337 filed under W-141 after T-319's hand-back: the labelled axis narrowed the journey and two step captions now touch
+- none recorded
