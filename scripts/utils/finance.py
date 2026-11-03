@@ -11,7 +11,11 @@ from scripts.utils.palette import colour_of
 
 FIGSIZE = (8.0, 3.5)
 FONTSIZE = 12
-LEGEND = ("received: the code, R1 before the coupon", "missing: finance, R2 after the coupon")
+LEGEND = (
+    "expected: the bar, 5 EUR on every parcel",
+    "received: what the code charged (R1)",
+    "missing: what finance expected (R2)",
+)
 
 
 @dataclass(frozen=True)
@@ -64,8 +68,8 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
     fig, ax = plt.subplots(figsize=FIGSIZE, dpi=style.DPI)
     for x, w in enumerate(weeks):
         for name, bottom, value, key, ink in (
-            (LEGEND[0], 0, w.received_eur, "logistics", "white"),
-            (LEGEND[1], w.received_eur, w.shortfall_eur, "marketing", "black"),
+            (LEGEND[1], 0, w.received_eur, "logistics", "white"),
+            (LEGEND[2], w.received_eur, w.shortfall_eur, "marketing", "black"),
         ):
             ax.bar(
                 x,
@@ -86,6 +90,15 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
                 fontsize=FONTSIZE,
                 color=ink,
             )
+        ax.bar(
+            x,
+            w.expected_eur,
+            width=0.6,
+            fill=False,
+            edgecolor="black",
+            linewidth=1.5,
+            label=LEGEND[0] if x == 0 else None,
+        )
         ax.text(
             x,
             w.expected_eur,
@@ -97,10 +110,12 @@ def draw(weeks: Sequence[Week], out: Path) -> Path:
         )
     ax.set_xticks(range(len(weeks)), [f"Mon {w.monday}" for w in weeks], fontsize=FONTSIZE)
     ax.set_title(title(weeks), fontsize=FONTSIZE, fontweight="bold")
-    ax.set_ylim(0, top * 1.2)
+    ax.set_ylim(0, top * 1.55)
     ax.set_ylabel("shipping income, EUR", fontsize=FONTSIZE)
     ax.tick_params(labelsize=FONTSIZE)
-    ax.legend(frameon=False, loc="upper left", fontsize=FONTSIZE)
+    by_name = dict(zip(*reversed(ax.get_legend_handles_labels()), strict=True))
+    handles = [by_name[name] for name in LEGEND]
+    ax.legend(handles, LEGEND, frameon=False, loc="upper left", fontsize=FONTSIZE)
     for side in ("top", "right"):
         ax.spines[side].set_visible(False)
     fig.tight_layout()
