@@ -83,7 +83,7 @@ The core has no if of its own, so neither wound can come back through a decision
 
 ## The split cuts 512 paths to 72 while branch coverage stays at 100% as before {paths=72}
 
-![](build/06-simple/paths.png){height=61%}
+![](build/06-simple/paths.png){width=88%}
 
 ```{.text include=build/data/splits.txt}
 ```
@@ -116,7 +116,7 @@ Nothing was deleted, every decision only moved to the place that owns it.
 :::
 ::: {.column width="40%"}
 
-![](build/06-simple/epilogue.png){height=54%}
+![](build/06-simple/epilogue.png){width=100%}
 
 :::
 ::::
