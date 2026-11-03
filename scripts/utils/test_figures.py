@@ -23,7 +23,7 @@ from scripts.utils.figures import (
     seam_boxes,
     tree,
 )
-from scripts.utils.palette import load_actors
+from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import load_cast, load_rules
 from scripts.utils.retro import Question
 
@@ -42,9 +42,13 @@ def test_moves_sum_to_nine() -> None:
 
 
 @pytest.mark.model
-def test_band_groups_splits_core_and_shell() -> None:
-    groups = band_groups(moves(load_rules(RULES_CSV)))
-    assert groups == (("core: the What", 3), ("shell: the How, the ports", 1))
+def test_band_groups_follow_the_kinds() -> None:
+    groups = band_groups(moves(load_rules(RULES_CSV)), load_contexts())
+    assert groups == (
+        ("core: the What", 1),
+        ("supporting: the shop's own rules", 2),
+        ("generic: bought, adapted", 1),
+    )
 
 
 @pytest.mark.model
@@ -71,7 +75,7 @@ def test_seam_writes_a_png(tmp_path: Path) -> None:
 
 @pytest.mark.edge
 def test_moves_figure_writes_a_png(tmp_path: Path) -> None:
-    out = moves_figure(tmp_path / "moves.png", moves(load_rules(RULES_CSV)))
+    out = moves_figure(tmp_path / "moves.png", moves(load_rules(RULES_CSV)), load_contexts())
     assert out.read_bytes().startswith(PNG_MAGIC)
 
 

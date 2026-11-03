@@ -10,7 +10,7 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
-from scripts.utils.palette import Actor, colour_of, context_colour, icon_of, label_of
+from scripts.utils.palette import Actor, Context, colour_of, context_colour, icon_of, label_of
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.retro import Question
 
@@ -257,19 +257,39 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     return out
 
 
-def band_groups(moves: Sequence[Move]) -> tuple[tuple[str, int], ...]:
-    """Count the bands under the core and the shell labels."""
-    shell = sum(1 for move in moves if move.home == "fulfilment")
-    return (("core: the What", len(moves) - shell), ("shell: the How, the ports", shell))
+KIND_LABELS = {
+    "core": "core: the What",
+    "supporting": "supporting: the shop's own rules",
+    "generic": "generic: bought, adapted",
+}
 
 
-def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
-    """Draw checkout() as one box and one band per home, its width by bits, its count on it."""
+def by_kind(moves: Sequence[Move], contexts: Mapping[str, Context]) -> tuple[Move, ...]:
+    """Return the moves ordered core, supporting, generic, each kind keeping its order."""
+    order = tuple(KIND_LABELS)
+    return tuple(sorted(moves, key=lambda move: order.index(contexts[move.home].kind)))
+
+
+def band_groups(
+    moves: Sequence[Move], contexts: Mapping[str, Context]
+) -> tuple[tuple[str, int], ...]:
+    """Count the bands per kind present, in the order core, supporting, generic."""
+    kinds = [contexts[move.home].kind for move in moves]
+    return tuple((label, kinds.count(kind)) for kind, label in KIND_LABELS.items() if kind in kinds)
+
+
+def moves_figure(out: Path, moves: Sequence[Move], contexts: Mapping[str, Context]) -> Path:
+    """Draw checkout() as one grey box and one band per home, bracketed by kind.
+
+    The band's width is its bits, its count sits on it, its label is the context's label.
+    """
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch, Rectangle
 
     unit, band_x, band_h = 1.5, 5.0, 0.7
+    groups = band_groups(moves, contexts)
+    moves = by_kind(moves, contexts)
     n = len(moves)
     fig, ax = plt.subplots(figsize=(11.0, 3.6), dpi=style.DPI)
     mid = (n - 1) / 2
@@ -279,11 +299,12 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             2.6,
             1.6,
             boxstyle="round,pad=0.05,rounding_size=0.15",
-            facecolor=colour_of("dev"),
-            edgecolor="none",
+            facecolor=colour_of("tangled"),
+            edgecolor="black",
+            linewidth=2,
         )
     )
-    ax.text(1.5, mid, "checkout()", ha="center", va="center", fontsize=16, color="white")
+    ax.text(1.5, mid, "checkout()", ha="center", va="center", fontsize=16, color="black")
     for row, move in enumerate(moves):
         y = n - 1 - row
         colour = context_colour(move.home)
@@ -305,10 +326,17 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             fontsize=20,
             color="white",
         )
-        ax.text(band_x + move.bits * unit + 0.2, y, move.home, ha="left", va="center", fontsize=16)
-    bracket_x = band_x + max(move.bits for move in moves) * unit + 3.4
+        ax.text(
+            band_x + move.bits * unit + 0.2,
+            y,
+            contexts[move.home].label,
+            ha="left",
+            va="center",
+            fontsize=16,
+        )
+    bracket_x = band_x + max(move.bits for move in moves) * unit + 4.6
     top = n - 1
-    for label, count in band_groups(moves):
+    for label, count in groups:
         if count == 0:
             continue
         bottom = top - count + 1
@@ -327,7 +355,7 @@ def moves_figure(out: Path, moves: Sequence[Move]) -> Path:
             fontsize=14,
         )
         top = bottom - 1
-    ax.set_xlim(0, bracket_x + 7.5)
+    ax.set_xlim(0, bracket_x + 8.0)
     ax.set_ylim(-0.7, n - 0.3)
     ax.axis("off")
     fig.tight_layout()
