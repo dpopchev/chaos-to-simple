@@ -77,7 +77,7 @@ The right side is the plain matrix of 03, arrows from 01: the What is agreed, th
 
 ## Nine decisions came out of the room, and each moves to a home, none deleted {paths=512}
 
-![](build/03-chaos/board.png){width=65%}
+![](build/03-chaos/board.png){width=100%}
 
 \footnotesize nine rows, nine bits: 2^9 = 512 until every row has a home
 
