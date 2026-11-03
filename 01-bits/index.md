@@ -51,10 +51,6 @@ customer's line aloud: that is all.
 
 ## The same request with two tests still has just one path {paths=1}
 
-
-:::: {.columns}
-::: {.column width="30%"}
-
 ::: {.request}
 \actor{customer}
 
@@ -62,14 +58,8 @@ customer's line aloud: that is all.
 ```
 :::
 
-:::
-::: {.column width="70%"}
-
 ```{.diff .python include=build/01-bits/test-0.diff cap=16}
 ```
-
-:::
-::::
 
 ::: notes
 The same customer line, now the tests: a regular order and an empty cart. Both pass on the
