@@ -16,6 +16,7 @@
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
+- 2026-11-03 E-015: fact: the page 7 frame of W-148 (5bcc9d1) shifted every later page by one in the 51-page deck: AC5's fix-run page 29 is now 30 (gs: '1 passed' on page 30), AC6's page 46 is now 47 -> their runs verify the content at the shifted page
 - 2026-11-03 W-148: fact: page 6 (whole v0, 24 diff lines) stacked at scriptsize runs 30.5pt over the frame, 33.5pt short of 3pt slack; pages 7 to 12 fit -> one frame cannot hold v0 and its tests at scriptsize
 - 2026-11-03 W-148: fact: story.lua (383e26d) writes Python rows with pandoc.write and no highlight_style (rejected by pandoc 3.11); the \KeywordTok macros and Verbatim come from the deck's own highlighted blocks -> a deck with no other highlighted block would not compile its story blocks
 
