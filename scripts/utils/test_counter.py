@@ -21,12 +21,12 @@ def test_paths_of_skips_a_title_without_a_counter() -> None:
 
 @pytest.mark.model
 def test_storyboard_ok_accepts_the_doubling() -> None:
-    assert storyboard_ok([1, 2, 4, 8, 16, 32, 64, 64])
+    assert storyboard_ok([1, 1, 2, 4, 8, 16, 32, 64, 64])
 
 
 @pytest.mark.model
 def test_storyboard_ok_skips_a_leading_question_mark() -> None:
-    assert storyboard_ok(["?", 1, 2, 4, 8, 16, 32, 64, 64])
+    assert storyboard_ok(["?", 1, 1, 2, 4, 8, 16, 32, 64, 64])
 
 
 @pytest.mark.model
