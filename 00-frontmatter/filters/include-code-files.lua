@@ -98,6 +98,25 @@ local function has_class(cb, class)
   return false
 end
 
+local LATEX_ESCAPES = {
+  ["\\"] = "\\textbackslash{}",
+  ["^"] = "\\textasciicircum{}",
+  ["~"] = "\\textasciitilde{}",
+}
+
+-- A heading= attribute becomes a \snippethead label ahead of the block, the attribute dropped.
+local function with_heading(cb)
+  local heading = cb.attributes["heading"]
+  if heading == nil then
+    return cb
+  end
+  cb.attributes["heading"] = nil
+  local escaped = heading:gsub("[\\{}%%#&_%$%^~]", function(ch)
+    return LATEX_ESCAPES[ch] or ("\\" .. ch)
+  end)
+  return { pandoc.RawBlock("latex", "\\snippethead{" .. escaped .. "}"), cb }
+end
+
 function CodeBlock(cb)
   local path = cb.attributes["include"]
   if path == nil then
@@ -132,5 +151,5 @@ function CodeBlock(cb)
   cb.attributes["snippet"] = nil
   cb.attributes["start-line"] = nil
   cb.attributes["end-line"] = nil
-  return cb
+  return with_heading(cb)
 end

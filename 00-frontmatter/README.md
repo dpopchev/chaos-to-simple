@@ -13,9 +13,9 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `preamble.tex` | footer path counter, smaller code font, no navigation symbols | the footer or the look changes |
 | `build/00-frontmatter/beats.tex` | generated from `data/lines.csv`: the believed line and the strip name of each section, read by the section page in `preamble.tex` | the lines change |
 | `build/00-frontmatter/agenda-NN.png` | the agenda strip with stop NN highlighted, one per section, shown on its section page | the route changes |
-| `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range | never, unless the marker syntax changes |
-| `filters/diffs.lua` | turns a `.diff` block into a Verbatim: the first line (the caption) bold, lines starting `-`, `+`, `~`, `...` in red, green, dark yellow, grey (macros in `preamble.tex`) | the colouring changes |
-| `filters/speakers.lua` | turns a `.speakers` block into a Verbatim with each actor label (full or first word) in its colour from `data/actors.csv`; `highlight=q3` sets that row bold | the colouring changes |
+| `filters/include-code-files.lua` | fills fenced code blocks from source files, by snippet marker or line range; an optional `heading="..."` attribute renders as a shaded `\snippethead` label above the block | never, unless the marker syntax changes |
+| `filters/diffs.lua` | turns a `.diff` block into a Verbatim: the first line (the caption) bold, lines starting `-`, `+`, `~`, `...` in red, green, dark yellow, grey (macros in `preamble.tex`); sized `\snippetsize` (`\tiny`, set once in `preamble.tex` with highlighted code and the storyboard) | the colouring or the size changes |
+| `filters/speakers.lua` | turns a `.speakers` block into a Verbatim with each actor label (full or first word) in its colour from `data/actors.csv`; `highlight=q3` sets that row bold; sized `\exhibitsize` (`\scriptsize`, text exhibits) | the colouring or the size changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
 | `index.md` | the opening: the business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
 

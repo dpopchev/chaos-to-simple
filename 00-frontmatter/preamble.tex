@@ -37,8 +37,9 @@
 \definecolor{headbg}{HTML}{DCE6F2}
 \definecolor{addbg}{HTML}{DDF4E0}
 \definecolor{delbg}{HTML}{FBE0DE}
-\newcommand{\storyhead}[1]{\tcbox[on line,boxsep=2pt,left=2pt,right=2pt,top=0pt,bottom=0pt,arc=2pt,
-  colback=headbg,colframe=headbg]{\textbf{#1}}\par}
+\newcommand{\snippethead}[1]{\tcbox[on line,boxsep=2pt,left=2pt,right=2pt,top=0pt,bottom=0pt,arc=2pt,
+  colback=headbg,colframe=headbg]{\scriptsize\bfseries #1}\par}
+\newcommand{\storyhead}[1]{\snippethead{#1}}
 \newcommand{\diffaddbg}[1]{\colorbox{addbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
 \newcommand{\diffdelbg}[1]{\colorbox{delbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
 \newcommand{\diffscope}[1]{\colorbox{shadecolor}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
@@ -74,7 +75,11 @@
   \end{frame}%
 }
 
-% Code blocks a size smaller, so a twenty-line snippet fits a 16:9 frame.
+% Two code sizes, set once: highlighted code and diffs at \snippetsize, text exhibits at
+% \exhibitsize. The filters pass them to Verbatim as fontsize=; the fvset default covers the rest.
 \usepackage{etoolbox}
-\AtBeginEnvironment{Shaded}{\footnotesize}
-\AtBeginEnvironment{verbatim}{\footnotesize}
+\newcommand{\snippetsize}{\tiny}
+\newcommand{\exhibitsize}{\scriptsize}
+\AtBeginEnvironment{Shaded}{\snippetsize}
+\AtBeginEnvironment{verbatim}{\exhibitsize}
+\fvset{fontsize=\snippetsize}

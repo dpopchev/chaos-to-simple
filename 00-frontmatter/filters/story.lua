@@ -72,8 +72,8 @@ local function story_block(cb)
   for i, line in ipairs(lines) do
     rows[i] = "\\" .. (kinds[i] or "diffscope") .. "{" .. line .. "}"
   end
-  local tex = "\\storyhead{" .. escape_tex(head) .. "}\n"
-    .. "\\begin{Verbatim}[commandchars=\\\\\\{\\}]\n"
+  local tex = "\\snippethead{" .. escape_tex(head) .. "}\n"
+    .. "\\begin{Verbatim}[commandchars=\\\\\\{\\},fontsize=\\snippetsize]\n"
     .. table.concat(rows, "\n")
     .. "\n\\end{Verbatim}"
   return pandoc.RawBlock("latex", tex)

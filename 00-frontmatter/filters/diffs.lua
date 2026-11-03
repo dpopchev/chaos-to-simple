@@ -7,7 +7,7 @@
 -- (vA -> vB) and is set bold. Each later line is wrapped by its first character: - in \diffdel,
 -- + in \diffadd, ~ in \diffchg, and a line starting ... or equal to --- in \diffcut; a context line stays plain.
 -- The block becomes a fancyvrb Verbatim (backslash and the two braces are command characters).
--- The fontsize comes from \fvset, as for any code block; the four macros are in preamble.tex.
+-- The fontsize is \snippetsize and the four macros are in preamble.tex.
 
 local ESCAPES = { ["\\"] = "\\textbackslash{}", ["{"] = "\\{", ["}"] = "\\}" }
 
@@ -60,7 +60,8 @@ local function diff_block(cb)
   while #rows > 1 and rows[#rows] == "" do
     rows[#rows] = nil
   end
-  local tex = "\\begin{Verbatim}[commandchars=\\\\\\{\\}]\n" .. table.concat(rows, "\n") .. "\n\\end{Verbatim}"
+  local tex = "\\begin{Verbatim}[commandchars=\\\\\\{\\},fontsize=\\snippetsize]\n"
+    .. table.concat(rows, "\n") .. "\n\\end{Verbatim}"
   return pandoc.RawBlock("latex", tex)
 end
 

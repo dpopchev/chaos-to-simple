@@ -9,7 +9,7 @@
 -- in full and by its first word ("Dev (the shop)" and "Dev"), longest first, whole words only.
 -- highlight=<id> sets bold the lines from the one starting with <id> to the line before the next
 -- one starting with q and a digit. A line opening with "! " is bold too, the mark stripped.
--- The fontsize comes from \fvset, as for any code block.
+-- The fontsize is \exhibitsize (preamble.tex).
 
 local ACTORS_CSV = "data/actors.csv"
 
@@ -114,7 +114,8 @@ local function speakers_block(cb, labels)
     end
     rows[#rows + 1] = row
   end
-  local tex = "\\begin{Verbatim}[commandchars=\\\\\\{\\}]\n" .. table.concat(rows, "\n") .. "\n\\end{Verbatim}"
+  local tex = "\\begin{Verbatim}[commandchars=\\\\\\{\\},fontsize=\\exhibitsize]\n"
+    .. table.concat(rows, "\n") .. "\n\\end{Verbatim}"
   return pandoc.RawBlock("latex", tex)
 end
 
