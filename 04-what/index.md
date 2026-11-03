@@ -60,7 +60,12 @@ Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type
 :::: {.columns}
 ::: {.column width="75%"}
 
-checkout_fixed.py -> checkout_v4.py
+**checkout v7 -> v8 (checkout_v4.py)**
+
+```{.text include=build/04-what/tally-8.txt}
+```
+
+The file keeps its name, checkout_v4.py; the deck counts versions.
 
 ```{.python include=04-what/s04_what/checkout_v4.py snippet=checkout cap=18}
 ```

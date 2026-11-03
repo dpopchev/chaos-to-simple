@@ -33,6 +33,14 @@ $(BUILD)/04-what/tally-7.txt: 04-what/section.mk scripts/paths.py scripts/utils/
 		--tests-dir 01-bits/tests --only 'test_chaos|test_planted_bug' --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/04-what/tally-8.txt
+
+$(BUILD)/04-what/tally-8.txt: 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 04-what/tests/*.py)
+	@$(RUN) python -m scripts.paths tally --version 8 --policies 9 --paths 512 \
+		--tests-dir 04-what/tests --out $@
+	$(call log_done,$@ written)
+
 # The fix run: the I1 example against checkout_fixed must pass (status 0); the passed line
 # stays, without the timing.
 ARTIFACTS += $(BUILD)/04-what/fix-run.txt
