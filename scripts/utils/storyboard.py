@@ -8,11 +8,15 @@ import re
 import textwrap
 from collections.abc import Mapping
 from dataclasses import dataclass
+from datetime import date
+from decimal import Decimal
 from pathlib import Path
 
 from scripts.utils.stagediff import compact_body
 
 STEPS = 7
+TODAY = date(2026, 11, 5)
+CENT = Decimal("0.01")
 
 _MARKER = re.compile(r"\s*# \[step: (?P<n>\d)\]\s*$")
 _ASIDE = re.compile(r"  # .*$")
@@ -84,6 +88,61 @@ def tally_line(n: int, tests: int = 2, lines: int | None = None) -> str:
 def code_length(source: str, n: int) -> int:
     """Return the non-blank line count of the checkout at step n."""
     return sum(1 for row in step_lines(source, n).splitlines() if row.strip())
+
+
+def _order_fields(n: int) -> list[str]:
+    """Return the Order keyword lines of the everything test at step n."""
+    table = [
+        (1, "coupon_valid_until=TODAY"),
+        (2, "member=True"),
+        (4, "international=True"),
+        (5, "gift_wrap=True"),
+        (6, 'vat_id="BG123456789"'),
+    ]
+    return [f"        {field}," for step, field in table if step <= n]
+
+
+def run_checkout(source: str, n: int) -> Decimal:
+    """Exec the step-n checkout over the two-line order and return its total (the one effect)."""
+    from s01_bits import chaos  # 01-bits is on the path only under pytest
+
+    fields = {
+        "coupon_valid_until": TODAY if n >= 1 else None,
+        "member": n >= 2,
+        "international": n >= 4,
+        "gift_wrap": n >= 5,
+        "vat_id": "BG123456789" if n >= 6 else None,
+    }
+    lines = [chaos.Line("book", Decimal(60)), chaos.Line("pen", Decimal(40))]
+    order = chaos.Order(lines=lines, email="a@example.com", **fields)
+    namespace = dict(vars(chaos))
+    exec(step_lines(source, n), namespace)
+    return namespace["checkout"](order, TODAY, lambda _: None, lambda _: None, lambda *_: None)
+
+
+def step_test(source: str, n: int) -> str:
+    """Return the two tests as they stood at step n, without the narrator comments.
+
+    The expected total of the everything test is computed by running the step-n checkout.
+    """
+    expected = run_checkout(source, n).quantize(CENT)
+    head = [
+        "def test_regular_order() -> None:",
+        '    order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")',
+        "    total = checkout(order, TODAY, charge, reserve, send)",
+        '    assert total == Decimal("54.00")',
+        "",
+        "",
+        "def test_order_with_everything() -> None:",
+        "    order = Order(",
+        '        lines=[Line("book", Decimal(60)), Line("pen", Decimal(40))],',
+        '        email="a@example.com",',
+        *_order_fields(n),
+        "    )",
+        "    total = checkout(order, TODAY, charge, reserve, send)",
+        f'    assert total == Decimal("{expected}")',
+    ]
+    return "\n".join(head) + "\n"
 
 
 def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:

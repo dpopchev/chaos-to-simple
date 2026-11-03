@@ -13,6 +13,7 @@ from scripts.utils.storyboard import (
     bubble,
     step_diff,
     step_lines,
+    step_test,
     step_view,
     tally_line,
 )
@@ -95,6 +96,22 @@ def test_step_diff_has_no_header() -> None:
 @pytest.mark.view
 def test_step_lines_drop_the_narrator_asides() -> None:
     assert "what if" not in step_lines(SOURCE, 6)
+
+
+def flat(text: str) -> str:
+    """The text without narrator comments, whitespace normalised."""
+    return " ".join(ASIDE.sub("", text).split())
+
+
+@pytest.mark.view
+def test_step_test_matches_test_chaos() -> None:
+    tests = (ROOT / "01-bits/tests/test_chaos.py").read_text(encoding="ascii")
+    assert flat(step_test(SOURCE, 6)) == flat(snippet_text(tests, "two-tests"))
+
+
+@pytest.mark.view
+def test_step_test_expected_at_step_3() -> None:
+    assert 'assert total == Decimal("81.00")' in step_test(SOURCE, 3)
 
 
 @pytest.mark.view
