@@ -1,13 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-155   | blocked: 0 | todo roots: 2 | done: 508 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 2 | done: 509 | pruned: 6
 
 ## Tree
 
 ```text
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
-W-155  issue  [doing]    (standalone) The v1 storyboard heading reads 1 policies   (filed during T-345) -- T-349 [done]
 ```
 
 ## Closed
@@ -894,6 +893,12 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then the checkout 
 
 - T-348 [done] Escape the caret as text -> 00-frontmatter/filters/story.lua escape_tex
 
+### W-155 issue [done] (standalone) The v1 storyboard heading reads 1 policies
+
+closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's checkout heading reads 'checkout v1: 1 policy, 2^1 paths, 11 lines' and pages 9 to 13 keep 'policies'. -- ledger: ledgers/W-155.md
+
+- T-349 [done] Say policy for one -> scripts/utils/storyboard.py step view heading
+
 ## Diagram
 ```mermaid
 flowchart TD
@@ -901,14 +906,10 @@ flowchart TD
   W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
   W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
   W153 --> T342["T-342 todo: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
-  W155["W-155 issue doing, standalone: The v1 storyboard heading reads 1 policies"]
-  W155 --> T349["T-349 done: Say policy for one -> scripts/utils/storyboard.py step view heading"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W155 doing
-  class T349 done
   class W152,T341,W153,T342 todo
 ```
