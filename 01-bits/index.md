@@ -388,7 +388,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
-## A path is a six-bit number, so every new policy doubles the paths to count {paths=64}
+## The badge is 100% branch coverage, it counts edges while every new policy doubles the combinations {paths=64}
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -402,13 +402,11 @@ bits read as the six conditions, left b5 to right b0
 :::
 ::: {.column width="50%"}
 
+![](build/01-bits/grid-growth.png){width=100%}
+
 \small
 
-Sequential policies multiply: 2 x 2 x 2 x 2 x 2 x 2
-
-Alternatives (elif, match) add: 2 + 2 + 2
-
-Two sequential policies as if/elif: 4 paths become 3
+every policy doubles the grid; the two tests stay in the corners, 000000 and 111111
 
 :::
 ::::
@@ -417,5 +415,6 @@ Two sequential policies as if/elif: 4 paths become 3
 
 ::: notes
 Point at 000000 and 111111 on the grid: the two tests, both green. Then point at 000101,
-the I1 path, red: the bug.
+the I1 path, red: the bug. Walk the strip from 1 cell to 64: each grid doubles, and the
+two tests stay in the corners of every one of them.
 :::
