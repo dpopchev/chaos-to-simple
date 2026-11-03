@@ -15,7 +15,8 @@ from s06_simple.worlds import world
 from scripts.utils.examples import example_names, missing_tests
 
 EXAMPLES = Path(__file__).resolve().parents[2] / "data" / "examples.csv"
-PLAIN_TOTAL = Decimal("30.00")  # (20 + 5) * 1.20
+PLAIN_TOTAL = Decimal("30.00")
+"""The plain order: 20 of goods plus 5 postage, with 20% VAT."""
 
 
 OUT_OF_STOCK = [b for b in range(8) if b & 0b010]
@@ -34,9 +35,10 @@ class TestOutOfStock:
         assert outcome == Rejected("out of stock: book")
 
     def test_charges_nothing(self, bits: int, plain: Request, today: date) -> None:
+        """Nothing moves for a parcel that does not exist."""
         gateway, inventory, mailer = world(bits)
         checkout(plain, today, gateway, inventory, mailer)
-        assert gateway.charged == []  # nothing moves for a parcel that does not exist
+        assert gateway.charged == []
 
 
 @pytest.mark.parametrize("bits", DECLINED, ids=ids)

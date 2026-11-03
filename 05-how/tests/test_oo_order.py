@@ -18,14 +18,16 @@ class TestCallOrder:
         return Checkout(eur(60), Coupon(TODAY), member=True, today=TODAY)
 
     def test_coupon_first_follows_the_rule(self, checkout: Checkout) -> None:
+        """The rule: the coupon first, then the member 10%: 45."""
         checkout.apply_coupon()
         checkout.apply_member()
-        assert checkout.total == 45  # (60 - 10) * 0.90, what the rule says
+        assert checkout.total == 45
 
     def test_member_first_differs(self, checkout: Checkout) -> None:
+        """Member first: 44, a total nobody decided."""
         checkout.apply_member()
         checkout.apply_coupon()
-        assert checkout.total == 44  # 60 * 0.90 - 10, what nobody decided
+        assert checkout.total == 44
 
 
 # [/snippet]

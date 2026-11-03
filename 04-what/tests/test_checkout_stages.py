@@ -59,7 +59,8 @@ STAGES = [pytest.param(checkout_fixed, id="fixed"), pytest.param(checkout_v4, id
 # [snippet: i1]
 @pytest.mark.parametrize("stage", STAGES)
 def test_i1_example_pays_shipping(stage: Checkout) -> None:
-    # (45 + 5) * 1.20
+    """The I1 order, 55 EUR with the coupon: 45 of goods pays 5 EUR postage,
+    logistics' rule; with VAT 60.00."""
     assert stage(i1(), TODAY, charge, reserve, send) == Decimal("60.00")
 
 

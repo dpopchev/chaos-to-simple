@@ -20,7 +20,8 @@ def test_eight_worlds_give_four_distinct_outcomes(measured: tuple[WorldRow, ...]
 
 
 def test_the_table_has_eight_rows(measured: tuple[WorldRow, ...]) -> None:
-    assert len(table(measured).splitlines()) == 1 + 8  # the header and one line per world
+    """The header and one line per world."""
+    assert len(table(measured).splitlines()) == 1 + 8
 
 
 def test_no_world_with_the_stock_gone_is_charged(measured: tuple[WorldRow, ...]) -> None:
