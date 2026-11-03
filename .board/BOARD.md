@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-171 > T-393   | blocked: 0 | todo roots: 0 | done: 572 | pruned: 6
+open path: E-017 > W-171 > T-394   | blocked: 0 | todo roots: 0 | done: 573 | pruned: 6
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-017 > W-171 > T-393   | blocked: 0 | todo roots: 0 | done: 572 | pr
 E-017         [doing]    The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how
   W-169  issue  [done]     one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [done]
   W-170  issue  [done]     measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [done], T-390 [done]
-  W-171  issue  [doing]    every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [done], T-392 [done], T-393 [doing]   <- ACTIVE LEAF, T-394 [todo]
+  W-171  issue  [doing]    every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [done], T-392 [done], T-393 [done], T-394 [doing]   <- ACTIVE LEAF
   W-172  issue  [todo]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [todo], T-396 [todo], T-397 [todo]
   W-173  issue  [todo]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [todo], T-399 [todo], T-400 [todo], T-401 [todo]
   W-174  issue  [todo]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [todo], T-403 [todo], T-404 [todo]
@@ -1019,8 +1019,8 @@ flowchart TD
   E017 --> W171["W-171 issue doing: every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone"]
   W171 --> T391["T-391 done: Head the 01 and 02 test exhibits -> 01-bits/section.mk, 02-stacey/section.mk tests tallies and the fences"]
   W171 --> T392["T-392 done: Head the 04 exhibits -> 04-what/section.mk and index.md"]
-  W171 --> T393["T-393 doing: Head the 05 exhibits -> 05-how/section.mk and index.md -- ACTIVE LEAF"]
-  W171 --> T394["T-394 todo: Head the 06 exhibits -> 06-simple/section.mk and index.md"]
+  W171 --> T393["T-393 done: Head the 05 exhibits -> 05-how/section.mk and index.md"]
+  W171 --> T394["T-394 doing: Head the 06 exhibits -> 06-simple/section.mk and index.md -- ACTIVE LEAF"]
   E017 --> W172["W-172 issue todo: exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert"]
   W172 --> T395["T-395 todo: Docstring the 01 and 02 exhibit tests -> test_chaos.py, test_memo_orders.py, test_readings.py"]
   W172 --> T396["T-396 todo: Docstring the 04, 05 and 06 exhibit tests -> test_checkout_stages.py, test_oo_order.py, test_shell.py"]
@@ -1067,7 +1067,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W171,T393 doing
-  class W169,T384,T385,T386,W170,T387,T388,T389,T390,T391,T392 done
-  class T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
+  class E017,W171,T394 doing
+  class W169,T384,T385,T386,W170,T387,T388,T389,T390,T391,T392,T393 done
+  class W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
 ```
