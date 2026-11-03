@@ -30,5 +30,6 @@
 - 2026-11-03 W-148: layout: request block under the title (one shade), tests and checkout headings side by side (second shade) over their diffs (third shade); diff style always, scope row and changed rows only, Python-highlighted; page 6 split, pages 6 to 13; a row over 60 chars wrapped (developer)
 
 ## Deviations
+- 2026-11-03 E-015: T-346 filed under W-148 after T-345 blocked at make test: counter.py STORYBOARD and test_counter_plan.py assumed one {paths=1} frame, T-345's Check demands two; T-345's eight frames stay uncommitted until T-346 closes
 - 2026-11-03 E-015: W-148 re-planned at the halt: page 6 split (51 pages, budget 01 = 14), the storyboard redrawn as request block, headings and side-by-side Python diffs with scope and changed rows only, rows over 60 chars wrapped; AC3 rewritten, T-336 pruned for T-343 to T-345
 - 2026-11-03 E-015: W-151 filed under E-015 after W-145's criterion run failed at 80046d9: T-331's brief named the section.mk files of 00 and 02 to 07, not 01-bits, whose ten palette-reading rules still lack $(PALETTE); W-145's criterion is rerun when W-151 lands
