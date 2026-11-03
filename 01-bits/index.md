@@ -10,13 +10,15 @@
 ::::
 :::: {.column width="42%"}
 
+\footnotesize
+
 **paths = 2^policies**
 
-Sequential policies multiply: 2 x 2 x 2 x 2 x 2 x 2
-
-Alternatives (elif, match) add: 2 + 2 + 2
-
-Two sequential policies as if/elif: 4 paths become 3
+| pattern | paths | rule |
+|---|---|---|
+| sequential ifs | 2 x 2 x 2 x 2 x 2 x 2 | each if doubles the paths |
+| if / elif / else | 2 + 1 | alternatives add, one branch is taken |
+| two ifs written as if/elif | 3, not 4 | the merged branch drops a path |
 
 ::::
 :::::
