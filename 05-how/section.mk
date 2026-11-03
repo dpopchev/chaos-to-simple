@@ -65,6 +65,16 @@ $(BUILD)/05-how/ports-code.txt: 05-how/section.mk scripts/paths.py scripts/utils
 		--source 05-how/s05_how/ports.py --snippet ports --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/imports.txt
+
+$(BUILD)/05-how/imports.txt: 05-how/section.mk scripts/paths.py scripts/utils/imports.py \
+    04-what/s04_what/pricing.py 04-what/s04_what/shipping.py 04-what/s04_what/tax.py \
+    05-how/s05_how/ports.py 05-how/s05_how/checkout_v5.py
+	@$(RUN) python -m scripts.paths imports --source 04-what/s04_what/pricing.py \
+		--source 04-what/s04_what/shipping.py --source 04-what/s04_what/tax.py \
+		--source 05-how/s05_how/ports.py --source 05-how/s05_how/checkout_v5.py --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/05-how/ports.png: $(PALETTE) data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

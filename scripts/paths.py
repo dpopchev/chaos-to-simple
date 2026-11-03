@@ -22,6 +22,7 @@
     python -m scripts.paths tally --version 7 --tests-dir DIR [--only REGEX] --out F.txt
     python -m scripts.paths tally-code --name F --version 7 --policies 6 --paths 64 \\
         --source FILE --snippet S --out F.txt
+    python -m scripts.paths imports --source FILE [--source FILE ...] --out F.txt
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
@@ -42,6 +43,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from scripts.utils.imports import import_rows, import_table
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import (
     bars_from_rules,
@@ -143,6 +145,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "bubbles",
             "tally",
             "tally-code",
+            "imports",
             "diff",
         ],
     )
@@ -175,7 +178,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
-    parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
+    parser.add_argument(
+        "--source", type=Path, action="append", default=[], help="a source file; imports repeats it"
+    )
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"))
     parser.add_argument("--seventh", type=Path, default=Path("data/seventh.csv"))
     parser.add_argument(
@@ -187,6 +192,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--upto", type=int, default=None, help="first N rows of the doubling")
     parser.add_argument("--out", type=Path, default=None, help="file to write; default stdout")
     args = parser.parse_args(argv)
+    source = args.source[-1] if args.source else Path("01-bits/s01_bits/chaos.py")
+
+    if args.what == "imports":
+        if args.out is None or not args.source:
+            parser.error("imports needs --source (repeatable) and --out")
+        rows = [import_rows(path.stem, path.read_text(encoding="ascii")) for path in args.source]
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(import_table(rows), encoding="ascii")
+        return 0
 
     if args.what == "chart":
         if args.out is None:
@@ -209,7 +223,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "storyboard":
         if args.out is None:
             parser.error("storyboard needs --out, a directory")
-        write_storyboard(args.source, args.bubbles, args.actors, args.out, args.wrap or None)
+        write_storyboard(source, args.bubbles, args.actors, args.out, args.wrap or None)
         return 0
 
     if args.what == "bubbles":
@@ -230,7 +244,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "tally-code":
         if None in (args.name, args.version, args.policies, args.paths, args.snippet, args.out):
             parser.error("tally-code needs --name --version --policies --paths --snippet --out")
-        lines = snippet_length(args.source, args.snippet)
+        lines = snippet_length(source, args.snippet)
         text = code_tally(args.name, args.version, args.policies, args.paths, lines) + "\n"
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(text, encoding="ascii")
@@ -265,7 +279,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             load_rules(args.rules), tuple(args.columns.split(",")), load_cast(args.cast)
         )
     elif args.what == "cast":
-        text = cast_table(load_cast(args.cast), args.source.read_text(encoding="ascii"))
+        text = cast_table(load_cast(args.cast), source.read_text(encoding="ascii"))
     elif args.what == "doubling":
         text = doubling_table(load_cast(args.cast), args.upto)
     elif args.what == "next":
