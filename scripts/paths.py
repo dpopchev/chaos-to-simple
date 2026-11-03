@@ -73,7 +73,9 @@ from scripts.utils.storyboard import (
 )
 
 
-def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -> None:
+def write_storyboard(
+    source: Path, bubbles: Path, actors: Path, out_dir: Path, wrap: int | None = 34
+) -> None:
     """Write step-0..6.diff, test-0..6.diff, tally and bubble-0..8.txt into out_dir."""
     text = source.read_text(encoding="ascii")
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -82,7 +84,7 @@ def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -
         (out_dir / f"test-{n}.diff").write_text(suite_view(text, n), encoding="ascii")
         tally = tally_line(n, n, 2**n, 2, lines=code_length(text, n))
         (out_dir / f"tally-{n}.txt").write_text(tally + "\n", encoding="ascii")
-    write_bubbles(bubbles, actors, out_dir)
+    write_bubbles(bubbles, actors, out_dir, wrap)
 
 
 def tally_text(
@@ -100,12 +102,12 @@ def tally_text(
     return tally_line(version, policies, paths, tests) + "\n"
 
 
-def write_bubbles(bubbles: Path, actors: Path, out_dir: Path) -> None:
-    """Write bubble-N.txt, one per row of the bubbles CSV, into out_dir."""
+def write_bubbles(bubbles: Path, actors: Path, out_dir: Path, wrap: int | None = 34) -> None:
+    """Write bubble-N.txt, one per row of the bubbles CSV, into out_dir, words wrapped at wrap."""
     labels = {key: actor.label for key, actor in load_actors(actors).items()}
     out_dir.mkdir(parents=True, exist_ok=True)
     for n, row in enumerate(load_bubbles(bubbles)):
-        (out_dir / f"bubble-{n}.txt").write_text(bubble(row, labels), encoding="ascii")
+        (out_dir / f"bubble-{n}.txt").write_text(bubble(row, labels, wrap), encoding="ascii")
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -154,6 +156,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--questions", type=Path, default=Path("data/questions.csv"))
     parser.add_argument("--bubbles", type=Path, default=Path("01-bits/data/bubbles.csv"))
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"))
+    parser.add_argument(
+        "--wrap", type=int, default=34, help="storyboard, bubbles: bubble column width, 0 = none"
+    )
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
     parser.add_argument("--source", type=Path, default=Path("01-bits/s01_bits/chaos.py"))
@@ -190,13 +195,13 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "storyboard":
         if args.out is None:
             parser.error("storyboard needs --out, a directory")
-        write_storyboard(args.source, args.bubbles, args.actors, args.out)
+        write_storyboard(args.source, args.bubbles, args.actors, args.out, args.wrap or None)
         return 0
 
     if args.what == "bubbles":
         if args.out is None:
             parser.error("bubbles needs --out, a directory")
-        write_bubbles(args.bubbles, args.actors, args.out)
+        write_bubbles(args.bubbles, args.actors, args.out, args.wrap or None)
         return 0
 
     if args.what == "tally":

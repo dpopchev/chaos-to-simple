@@ -25,7 +25,7 @@ _BREAK = re.compile(r" (?:and|or) ")
 _COMMA = re.compile(r", ")
 _DEF = re.compile(r"(?P<head>\s*def \w+)\(.*\)(?P<tail>[^()]*:)$")
 
-VIEW_WIDTH = 60
+VIEW_WIDTH = 91
 
 
 @dataclass(frozen=True)
@@ -223,9 +223,12 @@ def step_test(source: str, n: int) -> str:
     return "\n".join(head) + "\n"
 
 
-def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:
-    """Return the bubble text: actor label and date, then the words wrapped at width."""
-    words = textwrap.fill(row.words, width=width)
+def bubble(row: BubbleRow, labels: Mapping[str, str], width: int | None = 34) -> str:
+    """Return the bubble text: actor label and date, then the words wrapped at width.
+
+    A width of None keeps the words on one line.
+    """
+    words = row.words if width is None else textwrap.fill(row.words, width=width)
     label = f"{row.tag} {labels[row.actor]}" if row.tag else labels[row.actor]
     head = f"{label}, {row.when}" if row.when else label
     return f"{head}\n{words}\n"

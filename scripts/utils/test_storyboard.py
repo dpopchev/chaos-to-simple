@@ -161,8 +161,15 @@ def test_bubble_reads_actor_label_date_and_words() -> None:
 def test_bubble_wraps_at_the_column_width() -> None:
     words = "Autumn campaign: 10 EUR off with the code AUTUMN. Small change? Right after it."
     row = BubbleRow(1, 3, "2026-08-11", "marketing", words)
-    lines = bubble(row, {"marketing": "Marketing"}).splitlines()
+    lines = bubble(row, {"marketing": "Marketing"}, width=34).splitlines()
     assert max(map(len, lines)) <= 34
+
+
+@pytest.mark.view
+def test_bubble_stays_on_one_line() -> None:
+    words = "Autumn campaign: 10 EUR off with the code AUTUMN. Small change? Yes."
+    row = BubbleRow(1, 3, "2026-08-11", "marketing", words)
+    assert len(bubble(row, {"marketing": "Marketing"}, width=None).splitlines()) == 2
 
 
 @pytest.mark.view

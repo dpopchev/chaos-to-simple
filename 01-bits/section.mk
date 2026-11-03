@@ -60,7 +60,7 @@ $(BUILD)/01-bits/coverage-view.png: $(PALETTE) 01-bits/data/tested.csv scripts/f
 $(STORY_FILES) &: 01-bits/s01_bits/chaos.py 01-bits/data/bubbles.csv $(PALETTE) \
     scripts/paths.py scripts/utils/storyboard.py
 	@PYTHONPATH=01-bits $(RUN) python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \
-	  --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out $(BUILD)/01-bits
+	  --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --wrap 0 --out $(BUILD)/01-bits
 	$(call log_done,$(BUILD)/01-bits storyboard written)
 
 $(BUILD)/01-bits/coverage-summary.txt: $(BUILD)/01-bits/coverage.txt
