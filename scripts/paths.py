@@ -60,15 +60,15 @@ from scripts.utils.paths import (
     wounds_selector,
 )
 from scripts.utils.retro import load_questions, question_card, retro_table
-from scripts.utils.stagediff import compact_body, snippet_diff
+from scripts.utils.stagediff import snippet_diff
 from scripts.utils.storyboard import (
     STEPS,
     bubble,
     code_length,
     count_tests,
     load_bubbles,
-    step_test,
     step_view,
+    suite_view,
     tally_line,
 )
 
@@ -79,20 +79,10 @@ def write_storyboard(source: Path, bubbles: Path, actors: Path, out_dir: Path) -
     out_dir.mkdir(parents=True, exist_ok=True)
     for n in range(STEPS):
         (out_dir / f"step-{n}.diff").write_text(step_view(text, n), encoding="ascii")
-        (out_dir / f"test-{n}.diff").write_text(test_view(text, n), encoding="ascii")
+        (out_dir / f"test-{n}.diff").write_text(suite_view(text, n), encoding="ascii")
         tally = tally_line(n, n, 2**n, 2, lines=code_length(text, n))
         (out_dir / f"tally-{n}.txt").write_text(tally + "\n", encoding="ascii")
     write_bubbles(bubbles, actors, out_dir)
-
-
-def test_view(source: str, n: int) -> str:
-    """Return the tests of step n under their caption: whole at step 0, else a compact diff."""
-    after = step_test(source, n)
-    if n == 0:
-        return "\n".join(["tests v0", *after.splitlines()]) + "\n"
-    before = step_test(source, n - 1)
-    body = compact_body(before.splitlines(keepends=True), after.splitlines(keepends=True))
-    return "".join([f"tests v{n - 1} -> v{n}\n", *(row.rstrip("\n") + "\n" for row in body)])
 
 
 def tally_text(

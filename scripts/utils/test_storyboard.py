@@ -16,7 +16,9 @@ from scripts.utils.storyboard import (
     step_lines,
     step_test,
     step_view,
+    suite_view,
     tally_line,
+    wrap_row,
 )
 from scripts.utils.widths import snippet_text, strip_step_markers
 
@@ -80,7 +82,30 @@ def test_step_diff_has_no_merged_line() -> None:
 
 @pytest.mark.view
 def test_step_zero_view_is_the_whole_skeleton() -> None:
-    assert step_view(SOURCE, 0).splitlines()[1:] == step_lines(SOURCE, 0).splitlines()
+    skeleton = ["+" + row for row in step_lines(SOURCE, 0).splitlines()]
+    assert step_view(SOURCE, 0).splitlines()[1:] == skeleton
+
+
+@pytest.mark.view
+def test_step_view_keeps_only_the_scope_and_the_changes() -> None:
+    body = step_view(SOURCE, 3).splitlines()[1:]
+    assert body == [" def checkout(...):", *("+" + row for row in marked(3))]
+
+
+@pytest.mark.view
+def test_step_view_heading_counts_policies_paths_and_lines() -> None:
+    assert step_view(SOURCE, 2).splitlines()[0] == "checkout v2: 2 policies, 2^2 paths, 13 lines"
+
+
+@pytest.mark.view
+def test_test_view_heading_counts_the_tests() -> None:
+    assert suite_view(SOURCE, 2).splitlines()[0] == "tests v2: 2 tests"
+
+
+@pytest.mark.view
+def test_wide_row_wraps_before_and() -> None:
+    row = next(r for r in step_diff(SOURCE, 1).splitlines() if "coupon_valid_until is not" in r)
+    assert [len(part) <= 60 for part in wrap_row(row, 60)] == [True, True]
 
 
 @pytest.mark.view

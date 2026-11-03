@@ -13,7 +13,6 @@ from decimal import Decimal
 from pathlib import Path
 
 from scripts.utils.board import TEST_FUNCTION
-from scripts.utils.stagediff import compact_body
 
 STEPS = 7
 TODAY = date(2026, 11, 5)
@@ -22,6 +21,11 @@ CENT = Decimal("0.01")
 _MARKER = re.compile(r"\s*# \[step: (?P<n>\d)\]\s*$")
 _ASIDE = re.compile(r"  # .*$")
 _HEADERS = ("---", "+++", "@@")
+_BREAK = re.compile(r" (?:and|or) ")
+_COMMA = re.compile(r", ")
+_DEF = re.compile(r"(?P<head>\s*def \w+)\(.*\)(?P<tail>[^()]*:)$")
+
+VIEW_WIDTH = 60
 
 
 @dataclass(frozen=True)
@@ -53,18 +57,73 @@ def step_lines(source: str, n: int) -> str:
     return "\n".join(kept)
 
 
-def step_view(source: str, n: int) -> str:
-    """Return the compact diff v{n-1} -> v{n} under its caption; step 0 is the whole skeleton.
+def wrap_row(row: str, width: int) -> list[str]:
+    """Split a diff row wider than width before ' and ' / ' or ', else after the last ', '.
 
-    The caption is 'checkout v{n-1} -> v{n}' or 'checkout v0'; the body is stagediff's
-    compact_body: one context line, '---' between hunks, '+' and '-' lines only.
+    The marker (first character) leads every part; a continuation is indented 8 more spaces.
+    A row that fits, or has no break inside the width, is returned whole.
     """
+    if len(row) <= width:
+        return [row]
+    marker, text = row[0], row[1:]
+    indent = len(text) - len(text.lstrip(" "))
+    words = [m.start() for m in _BREAK.finditer(text) if m.start() < width]
+    commas = [m.end() - 1 for m in _COMMA.finditer(text) if m.end() - 1 < width]
+    if words:
+        head, tail = text[: words[-1]], text[words[-1] + 1 :]
+    elif commas:
+        head, tail = text[: commas[-1]], text[commas[-1] :].lstrip(" ")
+    else:
+        return [row]
+    return [marker + head, *wrap_row(marker + " " * (indent + 8) + tail, width)]
+
+
+def _scope_row(lines: list[str], at: int) -> str | None:
+    """Return the nearest def line before index at, parameters elided, ' ' prefixed."""
+    for row in reversed(lines[:at]):
+        found = _DEF.match(row)
+        if found:
+            return f" {found.group('head')}(...){found.group('tail')}"
+    return None
+
+
+def changed_rows(before: list[str], after: list[str]) -> list[str]:
+    """Return the - and + rows of a diff, each distinct enclosing def line once above its rows."""
+    grouped: dict[str | None, list[str]] = {}
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, before, after).get_opcodes():
+        if tag == "equal":
+            continue
+        rows = grouped.setdefault(_scope_row(after, j1), [])
+        rows.extend(f"-{row}" for row in before[i1:i2])
+        rows.extend(f"+{row}" for row in after[j1:j2])
+    return [row for scope, rows in grouped.items() for row in ([scope] if scope else []) + rows]
+
+
+def _view(heading: str, before: list[str], after: list[str], n: int) -> str:
+    """Return the heading, then the whole text as + rows at step 0, else the wrapped changes."""
     if n == 0:
-        return "\n".join(["checkout v0", *step_lines(source, 0).splitlines()]) + "\n"
-    before = step_lines(source, n - 1).splitlines(keepends=True)
-    after = step_lines(source, n).splitlines(keepends=True)
-    body = compact_body(before, after)
-    return "".join([f"checkout v{n - 1} -> v{n}\n", *(row.rstrip("\n") + "\n" for row in body)])
+        rows = [f"+{row}" for row in after]
+    else:
+        rows = [part for row in changed_rows(before, after) for part in wrap_row(row, VIEW_WIDTH)]
+    return "".join(f"{row}\n" for row in [heading, *rows])
+
+
+def step_view(source: str, n: int) -> str:
+    """Return the checkout at step n: a heading, then the scope row and the +/- rows.
+
+    The heading is 'checkout vN: N policies, 2^N paths, L lines'. Step 0 is every row as +.
+    """
+    heading = f"checkout v{n}: {n} policies, 2^{n} paths, {code_length(source, n)} lines"
+    before = step_lines(source, n - 1).splitlines() if n > 0 else []
+    return _view(heading, before, step_lines(source, n).splitlines(), n)
+
+
+def suite_view(source: str, n: int) -> str:
+    """Return the tests of step n: the heading 'tests vN: K tests', then as step_view."""
+    after = step_test(source, n)
+    heading = f"tests v{n}: {count_tests([after])} tests"
+    before = step_test(source, n - 1).splitlines() if n > 0 else []
+    return _view(heading, before, after.splitlines(), n)
 
 
 def step_diff(source: str, n: int) -> str:
