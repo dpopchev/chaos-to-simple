@@ -16,6 +16,7 @@
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
+- 2026-11-03 E-016: fact: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> no Task; a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
