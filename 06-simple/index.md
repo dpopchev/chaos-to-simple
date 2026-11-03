@@ -55,7 +55,7 @@ The core has no if of its own, every bit stays where it was named.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="55%"}
+::: {.column width="45%"}
 
 ```{.python include=06-simple/s06_simple/worlds.py snippet=eight}
 ```
@@ -63,7 +63,7 @@ The core has no if of its own, every bit stays where it was named.
 \begingroup\footnotesize 06-simple/s06_simple/worlds.py in fulfilment; tested by test_worlds.py\par\endgroup
 
 :::
-::: {.column width="45%"}
+::: {.column width="55%"}
 
 ```{.text include=build/06-simple/worlds.txt}
 ```
