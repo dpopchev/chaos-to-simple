@@ -80,8 +80,10 @@ build/data/counts.txt,txt,scripts.paths counts
 build/data/splits.txt,txt,scripts.paths splits
 build/04-what/colorcode.png,png,scripts.figures colorcode
 build/04-what/fix.diff,diff,scripts.paths diff --compact
-build/04-what/tally-7.txt,txt,scripts.paths tally --version 7
-build/04-what/tally-8.txt,txt,scripts.paths tally --version 8
+build/04-what/tests-7.txt,txt,scripts.paths tally --version 7
+build/04-what/tests-fee.txt,txt,scripts.paths tally --version 8 --only test_shipping
+build/04-what/code-8.txt,txt,scripts.paths tally-code --version 8
+build/04-what/fee.txt,txt,scripts.paths tally-code --name shipping_fee
 build/04-what/fix-run.txt,txt,pytest -k test_i1_example_pays_shipping
 build/04-what/moves.png,png,scripts.figures moves
 build/04-what/board.png,png,scripts.figures board --stage 04

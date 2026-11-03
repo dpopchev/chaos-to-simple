@@ -14,9 +14,6 @@ This is how the code will move, one home at a time.
 ## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
 
 
-```{.text include=build/04-what/tally-7.txt}
-```
-
 :::: {.columns}
 ::: {.column width="50%"}
 
@@ -26,7 +23,7 @@ This is how the code will move, one home at a time.
 :::
 ::: {.column width="50%"}
 
-```{.python include=04-what/tests/test_checkout_stages.py snippet=i1}
+```{.python heading-file=build/04-what/tests-7.txt include=04-what/tests/test_checkout_stages.py snippet=i1}
 ```
 
 ```{.text include=build/04-what/fix-run.txt}
@@ -51,13 +48,13 @@ The diff is the whole fix: one name changes, and the rest of the function stays 
 :::: {.columns}
 ::: {.column width="52%"}
 
-```{.python include=04-what/s04_what/shipping.py snippet=fee heading="shipping.py"}
+```{.python include=04-what/s04_what/shipping.py snippet=fee heading-file=build/04-what/fee.txt}
 ```
 
 :::
 ::: {.column width="48%"}
 
-```{.python include=04-what/tests/test_shipping.py snippet=fee-tests heading="test_shipping.py: 4 tests"}
+```{.python include=04-what/tests/test_shipping.py snippet=fee-tests heading-file=build/04-what/tests-fee.txt}
 ```
 
 :::
@@ -78,10 +75,7 @@ Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type
 :::: {.columns}
 ::: {.column width="80%"}
 
-```{.text include=build/04-what/tally-8.txt}
-```
-
-```{.python include=04-what/s04_what/checkout_v4.py snippet=checkout cap=18}
+```{.python heading-file=build/04-what/code-8.txt include=04-what/s04_what/checkout_v4.py snippet=checkout cap=18}
 ```
 
 :::

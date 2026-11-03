@@ -22,23 +22,39 @@ ARTIFACTS += $(BUILD)/04-what/fix.diff
 $(BUILD)/04-what/fix.diff: $(PALETTE) 01-bits/s01_bits/chaos.py 04-what/s04_what/checkout_fixed.py 04-what/section.mk scripts/paths.py scripts/utils/stagediff.py
 	@$(RUN) python -m scripts.paths diff --from 01-bits/s01_bits/chaos.py \
 		--to 04-what/s04_what/checkout_fixed.py --snippet checkout --compact \
-		--label-from 'checkout v6' --label-to 'v7' --out $@
+		--name checkout --version 7 --policies 6 --paths 64 --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/04-what/tally-7.txt
+ARTIFACTS += $(BUILD)/04-what/tests-7.txt
 
-$(BUILD)/04-what/tally-7.txt: $(PALETTE) 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
-    $(wildcard 01-bits/tests/*.py)
-	@$(RUN) python -m scripts.paths tally --version 7 --policies 6 --paths 64 \
-		--tests-dir 01-bits/tests --only 'test_chaos|test_planted_bug' --out $@
-	$(call log_done,$@ written)
-
-ARTIFACTS += $(BUILD)/04-what/tally-8.txt
-
-$(BUILD)/04-what/tally-8.txt: $(PALETTE) 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
+$(BUILD)/04-what/tests-7.txt: 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
     $(wildcard 04-what/tests/*.py)
-	@$(RUN) python -m scripts.paths tally --version 8 --policies 9 --paths 512 \
-		--tests-dir 04-what/tests --out $@
+	@$(RUN) python -m scripts.paths tally --version 7 --tests-dir 04-what/tests \
+		--only test_checkout_stages --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/04-what/tests-fee.txt
+
+$(BUILD)/04-what/tests-fee.txt: 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 04-what/tests/*.py)
+	@$(RUN) python -m scripts.paths tally --version 8 --tests-dir 04-what/tests \
+		--only test_shipping --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/04-what/code-8.txt
+
+$(BUILD)/04-what/code-8.txt: 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    04-what/s04_what/checkout_v4.py
+	@$(RUN) python -m scripts.paths tally-code --name checkout --version 8 --policies 9 --paths 512 \
+		--source 04-what/s04_what/checkout_v4.py --snippet checkout --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/04-what/fee.txt
+
+$(BUILD)/04-what/fee.txt: 04-what/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    04-what/s04_what/shipping.py
+	@$(RUN) python -m scripts.paths tally-code --name shipping_fee --version 8 --policies 3 --paths 8 \
+		--source 04-what/s04_what/shipping.py --snippet fee --out $@
 	$(call log_done,$@ written)
 
 # The fix run: the I1 example against checkout_fixed must pass (status 0); the passed line
