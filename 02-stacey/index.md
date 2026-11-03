@@ -1,5 +1,33 @@
 # 02 Map: Stacey matrix, agreement on the What, certainty on the How
 
+## Engineering reads one sentence two ways: the cart before or after the coupon {paths=64}
+
+Logistics, week 6: "Free shipping from 50."
+
+The code: `if subtotal >= Decimal(50):`. Finance's test: expects 60.00, gets 54.00.
+
+\begingroup\footnotesize
+
+| reading | the threshold reads | 55 EUR with the coupon | said by |
+|---|---|---|---|
+| R1 the cart before the coupon | 55, ships free | pays 54.00 | marketing: more customers qualify |
+| R2 the goods after the coupon | 45, pays 5 | pays 60.00 | logistics: what they pay for |
+
+\endgroup
+
+\begingroup\footnotesize\textit{both readings fit the sentence; the code picked one; nobody chose}\par\endgroup
+
+::: notes
+The bridge from the badge to the two voices. The badge said 64 paths and finance's test failed
+on one of them: 60.00 expected, 54.00 got, on a 55 EUR order with the coupon. Engineering reads
+the code: the condition tests the subtotal, read before the coupon. Then the sentence from week
+6, "Free shipping from 50", and asks what 50 is of. Two answers fit. The cart before the coupon
+is 55, so it ships free and pays 54.00: marketing's reading. The goods after the coupon are 45,
+so the customer pays 5 and the total is 60.00: logistics' reading. Both fit the sentence; the
+code picked the first and nobody chose. The next frame lets each of them say so in their own
+words, each with a test.
+:::
+
 ## Marketing and logistics read free shipping differently, so no test settles it {paths=64}
 
 
