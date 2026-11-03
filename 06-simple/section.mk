@@ -48,7 +48,7 @@ ARTIFACTS += $(BUILD)/06-simple/seam.diff $(BUILD)/06-simple/pytest-core-summary
 
 $(BUILD)/06-simple/seam.diff: $(PALETTE) 05-how/s05_how/checkout_v5.py 06-simple/s06_simple/shell.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 05-how/s05_how/checkout_v5.py --to 06-simple/s06_simple/shell.py \
-		--snippet checkout --start 'match inventory' --hide 'assert_never|case _ as unreachable' --compact \
+		--snippet checkout --hide 'assert_never|case _ as unreachable' --compact \
 		--label-from 'checkout v9' --label-to 'v10' --out $@
 	$(call log_done,$@ written)
 

@@ -43,7 +43,7 @@ class TestOutOfStock:
 class TestDeclined:
     def test_rejects(self, bits: int, plain: Request, today: date) -> None:
         outcome = checkout(plain, today, *world(bits))
-        assert outcome == Rejected("payment declined: card refused")
+        assert outcome == Rejected("declined: card refused")
 
     def test_sends_no_mail(self, bits: int, plain: Request, today: date) -> None:
         gateway, inventory, mailer = world(bits)
@@ -58,7 +58,7 @@ class TestAccepted:
     ) -> None:
         gateway, inventory, mailer = world(bits)
         outcome = checkout(plain, today, gateway, inventory, mailer)
-        assert outcome == Accepted(PLAIN_TOTAL, "pay-1", confirmed=not mailer.bounces)
+        assert outcome == Accepted(PLAIN_TOTAL, confirmed=not mailer.bounces)
 
 
 def test_every_shell_example_has_a_test() -> None:
@@ -95,7 +95,7 @@ class TestDeclinedPaymentRejects:
         return checkout(plain, today, FakeGateway(declines=True), FakeInventory(), mailer)
 
     def test_rejected(self, outcome: object) -> None:
-        assert outcome == Rejected("payment declined: card refused")
+        assert outcome == Rejected("declined: card refused")
 
     def test_no_mail_sent(self, outcome: object, mailer: FakeMailer) -> None:
         assert mailer.sent == []
@@ -103,9 +103,9 @@ class TestDeclinedPaymentRejects:
 
 def test_bounced_mail_still_accepts(plain: Request, today: date) -> None:
     outcome = checkout(plain, today, FakeGateway(), FakeInventory(), FakeMailer(bounces=True))
-    assert outcome == Accepted(PLAIN_TOTAL, "pay-1", confirmed=False)
+    assert outcome == Accepted(PLAIN_TOTAL, confirmed=False)
 
 
 def test_happy_path_accepts(plain: Request, today: date) -> None:
     outcome = checkout(plain, today, FakeGateway(), FakeInventory(), FakeMailer())
-    assert outcome == Accepted(PLAIN_TOTAL, "pay-1", confirmed=True)
+    assert outcome == Accepted(PLAIN_TOTAL, confirmed=True)

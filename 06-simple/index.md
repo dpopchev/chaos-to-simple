@@ -17,9 +17,6 @@
 ```{.text include=build/06-simple/tally-10.txt}
 ```
 
-```{.diff include=build/06-simple/seam.diff cap=28}
-```
-
 \begingroup\footnotesize 06-simple/s06_simple/shell.py in fulfilment; tested by test_shell.py\par\endgroup
 
 :::

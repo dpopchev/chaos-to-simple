@@ -2,13 +2,14 @@
 
 House rule: no if on a domain field in this file. The shell sequences the world
 and reports; the core decides. Reserve first, then charge, then send, so money
-never moves for a parcel that does not exist.
+never moves for a parcel that does not exist. The only call into the core is price().
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import date
+from typing import assert_never
 
 from s04_what.money import Money
 from s05_how.ports import (
@@ -20,7 +21,6 @@ from s05_how.ports import (
     OutOfStock,
     PaymentGateway,
     Reserved,
-    SendResult,
     Sent,
 )
 from s06_simple.core import Request, price
@@ -30,7 +30,6 @@ from s06_simple.core import Request, price
 @dataclass(frozen=True)
 class Accepted:
     total: Money
-    reference: str
     confirmed: bool
 
 
@@ -53,24 +52,26 @@ def checkout(
     mailer: Mailer,
 ) -> Outcome:
     # [snippet: checkout]
-    priced = price(request, today)  # the only call into the core
-    match inventory.reserve(request.skus):  # s1
+    priced = price(request, today)
+    match inventory.reserve(request.skus):
         case OutOfStock(sku=sku):
             return Rejected(f"out of stock: {sku}")
         case Reserved():
             pass
-    match gateway.charge(priced.total):  # s0
+        case _ as unreachable:
+            assert_never(unreachable)
+    match gateway.charge(priced.total):
         case Declined(reason=reason):
-            return Rejected(f"payment declined: {reason}")
-        case Charged(reference=reference):
-            confirmed = delivered(mailer.send(request.email, priced.total))  # s2
-            return Accepted(priced.total, reference, confirmed)
-    # [/snippet]
-
-
-def delivered(result: SendResult) -> bool:
-    match result:
+            return Rejected(f"declined: {reason}")
+        case Charged():
+            pass
+        case _ as unreachable:
+            assert_never(unreachable)
+    match mailer.send(request.email, priced.total):
         case Sent():
-            return True
+            return Accepted(priced.total, confirmed=True)
         case Bounced():
-            return False
+            return Accepted(priced.total, confirmed=False)
+        case _ as unreachable:
+            assert_never(unreachable)
+    # [/snippet]

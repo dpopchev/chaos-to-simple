@@ -38,7 +38,6 @@ class Rejected:
 type CheckoutResult = Accepted | Rejected
 
 
-# [snippet: checkout]
 def checkout(
     order: Order,
     today: date,
@@ -46,6 +45,7 @@ def checkout(
     inventory: Inventory,
     mailer: Mailer,
 ) -> CheckoutResult:
+    # [snippet: checkout]
     goods = sum((line.price * line.qty for line in order.lines), eur(0))
     coupon = Coupon(order.coupon_valid_until) if order.coupon_valid_until else None
     zone = Zone.INTERNATIONAL if order.international else Zone.DOMESTIC
@@ -74,6 +74,4 @@ def checkout(
             return Accepted(total, confirmed=False)
         case _ as unreachable:
             assert_never(unreachable)
-
-
-# [/snippet]
+    # [/snippet]
