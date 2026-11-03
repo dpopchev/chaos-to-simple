@@ -91,3 +91,12 @@ def test_snippet_diff_added_only_keeps_the_plus_lines(tmp_path: Path) -> None:
         "old.py -> new.py",
         "+b = 3",
     ]
+
+
+@pytest.mark.view
+def test_snippet_diff_dedents_after_the_start_cut(tmp_path: Path) -> None:
+    deep, flat = tmp_path / "deep.py", tmp_path / "flat.py"
+    head, tail = "# [snippet: s]\nif a:\n", "# [/snippet]\n"
+    deep.write_text(f"{head}        x = 1\n        y = 2\n{tail}", encoding="ascii")
+    flat.write_text(f"{head}    x = 1\n    y = 2\n{tail}", encoding="ascii")
+    assert snippet_diff(deep, "s", flat, "s", start="x =").splitlines()[1:] == []

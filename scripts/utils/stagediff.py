@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import difflib
 import re
+import textwrap
 from pathlib import Path
 
 from scripts.utils.widths import snippet_text, strip_step_markers
@@ -16,10 +17,14 @@ def snippet_lines(path: Path, name: str) -> list[str]:
 
 
 def _from_start(lines: list[str], start: str | None) -> list[str]:
-    """Cut lines to begin at the first one containing start; all of them when start is None."""
+    """Cut lines to begin at the first one containing start, then dedent the cut lines.
+
+    All of them, undented, when start is None.
+    """
     if start is None:
         return lines
-    return lines[next(i for i, row in enumerate(lines) if start in row) :]
+    cut = lines[next(i for i, row in enumerate(lines) if start in row) :]
+    return textwrap.dedent("".join(cut)).splitlines(keepends=True)
 
 
 def _unhidden(lines: list[str], hide: str | None) -> list[str]:
