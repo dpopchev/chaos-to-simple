@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import math
 import re
 from pathlib import Path
 
@@ -77,6 +78,14 @@ def test_plain_draw_skips_the_zone_texts() -> None:
 def test_arrows_join_consecutive_stops() -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     assert stacey.arrow_pairs(route, "03") == [("01", "02"), ("02", "03")]
+
+
+@pytest.mark.model
+def test_simple_text_avoids_the_stops() -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    x, y = stacey.text_anchor(ZONES[0], route)
+    sx, sy = stop("06")
+    assert math.hypot(x - sx, y - sy) >= 0.08
 
 
 @pytest.mark.model

@@ -119,6 +119,20 @@ def arrow_pairs(route: Sequence[Spot], highlight: str | None) -> list[tuple[str,
     return [p for p in pairs if p[1] <= highlight]
 
 
+def text_anchor(zone: Zone, spots: Sequence[Spot]) -> tuple[float, float]:
+    """Return the point on the band's arc, near its outer edge, farthest from every stop in it."""
+    radius = zone.r_max * 0.9
+    inside = [s for s in spots if zone.r_min <= math.hypot(s.x, s.y) < zone.r_max]
+
+    def clearance(deg: int) -> float:
+        px = radius * math.cos(math.radians(deg))
+        py = radius * math.sin(math.radians(deg))
+        return min((math.hypot(px - s.x, py - s.y) for s in inside), default=math.inf)
+
+    best = max(range(45, 91), key=clearance)
+    return radius * math.cos(math.radians(best)), radius * math.sin(math.radians(best))
+
+
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],
@@ -164,12 +178,13 @@ def draw(
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
         if zone is zones[0]:
             # The innermost band is narrow: its name and above text hug the y axis.
-            cx, cy, align, wrap = 0.012, 0.215, "left", 12
+            ax_, cy = text_anchor(zone, route)
+            cx, align, wrap = max(ax_, 0.012), "left", 17
         else:
             cx = max(mid * math.cos(math.radians(76)), 0.15)
             cy = mid * math.sin(math.radians(76))
             align, wrap = "center", 22
-        size = ZONE_TEXT_SIZE
+        size = ZONE_TEXT_SIZE - 2 if zone is zones[0] else ZONE_TEXT_SIZE
         # The band name sits in its arc above the in-arc text; the last is followed by the quote.
         ax.text(
             cx,
@@ -230,7 +245,7 @@ def draw(
                     "color": "grey",
                     "linewidth": 2.5,
                     "shrinkA": 17,
-                    "shrinkB": 17,
+                    "shrinkB": 24,
                     "mutation_scale": 22,
                 },
                 zorder=3.5,
