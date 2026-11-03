@@ -23,6 +23,7 @@
 - 2026-11-02 E-007: open: keep 01-bits/s01_bits/two_ifs.py for the Friday post or delete it; the coverage run selects by exact names either way
 - 2026-11-02 E-007: open: shop named or nameless
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
+- 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 
 ## Decisions
 - 2026-11-03 E-016: 2026-11-03 plan, agreed at go: code at \tiny, text exhibits at \scriptsize, both once in preamble.tex; headings above the code as a small shaded label; page 16 gets a cue table; 06's shell keeps v9's match shapes; the journey axis reads the room's certainty; 51 -> 53 pages
