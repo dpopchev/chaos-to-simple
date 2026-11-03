@@ -6,7 +6,15 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.board import board, board_rows, example_tests, header_text, headers, missing_of
+from scripts.utils.board import (
+    board,
+    board_rows,
+    column_widths,
+    example_tests,
+    header_text,
+    headers,
+    missing_of,
+)
 from scripts.utils.board import tests_defined as defined_tests
 from scripts.utils.paths import load_rules
 from scripts.utils.retro import load_questions
@@ -73,6 +81,12 @@ def test_first_header_breaks_after_the_label() -> None:
 @pytest.mark.model
 def test_waiting_columns_are_headed_later() -> None:
     assert header_text(2, 3, route_headers()) == "04 Homes\nlater"
+
+
+@pytest.mark.model
+def test_waiting_columns_are_narrow_at_stage_3() -> None:
+    widths = column_widths(3, 5)
+    assert widths[2] < widths[1]
 
 
 @pytest.mark.edge

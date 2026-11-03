@@ -38,6 +38,16 @@ class BoardRow:
     tests: tuple[str, ...]
 
 
+def column_widths(stage: int, n: int) -> tuple[float, ...]:
+    """Return n column widths; at stage 3 a waiting column takes a third, the sentence the rest."""
+    widths = WIDTHS[:n]
+    if stage != 3:
+        return widths
+    waiting = tuple(w / 3 if col >= STAGES[stage] else w for col, w in enumerate(widths))
+    freed = sum(widths) - sum(waiting)
+    return (waiting[0], waiting[1] + freed, *waiting[2:])
+
+
 def example_tests(path: Path) -> dict[str, tuple[str, ...]]:
     """Read the test names of every bit from data/examples.csv, in file order."""
     names: dict[str, list[str]] = {}
@@ -110,7 +120,8 @@ def board(
     grey = colour_of("tangled")
     missing = set(missing_of(rows, tests_dir))
     fig, ax = plt.subplots(figsize=(12.0, 6.75), dpi=style.DPI)
-    edges = [sum(WIDTHS[:i]) for i in range(len(WIDTHS) + 1)]
+    widths = column_widths(stage, len(COLUMNS))
+    edges = [sum(widths[:i]) for i in range(len(widths) + 1)]
     height = 1.0 / (len(rows) + 1)
     gap = 0.004
 
@@ -119,7 +130,7 @@ def board(
         ax.add_patch(
             Rectangle(
                 (x + gap, y + gap),
-                WIDTHS[col] - 2 * gap,
+                widths[col] - 2 * gap,
                 height - 2 * gap,
                 facecolor=fill or grey,
                 alpha=1.0 if fill else 0.25,
@@ -128,7 +139,7 @@ def board(
         )
         if text:
             ax.text(
-                x + WIDTHS[col] / 2 if col != 1 else x + 0.01,
+                x + widths[col] / 2 if col != 1 else x + 0.01,
                 y + height / 2,
                 text,
                 ha="center" if col != 1 else "left",
@@ -141,11 +152,12 @@ def board(
     for col in range(len(COLUMNS)):
         head = colour_of("fulfilment") if col < shown else None
         ink = "white" if col < shown else "dimgray"
-        cell(col, 0, header_text(col, stage, heads), head, 12, ink)
+        narrow = stage == 3 and col >= shown
+        cell(col, 0, header_text(col, stage, heads), head, 6 if narrow else 12, ink)
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,
-            textwrap.fill(row.sentence, 40),
+            textwrap.fill(row.sentence, 72 if stage == 3 else 40),
             label_of(row.home) if row.home in HOMES else row.home,
             textwrap.fill(row.code, 30, break_long_words=False),
             "\n".join(row.tests),
@@ -157,7 +169,8 @@ def board(
             if col >= shown:
                 cell(col, line, "", None, 9, "white")
             elif fills[col] is None:
-                cell(col, line, text, None, 12 if col == 1 else 10, "black")
+                size = 16 if stage == 3 else 12
+                cell(col, line, text, None, size if col == 1 else 10, "black")
             else:
                 cell(col, line, text, fills[col], 9 if col != 4 else 7, "white")
     ax.set_xlim(0, 1)

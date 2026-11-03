@@ -77,9 +77,9 @@ The right side is the plain matrix of 03, arrows from 01: the What is agreed, th
 
 ## Nine decisions came out of the room, and each moves to a home, none deleted {paths=512}
 
-![](build/03-chaos/board.png){height=56%}
+![](build/03-chaos/board.png){width=65%}
 
-\footnotesize nine rows, nine bits: 2^9 = 512 paths until every row has a home; the columns ahead are the sections ahead
+\footnotesize nine rows, nine bits: 2^9 = 512 until every row has a home
 
 \theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
 
