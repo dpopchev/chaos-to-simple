@@ -76,20 +76,18 @@ Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type
 
 
 :::: {.columns}
-::: {.column width="75%"}
-
-**checkout v7 -> v8 (checkout_v4.py)**
+::: {.column width="80%"}
 
 ```{.text include=build/04-what/tally-8.txt}
 ```
-
-The file keeps its name, checkout_v4.py; the deck counts versions.
 
 ```{.python include=04-what/s04_what/checkout_v4.py snippet=checkout cap=18}
 ```
 
 :::
-::: {.column width="25%"}
+::: {.column width="20%"}
+
+\scriptsize
 
 pricing: \actor{marketing} \actor{loyalty}
 
@@ -105,6 +103,7 @@ shell: \actor{payment} \actor{warehouse} \actor{mailer}
 ::: notes
 The same function now makes three context calls, and its effects are still inline.
 Every bit has a home and a face: each context names the people who asked for its rules.
+The file is checkout_v4.py if anyone asks; the deck counts versions.
 :::
 
 ## All nine decisions moved home: core and supporting the What, generic adapted at the shell {paths=512}
