@@ -1,16 +1,17 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 6 | done: 487 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 1 | done: 487 | pruned: 4
 
 ## Tree
 
 ```text
-W-145  bug    [todo]     (standalone) Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [todo]
-W-146  issue  [todo]     (standalone) The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
-W-147  issue  [todo]     (standalone) The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [todo]
-W-148  issue  [todo]     (standalone) The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
-W-149  bug    [todo]     (standalone) Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
-W-150  issue  [todo]     (standalone) The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
+E-015         [todo]     backlog after deck v5: the palette rebuild rule and five page fixes
+  W-145  bug    [todo]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [todo]
+  W-146  issue  [todo]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
+  W-147  issue  [todo]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [todo]
+  W-148  issue  [todo]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
+  W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
+  W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
 ```
 
 ## Closed
@@ -857,22 +858,23 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  W145["W-145 bug todo, standalone: Figure rules miss the palette files, so a colour or label change leaves stale figures"]
+  E015["E-015 todo: backlog after deck v5: the palette rebuild rule and five page fixes"]
+  E015 --> W145["W-145 bug todo: Figure rules miss the palette files, so a colour or label change leaves stale figures"]
   W145 --> T331["T-331 todo: Add the palette prerequisites -> every figure rule in the NN-*/section.mk files"]
-  W146["W-146 issue todo, standalone: The colour-code ports chips name their kind unevenly"]
+  E015 --> W146["W-146 issue todo: The colour-code ports chips name their kind unevenly"]
   W146 --> T332["T-332 todo: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
-  W147["W-147 issue todo, standalone: The Simple band text runs under the 06 stop of the Stacey matrix"]
+  E015 --> W147["W-147 issue todo: The Simple band text runs under the 06 stop of the Stacey matrix"]
   W147 --> T333["T-333 todo: Move the Simple text off the 06 stop -> stacey.draw text placement"]
-  W148["W-148 issue todo, standalone: The storyboard frames shrank their code to tiny with half the frame empty"]
+  E015 --> W148["W-148 issue todo: The storyboard frames shrank their code to tiny with half the frame empty"]
   W148 --> T336["T-336 todo: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
-  W149["W-149 bug todo, standalone: Page 29 shows finance's test text over the green run of another test"]
+  E015 --> W149["W-149 bug todo: Page 29 shows finance's test text over the green run of another test"]
   W149 --> T338["T-338 todo: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
-  W150["W-150 issue todo, standalone: The epilogue title's second line collides with the bubble under it"]
+  E015 --> W150["W-150 issue todo: The epilogue title's second line collides with the bubble under it"]
   W150 --> T339["T-339 todo: Fit the epilogue title on one line -> 06-simple/index.md page 46 title"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W145,T331,W146,T332,W147,T333,W148,T336,W149,T338,W150,T339 todo
+  class E015,W145,T331,W146,T332,W147,T333,W148,T336,W149,T338,W150,T339 todo
 ```
