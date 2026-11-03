@@ -26,6 +26,8 @@
 
 ## Decisions
 - 2026-11-02 E-013: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
+- 2026-11-03 E-013: AC1 amended to 'at least 3 context lines and one ... line': stagediff's elision collapses a run over two unchanged lines, so 6 is unreachable as briefed; T-287 and T-288 stay as briefed (developer, 2026-11-03)
 
 ## Deviations
 - 2026-11-02 E-013: W-129 taken before W-127 at the re-aim after W-126: a probe with T-287 and T-288 applied in memory leaves seam.diff 3 context lines (stagediff's _elided collapses a run over two), so AC1's 'at least 6' needs the developer; W-129 is independent
+- 2026-11-03 E-013: AC1, W-127's Outcome and T-288's Check amended from 'at least 6' to 'at least 3 context lines and one ... line' on the developer's pick after the HALT of 2026-11-02; the burn resumes with W-127, the last open work item
