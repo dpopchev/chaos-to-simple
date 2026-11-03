@@ -360,10 +360,12 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 
 ## Four orders the memo implies: three pass, the coupon order under 60 does not {paths=64}
 
+the memo's two conditions: the coupon x the cart at 50 EUR before it, one order per cell
+
 :::: {.columns}
 ::: {.column width="62%"}
 
-```{.python heading-file=build/01-bits/tests-memo.txt include=01-bits/tests/test_memo_orders.py snippet=memo-orders cap=18}
+```{.python heading-file=build/01-bits/tests-memo.txt include=01-bits/tests/test_memo_orders.py snippet=memo-orders cap=21}
 ```
 
 :::
@@ -375,7 +377,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 :::
 ::::
 
-only the coupon order between 50 and 60 EUR takes the path no test of ours ran
+only the coupon order with the cart over 50 and the goods under 50 takes the path no test of ours ran
 
 ::: notes
 Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.

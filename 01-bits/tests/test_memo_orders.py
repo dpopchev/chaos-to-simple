@@ -40,6 +40,9 @@ def total_of(eur: int, coupon: bool) -> Decimal:
 
 # [snippet: memo-orders]
 class TestMemoOrders:
+    """One order per cell: with or without the coupon, the cart under or over 50 EUR before it;
+    want is what logistics pays."""
+
     @pytest.mark.parametrize(
         ("eur", "coupon", "want"),
         [
