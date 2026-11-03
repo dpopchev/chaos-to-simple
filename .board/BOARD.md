@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-142 > T-324   | blocked: 0 | todo roots: 4 | done: 477 | pruned: 4
+open path: E-014 > W-142 > T-324   | blocked: 0 | todo roots: 5 | done: 477 | pruned: 4
 
 ## Tree
 
@@ -25,6 +25,7 @@ W-145  bug    [todo]     (standalone) Figure rules miss the palette files, so a 
 W-146  issue  [todo]     (standalone) The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
 W-147  issue  [todo]     (standalone) The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [todo]
 W-148  issue  [todo]     (standalone) The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
+W-149  bug    [todo]     (standalone) Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
 ```
 
 ## Closed
@@ -846,6 +847,8 @@ flowchart TD
   W147 --> T333["T-333 todo: Move the Simple text off the 06 stop -> stacey.draw text placement"]
   W148["W-148 issue todo, standalone: The storyboard frames shrank their code to tiny with half the frame empty"]
   W148 --> T336["T-336 todo: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
+  W149["W-149 bug todo, standalone: Page 29 shows finance's test text over the green run of another test"]
+  W149 --> T338["T-338 todo: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -853,5 +856,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E014,W142,T324 doing
   class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,T337,T322,T323 done
-  class W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
+  class W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336,W149,T338 todo
 ```
