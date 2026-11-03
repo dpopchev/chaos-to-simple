@@ -357,6 +357,29 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
+## Four orders the memo implies: three pass, the coupon order under 60 does not {paths=64}
+
+:::: {.columns}
+::: {.column width="62%"}
+
+```{.python heading="the four quadrants: coupon x 50 EUR" include=01-bits/tests/test_memo_orders.py snippet=memo-orders cap=18}
+```
+
+:::
+::: {.column width="38%"}
+
+```{.text heading="make test K=TestMemoOrders --runxfail" include=build/01-bits/memo-run.txt}
+```
+
+:::
+::::
+
+only the coupon order between 50 and 60 EUR takes the path no test of ours ran
+
+::: notes
+Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.
+:::
+
 ## The badge is 100% branch coverage, it counts edges while every new policy doubles the combinations {paths=64}
 
 :::: {.columns}

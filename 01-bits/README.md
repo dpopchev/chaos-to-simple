@@ -61,6 +61,7 @@ campaign on time, one if at a time.
 - [x] 11. Finance found it, paths=64: `finance.png` titled with the October totals, marketing's squeeze bubble as the last line
 - [x] 12. The path nobody ran, paths=64: the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
 - [x] 13. A path is a six-bit number, paths=64: `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
+- [x] 14. Four orders the memo implies, paths=64: the `memo-orders` snippet of `test_memo_orders.py` beside `memo-run.txt` (three passed, the coupon order at 55 EUR failed)
 
 ## Live
 
@@ -69,6 +70,7 @@ campaign on time, one if at a time.
 2. `make test K=test_planted_bug`: 1 xfailed.
 3. `uv run pytest 01-bits/tests/test_planted_bug.py --runxfail`: the assertion
    shows 54.00 against 60.00.
+4. `make test K=TestMemoOrders`: 3 passed, 1 xfailed.
 
 ## Done when
 
