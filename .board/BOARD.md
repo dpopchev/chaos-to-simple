@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016 > W-167 > T-382   | blocked: 0 | todo roots: 0 | done: 545 | pruned: 6
+open path: E-016 > W-167   | blocked: 0 | todo roots: 0 | done: 546 | pruned: 6
 
 ## Tree
 
@@ -17,7 +17,7 @@ E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening,
   W-164  issue  [todo]     04 homes: each snippet beside its test, the homes column compact -- T-373 [todo], T-374 [todo], T-375 [todo]
   W-165  issue  [todo]     05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code -- T-376 [todo], T-377 [todo], T-378 [todo]
   W-166  issue  [todo]     one kind per bit: counts, retro and wounds read the subdomain from contexts.csv -- T-379 [todo], T-380 [todo]
-  W-167  bug    [doing]    03 board drawn at 65% width: the 16:9 figure is height-bound on its frame   (filed during T-372) -- T-381 [done], T-382 [doing]   <- ACTIVE LEAF
+  W-167  bug    [doing]    03 board drawn at 65% width: the 16:9 figure is height-bound on its frame   (filed during T-372) -- T-381 [done], T-382 [done]
 ```
 
 ## Closed
@@ -970,13 +970,13 @@ flowchart TD
   W166 --> T380["T-380 todo: Derive each question's and incident's subdomain from its bit -> retro and postmortem through contexts.csv"]
   E016 --> W167["W-167 bug doing: 03 board drawn at 65% width: the 16:9 figure is height-bound on its frame"]
   W167 --> T381["T-381 done: Shape the stage-3 board wide and short -> scripts/utils/board.py figure_size"]
-  W167 --> T382["T-382 doing: Show the board at full width -> 03-chaos/index.md page 29 width=100% -- ACTIVE LEAF"]
+  W167 --> T382["T-382 done: Show the board at full width -> 03-chaos/index.md page 29 width=100%"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016,W167,T382 doing
-  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,T381 done
+  class E016,W167 doing
+  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,T381,T382 done
   class W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
