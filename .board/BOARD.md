@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015 > W-148   | blocked: 2 | todo roots: 2 | done: 495 | pruned: 5
+open path: E-015 > W-148 > T-347   | blocked: 1 | todo roots: 2 | done: 495 | pruned: 6
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-145  bug    [done]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
   W-146  issue  [done]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [done]
   W-147  issue  [done]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [done]
-  W-148  issue  [doing]    The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [blocked]   [blocked since 2026-11-03, waiting on developer: eight frames written (uncommitted in 01-bits/index.md, data/budget.csv; widths and overflow green, pages 6/7 fit via one-line titles and a 30/70 request|tests column on page 7) but make test fails 2 tests outside the named files: scripts/utils/test_counter_plan.py frames('01')[8] now index 9, and storyboard_ok (scripts/utils/counter.py STORYBOARD 1,2,4,..,64) sees 1,1,2,.. after the new {paths=1} frame], T-346 [blocked]   [blocked since 2026-11-03, waiting on developer: counter.py STORYBOARD 1,1,2,..,64 and test_counter_plan.py index 9 made (uncommitted; Check 20 passed) but make check fails 2 tests in scripts/utils/test_counter.py, unnamed by the brief: the storyboard_ok fixtures at lines 24 and 29 hold the seven-step sequence]
+  W-148  issue  [doing]    The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [blocked]   [blocked since 2026-11-03, waiting on T-347: eight frames written, uncommitted in 01-bits/index.md and data/budget.csv (widths and overflow green; page 7 request beside tests by the developer's Decision); make test waits on the counter plan of T-347], T-346 [pruned]   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files], T-347 [doing]   <- ACTIVE LEAF
   W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
@@ -872,8 +872,9 @@ flowchart TD
   W148 --> T336["T-336 pruned: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
   W148 --> T343["T-343 done: Render a story block in three shades -> story.lua, preamble colours"]
   W148 --> T344["T-344 done: Show the scope and the changes under one heading -> storyboard step and test views"]
-  W148 --> T345["T-345 blocked on developer: Lay out the storyboard frames -> 01-bits/index.md pages 6 to 13, data/budget.csv"]
-  W148 --> T346["T-346 blocked on developer: Count the page 7 frame in the storyboard plan -> scripts/utils/counter.py STORYBOARD, scripts/utils/test_counter_plan.py"]
+  W148 --> T345["T-345 blocked on T-347: Lay out the storyboard frames -> 01-bits/index.md pages 6 to 13, data/budget.csv"]
+  W148 --> T346["T-346 pruned: Count the page 7 frame in the storyboard plan -> scripts/utils/counter.py STORYBOARD, scripts/utils/test_counter_plan.py"]
+  W148 --> T347["T-347 doing: Count the page 7 frame in the storyboard plan and its tests -> scripts/utils/counter.py, scripts/utils/test_counter_plan.py, scripts/utils/test_counter.py -- ACTIVE LEAF"]
   E015 --> W149["W-149 bug todo: Page 29 shows finance's test text over the green run of another test"]
   W149 --> T338["T-338 todo: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
   E015 --> W150["W-150 issue todo: The epilogue title's second line collides with the bubble under it"]
@@ -889,9 +890,9 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015,W148 doing
-  class T345,T346 blocked
+  class E015,W148,T347 doing
+  class T345 blocked
   class W145,T331,W146,T332,W147,T333,T343,T344 done
   class W149,T338,W150,T339,W151,T340,W152,T341,W153,T342 todo
-  class T336 pruned
+  class T336,T346 pruned
 ```
