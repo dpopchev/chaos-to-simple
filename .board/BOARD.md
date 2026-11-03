@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016 > W-156 > T-351   | blocked: 0 | todo roots: 0 | done: 514 | pruned: 6
+open path: E-016 > W-156 > T-352   | blocked: 0 | todo roots: 0 | done: 515 | pruned: 6
 
 ## Tree
 
 ```text
 E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut
-  W-156  issue  [doing]    snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [done], T-351 [doing]   <- ACTIVE LEAF, T-352 [todo]
+  W-156  issue  [doing]    snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [done], T-351 [done], T-352 [doing]   <- ACTIVE LEAF
   W-157  issue  [todo]     01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [todo], T-354 [todo], T-355 [todo]
   W-158  issue  [todo]     01 counting: bits under their counts, the rule as a table -- T-356 [todo], T-357 [todo]
   W-159  issue  [todo]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [todo], T-359 [todo], T-360 [todo]
@@ -927,8 +927,8 @@ flowchart TD
   E016["E-016 doing: The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut"]
   E016 --> W156["W-156 issue doing: snippet format: two sizes set once, an optional heading, no per-slide fvset"]
   W156 --> T350["T-350 done: Set the two sizes and the heading label -> preamble.tex macros and the heading= attribute"]
-  W156 --> T351["T-351 doing: Scale the width budget by block kind -> scripts/utils/widths.py reads the fence class -- ACTIVE LEAF"]
-  W156 --> T352["T-352 todo: Remove every per-slide size -> the fvset lines gone from 01..06 index.md"]
+  W156 --> T351["T-351 done: Scale the width budget by block kind -> scripts/utils/widths.py reads the fence class"]
+  W156 --> T352["T-352 doing: Remove every per-slide size -> the fvset lines gone from 01..06 index.md -- ACTIVE LEAF"]
   E016 --> W157["W-157 issue todo: 01 storyboard: v0 on one frame, one line per bubble and row, no aside"]
   W157 --> T353["T-353 todo: Write each bubble and diff row on one line -> storyboard.py unwrapped for 01"]
   W157 --> T354["T-354 todo: Merge the v0 frames -> 01-bits/index.md at 13 frames with the counter plan"]
@@ -972,7 +972,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016,W156,T351 doing
-  class T350 done
-  class T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
+  class E016,W156,T352 doing
+  class T350,T351 done
+  class W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```

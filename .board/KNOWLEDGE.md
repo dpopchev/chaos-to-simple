@@ -29,4 +29,5 @@
 - 2026-11-03 E-016: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 12 hours) (developer, 2026-11-03)
 
 ## Deviations
-- none recorded
+- 2026-11-03 E-016: T-350 Action amended at close: three filters were named without 00-frontmatter/, so the scope gate refused; Check unchanged
+- 2026-11-03 E-016: T-351 Action gained the 06 worlds frame at 45/55: its .text table renders at 7pt since T-350 and the new widths rule names its 60-column rows; Check unchanged
