@@ -45,6 +45,7 @@ build/01-bits/coverage.txt,txt,pytest --cov
 build/01-bits/coverage-summary.txt,txt,grep over coverage.txt
 build/01-bits/coverage-view.png,png,scripts.figures coverage-view
 build/01-bits/finance.png,png,scripts.figures finance
+build/01-bits/cues.txt,txt,scripts.figures finance-cues
 build/01-bits/counting.png,png,scripts.figures counting
 build/01-bits/bug-run.txt,txt,pytest --runxfail
 build/01-bits/grid.png,png,scripts.figures grid-image

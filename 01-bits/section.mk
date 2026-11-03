@@ -10,7 +10,7 @@ ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES) $(BUILD)/01-bi
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/counting.png $(BUILD)/01-bits/grid-growth.png
-ARTIFACTS += $(BUILD)/01-bits/bug-run.txt
+ARTIFACTS += $(BUILD)/01-bits/bug-run.txt $(BUILD)/01-bits/cues.txt
 
 # The xfail is lifted (--runxfail) so the slide shows the failure the suite hides; the exit
 # status must be 1 (one test failed) or the recipe fails; only the assert lines and the
@@ -32,6 +32,10 @@ $(BUILD)/01-bits/finance.png: $(PALETTE) 01-bits/data/october.csv \
 	@$(RUN) python -m scripts.figures finance --october 01-bits/data/october.csv \
 	  --out $(BUILD)/01-bits/finance.png
 	$(call log_done,$(BUILD)/01-bits/finance.png written)
+
+$(BUILD)/01-bits/cues.txt: 01-bits/data/october.csv scripts/figures.py scripts/utils/finance.py
+	@$(RUN) python -m scripts.figures finance-cues --october 01-bits/data/october.csv --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/counting.png: $(PALETTE) scripts/figures.py scripts/utils/counting.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures counting --out $@

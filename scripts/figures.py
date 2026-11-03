@@ -37,8 +37,8 @@ from scripts.utils.figures import (
     seam,
     tree,
 )
+from scripts.utils.finance import cues, load_october
 from scripts.utils.finance import draw as draw_finance
-from scripts.utils.finance import load_october
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import (
     doubling_chart,
@@ -67,6 +67,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "coverage-view",
         "doubling",
         "finance",
+        "finance-cues",
         "grid-growth",
         "grid-image",
         "grid-panels",
@@ -121,6 +122,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "finance":
         weeks = load_october(args.october)
         draw_finance(weeks, args.out)
+        return 0
+    if args.what == "finance-cues":
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(cues(load_october(args.october)), encoding="ascii")
         return 0
     if args.what == "counting":
         counting_figure(args.out)

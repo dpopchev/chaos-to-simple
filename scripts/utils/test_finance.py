@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from scripts.utils.finance import LEGEND, draw, load_october, title, totals
+from scripts.utils.finance import LEGEND, cues, draw, load_october, title, totals
 
 OCTOBER = Path(__file__).resolve().parents[2] / "01-bits" / "data" / "october.csv"
 
@@ -37,6 +37,12 @@ def test_title_names_the_gap() -> None:
 @pytest.mark.view
 def test_legend_names_total_received_missing() -> None:
     assert [name.split(":")[0] for name in LEGEND] == ["expected", "received", "missing"]
+
+
+@pytest.mark.view
+def test_cues_count_no_free_parcel_without_the_coupon() -> None:
+    total = next(r for r in cues(load_october(OCTOBER)).splitlines() if r.startswith("total"))
+    assert total.endswith(" 0")
 
 
 @pytest.mark.view

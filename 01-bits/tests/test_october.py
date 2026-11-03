@@ -23,6 +23,12 @@ class TestOctober:
     def test_free_shipping_orders_sum_to_1214(self, rows: list[dict[str, str]]) -> None:
         assert sum(int(r["got_free_shipping"]) for r in rows) == 1214
 
+    def test_free_with_coupon_sums_to_1214(self, rows: list[dict[str, str]]) -> None:
+        assert sum(int(r["free_with_coupon"]) for r in rows) == 1214
+
+    def test_free_without_coupon_sums_to_0(self, rows: list[dict[str, str]]) -> None:
+        assert sum(int(r["free_without_coupon"]) for r in rows) == 0
+
     def test_shortfall_sums_to_6070(self, rows: list[dict[str, str]]) -> None:
         assert sum(int(r["expected_eur"]) - int(r["received_eur"]) for r in rows) == 6070
 

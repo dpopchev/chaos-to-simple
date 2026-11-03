@@ -11,6 +11,7 @@ from scripts.utils.palette import colour_of
 
 FIGSIZE = (8.0, 3.5)
 FONTSIZE = 12
+PARCEL_EUR = 5
 LEGEND = (
     "expected: the bar, 5 EUR on every parcel",
     "received: what the code charged (R1)",
@@ -25,6 +26,8 @@ class Week:
     free_orders: int
     expected_eur: int
     received_eur: int
+    free_with_coupon: int
+    free_without_coupon: int
 
     @property
     def shortfall_eur(self) -> int:
@@ -41,6 +44,8 @@ def load_october(path: Path) -> tuple[Week, ...]:
                 int(row["got_free_shipping"]),
                 int(row["expected_eur"]),
                 int(row["received_eur"]),
+                int(row["free_with_coupon"]),
+                int(row["free_without_coupon"]),
             )
             for row in csv.DictReader(fh)
         )
@@ -49,6 +54,24 @@ def load_october(path: Path) -> tuple[Week, ...]:
 def totals(weeks: Sequence[Week]) -> tuple[int, int]:
     """Return (free-shipping orders, missing EUR) summed over the weeks."""
     return (sum(w.free_orders for w in weeks), sum(w.shortfall_eur for w in weeks))
+
+
+def cues(weeks: Sequence[Week]) -> str:
+    """Return the coupon cue table, one row per week and a total, within 49 columns."""
+    head = f"{'week':<6}{'<50':>6}{'free':>6}{'coupon':>8}{'none':>6}"
+    rows = [
+        f"{w.week:<6}{w.expected_eur // PARCEL_EUR:>6}{w.free_orders:>6}"
+        f"{w.free_with_coupon:>8}{w.free_without_coupon:>6}"
+        for w in weeks
+    ]
+    total = (
+        f"{'total':<6}{sum(w.expected_eur for w in weeks) // PARCEL_EUR:>6}"
+        f"{sum(w.free_orders for w in weeks):>6}"
+        f"{sum(w.free_with_coupon for w in weeks):>8}"
+        f"{sum(w.free_without_coupon for w in weeks):>6}"
+    )
+    closing = ("every free parcel carried the coupon;", "none without it")
+    return "\n".join([head, *rows, total, "", *closing]) + "\n"
 
 
 def title(weeks: Sequence[Week]) -> str:
