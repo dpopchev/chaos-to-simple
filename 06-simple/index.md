@@ -10,6 +10,8 @@
 ```{.python include=06-simple/s06_simple/core.py snippet=price}
 ```
 
+\begingroup\footnotesize 06-simple/s06_simple/core.py price in the core; tested by test_core_paths.py\par\endgroup
+
 :::
 ::: {.column width="48%"}
 
@@ -18,6 +20,8 @@
 
 ```{.diff include=build/06-simple/seam.diff cap=28}
 ```
+
+\begingroup\footnotesize 06-simple/s06_simple/shell.py in fulfilment; tested by test_shell.py\par\endgroup
 
 :::
 ::::
@@ -55,6 +59,8 @@ The core has no if of its own, every bit stays where it was named.
 
 ```{.python include=06-simple/s06_simple/worlds.py snippet=eight}
 ```
+
+\begingroup\footnotesize 06-simple/s06_simple/worlds.py in fulfilment; tested by test_worlds.py\par\endgroup
 
 :::
 ::: {.column width="45%"}
@@ -115,6 +121,8 @@ Nothing was deleted, every decision only moved to the place that owns it.
 
 ```{.diff include=build/06-simple/seventh.diff cap=18}
 ```
+
+\begingroup\footnotesize 06-simple/s06_simple/seventh.py in shipping; tested by test_seventh.py\par\endgroup
 
 ```{.text include=build/06-simple/epilogue.txt}
 ```
