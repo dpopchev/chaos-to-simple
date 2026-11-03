@@ -19,9 +19,9 @@ Every arrow becomes a line in one function.
 Name the nine parts before anyone reads the picture: the customer, the shop, the four
 departments on the left (marketing, loyalty program, logistics, accounting) and the
 three providers on the right (payment provider, warehouse, mailer). The legend has three
-kinds: core, supporting and generic. Under each department box sit its requests as
-bullets in its colour: marketing's 10 EUR and its 3 EUR on two lines, one bullet per
-request. The left arrows feed core and supporting (pricing, shipping, fulfilment). The right arrows are generic capabilities (payment, warehouse,
+kinds: core, supporting and generic. Each department shows its icon with
+its requests inside its box, one line per request; its colour and label live in the
+chips of the shop. The left arrows feed core and supporting (pricing, shipping, fulfilment). The right arrows are generic capabilities (payment, warehouse,
 mail), and tax is a bought rule kept in-house for now. The footer counter starts at ?
 because no section has set it yet. The caption is Conway's point: the shape of the map
 is the shape of the teams, and the arrows are the calls the code makes. The function
