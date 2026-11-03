@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-133 > T-302   | blocked: 0 | todo roots: 2 | done: 443 | pruned: 4
+open path: E-014 > W-133 > T-302   | blocked: 0 | todo roots: 3 | done: 443 | pruned: 4
 
 ## Tree
 
@@ -23,6 +23,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-144  issue  [todo]     06: v9 to v10 compact, the long snippet cut, every snippet with its home and its test -- T-327 [todo], T-328 [todo], T-329 [todo]
 W-145  bug    [todo]     (standalone) Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [todo]
 W-146  issue  [todo]     (standalone) The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
+W-147  issue  [todo]     (standalone) The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [todo]
 ```
 
 ## Closed
@@ -837,6 +838,8 @@ flowchart TD
   W145 --> T331["T-331 todo: Add the palette prerequisites -> every figure rule in the NN-*/section.mk files"]
   W146["W-146 issue todo, standalone: The colour-code ports chips name their kind unevenly"]
   W146 --> T332["T-332 todo: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
+  W147["W-147 issue todo, standalone: The Simple band text runs under the 06 stop of the Stacey matrix"]
+  W147 --> T333["T-333 todo: Move the Simple text off the 06 stop -> stacey.draw text placement"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -844,5 +847,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E014,W133,T302 doing
   class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,T300,T301 done
-  class W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332 todo
+  class W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
 ```
