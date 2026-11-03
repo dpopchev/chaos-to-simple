@@ -4,7 +4,7 @@
 --   ```
 --
 -- Runs after include-code-files.lua, so the block text is already filled. Line 1 is the caption
--- (vA -> vB) and is set bold. Each later line is wrapped by its first character: - in \diffdel,
+-- (vA -> vB), set as the grey heading ahead of the Verbatim. Each later line is wrapped by its first character: - in \diffdel,
 -- + in \diffadd, ~ in \diffchg, and a line starting ... or equal to --- in \diffcut; a context line stays plain.
 -- The block becomes a fancyvrb Verbatim (backslash and the two braces are command characters).
 -- The fontsize is \snippetsize and the four macros are in preamble.tex.
@@ -22,6 +22,18 @@ end
 
 local function escape(text)
   return (text:gsub("[\\{}]", ESCAPES))
+end
+
+-- The heading is set in running LaTeX, not Verbatim, so every special character is escaped.
+local HEAD_ESCAPES = {
+  ["^"] = "\\textasciicircum{}",
+  ["~"] = "\\textasciitilde{}",
+}
+
+local function escape_tex(text)
+  return (text:gsub("[\\{}%%#&_%$%^~]", function(ch)
+    return ESCAPES[ch] or HEAD_ESCAPES[ch] or ("\\" .. ch)
+  end))
 end
 
 -- A body line starting with --- is diffcut, but a removed line whose text itself starts with --
@@ -43,24 +55,25 @@ end
 
 local function diff_block(cb)
   local rows = {}
+  local head = ""
   local number = 0
   for line in (cb.text .. "\n"):gmatch("([^\n]*)\n") do
     number = number + 1
-    local row = escape(line)
     if number == 1 then
-      row = "\\textbf{" .. row .. "}"
+      head = "\\snippethead{" .. escape_tex(line) .. "}\n"
     else
+      local row = escape(line)
       local macro = macro_of(line)
       if macro and row:match("%S") then
         row = "\\" .. macro .. "{" .. row .. "}"
       end
+      rows[#rows + 1] = row
     end
-    rows[#rows + 1] = row
   end
-  while #rows > 1 and rows[#rows] == "" do
+  while #rows > 0 and rows[#rows] == "" do
     rows[#rows] = nil
   end
-  local tex = "\\begin{Verbatim}[commandchars=\\\\\\{\\},fontsize=\\snippetsize]\n"
+  local tex = head .. "\\begin{Verbatim}[commandchars=\\\\\\{\\},fontsize=\\snippetsize]\n"
     .. table.concat(rows, "\n") .. "\n\\end{Verbatim}"
   return pandoc.RawBlock("latex", tex)
 end
