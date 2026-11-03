@@ -32,7 +32,6 @@ alternatives. Then say that the footer counts from here, starting at 1 for the p
 
 ## Three calls and no policy make the plain checkout one path {paths=1}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{customer}
@@ -52,7 +51,6 @@ customer's line aloud: that is all.
 
 ## The same request with two tests still has just one path {paths=1}
 
-\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="30%"}
@@ -81,7 +79,6 @@ after them.
 
 ## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{marketing}
@@ -114,7 +111,6 @@ alone, the scope row above it.
 
 ## The member discount stacks on the coupon and doubles the checkout to 4 paths {paths=4}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{loyalty}
@@ -147,7 +143,6 @@ change alone, the scope row above it.
 
 ## Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths {paths=8}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{logistics}
@@ -180,7 +175,6 @@ diffs show the change alone, the scope row above it.
 
 ## Shipping abroad adds a fourth bit and the checkout reaches 16 paths {paths=16}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{logistics}
@@ -213,7 +207,6 @@ now branch twice. The diffs show the change alone, the scope row above it.
 
 ## Gift wrap, promised as just one more change, brings the checkout to 32 paths {paths=32}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{marketing}
@@ -246,7 +239,6 @@ the scope row above it.
 
 ## No VAT for companies adds the sixth bit and the checkout reaches 64 paths {paths=64}
 
-\fvset{fontsize=\scriptsize}
 
 ::: {.request}
 \actor{accounting}
@@ -304,7 +296,6 @@ at the aside: two readings of from 50 are already in the code.
 
 ## Two tests reach 100% branch coverage yet run only 2 of 64 combinations {paths=64}
 
-\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="54%"}
@@ -332,7 +323,6 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 
 ## Finance traced 6,070 EUR of missing shipping to orders the coupon took under 50 EUR {paths=64}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text include=01-bits/data/incident.txt cap=8}
 ```

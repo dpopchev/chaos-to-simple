@@ -2,7 +2,6 @@
 
 ## I3 charged cards for missing stock because charge ran before reserve {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text include=05-how/data/incident.txt}
 ```
@@ -67,7 +66,6 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 ## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
 
-\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="45%"}

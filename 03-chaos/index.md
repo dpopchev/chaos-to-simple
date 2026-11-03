@@ -16,7 +16,6 @@ them. Each drop is a place where the rule was not written down yet.
 
 ## Four departments carry the argument in one room while dev stays silent to the end {paths=64}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text .speakers include=03-chaos/data/room.txt cap=18}
 ```
@@ -32,7 +31,6 @@ Reading plan: read the Logistics first line aloud, then the Marketing answer; sk
 
 ## The retro names six business decisions, two core and four in supporting subdomains {paths=64}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
 ```
@@ -48,7 +46,6 @@ discount, not before it: the rule came last, after the code had already picked o
 
 ## Counting the nine decisions honestly gives 512 paths, not 64, the first good news {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="62%"}

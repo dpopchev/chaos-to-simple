@@ -13,7 +13,6 @@ This is how the code will move, one home at a time.
 
 ## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
 
-\fvset{fontsize=\tiny}
 
 ```{.text include=build/04-what/tally-7.txt}
 ```
@@ -36,7 +35,6 @@ The diff is the whole fix: one name changes, and the rest of the function stays 
 
 ## Shipping owns the dispute's rule and a sum type lets the checker count its bit {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/04-what/dispute.txt}
 ```
@@ -55,7 +53,6 @@ Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type
 
 ## Each bit now has a home in pricing, shipping, tax or shell, named by who asked {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
 ::: {.column width="75%"}

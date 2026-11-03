@@ -2,13 +2,11 @@
 
 ## Marketing and logistics read free shipping differently, so no test settles it {paths=64}
 
-\fvset{fontsize=\scriptsize}
 
 Free shipping from 50. Of what?
 
 \vspace{-6pt}
 
-\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="47%"}
@@ -44,7 +42,6 @@ Free shipping from 50. Of what?
 :::
 ::::
 
-\fvset{fontsize=\scriptsize}
 
 \begingroup\footnotesize\textit{one function, one reading: the code picked R1 and nobody chose}\par\endgroup
 \vspace{-11pt}

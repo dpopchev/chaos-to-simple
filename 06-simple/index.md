@@ -2,7 +2,6 @@
 
 ## Moving the pure part out into price cuts along the seam and changes nothing else {paths=512}
 
-\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -35,7 +34,6 @@ Nothing else changed: same decisions, one place each.
 
 ## Every one of 64 paths holds three invariants, so the core runs 192 tests {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
@@ -52,7 +50,6 @@ The core has no if of its own, every bit stays where it was named.
 
 ## Eight shell worlds collapse to four outcomes, with no charge when stock is gone {paths=512}
 
-\fvset{fontsize=\tiny}
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -78,7 +75,6 @@ No charge when stock is gone, no mail when the card is refused.
 
 ## I1 and I3 each close by name as a test, and the seam keeps both from returning {paths=512}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text include=build/06-simple/postmortem.txt}
 ```
@@ -109,7 +105,6 @@ Nothing was deleted, every decision only moved to the place that owns it.
 
 ## Marketing's seventh if lands in shipping and costs 8 paths {paths=72}
 
-\fvset{fontsize=\scriptsize}
 
 ```{.text include=01-bits/data/squeeze.txt}
 ```
@@ -117,7 +112,6 @@ Nothing was deleted, every decision only moved to the place that owns it.
 :::: {.columns}
 ::: {.column width="60%"}
 
-\fvset{fontsize=\tiny}
 
 ```{.diff include=build/06-simple/seventh.diff cap=18}
 ```
