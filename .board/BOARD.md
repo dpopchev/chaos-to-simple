@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-133 > T-302   | blocked: 0 | todo roots: 3 | done: 443 | pruned: 4
+open path: E-014 > W-133   | blocked: 0 | todo roots: 3 | done: 444 | pruned: 4
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-130  issue  [done]     00: one legend of three kinds, the map redrawn -- T-291 [done], T-292 [done], T-293 [done], T-330 [done]
   W-131  issue  [done]     03/06: the kinds in the retro, the post-mortem and the epilogue -- T-294 [done], T-295 [done], T-296 [done]
   W-132  issue  [done]     04: the moves and the colour code under the kinds -- T-297 [done], T-298 [done], T-299 [done]
-  W-133  issue  [doing]    00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [done], T-301 [done], T-302 [doing]   <- ACTIVE LEAF
+  W-133  issue  [doing]    00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [done], T-301 [done], T-302 [done]
   W-134  issue  [todo]     03: the new view after the room -- T-303 [todo], T-304 [todo]
   W-135  issue  [todo]     01: how the paths are counted, as a block diagram -- T-305 [todo], T-306 [todo]
   W-136  issue  [todo]     01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [todo], T-308 [todo], T-309 [todo]
@@ -795,7 +795,7 @@ flowchart TD
   E014 --> W133["W-133 issue doing: 00/02: the Stacey overview on page 3, the plain matrix on page 20"]
   W133 --> T300["T-300 done: Draw the quarters with ticks and a plain mode -> stacey.draw(plain=) with 0 to 100 axis ticks"]
   W133 --> T301["T-301 done: Draw the movement -> stacey.draw(arrows=), route.csv 02 in Complex, the overview and plain artifacts"]
-  W133 --> T302["T-302 doing: Replace the agenda frame with the overview -> 00-frontmatter/index.md and 02-stacey/index.md -- ACTIVE LEAF"]
+  W133 --> T302["T-302 done: Replace the agenda frame with the overview -> 00-frontmatter/index.md and 02-stacey/index.md"]
   E014 --> W134["W-134 issue todo: 03: the new view after the room"]
   W134 --> T303["T-303 todo: Put the matrix beside the honest count -> 03-chaos/index.md page 25 with stacey-03 right"]
   W134 --> T304["T-304 todo: Tie the board to the explosion -> 03-chaos/index.md page 26 caption"]
@@ -845,7 +845,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W133,T302 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,T300,T301 done
+  class E014,W133 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,T300,T301,T302 done
   class W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
 ```
