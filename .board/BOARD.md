@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016 > W-157 > T-355   | blocked: 0 | todo roots: 0 | done: 519 | pruned: 6
+open path: E-016 > W-157   | blocked: 0 | todo roots: 0 | done: 520 | pruned: 6
 
 ## Tree
 
 ```text
 E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening, the maps, the cues, one kind per bit, the seam cut
   W-156  issue  [done]     snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [done], T-351 [done], T-352 [done]
-  W-157  issue  [doing]    01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [done], T-354 [done], T-355 [doing]   <- ACTIVE LEAF
+  W-157  issue  [doing]    01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [done], T-354 [done], T-355 [done]
   W-158  issue  [todo]     01 counting: bits under their counts, the rule as a table -- T-356 [todo], T-357 [todo]
   W-159  issue  [todo]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [todo], T-359 [todo], T-360 [todo]
   W-160  issue  [todo]     Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [todo], T-362 [todo], T-363 [todo]
@@ -932,7 +932,7 @@ flowchart TD
   E016 --> W157["W-157 issue doing: 01 storyboard: v0 on one frame, one line per bubble and row, no aside"]
   W157 --> T353["T-353 done: Write each bubble and diff row on one line -> storyboard.py unwrapped for 01"]
   W157 --> T354["T-354 done: Merge the v0 frames -> 01-bits/index.md at 13 frames with the counter plan"]
-  W157 --> T355["T-355 doing: Drop the aside from the done frame -> 01-bits/index.md without the logistics aside -- ACTIVE LEAF"]
+  W157 --> T355["T-355 done: Drop the aside from the done frame -> 01-bits/index.md without the logistics aside"]
   E016 --> W158["W-158 issue todo: 01 counting: bits under their counts, the rule as a table"]
   W158 --> T356["T-356 todo: Align the counts and the bit strings -> counting.py rows on one monospace grid"]
   W158 --> T357["T-357 todo: Rewrite the right column -> 01-bits/index.md page 5 as a footnotesize rule table"]
@@ -972,7 +972,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016,W157,T355 doing
-  class W156,T350,T351,T352,T353,T354 done
+  class E016,W157 doing
+  class W156,T350,T351,T352,T353,T354,T355 done
   class W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
