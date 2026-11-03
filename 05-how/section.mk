@@ -30,8 +30,16 @@ ARTIFACTS += $(BUILD)/05-how/v5.diff
 $(BUILD)/05-how/v5.diff: 04-what/s04_what/checkout_v4.py 05-how/s05_how/checkout_v5.py scripts/paths.py scripts/utils/stagediff.py 05-how/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/checkout_v4.py \
 		--to 05-how/s05_how/checkout_v5.py --snippet checkout --start 'total = total_with_vat' \
-		--hide 'assert_never|case _ as unreachable' \
-		--label-from 'checkout v4' --label-to 'v5' --out $@
+		--hide 'assert_never|case _ as unreachable' --compact \
+		--label-from 'checkout v8' --label-to 'v9' --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/05-how/tally-9.txt
+
+$(BUILD)/05-how/tally-9.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    $(wildcard 05-how/tests/*.py)
+	@$(RUN) python -m scripts.paths tally --version 9 --policies 9 --paths 512 \
+		--tests-dir 05-how/tests --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/05-how/ports.png: data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py

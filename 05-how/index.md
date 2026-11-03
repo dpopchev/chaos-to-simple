@@ -71,6 +71,9 @@ Every answer is a value the caller can match on, so the order stops living in st
 :::
 ::: {.column width="55%"}
 
+```{.text include=build/05-how/tally-9.txt}
+```
+
 ```{.diff include=build/05-how/v5.diff cap=28}
 ```
 
