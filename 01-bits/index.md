@@ -311,7 +311,19 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 ```{.text include=01-bits/data/incident.txt cap=8}
 ```
 
-![](build/01-bits/finance.png){height=32%}
+:::: {.columns}
+::: {.column width="58%"}
+
+![](build/01-bits/finance.png){height=40%}
+
+:::
+::: {.column width="42%"}
+
+```{.text heading="orders under 50 EUR, by week" include=build/01-bits/cues.txt}
+```
+
+:::
+::::
 
 **revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the threshold read the cart before the coupon**
 
@@ -321,7 +333,8 @@ shortfall, 1,214 orders and 6,070 EUR nowhere to be found, all in the chart titl
 names the two readings: received is the code, R1, marketing's reading of the cart before the
 coupon; missing is finance, R2, logistics' reading of what they pay, after the coupon. Read
 the memo, then the chart, then the bold line: the condition, the threshold read the cart
-before the coupon.
+before the coupon. The table is the engineering cue: every free parcel carried the coupon,
+none without it, so a rule decided it, not the customers.
 :::
 
 ## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
