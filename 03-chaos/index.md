@@ -59,9 +59,9 @@ discount, not before it: the rule came last, after the code had already picked o
 :::
 ::: {.column width="38%"}
 
-![](build/03-chaos/doubling-512.png){width=100%}
+![](build/02-stacey/stacey-03.png){width=100%}
 
-\footnotesize the curve of 01, continued: 512
+\footnotesize the What agreed in the room, the How is now the question: 512 paths
 
 :::
 ::::
@@ -69,6 +69,7 @@ discount, not before it: the rule came last, after the code had already picked o
 ::: notes
 The grid you saw in 01 was one of eight. The four framed panels are the ones where the
 stock is gone. The number is now true: 2^9 = 512. The bigger number is the first good news.
+The right side is the plain matrix of 03, arrows from 01: the What is agreed, the How is open.
 :::
 
 ## Nine decisions came out of the room, and each moves to a home, none deleted {paths=512}
