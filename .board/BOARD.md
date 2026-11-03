@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 1 | done: 588 | pruned: 7
+open path: E-017 > W-175 > T-405   | blocked: 0 | todo roots: 1 | done: 588 | pruned: 7
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-172  issue  [done]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [done], T-396 [done], T-397 [done]
   W-173  issue  [done]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [done], T-399 [done], T-400 [done], T-401 [done]
   W-174  issue  [done]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [done], T-403 [pruned]   [pruned: its Check grep -c 'one of them' could not fail: page 19 already holds 'every one of them'; refiled with a specific Check], T-404 [done], T-427 [done]
-  W-175  issue  [todo]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [todo], T-406 [todo]
+  W-175  issue  [doing]    01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [doing]   <- ACTIVE LEAF, T-406 [todo]
   W-176  issue  [todo]     horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [todo], T-408 [todo], T-409 [todo]
   W-177  issue  [todo]     00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [todo], T-411 [todo], T-412 [todo]
   W-178  issue  [todo]     00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos -- T-413 [todo], T-414 [todo]
@@ -1037,8 +1037,8 @@ flowchart TD
   W174 --> T403["T-403 pruned: Open page 17 on the order it takes -> 01-bits/index.md page 17"]
   W174 --> T404["T-404 done: Name the two conditions on page 18 -> 01-bits/index.md page 18 and the TestMemoOrders docstring"]
   W174 --> T427["T-427 done: Open page 17 on the order it takes -> 01-bits/index.md page 17 led by the breakdown's order"]
-  E017 --> W175["W-175 issue todo: 01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19"]
-  W175 --> T405["T-405 todo: Write the cyclomatic footer -> 01-bits/index.md page 6 and 01-bits/README.md"]
+  E017 --> W175["W-175 issue doing: 01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19"]
+  W175 --> T405["T-405 doing: Write the cyclomatic footer -> 01-bits/index.md page 6 and 01-bits/README.md -- ACTIVE LEAF"]
   W175 --> T406["T-406 todo: Label each grid with its tested share -> coverage_view.panel_label and grid_growth"]
   E017 --> W176["W-176 issue todo: horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie"]
   W176 --> T407["T-407 todo: Flip the stacked bar -> paths.stacked_bar with barh"]
@@ -1074,8 +1074,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
+  class E017,W175,T405 doing
   class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427 done
-  class W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
+  class T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
   class T403 pruned
 ```
