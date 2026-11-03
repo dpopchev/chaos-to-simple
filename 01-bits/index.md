@@ -34,8 +34,8 @@ Say the rule once: every policy request is one bit, and every bit doubles the pa
 diagram left to right: two sequential ifs multiply, 2 x 2, into four paths, bits 00 to 11; the
 if/elif adds, 2 + 1, into three paths; the general form is the product of each block's
 alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
-Compare with McCabe's cyclomatic number: it adds, decisions + 1 = 7 tests for the branches, where
-the bits multiply into 64 combinations.
+Compare with the cyclomatic number: it adds, decisions + 1 = 7 tests for the branches, where the
+bits multiply into 64 combinations.
 :::
 
 ## Three calls, two tests and no policy make the plain checkout one path {paths=1}
