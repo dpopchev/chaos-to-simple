@@ -10,10 +10,12 @@ from scripts.utils.palette import colour_of, load_actors, load_contexts
 from scripts.utils.paths import load_cast, load_incidents, load_rules
 from scripts.utils.stacey import load_zones
 from scripts.utils.stage import (
+    BOX_H,
     GREY,
     agenda_strip,
     band_title,
     business_map,
+    department_box_height,
     department_bullets,
     edge_words,
     incident_marks,
@@ -47,6 +49,11 @@ def test_department_bullets_one_per_request() -> None:
         "10 EUR off with the autumn code",
         "gift wrap, 3 EUR, just one more if",
     )
+
+
+@pytest.mark.model
+def test_department_box_grows_with_its_requests() -> None:
+    assert department_box_height(2) > department_box_height(1) > BOX_H
 
 
 @pytest.mark.model

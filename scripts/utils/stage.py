@@ -20,6 +20,21 @@ BOX_W, BOX_H = 2.7, 0.8
 SHOP_W, SHOP_H = 3.9, 5.2
 DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.9, 5.9, 4.2
 WRAP = 22
+REQUEST_WRAP = 20
+LINE_STEP = 0.34
+
+
+def department_box_height(lines: int) -> float:
+    """Return the height of a department box that holds this many request lines."""
+    return BOX_H + LINE_STEP * lines
+
+
+def request_text(requests: Sequence[str]) -> str:
+    """Return the requests as bullets, one per request, a long one wrapped onto more lines."""
+    return "\n".join(
+        textwrap.fill(r, REQUEST_WRAP, initial_indent="\N{BULLET} ", subsequent_indent="  ")
+        for r in requests
+    )
 
 
 @dataclass(frozen=True)
@@ -326,6 +341,10 @@ def business_map(
         is_shop = actor.kind == "dev"
         text_y = y + SHOP_H / 2 - 0.4 if is_shop else y
         w, h = (SHOP_W, SHOP_H) if is_shop else (BOX_W, BOX_H)
+        is_department = actor.kind == "department"
+        request_block = request_text(bullets[key]) if is_department else ""
+        if is_department:
+            h = department_box_height(request_block.count("\n") + 1)
         actor_colour = colour_of(key)
         is_provider = actor.kind == "provider"
         face = "white" if is_shop else generic.face if is_provider else actor_colour
@@ -351,19 +370,7 @@ def business_map(
             if both:
                 call = ((tail[0], y - lift), (head[0], y - lift))
                 ax.annotate("", *call, arrowprops=arrow, zorder=1)
-            if actor.kind == "department":
-                for j, line in enumerate(bullets[key]):
-                    ax.text(
-                        x - w / 2,
-                        y - h / 2 - 0.3 - j * 0.3,
-                        f"\N{BULLET} {line}",
-                        ha="left",
-                        va="center",
-                        fontsize=9,
-                        color=actor_colour,
-                        zorder=5,
-                    )
-            else:
+            if not is_department:
                 ax.text(
                     (tail[0] + head[0]) / 2 + (0.15 if not side else 0.0),
                     (tail[1] + head[1]) / 2 + (0.0 if not side else 0.12),
@@ -397,16 +404,28 @@ def business_map(
                 color=ink,
                 zorder=4,
             )
-        ax.text(
-            x + (0.25 if font is not None else 0.0),
-            text_y,
-            actor.label.replace(" (", "\n(") if not is_shop else actor.label,
-            ha="center",
-            va="center",
-            fontsize=13 if not is_shop else 12,
-            color=ink,
-            zorder=4,
-        )
+        if is_department:
+            ax.text(
+                x - w / 2 + 0.7,
+                y,
+                request_block,
+                ha="left",
+                va="center",
+                fontsize=10,
+                color=ink,
+                zorder=4,
+            )
+        else:
+            ax.text(
+                x + (0.25 if font is not None else 0.0),
+                text_y,
+                actor.label.replace(" (", "\n(") if not is_shop else actor.label,
+                ha="center",
+                va="center",
+                fontsize=13 if not is_shop else 12,
+                color=ink,
+                zorder=4,
+            )
     bands = inner_bands(load_contexts(), actors)
     top = SHOP_H / 2 - 0.85
     for i, (ctx, owners) in enumerate(bands):
