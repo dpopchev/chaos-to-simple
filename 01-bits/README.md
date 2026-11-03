@@ -34,8 +34,10 @@ campaign on time, one if at a time.
 
 ## Produces
 
-- `build/01-bits/step-0.diff` .. `step-6.diff`: the checkout growing one request at a time
-- `build/01-bits/tally-0.txt` .. `tally-6.txt`: the tally line over each step view
+- `build/01-bits/step-0.diff` .. `step-6.diff`: the whole skeleton, then each request as a
+  compact `+`/`-` diff (one context line, `---` between hunks)
+- `build/01-bits/tally-0.txt` .. `tally-6.txt`: the tally line over each step, with the
+  function length in lines
 - `build/01-bits/bubble-0.txt` .. `bubble-8.txt`: the actor, the date and the words of each
   request, from `data/bubbles.csv`
 - `build/01-bits/coverage.txt`: the two tests under branch coverage

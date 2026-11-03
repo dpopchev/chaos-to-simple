@@ -10,6 +10,8 @@ from collections.abc import Mapping
 from dataclasses import dataclass
 from pathlib import Path
 
+from scripts.utils.stagediff import compact_body
+
 STEPS = 7
 
 _MARKER = re.compile(r"\s*# \[step: (?P<n>\d)\]\s*$")
@@ -47,19 +49,17 @@ def step_lines(source: str, n: int) -> str:
 
 
 def step_view(source: str, n: int) -> str:
-    """Return the whole checkout at step n under its caption, the lines of step n marked '+ '.
+    """Return the compact diff v{n-1} -> v{n} under its caption; step 0 is the whole skeleton.
 
-    The caption is 'checkout v{n-1} -> v{n}', or 'checkout v0' for step 0; the other lines
-    take two spaces, so each body line keeps its source indentation after the prefix.
+    The caption is 'checkout v{n-1} -> v{n}' or 'checkout v0'; the body is stagediff's
+    compact_body: one context line, '---' between hunks, '+' and '-' lines only.
     """
-    caption = f"checkout v{n - 1} -> v{n}" if n > 0 else "checkout v0"
-    body: list[str] = []
-    for row in source.splitlines():
-        found = _MARKER.search(row)
-        if found and int(found.group("n")) <= n:
-            mark = "+ " if int(found.group("n")) == n else "  "
-            body.append(mark + _ASIDE.sub("", _MARKER.sub("", row)))
-    return "\n".join([caption, *body]) + "\n"
+    if n == 0:
+        return "\n".join(["checkout v0", *step_lines(source, 0).splitlines()]) + "\n"
+    before = step_lines(source, n - 1).splitlines(keepends=True)
+    after = step_lines(source, n).splitlines(keepends=True)
+    body = compact_body(before, after)
+    return "".join([f"checkout v{n - 1} -> v{n}\n", *(row.rstrip("\n") + "\n" for row in body)])
 
 
 def step_diff(source: str, n: int) -> str:
@@ -75,9 +75,15 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(body) + "\n"
 
 
-def tally_line(n: int, tests: int = 2) -> str:
-    """Return the tally over the step view: policies, the paths they double to, the tests."""
-    return f"checkout v{n}: {n} policies, {2**n} paths, {tests} tests"
+def tally_line(n: int, tests: int = 2, lines: int | None = None) -> str:
+    """Return the tally: policies, the paths they double to, the tests, then the length if given."""
+    tally = f"checkout v{n}: {n} policies, {2**n} paths, {tests} tests"
+    return tally if lines is None else f"{tally}, {lines} lines"
+
+
+def code_length(source: str, n: int) -> int:
+    """Return the non-blank line count of the checkout at step n."""
+    return sum(1 for row in step_lines(source, n).splitlines() if row.strip())
 
 
 def bubble(row: BubbleRow, labels: Mapping[str, str], width: int = 34) -> str:

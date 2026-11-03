@@ -60,9 +60,25 @@ def test_each_step_adds_its_cast_fragment(n: int) -> None:
 
 
 @pytest.mark.view
-def test_step_view_marks_only_the_lines_of_its_step() -> None:
+def test_step_view_adds_exactly_the_lines_of_its_step() -> None:
     view = step_view(SOURCE, 3).splitlines()[1:]
-    assert [row[2:] for row in view if row.startswith("+ ")] == marked(3)
+    assert [row[1:] for row in view if row.startswith("+")] == marked(3)
+
+
+@pytest.mark.view
+def test_step_diff_is_compact() -> None:
+    signs = "".join(row[0] for row in step_view(SOURCE, 3).splitlines()[1:])
+    assert re.fullmatch(r"(?= ?\+)(?:[^+]*\+){3}[^+]*", signs)
+
+
+@pytest.mark.view
+def test_step_diff_has_no_merged_line() -> None:
+    assert not any(row.startswith("~") for row in step_view(SOURCE, 3).splitlines())
+
+
+@pytest.mark.view
+def test_step_zero_view_is_the_whole_skeleton() -> None:
+    assert step_view(SOURCE, 0).splitlines()[1:] == step_lines(SOURCE, 0).splitlines()
 
 
 @pytest.mark.view
@@ -98,6 +114,11 @@ def test_bubble_wraps_at_the_column_width() -> None:
 @pytest.mark.view
 def test_tally_line_doubles_the_paths() -> None:
     assert tally_line(3) == "checkout v3: 3 policies, 8 paths, 2 tests"
+
+
+@pytest.mark.view
+def test_tally_line_ends_with_the_length() -> None:
+    assert tally_line(3, lines=15) == "checkout v3: 3 policies, 8 paths, 2 tests, 15 lines"
 
 
 @pytest.mark.view
