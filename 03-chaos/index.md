@@ -76,12 +76,13 @@ The right side is the plain matrix of 03, arrows from 01: the What is agreed, th
 
 ![](build/03-chaos/board.png){height=56%}
 
-\footnotesize the retro six questions and the three nobody raised, one row each; the columns ahead are the sections ahead
+\footnotesize nine rows, nine bits: 2^9 = 512 paths until every row has a home; the columns ahead are the sections ahead
 
 \theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
 
 ::: notes
 Nine decisions came out of the room, one row each on the board. Each one has a sentence and a home.
+Each row is one bit of the honest count; better technical decisions, not fewer rules, bring it down.
 Coupon: a coupon valid today takes 10 EUR off the goods, in pricing.
 Member: a loyalty member gets 10% off, applied after the coupon, in pricing.
 Free shipping: shipping is free from 50 EUR of discounted goods, in shipping.
