@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-153   | blocked: 0 | todo roots: 0 | done: 512 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 0 | done: 513 | pruned: 6
 
 ## Tree
-
-```text
-W-153  issue  [doing]    (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [done]
-```
 
 ## Closed
 
@@ -892,6 +888,12 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then the ports gro
 
 - T-341 [done] Draw every actor chip with its icon -> colorcode chip look
 
+### W-153 issue [done] (standalone) The Simple band name touches the Complicated text and its text crosses the Who line
+
+closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 3's matrix shows the Simple name and text apart from the Complicated text and clear of the dashed Who line. -- ledger: ledgers/W-153.md
+
+- T-342 [done] Lay out the Simple name and text apart -> stacey.draw innermost band layout
+
 ### W-154 bug [done] (standalone) The storyboard headings read 2^6 paths as 26 with a hat
 
 closed 2026-11-03 -- outcome: Given the deck, When make talk, Then the checkout headings on pages 6 and 8 to 13 read 2^0 to 2^6 paths with a visible caret, no accent over the exponent. -- ledger: ledgers/W-154.md
@@ -907,13 +909,9 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's chec
 ## Diagram
 ```mermaid
 flowchart TD
-  W153["W-153 issue doing, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
-  W153 --> T342["T-342 done: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W153 doing
-  class T342 done
 ```
