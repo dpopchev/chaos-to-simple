@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016 > W-160 > T-363   | blocked: 0 | todo roots: 0 | done: 530 | pruned: 6
+open path: E-016 > W-160   | blocked: 0 | todo roots: 0 | done: 531 | pruned: 6
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening,
   W-157  issue  [done]     01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [done], T-354 [done], T-355 [done]
   W-158  issue  [done]     01 counting: bits under their counts, the rule as a table -- T-356 [done], T-357 [done]
   W-159  issue  [done]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [done], T-359 [done], T-360 [done]
-  W-160  issue  [doing]    Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [done], T-362 [done], T-363 [doing]   <- ACTIVE LEAF
+  W-160  issue  [doing]    Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [done], T-362 [done], T-363 [done]
   W-161  issue  [todo]     01 finance: the cues beside the chart, the memo's four orders on their own frame -- T-364 [todo], T-365 [todo], T-366 [todo], T-367 [todo]
   W-162  issue  [todo]     02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [todo], T-369 [todo]
   W-163  issue  [todo]     03 room: the certainty sourced, the 512 grid explained, the board widened -- T-370 [todo], T-371 [todo], T-372 [todo]
@@ -943,7 +943,7 @@ flowchart TD
   E016 --> W160["W-160 issue doing: Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside"]
   W160 --> T361["T-361 done: Name the bands in place and carry the corners -> stacey.draw with one anchor per band"]
   W160 --> T362["T-362 done: Shade the collaboration band -> stacey.draw with a fading band on the Who line"]
-  W160 --> T363["T-363 doing: List the definitions beside the overview -> build/00-frontmatter/zones.tex in the right column -- ACTIVE LEAF"]
+  W160 --> T363["T-363 done: List the definitions beside the overview -> build/00-frontmatter/zones.tex in the right column"]
   E016 --> W161["W-161 issue todo: 01 finance: the cues beside the chart, the memo's four orders on their own frame"]
   W161 --> T364["T-364 todo: Add the coupon columns and the cue table -> finance.cues and build/01-bits/cues.txt"]
   W161 --> T365["T-365 todo: Lay the chart beside the cues -> 01-bits/index.md page 16 in two columns"]
@@ -972,7 +972,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016,W160,T363 doing
-  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,T361,T362 done
+  class E016,W160 doing
+  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,T361,T362,T363 done
   class W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
