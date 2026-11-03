@@ -11,10 +11,12 @@ from scripts.utils.palette import (
     CONTEXTS,
     Actor,
     Context,
+    KindStyle,
     actors_tex,
     colour_of,
     context_colour,
     icon_of,
+    kind_style,
     label_of,
     load_actors,
     load_contexts,
@@ -42,15 +44,38 @@ def test_load_actors_reads_every_column(tmp_path: Path) -> None:
 
 
 @pytest.mark.edge
-def test_load_contexts_reads_five_contexts() -> None:
-    assert len(load_contexts(DATA / "contexts.csv")) == 5
+def test_load_contexts_reads_eight_contexts() -> None:
+    assert len(load_contexts(DATA / "contexts.csv")) == 8
 
 
 @pytest.mark.edge
 def test_load_contexts_reads_every_column(tmp_path: Path) -> None:
     path = tmp_path / "contexts.csv"
-    path.write_text("context,kind,label,color\ntax,core,Tax,1E8449\n", encoding="ascii")
-    assert load_contexts(path)["tax"] == Context("tax", "core", "Tax", "1E8449")
+    path.write_text(
+        "context,kind,label,color,owner\ntax,generic,Tax,1E8449,accounting\n", encoding="ascii"
+    )
+    assert load_contexts(path)["tax"] == Context("tax", "generic", "Tax", "1E8449", "accounting")
+
+
+@pytest.mark.model
+def test_kind_style_of_core_is_solid_black_on_white() -> None:
+    assert kind_style("core") == KindStyle("black", "solid", "white")
+
+
+@pytest.mark.model
+def test_kind_style_of_supporting_is_dashed_grey_on_white() -> None:
+    assert kind_style("supporting") == KindStyle("#5D6D7E", "dashed", "white")
+
+
+@pytest.mark.model
+def test_kind_style_of_generic_is_borderless_on_lightgrey() -> None:
+    assert kind_style("generic") == KindStyle("none", "solid", "lightgrey")
+
+
+@pytest.mark.edge
+def test_kind_style_of_an_unknown_kind_raises() -> None:
+    with pytest.raises(ValueError, match="unknown kind"):
+        kind_style("tangled")
 
 
 @pytest.mark.model
@@ -70,7 +95,7 @@ def test_label_of_an_actor_is_its_label() -> None:
 
 @pytest.mark.model
 def test_label_of_a_context_is_its_label() -> None:
-    assert label_of("shell") == "Shell (effects)"
+    assert label_of("fulfilment") == "Fulfilment"
 
 
 @pytest.mark.model
@@ -114,7 +139,7 @@ def test_actors_tex_defines_one_actor_line_per_actor() -> None:
 
 @pytest.mark.model
 def test_actors_tex_defines_one_colour_per_actor_and_context() -> None:
-    assert sum(line.startswith("\\definecolor{") for line in _tex(None)) == 14
+    assert sum(line.startswith("\\definecolor{") for line in _tex(None)) == 17
 
 
 @pytest.mark.model
@@ -139,8 +164,8 @@ def test_actors_tex_without_an_icon_font_leaves_the_path_glyph_empty() -> None:
 
 
 @pytest.mark.model
-def test_context_colour_gives_five_distinct_colours() -> None:
-    assert len({context_colour(name) for name in CONTEXTS}) == 5
+def test_context_colour_gives_eight_distinct_colours() -> None:
+    assert len({context_colour(name) for name in CONTEXTS}) == 8
 
 
 @pytest.mark.model

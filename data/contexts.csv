@@ -1,6 +1,9 @@
-context,kind,label,color
-pricing,core,Pricing,7B3F9E
-shipping,core,Shipping,1B4F72
-tax,core,Tax,1E8449
-shell,shell,Shell (effects),5D6D7E
-tangled,tangled,One function,BDBDBD
+context,kind,label,color,owner
+pricing,core,Pricing,7B3F9E,marketing;loyalty
+shipping,supporting,Shipping,1B4F72,logistics
+fulfilment,supporting,Fulfilment,5D6D7E,shop
+tax,generic,Tax,1E8449,accounting
+payment,generic,Payment,D55E00,payment
+warehouse,generic,Warehouse,56B4E9,warehouse
+mail,generic,Mail,F0E442,mailer
+tangled,tangled,One function,BDBDBD,

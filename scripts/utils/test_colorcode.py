@@ -50,8 +50,8 @@ def test_the_charge_call_belongs_to_the_payment_provider() -> None:
 
 
 @pytest.mark.model
-def test_the_charge_call_is_in_the_shell() -> None:
-    assert _by_text("charge(total)").context == "shell"
+def test_the_charge_call_is_in_fulfilment() -> None:
+    assert _by_text("charge(total)").context == "fulfilment"
 
 
 @pytest.mark.model
@@ -70,6 +70,6 @@ def test_legend_groups_actors_and_contexts() -> None:
     groups = legend_groups(load_actors(), load_contexts())
     assert {heading: keys for heading, keys in groups} == {
         "who asked": ("customer", "marketing", "loyalty", "logistics", "accounting"),
-        "home": ("pricing", "shipping", "tax", "shell"),
+        "home": ("pricing", "shipping", "fulfilment", "tax", "payment", "warehouse", "mail"),
         "the ports (external teams)": ("payment", "warehouse", "mailer"),
     }

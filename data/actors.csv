@@ -5,6 +5,6 @@ marketing,department,Marketing,E69F00,bullhorn,pricing
 loyalty,department,Loyalty program,CC79A7,star,pricing
 logistics,department,Logistics,0072B2,truck,shipping
 accounting,department,Accounting,009E73,calculator,tax
-payment,provider,Payment provider,D55E00,credit-card,shell
-warehouse,provider,Warehouse,56B4E9,warehouse,shell
-mailer,provider,Mailer,F0E442,envelope,shell
+payment,provider,Payment provider,D55E00,credit-card,payment
+warehouse,provider,Warehouse,56B4E9,warehouse,warehouse
+mailer,provider,Mailer,F0E442,envelope,mail

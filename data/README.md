@@ -8,7 +8,7 @@ that section (`03-chaos/data/` holds the room log, nobody else needs it).
 | `rules.csv` | `bit, scope, context, name, rule, code` | 03 (counts), 04 (glossary), 06 (chart), `scripts/paths.py` |
 | `seventh.csv` | `bit, scope, context, name, rule, code` | 06 (epilogue: the seventh core if, counted beside `rules.csv`), `scripts/paths.py` |
 | `actors.csv` | `actor, kind, label, color, icon, context` | the one home of every actor's colour (hex, no `#`), label and icon name; `scripts/utils/palette.py` |
-| `contexts.csv` | `context, kind, label, color` | the one home of every context's colour and label; `scripts/utils/palette.py`, `scripts/utils/style.py` |
+| `contexts.csv` | `context, kind, label, color, owner` | the one home of every context's colour, label, kind (core, supporting, generic; tangled is the one-function grey) and owner (`;`-separated `actors.csv` keys); `scripts/utils/palette.py` (`kind_style` draws a kind), `scripts/utils/style.py` |
 | `cast.csv` | `bit, step, week, requested_by, words, aside, fragment` | 01 (the cast table by source line, the doubling by week), 04 (who asked for each bit), `scripts/paths.py`; `requested_by` is an `actors.csv` key, tables print its label |
 | `incidents.csv` | `id, week, date, told_in, decided_in, closed_in, closed_by, kind, cost, decision, principle` | 00 (the incident marks of the agenda by `told_in`), 06 (the wounds close by name: `closed_by` tests are run; `decision` and `principle` fill the post-mortem table), `scripts/paths.py` |
 | `examples.csv` | `scope, bit, name, given, then` | 06 (every `name` must have a `test_<name>`), `scripts/utils/examples.py` |
@@ -24,7 +24,7 @@ that section (`03-chaos/data/` holds the room log, nobody else needs it).
 - `cast.csv` `aside`: the speaker's remark about a request ("from what? nobody asked"), kept out
   of `words` and `requested_by` so no table shows it; empty for most rows.
 - `scope`: `core` or `shell`. `context`: the bounded context that owns the bit; every shell
-  row has context `shell` (the provider that answers is the cast's `requested_by`).
+  row has context `fulfilment` (the provider that answers is the cast's `requested_by`).
 - `cast.csv` `step`: the order the bits join the story, 0 for a shell effect nobody asked for.
 - `name` is an identifier: snake_case, used verbatim as a test name in `06-simple/tests`.
 - The numbers on the slides come from these files through `make artifacts`

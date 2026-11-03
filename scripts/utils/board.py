@@ -11,6 +11,7 @@ from pathlib import Path
 
 from scripts.utils import style
 from scripts.utils.examples import missing_tests
+from scripts.utils.figures import HOMES
 from scripts.utils.palette import colour_of, label_of
 from scripts.utils.paths import Rule
 from scripts.utils.retro import Question
@@ -138,20 +139,20 @@ def board(
             )
 
     for col in range(len(COLUMNS)):
-        head = colour_of("shell") if col < shown else None
+        head = colour_of("fulfilment") if col < shown else None
         ink = "white" if col < shown else "dimgray"
         cell(col, 0, header_text(col, stage, heads), head, 12, ink)
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,
             textwrap.fill(row.sentence, 40),
-            label_of(row.home) if row.home in {"pricing", "shipping", "tax", "shell"} else row.home,
+            label_of(row.home) if row.home in HOMES else row.home,
             textwrap.fill(row.code, 30, break_long_words=False),
             "\n".join(row.tests),
         )
         home_fill = colour_of(row.home)
         test_fill = colour_of("payment" if missing.intersection(row.tests) else "accounting")
-        fills = (colour_of("shell"), None, home_fill, None, test_fill)
+        fills = (colour_of("fulfilment"), None, home_fill, None, test_fill)
         for col, text in enumerate(texts):
             if col >= shown:
                 cell(col, line, "", None, 9, "white")

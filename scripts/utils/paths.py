@@ -510,7 +510,7 @@ def bars_from_rules(rules: Sequence[Rule]) -> list[Bar]:
             "contexts + shell",
             [
                 *[(context, tangled(n)) for context, n in contexts.items()],
-                ("shell", tangled(len(shell))),
+                ("fulfilment", tangled(len(shell))),
             ],
         ),
     ]
@@ -561,7 +561,7 @@ def segment_colour(name: str) -> str:
     words = name.split()
     if words[-1] == "tangled":
         return colour_of("tangled")
-    return colour_of("dev" if words[0] == "core" else words[0])
+    return colour_of({"core": "dev", "shell": "fulfilment"}.get(words[0], words[0]))
 
 
 FIT = 0.85  # an in-bar label may fill this share of its bar's width

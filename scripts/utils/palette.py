@@ -37,6 +37,30 @@ class Context:
     kind: str
     label: str
     color: str
+    owner: str
+
+
+@dataclass(frozen=True)
+class KindStyle:
+    """How a context kind is drawn: edge colour, line style and face."""
+
+    edge: str
+    linestyle: str
+    face: str
+
+
+KIND_STYLES = {
+    "core": KindStyle("black", "solid", "white"),
+    "supporting": KindStyle("#5D6D7E", "dashed", "white"),
+    "generic": KindStyle("none", "solid", "lightgrey"),
+}
+
+
+def kind_style(kind: str) -> KindStyle:
+    """Return the drawing style of a context kind; raise ValueError for an unknown kind."""
+    if kind not in KIND_STYLES:
+        raise ValueError(f"unknown kind {kind!r}; expected one of {tuple(KIND_STYLES)}")
+    return KIND_STYLES[kind]
 
 
 def load_actors(path: Path = ACTORS_CSV) -> dict[str, Actor]:
@@ -54,7 +78,9 @@ def load_contexts(path: Path = CONTEXTS_CSV) -> dict[str, Context]:
     """Read the contexts by key, in file order."""
     with path.open(newline="", encoding="ascii") as fh:
         return {
-            row["context"]: Context(row["context"], row["kind"], row["label"], row["color"])
+            row["context"]: Context(
+                row["context"], row["kind"], row["label"], row["color"], row["owner"]
+            )
             for row in csv.DictReader(fh)
         }
 

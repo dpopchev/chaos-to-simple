@@ -10,7 +10,7 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
-from scripts.utils.palette import CONTEXTS, Actor, colour_of, context_colour, icon_of, label_of
+from scripts.utils.palette import Actor, colour_of, context_colour, icon_of, label_of
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.retro import Question
 
@@ -124,6 +124,9 @@ def tree(out: Path) -> Path:
     return out
 
 
+HOMES = ("pricing", "shipping", "tax", "fulfilment")
+
+
 @dataclass(frozen=True)
 class Move:
     """One home of checkout()'s bits and how many bits moved into it."""
@@ -133,9 +136,9 @@ class Move:
 
 
 def moves(rules: Sequence[Rule]) -> tuple[Move, ...]:
-    """Count the bits per home in the order pricing, shipping, tax, shell; shell rows group."""
-    homes = [rule.context if rule.scope == "core" else "shell" for rule in rules]
-    return tuple(Move(home, homes.count(home)) for home in CONTEXTS[:4])
+    """Count the bits per home in the order pricing, shipping, tax, fulfilment; shell rows group."""
+    homes = [rule.context if rule.scope == "core" else "fulfilment" for rule in rules]
+    return tuple(Move(home, homes.count(home)) for home in HOMES)
 
 
 @dataclass(frozen=True)
@@ -188,7 +191,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     n = len(ports)
     mid = (n - 1) / 2
     core_right, port_left, port_w, port_h = 3.4, 7.2, 2.6, 0.7
-    colour = context_colour("shell")
+    colour = context_colour("fulfilment")
     shape = "round,pad=0.05,rounding_size=0.15"
     fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
     ax.add_patch(
@@ -256,7 +259,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
 
 def band_groups(moves: Sequence[Move]) -> tuple[tuple[str, int], ...]:
     """Count the bands under the core and the shell labels."""
-    shell = sum(1 for move in moves if move.home == "shell")
+    shell = sum(1 for move in moves if move.home == "fulfilment")
     return (("core: the What", len(moves) - shell), ("shell: the How, the ports", shell))
 
 
