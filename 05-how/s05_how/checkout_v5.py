@@ -54,17 +54,17 @@ def checkout(
     fee = shipping_fee(net_goods, zone, order.gift_wrap)
     total = total_with_vat(net_goods + fee, vat_id)
     match inventory.reserve([line.sku for line in order.lines]):
+        case OutOfStock(sku=sku):
+            return Rejected(f"out of stock: {sku}")
         case Reserved():
             pass
-        case OutOfStock(sku):
-            return Rejected(f"out of stock: {sku}")
         case _ as unreachable:
             assert_never(unreachable)
     match gateway.charge(total):
+        case Declined(reason=reason):
+            return Rejected(f"declined: {reason}")
         case Charged():
             pass
-        case Declined(reason):
-            return Rejected(f"declined: {reason}")
         case _ as unreachable:
             assert_never(unreachable)
     match mailer.send(order.email, total):
