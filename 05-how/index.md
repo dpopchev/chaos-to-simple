@@ -86,6 +86,8 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 ![](build/05-how/ports.png){height=60%}
 
+\begingroup\footnotesize 05-how/s05_how/checkout_v5.py in fulfilment; tested by test_checkout_v5.py and test_i3.py\par\endgroup
+
 :::
 ::: {.column width="55%"}
 
@@ -94,8 +96,6 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 ```{.diff include=build/05-how/v5.diff cap=28}
 ```
-
-\begingroup\footnotesize 05-how/s05_how/checkout_v5.py in fulfilment; tested by test_checkout_v5.py and test_i3.py\par\endgroup
 
 :::
 ::::

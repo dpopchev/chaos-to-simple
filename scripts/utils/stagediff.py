@@ -9,7 +9,6 @@ from pathlib import Path
 
 from scripts.utils.widths import snippet_text, strip_step_markers
 
-
 _DEF_NAME = re.compile(r"\s*def (\w+)\(")
 
 
