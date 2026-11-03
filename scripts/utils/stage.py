@@ -17,10 +17,12 @@ from scripts.utils.stacey import ZONE_COLOURS, Zone, band_colour, load_zones
 
 CUSTOMER_WORDS = "places an order"
 BOX_W, BOX_H = 2.7, 0.8
-SHOP_W, SHOP_H = 3.9, 5.2
-DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.9, 5.9, 4.2
+SHOP_W, SHOP_H = 3.9, 6.4
+DEPARTMENT_W, DEPARTMENT_MARGIN = 4.3, 0.1
+DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.4, 5.9, SHOP_H / 2 + 1.5
 WRAP = 22
-REQUEST_WRAP = 20
+LEGEND_Y = -SHOP_H / 2 - 0.65
+REQUEST_WRAP = 36
 LINE_STEP = 0.34
 
 
@@ -268,14 +270,41 @@ def department_bullets(
     }
 
 
-def positions(actors: Mapping[str, Actor]) -> dict[str, tuple[float, float]]:
-    """Place the shop at the origin, departments left, providers right, the customer on top."""
+def department_heights(bullets: Mapping[str, tuple[str, ...]]) -> dict[str, float]:
+    """Return each department box's height, from the lines its requests take wrapped."""
+    return {
+        key: department_box_height(request_text(requests).count("\n") + 1)
+        for key, requests in bullets.items()
+    }
+
+
+def department_centres(heights: Sequence[float]) -> tuple[float, ...]:
+    """Return the box centres top to bottom, evenly gapped so the column spans the shop."""
+    span = SHOP_H - 2 * DEPARTMENT_MARGIN
+    gap = (span - sum(heights)) / max(len(heights) - 1, 1)
+    centres: list[float] = []
+    top = SHOP_H / 2 - DEPARTMENT_MARGIN
+    for h in heights:
+        centres.append(top - h / 2)
+        top -= h + gap
+    return tuple(centres)
+
+
+def positions(
+    actors: Mapping[str, Actor], heights: Mapping[str, float]
+) -> dict[str, tuple[float, float]]:
+    """Place the shop at the origin, departments left, providers right, the customer on top.
+
+    The departments are spaced by their box heights so their column spans the shop.
+    """
     spots: dict[str, tuple[float, float]] = {}
-    for kind, x in (("department", DEPARTMENT_X), ("provider", PROVIDER_X)):
-        keys = [k for k, a in actors.items() if a.kind == kind]
-        step = 1.9 if kind == "department" else 2.2
-        for i, key in enumerate(keys):
-            spots[key] = (x, (len(keys) - 1) / 2 * step - i * step)
+    departments = [k for k, a in actors.items() if a.kind == "department"]
+    centres = department_centres([heights[k] for k in departments])
+    for key, cy in zip(departments, centres, strict=True):
+        spots[key] = (DEPARTMENT_X, cy)
+    keys = [k for k, a in actors.items() if a.kind == "provider"]
+    for i, key in enumerate(keys):
+        spots[key] = (PROVIDER_X, (len(keys) - 1) / 2 * 2.2 - i * 2.2)
     for key, actor in actors.items():
         if actor.kind == "customer":
             spots[key] = (0.0, CUSTOMER_Y)
@@ -331,17 +360,18 @@ def business_map(
 
     words = edge_words(actors, cast, rules)
     bullets = department_bullets(actors, cast)
-    spots = positions(actors)
+    spots = positions(actors, department_heights(bullets))
     font = icon_file()
     shape = "round,pad=0.05,rounding_size=0.15"
     generic = kind_style("generic")
-    fig, ax = plt.subplots(figsize=(11.5, 6.2), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(11.5, 7.4), dpi=style.DPI)
     for key, actor in actors.items():
         x, y = spots[key]
         is_shop = actor.kind == "dev"
         text_y = y + SHOP_H / 2 - 0.4 if is_shop else y
-        w, h = (SHOP_W, SHOP_H) if is_shop else (BOX_W, BOX_H)
         is_department = actor.kind == "department"
+        w, h = (SHOP_W, SHOP_H) if is_shop else (BOX_W, BOX_H)
+        w = DEPARTMENT_W if is_department else w
         request_block = request_text(bullets[key]) if is_department else ""
         if is_department:
             h = department_box_height(request_block.count("\n") + 1)
@@ -406,7 +436,7 @@ def business_map(
             )
         if is_department:
             ax.text(
-                x - w / 2 + 0.7,
+                x - w / 2 + 0.65,
                 y,
                 request_block,
                 ha="left",
@@ -488,7 +518,7 @@ def business_map(
         lx = -7.4 + i * 5.0
         ax.add_patch(
             FancyBboxPatch(
-                (lx, -4.35),
+                (lx, LEGEND_Y - 0.15),
                 0.5,
                 0.3,
                 boxstyle="round,pad=0.02,rounding_size=0.05",
@@ -498,9 +528,9 @@ def business_map(
                 linewidth=2.5 if kind.edge != "none" else 0,
             )
         )
-        ax.text(lx + 0.65, -4.2, text, ha="left", va="center", fontsize=10)
+        ax.text(lx + 0.65, LEGEND_Y, text, ha="left", va="center", fontsize=10)
     ax.set_xlim(-7.6, 7.6)
-    ax.set_ylim(-4.7, 5.5)
+    ax.set_ylim(LEGEND_Y - 0.5, CUSTOMER_Y + 0.9)
     ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)

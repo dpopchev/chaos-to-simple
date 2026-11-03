@@ -12,15 +12,18 @@ from scripts.utils.stacey import load_zones
 from scripts.utils.stage import (
     BOX_H,
     GREY,
+    SHOP_H,
     agenda_strip,
     band_title,
     business_map,
     department_box_height,
     department_bullets,
+    department_heights,
     edge_words,
     incident_marks,
     load_route,
     map_legend,
+    positions,
     stop_alpha,
     stop_face,
 )
@@ -54,6 +57,17 @@ def test_department_bullets_one_per_request() -> None:
 @pytest.mark.model
 def test_department_box_grows_with_its_requests() -> None:
     assert department_box_height(2) > department_box_height(1) > BOX_H
+
+
+@pytest.mark.model
+def test_departments_fit_inside_the_shop_height() -> None:
+    actors = load_actors()
+    heights = department_heights(department_bullets(actors, load_cast(DATA / "cast.csv")))
+    spots = positions(actors, heights)
+    first, *_, last = heights
+    top = spots[first][1] + heights[first] / 2
+    bottom = spots[last][1] - heights[last] / 2
+    assert -SHOP_H / 2 <= bottom < top <= SHOP_H / 2
 
 
 @pytest.mark.model
