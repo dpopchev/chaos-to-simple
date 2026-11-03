@@ -23,6 +23,7 @@ from scripts.utils.palette import (
     colour_of,
     context_colour,
     icon_of,
+    kind_style,
     label_of,
     load_contexts,
 )
@@ -196,6 +197,11 @@ def icon_file() -> Path | None:
         return None
 
 
+def seam_figsize() -> tuple[float, float]:
+    """Return the seam figure's size in inches: near-square to fill its slide column."""
+    return (6.0, 5.4)
+
+
 def seam(out: Path, ports: Sequence[Port]) -> Path:
     """Draw the core box, a port box per Port, and each answer's sum type on its arrow."""
     style.apply()
@@ -204,21 +210,29 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     from matplotlib.patches import FancyBboxPatch
 
     n = len(ports)
-    mid = (n - 1) / 2
-    core_right, port_left, port_w, port_h = 3.4, 7.2, 2.6, 0.7
+    gap = 1.8
+    mid = (n - 1) * gap / 2
+    core_right, port_left, port_w, port_h = 3.4, 7.2, 3.2, 0.9
     colour = context_colour("fulfilment")
     shape = "round,pad=0.05,rounding_size=0.15"
-    fig, ax = plt.subplots(figsize=style.FIGSIZE, dpi=style.DPI)
+    core = kind_style("core")
+    fig, ax = plt.subplots(figsize=seam_figsize(), dpi=style.DPI)
     ax.add_patch(
         FancyBboxPatch(
-            (0.2, mid - 1.2), 3.2, 2.4, boxstyle=shape, facecolor=colour_of("dev"), edgecolor="none"
+            (0.2, mid - 1.6),
+            3.2,
+            3.2,
+            boxstyle=shape,
+            facecolor=core.face,
+            edgecolor=core.edge,
+            linewidth=3,
         )
     )
-    ax.text(1.8, mid, "core\npure rules", ha="center", va="center", fontsize=16, color="white")
+    ax.text(1.8, mid, "core: pure rules", ha="center", va="center", fontsize=14, color="black")
     faces = seam_boxes(ports)
     font = icon_file()
     for row, (port, face) in enumerate(zip(ports, faces, strict=True)):
-        y = n - 1 - row
+        y = (n - 1 - row) * gap
         ink = label_ink(face)
         ax.add_patch(
             FancyBboxPatch(
@@ -246,7 +260,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
             port.context,
             ha="center",
             va="center",
-            fontsize=16 if font is None else 14,
+            fontsize=16 if font is None else 12,
             color=ink,
         )
         ax.annotate(
@@ -264,8 +278,8 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
             fontsize=12,
             style="italic",
         )
-    ax.set_xlim(0, 10.2)
-    ax.set_ylim(-0.7, n - 0.3)
+    ax.set_xlim(0, 10.6)
+    ax.set_ylim(-1.0, 2 * mid + 1.0)
     ax.axis("off")
     fig.tight_layout()
     style.save(fig, out)

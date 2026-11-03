@@ -77,6 +77,15 @@ def test_seam_writes_a_png(tmp_path: Path) -> None:
 
 
 @pytest.mark.edge
+def test_seam_is_near_square(tmp_path: Path) -> None:
+    from matplotlib.image import imread
+
+    out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV)))
+    height, width = imread(out).shape[:2]
+    assert 0.9 <= width / height <= 1.25
+
+
+@pytest.mark.edge
 def test_moves_figure_writes_a_png(tmp_path: Path) -> None:
     out = moves_figure(tmp_path / "moves.png", moves(load_rules(RULES_CSV)), load_contexts())
     assert out.read_bytes().startswith(PNG_MAGIC)
