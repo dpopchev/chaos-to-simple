@@ -123,6 +123,16 @@ def test_snippet_diff_added_only_keeps_the_plus_lines(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_snippet_diff_scope_row_leads_the_body(tmp_path: Path) -> None:
+    old, new = tmp_path / "old.py", tmp_path / "new.py"
+    head = "def f(\n    x: int,\n) -> int:\n    # [snippet: s]\n"
+    old.write_text(f"{head}    a = 1\n    b = 2\n    # [/snippet]\n", encoding="ascii")
+    new.write_text(f"{head}    a = 1\n    b = 3\n    # [/snippet]\n", encoding="ascii")
+    body = snippet_diff(old, "s", new, "s", start="b =", compact=True).splitlines()[1:]
+    assert body[:2] == [" def f(...):", "---"]
+
+
+@pytest.mark.view
 def test_snippet_diff_dedents_after_the_start_cut(tmp_path: Path) -> None:
     deep, flat = tmp_path / "deep.py", tmp_path / "flat.py"
     head, tail = "# [snippet: s]\nif a:\n", "# [/snippet]\n"

@@ -10,6 +10,9 @@ from pathlib import Path
 from scripts.utils.widths import snippet_text, strip_step_markers
 
 
+_DEF_NAME = re.compile(r"\s*def (\w+)\(")
+
+
 def snippet_lines(path: Path, name: str) -> list[str]:
     """Return a file's snippet with step markers stripped and dedented, one string per line."""
     text = snippet_text(strip_step_markers(path.read_text(encoding="ascii")), name)
@@ -112,6 +115,31 @@ def _old_span(header: str) -> tuple[int, int]:
     return start, start + count - 1
 
 
+def _scope_lead(path: Path, snippet: str, start: str | None) -> list[str]:
+    """Return the def row, with a '---' row when the body does not follow it, or [].
+
+    The def is the first one inside the snippet, else the nearest one above its marker.
+    """
+    text = strip_step_markers(path.read_text(encoding="ascii"))
+    inside = snippet_text(text, snippet).splitlines()
+    named = next((m for row in inside if (m := _DEF_NAME.match(row))), None)
+    if named is None:
+        above = text.splitlines()
+        at = next(i for i, row in enumerate(above) if f"[snippet: {snippet}]" in row)
+        named = next((m for row in reversed(above[:at]) if (m := _DEF_NAME.match(row))), None)
+    if named is None:
+        return []
+    contiguous = start is None and (not _DEF_NAME.match(inside[0]) or len(inside) == 1)
+    return [f" def {named.group(1)}(...):\n", *([] if contiguous else ["---\n"])]
+
+
+def _scoped(body: list[str], lead: list[str]) -> list[str]:
+    """Put the lead rows before the body unless it already opens on a def row."""
+    if not lead or (body and _DEF_NAME.match(body[0][1:])):
+        return body
+    return [*lead, *(body[1:] if body[:1] == ["---\n"] and len(lead) == 2 else body)]
+
+
 def snippet_diff(
     from_path: Path,
     from_snippet: str,
@@ -122,6 +150,7 @@ def snippet_diff(
     hide: str | None = None,
     labels: tuple[str, str] | None = None,
     compact: bool = False,
+    scope: bool = True,
 ) -> str:
     """Return the captioned diff of two snippets: '<from> -> <to>', then the body lines.
 
@@ -130,12 +159,15 @@ def snippet_diff(
     With hide, a regular expression, a snippet line matching it is dropped before diffing.
     Otherwise a -/+ pair is one '~ new' line and an unchanged run over two lines is '...'.
     With labels, the caption names them instead of the files. With compact, see compact_body.
+    With scope, a body not opening on a def line opens on the to-snippet's ' def f(...):' row.
     """
     old = _unhidden(_from_start(snippet_lines(from_path, from_snippet), start), hide)
     new = _unhidden(_from_start(snippet_lines(to_path, to_snippet), start), hide)
+    lead = _scope_lead(to_path, to_snippet, start) if scope and not added_only else []
     if compact and not added_only:
         caption = labels or (from_path.name, to_path.name)
-        return "".join([f"{caption[0]} -> {caption[1]}\n", *compact_body(old, new)])
+        body = compact_body(old, new)
+        return "".join([f"{caption[0]} -> {caption[1]}\n", *_scoped(body, lead)])
     rows = difflib.unified_diff(
         old,
         new,
@@ -146,4 +178,4 @@ def snippet_diff(
     kept = [row for row in rows if not row.startswith(("---", "+++", "@@"))]
     body = [row for row in kept if row[0] == "+"] if added_only else _elided(_tilded(kept))
     caption = labels or (from_path.name, to_path.name)
-    return "".join([f"{caption[0]} -> {caption[1]}\n", *body])
+    return "".join([f"{caption[0]} -> {caption[1]}\n", *_scoped(body, lead)])
