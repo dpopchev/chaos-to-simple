@@ -74,6 +74,7 @@ class Incident:
     cost: str
     decision: str
     principle: str
+    subdomain: str
 
 
 def load_incidents(path: Path) -> tuple[Incident, ...]:
@@ -87,8 +88,8 @@ def wounds_selector(incidents: Iterable[Incident]) -> str:
     return " or ".join(i.closed_by for i in incidents if i.closed_by.startswith(("test_", "Test")))
 
 
-POSTMORTEM_WIDTHS = (3, 36, 30, 29)  # 3 + 36 + 30 + 29 + three gaps of 2 is 104
-POSTMORTEM_HEADER = ("id", "decision", "principle", "closed by")
+POSTMORTEM_WIDTHS = (3, 10, 32, 27, 24)  # 3 + 10 + 32 + 27 + 24 + four gaps of 2 is 104
+POSTMORTEM_HEADER = ("id", "kind", "decision", "principle", "closed by")
 
 
 def _wrap_cell(cell: str, width: int) -> list[str]:
@@ -119,7 +120,7 @@ def postmortem_table(incidents: Iterable[Incident]) -> str:
     """The post-mortem: one row per incident, with its decision, principle and closing test."""
     lines = _postmortem_row(POSTMORTEM_HEADER)
     for i in incidents:
-        lines += _postmortem_row((i.id, i.decision, i.principle, i.closed_by))
+        lines += _postmortem_row((i.id, i.subdomain, i.decision, i.principle, i.closed_by))
     return "\n".join(lines) + "\n"
 
 
