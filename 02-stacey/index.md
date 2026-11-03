@@ -33,7 +33,7 @@ words, each with a test.
 
 Free shipping from 50. Of what?
 
-\vspace{-8pt}
+\vspace{-20pt}
 
 
 :::: {.columns}

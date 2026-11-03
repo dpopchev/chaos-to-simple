@@ -210,12 +210,14 @@ def step_test(source: str, n: int) -> str:
     regular = run_checkout(source, n, everything=False).quantize(CENT)
     head = [
         "def test_regular_order() -> None:",
+        '    """The customer: one 40 EUR book, domestic, no policy asked for."""',
         '    order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")',
         "    total = checkout(order, TODAY, charge, reserve, send)",
         f'    assert total == Decimal("{regular}")',
         "",
         "",
         "def test_order_with_everything() -> None:",
+        '    """Every policy on: coupon, member, abroad, gift wrap, VAT ID."""',
         "    order = Order(",
         '        lines=[Line("book", Decimal(60)), Line("pen", Decimal(40))],',
         '        email="a@example.com",',

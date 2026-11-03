@@ -30,13 +30,14 @@ def send(email: str, total: Decimal) -> None:
 
 # [snippet: r1]
 def test_r1_marketing_reads_the_cart() -> None:
+    """Marketing reads the cart, 55 EUR: shipping free, 45 + VAT = 54.00."""
     order = Order(
         lines=[Line("book", Decimal(55))],
         email="a@example.com",
         coupon_valid_until=TODAY,
     )
     total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("54.00")  # (55 - 10) * 1.20: free
+    assert total == Decimal("54.00")
 
 
 # [/snippet]
@@ -45,13 +46,14 @@ def test_r1_marketing_reads_the_cart() -> None:
 @pytest.mark.xfail(strict=True, reason="R2: the code reads R1")
 # [snippet: r2]
 def test_r2_logistics_reads_what_they_pay() -> None:
+    """Logistics reads the goods after the coupon, 45 EUR: 45 + 5 + VAT = 60.00."""
     order = Order(
         lines=[Line("book", Decimal(55))],
         email="a@example.com",
         coupon_valid_until=TODAY,
     )
     total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("60.00")  # (55 - 10 + 5) * 1.20
+    assert total == Decimal("60.00")
 
 
 # [/snippet]

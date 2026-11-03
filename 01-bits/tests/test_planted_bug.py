@@ -31,11 +31,12 @@ def send(email: str, total: Decimal) -> None:
 @pytest.mark.xfail(strict=True, reason="planted bug: the threshold reads the subtotal")
 # [snippet: bug]
 def test_free_shipping_after_discount() -> None:
+    """Logistics: 45 of goods after the coupon do not earn free shipping; with VAT 60.00."""
     order = Order(
         lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY
     )
     total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("60.00")  # (55 - 10 + 5) * 1.20: 45 of goods do not earn free shipping
+    assert total == Decimal("60.00")
 
 
 # [/snippet]

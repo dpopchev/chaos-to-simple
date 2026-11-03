@@ -23,4 +23,5 @@ def test_ship_order_with_everything() -> None:
 
 @pytest.mark.xfail(strict=True, reason="planted bug: the threshold reads the subtotal")
 def test_ship_bug_coupon_over_threshold() -> None:
-    assert ship(Decimal(55), coupon=True) == Decimal(50)  # 45 of goods + 5 shipping
+    """45 of goods after the coupon do not earn free shipping: 45 + 5 = 50."""
+    assert ship(Decimal(55), coupon=True) == Decimal(50)
