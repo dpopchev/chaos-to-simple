@@ -9,6 +9,7 @@ import pytest
 from scripts.utils.colorcode import (
     OwnedLine,
     chip_label,
+    chip_look,
     colorcode,
     legend_groups,
     owned_lines,
@@ -87,6 +88,14 @@ def test_ports_chips_carry_no_kind() -> None:
     ports = dict(legend_groups(actors, contexts))["the ports (generic, external teams)"]
     labels = [chip_label(key, actors, contexts) for key in ports]
     assert not any("(" in label for label in labels)
+
+
+@pytest.mark.model
+def test_ports_chips_alike() -> None:
+    actors, contexts = load_actors(), load_contexts()
+    keys = ("payment", "warehouse", "mailer")
+    looks = [chip_look(key, actors, contexts) for key in keys]
+    assert looks == [(actors[key].icon, None) for key in keys]
 
 
 @pytest.mark.model

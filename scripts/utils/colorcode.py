@@ -10,7 +10,7 @@ from pathlib import Path
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
-from scripts.utils.palette import Actor, Context, colour_of, kind_style
+from scripts.utils.palette import Actor, Context, KindStyle, colour_of, kind_style
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.widths import snippet_text, strip_step_markers
 
@@ -87,6 +87,15 @@ def chip_label(key: str, actors: Mapping[str, Actor], contexts: Mapping[str, Con
     return f"{contexts[key].label} ({contexts[key].kind})"
 
 
+def chip_look(
+    key: str, actors: Mapping[str, Actor], contexts: Mapping[str, Context]
+) -> tuple[str, KindStyle | None]:
+    """Return a chip's icon name and kind style: an actor its icon and none, else the kind edge."""
+    if key in actors:
+        return actors[key].icon, None
+    return "", kind_style(contexts[key].kind)
+
+
 def colorcode(
     lines: Sequence[OwnedLine],
     actors: Mapping[str, Actor],
@@ -132,13 +141,11 @@ def colorcode(
             color="black",
         )
     groups = dict(legend_groups(actors, contexts))
-    icons = {key: a.icon for key, a in actors.items()}
 
     def chip(key: str, x: float, y: float) -> None:
         label = chip_label(key, actors, contexts)
-        icon = icons.get(key, "") if key not in contexts else ""
+        icon, look = chip_look(key, actors, contexts)
         face = colour_of(key)
-        look = kind_style(contexts[key].kind) if key in contexts else None
         ax.add_patch(
             Rectangle(
                 (x, y - 0.08),
