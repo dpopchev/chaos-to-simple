@@ -30,4 +30,4 @@
 - 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
 
 ## Deviations
-- none recorded
+- 2026-11-03 E-017: T-388 Action amended: the def row and its --- add two rows to v5.diff and left page 41 under 3pt slack; T-388 now also moves page 41's file caption under the figure (the caption half of T-418, done early; T-418 keeps the height=75% change); Check unchanged
