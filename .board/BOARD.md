@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-152 > T-341   | blocked: 0 | todo roots: 1 | done: 509 | pruned: 6
+open path: W-152   | blocked: 0 | todo roots: 1 | done: 510 | pruned: 6
 
 ## Tree
 
 ```text
-W-152  bug    [doing]    (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [doing]   <- ACTIVE LEAF
+W-152  bug    [doing]    (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [done]
 W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
 ```
 
@@ -903,7 +903,7 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's chec
 ```mermaid
 flowchart TD
   W152["W-152 bug doing, standalone: The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's"]
-  W152 --> T341["T-341 doing: Draw every actor chip with its icon -> colorcode chip look -- ACTIVE LEAF"]
+  W152 --> T341["T-341 done: Draw every actor chip with its icon -> colorcode chip look"]
   W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
   W153 --> T342["T-342 todo: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -911,6 +911,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W152,T341 doing
+  class W152 doing
+  class T341 done
   class W153,T342 todo
 ```
