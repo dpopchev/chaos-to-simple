@@ -35,3 +35,4 @@
 - 2026-11-03 E-014: T-330 hand-back: the colour-code legend clips its ports rows since T-291 put the provider contexts in the home group; T-298's Action amended to keep only core, supporting and tax in it (Check unchanged); the stale-figure finding filed standalone as W-145
 - 2026-11-03 E-014: T-334 amended mid-Task: the edge --- breaks test_step_diff_is_compact (T-308's pin) and W-136 holds 4 Tasks, so T-334 also updates that test in scripts/utils/test_storyboard.py; Check unchanged (lane hand-back)
 - 2026-11-03 E-014: T-334 filed under W-136 after T-307's hand-back: compact_body marks only the elisions between hunks; the developer asked for --- wherever nothing changed
+- 2026-11-03 E-014: T-335 filed under W-137 after T-310's hand-back: the brief kept test_regular_order at 54.00 on every step, a test that fails against v0 to v5 (45.00 until VAT); the total is now computed per step
