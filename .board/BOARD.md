@@ -1,21 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-013   | blocked: 0 | todo roots: 0 | done: 427 | pruned: 4
+open path: none   | blocked: 0 | todo roots: 0 | done: 428 | pruned: 4
 
 ## Tree
-
-```text
-E-013         [doing]    Deck v4 polish: the nine findings of the E-012 verification landed before the dry run
-  W-120  bug    [done]     the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240) -- T-280 [done]
-  W-121  issue  [done]     01: the step code at scriptsize in a wider column   (filed during T-245) -- T-281 [done]
-  W-122  bug    [done]     01: the bug-run rule masks pytest's exit with || true   (filed during T-249) -- T-282 [done]
-  W-123  bug    [done]     the board's first header overflows its cell   (filed during T-257) -- T-283 [done]
-  W-124  issue  [done]     04: the moves notes still speak of the board   (filed during T-263) -- T-284 [done]
-  W-125  bug    [done]     05: the I3 snippet shows its xfail decorator   (filed during T-264) -- T-285 [done]
-  W-126  issue  [done]     05: effects.txt is built but no slide includes it   (filed during T-266) -- T-286 [done]
-  W-127  bug    [done]     06: the seam diff shows every line changed, against its caption   (filed during T-269) -- T-287 [done], T-288 [done]
-  W-129  bug    [done]     make overflow names no frame when a title wraps   (filed during T-278) -- T-290 [done]
-```
 
 ## Closed
 
@@ -666,6 +653,47 @@ closed 2026-11-02 -- outcome: make talk builds build/talk.pdf at 50 pages (43 co
 
 - T-289 [done] Reword the third bullet -> 07-close/index.md
 
+### E-013 [done] Deck v4 polish: the nine findings of the E-012 verification landed before the dry run
+
+closed 2026-11-03 -- outcome: make talk writes build/talk.pdf with the seam diff in context, the step frames filled at scriptsize, the board headers in their cells, the I3 test plain, the moves notes on the cut and no orphan artifact, while a zones change rebuilds the agenda, pytest's exit is captured and every overflow line names its frame. -- ledger: ledgers/E-013.md
+
+#### W-120 bug [done] the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes   (filed during T-240)
+
+- T-280 [done] List the zones as a prerequisite -> 00-frontmatter/section.mk
+
+#### W-121 issue [done] 01: the step code at scriptsize in a wider column   (filed during T-245)
+
+- T-281 [done] Widen the step code column -> 01-bits/index.md
+
+#### W-122 bug [done] 01: the bug-run rule masks pytest's exit with || true   (filed during T-249)
+
+- T-282 [done] Accept only a failed test -> the bug-run rule in 01-bits/section.mk
+
+#### W-123 bug [done] the board's first header overflows its cell   (filed during T-257)
+
+- T-283 [done] Break the first header -> scripts/utils/board.py
+
+#### W-124 issue [done] 04: the moves notes still speak of the board   (filed during T-263)
+
+- T-284 [done] Rewrite the moves notes -> 04-what/index.md
+
+#### W-125 bug [done] 05: the I3 snippet shows its xfail decorator   (filed during T-264)
+
+- T-285 [done] Move the i3 marker below the decorator -> 05-how/tests/test_i3.py
+
+#### W-126 issue [done] 05: effects.txt is built but no slide includes it   (filed during T-266)
+
+- T-286 [done] Remove the effects artifact -> 05-how/section.mk and data/artifacts.csv
+
+#### W-127 bug [done] 06: the seam diff shows every line changed, against its caption   (filed during T-269)
+
+- T-287 [done] Dedent after the start cut -> snippet_diff in scripts/utils/stagediff.py
+- T-288 [done] Align v5's matches with the shell -> 05-how/s05_how/checkout_v5.py
+
+#### W-129 bug [done] make overflow names no frame when a title wraps   (filed during T-278)
+
+- T-290 [done] Read a wrapped frame title -> scripts/utils/overflow.py
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -728,31 +756,9 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ## Diagram
 ```mermaid
 flowchart TD
-  E013["E-013 doing: Deck v4 polish: the nine findings of the E-012 verification landed before the dry run"]
-  E013 --> W120["W-120 bug done: the agenda strips are not rebuilt when 02-stacey/data/zones.csv changes"]
-  W120 --> T280["T-280 done: List the zones as a prerequisite -> 00-frontmatter/section.mk"]
-  E013 --> W121["W-121 issue done: 01: the step code at scriptsize in a wider column"]
-  W121 --> T281["T-281 done: Widen the step code column -> 01-bits/index.md"]
-  E013 --> W122["W-122 bug done: 01: the bug-run rule masks pytest's exit with || true"]
-  W122 --> T282["T-282 done: Accept only a failed test -> the bug-run rule in 01-bits/section.mk"]
-  E013 --> W123["W-123 bug done: the board's first header overflows its cell"]
-  W123 --> T283["T-283 done: Break the first header -> scripts/utils/board.py"]
-  E013 --> W124["W-124 issue done: 04: the moves notes still speak of the board"]
-  W124 --> T284["T-284 done: Rewrite the moves notes -> 04-what/index.md"]
-  E013 --> W125["W-125 bug done: 05: the I3 snippet shows its xfail decorator"]
-  W125 --> T285["T-285 done: Move the i3 marker below the decorator -> 05-how/tests/test_i3.py"]
-  E013 --> W126["W-126 issue done: 05: effects.txt is built but no slide includes it"]
-  W126 --> T286["T-286 done: Remove the effects artifact -> 05-how/section.mk and data/artifacts.csv"]
-  E013 --> W127["W-127 bug done: 06: the seam diff shows every line changed, against its caption"]
-  W127 --> T287["T-287 done: Dedent after the start cut -> snippet_diff in scripts/utils/stagediff.py"]
-  W127 --> T288["T-288 done: Align v5's matches with the shell -> 05-how/s05_how/checkout_v5.py"]
-  E013 --> W129["W-129 bug done: make overflow names no frame when a title wraps"]
-  W129 --> T290["T-290 done: Read a wrapped frame title -> scripts/utils/overflow.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E013 doing
-  class W120,T280,W121,T281,W122,T282,W123,T283,W124,T284,W125,T285,W126,T286,W127,T287,T288,W129,T290 done
 ```

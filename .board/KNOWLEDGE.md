@@ -16,7 +16,6 @@
 - 2026-11-02 E-011: standing: make check runs widths and overflow after lines, lengths and budget (CHECKS in mk/deck.mk, W-102) -> the close gate and make talk catch a wide line or a frame under 3pt of slack; a criterion run needs no separate run supersedes: E-005#2
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
-- 2026-11-02 W-127: fact: since W-119 the seam frame's title reads 'Moving the pure part out into price cuts along the seam and changes nothing else' over a diff that marks every line -> the defect is now the frame's headline claim
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -25,9 +24,7 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 
 ## Decisions
-- 2026-11-02 E-013: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-02)
-- 2026-11-03 E-013: AC1 amended to 'at least 3 context lines and one ... line': stagediff's elision collapses a run over two unchanged lines, so 6 is unreachable as briefed; T-287 and T-288 stay as briefed (developer, 2026-11-03)
+- none recorded
 
 ## Deviations
-- 2026-11-02 E-013: W-129 taken before W-127 at the re-aim after W-126: a probe with T-287 and T-288 applied in memory leaves seam.diff 3 context lines (stagediff's _elided collapses a run over two), so AC1's 'at least 6' needs the developer; W-129 is independent
-- 2026-11-03 E-013: AC1, W-127's Outcome and T-288's Check amended from 'at least 6' to 'at least 3 context lines and one ... line' on the developer's pick after the HALT of 2026-11-02; the burn resumes with W-127, the last open work item
+- none recorded
