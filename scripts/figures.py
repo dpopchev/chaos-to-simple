@@ -4,6 +4,7 @@ python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
 python -m scripts.figures board --stage 3 --out build/03-chaos/board.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
 python -m scripts.figures colorcode --out build/04-what/colorcode.png
+python -m scripts.figures counting --out build/01-bits/counting.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
 python -m scripts.figures doubling --cast data/cast.csv --out build/01-bits/doubling.png
 python -m scripts.figures finance --out build/01-bits/finance.png
@@ -25,6 +26,7 @@ from pathlib import Path
 
 from scripts.utils.board import board, board_rows, example_tests, headers
 from scripts.utils.colorcode import colorcode, owned_lines
+from scripts.utils.counting import counting_figure
 from scripts.utils.coverage_view import BITS, draw, load_tested
 from scripts.utils.figures import (
     journey,
@@ -60,6 +62,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "board",
         "business-map",
         "colorcode",
+        "counting",
         "coverage-view",
         "doubling",
         "finance",
@@ -116,6 +119,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.what == "finance":
         weeks = load_october(args.october)
         draw_finance(weeks, args.out)
+        return 0
+    if args.what == "counting":
+        counting_figure(args.out)
         return 0
     if args.what == "coverage-view":
         draw(load_tested(args.tested), args.out)

@@ -8,6 +8,7 @@ ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01
 ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES) $(BUILD)/01-bits/next.txt
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
+ARTIFACTS += $(BUILD)/01-bits/counting.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt
 
 # The xfail is lifted (--runxfail) so the slide shows the failure the suite hides; the exit
@@ -30,6 +31,10 @@ $(BUILD)/01-bits/finance.png: 01-bits/data/october.csv \
 	@$(RUN) python -m scripts.figures finance --october 01-bits/data/october.csv \
 	  --out $(BUILD)/01-bits/finance.png
 	$(call log_done,$(BUILD)/01-bits/finance.png written)
+
+$(BUILD)/01-bits/counting.png: scripts/figures.py scripts/utils/counting.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures counting --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/01-bits/grid.png: 01-bits/data/tested.csv scripts/figures.py scripts/utils/paths.py \
     scripts/utils/coverage_view.py scripts/utils/style.py
