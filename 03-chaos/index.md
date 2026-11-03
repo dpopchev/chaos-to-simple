@@ -2,6 +2,8 @@
 
 ## The mood of one order drops at six questions, each a rule nobody wrote down {paths=64}
 
+\begingroup\footnotesize finance traced 6,070 EUR to orders like this one, so the room replayed one order step by step and asked at each step: who decided this?\par\endgroup
+
 ![](build/03-chaos/diagrams/journey.png){width=90%}
 
 ::: notes
