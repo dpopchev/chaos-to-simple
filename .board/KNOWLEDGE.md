@@ -27,4 +27,4 @@
 - 2026-11-03 E-014: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 16 hours) (developer, 2026-11-03)
 
 ## Deviations
-- none recorded
+- 2026-11-03 E-014: T-330 filed under W-130 after T-291's hand-back: the four new context labels did not match the developer's pasted data (Order fulfilment, Payment provider, Warehouse system, Mail delivery)
