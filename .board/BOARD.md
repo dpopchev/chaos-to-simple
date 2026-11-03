@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-137 > T-310   | blocked: 0 | todo roots: 3 | done: 456 | pruned: 4
+open path: E-014 > W-137 > T-311   | blocked: 0 | todo roots: 3 | done: 457 | pruned: 4
 
 ## Tree
 
@@ -13,7 +13,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-134  issue  [done]     03: the new view after the room -- T-303 [done], T-304 [done]
   W-135  issue  [done]     01: how the paths are counted, as a block diagram -- T-305 [done], T-306 [done]
   W-136  issue  [done]     01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [done], T-308 [done], T-309 [done], T-334 [done]
-  W-137  issue  [doing]    01: the tests under each request, page 14 in step -- T-310 [doing]   <- ACTIVE LEAF, T-311 [todo]
+  W-137  issue  [doing]    01: the tests under each request, page 14 in step -- T-310 [done], T-311 [doing]   <- ACTIVE LEAF
   W-138  issue  [todo]     01: finance finds it, the condition, the test -- T-312 [todo], T-313 [todo], T-314 [todo]
   W-139  issue  [todo]     01: the grid that doubles, the badge named -- T-315 [todo], T-316 [todo]
   W-140  issue  [todo]     02: two readings, two tests that cannot both pass -- T-317 [todo], T-318 [todo]
@@ -808,8 +808,8 @@ flowchart TD
   W136 --> T309["T-309 done: Fit the seven frames -> 01-bits/index.md pages 6 to 12 sizes and caps"]
   W136 --> T334["T-334 done: Mark the leading and trailing elision -> stagediff.compact_body emits --- at the edges"]
   E014 --> W137["W-137 issue doing: 01: the tests under each request, page 14 in step"]
-  W137 --> T310["T-310 doing: Build the tests of each step -> storyboard.step_test(source, n) computed from the step's checkout -- ACTIVE LEAF"]
-  W137 --> T311["T-311 todo: Write and show the test diffs -> build/01-bits/test-0..6.diff under each bubble"]
+  W137 --> T310["T-310 done: Build the tests of each step -> storyboard.step_test(source, n) computed from the step's checkout"]
+  W137 --> T311["T-311 doing: Write and show the test diffs -> build/01-bits/test-0..6.diff under each bubble -- ACTIVE LEAF"]
   E014 --> W138["W-138 issue todo: 01: finance finds it, the condition, the test"]
   W138 --> T312["T-312 todo: Relabel the finance chart -> finance.LEGEND expected, received, missing"]
   W138 --> T313["T-313 todo: Foreshadow the conflict on the done frame -> 01-bits/index.md page 13"]
@@ -846,7 +846,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W137,T310 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334 done
-  class T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
+  class E014,W137,T311 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,T310 done
+  class W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
 ```
