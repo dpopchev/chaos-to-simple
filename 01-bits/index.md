@@ -82,7 +82,7 @@ customer's line aloud: that is all.
 ```{.text include=build/01-bits/tally-1.txt}
 ```
 
-```{.diff include=build/01-bits/step-1.diff cap=24}
+```{.diff include=build/01-bits/step-1.diff cap=7}
 ```
 
 :::
@@ -91,7 +91,8 @@ customer's line aloud: that is all.
 ::: notes
 Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first policy
 request adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
-the marketing line aloud and ask who thinks it is a small change.
+the marketing line aloud and ask who thinks it is a small change. The diff shows the
+change alone, one line of context each side.
 :::
 
 ## The member discount stacks on the coupon and doubles the checkout to 4 paths {paths=4}
@@ -114,7 +115,7 @@ the marketing line aloud and ask who thinks it is a small change.
 ```{.text include=build/01-bits/tally-2.txt}
 ```
 
-```{.diff include=build/01-bits/step-2.diff cap=24}
+```{.diff include=build/01-bits/step-2.diff cap=7}
 ```
 
 :::
@@ -123,7 +124,8 @@ the marketing line aloud and ask who thinks it is a small change.
 ::: notes
 The loyalty program asked for 10 percent off for members, after the coupon. The second
 policy request adds a decision about membership, so the footer doubles to 4 paths. Read
-the loyalty line aloud and point out that the two discounts now stack.
+the loyalty line aloud and point out that the two discounts now stack. The diff shows the change alone, one line of
+context each side.
 :::
 
 ## Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths {paths=8}
@@ -146,7 +148,7 @@ the loyalty line aloud and point out that the two discounts now stack.
 ```{.text include=build/01-bits/tally-3.txt}
 ```
 
-```{.diff include=build/01-bits/step-3.diff cap=24}
+```{.diff include=build/01-bits/step-3.diff cap=11}
 ```
 
 :::
@@ -155,7 +157,8 @@ the loyalty line aloud and point out that the two discounts now stack.
 ::: notes
 Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
 postage. The third policy request adds a threshold on the subtotal, so the footer doubles
-to 8 paths. Read the logistics line aloud and ask the room why the carts are left.
+to 8 paths. Read the logistics line aloud and ask the room why the carts are left. The diff shows the change alone, one line of context
+each side.
 :::
 
 ## Shipping abroad adds a fourth bit and the checkout reaches 16 paths {paths=16}
@@ -178,7 +181,7 @@ to 8 paths. Read the logistics line aloud and ask the room why the carts are lef
 ```{.text include=build/01-bits/tally-4.txt}
 ```
 
-```{.diff include=build/01-bits/step-4.diff cap=24}
+```{.diff include=build/01-bits/step-4.diff cap=7}
 ```
 
 :::
@@ -188,7 +191,7 @@ to 8 paths. Read the logistics line aloud and ask the room why the carts are lef
 Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
 The fourth policy request sends a second destination down its own path, so the footer
 doubles to 16 paths. Read the second logistics line aloud and say that the shipping rules
-now branch twice.
+now branch twice. The diff shows the change alone, one line of context each side.
 :::
 
 ## Gift wrap, promised as just one more change, brings the checkout to 32 paths {paths=32}
@@ -211,7 +214,7 @@ now branch twice.
 ```{.text include=build/01-bits/tally-5.txt}
 ```
 
-```{.diff include=build/01-bits/step-5.diff cap=24}
+```{.diff include=build/01-bits/step-5.diff cap=7}
 ```
 
 :::
@@ -220,7 +223,8 @@ now branch twice.
 ::: notes
 Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
 request adds an optional extra to the total, so the footer doubles to 32 paths. Read the
-marketing line aloud, the one that promised just one more.
+marketing line aloud, the one that promised just one more. The diff shows the change alone, one line of context
+each side.
 :::
 
 ## No VAT for companies adds the sixth bit and the checkout reaches 64 paths {paths=64}
@@ -243,7 +247,7 @@ marketing line aloud, the one that promised just one more.
 ```{.text include=build/01-bits/tally-6.txt}
 ```
 
-```{.diff include=build/01-bits/step-6.diff cap=24}
+```{.diff include=build/01-bits/step-6.diff cap=7}
 ```
 
 :::
@@ -252,7 +256,7 @@ marketing line aloud, the one that promised just one more.
 ::: notes
 Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
 policy request adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
-line aloud.
+line aloud. The diff shows the change alone, one line of context each side.
 :::
 
 ## Six policies done and 64 paths live, so how many tests would make you sure? {paths=64}
