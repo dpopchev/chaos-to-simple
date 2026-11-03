@@ -28,17 +28,17 @@ Reading plan: read the Logistics first line aloud, then the Marketing answer; sk
 'Who reads the log?'; then the silence, and let the room hear it.
 :::
 
-## The retro names six business decisions, three core and three in generic subdomains {paths=64}
+## The retro names six business decisions, two core and four in supporting subdomains {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
 ```
 
-q4 to q6 are business decisions too: with the providers, in the generic subdomains
+q3 to q6 are the shop's own answers, supporting; the capability behind q4 to q6 is generic, bought from the providers
 
 ::: notes
-The subdomain column is the map of page 2: q1 to q3 are core, q4 to q6 generic.
+The subdomain column is the map of page 2: q1 and q2 are core, q3 to q6 supporting; the capability behind q4 to q6 is generic.
 Question 3 had two positions: does the coupon that expired on Sunday count on Sunday or on
 Monday. The code decided for them, and that is incident I2. The room decided after the
 discount, not before it: the rule came last, after the code had already picked one side.

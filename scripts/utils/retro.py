@@ -12,11 +12,11 @@ from pathlib import Path
 from scripts.utils.palette import label_of
 
 COLUMNS = ("id", "question", "who", "subdomain", "decided")
-# Column widths for the deck frame: 2 + 31 + 13 + 9 + 41 plus four gaps of 2 is 104.
+# Column widths for the deck frame: 2 + 31 + 13 + 10 + 40 plus four gaps of 2 is 104.
 QUESTION_WIDTH = 31
 WHO_WIDTH = 13
-SUBDOMAIN_WIDTH = 9
-DECIDED_WIDTH = 41
+SUBDOMAIN_WIDTH = 10
+DECIDED_WIDTH = 40
 GAP = "  "
 # The decision of a card wraps at the width of the retro's decided column plus its question.
 CARD_WIDTH = 80

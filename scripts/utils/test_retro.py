@@ -10,9 +10,9 @@ from scripts.utils.palette import label_of
 from scripts.utils.retro import Question, load_questions, question_card, retro_table
 
 QUESTIONS = Path(__file__).resolve().parents[2] / "data/questions.csv"
-# id 2 + question 31 + who 13 plus three gaps of 2, then subdomain 9 and a gap.
+# id 2 + question 31 + who 13 plus three gaps of 2, then subdomain 10 and a gap.
 SUBDOMAIN_AT = 2 + 31 + 13 + 6
-DECIDED_AT = SUBDOMAIN_AT + 9 + 2
+DECIDED_AT = SUBDOMAIN_AT + 10 + 2
 
 
 def table() -> list[str]:
@@ -37,13 +37,13 @@ def test_retro_table_names_the_raiser_by_label() -> None:
 @pytest.mark.model
 def test_retro_table_names_the_subdomain() -> None:
     rows = [line for line in table() if line.startswith("q")]
-    assert [row[SUBDOMAIN_AT : SUBDOMAIN_AT + 9].strip() for row in rows] == [
+    assert [row[SUBDOMAIN_AT : SUBDOMAIN_AT + 10].strip() for row in rows] == [
         "core",
         "core",
-        "core",
-        "generic",
-        "generic",
-        "generic",
+        "supporting",
+        "supporting",
+        "supporting",
+        "supporting",
     ]
 
 
