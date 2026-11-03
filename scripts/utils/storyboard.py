@@ -114,8 +114,7 @@ def step_view(source: str, n: int) -> str:
     The heading is 'checkout vN: N policies, <2**N> paths, L lines' ('1 policy' for N = 1).
     Step 0 is every row as +.
     """
-    noun = "policy" if n == 1 else "policies"
-    heading = f"checkout v{n}: {n} {noun}, {2**n} paths, {code_length(source, n)} lines"
+    heading = code_tally("checkout", n, n, 2**n, code_length(source, n))
     before = step_lines(source, n - 1).splitlines() if n > 0 else []
     return _view(heading, before, step_lines(source, n).splitlines(), n)
 
@@ -124,7 +123,7 @@ def suite_view(source: str, n: int) -> str:
     """Return the tests of step n: the heading 'tests vN: K tests, L lines', then as step_view."""
     after = step_test(source, n)
     lines = sum(1 for row in after.splitlines() if row.strip())
-    heading = f"tests v{n}: {count_tests([after])} tests, {lines} lines"
+    heading = tests_tally(n, count_tests([after]), lines)
     before = step_test(source, n - 1).splitlines() if n > 0 else []
     return _view(heading, before, after.splitlines(), n)
 
@@ -142,12 +141,16 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(body) + "\n"
 
 
-def tally_line(
-    version: int, policies: int, paths: int, tests: int, lines: int | None = None
-) -> str:
-    """Return the tally: policies, paths and tests of a version, then the length if given."""
-    tally = f"checkout v{version}: {policies} policies, {paths} paths, {tests} tests"
-    return tally if lines is None else f"{tally}, {lines} lines"
+def code_tally(name: str, version: int, policies: int, paths: int, lines: int) -> str:
+    """Return '<name> v<version>: P policies, N paths, L lines' ('1 policy' at 1)."""
+    noun = "policy" if policies == 1 else "policies"
+    return f"{name} v{version}: {policies} {noun}, {paths} paths, {lines} lines"
+
+
+def tests_tally(version: int, tests: int, lines: int) -> str:
+    """Return 'tests v<version>: K tests, L lines' ('1 test' at 1)."""
+    noun = "test" if tests == 1 else "tests"
+    return f"tests v{version}: {tests} {noun}, {lines} lines"
 
 
 def count_tests(texts: Iterable[str]) -> int:

@@ -19,14 +19,16 @@
         --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out build/01-bits
     python -m scripts.paths bubbles --bubbles 02-stacey/data/bubbles.csv --actors data/actors.csv \\
         --out build/02-stacey
-    python -m scripts.paths tally --version 7 --policies 6 --paths 64 --tests-dir DIR \\
-        [--only REGEX] --out F.txt
+    python -m scripts.paths tally --version 7 --tests-dir DIR [--only REGEX] --out F.txt
+    python -m scripts.paths tally-code --name F --version 7 --policies 6 --paths 64 \\
+        --source FILE --snippet S --out F.txt
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] [--added-only] [--compact] [--hide PATTERN]
-        [--label-from A --label-to B] --out F.diff
+        [--label-from A --label-to B] [--no-scope] \\
+        [--name F --version N --policies P --paths N] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths postmortem --incidents data/incidents.csv --out F.txt
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
@@ -65,12 +67,14 @@ from scripts.utils.storyboard import (
     STEPS,
     bubble,
     code_length,
+    code_tally,
     count_tests,
     load_bubbles,
     step_view,
     suite_view,
-    tally_line,
+    tests_tally,
 )
+from scripts.utils.widths import snippet_text, strip_step_markers
 
 
 def write_storyboard(
@@ -82,15 +86,13 @@ def write_storyboard(
     for n in range(STEPS):
         (out_dir / f"step-{n}.diff").write_text(step_view(text, n), encoding="ascii")
         (out_dir / f"test-{n}.diff").write_text(suite_view(text, n), encoding="ascii")
-        tally = tally_line(n, n, 2**n, 2, lines=code_length(text, n))
+        tally = code_tally("checkout", n, n, 2**n, code_length(text, n))
         (out_dir / f"tally-{n}.txt").write_text(tally + "\n", encoding="ascii")
     write_bubbles(bubbles, actors, out_dir, wrap)
 
 
-def tally_text(
-    version: int, policies: int, paths: int, tests_dirs: Sequence[Path], only: str | None
-) -> str:
-    """Return the tally line of a checkout version, its tests counted over the matched files."""
+def tally_text(version: int, tests_dirs: Sequence[Path], only: str | None) -> str:
+    """Return the tests tally of a version: tests and non-blank lines over the matched files."""
     pattern = re.compile(only) if only else None
     files = sorted(
         path
@@ -98,8 +100,15 @@ def tally_text(
         for path in tests_dir.glob("test_*.py")
         if pattern is None or pattern.search(path.name)
     )
-    tests = count_tests(path.read_text(encoding="utf-8") for path in files)
-    return tally_line(version, policies, paths, tests) + "\n"
+    texts = [path.read_text(encoding="utf-8") for path in files]
+    lines = sum(1 for text in texts for row in text.splitlines() if row.strip())
+    return tests_tally(version, count_tests(texts), lines) + "\n"
+
+
+def snippet_length(path: Path, snippet: str) -> int:
+    """Return the non-blank line count of a file's snippet, step markers stripped."""
+    text = snippet_text(strip_step_markers(path.read_text(encoding="ascii")), snippet)
+    return sum(1 for row in text.splitlines() if row.strip())
 
 
 def write_bubbles(bubbles: Path, actors: Path, out_dir: Path, wrap: int | None = 34) -> None:
@@ -133,9 +142,11 @@ def main(argv: Sequence[str] | None = None) -> int:
             "storyboard",
             "bubbles",
             "tally",
+            "tally-code",
             "diff",
         ],
     )
+    parser.add_argument("--name", default=None, help="tally-code, diff: the function's name")
     parser.add_argument("--version", type=int, default=None, help="tally: the checkout version")
     parser.add_argument("--policies", type=int, default=None, help="tally: the policy count")
     parser.add_argument("--paths", type=int, default=None, help="tally: the path count")
@@ -208,12 +219,20 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.what == "tally":
-        if args.out is None or None in (args.version, args.policies, args.paths):
-            parser.error("tally needs --version, --policies, --paths and --out")
+        if args.out is None or args.version is None:
+            parser.error("tally needs --version and --out")
         if not args.tests_dir:
             parser.error("tally needs a --tests-dir")
         args.out.parent.mkdir(parents=True, exist_ok=True)
-        text = tally_text(args.version, args.policies, args.paths, args.tests_dir, args.only)
+        args.out.write_text(tally_text(args.version, args.tests_dir, args.only), encoding="ascii")
+        return 0
+
+    if args.what == "tally-code":
+        if None in (args.name, args.version, args.policies, args.paths, args.snippet, args.out):
+            parser.error("tally-code needs --name --version --policies --paths --snippet --out")
+        lines = snippet_length(args.source, args.snippet)
+        text = code_tally(args.name, args.version, args.policies, args.paths, lines) + "\n"
+        args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(text, encoding="ascii")
         return 0
 
@@ -234,6 +253,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             args.compact,
             args.scope,
         )
+        if args.name and None not in (args.version, args.policies, args.paths):
+            lines = snippet_length(args.to_path, to_snippet)
+            head = code_tally(args.name, args.version, args.policies, args.paths, lines)
+            diff = head + "\n" + diff.partition("\n")[2]
         args.out.write_text(diff, encoding="ascii")
         return 0
 

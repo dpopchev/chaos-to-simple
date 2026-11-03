@@ -7,17 +7,18 @@ from pathlib import Path
 
 import pytest
 
+from scripts.paths import tally_text
 from scripts.utils.paths import load_cast
 from scripts.utils.storyboard import (
     BubbleRow,
     bubble,
+    code_tally,
     count_tests,
     step_diff,
     step_lines,
     step_test,
     step_view,
     suite_view,
-    tally_line,
     wrap_row,
 )
 from scripts.utils.widths import snippet_text, strip_step_markers
@@ -173,13 +174,15 @@ def test_bubble_stays_on_one_line() -> None:
 
 
 @pytest.mark.view
-def test_tally_line_names_the_version_policies_paths_and_tests() -> None:
-    assert tally_line(7, 6, 64, 3) == "checkout v7: 6 policies, 64 paths, 3 tests"
+def test_code_tally_names_the_function() -> None:
+    assert code_tally("price", 3, 1, 2, 9) == "price v3: 1 policy, 2 paths, 9 lines"
 
 
 @pytest.mark.view
-def test_tally_line_ends_with_the_length() -> None:
-    assert tally_line(3, 3, 8, 2, lines=15) == "checkout v3: 3 policies, 8 paths, 2 tests, 15 lines"
+def test_tally_text_counts_tests_and_lines(tmp_path: Path) -> None:
+    (tmp_path / "test_a.py").write_text("def test_one():\n    pass\n", encoding="ascii")
+    (tmp_path / "test_b.py").write_text("def test_two():\n    pass\n", encoding="ascii")
+    assert tally_text(1, [tmp_path], None) == "tests v1: 2 tests, 4 lines\n"
 
 
 @pytest.mark.view
