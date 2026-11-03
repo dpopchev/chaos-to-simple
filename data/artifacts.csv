@@ -48,6 +48,7 @@ build/01-bits/finance.png,png,scripts.figures finance
 build/01-bits/cues.txt,txt,scripts.figures finance-cues
 build/01-bits/counting.png,png,scripts.figures counting
 build/01-bits/bug-run.txt,txt,pytest --runxfail
+build/01-bits/memo-run.txt,txt,pytest --runxfail
 build/01-bits/grid.png,png,scripts.figures grid-image
 build/01-bits/grid-growth.png,png,scripts.figures grid-growth
 build/01-bits/doubling.png,png,scripts.figures doubling

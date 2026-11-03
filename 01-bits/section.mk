@@ -11,6 +11,24 @@ ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
 ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/counting.png $(BUILD)/01-bits/grid-growth.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt $(BUILD)/01-bits/cues.txt
+ARTIFACTS += $(BUILD)/01-bits/memo-run.txt
+
+# The memo's four orders with the xfail lifted: the exit status must be 1 (one order fails);
+# only the four PASSED/FAILED lines, the node id trimmed to the parameter id, and the summary
+# without timing stay.
+$(BUILD)/01-bits/memo-run.txt: 01-bits/section.mk 01-bits/s01_bits/chaos.py \
+    01-bits/tests/test_memo_orders.py
+	@mkdir -p $(@D)
+	@log=$$(mktemp); status=0; \
+	$(RUN) pytest 01-bits/tests/test_memo_orders.py --runxfail -v --no-header \
+	  -p no:cacheprovider > $$log || status=$$?; \
+	if [ $$status -ne 1 ]; then rm -f $$log; \
+	  echo "memo-run: pytest exited $$status, expected 1 (one failed order)" >&2; exit 1; fi; \
+	grep -E '\] (PASSED|FAILED)|^=+ [0-9]+ ' $$log \
+	  | sed -E -e 's/^.*\[(.*)\] (PASSED|FAILED).*$$/\2 \1/' \
+	    -e 's/^=+ (.*), [0-9]+ warnings? in [0-9.]+s =+$$/\1/' \
+	    -e 's/^=+ (.*) in [0-9.]+s =+$$/\1/' > $@; rm -f $$log
+	$(call log_done,$@ written)
 
 # The xfail is lifted (--runxfail) so the slide shows the failure the suite hides; the exit
 # status must be 1 (one test failed) or the recipe fails; only the assert lines and the
