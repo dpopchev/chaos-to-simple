@@ -30,8 +30,7 @@ if/elif adds, 2 + 1, into three paths; the general form is the product of each b
 alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
 :::
 
-## Three calls and no policy make the plain checkout one path {paths=1}
-
+## Three calls, two tests and no policy make the plain checkout one path {paths=1}
 
 ::: {.request}
 \actor{customer}
@@ -39,32 +38,28 @@ alternatives. Then say that the footer counts from here, starting at 1 for the p
 ```{.text include=build/01-bits/bubble-0.txt}
 ```
 :::
+
+::::: {.columns}
+::: {.column width="54%"}
 
 ```{.diff .python include=build/01-bits/step-0.diff cap=10}
 ```
 
-::: notes
-The customer asked for the plain checkout: pick the books, pay, get them shipped. This
-skeleton has the three calls and no policy, so the footer reads 1 path. Read the
-customer's line aloud: that is all.
 :::
-
-## The same request with two tests still has just one path {paths=1}
-
-::: {.request}
-\actor{customer}
-
-```{.text include=build/01-bits/bubble-0.txt}
-```
-:::
+::: {.column width="46%"}
 
 ```{.diff .python include=build/01-bits/test-0.diff cap=16}
 ```
 
+:::
+:::::
+
 ::: notes
-The same customer line, now the tests: a regular order and an empty cart. Both pass on the
-one path, so the footer still reads 1 path. Say that the tests come before the policies, not
-after them.
+The customer asked for the plain checkout: pick the books, pay, get them shipped. The left
+column is the skeleton with the three calls and no policy, so the footer reads 1 path. The
+right column is the tests, a regular order and an empty cart; both pass on the one path, so
+the footer still reads 1 path. Read the customer's line aloud, then say that the tests come
+before the policies, not after them.
 :::
 
 ## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}

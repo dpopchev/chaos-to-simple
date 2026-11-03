@@ -49,7 +49,7 @@ campaign on time, one if at a time.
 ## Slides
 
 - [x] 1. A policy is one bit, paths=?: the rule paths = 2^policies, the three counting lines, "the footer counts from here"
-- [x] 2. No policy yet, paths=1: the customer's bubble, `tally-0.txt` over the skeleton in `step-0.diff`
+- [x] 2. No policy yet, paths=1: the customer's bubble full width, then `step-0.diff` beside `test-0.diff`
 - [x] 3. Policy 1, paths=2: marketing's AUTUMN coupon, `tally-1.txt` over `step-1.diff`
 - [x] 4. Policy 2, paths=4: the loyalty program's member discount, `tally-2.txt` over `step-2.diff`
 - [x] 5. Policy 3, paths=8: free shipping from 50 EUR, `tally-3.txt` over `step-3.diff`
