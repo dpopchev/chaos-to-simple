@@ -17,6 +17,7 @@
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 - 2026-11-03 E-016: standing: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv supersedes: E-016#1
+- 2026-11-04 T-403: fact: the red: 0 note above is wrong, the Check prints 1 at 9920a05 from 01-bits/index.md:412 'every one of them' -> the Action's lead adds a second 'one of them' line, so the frozen Check would print 2 and cannot pass
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -39,4 +40,5 @@
 - 2026-11-03 E-017: T-395 Action amended at its block: storyboard.step_test rebuilds the two-tests snippet per step, so the docstrings name the order and its source, emitted by step_test too; storyboard.py and test_storyboard.py join its files; Check unchanged
 - 2026-11-03 E-017: T-395 and T-396 Actions amended before W-172 starts: W-172's criterion greps every exhibit test, and test_planted_bug.py, test_two_ifs.py and test_worlds.py carried assert comments no Task named; Checks unchanged
 - 2026-11-04 E-017: T-397 Action amended at close: its brief said index.md without paths; page 22's spacing in 02-stacey/index.md was rebalanced after the -20pt vspace overlapped the bubble; Check unchanged
+- 2026-11-04 E-017: T-403 pruned and refiled as T-427: its frozen Check matched page 19's 'every one of them' and could never print 1; T-427 checks 'one of them: 55 EUR', same Action
 - 2026-11-04 E-017: T-421 and T-423 Actions amended before start: their heading rules and manifest rows named section.mk and artifacts.csv without paths; Checks unchanged
