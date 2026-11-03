@@ -20,6 +20,8 @@ PREAMBLE  := $(FRONT)/preamble.tex
 FILTERS   := $(sort $(wildcard $(FRONT)/filters/*.lua))
 INDEXES   := $(sort $(wildcard [0-9][0-9]-*/index.md))
 RULES     := data/rules.csv
+# What scripts.utils.palette reads: a figure rule whose producer imports it lists these.
+PALETTE   := data/contexts.csv data/actors.csv scripts/utils/palette.py
 SHARED    := $(BUILD)/data/rules.txt $(BUILD)/data/counts.txt $(BUILD)/data/splits.txt
 ARTIFACTS := $(SHARED)
 PDF       := $(BUILD)/talk.pdf
