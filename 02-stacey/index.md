@@ -33,7 +33,7 @@ words, each with a test.
 
 Free shipping from 50. Of what?
 
-\vspace{-20pt}
+\vspace{-9pt}
 
 
 :::: {.columns}
@@ -52,6 +52,8 @@ Free shipping from 50. Of what?
 
 :::
 ::::
+
+\vspace{6pt}
 
 :::: {.columns}
 ::: {.column width="47%"}
@@ -72,9 +74,10 @@ Free shipping from 50. Of what?
 
 
 \begingroup\footnotesize\textit{one function, one reading: the code picked R1 and nobody chose}\par\endgroup
-\vspace{-11pt}
+\vspace{-22pt}
 
 \noindent\rule{\linewidth}{0.4pt}
+\vspace{-17pt}
 
 \actor{dev}
 
