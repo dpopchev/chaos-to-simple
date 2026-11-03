@@ -3,6 +3,6 @@ To: engineering
 Date: 2026-11-02
 Subject: shipping cost, October
 
-Shipping charged to customers: 0 EUR on 1,214 domestic orders with under 50 EUR of
-goods. Our cost 5 EUR each, 6,070 EUR. All 1,214 used the autumn coupon. No customer
-has complained. Was this intended?
+Shipping income, October: 2,315 domestic parcels under 50 EUR of goods. 1,101 were
+charged 5 EUR (5,505 EUR), 1,214 were charged 0 EUR. The carrier bills us 5 EUR on every
+parcel: 6,070 EUR short against the count. Was this intended?

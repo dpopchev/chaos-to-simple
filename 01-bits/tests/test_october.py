@@ -9,6 +9,7 @@ from pathlib import Path
 import pytest
 
 CSV = Path(__file__).parents[1] / "data" / "october.csv"
+MEMO = Path(__file__).parents[1] / "data" / "incident.txt"
 FIRST_MONDAY = date(2026, 7, 27)
 PRICE = 5
 
@@ -41,6 +42,10 @@ class TestOctober:
             == (int(r["should_pay_shipping"]) - int(r["got_free_shipping"])) * PRICE
             for r in rows
         )
+
+    def test_memo_quotes_the_sheet(self) -> None:
+        memo = MEMO.read_text()
+        assert all(figure in memo for figure in ("2,315", "1,101", "5,505", "6,070"))
 
     def test_monday_follows_the_week_calendar(self, rows: list[dict[str, str]]) -> None:
         assert all(
