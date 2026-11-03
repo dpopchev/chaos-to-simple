@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-168   | blocked: 0 | todo roots: 0 | done: 560 | pruned: 6
+open path: none   | blocked: 0 | todo roots: 0 | done: 561 | pruned: 6
 
 ## Tree
-
-```text
-W-168  bug    [doing]    (standalone) 04 fix caption names the I1 order in BGN while the deck counts EUR   (filed during T-373) -- T-383 [done]
-```
 
 ## Closed
 
@@ -983,16 +979,18 @@ closed 2026-11-03 -- outcome: Given the deck, When make talk, Then page 8's chec
 
 - T-349 [done] Say policy for one -> scripts/utils/storyboard.py step view heading
 
+### W-168 bug [done] (standalone) 04 fix caption names the I1 order in BGN while the deck counts EUR
+
+closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md runs, Then it prints 0 -- ledger: ledgers/W-168.md
+
+- T-383 [done] Name the I1 order in EUR -> 04-what/index.md caption
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W168["W-168 bug doing, standalone: 04 fix caption names the I1 order in BGN while the deck counts EUR"]
-  W168 --> T383["T-383 done: Name the I1 order in EUR -> 04-what/index.md caption"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W168 doing
-  class T383 done
 ```
