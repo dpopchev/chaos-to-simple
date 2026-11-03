@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-136 > T-309   | blocked: 0 | todo roots: 3 | done: 453 | pruned: 4
+open path: E-014 > W-136 > T-334   | blocked: 0 | todo roots: 3 | done: 454 | pruned: 4
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-133  issue  [done]     00/02: the Stacey overview on page 3, the plain matrix on page 20 -- T-300 [done], T-301 [done], T-302 [done]
   W-134  issue  [done]     03: the new view after the room -- T-303 [done], T-304 [done]
   W-135  issue  [done]     01: how the paths are counted, as a block diagram -- T-305 [done], T-306 [done]
-  W-136  issue  [doing]    01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [done], T-308 [done], T-309 [doing]   <- ACTIVE LEAF, T-334 [todo]
+  W-136  issue  [doing]    01: the storyboard as compact +/- diffs with the length in the tally -- T-307 [done], T-308 [done], T-309 [done], T-334 [doing]   <- ACTIVE LEAF
   W-137  issue  [todo]     01: the tests under each request, page 14 in step -- T-310 [todo], T-311 [todo]
   W-138  issue  [todo]     01: finance finds it, the condition, the test -- T-312 [todo], T-313 [todo], T-314 [todo]
   W-139  issue  [todo]     01: the grid that doubles, the badge named -- T-315 [todo], T-316 [todo]
@@ -805,8 +805,8 @@ flowchart TD
   E014 --> W136["W-136 issue doing: 01: the storyboard as compact +/- diffs with the length in the tally"]
   W136 --> T307["T-307 done: Add the compact diff mode -> stagediff.snippet_diff(compact=True) and diffs.lua on ---"]
   W136 --> T308["T-308 done: Render the steps as compact diffs -> storyboard.step_view and tally_line with the length"]
-  W136 --> T309["T-309 doing: Fit the seven frames -> 01-bits/index.md pages 6 to 12 sizes and caps -- ACTIVE LEAF"]
-  W136 --> T334["T-334 todo: Mark the leading and trailing elision -> stagediff.compact_body emits --- at the edges"]
+  W136 --> T309["T-309 done: Fit the seven frames -> 01-bits/index.md pages 6 to 12 sizes and caps"]
+  W136 --> T334["T-334 doing: Mark the leading and trailing elision -> stagediff.compact_body emits --- at the edges -- ACTIVE LEAF"]
   E014 --> W137["W-137 issue todo: 01: the tests under each request, page 14 in step"]
   W137 --> T310["T-310 todo: Build the tests of each step -> storyboard.step_test(source, n) computed from the step's checkout"]
   W137 --> T311["T-311 todo: Write and show the test diffs -> build/01-bits/test-0..6.diff under each bubble"]
@@ -846,7 +846,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W136,T309 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,T307,T308 done
-  class T334,W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
+  class E014,W136,T334 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,T307,T308,T309 done
+  class W137,T310,T311,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333 todo
 ```
