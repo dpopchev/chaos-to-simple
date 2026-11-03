@@ -27,22 +27,15 @@
 \newcommand{\diffchg}[1]{\textcolor[HTML]{9A6700}{#1}}
 \newcommand{\diffcut}[1]{\textcolor[HTML]{6E7781}{#1}}
 
-% The storyboard (story.lua): three shades -- the code shade, the request box, the headings --
-% and the row backgrounds of a Python-highlighted diff (added, removed, scope).
+% The shades: the code shade, the request box (story.lua) and the snippet heading (diffs.lua).
 \usepackage{xcolor}
 \usepackage{tcolorbox}
 \usepackage{fancyvrb}
 \definecolor{shadecolor}{HTML}{F4F4F4}
 \definecolor{requestbg}{HTML}{FFF4D6}
 \definecolor{headbg}{HTML}{E6E6E6}
-\definecolor{addbg}{HTML}{DDF4E0}
-\definecolor{delbg}{HTML}{FBE0DE}
 \newcommand{\snippethead}[1]{\tcbox[on line,boxsep=0.5pt,left=2pt,right=2pt,top=0pt,bottom=0pt,arc=2pt,
   colback=headbg,colframe=headbg]{\scriptsize\bfseries #1}\par}
-\newcommand{\storyhead}[1]{\snippethead{#1}}
-\newcommand{\diffaddbg}[1]{\colorbox{addbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
-\newcommand{\diffdelbg}[1]{\colorbox{delbg}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
-\newcommand{\diffscope}[1]{\colorbox{shadecolor}{\makebox[\dimexpr\linewidth-2\fboxsep][l]{#1}}}
 \newtcolorbox{request}{colback=requestbg,colframe=requestbg,boxsep=2pt,left=2pt,right=2pt,top=0pt,
   bottom=0pt,arc=2pt}
 
