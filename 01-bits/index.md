@@ -269,7 +269,7 @@ each side.
 ```{.text include=build/01-bits/bubble-6.txt}
 ```
 
-```{.diff include=build/01-bits/test-6.diff cap=8}
+```{.diff include=build/01-bits/test-6.diff cap=10}
 ```
 
 :::

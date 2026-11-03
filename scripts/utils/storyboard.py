@@ -102,18 +102,25 @@ def _order_fields(n: int) -> list[str]:
     return [f"        {field}," for step, field in table if step <= n]
 
 
-def run_checkout(source: str, n: int) -> Decimal:
-    """Exec the step-n checkout over the two-line order and return its total (the one effect)."""
+def run_checkout(source: str, n: int, everything: bool = True) -> Decimal:
+    """Exec the step-n checkout and return its total (the one effect).
+
+    The order is the two-line order with everything up to step n, or the regular one-line order.
+    """
     from s01_bits import chaos  # 01-bits is on the path only under pytest
 
-    fields = {
-        "coupon_valid_until": TODAY if n >= 1 else None,
-        "member": n >= 2,
-        "international": n >= 4,
-        "gift_wrap": n >= 5,
-        "vat_id": "BG123456789" if n >= 6 else None,
-    }
-    lines = [chaos.Line("book", Decimal(60)), chaos.Line("pen", Decimal(40))]
+    if everything:
+        fields = {
+            "coupon_valid_until": TODAY if n >= 1 else None,
+            "member": n >= 2,
+            "international": n >= 4,
+            "gift_wrap": n >= 5,
+            "vat_id": "BG123456789" if n >= 6 else None,
+        }
+        lines = [chaos.Line("book", Decimal(60)), chaos.Line("pen", Decimal(40))]
+    else:
+        fields = {}
+        lines = [chaos.Line("book", Decimal(40))]
     order = chaos.Order(lines=lines, email="a@example.com", **fields)
     namespace = dict(vars(chaos))
     exec(step_lines(source, n), namespace)
@@ -123,14 +130,15 @@ def run_checkout(source: str, n: int) -> Decimal:
 def step_test(source: str, n: int) -> str:
     """Return the two tests as they stood at step n, without the narrator comments.
 
-    The expected total of the everything test is computed by running the step-n checkout.
+    Both expected totals are computed by running the step-n checkout.
     """
     expected = run_checkout(source, n).quantize(CENT)
+    regular = run_checkout(source, n, everything=False).quantize(CENT)
     head = [
         "def test_regular_order() -> None:",
         '    order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")',
         "    total = checkout(order, TODAY, charge, reserve, send)",
-        '    assert total == Decimal("54.00")',
+        f'    assert total == Decimal("{regular}")',
         "",
         "",
         "def test_order_with_everything() -> None:",
