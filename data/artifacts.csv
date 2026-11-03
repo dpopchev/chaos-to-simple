@@ -93,6 +93,7 @@ build/05-how/tests-9.txt,txt,scripts.paths tally --version 9
 build/05-how/tests-order.txt,txt,scripts.paths tally --version 8 --only test_oo_order
 build/05-how/oo.txt,txt,scripts.paths tally-code --name Checkout
 build/05-how/ports-code.txt,txt,scripts.paths tally-code --name ports
+build/05-how/pyright.txt,txt,pyright
 build/05-how/imports.txt,txt,scripts.paths imports
 build/05-how/board.png,png,scripts.figures board --stage 05
 build/05-how/i3-run.txt,txt,pytest 05-how/tests/test_i3.py

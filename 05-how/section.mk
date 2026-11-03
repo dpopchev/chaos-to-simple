@@ -65,6 +65,20 @@ $(BUILD)/05-how/ports-code.txt: 05-how/section.mk scripts/paths.py scripts/utils
 		--source 05-how/s05_how/ports.py --snippet ports --out $@
 	$(call log_done,$@ written)
 
+# The fakes' acceptance: pyright must exit 0 over the fakes and their test; only its summary is kept.
+ARTIFACTS += $(BUILD)/05-how/pyright.txt
+
+$(BUILD)/05-how/pyright.txt: 05-how/section.mk 05-how/s05_how/fakes.py 05-how/s05_how/ports.py \
+    05-how/tests/test_ports.py
+	@mkdir -p $(@D)
+	@tmp=$$(mktemp); \
+	if ! $(RUN) pyright 05-how/s05_how/fakes.py 05-how/tests/test_ports.py > $$tmp 2>&1; then \
+	  cat $$tmp; rm -f $$tmp; echo "pyright: the fakes are not accepted" >&2; exit 1; \
+	fi; \
+	grep -E '^[0-9]+ errors?, ' $$tmp | sed -E 's/ +$$//' > $@; \
+	rm -f $$tmp
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/05-how/imports.txt
 
 $(BUILD)/05-how/imports.txt: 05-how/section.mk scripts/paths.py scripts/utils/imports.py \
