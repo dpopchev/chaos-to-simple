@@ -29,6 +29,7 @@ from scripts.utils.paths import (
     grid_image,
     grid_panels,
     growth,
+    kind_of,
     legend_entries,
     line_of,
     load_cast,
@@ -363,9 +364,9 @@ def test_rules_table_who_column_joins_the_cast(
 
 
 INCIDENTS_CSV = (
-    "id,week,date,told_in,decided_in,closed_in,closed_by,kind,cost,decision,principle,subdomain\n"
-    'I1,14,2026-10-26,01,03,06,test_a,rule,"1,000 orders",d,p,core\n'
-    "I2,15,2026-11-04,02,03,04,rules.csv b2,decision,one meeting,d,p,supporting\n"
+    "id,week,date,told_in,decided_in,closed_in,closed_by,kind,cost,decision,principle,bit\n"
+    'I1,14,2026-10-26,01,03,06,test_a,rule,"1,000 orders",d,p,b0\n'
+    "I2,15,2026-11-04,02,03,04,rules.csv b2,decision,one meeting,d,p,b2\n"
 )
 
 
@@ -385,7 +386,7 @@ def test_load_incidents_reads_every_column(tmp_path: Path) -> None:
         "1,000 orders",
         "d",
         "p",
-        "core",
+        "b0",
     )
 
 
@@ -414,13 +415,11 @@ def test_exhibits_carry_the_incident_costs() -> None:
 @pytest.mark.model
 def test_wounds_selector_skips_a_closed_by_that_is_no_test() -> None:
     incidents = (
-        Incident("I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x", "d", "p", "core"),
+        Incident("I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x", "d", "p", "b0"),
         Incident(
-            "I2", "15", "d2", "02", "03", "04", "rules.csv b2", "decision", "y", "d", "p", "core"
+            "I2", "15", "d2", "02", "03", "04", "rules.csv b2", "decision", "y", "d", "p", "b2"
         ),
-        Incident(
-            "I3", "18", "d3", "05", "03", "06", "test_b", "effect", "z", "d", "p", "supporting"
-        ),
+        Incident("I3", "18", "d3", "05", "03", "06", "test_b", "effect", "z", "d", "p", "s1"),
     )
     assert wounds_selector(incidents) == "test_a or test_b"
 
@@ -429,7 +428,7 @@ def test_wounds_selector_skips_a_closed_by_that_is_no_test() -> None:
 def test_postmortem_table_names_the_three_incidents() -> None:
     incidents = (
         Incident(
-            "I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x", "decide a", "keep a", "core"
+            "I1", "14", "d1", "01", "03", "06", "test_a", "rule", "x", "decide a", "keep a", "b0"
         ),
         Incident(
             "I2",
@@ -443,7 +442,7 @@ def test_postmortem_table_names_the_three_incidents() -> None:
             "y",
             "d b",
             "p b",
-            "core",
+            "b2",
         ),
         Incident(
             "I3",
@@ -457,14 +456,14 @@ def test_postmortem_table_names_the_three_incidents() -> None:
             "z",
             "decide c",
             "keep c",
-            "supporting",
+            "s1",
         ),
     )
-    lines = postmortem_table(incidents).splitlines()
+    lines = postmortem_table(incidents, load_rules(REPO_RULES), load_contexts()).splitlines()
     assert [re.split(r" {2,}", line) for line in lines] == [
         ["id", "kind", "decision", "principle", "closed by"],
         ["I1", "core", "decide a", "keep a", "test_a"],
-        ["I2", "core", "d b", "p b", "rules.csv b2"],
+        ["I2", "supporting", "d b", "p b", "rules.csv b2"],
         ["I3", "supporting", "decide c", "keep c", "TestB"],
     ]
 
@@ -472,20 +471,27 @@ def test_postmortem_table_names_the_three_incidents() -> None:
 @pytest.mark.view
 def test_postmortem_names_the_kind() -> None:
     root = REPO_RULES.parents[1]
-    lines = postmortem_table(load_incidents(root / "data" / "incidents.csv")).splitlines()
+    lines = postmortem_table(
+        load_incidents(root / "data" / "incidents.csv"), load_rules(REPO_RULES), load_contexts()
+    ).splitlines()
     rows = {line.split()[0]: line.split()[1] for line in lines}
     assert (rows["id"], rows["I1"], rows["I2"], rows["I3"]) == (
         "kind",
-        "core",
-        "core",
+        "supporting",
+        "supporting",
         "supporting",
     )
 
 
 @pytest.mark.model
+def test_kind_of_b2_is_supporting() -> None:
+    assert kind_of("b2", load_rules(REPO_RULES), load_contexts()) == "supporting"
+
+
+@pytest.mark.model
 def test_wounds_selector_keeps_a_closed_by_that_is_a_test_class() -> None:
     incidents = (
-        Incident("I3", "18", "d3", "05", "03", "06", "TestB", "effect", "z", "d", "p", "core"),
+        Incident("I3", "18", "d3", "05", "03", "06", "TestB", "effect", "z", "d", "p", "s1"),
     )
     assert wounds_selector(incidents) == "TestB"
 

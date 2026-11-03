@@ -6,17 +6,19 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.palette import label_of
+from scripts.utils.palette import label_of, load_contexts
+from scripts.utils.paths import load_rules
 from scripts.utils.retro import Question, load_questions, question_card, retro_table
 
 QUESTIONS = Path(__file__).resolve().parents[2] / "data/questions.csv"
+RULES = Path(__file__).resolve().parents[2] / "data/rules.csv"
 # id 2 + question 31 + who 13 plus three gaps of 2, then subdomain 10 and a gap.
 SUBDOMAIN_AT = 2 + 31 + 13 + 6
 DECIDED_AT = SUBDOMAIN_AT + 10 + 2
 
 
 def table() -> list[str]:
-    return retro_table(load_questions(QUESTIONS)).splitlines()
+    return retro_table(load_questions(QUESTIONS), load_rules(RULES), load_contexts()).splitlines()
 
 
 @pytest.mark.edge
@@ -31,7 +33,7 @@ def test_retro_table_heads_the_five_columns() -> None:
 
 @pytest.mark.model
 def test_retro_table_names_the_raiser_by_label() -> None:
-    assert "Loyalty" in retro_table(load_questions(QUESTIONS))
+    assert "Loyalty" in "\n".join(table())
 
 
 @pytest.mark.model
@@ -86,4 +88,5 @@ def test_question_card_holds_the_decision() -> None:
 @pytest.mark.model
 def test_retro_table_uses_the_injected_label() -> None:
     questions = [Question("q1", "Why?", "dev", "b0", "decided", "Because.")]
-    assert "DEV" in retro_table(questions, label=str.upper)
+    table_ = retro_table(questions, load_rules(RULES), load_contexts(), label=str.upper)
+    assert "DEV" in table_

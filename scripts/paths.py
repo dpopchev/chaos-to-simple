@@ -249,13 +249,15 @@ def main(argv: Sequence[str] | None = None) -> int:
     elif args.what == "retro":
         questions = load_questions(args.questions)
         if args.only is None:
-            text = retro_table(questions)
+            text = retro_table(questions, load_rules(args.rules), load_contexts())
         else:
             text = question_card(next(q for q in questions if q.id == args.only))
     elif args.what == "wounds":
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "postmortem":
-        text = postmortem_table(load_incidents(args.incidents))
+        text = postmortem_table(
+            load_incidents(args.incidents), load_rules(args.rules), load_contexts()
+        )
     elif args.what == "counts":
         text = count_report(load_rules(args.rules), load_contexts())
     elif args.what == "splits":

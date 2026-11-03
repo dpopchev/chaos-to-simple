@@ -4,8 +4,8 @@ ARTIFACTS += $(BUILD)/06-simple/pytest.txt $(BUILD)/06-simple/paths.png \
     $(BUILD)/06-simple/wounds.txt $(BUILD)/06-simple/pytest-core.txt \
     $(BUILD)/06-simple/postmortem.txt
 
-$(BUILD)/06-simple/postmortem.txt: $(PALETTE) data/incidents.csv scripts/paths.py scripts/utils/paths.py 06-simple/section.mk
-	@$(RUN) python -m scripts.paths postmortem --incidents data/incidents.csv --out $@
+$(BUILD)/06-simple/postmortem.txt: $(PALETTE) data/incidents.csv data/rules.csv data/contexts.csv scripts/paths.py scripts/utils/paths.py 06-simple/section.mk
+	@$(RUN) python -m scripts.paths postmortem --incidents data/incidents.csv --rules data/rules.csv --out $@
 	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/pytest-core.txt: $(wildcard 06-simple/s06_simple/*.py) $(wildcard 06-simple/tests/*.py) \

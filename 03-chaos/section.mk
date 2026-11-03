@@ -9,8 +9,8 @@ $(BUILD)/03-chaos/rules.txt: $(PALETTE) data/rules.csv data/cast.csv scripts/pat
 
 ARTIFACTS += $(BUILD)/03-chaos/retro.txt
 
-$(BUILD)/03-chaos/retro.txt: $(PALETTE) data/questions.csv data/actors.csv scripts/paths.py scripts/utils/retro.py
-	@$(RUN) python -m scripts.paths retro --questions data/questions.csv --out $@
+$(BUILD)/03-chaos/retro.txt: $(PALETTE) data/questions.csv data/rules.csv data/contexts.csv data/actors.csv scripts/paths.py scripts/utils/retro.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths retro --questions data/questions.csv --rules data/rules.csv --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/03-chaos/grid-9.png

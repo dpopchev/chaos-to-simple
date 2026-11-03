@@ -1,7 +1,7 @@
-id,question,raised_by,bit,status,decision,subdomain
-q1,What if the coupon expired yesterday?,accounting,b0,decided,A coupon is valid through its last day and not after; the shop's date decides.,core
-q2,"Does the member discount stack with the coupon, and in which order?",loyalty,b1,decided,"The coupon comes off first, then the member 10%.",core
-q3,Is the free-shipping threshold checked before or after the discounts?,logistics,b2,decided,"Marketing: before, so more customers qualify. Logistics: after. Decided in the room: after the discount; Logistics owns the rule.",supporting
-q4,What happens when the payment is declined?,dev,s0,decided,The provider answers Charged or Declined; a declined card rejects the order.,supporting
-q5,What happens when the stock is gone after we priced the order?,dev,s1,decided,The warehouse answers Reserved or OutOfStock; reserve before charging.,supporting
-q6,What happens when the confirmation email bounces?,dev,s2,decided,The mailer answers Sent or Bounced; a bounce does not reject the order.,supporting
+id,question,raised_by,bit,status,decision
+q1,What if the coupon expired yesterday?,accounting,b0,decided,A coupon is valid through its last day and not after; the shop's date decides.
+q2,"Does the member discount stack with the coupon, and in which order?",loyalty,b1,decided,"The coupon comes off first, then the member 10%."
+q3,Is the free-shipping threshold checked before or after the discounts?,logistics,b2,decided,"Marketing: before, so more customers qualify. Logistics: after. Decided in the room: after the discount; Logistics owns the rule."
+q4,What happens when the payment is declined?,dev,s0,decided,The provider answers Charged or Declined; a declined card rejects the order.
+q5,What happens when the stock is gone after we priced the order?,dev,s1,decided,The warehouse answers Reserved or OutOfStock; reserve before charging.
+q6,What happens when the confirmation email bounces?,dev,s2,decided,The mailer answers Sent or Bounced; a bounce does not reject the order.

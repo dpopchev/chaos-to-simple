@@ -74,7 +74,7 @@ class Incident:
     cost: str
     decision: str
     principle: str
-    subdomain: str
+    bit: str
 
 
 def load_incidents(path: Path) -> tuple[Incident, ...]:
@@ -116,11 +116,19 @@ def _postmortem_row(cells: Sequence[str]) -> list[str]:
     ]
 
 
-def postmortem_table(incidents: Iterable[Incident]) -> str:
+def kind_of(bit: str, rules: Sequence[Rule], contexts: Mapping[str, Context]) -> str:
+    """The subdomain kind of a bit: its context's kind, the context read from rules.csv."""
+    return contexts[next(r.context for r in rules if r.bit == bit)].kind
+
+
+def postmortem_table(
+    incidents: Iterable[Incident], rules: Sequence[Rule], contexts: Mapping[str, Context]
+) -> str:
     """The post-mortem: one row per incident, with its decision, principle and closing test."""
     lines = _postmortem_row(POSTMORTEM_HEADER)
     for i in incidents:
-        lines += _postmortem_row((i.id, i.subdomain, i.decision, i.principle, i.closed_by))
+        kind = kind_of(i.bit, rules, contexts)
+        lines += _postmortem_row((i.id, kind, i.decision, i.principle, i.closed_by))
     return "\n".join(lines) + "\n"
 
 

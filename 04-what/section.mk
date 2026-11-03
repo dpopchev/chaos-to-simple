@@ -59,6 +59,6 @@ $(BUILD)/04-what/fix-run.txt: 04-what/section.mk 04-what/s04_what/checkout_fixed
 
 ARTIFACTS += $(BUILD)/04-what/dispute.txt
 
-$(BUILD)/04-what/dispute.txt: $(PALETTE) data/questions.csv scripts/paths.py scripts/utils/retro.py
-	@$(RUN) python -m scripts.paths retro --only q3 --questions data/questions.csv --out $@
+$(BUILD)/04-what/dispute.txt: $(PALETTE) data/questions.csv data/rules.csv data/contexts.csv scripts/paths.py scripts/utils/retro.py scripts/utils/paths.py
+	@$(RUN) python -m scripts.paths retro --only q3 --questions data/questions.csv --rules data/rules.csv --out $@
 	$(call log_done,$@ written)

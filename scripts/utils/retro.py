@@ -5,11 +5,12 @@ from __future__ import annotations
 import csv
 import re
 import textwrap
-from collections.abc import Callable, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 
-from scripts.utils.palette import label_of
+from scripts.utils.palette import Context, label_of
+from scripts.utils.paths import Rule, kind_of
 
 COLUMNS = ("id", "question", "who", "subdomain", "decided")
 # Column widths for the deck frame: 2 + 31 + 13 + 10 + 40 plus four gaps of 2 is 104.
@@ -30,7 +31,6 @@ class Question:
     bit: str
     status: str
     decision: str
-    subdomain: str = ""
 
 
 def load_questions(path: Path) -> list[Question]:
@@ -44,7 +44,6 @@ def load_questions(path: Path) -> list[Question]:
                 row["bit"],
                 row["status"],
                 row["decision"],
-                row["subdomain"],
             )
             for row in csv.DictReader(fh)
         ]
@@ -84,10 +83,16 @@ def question_card(q: Question, label: Callable[[str], str] = label_of) -> str:
     return "\n".join([head, "", *_wrap(q.decision, CARD_WIDTH)]) + "\n"
 
 
-def retro_table(questions: Sequence[Question], label: Callable[[str], str] = label_of) -> str:
-    """The table of id, question, who raised it, its subdomain and the decision; long cells wrap."""
+def retro_table(
+    questions: Sequence[Question],
+    rules: Sequence[Rule],
+    contexts: Mapping[str, Context],
+    label: Callable[[str], str] = label_of,
+) -> str:
+    """The table of id, question, who raised it, its subdomain kind and the decision; cells wrap."""
     widths = (2, QUESTION_WIDTH, WHO_WIDTH, SUBDOMAIN_WIDTH, DECIDED_WIDTH)
     lines = _row(COLUMNS, widths)
     for q in questions:
-        lines += _row((q.id, q.question, label(q.raised_by), q.subdomain, q.decision), widths)
+        kind = kind_of(q.bit, rules, contexts)
+        lines += _row((q.id, q.question, label(q.raised_by), kind, q.decision), widths)
     return "\n".join(lines) + "\n"
