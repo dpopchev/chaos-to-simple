@@ -48,16 +48,30 @@ It is the same bug as I3, pricing edition.
 
 ## Command Query Separation draws the seam by making every answer a value {paths=512}
 
-query: pure, returns a value
+:::: {.columns}
+::: {.column width="50%"}
 
-command: an effect, answers with a value
+query: returns a value, changes nothing
 
-```{.python include=05-how/s05_how/ports.py snippet=types}
+command: changes the world, answers with a value
+
+the seam: where asking ends and doing begins
+
+```{.python heading="the answers" include=05-how/s05_how/ports.py snippet=types}
 ```
 
-\begingroup\footnotesize 05-how/s05_how/ports.py in fulfilment; tested by test_ports.py\par\endgroup
+:::
+::: {.column width="50%"}
+
+```{.python heading="the three ports" include=05-how/s05_how/ports.py snippet=ports}
+```
+
+:::
+::::
 
 make every answer a value
+
+\begingroup\footnotesize 05-how/s05_how/ports.py in fulfilment; tested by test_ports.py\par\endgroup
 
 ::: notes
 Command query separation: a query asks, a command answers with a value, never both.
@@ -85,6 +99,8 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 :::
 ::::
+
+above the first match every line is a value; below it three answers, reserve first: that is the seam
 
 ::: notes
 The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
