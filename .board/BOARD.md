@@ -12,6 +12,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-148  issue  [todo]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
   W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
+  W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
 ```
 
 ## Closed
@@ -871,6 +872,8 @@ flowchart TD
   W149 --> T338["T-338 todo: Show the test that runs -> 04-what/tests/test_checkout_stages.py snippet i1 and page 29"]
   E015 --> W150["W-150 issue todo: The epilogue title's second line collides with the bubble under it"]
   W150 --> T339["T-339 todo: Fit the epilogue title on one line -> 06-simple/index.md page 46 title"]
+  E015 --> W151["W-151 bug todo: 01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale"]
+  W151 --> T340["T-340 todo: Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -878,5 +881,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E015 doing
   class W145,T331 done
-  class W146,T332,W147,T333,W148,T336,W149,T338,W150,T339 todo
+  class W146,T332,W147,T333,W148,T336,W149,T338,W150,T339,W151,T340 todo
 ```
