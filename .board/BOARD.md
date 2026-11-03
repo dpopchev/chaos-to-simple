@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016   | blocked: 0 | todo roots: 0 | done: 537 | pruned: 6
+open path: E-016 > W-162 > T-368   | blocked: 0 | todo roots: 0 | done: 537 | pruned: 6
 
 ## Tree
 
@@ -12,7 +12,7 @@ E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening,
   W-159  issue  [done]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [done], T-359 [done], T-360 [done]
   W-160  issue  [done]     Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [done], T-362 [done], T-363 [done]
   W-161  issue  [done]     01 finance: the cues beside the chart, the memo's four orders on their own frame -- T-364 [done], T-365 [done], T-366 [done], T-367 [done]
-  W-162  issue  [todo]     02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [todo], T-369 [todo]
+  W-162  issue  [doing]    02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [doing]   <- ACTIVE LEAF, T-369 [todo]
   W-163  issue  [todo]     03 room: the certainty sourced, the 512 grid explained, the board widened -- T-370 [todo], T-371 [todo], T-372 [todo]
   W-164  issue  [todo]     04 homes: each snippet beside its test, the homes column compact -- T-373 [todo], T-374 [todo], T-375 [todo]
   W-165  issue  [todo]     05 seam and the 06 cut: the seam defined, the staged files differing by the extraction, page 42 as plain code -- T-376 [todo], T-377 [todo], T-378 [todo]
@@ -949,8 +949,8 @@ flowchart TD
   W161 --> T365["T-365 done: Lay the chart beside the cues -> 01-bits/index.md page 16 in two columns"]
   W161 --> T366["T-366 done: Test the four orders the memo implies -> 01-bits/tests/test_memo_orders.py and memo-run.txt"]
   W161 --> T367["T-367 done: Add the memo frame -> 01-bits/index.md after page 17 with the four orders"]
-  E016 --> W162["W-162 issue todo: 02 deduction frame: from 54.00 against 60.00 to two readings"]
-  W162 --> T368["T-368 todo: Write the deduction frame -> 02-stacey/index.md with the two-readings table"]
+  E016 --> W162["W-162 issue doing: 02 deduction frame: from 54.00 against 60.00 to two readings"]
+  W162 --> T368["T-368 doing: Write the deduction frame -> 02-stacey/index.md with the two-readings table -- ACTIVE LEAF"]
   W162 --> T369["T-369 todo: Update the 02 brief -> 02-stacey/README.md at three slides"]
   E016 --> W163["W-163 issue todo: 03 room: the certainty sourced, the 512 grid explained, the board widened"]
   W163 --> T370["T-370 todo: Source the certainty line -> figures.journey with the room's scoring"]
@@ -972,7 +972,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016 doing
+  class E016,W162,T368 doing
   class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360,W160,T361,T362,T363,W161,T364,T365,T366,T367 done
-  class W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
+  class T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
