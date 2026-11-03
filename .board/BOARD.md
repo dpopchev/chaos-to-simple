@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-169 > T-386   | blocked: 0 | todo roots: 0 | done: 563 | pruned: 6
+open path: E-017 > W-169   | blocked: 0 | todo roots: 0 | done: 564 | pruned: 6
 
 ## Tree
 
 ```text
 E-017         [doing]    The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how
-  W-169  issue  [doing]    one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [doing]   <- ACTIVE LEAF
+  W-169  issue  [doing]    one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [done]
   W-170  issue  [todo]     measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [todo], T-388 [todo], T-389 [todo], T-390 [todo]
   W-171  issue  [todo]     every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [todo], T-392 [todo], T-393 [todo], T-394 [todo]
   W-172  issue  [todo]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [todo], T-396 [todo], T-397 [todo]
@@ -1010,7 +1010,7 @@ flowchart TD
   E017 --> W169["W-169 issue doing: one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua"]
   W169 --> T384["T-384 done: Render the heading line grey -> preamble.tex headbg and diffs.lua line 1"]
   W169 --> T385["T-385 done: Route the storyboard through diffs.lua -> story.lua keeps the request box only"]
-  W169 --> T386["T-386 doing: Retire the row-shade macros -> preamble.tex without diffaddbg, diffdelbg, diffscope, storyhead, addbg, delbg -- ACTIVE LEAF"]
+  W169 --> T386["T-386 done: Retire the row-shade macros -> preamble.tex without diffaddbg, diffdelbg, diffscope, storyhead, addbg, delbg"]
   E017 --> W170["W-170 issue todo: measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff"]
   W170 --> T387["T-387 todo: Head each storyboard view with the tally shape -> storyboard.step_view and suite_view"]
   W170 --> T388["T-388 todo: Lead every stage diff with its def row -> stagediff.snippet_diff scope row"]
@@ -1067,7 +1067,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W169,T386 doing
-  class T384,T385 done
+  class E017,W169 doing
+  class T384,T385,T386 done
   class W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424 todo
 ```
