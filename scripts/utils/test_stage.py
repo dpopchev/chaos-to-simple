@@ -6,12 +6,13 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.palette import colour_of, load_actors
+from scripts.utils.palette import colour_of, load_actors, load_contexts
 from scripts.utils.paths import load_cast, load_incidents, load_rules
 from scripts.utils.stacey import load_zones
 from scripts.utils.stage import (
     GREY,
     agenda_strip,
+    band_title,
     business_map,
     edge_words,
     incident_marks,
@@ -41,6 +42,11 @@ def test_a_department_edge_carries_its_requests() -> None:
 @pytest.mark.model
 def test_map_legend_has_three_kinds() -> None:
     assert [kind for _, kind in map_legend()] == ["core", "supporting", "generic"]
+
+
+@pytest.mark.model
+def test_band_title_names_its_kind() -> None:
+    assert band_title(load_contexts()["pricing"]) == "Pricing (core)"
 
 
 @pytest.mark.edge

@@ -17,8 +17,8 @@ from scripts.utils.stacey import ZONE_COLOURS, Zone, band_colour, load_zones
 
 CUSTOMER_WORDS = "places an order"
 BOX_W, BOX_H = 2.7, 0.8
-SHOP_W, SHOP_H = 2.8, 6.8
-DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.4, 5.4, 4.8
+SHOP_W, SHOP_H = 3.9, 5.2
+DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.9, 5.9, 4.2
 WRAP = 22
 
 
@@ -267,23 +267,27 @@ def map_legend() -> tuple[tuple[str, str], ...]:
     )
 
 
-TAX_NOTE = "Tax: bought rule, in-house for now"
-BAND_H, BAND_GAP = 1.15, 0.15
+BAND_H, BAND_GAP = 0.95, 0.12
+CHIP_H = 0.4
+
+
+def band_title(ctx: Context) -> str:
+    """Return the band's title: the context label and its subdomain kind in brackets."""
+    return f"{ctx.label} ({ctx.kind})"
 
 
 def inner_bands(
     contexts: Mapping[str, Context], actors: Mapping[str, Actor]
-) -> tuple[tuple[Context, str], ...]:
-    """Return the core and supporting contexts no provider owns, each with its owners' labels."""
-    bands: list[tuple[Context, str]] = []
+) -> tuple[tuple[Context, tuple[str, ...]], ...]:
+    """Return the in-house contexts no provider owns, each with its owner keys."""
+    bands: list[tuple[Context, tuple[str, ...]]] = []
     for ctx in contexts.values():
-        owners = [o for o in ctx.owner.split(";") if o]
-        if ctx.kind not in ("core", "supporting"):
+        owners = tuple(o for o in ctx.owner.split(";") if o)
+        if ctx.kind not in ("core", "supporting", "generic"):
             continue
         if any(o in actors and actors[o].kind == "provider" for o in owners):
             continue
-        names = ", ".join(actors[o].label if o in actors else o for o in owners)
-        bands.append((ctx, names))
+        bands.append((ctx, owners))
     return tuple(bands)
 
 
@@ -304,7 +308,7 @@ def business_map(
     font = icon_file()
     shape = "round,pad=0.05,rounding_size=0.15"
     generic = kind_style("generic")
-    fig, ax = plt.subplots(figsize=(11.0, 6.2), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(11.5, 6.2), dpi=style.DPI)
     for key, actor in actors.items():
         x, y = spots[key]
         is_shop = actor.kind == "dev"
@@ -393,45 +397,52 @@ def business_map(
                 facecolor=kind.face,
                 edgecolor=kind.edge,
                 linestyle=kind.linestyle,
-                linewidth=2.5,
+                linewidth=2.5 if kind.edge != "none" else 0,
                 zorder=4,
             )
         )
-        ax.text(0, cy + 0.2, ctx.label, ha="center", va="center", fontsize=12, zorder=5)
-        ax.text(
-            0,
-            cy - 0.25,
-            textwrap.fill(owners, 20),
-            ha="center",
-            va="center",
-            fontsize=9,
-            style="italic",
-            zorder=5,
-        )
-    tax_y = top - len(bands) * (BAND_H + BAND_GAP) - 0.45
-    ax.add_patch(
-        FancyBboxPatch(
-            (-SHOP_W / 2 + 0.2, tax_y - 0.4),
-            SHOP_W - 0.4,
-            0.8,
-            boxstyle="round,pad=0.02,rounding_size=0.08",
-            facecolor=generic.face,
-            edgecolor="none",
-            zorder=4,
-        )
-    )
-    ax.text(
-        0,
-        tax_y,
-        textwrap.fill(TAX_NOTE, 22),
-        ha="center",
-        va="center",
-        fontsize=9,
-        zorder=5,
-    )
+        ax.text(0, cy + 0.27, band_title(ctx), ha="center", va="center", fontsize=12, zorder=5)
+        widths = [0.5 + 0.09 * len(actors[o].label if o in actors else o) for o in owners]
+        left = -(sum(widths) + 0.1 * (len(owners) - 1)) / 2
+        for o, cw in zip(owners, widths, strict=True):
+            label = actors[o].label if o in actors else o.capitalize()
+            ax.add_patch(
+                FancyBboxPatch(
+                    (left, cy - 0.3 - CHIP_H / 2 + 0.12),
+                    cw,
+                    CHIP_H,
+                    boxstyle="round,pad=0.02,rounding_size=0.1",
+                    facecolor=colour_of(o) if o in actors else GREY,
+                    edgecolor="none",
+                    zorder=5,
+                )
+            )
+            chip_ink = label_ink(colour_of(o) if o in actors else GREY)
+            if font is not None and o in actors:
+                ax.text(
+                    left + 0.17,
+                    cy - 0.18,
+                    glyph(actors[o].icon, FONT_AWESOME),
+                    ha="center",
+                    va="center",
+                    fontproperties=FontProperties(fname=font, size=8),
+                    color=chip_ink,
+                    zorder=6,
+                )
+            ax.text(
+                left + cw / 2 + 0.1,
+                cy - 0.18,
+                label,
+                ha="center",
+                va="center",
+                fontsize=8,
+                color=chip_ink,
+                zorder=6,
+            )
+            left += cw + 0.1
     for i, (text, kind_name) in enumerate(map_legend()):
         kind = kind_style(kind_name)
-        lx = -7.0 + i * 4.8
+        lx = -7.4 + i * 5.0
         ax.add_patch(
             FancyBboxPatch(
                 (lx, -4.35),
@@ -445,7 +456,7 @@ def business_map(
             )
         )
         ax.text(lx + 0.65, -4.2, text, ha="left", va="center", fontsize=10)
-    ax.set_xlim(-7.2, 7.2)
+    ax.set_xlim(-7.6, 7.6)
     ax.set_ylim(-4.7, 5.5)
     ax.axis("off")
     fig.tight_layout()
