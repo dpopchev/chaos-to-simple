@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-173 > T-400   | blocked: 0 | todo roots: 1 | done: 581 | pruned: 6
+open path: E-017 > W-173 > T-401   | blocked: 0 | todo roots: 1 | done: 582 | pruned: 6
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-170  issue  [done]     measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [done], T-390 [done]
   W-171  issue  [done]     every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [done], T-392 [done], T-393 [done], T-394 [done]
   W-172  issue  [done]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [done], T-396 [done], T-397 [done]
-  W-173  issue  [doing]    01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [done], T-399 [done], T-400 [doing]   <- ACTIVE LEAF, T-401 [todo]
+  W-173  issue  [doing]    01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [done], T-399 [done], T-400 [done], T-401 [doing]   <- ACTIVE LEAF
   W-174  issue  [todo]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [todo], T-403 [todo], T-404 [todo]
   W-175  issue  [todo]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [todo], T-406 [todo]
   W-176  issue  [todo]     horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [todo], T-408 [todo], T-409 [todo]
@@ -1030,8 +1030,8 @@ flowchart TD
   E017 --> W173["W-173 issue doing: 01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition"]
   W173 --> T398["T-398 done: Rewrite the memo as finance's figures -> 01-bits/data/incident.txt"]
   W173 --> T399["T-399 done: Draw the weeks as horizontal stacked bars with finance's legend -> finance.draw and LEGEND"]
-  W173 --> T400["T-400 doing: Source the breakdown and add the cart column -> finance.cues and october.csv -- ACTIVE LEAF"]
-  W173 --> T401["T-401 todo: Lay page 16 out -> 01-bits/index.md page 16"]
+  W173 --> T400["T-400 done: Source the breakdown and add the cart column -> finance.cues and october.csv"]
+  W173 --> T401["T-401 doing: Lay page 16 out -> 01-bits/index.md page 16 -- ACTIVE LEAF"]
   E017 --> W174["W-174 issue todo: 01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions"]
   W174 --> T402["T-402 todo: Quote the breakdown's order in the bug test -> test_planted_bug.py docstring"]
   W174 --> T403["T-403 todo: Open page 17 on the order it takes -> 01-bits/index.md page 17"]
@@ -1073,7 +1073,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W173,T400 doing
-  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,T398,T399 done
-  class T401,W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
+  class E017,W173,T401 doing
+  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,T398,T399,T400 done
+  class W174,T402,T403,T404,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
 ```
