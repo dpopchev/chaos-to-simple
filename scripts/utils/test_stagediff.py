@@ -66,6 +66,17 @@ def test_compact_diff(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_compact_diff_marks_the_edges(tmp_path: Path) -> None:
+    old, new = tmp_path / "old.py", tmp_path / "new.py"
+    rows = [f"    m{i} = {i}\n" for i in range(6)]
+    head, tail = "# [snippet: s]\n", "# [/snippet]\n"
+    old.write_text(head + "".join(rows[:3]) + "    x = 1\n" + "".join(rows[3:]) + tail, "ascii")
+    new.write_text(head + "".join(rows[:3]) + "    x = 2\n" + "".join(rows[3:]) + tail, "ascii")
+    body = snippet_diff(old, "s", new, "s", compact=True).splitlines()[1:]
+    assert (body[0], body[-1]) == ("---", "---")
+
+
+@pytest.mark.view
 def test_snippet_diff_labels_replace_the_file_names_in_the_caption(tmp_path: Path) -> None:
     old, new = _pair(tmp_path)
     assert snippet_diff(old, "s", new, "s", labels=("v1", "v2")).splitlines()[0] == "v1 -> v2"

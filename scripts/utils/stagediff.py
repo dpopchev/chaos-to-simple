@@ -87,16 +87,29 @@ def _elided(body: list[str]) -> list[str]:
 def compact_body(old: list[str], new: list[str]) -> list[str]:
     """Return the - and + lines of a diff with one context line each side of a change.
 
-    A run of unchanged lines between two changes is one '---' line; a -/+ pair stays as is.
+    Every elided run of unchanged lines is one '---' line, at the edges too; a -/+ pair stays.
     """
     rows = list(difflib.unified_diff(old, new, n=1))[2:]
+    spans = [_old_span(row) for row in rows if row.startswith("@@")]
     out: list[str] = []
     for row in rows:
         if not row.startswith("@@"):
             out.append(row)
-        elif out:
+        elif out or spans[0][0] > 1:
             out.append("---\n")
+    if spans and spans[-1][1] < len(old):
+        out.append("---\n")
     return out
+
+
+def _old_span(header: str) -> tuple[int, int]:
+    """Return the first and last old line a '@@ -s,c +s,c @@' header covers."""
+    found = re.match(r"@@ -(\d+)(?:,(\d+))?", header)
+    if found is None:
+        raise ValueError(f"not a unified diff hunk header: {header!r}")
+    start = int(found.group(1))
+    count = int(found.group(2) or 1)
+    return start, start + count - 1
 
 
 def snippet_diff(
