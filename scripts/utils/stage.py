@@ -11,13 +11,13 @@ from pathlib import Path
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
-from scripts.utils.palette import Actor, colour_of
+from scripts.utils.palette import Actor, Context, colour_of, kind_style, load_contexts
 from scripts.utils.paths import CastRow, Incident, Rule
 from scripts.utils.stacey import ZONE_COLOURS, Zone, band_colour, load_zones
 
 CUSTOMER_WORDS = "places an order"
 BOX_W, BOX_H = 2.7, 0.8
-SHOP_W, SHOP_H = 2.6, 6.8
+SHOP_W, SHOP_H = 2.8, 6.8
 DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.4, 5.4, 4.8
 WRAP = 22
 
@@ -261,9 +261,30 @@ def positions(actors: Mapping[str, Actor]) -> dict[str, tuple[float, float]]:
 def map_legend() -> tuple[tuple[str, str], ...]:
     """Return the strategic legend of the map: each line's words and how its box is drawn."""
     return (
-        ("core subdomain: the shop and its policies", "outlined"),
-        ("generic subdomain: sourced out", "filled"),
+        ("core subdomain: the shop wins the sale", "core"),
+        ("supporting subdomain: the shop's own rules", "supporting"),
+        ("generic subdomain: bought, adapted", "generic"),
     )
+
+
+TAX_NOTE = "Tax: bought rule, in-house for now"
+BAND_H, BAND_GAP = 1.15, 0.15
+
+
+def inner_bands(
+    contexts: Mapping[str, Context], actors: Mapping[str, Actor]
+) -> tuple[tuple[Context, str], ...]:
+    """Return the core and supporting contexts no provider owns, each with its owners' labels."""
+    bands: list[tuple[Context, str]] = []
+    for ctx in contexts.values():
+        owners = [o for o in ctx.owner.split(";") if o]
+        if ctx.kind not in ("core", "supporting"):
+            continue
+        if any(o in actors and actors[o].kind == "provider" for o in owners):
+            continue
+        names = ", ".join(actors[o].label if o in actors else o for o in owners)
+        bands.append((ctx, names))
+    return tuple(bands)
 
 
 def business_map(
@@ -282,13 +303,17 @@ def business_map(
     spots = positions(actors)
     font = icon_file()
     shape = "round,pad=0.05,rounding_size=0.15"
+    generic = kind_style("generic")
     fig, ax = plt.subplots(figsize=(11.0, 6.2), dpi=style.DPI)
     for key, actor in actors.items():
         x, y = spots[key]
         is_shop = actor.kind == "dev"
+        text_y = y + SHOP_H / 2 - 0.4 if is_shop else y
         w, h = (SHOP_W, SHOP_H) if is_shop else (BOX_W, BOX_H)
-        face = "white" if is_shop else colour_of(key)
-        ink = "black" if is_shop else label_ink(face)
+        actor_colour = colour_of(key)
+        is_provider = actor.kind == "provider"
+        face = "white" if is_shop else generic.face if is_provider else actor_colour
+        ink = "black" if is_shop or is_provider else label_ink(face)
         if not is_shop:
             side = 0.0 if actor.kind == "customer" else (1.0 if x < 0 else -1.0)
             both = actor.kind == "provider"
@@ -301,7 +326,7 @@ def business_map(
                 head = (x, SHOP_H / 2 + 0.1)
             arrow = {
                 "arrowstyle": "-|>",
-                "color": face if key != "mailer" else "dimgrey",
+                "color": actor_colour if key != "mailer" else "dimgrey",
                 "linewidth": 2.0,
                 "shrinkA": 0,
                 "shrinkB": 0,
@@ -336,7 +361,7 @@ def business_map(
         if font is not None:
             ax.text(
                 x - w / 2 + 0.15,
-                y,
+                text_y,
                 glyph(actor.icon, FONT_AWESOME),
                 ha="left",
                 va="center",
@@ -346,28 +371,80 @@ def business_map(
             )
         ax.text(
             x + (0.25 if font is not None else 0.0),
-            y,
-            actor.label.replace(" (", "\n("),
+            text_y,
+            actor.label.replace(" (", "\n(") if not is_shop else actor.label,
             ha="center",
             va="center",
-            fontsize=13,
+            fontsize=13 if not is_shop else 12,
             color=ink,
             zorder=4,
         )
-    for i, (text, how) in enumerate(map_legend()):
-        lx = -6.6 + i * 6.6
+    bands = inner_bands(load_contexts(), actors)
+    top = SHOP_H / 2 - 0.85
+    for i, (ctx, owners) in enumerate(bands):
+        kind = kind_style(ctx.kind)
+        cy = top - BAND_H / 2 - i * (BAND_H + BAND_GAP)
+        ax.add_patch(
+            FancyBboxPatch(
+                (-SHOP_W / 2 + 0.2, cy - BAND_H / 2),
+                SHOP_W - 0.4,
+                BAND_H,
+                boxstyle="round,pad=0.02,rounding_size=0.08",
+                facecolor=kind.face,
+                edgecolor=kind.edge,
+                linestyle=kind.linestyle,
+                linewidth=2.5,
+                zorder=4,
+            )
+        )
+        ax.text(0, cy + 0.2, ctx.label, ha="center", va="center", fontsize=12, zorder=5)
+        ax.text(
+            0,
+            cy - 0.25,
+            textwrap.fill(owners, 20),
+            ha="center",
+            va="center",
+            fontsize=9,
+            style="italic",
+            zorder=5,
+        )
+    tax_y = top - len(bands) * (BAND_H + BAND_GAP) - 0.45
+    ax.add_patch(
+        FancyBboxPatch(
+            (-SHOP_W / 2 + 0.2, tax_y - 0.4),
+            SHOP_W - 0.4,
+            0.8,
+            boxstyle="round,pad=0.02,rounding_size=0.08",
+            facecolor=generic.face,
+            edgecolor="none",
+            zorder=4,
+        )
+    )
+    ax.text(
+        0,
+        tax_y,
+        textwrap.fill(TAX_NOTE, 22),
+        ha="center",
+        va="center",
+        fontsize=9,
+        zorder=5,
+    )
+    for i, (text, kind_name) in enumerate(map_legend()):
+        kind = kind_style(kind_name)
+        lx = -7.0 + i * 4.8
         ax.add_patch(
             FancyBboxPatch(
                 (lx, -4.35),
                 0.5,
                 0.3,
                 boxstyle="round,pad=0.02,rounding_size=0.05",
-                facecolor="white" if how == "outlined" else "lightgrey",
-                edgecolor="black" if how == "outlined" else "none",
-                linewidth=3 if how == "outlined" else 0,
+                facecolor=kind.face,
+                edgecolor=kind.edge,
+                linestyle=kind.linestyle,
+                linewidth=2.5 if kind.edge != "none" else 0,
             )
         )
-        ax.text(lx + 0.7, -4.2, text, ha="left", va="center", fontsize=11)
+        ax.text(lx + 0.65, -4.2, text, ha="left", va="center", fontsize=10)
     ax.set_xlim(-7.2, 7.2)
     ax.set_ylim(-4.7, 5.5)
     ax.axis("off")

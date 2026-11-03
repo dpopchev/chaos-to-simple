@@ -39,11 +39,8 @@ def test_a_department_edge_carries_its_requests() -> None:
 
 
 @pytest.mark.model
-def test_map_legend_names_core_and_generic() -> None:
-    assert map_legend() == (
-        ("core subdomain: the shop and its policies", "outlined"),
-        ("generic subdomain: sourced out", "filled"),
-    )
+def test_map_legend_has_three_kinds() -> None:
+    assert [kind for _, kind in map_legend()] == ["core", "supporting", "generic"]
 
 
 @pytest.mark.edge
