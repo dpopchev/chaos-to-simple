@@ -67,8 +67,8 @@ def test_step_view_adds_exactly_the_lines_of_its_step() -> None:
 
 @pytest.mark.view
 def test_step_diff_is_compact() -> None:
-    signs = "".join(row[0] for row in step_view(SOURCE, 3).splitlines()[1:])
-    assert re.fullmatch(r"(?= ?\+)(?:[^+]*\+){3}[^+]*", signs)
+    rows = step_view(SOURCE, 3).splitlines()[1:]
+    assert [row[0] for row in rows if row != "---" and row[0] in "+~"] == ["+", "+", "+"]
 
 
 @pytest.mark.view
