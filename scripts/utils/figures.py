@@ -10,7 +10,15 @@ from typing import Literal
 
 from scripts.utils import style
 from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
-from scripts.utils.palette import Actor, Context, colour_of, context_colour, icon_of, label_of
+from scripts.utils.palette import (
+    Actor,
+    Context,
+    colour_of,
+    context_colour,
+    icon_of,
+    label_of,
+    load_contexts,
+)
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.retro import Question
 
@@ -278,11 +286,15 @@ def band_groups(
     return tuple((label, kinds.count(kind)) for kind, label in KIND_LABELS.items() if kind in kinds)
 
 
-def moves_figure(out: Path, moves: Sequence[Move], contexts: Mapping[str, Context]) -> Path:
+def moves_figure(
+    out: Path, moves: Sequence[Move], contexts: Mapping[str, Context] | None = None
+) -> Path:
     """Draw checkout() as one grey box and one band per home, bracketed by kind.
 
-    The band's width is its bits, its count sits on it, its label is the context's label.
+    The band's width is its bits, its count sits on it, its label is the context's label;
+    the contexts default to data/contexts.csv.
     """
+    contexts = load_contexts() if contexts is None else contexts
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.patches import FancyBboxPatch, Rectangle

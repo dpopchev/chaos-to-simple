@@ -143,7 +143,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         return 0
     if args.what == "moves":
-        moves_figure(args.out, moves(load_rules(args.rules)), load_contexts())
+        moves_figure(args.out, moves(load_rules(args.rules)))
         return 0
     if args.what == "business-map":
         business_map(
