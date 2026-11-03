@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015 > W-145   | blocked: 0 | todo roots: 0 | done: 488 | pruned: 4
+open path: E-015   | blocked: 0 | todo roots: 0 | done: 489 | pruned: 4
 
 ## Tree
 
 ```text
 E-015         [doing]    backlog after deck v5: the palette rebuild rule and five page fixes
-  W-145  bug    [doing]    Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
+  W-145  bug    [done]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
   W-146  issue  [todo]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
   W-147  issue  [todo]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [todo]
   W-148  issue  [todo]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [todo]
@@ -859,7 +859,7 @@ closed 2026-11-01 -- outcome: Given the deck, When make talk runs, Then every la
 ```mermaid
 flowchart TD
   E015["E-015 doing: backlog after deck v5: the palette rebuild rule and five page fixes"]
-  E015 --> W145["W-145 bug doing: Figure rules miss the palette files, so a colour or label change leaves stale figures"]
+  E015 --> W145["W-145 bug done: Figure rules miss the palette files, so a colour or label change leaves stale figures"]
   W145 --> T331["T-331 done: Add the palette prerequisites -> every figure rule in the NN-*/section.mk files"]
   E015 --> W146["W-146 issue todo: The colour-code ports chips name their kind unevenly"]
   W146 --> T332["T-332 todo: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
@@ -876,7 +876,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015,W145 doing
-  class T331 done
+  class E015 doing
+  class W145,T331 done
   class W146,T332,W147,T333,W148,T336,W149,T338,W150,T339 todo
 ```
