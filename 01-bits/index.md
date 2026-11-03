@@ -2,13 +2,13 @@
 
 ## A policy is one bit and every bit doubles the paths: count them before you trust a badge {paths=?}
 
-:::: {.columns}
-::: {.column width="58%"}
+::::: {.columns}
+:::: {.column width="58%"}
 
 ![](build/01-bits/counting.png){height=70%}
 
-:::
-::: {.column width="42%"}
+::::
+:::: {.column width="42%"}
 
 **paths = 2^policies**
 
@@ -18,8 +18,8 @@ Alternatives (elif, match) add: 2 + 2 + 2
 
 Two sequential policies as if/elif: 4 paths become 3
 
-:::
 ::::
+:::::
 
 The footer counts from here.
 
@@ -30,36 +30,19 @@ if/elif adds, 2 + 1, into three paths; the general form is the product of each b
 alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
 :::
 
-## The plain checkout has three calls and no policy, so it has one path {paths=1}
+## Three calls and no policy make the plain checkout one path {paths=1}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{customer}
 
 ```{.text include=build/01-bits/bubble-0.txt}
 ```
-
-```{.diff include=build/01-bits/test-0.diff cap=16}
-```
-
 :::
-::: {.column width="53%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-0.txt}
+```{.diff .python include=build/01-bits/step-0.diff cap=10}
 ```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-0.diff cap=24}
-```
-
-:::
-::::
 
 ::: notes
 The customer asked for the plain checkout: pick the books, pay, get them shipped. This
@@ -67,32 +50,56 @@ skeleton has the three calls and no policy, so the footer reads 1 path. Read the
 customer's line aloud: that is all.
 :::
 
-## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}
+## The same request with two tests still has just one path {paths=1}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
 :::: {.columns}
-::: {.column width="47%"}
+::: {.column width="30%"}
 
+::: {.request}
+\actor{customer}
+
+```{.text include=build/01-bits/bubble-0.txt}
+```
+:::
+
+:::
+::: {.column width="70%"}
+
+```{.diff .python include=build/01-bits/test-0.diff cap=16}
+```
+
+:::
+::::
+
+::: notes
+The same customer line, now the tests: a regular order and an empty cart. Both pass on the
+one path, so the footer still reads 1 path. Say that the tests come before the policies, not
+after them.
+:::
+
+## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}
+
+\fvset{fontsize=\scriptsize}
+
+::: {.request}
 \actor{marketing}
 
 ```{.text include=build/01-bits/bubble-1.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-1.diff cap=10}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-1.diff cap=10}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-1.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-1.diff cap=7}
+```{.diff .python include=build/01-bits/step-1.diff cap=7}
 ```
 
 :::
@@ -101,36 +108,31 @@ customer's line aloud: that is all.
 ::: notes
 Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first policy
 request adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
-the marketing line aloud and ask who thinks it is a small change. The diff shows the
-change alone, one line of context each side.
+the marketing line aloud and ask who thinks it is a small change. The diffs show the change
+alone, the scope row above it.
 :::
 
 ## The member discount stacks on the coupon and doubles the checkout to 4 paths {paths=4}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{loyalty}
 
 ```{.text include=build/01-bits/bubble-2.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-2.diff cap=10}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-2.diff cap=10}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-2.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-2.diff cap=7}
+```{.diff .python include=build/01-bits/step-2.diff cap=7}
 ```
 
 :::
@@ -139,36 +141,31 @@ change alone, one line of context each side.
 ::: notes
 The loyalty program asked for 10 percent off for members, after the coupon. The second
 policy request adds a decision about membership, so the footer doubles to 4 paths. Read
-the loyalty line aloud and point out that the two discounts now stack. The diff shows the change alone, one line of
-context each side.
+the loyalty line aloud and point out that the two discounts now stack. The diffs show the
+change alone, the scope row above it.
 :::
 
 ## Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths {paths=8}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{logistics}
 
 ```{.text include=build/01-bits/bubble-3.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-3.diff cap=7}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-3.diff cap=7}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-3.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-3.diff cap=11}
+```{.diff .python include=build/01-bits/step-3.diff cap=11}
 ```
 
 :::
@@ -177,36 +174,31 @@ context each side.
 ::: notes
 Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
 postage. The third policy request adds a threshold on the subtotal, so the footer doubles
-to 8 paths. Read the logistics line aloud and ask the room why the carts are left. The diff shows the change alone, one line of context
-each side.
+to 8 paths. Read the logistics line aloud and ask the room why the carts are left. The
+diffs show the change alone, the scope row above it.
 :::
 
 ## Shipping abroad adds a fourth bit and the checkout reaches 16 paths {paths=16}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{logistics}
 
 ```{.text include=build/01-bits/bubble-4.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-4.diff cap=8}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-4.diff cap=8}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-4.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-4.diff cap=7}
+```{.diff .python include=build/01-bits/step-4.diff cap=7}
 ```
 
 :::
@@ -216,35 +208,30 @@ each side.
 Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
 The fourth policy request sends a second destination down its own path, so the footer
 doubles to 16 paths. Read the second logistics line aloud and say that the shipping rules
-now branch twice. The diff shows the change alone, one line of context each side.
+now branch twice. The diffs show the change alone, the scope row above it.
 :::
 
 ## Gift wrap, promised as just one more change, brings the checkout to 32 paths {paths=32}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{marketing}
 
 ```{.text include=build/01-bits/bubble-5.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-5.diff cap=10}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-5.diff cap=10}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-5.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-5.diff cap=7}
+```{.diff .python include=build/01-bits/step-5.diff cap=7}
 ```
 
 :::
@@ -253,36 +240,31 @@ now branch twice. The diff shows the change alone, one line of context each side
 ::: notes
 Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
 request adds an optional extra to the total, so the footer doubles to 32 paths. Read the
-marketing line aloud, the one that promised just one more. The diff shows the change alone, one line of context
-each side.
+marketing line aloud, the one that promised just one more. The diffs show the change alone,
+the scope row above it.
 :::
 
 ## No VAT for companies adds the sixth bit and the checkout reaches 64 paths {paths=64}
 
-\fvset{fontsize=\tiny}
+\fvset{fontsize=\scriptsize}
 
-:::: {.columns}
-::: {.column width="47%"}
-
+::: {.request}
 \actor{accounting}
 
 ```{.text include=build/01-bits/bubble-6.txt}
 ```
+:::
 
-```{.diff include=build/01-bits/test-6.diff cap=10}
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.diff .python include=build/01-bits/test-6.diff cap=10}
 ```
 
 :::
-::: {.column width="53%"}
+::: {.column width="55%"}
 
-\fvset{fontsize=\scriptsize}
-
-```{.text include=build/01-bits/tally-6.txt}
-```
-
-\fvset{fontsize=\tiny}
-
-```{.diff include=build/01-bits/step-6.diff cap=7}
+```{.diff .python include=build/01-bits/step-6.diff cap=7}
 ```
 
 :::
@@ -291,7 +273,7 @@ each side.
 ::: notes
 Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
 policy request adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
-line aloud. The diff shows the change alone, one line of context each side.
+line aloud. The diffs show the change alone, the scope row above it.
 :::
 
 ## Six policies done and 64 paths live, so how many tests would make you sure? {paths=64}
