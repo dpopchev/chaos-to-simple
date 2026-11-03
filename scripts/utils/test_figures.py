@@ -12,6 +12,7 @@ from scripts.utils.figures import (
     JOURNEY,
     TREE_LEAVES,
     JourneyStep,
+    axis_ticks,
     band_groups,
     journey,
     mood,
@@ -121,6 +122,12 @@ def test_mood_stays_level_where_no_question_was_raised() -> None:
 def test_question_ids_label_the_questioned_steps() -> None:
     steps = (JourneyStep("customer", "x", None), JourneyStep("payment", "y", "s0"))
     assert question_ids(steps, QUESTIONS) == (None, "q4")
+
+
+@pytest.mark.model
+def test_journey_axis_ticks() -> None:
+    ticks = axis_ticks((0, -1, -2, -3, -5, -7, -9))
+    assert [label for _, label in sorted(ticks, reverse=True)] == ["certain", "unsure", "lost"]
 
 
 @pytest.mark.model

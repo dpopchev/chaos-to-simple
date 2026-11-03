@@ -394,6 +394,20 @@ def mood(steps: Sequence[JourneyStep], questions: Sequence[Question]) -> tuple[i
     return tuple(levels)
 
 
+def level_y(level: int) -> float:
+    """Return the plot height of a certainty level."""
+    return 1.5 + 0.3 * (level + 9)
+
+
+def axis_ticks(levels: Sequence[int]) -> tuple[tuple[float, str], ...]:
+    """Return the (y, label) ticks of the certainty axis: start, after three rule questions, end."""
+    return (
+        (level_y(levels[0]), "certain"),
+        (level_y(levels[0] - 3), "unsure"),
+        (level_y(levels[-1]), "lost"),
+    )
+
+
 def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Path) -> Path:
     """Draw the journey of one order: an actor box per step, the mood line above it.
 
@@ -410,7 +424,7 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
     font = icon_file()
     fig, ax = plt.subplots(figsize=(12.0, 5.0), dpi=style.DPI)
     xs = [i * pitch for i in range(len(JOURNEY))]
-    ys = [1.5 + 0.3 * (level + 9) for level in levels]
+    ys = [level_y(level) for level in levels]
     ax.plot([-box_w / 2, *xs], [ys[0], *ys], color="dimgrey", linewidth=2.5, zorder=2)
     for i, step in enumerate(JOURNEY):
         actor = actors[step.actor]
@@ -486,7 +500,19 @@ def journey(questions: Sequence[Question], actors: Mapping[str, Actor], out: Pat
         style="italic",
         color="dimgrey",
     )
-    ax.set_xlim(-box_w / 2 - 0.2, xs[-1] + box_w / 2 + 0.2)
+    axis_x = -box_w / 2 - 0.35
+    ticks = axis_ticks(levels)
+    ax.plot(
+        [axis_x, axis_x],
+        [min(y for y, _ in ticks), max(y for y, _ in ticks)],
+        color="dimgrey",
+        linewidth=1.2,
+        zorder=2,
+    )
+    for y, label in ticks:
+        ax.plot([axis_x - 0.08, axis_x], [y, y], color="dimgrey", linewidth=1.2, zorder=2)
+        ax.text(axis_x - 0.15, y, label, ha="right", va="center", fontsize=13, color="dimgrey")
+    ax.set_xlim(axis_x - 1.5, xs[-1] + box_w / 2 + 0.2)
     ax.set_ylim(-2.4, max(ys) + 0.9)
     ax.axis("off")
     fig.tight_layout()
