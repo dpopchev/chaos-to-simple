@@ -7,6 +7,8 @@
 ::: notes
 Every line is coloured by who asked for it and by the context that owns it.
 The colours show where each if comes from before anyone reads its name.
+The right bar is the home, and the legend names its kind: core, supporting or generic.
+This is how the code will move, one home at a time.
 :::
 
 ## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
@@ -73,15 +75,15 @@ The same function now makes three context calls, and its effects are still inlin
 Every bit has a home and a face: each context names the people who asked for its rules.
 :::
 
-## All nine decisions moved home: the contexts are the core, the ports are the shell {paths=512}
+## All nine decisions moved home: core and supporting the What, generic adapted at the shell {paths=512}
 
 ![](build/04-what/moves.png){width=80%}
 
-the contexts are the core, the ports are the shell: one cut, two names
+core and supporting: the What, in three homes; generic: adapted at the shell
 
 ::: notes
-The three contexts are the core, the What; the shell holds the three ports, the How.
-One cut, two names: the DDD map and the functional core are the same split.
+Pricing is the core; shipping and fulfilment are supporting, so the What spans three homes.
+Tax is generic: kept in-house and adapted at the shell, with the payment, warehouse and mailer ports.
 None of the nine decisions is deleted: each has a new home and stays on the record.
 :::
 
