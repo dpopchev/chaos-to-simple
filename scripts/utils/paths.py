@@ -550,7 +550,7 @@ def epilogue_bars(rules: Sequence[Rule], seventh: Sequence[Rule]) -> tuple[Bar, 
 
 
 def bar_headroom(top: int) -> float:
-    """The upper y limit of a stacked bar chart, with room above the tallest bar for its total."""
+    """The upper x limit of a stacked bar chart, with room right of the longest bar's total."""
     return top * 1.2
 
 
@@ -586,7 +586,8 @@ def segment_colour(name: str) -> str:
     return colour_of({"core": "dev", "shell": "fulfilment"}.get(words[0], words[0]))
 
 
-FIT = 0.85  # an in-bar label may fill this share of its bar's width
+FIT = 0.85  # an in-bar label may fill this share of its slice's width and its bar's height
+BAR_THICKNESS = 0.6  # a bar's height in row units, one row per bar
 
 
 def stacked_bar(
@@ -596,9 +597,10 @@ def stacked_bar(
     figsize: tuple[float, float] = (8.0, 3.5),
     fontsize: int = 11,
 ) -> None:
-    """A stacked bar per way of counting, every segment labelled with its exact count.
+    """A horizontal stacked bar per way of counting, every segment labelled with its exact count.
 
-    A segment under 8% of the top is named in a legend box right of the bars, no leader line.
+    The first bar is the top row. A segment under 8% of the top is named in a legend below the
+    axes, no leader line.
     """
     from scripts.utils import style
 
@@ -610,10 +612,11 @@ def stacked_bar(
     small = small_slices(bars, top)
     fig, ax = plt.subplots(figsize=figsize, dpi=style.DPI)
     ax.set_xticks([])
-    ax.set_xlim(-0.5, len(bars) - 0.2)
-    ax.set_ylim(0, bar_headroom(top))
-    ax.set_ylabel(title, fontsize=fontsize)
-    ax.tick_params(labelsize=fontsize)
+    ax.set_xlim(0, bar_headroom(top))
+    ax.set_ylim(len(bars) - 0.5, -0.5)  # inverted: the first bar is the top row
+    ax.set_yticks(range(len(bars)), [label for label, _ in bars])
+    ax.set_xlabel(title, fontsize=fontsize)
+    ax.tick_params(labelsize=fontsize, length=0)
     for side in ("top", "right", "bottom"):
         ax.spines[side].set_visible(False)
     if small:
@@ -622,56 +625,63 @@ def stacked_bar(
                 Patch(facecolor=segment_colour(name), edgecolor="white", label=f"{name}: {value}")
                 for name, value in small
             ],
-            loc="center left",
-            bbox_to_anchor=(1.0, 0.5),
+            loc="upper center",
+            bbox_to_anchor=(0.5, -0.15),
+            ncol=min(len(small), 3),
             frameon=True,
             fontsize=fontsize,
         )
     fig.tight_layout()
     fig.canvas.draw()  # a first draw gives text extents a renderer
-    bar_px = ax.transData.transform((0.3, 0))[0] - ax.transData.transform((-0.3, 0))[0]
-    for x, (label, segments) in enumerate(bars):
-        bottom = 0
+    bar_px = abs(
+        ax.transData.transform((0, BAR_THICKNESS / 2))[1]
+        - ax.transData.transform((0, -BAR_THICKNESS / 2))[1]
+    )
+    for row, (_, segments) in enumerate(bars):
+        left = 0
         for name, value in segments:
-            ax.bar(
-                x,
+            ax.barh(
+                row,
                 value,
-                bottom=bottom,
-                width=0.6,
+                left=left,
+                height=BAR_THICKNESS,
                 color=segment_colour(name),
                 edgecolor="white",
                 linewidth=0.8,
             )
-            middle = bottom + value / 2
-            ink = "white" if name.startswith("core") else "black"  # the core is the black dev
             if not is_small(value, top):
-                wrapped = value >= 0.2 * top
+                ink = "white" if name.startswith("core") else "black"  # the core is the black dev
                 label_text = ax.text(
-                    x,
-                    middle,
-                    f"{name}:\n{value}" if wrapped else f"{name}: {value}",
+                    left + value / 2,
+                    row,
+                    f"{name}: {value}",
                     ha="center",
                     va="center",
                     fontsize=fontsize,
                     color=ink,
                 )
-                if label_text.get_window_extent().width > FIT * bar_px:
-                    label_text.set_text(f"{name}:\n{value}")
                 slice_px = (
-                    ax.transData.transform((0, bottom + value))[1]
-                    - ax.transData.transform((0, bottom))[1]
+                    ax.transData.transform((left + value, 0))[0]
+                    - ax.transData.transform((left, 0))[0]
                 )
+                if label_text.get_window_extent().width > FIT * slice_px:
+                    label_text.set_text(f"{name}:\n{value}")
                 size = fontsize
-                while (
-                    label_text.get_window_extent().width > FIT * bar_px
-                    or label_text.get_window_extent().height > FIT * slice_px
+                while size > 1 and (
+                    label_text.get_window_extent().width > FIT * slice_px
+                    or label_text.get_window_extent().height > FIT * bar_px
                 ):
                     size -= 1
                     label_text.set_fontsize(size)
-            bottom += value
+            left += value
         ax.text(
-            x, bottom, str(bottom), ha="center", va="bottom", fontsize=fontsize, fontweight="bold"
+            left + 0.01 * top,
+            row,
+            str(left),
+            ha="left",
+            va="center",
+            fontsize=fontsize,
+            fontweight="bold",
         )
-        ax.text(x, -0.02 * top, label, ha="center", va="top", fontsize=fontsize)
     fig.tight_layout()
     style.save(fig, out)

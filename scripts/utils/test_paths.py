@@ -6,7 +6,7 @@ import re
 from pathlib import Path
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageFilter
 
 from scripts.paths import main
 from scripts.utils.palette import load_contexts
@@ -41,6 +41,7 @@ from scripts.utils.paths import (
     postmortem_table,
     room_curve,
     rules_table,
+    segment_colour,
     split,
     splits_report,
     stacked_bar,
@@ -327,6 +328,27 @@ class TestStackedBarWritesAPng:
         assert out.stat().st_size > 0
 
 
+def ink_box(path: Path, colour: str) -> tuple[int, int]:
+    """The width and height in pixels of the solid area of one exact colour, text edges eroded."""
+    with Image.open(path) as image:
+        rgb = image.convert("RGB")
+        target = tuple(int(colour[i : i + 2], 16) for i in (1, 3, 5))
+        mask = Image.new("L", rgb.size, 0)
+        mask.putdata([255 if px == target else 0 for px in rgb.get_flattened_data()])
+        box = mask.filter(ImageFilter.MinFilter(7)).getbbox()
+    if box is None:
+        raise ValueError(f"no pixel of {colour} in {path}")
+    return (box[2] - box[0], box[3] - box[1])
+
+
+@pytest.mark.view
+def test_the_tangled_bar_runs_horizontally(tmp_path: Path, repo_rules: list[Rule]) -> None:
+    out = tmp_path / "paths.png"
+    stacked_bar(out, bars_from_rules(repo_rules))
+    width, height = ink_box(out, segment_colour("9 bits tangled"))
+    assert width > height
+
+
 CAST_CSV = (
     "bit,step,week,requested_by,words,aside,fragment\n"
     'b0,1,3,marketing,"10 off, with the code",why ten,if a\n'
@@ -602,7 +624,7 @@ def test_number_chart_shape_is_wide(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
-def test_epilogue_chart_shape_is_square(tmp_path: Path) -> None:
+def test_epilogue_chart_shape_is_wide(tmp_path: Path) -> None:
     out = tmp_path / "epilogue.png"
     main(
         [
@@ -615,7 +637,7 @@ def test_epilogue_chart_shape_is_square(tmp_path: Path) -> None:
             str(out),
         ]
     )
-    assert pixel_ratio(out) == pytest.approx(1.0, abs=0.02)
+    assert pixel_ratio(out) == pytest.approx(6.0 / 3.2, abs=0.02)
 
 
 DOUBLING_CAST = [
