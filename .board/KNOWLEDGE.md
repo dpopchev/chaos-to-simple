@@ -34,4 +34,6 @@
 - 2026-11-03 E-017: T-388 Action amended: the def row and its --- add two rows to v5.diff and left page 41 under 3pt slack; T-388 now also moves page 41's file caption under the figure (the caption half of T-418, done early; T-418 keeps the height=75% change); Check unchanged
 - 2026-11-03 E-017: T-390 Action amended at close: the page 15 fence edit was described without naming 01-bits/index.md, so the scope gate refused; Check unchanged
 - 2026-11-03 E-017: T-392, T-393, T-394 Actions amended before start: they named artifacts.csv without its data/ path, which the scope gate would refuse; Checks unchanged
+- 2026-11-03 E-017: T-395 Action amended at close: the r1/r2 docstrings left page 22 at -1pt slack, the lane tightened its spacing in 02-stacey/index.md, not named; Check unchanged
+- 2026-11-03 E-017: T-395 Action amended at its block: storyboard.step_test rebuilds the two-tests snippet per step, so the docstrings name the order and its source, emitted by step_test too; storyboard.py and test_storyboard.py join its files; Check unchanged
 - 2026-11-03 E-017: T-395 and T-396 Actions amended before W-172 starts: W-172's criterion greps every exhibit test, and test_planted_bug.py, test_two_ifs.py and test_worlds.py carried assert comments no Task named; Checks unchanged
