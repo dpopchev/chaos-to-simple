@@ -32,6 +32,11 @@ campaign on time, one if at a time.
 - `data/incident.txt` (finance report of incident I1)
 - nothing else outside this directory; this stage of the example is standalone on purpose
 
+## Sources
+
+- McCabe, T. J., A Complexity Measure, IEEE Transactions on Software Engineering SE-2(4), 1976,
+  pp. 308-320: M = E - N + 2P, which is decisions + 1 for one structured function (six ifs give 7)
+
 ## Produces
 
 - `build/01-bits/step-0.diff` .. `step-6.diff`: the whole skeleton, then each request as a

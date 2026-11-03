@@ -25,11 +25,17 @@
 
 The footer counts from here.
 
+\footnotesize
+
+cyclomatic complexity (McCabe, 1976) adds: decisions + 1 = 7 here, the tests that walk every branch; the bits multiply: 2^6 = 64, the tests that walk every combination; the same six ifs, one sum and one product
+
 ::: notes
 Say the rule once: every policy request is one bit, and every bit doubles the paths. Walk the
 diagram left to right: two sequential ifs multiply, 2 x 2, into four paths, bits 00 to 11; the
 if/elif adds, 2 + 1, into three paths; the general form is the product of each block's
 alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
+Compare with McCabe's cyclomatic number: it adds, decisions + 1 = 7 tests for the branches, where
+the bits multiply into 64 combinations.
 :::
 
 ## Three calls, two tests and no policy make the plain checkout one path {paths=1}
