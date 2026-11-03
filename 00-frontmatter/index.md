@@ -1,3 +1,14 @@
+## The route of the talk: eight stops, three incidents, one counter {paths=?}
+
+![](build/00-frontmatter/agenda-00.png){width=90%}
+
+::: notes
+This is the route. Name the eight stops left to right and say that we start at 00 Stage,
+the highlighted one; the rest are faded until we reach them. The marks I1 to I3 are the
+three incidents we will meet on the way. The footer counter, the number of code paths,
+starts at ? and each section sets it as it goes.
+:::
+
 ## The business map {paths=?}
 
 Every arrow becomes a line in one function.

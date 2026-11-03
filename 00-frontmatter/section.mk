@@ -1,7 +1,7 @@
 # 00-frontmatter -- the agenda of the talk is drawn in Python, so the slide shows a built figure.
 # A plain `#` keeps it out of make help.
 ARTIFACTS += $(BUILD)/00-frontmatter/agenda.png $(BUILD)/00-frontmatter/actors.tex $(BUILD)/00-frontmatter/business-map.png
-ARTIFACTS += $(foreach n,01 02 03 04 05 06,$(BUILD)/00-frontmatter/agenda-$(n).png)
+ARTIFACTS += $(foreach n,00 01 02 03 04 05 06,$(BUILD)/00-frontmatter/agenda-$(n).png)
 ARTIFACTS += $(BUILD)/00-frontmatter/beats.tex $(BUILD)/00-frontmatter/stacey-overview.png
 
 $(BUILD)/00-frontmatter/stacey-overview.png: $(PALETTE) scripts/figures.py scripts/utils/stacey.py scripts/utils/style.py \
