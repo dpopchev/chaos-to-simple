@@ -98,14 +98,30 @@ def side_of(x: float, y: float) -> Side:
     return "above" if y > x else "below"
 
 
+def zone_texts(zones: Sequence[Zone], labels: Mapping[str, str], plain: bool) -> tuple[str, ...]:
+    """Return the band bodies and the corner texts to draw; none when plain."""
+    if plain:
+        return ()
+    return (
+        *(z.above for z in zones),
+        labels["boom_quote"],
+        labels["above"],
+        labels["below"],
+    )
+
+
 def draw(
     route: Sequence[Spot],
     zones: Sequence[Zone],
     labels: Mapping[str, str],
     out: Path,
     highlight: str | None = None,
+    plain: bool = False,
 ) -> Path:
-    """Draw the matrix; with highlight, the stop of that section stands out and the rest fade."""
+    """Draw the matrix; with highlight, the stop of that section stands out and the rest fade.
+
+    With plain, only the bands, their names, the Who diagonal, the axes and the stops are drawn.
+    """
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.font_manager import FontProperties
@@ -113,9 +129,10 @@ def draw(
 
     fig, ax = plt.subplots(figsize=FIGURE, dpi=style.DPI)
     for zone, key in reversed(list(zip(zones, ZONE_COLOURS, strict=True))):
-        radius = 2.0 if zone is zones[-1] else zone.r_max
         ax.add_patch(
-            Wedge((0, 0), radius, 0, 90, facecolor=colour_of(key), alpha=0.28, edgecolor="white")
+            Wedge(
+                (0, 0), zone.r_max, 0, 90, facecolor=colour_of(key), alpha=0.28, edgecolor="white"
+            )
         )
     ax.plot([0, LIMIT], [0, LIMIT], color="dimgrey", linewidth=2, linestyle="--", zorder=2)
     ax.text(
@@ -131,6 +148,7 @@ def draw(
         zorder=6,
     )
     quote = labels["boom_quote"]
+    body = bool(zone_texts(zones, labels, plain))
     for zone in zones:
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
         if zone is zones[0]:
@@ -152,6 +170,8 @@ def draw(
             fontweight="bold",
             zorder=3,
         )
+        if not body:
+            continue
         top = cy
         if zone is zones[-1] and quote:
             ax.text(cx, top, quote, ha=align, va="top", fontsize=size, zorder=3)
@@ -166,26 +186,27 @@ def draw(
             style="italic",
             zorder=3,
         )
-    ax.text(
-        0.02,
-        LIMIT - 0.02,
-        labels["above"],
-        ha="left",
-        va="top",
-        fontsize=13,
-        color="dimgrey",
-        zorder=6,
-    )
-    ax.text(
-        LIMIT - 0.02,
-        0.02,
-        labels["below"],
-        ha="right",
-        va="bottom",
-        fontsize=13,
-        color="dimgrey",
-        zorder=6,
-    )
+    if body:
+        ax.text(
+            0.02,
+            LIMIT - 0.02,
+            labels["above"],
+            ha="left",
+            va="top",
+            fontsize=13,
+            color="dimgrey",
+            zorder=6,
+        )
+        ax.text(
+            LIMIT - 0.02,
+            0.02,
+            labels["below"],
+            ha="right",
+            va="bottom",
+            fontsize=13,
+            color="dimgrey",
+            zorder=6,
+        )
     font = icon_file()
     for spot in route:
         faded = highlight is not None and spot.section != highlight
@@ -228,9 +249,9 @@ def draw(
             zorder=5,
             bbox={"facecolor": "white", "alpha": 0.7 * alpha, "edgecolor": "none", "pad": 1.5},
         )
-    ax.text(LIMIT / 2, -0.02, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey")
+    ax.text(LIMIT / 2, -0.1, labels["x_axis"], ha="center", va="top", fontsize=13, color="dimgrey")
     ax.text(
-        -0.04,
+        -0.11,
         LIMIT / 2,
         labels["y_axis"],
         ha="right",
@@ -239,10 +260,19 @@ def draw(
         color="dimgrey",
         rotation=90,
     )
-    ax.set_xlim(-0.08, LIMIT)
-    ax.set_ylim(-0.07, LIMIT)
+    ax.set_xlim(-0.17, LIMIT)
+    ax.set_ylim(-0.17, LIMIT)
     ax.set_aspect("equal")
-    ax.axis("off")
+    ticks = [0.0, 0.25, 0.5, 0.75, 1.0]
+    ax.set_xticks(ticks, ["0", "25", "50", "75", "100"], fontsize=12, color="dimgrey")
+    ax.set_yticks(ticks, ["0", "25", "50", "75", "100"], fontsize=12, color="dimgrey")
+    for side in ("top", "right"):
+        ax.spines[side].set_visible(False)
+    for side in ("bottom", "left"):
+        ax.spines[side].set_color("dimgrey")
+        ax.spines[side].set_bounds(0, 1.0)
+        ax.spines[side].set_position(("data", 0))
+    ax.tick_params(colors="dimgrey")
     fig.tight_layout()
     style.save(fig, out)
     return out

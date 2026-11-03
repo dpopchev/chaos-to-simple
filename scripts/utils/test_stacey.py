@@ -69,6 +69,11 @@ def test_zone_text_size_is_12() -> None:
 
 
 @pytest.mark.model
+def test_plain_draw_skips_the_zone_texts() -> None:
+    assert stacey.zone_texts(ZONES, LABELS, plain=True) == ()
+
+
+@pytest.mark.model
 def test_stacey_writes_a_png(tmp_path: Path) -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     out = draw(route, ZONES, LABELS, tmp_path / "m.png", highlight="02")
