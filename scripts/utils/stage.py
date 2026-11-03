@@ -10,7 +10,7 @@ from pathlib import Path
 
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
-from scripts.utils.icons import FONT_AWESOME, glyph
+from scripts.utils.icons import FONT_AWESOME, glyph, icon_size
 from scripts.utils.palette import Actor, Context, colour_of, kind_style, load_contexts
 from scripts.utils.paths import CastRow, Incident, Rule
 from scripts.utils.stacey import ZONE_COLOURS, Zone, band_colour, load_zones
@@ -430,7 +430,7 @@ def business_map(
                 glyph(actor.icon, FONT_AWESOME),
                 ha="left",
                 va="center",
-                fontproperties=FontProperties(fname=font, size=18),
+                fontproperties=FontProperties(fname=font, size=icon_size(13)),
                 color=ink,
                 zorder=4,
             )
@@ -498,7 +498,7 @@ def business_map(
                     glyph(actors[o].icon, FONT_AWESOME),
                     ha="center",
                     va="center",
-                    fontproperties=FontProperties(fname=font, size=8),
+                    fontproperties=FontProperties(fname=font, size=icon_size(8)),
                     color=chip_ink,
                     zorder=6,
                 )

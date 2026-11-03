@@ -9,7 +9,14 @@ from pathlib import Path
 from typing import Literal
 
 from scripts.utils import style
-from scripts.utils.icons import FONT_AWESOME, FontMissingError, fc_list, font_file, glyph
+from scripts.utils.icons import (
+    FONT_AWESOME,
+    FontMissingError,
+    fc_list,
+    font_file,
+    glyph,
+    icon_size,
+)
 from scripts.utils.palette import (
     Actor,
     Context,
@@ -230,7 +237,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
                 glyph(icon_of(port.actor), FONT_AWESOME),
                 ha="left",
                 va="center",
-                fontproperties=FontProperties(fname=font, size=16),
+                fontproperties=FontProperties(fname=font, size=icon_size(14)),
                 color=ink,
             )
         ax.text(

@@ -84,6 +84,16 @@ ICONS: dict[str, Codepoints] = {
 STYLES: dict[Family, str] = {FONT_AWESOME: "Solid", NERD: "Regular"}
 
 
+# An icon beside a label is drawn this many times the label's point size, so it is never
+# shorter than the label's capitals.
+ICON_SCALE = 1.3
+
+
+def icon_size(label_size: float) -> float:
+    """Return the point size of an icon drawn beside a label of label_size points."""
+    return label_size * ICON_SCALE
+
+
 class UnknownIconError(ValueError):
     """An icon name ICONS does not map."""
 

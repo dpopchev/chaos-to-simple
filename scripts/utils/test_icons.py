@@ -19,12 +19,18 @@ from scripts.utils.icons import (
     font_available,
     font_file,
     glyph,
+    icon_size,
     make_family,
     probe,
 )
 
 PNG_MAGIC = b"\x89PNG\r\n\x1a\n"
 SOLID = "/fonts/a b-Solid.otf\n"
+
+
+@pytest.mark.model
+def test_icon_size_is_the_label_size_scaled() -> None:
+    assert icon_size(10) == 13.0
 
 
 @pytest.mark.model

@@ -9,7 +9,7 @@ from pathlib import Path
 
 from scripts.utils import style
 from scripts.utils.figures import icon_file, label_ink
-from scripts.utils.icons import FONT_AWESOME, glyph
+from scripts.utils.icons import FONT_AWESOME, glyph, icon_size
 from scripts.utils.palette import Actor, Context, KindStyle, colour_of, kind_style
 from scripts.utils.paths import CastRow, Rule
 from scripts.utils.widths import snippet_text, strip_step_markers
@@ -164,7 +164,7 @@ def colorcode(
                 glyph(icon, FONT_AWESOME),
                 ha="center",
                 va="center",
-                fontproperties=FontProperties(fname=font, size=6),
+                fontproperties=FontProperties(fname=font, size=icon_size(9)),
                 color=label_ink(face),
             )
         ax.text(x + 0.27, y, label, ha="left", va="center", fontsize=9)
