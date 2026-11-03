@@ -6,10 +6,8 @@
 :::: {.columns}
 ::: {.column width="52%"}
 
-```{.python include=06-simple/s06_simple/core.py snippet=price}
+```{.python heading="core.py: price()" include=06-simple/s06_simple/core.py snippet=price}
 ```
-
-\begingroup\footnotesize 06-simple/s06_simple/core.py price in the core; tested by test_core_paths.py\par\endgroup
 
 :::
 ::: {.column width="48%"}
@@ -17,16 +15,16 @@
 ```{.text include=build/06-simple/tally-10.txt}
 ```
 
-\begingroup\footnotesize 06-simple/s06_simple/shell.py in fulfilment; tested by test_shell.py\par\endgroup
+```{.python heading="shell.py: checkout()" include=06-simple/s06_simple/shell.py snippet=checkout cap=22}
+```
 
 :::
 ::::
 
-the only change: the pure part moves out
+the only change: the pure part moved out; the shell reads request and priced
 
 ::: notes
-The pure part moves out into price, and the shell keeps the three calls.
-Nothing else changed: same decisions, one place each.
+The pure part moves out into price; the shell keeps v9's three matches word for word. If anyone asks for the diff: make build/06-simple/seam.diff -- seven pricing lines out, one line in, the reads renamed.
 :::
 
 ## Every one of 64 paths holds three invariants, so the core runs 192 tests {paths=512}
