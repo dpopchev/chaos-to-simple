@@ -47,11 +47,12 @@ class TestEveryCorePath:
     def test_discounts_never_add(self, order: Request, priced: Priced) -> None:
         assert 0 <= priced.goods <= order.goods
 
+    # [/snippet]
+    # [snippet: invariants]
     def test_shipping_is_free_iff_discounted_goods_reach_50(self, order: Request, priced: Priced):
         assert (priced.shipping - GIFT_WRAP * order.gift_wrap == 0) == (priced.goods >= 50)
 
     def test_vat_never_reduces_the_total(self, priced: Priced) -> None:
         assert priced.total >= priced.goods + priced.shipping
 
-
-# [/snippet]
+    # [/snippet]

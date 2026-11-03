@@ -36,6 +36,8 @@ Nothing else changed: same decisions, one place each.
 ```{.python include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
 
+06-simple/tests/test_core_paths.py: 64 paths x 3 invariants, tested by itself; the other two invariants in the file
+
 ```{.text include=build/06-simple/pytest-core-summary.txt}
 ```
 
