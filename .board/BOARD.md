@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-014 > W-143 > T-326   | blocked: 0 | todo roots: 5 | done: 480 | pruned: 4
+open path: E-014 > W-143   | blocked: 0 | todo roots: 5 | done: 481 | pruned: 4
 
 ## Tree
 
@@ -19,7 +19,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-140  issue  [done]     02: two readings, two tests that cannot both pass -- T-317 [done], T-318 [done]
   W-141  issue  [done]     03: why the order was replayed, where the room clashed -- T-319 [done], T-320 [done], T-321 [done], T-337 [done]
   W-142  issue  [done]     04: the fix is v7, the contexts v8, each under its tally -- T-322 [done], T-323 [done], T-324 [done]
-  W-143  issue  [doing]    05: v8 to v9 compact, every snippet with its home and its test -- T-325 [done], T-326 [doing]   <- ACTIVE LEAF
+  W-143  issue  [doing]    05: v8 to v9 compact, every snippet with its home and its test -- T-325 [done], T-326 [done]
   W-144  issue  [todo]     06: v9 to v10 compact, the long snippet cut, every snippet with its home and its test -- T-327 [todo], T-328 [todo], T-329 [todo]
 W-145  bug    [todo]     (standalone) Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [todo]
 W-146  issue  [todo]     (standalone) The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [todo]
@@ -834,7 +834,7 @@ flowchart TD
   W142 --> T324["T-324 done: Version the contexts checkout -> tally-8.txt and 04-what/index.md page 31"]
   E014 --> W143["W-143 issue doing: 05: v8 to v9 compact, every snippet with its home and its test"]
   W143 --> T325["T-325 done: Compact the v5 diff with its tally -> 05-how/section.mk labels checkout v8 to v9, tally-9.txt"]
-  W143 --> T326["T-326 doing: Caption where each snippet goes and what tests it -> 05-how/index.md pages 35 to 38 -- ACTIVE LEAF"]
+  W143 --> T326["T-326 done: Caption where each snippet goes and what tests it -> 05-how/index.md pages 35 to 38"]
   E014 --> W144["W-144 issue todo: 06: v9 to v10 compact, the long snippet cut, every snippet with its home and its test"]
   W144 --> T327["T-327 todo: Compact the seam and seventh diffs with the tally -> 06-simple/section.mk labels checkout v9 to v10, tally-10.txt"]
   W144 --> T328["T-328 todo: Cut the long test snippet -> 06-simple/tests/test_core_paths.py from-bits at 14 lines, no cap"]
@@ -854,7 +854,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E014,W143,T326 doing
-  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,T337,W142,T322,T323,T324,T325 done
+  class E014,W143 doing
+  class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,W141,T319,T320,T321,T337,W142,T322,T323,T324,T325,T326 done
   class W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336,W149,T338 todo
 ```
