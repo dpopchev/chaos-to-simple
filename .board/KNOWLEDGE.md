@@ -26,6 +26,7 @@
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 - 2026-11-03 W-170: open: the tests heading counts every non-blank line of the matched test files (page 15: 34 lines of test_chaos.py), not the snippet shown; count the snippet instead, or keep the file count
+- 2026-11-04 W-173: open: page 16's title 'Finance traced 6,070 EUR ... to orders the coupon took under 50 EUR' draws the conclusion the memo no longer does; retitle to what finance counted, or keep
 
 ## Decisions
 - 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
