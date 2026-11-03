@@ -57,6 +57,6 @@ Read the matrix from the origin: both axes start certain. The x axis is the How,
 the What. The bands Simple, Complicated, Complex and Chaos (BOOM) follow the distance from the
 origin. The diagonal is labelled Who: above it stakeholders decide and agree, below it
 developers decide. 01 and 02 sit above the diagonal, 03 is on the line, and 04 to 06 sit below.
-02 is highlighted, in the Chaos (BOOM) band: joint venture; no boundary; nobody can say how
-long. The dispute is a decision for the room, section 03, not a test to write.
+02 is highlighted, in the Complex band above the line: joint venture; no boundary; nobody can
+say how long. The dispute is a decision for the room, section 03, not a test to write.
 :::

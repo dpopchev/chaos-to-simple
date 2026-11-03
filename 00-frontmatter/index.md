@@ -16,15 +16,28 @@ is the shape of the teams, and the arrows are the calls the code makes. The func
 made no distinction between them.
 :::
 
-## Agenda, in the order the bits fall {paths=?}
+## The map of the talk {paths=?}
 
-The number under each stop, and in the footer, is the paths we have to reason about.
+:::: {.columns align=center}
+::: {.column width="62%"}
 
-![](build/00-frontmatter/agenda.png){height=80%}
+![](build/00-frontmatter/stacey-overview.png){height=80%}
+
+:::
+::: {.column width="38%"}
+
+\small
+
+- The x axis: the How, certain to uncertain.
+- The y axis: the What, certain to uncertain.
+- The Who line: above it stakeholders decide and agree the What; below it developers settle the How.
+- The arrows: the talk's movement, 01 to 06.
+
+:::
+::::
 
 ::: notes
-Read the strip as a journey, left to right; the number under each stop counts the paths.
-The footer at the bottom is the counter;
-it is still ? here and each section sets it. Point at I1, I2 and I3 and say they come
-back in their sections.
+Read the matrix from the origin: both axes start certain. The arrows are the route of the talk,
+from 01 to 06, and the footer counter is still ? until each section sets it. The agenda strip
+returns on the section pages.
 :::
