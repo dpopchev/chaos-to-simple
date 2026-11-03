@@ -8,7 +8,8 @@
 -- label from data/actors.csv (read from the repo root) is wrapped in \textcolor. A label matches
 -- in full and by its first word ("Dev (the shop)" and "Dev"), longest first, whole words only.
 -- highlight=<id> sets bold the lines from the one starting with <id> to the line before the next
--- one starting with q and a digit. The fontsize comes from \fvset, as for any code block.
+-- one starting with q and a digit. A line opening with "! " is bold too, the mark stripped.
+-- The fontsize comes from \fvset, as for any code block.
 
 local ACTORS_CSV = "data/actors.csv"
 
@@ -103,8 +104,12 @@ local function speakers_block(cb, labels)
     elseif bold and line:match("^q%d") then
       bold = false
     end
+    local marked = line:sub(1, 2) == "! "
+    if marked then
+      line = line:sub(3)
+    end
     local row = colour_line(line, labels)
-    if bold and row:match("%S") then
+    if (bold or marked) and row:match("%S") then
       row = "\\textbf{" .. row .. "}"
     end
     rows[#rows + 1] = row

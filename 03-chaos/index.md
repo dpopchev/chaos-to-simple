@@ -21,7 +21,7 @@ them. Each drop is a place where the rule was not written down yet.
 ```{.text .speakers include=03-chaos/data/room.txt cap=18}
 ```
 
-the first attempt at settling the policies together
+the clashes in bold; the outcome: six questions, each with an owner, the action table of the next frame
 
 ::: notes
 Dev is silent until the end of the chat; the other four departments carry the argument.
