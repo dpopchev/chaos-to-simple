@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 1 | done: 602 | pruned: 7
+open path: E-017 > W-179 > T-415   | blocked: 0 | todo roots: 1 | done: 602 | pruned: 7
 
 ## Tree
 
@@ -16,7 +16,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-176  issue  [done]     horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [done], T-408 [done], T-409 [done]
   W-177  issue  [done]     00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [done], T-411 [done], T-412 [done]
   W-178  issue  [done]     00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos -- T-413 [done], T-414 [done]
-  W-179  issue  [todo]     icons at their labels' height in the actor boxes and the figure chips -- T-415 [todo], T-416 [todo]
+  W-179  issue  [doing]    icons at their labels' height in the actor boxes and the figure chips -- T-415 [doing]   <- ACTIVE LEAF, T-416 [todo]
   W-180  issue  [todo]     05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath -- T-417 [todo], T-418 [todo]
   W-181  issue  [todo]     05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured -- T-419 [todo], T-420 [todo], T-421 [todo]
   W-182  issue  [todo]     06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured -- T-422 [todo], T-423 [todo], T-424 [todo]
@@ -1052,8 +1052,8 @@ flowchart TD
   E017 --> W178["W-178 issue done: 00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos"]
   W178 --> T413["T-413 done: Widen the band from the Simple edge -> stacey.collaboration_half_width"]
   W178 --> T414["T-414 done: Draw no polygon where the width is zero -> stacey.collaboration_polygons and draw"]
-  E017 --> W179["W-179 issue todo: icons at their labels' height in the actor boxes and the figure chips"]
-  W179 --> T415["T-415 todo: Scale the actor glyph to the label -> preamble.tex \iconfont"]
+  E017 --> W179["W-179 issue doing: icons at their labels' height in the actor boxes and the figure chips"]
+  W179 --> T415["T-415 doing: Scale the actor glyph to the label -> preamble.tex \iconfont -- ACTIVE LEAF"]
   W179 --> T416["T-416 todo: Set one icon size per label size in the figures -> icons.icon_size and its callers"]
   E017 --> W180["W-180 issue todo: 05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath"]
   W180 --> T417["T-417 todo: Style the core box by its kind and square the figure -> figures.seam"]
@@ -1077,8 +1077,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
+  class E017,W179,T415 doing
   class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414 done
-  class W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W185,T428,W183,T425 todo
+  class T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W185,T428,W183,T425 todo
   class T403 pruned
 ```
