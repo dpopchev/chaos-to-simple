@@ -14,6 +14,7 @@ from scripts.utils.counting import (
     bit_strings,
     counting_figure,
     paths_of,
+    rows_of,
 )
 
 
@@ -40,6 +41,12 @@ def test_counting_bit_strings() -> None:
 @pytest.mark.model
 def test_counting_elif_strings() -> None:
     assert bit_strings(IF_ELIF) == ("0", "1", "2")
+
+
+@pytest.mark.model
+def test_counting_rows_align() -> None:
+    count_row, bits_row = rows_of(THREE_IFS)
+    assert len(count_row) == len(bits_row)
 
 
 @pytest.mark.view

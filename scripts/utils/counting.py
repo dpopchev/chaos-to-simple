@@ -9,6 +9,7 @@ from pathlib import Path
 
 from scripts.utils import style
 
+MONO = ["Adwaita Mono", "DejaVu Sans Mono"]
 GENERAL_FORM = "paths = the product of each block's alternatives"
 
 
@@ -63,6 +64,14 @@ def sum_text(graph: Graph) -> str:
     return f"{' x '.join(counts)} = {paths_of(graph)} paths"
 
 
+def rows_of(graph: Graph) -> tuple[str, str]:
+    """Return the count row and the bit-string row, centred to one width for a monospace grid."""
+    count_row = sum_text(graph)
+    bits_row = " ".join(bit_strings(graph))
+    width = max(len(count_row), len(bits_row))
+    return count_row.center(width), bits_row.center(width)
+
+
 def counting_figure(out: Path) -> Path:
     """Draw the examples as diamonds and arrows with count and bit strings; the form under them."""
     style.apply()
@@ -100,14 +109,15 @@ def counting_figure(out: Path) -> Path:
                 )
             if i + 1 < len(graph.blocks):
                 ax.annotate("", (spine, ys[i + 1] + 0.45), (spine, y - 0.45), arrowprops=arrow)
-        ax.text(
-            spine + 0.9, 1.7, sum_text(graph), ha="center", va="center", fontsize=13, weight="bold"
-        )
-        strings = bit_strings(graph)
-        rows = [strings[i : i + 4] for i in range(0, len(strings), 4)]
-        for r, row in enumerate(rows):
+        for text, y in zip(rows_of(graph), (1.7, 1.15), strict=True):
             ax.text(
-                spine + 0.9, 1.2 - 0.4 * r, "  ".join(row), ha="center", va="center", fontsize=12
+                spine + 0.9,
+                y,
+                text,
+                ha="center",
+                va="center",
+                fontsize=9,
+                family=MONO,
             )
     ax.text(6.0, 0.2, GENERAL_FORM, ha="center", va="center", fontsize=15, weight="bold")
     style.save(fig, out)
