@@ -105,7 +105,7 @@ def test_step_view_heading_counts_policies_paths_and_lines() -> None:
 
 @pytest.mark.view
 def test_test_view_heading_counts_the_tests_and_lines() -> None:
-    assert suite_view(SOURCE, 6).splitlines()[0] == "tests v6: 2 tests, 16 lines"
+    assert suite_view(SOURCE, 6).splitlines()[0] == "tests v6: 2 tests, 18 lines"
 
 
 @pytest.mark.view
