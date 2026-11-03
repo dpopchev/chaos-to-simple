@@ -178,13 +178,15 @@ def draw(
         mid = (zone.r_min + (zone.r_max if zone is not zones[-1] else 1.0)) / 2
         if zone is zones[0]:
             # The innermost band is narrow: its name and above text hug the y axis.
-            ax_, cy = text_anchor(zone, route)
-            cx, align, wrap = max(ax_, 0.012), "left", 17
+            # It starts below the Complicated text, with a gap, and stays left of the Who line.
+            ax_, _ = text_anchor(zone, route)
+            cx, cy, align, wrap = max(ax_, 0.012), zone.r_max * 0.83, "left", 15
         else:
             cx = max(mid * math.cos(math.radians(76)), 0.15)
-            cy = mid * math.sin(math.radians(76))
+            # The band above the Simple one sits a little higher, leaving the Simple text room.
+            cy = mid * math.sin(math.radians(76)) + (0.04 if zone is zones[1] else 0.0)
             align, wrap = "center", 22
-        size = ZONE_TEXT_SIZE - 2 if zone is zones[0] else ZONE_TEXT_SIZE
+        size = ZONE_TEXT_SIZE - 4 if zone is zones[0] else ZONE_TEXT_SIZE
         # The band name sits in its arc above the in-arc text; the last is followed by the quote.
         ax.text(
             cx,
@@ -202,7 +204,7 @@ def draw(
         if zone is zones[-1] and quote:
             ax.text(cx, top, quote, ha=align, va="top", fontsize=size, zorder=3)
             top -= 0.04
-        ax.text(
+        above = ax.text(
             cx,
             top,
             textwrap.fill(zone.above, wrap, break_long_words=False),
@@ -212,6 +214,8 @@ def draw(
             style="italic",
             zorder=3,
         )
+        if zone is zones[0]:
+            above.set_linespacing(0.9)
     if body:
         ax.text(
             0.02,

@@ -89,6 +89,22 @@ def test_simple_text_avoids_the_stops() -> None:
 
 
 @pytest.mark.model
+def test_simple_name_clears_the_complicated_text(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    route = load_spots(ROOT / "data" / "route.csv")
+    figs: list = []
+    monkeypatch.setattr(stacey.style, "save", lambda fig, _out: figs.append(fig))
+    draw(route, ZONES, LABELS, tmp_path / "m.png")
+    fig = figs[0]
+    renderer = fig.canvas.get_renderer()
+    texts = fig.axes[0].texts
+    name = next(t for t in texts if t.get_text() == "Simple")
+    above = next(t for t in texts if t.get_text().startswith("tangled"))
+    assert name.get_window_extent(renderer).y1 < above.get_window_extent(renderer).y0
+
+
+@pytest.mark.model
 def test_stacey_writes_a_png(tmp_path: Path) -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     out = draw(route, ZONES, LABELS, tmp_path / "m.png", highlight="02")
