@@ -107,7 +107,7 @@ No decision is ever deleted, only moved
 Nothing was deleted, every decision only moved to the place that owns it.
 :::
 
-## Marketing's seventh if lands in shipping and costs 8 paths, not 512 {paths=72}
+## Marketing's seventh if lands in shipping and costs 8 paths {paths=72}
 
 \fvset{fontsize=\scriptsize}
 
