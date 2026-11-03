@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015   | blocked: 0 | todo roots: 1 | done: 493 | pruned: 4
+open path: E-015   | blocked: 0 | todo roots: 2 | done: 493 | pruned: 4
 
 ## Tree
 
@@ -14,6 +14,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
 W-152  bug    [todo]     (standalone) The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's   (filed during T-332) -- T-341 [todo]
+W-153  issue  [todo]     (standalone) The Simple band name touches the Complicated text and its text crosses the Who line   (filed during T-333) -- T-342 [todo]
 ```
 
 ## Closed
@@ -877,6 +878,8 @@ flowchart TD
   W151 --> T340["T-340 todo: Add the palette prerequisites -> every palette-reading rule in 01-bits/section.mk"]
   W152["W-152 bug todo, standalone: The colour-code ports chips draw Mailer's icon but not Payment provider's or Warehouse's"]
   W152 --> T341["T-341 todo: Draw every actor chip with its icon -> colorcode chip look"]
+  W153["W-153 issue todo, standalone: The Simple band name touches the Complicated text and its text crosses the Who line"]
+  W153 --> T342["T-342 todo: Lay out the Simple name and text apart -> stacey.draw innermost band layout"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -884,5 +887,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E015 doing
   class W145,T331,W146,T332,W147,T333 done
-  class W148,T336,W149,T338,W150,T339,W151,T340,W152,T341 todo
+  class W148,T336,W149,T338,W150,T339,W151,T340,W152,T341,W153,T342 todo
 ```
