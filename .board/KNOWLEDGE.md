@@ -38,3 +38,4 @@
 - 2026-11-03 E-014: T-334 filed under W-136 after T-307's hand-back: compact_body marks only the elisions between hunks; the developer asked for --- wherever nothing changed
 - 2026-11-03 E-014: T-335 Output amended mid-Task: T-311 capped test-6.diff at 8 against its length + 2 rule; the per-step regular total makes it 10, so T-335 raises that one cap in 01-bits/index.md; Check unchanged (lane hand-back)
 - 2026-11-03 E-014: T-335 filed under W-137 after T-310's hand-back: the brief kept test_regular_order at 54.00 on every step, a test that fails against v0 to v5 (45.00 until VAT); the total is now computed per step
+- 2026-11-03 E-014: T-337 filed under W-141 after T-319's hand-back: the labelled axis narrowed the journey and two step captions now touch

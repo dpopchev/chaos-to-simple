@@ -17,7 +17,7 @@ E-014         [doing]    Deck v5: one legend of three kinds, the Stacey overview
   W-138  issue  [done]     01: finance finds it, the condition, the test -- T-312 [done], T-313 [done], T-314 [done]
   W-139  issue  [done]     01: the grid that doubles, the badge named -- T-315 [done], T-316 [done]
   W-140  issue  [done]     02: two readings, two tests that cannot both pass -- T-317 [done], T-318 [done]
-  W-141  issue  [doing]    03: why the order was replayed, where the room clashed -- T-319 [done], T-320 [doing]   <- ACTIVE LEAF, T-321 [todo]
+  W-141  issue  [doing]    03: why the order was replayed, where the room clashed -- T-319 [done], T-320 [doing]   <- ACTIVE LEAF, T-321 [todo], T-337 [todo]
   W-142  issue  [todo]     04: the fix is v7, the contexts v8, each under its tally -- T-322 [todo], T-323 [todo], T-324 [todo]
   W-143  issue  [todo]     05: v8 to v9 compact, every snippet with its home and its test -- T-325 [todo], T-326 [todo]
   W-144  issue  [todo]     06: v9 to v10 compact, the long snippet cut, every snippet with its home and its test -- T-327 [todo], T-328 [todo], T-329 [todo]
@@ -826,6 +826,7 @@ flowchart TD
   W141 --> T319["T-319 done: Scale the certainty axis -> figures.journey with the ticks certain, unsure, lost"]
   W141 --> T320["T-320 doing: Say why the order was replayed -> 03-chaos/index.md page 22 caption and notes -- ACTIVE LEAF"]
   W141 --> T321["T-321 todo: Mark the conflicts in the room -> speakers.lua bold on '! ', room.txt marked, page 23 concluding"]
+  W141 --> T337["T-337 todo: Keep the journey captions apart -> figures.journey step text wrap"]
   E014 --> W142["W-142 issue todo: 04: the fix is v7, the contexts v8, each under its tally"]
   W142 --> T322["T-322 todo: Tally any version -> storyboard.tally_line(version, policies, paths, tests) and scripts.paths tally"]
   W142 --> T323["T-323 todo: Label the fix v6 to v7 with its test -> 04-what/section.mk fix.diff compact, tally-7.txt, page 29"]
@@ -852,5 +853,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E014,W141,T320 doing
   class W130,T291,T292,T293,T330,W131,T294,T295,T296,W132,T297,T298,T299,W133,T300,T301,T302,W134,T303,T304,W135,T305,T306,W136,T307,T308,T309,T334,W137,T310,T311,T335,W138,T312,T313,T314,W139,T315,T316,W140,T317,T318,T319 done
-  class T321,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
+  class T321,T337,W142,T322,T323,T324,W143,T325,T326,W144,T327,T328,T329,W145,T331,W146,T332,W147,T333,W148,T336 todo
 ```
