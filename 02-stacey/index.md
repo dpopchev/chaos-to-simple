@@ -8,15 +8,43 @@ Free shipping from 50. Of what?
 
 \vspace{-6pt}
 
+\fvset{fontsize=\tiny}
+
+:::: {.columns}
+::: {.column width="47%"}
+
 \actor{marketing}
 
 ```{.text include=build/02-stacey/bubble-0.txt}
 ```
 
+:::
+::: {.column width="53%"}
+
+```{.python include=02-stacey/tests/test_readings.py snippet=r1}
+```
+
+:::
+::::
+
+:::: {.columns}
+::: {.column width="47%"}
+
 \actor{logistics}
 
 ```{.text include=build/02-stacey/bubble-1.txt}
 ```
+
+:::
+::: {.column width="53%"}
+
+```{.python include=02-stacey/tests/test_readings.py snippet=r2}
+```
+
+:::
+::::
+
+\fvset{fontsize=\scriptsize}
 
 \begingroup\footnotesize\textit{one function, one reading: the code picked R1 and nobody chose}\par\endgroup
 \vspace{-11pt}
@@ -32,8 +60,9 @@ Free shipping from 50. Of what?
 The rule is the Who diagonal of the next frame: stakeholders above it, developers below.
 Both positions are reasonable: marketing counts the subtotal, logistics counts only the
 discounted goods, and each is right for its own work. Neither is a How problem, so no test
-settles it. The developer's question comes before anyone agreed the rule; agree the What
-first.
+settles it. Each bubble has its test beside it, and the two tests contradict on one order, so
+the room decides, not a test. The developer's question comes before anyone agreed the rule;
+agree the What first.
 :::
 
 ## The shipping dispute sits above the line: a decision for the room, not a test {paths=64}

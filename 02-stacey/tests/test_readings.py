@@ -31,10 +31,12 @@ def send(email: str, total: Decimal) -> None:
 # [snippet: r1]
 def test_r1_marketing_reads_the_cart() -> None:
     order = Order(
-        lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY
+        lines=[Line("book", Decimal(55))],
+        email="a@example.com",
+        coupon_valid_until=TODAY,
     )
     total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("54.00")  # (55 - 10 + 0) * 1.20: the cart ships free
+    assert total == Decimal("54.00")  # (55 - 10) * 1.20: free
 
 
 # [/snippet]
@@ -44,10 +46,12 @@ def test_r1_marketing_reads_the_cart() -> None:
 # [snippet: r2]
 def test_r2_logistics_reads_what_they_pay() -> None:
     order = Order(
-        lines=[Line("book", Decimal(55))], email="a@example.com", coupon_valid_until=TODAY
+        lines=[Line("book", Decimal(55))],
+        email="a@example.com",
+        coupon_valid_until=TODAY,
     )
     total = checkout(order, TODAY, charge, reserve, send)
-    assert total == Decimal("60.00")  # (55 - 10 + 5) * 1.20: the parcel is paid for
+    assert total == Decimal("60.00")  # (55 - 10 + 5) * 1.20
 
 
 # [/snippet]
