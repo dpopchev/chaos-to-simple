@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-015 > W-148   | blocked: 0 | todo roots: 2 | done: 497 | pruned: 6
+open path: E-015   | blocked: 0 | todo roots: 2 | done: 498 | pruned: 6
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-015         [doing]    backlog after deck v5: the palette rebuild rule and fiv
   W-145  bug    [done]     Figure rules miss the palette files, so a colour or label change leaves stale figures   (filed during T-330) -- T-331 [done]
   W-146  issue  [done]     The colour-code ports chips name their kind unevenly   (filed during T-298) -- T-332 [done]
   W-147  issue  [done]     The Simple band text runs under the 06 stop of the Stacey matrix   (filed during T-301) -- T-333 [done]
-  W-148  issue  [doing]    The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [done], T-346 [pruned]   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files], T-347 [done]
+  W-148  issue  [done]     The storyboard frames shrank their code to tiny with half the frame empty   (filed during T-311) -- T-336 [pruned]   [pruned: re-planned: the stacked layout gave way to the developer's request / headings / side-by-side layout with page 6 split], T-343 [done], T-344 [done], T-345 [done], T-346 [pruned]   [pruned: brief missed scripts/utils/test_counter.py (storyboard_ok fixtures at lines 24 and 29); superseded by the next counter Task naming all three files], T-347 [done]
   W-149  bug    [todo]     Page 29 shows finance's test text over the green run of another test   (filed during T-323) -- T-338 [todo]
   W-150  issue  [todo]     The epilogue title's second line collides with the bubble under it   (filed during T-327) -- T-339 [todo]
   W-151  bug    [todo]     01-bits figure rules miss the palette files, so a label change leaves the 01 figures stale   (filed during T-331) -- T-340 [todo]
@@ -868,7 +868,7 @@ flowchart TD
   W146 --> T332["T-332 done: Label the ports chips by actor -> colorcode.legend_groups ports chips"]
   E015 --> W147["W-147 issue done: The Simple band text runs under the 06 stop of the Stacey matrix"]
   W147 --> T333["T-333 done: Move the Simple text off the 06 stop -> stacey.draw text placement"]
-  E015 --> W148["W-148 issue doing: The storyboard frames shrank their code to tiny with half the frame empty"]
+  E015 --> W148["W-148 issue done: The storyboard frames shrank their code to tiny with half the frame empty"]
   W148 --> T336["T-336 pruned: Stack the diffs at full width -> 01-bits/index.md pages 6 to 12"]
   W148 --> T343["T-343 done: Render a story block in three shades -> story.lua, preamble colours"]
   W148 --> T344["T-344 done: Show the scope and the changes under one heading -> storyboard step and test views"]
@@ -890,8 +890,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E015,W148 doing
-  class W145,T331,W146,T332,W147,T333,T343,T344,T345,T347 done
+  class E015 doing
+  class W145,T331,W146,T332,W147,T333,W148,T343,T344,T345,T347 done
   class W149,T338,W150,T339,W151,T340,W152,T341,W153,T342 todo
   class T336,T346 pruned
 ```
