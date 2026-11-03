@@ -178,9 +178,7 @@ def draw(
             zorder=3,
         )
     above, below = corner_texts(labels)
-    ax.text(
-        0.02, LIMIT - 0.02, above, ha="left", va="top", fontsize=13, color="dimgrey", zorder=6
-    )
+    ax.text(0.02, LIMIT - 0.02, above, ha="left", va="top", fontsize=13, color="dimgrey", zorder=6)
     ax.text(
         LIMIT - 0.02, 0.02, below, ha="right", va="bottom", fontsize=13, color="dimgrey", zorder=6
     )

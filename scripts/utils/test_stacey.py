@@ -65,7 +65,9 @@ def test_the_boom_quote_names_its_source_or_holds_no_digit() -> None:
 
 
 @pytest.mark.model
-def test_plain_draw_keeps_the_corner_labels(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
+def test_plain_draw_keeps_the_corner_labels(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
     route = load_spots(ROOT / "data" / "route.csv")
     figs: list = []
     monkeypatch.setattr(stacey.style, "save", lambda fig, _out: figs.append(fig))
