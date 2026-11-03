@@ -102,6 +102,12 @@ def test_collaboration_band_is_a_line_in_simple() -> None:
 
 
 @pytest.mark.model
+def test_no_collaboration_polygon_for_simple() -> None:
+    top = stacey.LIMIT * math.sqrt(2)
+    assert len(stacey.collaboration_polygons(ZONES, top, ZONES[0].r_max)) == 3
+
+
+@pytest.mark.model
 def test_zones_items_lists_four_bands() -> None:
     assert stacey.zones_items(ZONES).count(r"\textbf") == 4
 

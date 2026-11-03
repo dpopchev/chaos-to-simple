@@ -51,5 +51,6 @@ made no distinction between them.
 ::: notes
 Read the matrix from the origin: both axes start certain. The arrows are the route of the talk,
 from 01 to 06, and the footer counter is still ? until each section sets it. The agenda strip
-returns on the section pages.
+returns on the section pages. The grey band is collaboration: none in Simple, where the Who line
+stands alone, and widening through Complicated and Complex to its widest in Chaos.
 :::

@@ -149,6 +149,21 @@ def collaboration_polygon(
     return [*left, *right]
 
 
+def collaboration_zones(zones: Sequence[Zone], top: float, inner: float) -> tuple[Zone, ...]:
+    """Return the bands whose far edge carries a collaboration band wider than 0."""
+    return tuple(z for z in zones if collaboration_half_width(min(z.r_max, top), inner) > 0)
+
+
+def collaboration_polygons(
+    zones: Sequence[Zone], top: float, inner: float
+) -> tuple[list[tuple[float, float]], ...]:
+    """Return one band polygon per zone with a far width above 0; Simple yields none."""
+    return tuple(
+        collaboration_polygon(z.r_min, min(z.r_max, top), inner)
+        for z in collaboration_zones(zones, top, inner)
+    )
+
+
 def tex_escape(text: str) -> str:
     """Escape the LaTeX specials the zone texts can hold."""
     return "".join(
@@ -190,19 +205,23 @@ def draw(
         )
     # Zones run innermost first; Chaos is last and gets the strongest shade.
     top = LIMIT * math.sqrt(2)
-    for zone, alpha in zip(zones, reversed(COLLABORATION_ALPHA), strict=True):
+    alpha_of = dict(zip((z.key for z in zones), reversed(COLLABORATION_ALPHA), strict=True))
+    banded = collaboration_zones(zones, top, zones[0].r_max)
+    for zone, corners in zip(
+        banded, collaboration_polygons(zones, top, zones[0].r_max), strict=True
+    ):
         ax.add_patch(
             Polygon(
-                collaboration_polygon(zone.r_min, min(zone.r_max, top), zones[0].r_max),
+                corners,
                 facecolor="grey",
-                alpha=alpha,
+                alpha=alpha_of[zone.key],
                 edgecolor="none",
                 zorder=1.5,
             )
         )
     ax.text(
-        LIMIT - 0.2,
-        LIMIT - 0.24,
+        0.40,
+        0.94,
         "collaboration",
         ha="center",
         va="center",
