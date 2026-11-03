@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-016 > W-159   | blocked: 0 | todo roots: 0 | done: 527 | pruned: 6
+open path: E-016   | blocked: 0 | todo roots: 0 | done: 528 | pruned: 6
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-016         [doing]    The 2026-11-03 reviews: one snippet style, the opening,
   W-156  issue  [done]     snippet format: two sizes set once, an optional heading, no per-slide fvset -- T-350 [done], T-351 [done], T-352 [done]
   W-157  issue  [done]     01 storyboard: v0 on one frame, one line per bubble and row, no aside -- T-353 [done], T-354 [done], T-355 [done]
   W-158  issue  [done]     01 counting: bits under their counts, the rule as a table -- T-356 [done], T-357 [done]
-  W-159  issue  [doing]    00 opening: the agenda after the title, the map by subdomain kind -- T-358 [done], T-359 [done], T-360 [done]
+  W-159  issue  [done]     00 opening: the agenda after the title, the map by subdomain kind -- T-358 [done], T-359 [done], T-360 [done]
   W-160  issue  [todo]     Stacey matrix: bands named in place, Who corners, a collaboration band, definitions beside -- T-361 [todo], T-362 [todo], T-363 [todo]
   W-161  issue  [todo]     01 finance: the cues beside the chart, the memo's four orders on their own frame -- T-364 [todo], T-365 [todo], T-366 [todo], T-367 [todo]
   W-162  issue  [todo]     02 deduction frame: from 54.00 against 60.00 to two readings -- T-368 [todo], T-369 [todo]
@@ -936,7 +936,7 @@ flowchart TD
   E016 --> W158["W-158 issue done: 01 counting: bits under their counts, the rule as a table"]
   W158 --> T356["T-356 done: Align the counts and the bit strings -> counting.py rows on one monospace grid"]
   W158 --> T357["T-357 done: Rewrite the right column -> 01-bits/index.md page 5 as a footnotesize rule table"]
-  E016 --> W159["W-159 issue doing: 00 opening: the agenda after the title, the map by subdomain kind"]
+  E016 --> W159["W-159 issue done: 00 opening: the agenda after the title, the map by subdomain kind"]
   W159 --> T358["T-358 done: Render the 00 agenda and open with it -> agenda-00.png and the first frame"]
   W159 --> T359["T-359 done: Draw the departments inside their bands -> stage.business_map with kind-labelled bands and owner chips"]
   W159 --> T360["T-360 done: List the policies on the left -> stage.business_map with one bullet per request"]
@@ -972,7 +972,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E016,W159 doing
-  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,T358,T359,T360 done
+  class E016 doing
+  class W156,T350,T351,T352,W157,T353,T354,T355,W158,T356,T357,W159,T358,T359,T360 done
   class W160,T361,T362,T363,W161,T364,T365,T366,T367,W162,T368,T369,W163,T370,T371,T372,W164,T373,T374,T375,W165,T376,T377,T378,W166,T379,T380 todo
 ```
