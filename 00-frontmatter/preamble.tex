@@ -14,7 +14,7 @@
       \usebeamerfont{author in head/foot}\deckshort
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=.45\paperwidth,ht=2.4ex,dp=1ex,right,rightskip=1em]{title in head/foot}%
-      \usebeamerfont{title in head/foot}{\iconfont\pathglyph} paths to reason about: \currentpaths%
+      \usebeamerfont{title in head/foot}{\iconfontplain\pathglyph} paths to reason about: \currentpaths%
       \hspace{1.5em}\insertframenumber/\inserttotalframenumber
     \end{beamercolorbox}%
   }%
@@ -47,7 +47,10 @@
 % pictograms are Font Awesome 7 Free Solid through fontspec (W-053); where the font is
 % missing the glyph is empty and the labelled box stands alone.
 \usepackage{fontspec}
-\IfFontExistsTF{Font Awesome 7 Free Solid}{\newfontfamily\iconfont{Font Awesome 7 Free Solid}}{\newcommand{\iconfont}{}}
+% \iconfont is scaled to the label (W-179): measured at -r220 on page 8, MatchUppercase gives
+% a glyph as tall as the M; Scale=1.25 clears the M but takes the 3pt slack of the page 22
+% frame. \iconfontplain keeps the face's own size for the footer path glyph.
+\IfFontExistsTF{Font Awesome 7 Free Solid}{\newfontfamily\iconfont[Scale=MatchUppercase]{Font Awesome 7 Free Solid}\newfontfamily\iconfontplain{Font Awesome 7 Free Solid}}{\newcommand{\iconfont}{}\newcommand{\iconfontplain}{}}
 \usepackage{tcolorbox}
 \newcommand{\defineactor}[4]{%
   \expandafter\gdef\csname actor@#1\endcsname{%
