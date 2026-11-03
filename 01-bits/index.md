@@ -35,20 +35,25 @@ alternatives. Then say that the footer counts from here, starting at 1 for the p
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{customer}
 
 ```{.text include=build/01-bits/bubble-0.txt}
 ```
 
+```{.diff include=build/01-bits/test-0.diff cap=16}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-0.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-0.diff cap=24}
 ```
@@ -67,20 +72,25 @@ customer's line aloud: that is all.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{marketing}
 
 ```{.text include=build/01-bits/bubble-1.txt}
 ```
 
+```{.diff include=build/01-bits/test-1.diff cap=10}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-1.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-1.diff cap=7}
 ```
@@ -100,20 +110,25 @@ change alone, one line of context each side.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{loyalty}
 
 ```{.text include=build/01-bits/bubble-2.txt}
 ```
 
+```{.diff include=build/01-bits/test-2.diff cap=10}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-2.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-2.diff cap=7}
 ```
@@ -133,20 +148,25 @@ context each side.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{logistics}
 
 ```{.text include=build/01-bits/bubble-3.txt}
 ```
 
+```{.diff include=build/01-bits/test-3.diff cap=7}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-3.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-3.diff cap=11}
 ```
@@ -166,20 +186,25 @@ each side.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{logistics}
 
 ```{.text include=build/01-bits/bubble-4.txt}
 ```
 
+```{.diff include=build/01-bits/test-4.diff cap=8}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-4.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-4.diff cap=7}
 ```
@@ -199,20 +224,25 @@ now branch twice. The diff shows the change alone, one line of context each side
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{marketing}
 
 ```{.text include=build/01-bits/bubble-5.txt}
 ```
 
+```{.diff include=build/01-bits/test-5.diff cap=10}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-5.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-5.diff cap=7}
 ```
@@ -232,20 +262,25 @@ each side.
 \fvset{fontsize=\tiny}
 
 :::: {.columns}
-::: {.column width="25%"}
+::: {.column width="47%"}
 
 \actor{accounting}
 
 ```{.text include=build/01-bits/bubble-6.txt}
 ```
 
+```{.diff include=build/01-bits/test-6.diff cap=8}
+```
+
 :::
-::: {.column width="75%"}
+::: {.column width="53%"}
 
 \fvset{fontsize=\scriptsize}
 
 ```{.text include=build/01-bits/tally-6.txt}
 ```
+
+\fvset{fontsize=\tiny}
 
 ```{.diff include=build/01-bits/step-6.diff cap=7}
 ```

@@ -1,6 +1,7 @@
 # 01-bits -- the coverage report, the 64-path grid and the storyboard are build artifacts, so
 # the numbers on the slides are measured, not typed. A plain `#` keeps it out of make help.
 STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
+  $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/test-$(k).diff) \
   $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/tally-$(k).txt) \
   $(foreach k,0 1 2 3 4 5 6 7 8,$(BUILD)/01-bits/bubble-$(k).txt)
 
@@ -53,7 +54,7 @@ $(BUILD)/01-bits/coverage-view.png: 01-bits/data/tested.csv scripts/figures.py \
 
 $(STORY_FILES) &: 01-bits/s01_bits/chaos.py 01-bits/data/bubbles.csv data/actors.csv \
     scripts/paths.py scripts/utils/storyboard.py
-	@$(RUN) python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \
+	@PYTHONPATH=01-bits $(RUN) python -m scripts.paths storyboard --source 01-bits/s01_bits/chaos.py \
 	  --bubbles 01-bits/data/bubbles.csv --actors data/actors.csv --out $(BUILD)/01-bits
 	$(call log_done,$(BUILD)/01-bits storyboard written)
 

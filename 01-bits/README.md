@@ -36,6 +36,8 @@ campaign on time, one if at a time.
 
 - `build/01-bits/step-0.diff` .. `step-6.diff`: the whole skeleton, then each request as a
   compact `+`/`-` diff (one context line, `---` between hunks)
+- `build/01-bits/test-0.diff` .. `test-6.diff`: the two tests whole at v0, then each step's
+  change to them as a compact `+`/`-` diff, shown under the request's bubble
 - `build/01-bits/tally-0.txt` .. `tally-6.txt`: the tally line over each step, with the
   function length in lines
 - `build/01-bits/bubble-0.txt` .. `bubble-8.txt`: the actor, the date and the words of each
