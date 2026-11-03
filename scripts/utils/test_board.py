@@ -11,6 +11,7 @@ from scripts.utils.board import (
     board_rows,
     column_widths,
     example_tests,
+    figure_size,
     header_text,
     headers,
     missing_of,
@@ -87,6 +88,11 @@ def test_waiting_columns_are_headed_later() -> None:
 def test_waiting_columns_are_narrow_at_stage_3() -> None:
     widths = column_widths(3, 5)
     assert widths[2] < widths[1]
+
+
+@pytest.mark.model
+def test_stage_3_board_is_wide_and_short() -> None:
+    assert figure_size(3)[1] < figure_size(4)[1]
 
 
 @pytest.mark.edge

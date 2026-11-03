@@ -106,6 +106,11 @@ def missing_of(rows: Sequence[BoardRow], tests_dir: Path) -> list[str]:
     return missing_tests([name for row in rows for name in row.tests], tests_defined(tests_dir))
 
 
+def figure_size(stage: int) -> tuple[float, float]:
+    """Return the figure size in inches; stage 3 is wide and short to fill its frame's width."""
+    return (12.0, 4.3) if stage == 3 else (12.0, 6.75)
+
+
 def board(
     rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path, heads: Sequence[str]
 ) -> Path:
@@ -119,7 +124,7 @@ def board(
     shown = STAGES[stage]
     grey = colour_of("tangled")
     missing = set(missing_of(rows, tests_dir))
-    fig, ax = plt.subplots(figsize=(12.0, 6.75), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=figure_size(stage), dpi=style.DPI)
     widths = column_widths(stage, len(COLUMNS))
     edges = [sum(widths[:i]) for i in range(len(widths) + 1)]
     height = 1.0 / (len(rows) + 1)
@@ -153,11 +158,11 @@ def board(
         head = colour_of("fulfilment") if col < shown else None
         ink = "white" if col < shown else "dimgray"
         narrow = stage == 3 and col >= shown
-        cell(col, 0, header_text(col, stage, heads), head, 6 if narrow else 12, ink)
+        cell(col, 0, header_text(col, stage, heads), head, 6 if narrow else (10 if stage == 3 else 12), ink)
     for line, row in enumerate(rows, start=1):
         texts = (
             row.room,
-            textwrap.fill(row.sentence, 72 if stage == 3 else 40),
+            textwrap.fill(row.sentence, 96 if stage == 3 else 40),
             label_of(row.home) if row.home in HOMES else row.home,
             textwrap.fill(row.code, 30, break_long_words=False),
             "\n".join(row.tests),
@@ -169,7 +174,7 @@ def board(
             if col >= shown:
                 cell(col, line, "", None, 9, "white")
             elif fills[col] is None:
-                size = 16 if stage == 3 else 12
+                size = 13 if stage == 3 else 12
                 cell(col, line, text, None, size if col == 1 else 10, "black")
             else:
                 cell(col, line, text, fills[col], 9 if col != 4 else 7, "white")
