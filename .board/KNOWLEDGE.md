@@ -37,3 +37,5 @@
 - 2026-11-03 E-017: T-395 Action amended at close: the r1/r2 docstrings left page 22 at -1pt slack, the lane tightened its spacing in 02-stacey/index.md, not named; Check unchanged
 - 2026-11-03 E-017: T-395 Action amended at its block: storyboard.step_test rebuilds the two-tests snippet per step, so the docstrings name the order and its source, emitted by step_test too; storyboard.py and test_storyboard.py join its files; Check unchanged
 - 2026-11-03 E-017: T-395 and T-396 Actions amended before W-172 starts: W-172's criterion greps every exhibit test, and test_planted_bug.py, test_two_ifs.py and test_worlds.py carried assert comments no Task named; Checks unchanged
+- 2026-11-04 E-017: T-397 Action amended at close: its brief said index.md without paths; page 22's spacing in 02-stacey/index.md was rebalanced after the -20pt vspace overlapped the bubble; Check unchanged
+- 2026-11-04 E-017: T-421 and T-423 Actions amended before start: their heading rules and manifest rows named section.mk and artifacts.csv without paths; Checks unchanged
