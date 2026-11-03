@@ -25,9 +25,11 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
+- 2026-11-03 W-170: open: the tests heading counts every non-blank line of the matched test files (page 15: 34 lines of test_chaos.py), not the snippet shown; count the snippet instead, or keep the file count
 
 ## Decisions
 - 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
 
 ## Deviations
 - 2026-11-03 E-017: T-388 Action amended: the def row and its --- add two rows to v5.diff and left page 41 under 3pt slack; T-388 now also moves page 41's file caption under the figure (the caption half of T-418, done early; T-418 keeps the height=75% change); Check unchanged
+- 2026-11-03 E-017: T-390 Action amended at close: the page 15 fence edit was described without naming 01-bits/index.md, so the scope gate refused; Check unchanged
