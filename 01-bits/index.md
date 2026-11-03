@@ -348,33 +348,31 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
 :::
 
-## Finance traced 6,070 EUR of missing shipping to the checkout, a software fault {paths=64}
+## Finance traced 6,070 EUR of missing shipping to orders the coupon took under 50 EUR {paths=64}
 
 \fvset{fontsize=\scriptsize}
 
-finance backtracked the gap to the checkout: a software fault?
-
-![](build/01-bits/finance.png){height=54%}
-
-\vfill
-
-\actor{marketing}
-
-```{.text include=01-bits/data/squeeze.txt}
+```{.text include=01-bits/data/incident.txt cap=8}
 ```
+
+![](build/01-bits/finance.png){height=32%}
+
+**revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the threshold read the cart before the coupon**
 
 ::: notes
 Finance noticed, not the tests: October's four weeks, received shipping income against the
 shortfall, 1,214 orders and 6,070 EUR nowhere to be found, all in the chart title. The legend
 names the two readings: received is the code, R1, marketing's reading of the cart before the
 coupon; missing is finance, R2, logistics' reading of what they pay, after the coupon. Read
-the chart, stop, then reveal the bubble: marketing, the same morning, asks for one more if,
-with no idea what the last one cost.
+the memo, then the chart, then the bold line: the condition, the threshold read the cart
+before the coupon.
 :::
 
 ## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
 
-the test finance and marketing wrote from R2: 60.00
+revenue loss: 1,214 orders under 50 EUR after the coupon shipped free, the threshold read the cart before the coupon
+
+the test finance and marketing wrote from it: 60.00
 
 ```{.python include=01-bits/tests/test_planted_bug.py snippet=bug}
 ```
@@ -383,7 +381,7 @@ the test finance and marketing wrote from R2: 60.00
 ```
 
 ::: notes
-The slide shows a plain test and its run: 54.00 against 60.00. Run it live and it matches.
+The slide repeats the condition, then shows a plain test and its run: 54.00 against 60.00. Run it live and it matches.
 `make test K=test_chaos` shows 2 passed, `make test K=test_planted_bug` shows 1 xfailed: the
 bug test sits in its own file, marked xfail, so the suite stays green. Then
 `uv run pytest 01-bits/tests/test_planted_bug.py --runxfail` shows the same 54.00 against
