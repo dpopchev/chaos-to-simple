@@ -5,7 +5,7 @@ two axes; each later section is one move on the map.
 
 | | |
 |---|---|
-| Minutes | 3 (2 frames) |
+| Minutes | 3 (3 frames) |
 | Footer counter | stays at `64` |
 | Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk`; `02-stacey/tests/test_readings.py` holds the R1 and R2 tests (snippets `r1`, `r2`) run against `s01_bits.chaos` |
 | Uses | nothing |
@@ -13,6 +13,7 @@ two axes; each later section is one move on the map.
 
 ## Slides
 
+- [x] Engineering reads one sentence two ways: the cart before or after the coupon: the sentence, the code's condition, finance's test and the two-readings table
 - [x] I wanted to write a test: the question, the R1 Marketing and R2 Logistics bubbles, the line 'one function, one reading: the code picked R1 and nobody chose', a rule, the dev bubble below
 - [x] Above the line: a decision, not a test: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
 
@@ -44,9 +45,9 @@ Decision: the BOOM label quotes Brooks, The Mythical Man-Month, ch. 1 "The Tar P
 
 ## Done when
 
-- Given `make talk budget`, when they finish, then 02 holds two frames: the marketing and
-  logistics bubbles above a rule with the dev bubble 'Which test do I write?' below it, then
-  the matrix with 02 highlighted at 85% height and the line glued under it.
+- Given `make talk budget`, when they finish, then 02 holds three frames: the deduction table,
+  the marketing and logistics bubbles above a rule with the dev bubble 'Which test do I write?'
+  below it, then the matrix with 02 highlighted at 85% height and the line glued under it.
 - Given `make diagrams`, when it finishes, then the quadrant chart shows four labelled
   points along the route from chaos to simple.
 - Given the route slide, when section 06 ends, then the same picture can be shown again
