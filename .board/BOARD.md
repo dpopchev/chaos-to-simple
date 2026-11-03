@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017 > W-177   | blocked: 0 | todo roots: 1 | done: 598 | pruned: 7
+open path: E-017   | blocked: 0 | todo roots: 1 | done: 599 | pruned: 7
 
 ## Tree
 
@@ -14,7 +14,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-174  issue  [done]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [done], T-403 [pruned]   [pruned: its Check grep -c 'one of them' could not fail: page 19 already holds 'every one of them'; refiled with a specific Check], T-404 [done], T-427 [done]
   W-175  issue  [done]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [done], T-406 [done]
   W-176  issue  [done]     horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [done], T-408 [done], T-409 [done]
-  W-177  issue  [doing]    00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [done], T-411 [done], T-412 [done]
+  W-177  issue  [done]     00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [done], T-411 [done], T-412 [done]
   W-178  issue  [todo]     00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos -- T-413 [todo], T-414 [todo]
   W-179  issue  [todo]     icons at their labels' height in the actor boxes and the figure chips -- T-415 [todo], T-416 [todo]
   W-180  issue  [todo]     05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath -- T-417 [todo], T-418 [todo]
@@ -1044,7 +1044,7 @@ flowchart TD
   W176 --> T407["T-407 done: Flip the stacked bar -> paths.stacked_bar with barh"]
   W176 --> T408["T-408 done: Refuse a vertical bar or a pie in the helpers -> scripts/utils/test_charts.py"]
   W176 --> T409["T-409 done: Fit pages 48 and 49 -> 06-simple/index.md image sizes"]
-  E017 --> W177["W-177 issue doing: 00 business map (page 3): the shop taller, each department box its icon and its requests inside"]
+  E017 --> W177["W-177 issue done: 00 business map (page 3): the shop taller, each department box its icon and its requests inside"]
   W177 --> T410["T-410 done: Put the requests inside an icon-only department box -> stage.business_map"]
   W177 --> T411["T-411 done: Raise the shop -> stage.SHOP_H, positions and the figure size"]
   W177 --> T412["T-412 done: Update the page 3 notes -> 00-frontmatter/index.md"]
@@ -1074,8 +1074,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017,W177 doing
-  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,T410,T411,T412 done
+  class E017 doing
+  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412 done
   class W178,T413,T414,W179,T415,T416,W180,T417,T418,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426,W183,T425 todo
   class T403 pruned
 ```
