@@ -14,6 +14,7 @@ from scripts.utils.stage import (
     agenda_strip,
     band_title,
     business_map,
+    department_bullets,
     edge_words,
     incident_marks,
     load_route,
@@ -37,6 +38,15 @@ def test_a_provider_edge_carries_its_answer() -> None:
 def test_a_department_edge_carries_its_requests() -> None:
     words = edge_words(load_actors(), load_cast(DATA / "cast.csv"), load_rules(DATA / "rules.csv"))
     assert words["logistics"] == "free shipping from 50; abroad is 20, not 5"
+
+
+@pytest.mark.model
+def test_department_bullets_one_per_request() -> None:
+    bullets = department_bullets(load_actors(), load_cast(DATA / "cast.csv"))
+    assert bullets["marketing"] == (
+        "10 EUR off with the autumn code",
+        "gift wrap, 3 EUR, just one more if",
+    )
 
 
 @pytest.mark.model

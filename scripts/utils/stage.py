@@ -242,6 +242,17 @@ def edge_words(
     return words
 
 
+def department_bullets(
+    actors: Mapping[str, Actor], cast: Sequence[CastRow]
+) -> dict[str, tuple[str, ...]]:
+    """Return each department's requests, one per cast row, in cast order."""
+    return {
+        key: tuple(c.words for c in cast if c.requested_by == key)
+        for key, actor in actors.items()
+        if actor.kind == "department"
+    }
+
+
 def positions(actors: Mapping[str, Actor]) -> dict[str, tuple[float, float]]:
     """Place the shop at the origin, departments left, providers right, the customer on top."""
     spots: dict[str, tuple[float, float]] = {}
@@ -304,6 +315,7 @@ def business_map(
     from matplotlib.patches import FancyBboxPatch
 
     words = edge_words(actors, cast, rules)
+    bullets = department_bullets(actors, cast)
     spots = positions(actors)
     font = icon_file()
     shape = "round,pad=0.05,rounding_size=0.15"
@@ -339,17 +351,29 @@ def business_map(
             if both:
                 call = ((tail[0], y - lift), (head[0], y - lift))
                 ax.annotate("", *call, arrowprops=arrow, zorder=1)
-            said = f"asks: {words[key]}" if actor.kind == "department" else words[key]
-            ax.text(
-                (tail[0] + head[0]) / 2 + (0.15 if not side else 0.0),
-                (tail[1] + head[1]) / 2 + (0.0 if not side else 0.12),
-                textwrap.fill(said, WRAP),
-                ha="left" if not side else "center",
-                va="center" if not side else "bottom",
-                fontsize=11,
-                style="italic",
-                zorder=5,
-            )
+            if actor.kind == "department":
+                for j, line in enumerate(bullets[key]):
+                    ax.text(
+                        x - w / 2,
+                        y - h / 2 - 0.3 - j * 0.3,
+                        f"\N{BULLET} {line}",
+                        ha="left",
+                        va="center",
+                        fontsize=9,
+                        color=actor_colour,
+                        zorder=5,
+                    )
+            else:
+                ax.text(
+                    (tail[0] + head[0]) / 2 + (0.15 if not side else 0.0),
+                    (tail[1] + head[1]) / 2 + (0.0 if not side else 0.12),
+                    textwrap.fill(words[key], WRAP),
+                    ha="left" if not side else "center",
+                    va="center" if not side else "bottom",
+                    fontsize=11,
+                    style="italic",
+                    zorder=5,
+                )
         ax.add_patch(
             FancyBboxPatch(
                 (x - w / 2, y - h / 2),
