@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-208 > T-468   | blocked: 0 | todo roots: 3 | done: 684 | pruned: 8
+open path: W-208   | blocked: 0 | todo roots: 3 | done: 685 | pruned: 8
 
 ## Tree
 
 ```text
-W-208  bug    [doing]    (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [doing]   <- ACTIVE LEAF
+W-208  bug    [doing]    (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [done]
 W-209  bug    [todo]     (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [todo]
 W-210  bug    [todo]     (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [todo]
 W-211  bug    [todo]     (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [todo]
@@ -1229,7 +1229,7 @@ closed 2026-11-04 -- outcome: Given a built build/05-how/cohesion.png, When touc
 ```mermaid
 flowchart TD
   W208["W-208 bug doing, standalone: 05 seam picture labels unreadable at slide size on page 40"]
-  W208 --> T468["T-468 doing: Draw the seam labels at slide size -> scripts/utils/figures.py seam -- ACTIVE LEAF"]
+  W208 --> T468["T-468 done: Draw the seam labels at slide size -> scripts/utils/figures.py seam"]
   W209["W-209 bug todo, standalone: data/README.md lists stale incidents.csv columns"]
   W209 --> T469["T-469 todo: List the current incidents.csv columns -> data/README.md"]
   W210["W-210 bug todo, standalone: 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows"]
@@ -1241,6 +1241,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W208,T468 doing
+  class W208 doing
+  class T468 done
   class W209,T469,W210,T470,W211,T471 todo
 ```
