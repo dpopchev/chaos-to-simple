@@ -120,15 +120,10 @@ def test_collaboration_sector_stays_inside_the_chaos_arc() -> None:
 
 
 @pytest.mark.model
-def test_collaboration_label_sits_inside_the_chaos_band() -> None:
-    x, y, _ = stacey.collaboration_label(ZONES)
-    radius = math.hypot(x, y)
-    half = stacey.collaboration_half_angle(radius, ZONES)
-    inside = (
-        ZONES[-1].r_min < radius < 1.0,
-        abs(math.degrees(math.atan2(y, x)) - 45) <= half,
-    )
-    assert inside == (True, True)
+def test_collaboration_label_rides_the_who_line_past_the_chaos_arc() -> None:
+    x, y, rotation = stacey.collaboration_label(ZONES)
+    past_the_arc = 0.80 < math.hypot(x, y) < 0.92
+    assert (round(rotation), past_the_arc, side_of(x, y)) == (45, True, "below")
 
 
 @pytest.mark.model

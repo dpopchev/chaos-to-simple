@@ -26,10 +26,9 @@ QUADRANT_HALF = 45.0
 # The share of the half quadrant the band reaches at each zone's outer edge, innermost first.
 COLLABORATION_SHARES = (0.0, 0.25, 0.55, 0.85)
 COLLABORATION_ALPHA = (0.30, 0.20, 0.10, 0.04)
-# The collaboration word rides this share of the half angle, at least this far from stop 01.
-LABEL_EDGE_SHARE = 0.8
-LABEL_CLEARANCE = 0.1
-STOP_01 = (0.65, 0.75)
+# The collaboration word is centred on the Who line at this radius, this far below it.
+LABEL_RADIUS = 0.86
+LABEL_OFFSET = 0.045
 
 
 @dataclass(frozen=True)
@@ -178,33 +177,13 @@ def collaboration_sectors(zones: Sequence[Zone]) -> tuple[list[tuple[float, floa
 
 
 def collaboration_label(zones: Sequence[Zone]) -> tuple[float, float, float]:
-    """Return the (x, y, rotation) of the word collaboration along the Chaos band's upper edge.
+    """Return the (x, y, rotation) of the word collaboration along the Who line.
 
-    It starts midway between the Chaos r_min and 1.0 and moves toward r_min until it is
-    LABEL_CLEARANCE from the 01 stop; the rotation is the edge tangent, kept readable.
+    It is centred at LABEL_RADIUS, past the Chaos arc, LABEL_OFFSET below the line.
     """
-
-    def edge_angle(r: float) -> float:
-        return 45 + LABEL_EDGE_SHARE * collaboration_half_angle(r, zones)
-
-    def point(r: float) -> tuple[float, float]:
-        a = math.radians(edge_angle(r))
-        return r * math.cos(a), r * math.sin(a)
-
-    r_min = zones[-1].r_min
-    radius = (r_min + 1.0) / 2
-    while radius > r_min + 0.01 and math.dist(point(radius), STOP_01) < LABEL_CLEARANCE:
-        radius -= 0.01
-    x, y = point(radius)
-    eps = 1e-4
-    x0, y0 = point(radius - eps)
-    x1, y1 = point(radius + eps)
-    rotation = math.degrees(math.atan2(y1 - y0, x1 - x0))
-    if rotation > 90:
-        rotation -= 180
-    elif rotation < -90:
-        rotation += 180
-    return x, y, rotation
+    del zones
+    root = math.sqrt(0.5)
+    return (LABEL_RADIUS + LABEL_OFFSET) * root, (LABEL_RADIUS - LABEL_OFFSET) * root, 45.0
 
 
 def tex_escape(text: str) -> str:
@@ -266,7 +245,7 @@ def draw(
         "collaboration",
         ha="center",
         va="center",
-        fontsize=14,
+        fontsize=12,
         color="dimgrey",
         rotation=lrot,
         zorder=6,
