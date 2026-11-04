@@ -32,6 +32,7 @@ class FakeInventory:
         return Reserved()
 
 
+# [/snippet]
 @dataclass
 class FakeMailer:
     bounces: bool = False
@@ -42,6 +43,3 @@ class FakeMailer:
             return Bounced()
         self.sent.append(email)
         return Sent()
-
-
-# [/snippet]

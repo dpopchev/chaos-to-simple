@@ -80,22 +80,19 @@ Every answer is a value the caller can match on, so the order stops living in st
 
 ## A sum type per answer and a Protocol per port: the fakes satisfy them with no inheritance, pyright says so {paths=512}
 
-\fvset{fontsize=\fontsize{4.7}{5.5}\selectfont}
-
 :::: {.columns}
-::: {.column width="45%"}
-
-```{.python heading-file=build/05-how/results-code.txt include=05-how/s05_how/ports.py snippet=results cap=22}
-```
-
-```{.text heading="uv run pyright fakes.py test_ports.py" include=build/05-how/pyright.txt}
-```
-
-:::
 ::: {.column width="55%"}
 
 ```{.python heading-file=build/05-how/fakes-code.txt include=05-how/s05_how/fakes.py snippet=fakes cap=28}
 ```
+
+:::
+::: {.column width="45%"}
+
+```{.text heading="uv run pyright fakes.py test_ports.py" include=build/05-how/pyright.txt}
+```
+
+\begingroup\footnotesize FakeGateway: Charged | Declined\par FakeInventory: Reserved | OutOfStock\par FakeMailer: the same shape, Sent | Bounced, in fakes.py\par\endgroup
 
 :::
 ::::
