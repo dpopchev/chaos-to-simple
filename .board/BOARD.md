@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-205   | blocked: 0 | todo roots: 4 | done: 679 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 4 | done: 680 | pruned: 8
 
 ## Tree
 
 ```text
-W-205  bug    [doing]    (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code   (filed during T-451) -- T-463 [done]
 W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
 W-207  bug    [todo]     (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [todo]
 W-208  bug    [todo]     (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [todo]
@@ -1208,11 +1207,15 @@ closed 2026-11-04 -- outcome: Given the deck, When make build/06-simple/member15
 
 - T-462 [done] Bring the factor into the diff -> 06-simple/s06_simple/member15.py and 06-simple/section.mk
 
+### W-205 bug [done] (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code
+
+closed 2026-11-04 -- outcome: Given the deck, When make talk, Then the rehearsal frame's two pictures read at 110 dpi, make overflow green. -- ledger: ledgers/W-205.md
+
+- T-463 [done] Use the compact pictures on the rehearsal frame -> 06-simple/index.md
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W205["W-205 bug doing, standalone: 06 rehearsal frame: the two highlighted pictures read illegibly small above the code"]
-  W205 --> T463["T-463 done: Use the compact pictures on the rehearsal frame -> 06-simple/index.md"]
   W206["W-206 bug todo, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
   W206 --> T464["T-464 todo: Use one compact picture on the seventh frame -> 06-simple/index.md"]
   W207["W-207 bug todo, standalone: 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes"]
@@ -1226,7 +1229,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W205 doing
-  class T463 done
   class W206,T464,W207,T467,W208,T468,W209,T469 todo
 ```
