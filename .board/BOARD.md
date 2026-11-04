@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-207 > T-467   | blocked: 0 | todo roots: 4 | done: 682 | pruned: 8
+open path: W-207   | blocked: 0 | todo roots: 4 | done: 683 | pruned: 8
 
 ## Tree
 
 ```text
-W-207  bug    [doing]    (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [doing]   <- ACTIVE LEAF
+W-207  bug    [doing]    (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [done]
 W-208  bug    [todo]     (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [todo]
 W-209  bug    [todo]     (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [todo]
 W-210  bug    [todo]     (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [todo]
@@ -1224,7 +1224,7 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 45's shi
 ```mermaid
 flowchart TD
   W207["W-207 bug doing, standalone: 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes"]
-  W207 --> T467["T-467 doing: List icons.py as a prerequisite of the cohesion figure -> 05-how/section.mk -- ACTIVE LEAF"]
+  W207 --> T467["T-467 done: List icons.py as a prerequisite of the cohesion figure -> 05-how/section.mk"]
   W208["W-208 bug todo, standalone: 05 seam picture labels unreadable at slide size on page 40"]
   W208 --> T468["T-468 todo: Draw the seam labels at slide size -> scripts/utils/figures.py seam"]
   W209["W-209 bug todo, standalone: data/README.md lists stale incidents.csv columns"]
@@ -1238,6 +1238,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W207,T467 doing
+  class W207 doing
+  class T467 done
   class W208,T468,W209,T469,W210,T470,W211,T471 todo
 ```
