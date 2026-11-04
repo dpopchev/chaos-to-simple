@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 1 | done: 617 | pruned: 8
+open path: E-017 > W-185 > T-428   | blocked: 0 | todo roots: 1 | done: 617 | pruned: 8
 
 ## Tree
 
@@ -21,7 +21,7 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-181  issue  [done]     05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured -- T-419 [done], T-420 [done], T-421 [done]
   W-182  issue  [done]     06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured -- T-422 [done], T-423 [done], T-424 [done]
   W-184  bug    [done]     02 page 22: the Marketing badge overlaps the question line after the docstrings   (filed during T-397) -- T-426 [done]
-  W-185  bug    [todo]     00 page 3: the requests inside the department boxes read too small at slide size   (filed during T-411) -- T-428 [todo]
+  W-185  bug    [doing]    00 page 3: the requests inside the department boxes read too small at slide size   (filed during T-411) -- T-428 [doing]   <- ACTIVE LEAF
   W-186  bug    [todo]     05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size   (filed during T-421) -- T-429 [todo]
   W-187  bug    [todo]     05 page 43: the import table is tiny in an empty frame and counts money as a context   (filed during T-421) -- T-430 [todo], T-431 [todo]
   W-188  bug    [todo]     06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny   (filed during T-424) -- T-432 [todo], T-433 [todo]
@@ -1071,8 +1071,8 @@ flowchart TD
   W182 --> T424["T-424 done: Write the measured-ifs frame and the budget -> 06-simple/index.md after the worlds frame, data/budget.csv 06 at 8, 06-simple/README.md"]
   E017 --> W184["W-184 bug done: 02 page 22: the Marketing badge overlaps the question line after the docstrings"]
   W184 --> T426["T-426 done: Free the question line -> 02-stacey/index.md page 22 without the italic caption"]
-  E017 --> W185["W-185 bug todo: 00 page 3: the requests inside the department boxes read too small at slide size"]
-  W185 --> T428["T-428 todo: Fit the map to the frame -> stage.business_map figure shape and 00-frontmatter/index.md page 3 by width"]
+  E017 --> W185["W-185 bug doing: 00 page 3: the requests inside the department boxes read too small at slide size"]
+  W185 --> T428["T-428 doing: Fit the map to the frame -> stage.business_map figure shape and 00-frontmatter/index.md page 3 by width -- ACTIVE LEAF"]
   E017 --> W186["W-186 bug todo: 05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size"]
   W186 --> T429["T-429 todo: Show two fakes at the deck's size -> fakes.py snippet and 05-how/index.md page 41 without fvset"]
   E017 --> W187["W-187 bug todo: 05 page 43: the import table is tiny in an empty frame and counts money as a context"]
@@ -1088,8 +1088,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
+  class E017,W185,T428 doing
   class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,W181,T419,T420,T421,W182,T422,T423,T424,W184,T426 done
-  class W185,T428,W186,T429,W187,T430,T431,W188,T432,T433,W183,T425 todo
+  class W186,T429,W187,T430,T431,W188,T432,T433,W183,T425 todo
   class T403,T418 pruned
 ```
