@@ -92,31 +92,10 @@ def test_arrows_join_consecutive_stops() -> None:
 
 
 @pytest.mark.model
-def test_collaboration_band_narrows_toward_simple() -> None:
-    assert stacey.collaboration_half_angle(0.25, ZONES) < stacey.collaboration_half_angle(
-        1.0, ZONES
-    )
-
-
-@pytest.mark.model
-def test_collaboration_band_is_a_line_in_simple() -> None:
-    assert stacey.collaboration_half_angle(0.2, ZONES) == 0.0
-
-
-@pytest.mark.model
-def test_collaboration_sectors_skip_simple() -> None:
-    assert len(stacey.collaboration_sectors(ZONES)) == 3
-
-
-@pytest.mark.model
-def test_collaboration_band_spans_85_percent_of_the_quadrant_at_the_chaos_arc() -> None:
-    assert stacey.collaboration_half_angle(1.0, ZONES) == pytest.approx(0.85 * 45)
-
-
-@pytest.mark.model
-def test_collaboration_sector_stays_inside_the_chaos_arc() -> None:
-    corners = stacey.collaboration_sector(ZONES[-1], ZONES)
-    assert max(math.hypot(x, y) for x, y in corners) <= 1.0 + 1e-9
+def test_collaboration_wedge_spans_22_5_to_67_5_degrees() -> None:
+    corners = [(x, y) for x, y in stacey.collaboration_wedge() if (x, y) != (0, 0)]
+    angles = [math.degrees(math.atan2(y, x)) for x, y in corners]
+    assert (min(angles), max(angles)) == pytest.approx((22.5, 67.5))
 
 
 @pytest.mark.model
