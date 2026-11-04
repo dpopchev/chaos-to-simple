@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import struct
 from pathlib import Path
 
 import pytest
@@ -35,3 +36,10 @@ def test_responsibilities_contract_of_pricing_is_priced() -> None:
 def test_responsibilities_draw_writes_a_png(tmp_path: Path) -> None:
     out = draw(tmp_path / "responsibilities.png", "payment")
     assert out.read_bytes()[:4] == b"\x89PNG"
+
+
+@pytest.mark.edge
+def test_responsibilities_compact_is_taller(tmp_path: Path) -> None:
+    out = draw(tmp_path / "offer.png", compact=True)
+    width, height = struct.unpack(">II", out.read_bytes()[16:24])
+    assert width / height < 2.0

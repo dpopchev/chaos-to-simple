@@ -71,7 +71,7 @@ $(BUILD)/06-simple/pyright.txt: 06-simple/section.mk 06-simple/s06_simple/other_
 	rm -f $$tmp
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/06-simple/responsibilities.png \
+ARTIFACTS += $(BUILD)/06-simple/responsibilities.png $(BUILD)/06-simple/responsibilities-offer.png \
     $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-$(n).png)
 
 $(BUILD)/06-simple/responsibilities.png: $(PALETTE) $(RULES) scripts/figures.py \
@@ -79,7 +79,12 @@ $(BUILD)/06-simple/responsibilities.png: $(PALETTE) $(RULES) scripts/figures.py 
 	@$(RUN) python -m scripts.figures responsibilities --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/06-simple/responsibilities-%.png: $(PALETTE) $(RULES) scripts/figures.py \
+$(BUILD)/06-simple/responsibilities-offer.png: $(PALETTE) $(RULES) scripts/figures.py \
+    scripts/utils/responsibilities.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures responsibilities --compact --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/responsibilities-%.png:$(PALETTE) $(RULES) scripts/figures.py \
     scripts/utils/responsibilities.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures responsibilities --highlight $* --out $@
 	$(call log_done,$@ written)

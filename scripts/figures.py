@@ -108,6 +108,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--highlight",
         help="agenda, stacey: the section whose stop stands out; responsibilities: the box",
     )
+    parser.add_argument(
+        "--compact", action="store_true", help="responsibilities: taller, larger type"
+    )
     parser.add_argument("--plain", action="store_true", help="stacey: bands and names only")
     parser.add_argument("--arrows", action="store_true", help="stacey: arrows between the stops")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
@@ -198,7 +201,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         draw_promise(load_steps(args.promise), args.out, args.actors)
         return 0
     if args.what == "responsibilities":
-        draw_responsibilities(args.out, args.highlight)
+        draw_responsibilities(args.out, args.highlight, args.compact)
         return 0
     if args.what == "business-map":
         business_map(

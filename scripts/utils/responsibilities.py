@@ -25,15 +25,30 @@ OFFER_TITLE, OFFER_NOTE = "calculate the offer", "functional core: price()"
 SHELL_TITLE, SHELL_NOTE = "carry out the order", "imperative shell: checkout()"
 OUTSIDE_TITLE = "outside capabilities"
 CORE_CONTRACT = "Priced"
-TITLE_FONT, BODY_FONT = 16, 14
 BOX_H = 1.3
-FRAME = (1.8, 0.5, 4.4, 7.1)
-OFFER_X, OFFER_W = 2.0, 4.0
-SHELL_X, SHELL_W = 8.2, 4.4
-PROVIDER_X, PROVIDER_W = 15.6, 3.6
 OFFER_Y = (5.0, 3.35, 1.7)
 PROVIDER_Y = (5.6, 3.6, 1.6)
 MID_Y = 3.6
+
+
+@dataclass(frozen=True)
+class Layout:
+    """The picture's size, type sizes and column positions in axes units."""
+
+    figsize: tuple[float, float]
+    xmax: float
+    title_font: int
+    body_font: int
+    frame: tuple[float, float, float, float]
+    offer: tuple[float, float]
+    shell: tuple[float, float]
+    provider: tuple[float, float]
+
+
+WIDE = Layout((15.4, 6.4), 19.4, 16, 14, (1.8, 0.5, 4.4, 7.1), (2.0, 4.0), (8.2, 4.4), (15.6, 3.6))
+COMPACT = Layout(
+    (11.8, 6.5), 22.1, 18, 16, (1.7, 0.5, 5.2, 7.1), (2.0, 4.6), (9.2, 6.0), (18.4, 3.6)
+)
 
 
 @dataclass(frozen=True)
@@ -94,9 +109,14 @@ def contract_of(name: str) -> str:
     return _model().contracts[_checked(name)]
 
 
-def draw(out: Path, highlight: str | None = None) -> Path:
-    """Draw the picture; with a highlight every other box and arrow fades and its arrows go bold."""
+def draw(out: Path, highlight: str | None = None, compact: bool = False) -> Path:
+    """Draw the picture; a highlight fades the other boxes, compact is taller with larger type."""
     style.apply()
+    lay = COMPACT if compact else WIDE
+    title_font, body_font = lay.title_font, lay.body_font
+    offer_x, offer_w = lay.offer
+    shell_x0, shell_w = lay.shell
+    provider_x, provider_w = lay.provider
     import matplotlib.pyplot as plt
     from matplotlib.font_manager import FontProperties
     from matplotlib.patches import FancyBboxPatch
@@ -106,7 +126,7 @@ def draw(out: Path, highlight: str | None = None) -> Path:
     faded = muted(highlight)
     shape = "round,pad=0.05,rounding_size=0.15"
     font = icon_file()
-    fig, ax = plt.subplots(figsize=(15.4, 6.4), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=lay.figsize, dpi=style.DPI)
 
     def alpha(name: str) -> float:
         return FADED if name in faded else 1.0
@@ -150,14 +170,14 @@ def draw(out: Path, highlight: str | None = None) -> Path:
             words,
             ha="center",
             va="bottom",
-            fontsize=BODY_FONT,
+            fontsize=body_font,
             style="italic",
             fontweight="bold" if bold else "normal",
             alpha=1.0 if kept else FADED,
             zorder=5,
         )
 
-    fx, fy, fw, fh = FRAME
+    fx, fy, fw, fh = lay.frame
     ax.add_patch(
         FancyBboxPatch(
             (fx, fy),
@@ -172,18 +192,18 @@ def draw(out: Path, highlight: str | None = None) -> Path:
         )
     )
     mid_x = fx + fw / 2
-    ax.text(mid_x, 7.0, OFFER_TITLE, ha="center", fontsize=TITLE_FONT, fontweight="bold")
-    ax.text(mid_x, 6.45, OFFER_NOTE, ha="center", fontsize=BODY_FONT, style="italic")
+    ax.text(mid_x, 7.0, OFFER_TITLE, ha="center", fontsize=title_font, fontweight="bold")
+    ax.text(mid_x, 6.45, OFFER_NOTE, ha="center", fontsize=body_font, style="italic")
     for name, y in zip(offer, OFFER_Y, strict=True):
         face = colour_of(name)
-        box(OFFER_X, y, OFFER_W, BOX_H, name, face, "none")
+        box(offer_x, y, offer_w, BOX_H, name, face, "none")
         ax.text(
-            OFFER_X + OFFER_W / 2,
+            offer_x + offer_w / 2,
             y,
             f"{contexts[name].label}\n{contexts[name].result}",
             ha="center",
             va="center",
-            fontsize=BODY_FONT,
+            fontsize=body_font,
             color=label_ink(face),
             alpha=alpha(name),
             zorder=4,
@@ -192,11 +212,11 @@ def draw(out: Path, highlight: str | None = None) -> Path:
     order = shell[0]
     face = colour_of(order)
     ink = label_ink(face)
-    box(SHELL_X, MID_Y, SHELL_W, 4.8, order, face, "none")
-    shell_x = SHELL_X + SHELL_W / 2
+    box(shell_x0, MID_Y, shell_w, 4.8, order, face, "none")
+    shell_x = shell_x0 + shell_w / 2
     for dy, text, size, how in (
-        (1.8, SHELL_TITLE, TITLE_FONT, "bold"),
-        (1.25, SHELL_NOTE, BODY_FONT, "normal"),
+        (1.8, SHELL_TITLE, title_font, "bold"),
+        (1.25, SHELL_NOTE, body_font, "normal"),
     ):
         ax.text(
             shell_x,
@@ -213,30 +233,30 @@ def draw(out: Path, highlight: str | None = None) -> Path:
         )
     for i, step in enumerate(("reserve", "charge", "confirm")):
         ax.text(
-            SHELL_X + 0.7,
+            shell_x0 + 0.7,
             MID_Y + 0.35 - i * 0.65,
             f"{i + 1}. {step}",
             ha="left",
             va="center",
-            fontsize=BODY_FONT + 2,
+            fontsize=body_font + 2,
             color=ink,
             alpha=alpha(order),
             zorder=4,
         )
 
     arrow(0.1, fx - 0.05, MID_Y, offer, "Request")
-    arrow(fx + fw + 0.05, SHELL_X - 0.05, MID_Y, (*offer, order), CORE_CONTRACT)
+    arrow(fx + fw + 0.05, shell_x0 - 0.05, MID_Y, (*offer, order), CORE_CONTRACT)
     ax.text(
-        PROVIDER_X + PROVIDER_W / 2, 7.0, OUTSIDE_TITLE, ha="center", fontsize=TITLE_FONT,
+        provider_x + provider_w / 2, 7.0, OUTSIDE_TITLE, ha="center", fontsize=title_font,
         fontweight="bold",
     )  # fmt: skip
     generic = kind_style("generic")
     for name, y in zip(providers, PROVIDER_Y, strict=True):
         actor = next(a for a in actors.values() if a.context == name)
-        box(PROVIDER_X, y, PROVIDER_W, BOX_H, name, generic.face, generic.edge)
+        box(provider_x, y, provider_w, BOX_H, name, generic.face, generic.edge)
         if font is not None:
             ax.text(
-                PROVIDER_X + 0.6,
+                provider_x + 0.6,
                 y,
                 glyph(actor.icon, FONT_AWESOME),
                 ha="center",
@@ -247,25 +267,25 @@ def draw(out: Path, highlight: str | None = None) -> Path:
                 zorder=4,
             )
         ax.text(
-            PROVIDER_X + (1.0 if font is not None else 0.0) + 0.1,
+            provider_x + (1.0 if font is not None else 0.0) + 0.1,
             y,
             actor.label.replace(" ", "\n", 1),
             ha="left" if font is not None else "center",
             va="center",
-            fontsize=BODY_FONT,
+            fontsize=body_font,
             fontweight="bold",
             color="black",
             alpha=alpha(name),
             zorder=4,
         )
         arrow(
-            SHELL_X + SHELL_W + 0.1,
-            PROVIDER_X - 0.1,
+            shell_x0 + shell_w + 0.1,
+            provider_x - 0.1,
             y,
             (order, name),
             contract_of(name).replace(" | ", " |\n"),
         )
-    ax.set_xlim(0, 19.4)
+    ax.set_xlim(0, lay.xmax)
     ax.set_ylim(0, 7.7)
     ax.axis("off")
     fig.tight_layout()

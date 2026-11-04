@@ -3,7 +3,7 @@
 ## Calculate the offer without carrying out the order: price() {paths=512}
 
 
-![](build/06-simple/responsibilities.png){width=74%}
+![](build/06-simple/responsibilities-offer.png){width=54%}
 
 ```{.python heading-file=build/06-simple/price.txt include=06-simple/s06_simple/core.py snippet=price}
 ```
