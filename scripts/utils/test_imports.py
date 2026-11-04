@@ -11,6 +11,7 @@ from scripts.utils.imports import (
     ImportRow,
     decision_chart,
     decision_rows,
+    figure_layout,
     import_edges,
     import_rows,
     import_table,
@@ -71,6 +72,13 @@ def test_import_table_aligns_one_row_per_module() -> None:
 @pytest.mark.view
 def test_shell_has_no_if_and_three_matches() -> None:
     assert _decisions(SHELL) == (DecisionRow("shell", 0, 3),)
+
+
+@pytest.mark.view
+def test_an_importer_sits_left_of_what_it_imports() -> None:
+    edges = (("shell", "core"), ("shell", "ports"), ("core", "tax"))
+    layout = figure_layout(edges)
+    assert all(layout[importer][0] < layout[imported][0] for importer, imported in edges)
 
 
 @pytest.mark.view

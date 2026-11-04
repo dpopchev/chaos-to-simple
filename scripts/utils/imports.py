@@ -51,7 +51,7 @@ def import_rows(name: str, text: str) -> ImportRow:
 
 def import_edges(sources: Sequence[tuple[str, str]]) -> tuple[tuple[str, str], ...]:
     """Return (importer, imported) per (name, text): a context by its name, the ports as 'ports'."""
-    targets = {**{c: c.rsplit(".", 1)[1] for c in _CONTEXTS}, _PORTS: "ports"}
+    targets = {**{c: c.rsplit(".", 1)[1] for c in _CONTEXTS}, _PORTS: "ports", _CORE: "core"}
     edges: list[tuple[str, str]] = []
     for name, text in sources:
         for node in ast.walk(ast.parse(text)):
@@ -66,21 +66,50 @@ def import_edges(sources: Sequence[tuple[str, str]]) -> tuple[tuple[str, str], .
 
 _BOX_W = 3.2
 _BOX_H = 0.68
-_LAYOUT = {
-    "pricing": (0.0, 2.0),
-    "shipping": (0.0, 1.0),
-    "tax": (0.0, 0.0),
-    "checkout_v5": (6.0, 1.0),
-    "ports": (12.0, 1.0),
-}
+_COL_GAP = 4.8
+_ROW_GAP = 0.85
+_ASPECT = 0.3
+_MAX_UNIT = 0.6
+_WIDTH = 10.0
+_OUTLINED = ("checkout_v5", "shell", "core")
+
+
+def figure_layout(edges: Sequence[tuple[str, str]]) -> dict[str, tuple[float, float]]:
+    """Return name -> (x, y): a module sits one column right of its deepest importer.
+
+    Columns stack their modules in order of first appearance, centred on y = 0, top first.
+    """
+    names = list(dict.fromkeys(name for edge in edges for name in edge))
+    column = dict.fromkeys(names, 0)
+    for _ in names:
+        for importer, imported in edges:
+            column[imported] = max(column[imported], column[importer] + 1)
+    cols = sorted(set(column.values()))
+    tallest = max(sum(1 for name in names if column[name] == col) for col in cols)
+    height = (tallest - 1) * _ROW_GAP + 1.0
+    gap = _COL_GAP
+    if len(cols) > 1:  # widen the columns so a tall figure keeps a wide aspect
+        gap = max(_COL_GAP, (height / _ASPECT - _BOX_W - 0.6) / (len(cols) - 1))
+    layout: dict[str, tuple[float, float]] = {}
+    for col in cols:
+        members = [name for name in names if column[name] == col]
+        for row, name in enumerate(members):
+            layout[name] = (col * gap, ((len(members) - 1) / 2 - row) * _ROW_GAP)
+    return layout
 
 
 def import_figure(edges: Sequence[tuple[str, str]], out: Path) -> None:
     """Draw the modules as boxes and one arrow per (importer, imported) edge into out."""
+    layout = figure_layout(edges)
+    xs = [x for x, _ in layout.values()]
+    ys = [y for _, y in layout.values()]
+    x_lo, x_hi = min(xs) - _BOX_W / 2 - 0.3, max(xs) + _BOX_W / 2 + 0.3
+    y_lo, y_hi = min(ys) - 0.55, max(ys) + 0.55
+    unit = min(_WIDTH / (x_hi - x_lo), _MAX_UNIT)
     style.apply()
-    fig, ax = plt.subplots(figsize=(10.0, 2.7), dpi=style.DPI)
-    for name, (x, y) in _LAYOUT.items():
-        shell = name == "checkout_v5"
+    fig, ax = plt.subplots(figsize=((x_hi - x_lo) * unit, (y_hi - y_lo) * unit), dpi=style.DPI)
+    for name, (x, y) in layout.items():
+        shell = name in _OUTLINED
         fill = "white" if shell else palette.colour_of("fulfilment" if name == "ports" else name)
         ax.add_patch(
             FancyBboxPatch(
@@ -99,20 +128,19 @@ def import_figure(edges: Sequence[tuple[str, str]], out: Path) -> None:
             name,
             ha="center",
             va="center",
-            fontsize=18,
+            fontsize=20,
             color="black" if shell else "white",
         )
     for importer, imported in edges:
-        (x0, y0), (x1, y1) = _LAYOUT[importer], _LAYOUT[imported]
-        sign = 1 if x1 > x0 else -1
+        (x0, y0), (x1, y1) = layout[importer], layout[imported]
         ax.annotate(
             "",
-            (x1 - sign * (_BOX_W / 2 + 0.1), y1),
-            (x0 + sign * (_BOX_W / 2 + 0.1), y0),
+            (x1 - (_BOX_W / 2 + 0.1), y1),
+            (x0 + (_BOX_W / 2 + 0.1), y0),
             arrowprops={"arrowstyle": "-|>", "color": "black", "linewidth": 2.0},
         )
-    ax.set_xlim(-1.8, 13.8)
-    ax.set_ylim(-0.55, 2.55)
+    ax.set_xlim(x_lo, x_hi)
+    ax.set_ylim(y_lo, y_hi)
     ax.axis("off")
     fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
     style.save(fig, out)
@@ -143,7 +171,7 @@ def decision_rows(sources: Sequence[tuple[str, str]]) -> tuple[DecisionRow, ...]
 def decision_chart(rows: Sequence[DecisionRow], out: Path) -> None:
     """Draw one horizontal stacked bar per module, ifs then matches, the count on each segment."""
     style.apply()
-    fig, ax = plt.subplots(figsize=(6.0, 3.6), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=(4.6, 3.1), dpi=style.DPI)
     names = [row.module for row in rows]
     series = (
         ("ifs", [row.ifs for row in rows], palette.colour_of("pricing")),
@@ -166,8 +194,9 @@ def decision_chart(rows: Sequence[DecisionRow], out: Path) -> None:
     ax.tick_params(axis="y", labelsize=16, length=0)
     ax.spines["left"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
-    ax.legend(loc="upper right", fontsize=14, frameon=False)
-    fig.tight_layout()
+    handles, labels = ax.get_legend_handles_labels()
+    fig.legend(handles, labels, loc="lower center", ncol=2, fontsize=14, frameon=False)
+    fig.tight_layout(rect=(0, 0.1, 1, 1))
     style.save(fig, out)
 
 
