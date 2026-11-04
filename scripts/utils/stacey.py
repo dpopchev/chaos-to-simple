@@ -22,8 +22,9 @@ ZONE_COLOURS = ("accounting", "logistics", "marketing", "payment")
 LIMIT = 1.1
 FIGURE = (8.0, 8.1)
 ZONE_NAME_SIZE = 15
-COLLABORATION_WIDTH = 0.26
-SIMPLE_EDGE = 0.25
+QUADRANT_HALF = 45.0
+# The share of the half quadrant the band reaches at each zone's outer edge, innermost first.
+COLLABORATION_SHARES = (0.0, 0.25, 0.55, 0.85)
 COLLABORATION_ALPHA = (0.30, 0.20, 0.10, 0.04)
 
 
@@ -129,38 +130,46 @@ def band_anchor(zone: Zone, spots: Sequence[Spot]) -> tuple[float, float]:
     return radius * math.cos(math.radians(best)), radius * math.sin(math.radians(best))
 
 
-def collaboration_half_width(r: float, inner: float = SIMPLE_EDGE) -> float:
-    """Return the half width of the band at radius r: 0 up to inner, the full width at r = 1."""
-    if r <= inner:
+def collaboration_half_angle(r: float, zones: Sequence[Zone]) -> float:
+    """Return the band's half angle in degrees at radius r.
+
+    0 up to the Simple edge, linear between consecutive zone edges, constant past the last.
+    """
+    edges = [z.r_max for z in zones]
+    angles = [share * QUADRANT_HALF for share in COLLABORATION_SHARES]
+    if r <= edges[0]:
         return 0.0
-    return COLLABORATION_WIDTH * (min(r, 1.0) - inner) / (1.0 - inner)
+    for (r0, a0), (r1, a1) in pairwise(zip(edges, angles, strict=True)):
+        if r <= r1:
+            return a0 + (a1 - a0) * (r - r0) / (r1 - r0)
+    return angles[-1]
 
 
-def collaboration_polygon(
-    r_min: float, r_max: float, inner: float = SIMPLE_EDGE
-) -> list[tuple[float, float]]:
-    """Return the corners of the band around y = x between two radii, in data units."""
-    root = math.sqrt(2)
-    near = collaboration_half_width(r_min, inner)
-    far = collaboration_half_width(r_max, inner)
-    ends = ((r_min, near), (r_max, far))
-    left = [((r - w) / root, (r + w) / root) for r, w in ends]
-    right = [((r + w) / root, (r - w) / root) for r, w in reversed(ends)]
-    return [*left, *right]
+def collaboration_sector(zone: Zone, zones: Sequence[Zone]) -> list[tuple[float, float]]:
+    """Return the corners of the zone's band: its outer arc, then its inner arc back.
+
+    Each arc spans 45 degrees either side of the diagonal by the half angle at its radius,
+    sampled every 2 degrees; nothing is drawn past the Chaos arc (r = 1).
+    """
+
+    def arc(radius: float, reverse: bool) -> list[tuple[float, float]]:
+        half = collaboration_half_angle(radius, zones)
+        steps = max(1, math.ceil(2 * half / 2.0))
+        degs = [45 - half + 2 * half * i / steps for i in range(steps + 1)]
+        if reverse:
+            degs.reverse()
+        rads = [math.radians(d) for d in degs]
+        return [(radius * math.cos(a), radius * math.sin(a)) for a in rads]
+
+    return [*arc(min(zone.r_max, 1.0), False), *arc(zone.r_min, True)]
 
 
-def collaboration_zones(zones: Sequence[Zone], top: float, inner: float) -> tuple[Zone, ...]:
-    """Return the bands whose far edge carries a collaboration band wider than 0."""
-    return tuple(z for z in zones if collaboration_half_width(min(z.r_max, top), inner) > 0)
-
-
-def collaboration_polygons(
-    zones: Sequence[Zone], top: float, inner: float
-) -> tuple[list[tuple[float, float]], ...]:
-    """Return one band polygon per zone with a far width above 0; Simple yields none."""
+def collaboration_sectors(zones: Sequence[Zone]) -> tuple[list[tuple[float, float]], ...]:
+    """Return one sector per zone whose outer half angle is above 0; Simple yields none."""
     return tuple(
-        collaboration_polygon(z.r_min, min(z.r_max, top), inner)
-        for z in collaboration_zones(zones, top, inner)
+        collaboration_sector(z, zones)
+        for z in zones
+        if collaboration_half_angle(min(z.r_max, 1.0), zones) > 0
     )
 
 
@@ -204,12 +213,9 @@ def draw(
             )
         )
     # Zones run innermost first; Chaos is last and gets the strongest shade.
-    top = LIMIT * math.sqrt(2)
     alpha_of = dict(zip((z.key for z in zones), reversed(COLLABORATION_ALPHA), strict=True))
-    banded = collaboration_zones(zones, top, zones[0].r_max)
-    for zone, corners in zip(
-        banded, collaboration_polygons(zones, top, zones[0].r_max), strict=True
-    ):
+    banded = [z for z in zones if collaboration_half_angle(min(z.r_max, 1.0), zones) > 0]
+    for zone, corners in zip(banded, collaboration_sectors(zones), strict=True):
         ax.add_patch(
             Polygon(
                 corners,
