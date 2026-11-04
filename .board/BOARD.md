@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 1 | done: 615 | pruned: 8
+open path: E-017 > W-184 > T-426   | blocked: 0 | todo roots: 1 | done: 615 | pruned: 8
 
 ## Tree
 
@@ -20,10 +20,11 @@ E-017         [doing]    The second 2026-11-03 review: page 41's snippet look ev
   W-180  issue  [done]     05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath -- T-417 [done], T-418 [pruned]   [pruned: T-417's near-square figure fills page 41's left column at height=60% down to the caption, level with the diff; 65 to 75% fail the 3pt slack gate, so height=75% is neither needed nor possible]
   W-181  issue  [done]     05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured -- T-419 [done], T-420 [done], T-421 [done]
   W-182  issue  [done]     06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured -- T-422 [done], T-423 [done], T-424 [done]
-  W-184  bug    [todo]     02 page 22: the Marketing badge overlaps the question line after the docstrings   (filed during T-397) -- T-426 [todo]
+  W-184  bug    [doing]    02 page 22: the Marketing badge overlaps the question line after the docstrings   (filed during T-397) -- T-426 [doing]   <- ACTIVE LEAF
   W-185  bug    [todo]     00 page 3: the requests inside the department boxes read too small at slide size   (filed during T-411) -- T-428 [todo]
   W-186  bug    [todo]     05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size   (filed during T-421) -- T-429 [todo]
   W-187  bug    [todo]     05 page 43: the import table is tiny in an empty frame and counts money as a context   (filed during T-421) -- T-430 [todo], T-431 [todo]
+  W-188  bug    [todo]     06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny   (filed during T-424) -- T-432 [todo], T-433 [todo]
 W-183  issue  [todo]     (standalone) build/05-how/tests-9.txt is built and in the manifest but no slide shows it   (filed during T-393) -- T-425 [todo]
 ```
 
@@ -1068,8 +1069,8 @@ flowchart TD
   W182 --> T422["T-422 done: Count the ifs and matches per module -> scripts/utils/imports.py decision_rows and build/06-simple/ifs.txt"]
   W182 --> T423["T-423 done: Write the contract frame -> 06-simple/index.md before 'Moving the pure part out'"]
   W182 --> T424["T-424 done: Write the measured-ifs frame and the budget -> 06-simple/index.md after the worlds frame, data/budget.csv 06 at 8, 06-simple/README.md"]
-  E017 --> W184["W-184 bug todo: 02 page 22: the Marketing badge overlaps the question line after the docstrings"]
-  W184 --> T426["T-426 todo: Free the question line -> 02-stacey/index.md page 22 without the italic caption"]
+  E017 --> W184["W-184 bug doing: 02 page 22: the Marketing badge overlaps the question line after the docstrings"]
+  W184 --> T426["T-426 doing: Free the question line -> 02-stacey/index.md page 22 without the italic caption -- ACTIVE LEAF"]
   E017 --> W185["W-185 bug todo: 00 page 3: the requests inside the department boxes read too small at slide size"]
   W185 --> T428["T-428 todo: Fit the map to the frame -> stage.business_map figure shape and 00-frontmatter/index.md page 3 by width"]
   E017 --> W186["W-186 bug todo: 05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size"]
@@ -1077,6 +1078,9 @@ flowchart TD
   E017 --> W187["W-187 bug todo: 05 page 43: the import table is tiny in an empty frame and counts money as a context"]
   W187 --> T430["T-430 todo: Count the three contexts only -> imports.import_rows without money"]
   W187 --> T431["T-431 todo: Draw the import directions -> imports.import_figure and page 43 by width"]
+  E017 --> W188["W-188 bug todo: 06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny"]
+  W188 --> T432["T-432 todo: Chart the decisions per module -> imports.decision_chart and build/06-simple/ifs.png"]
+  W188 --> T433["T-433 todo: Retitle and redraw page 50 -> 06-simple/index.md with the chart and the import figure"]
   W183["W-183 issue todo, standalone: build/05-how/tests-9.txt is built and in the manifest but no slide shows it"]
   W183 --> T425["T-425 todo: Remove the unused tests-9 rule -> 05-how/section.mk and data/artifacts.csv without tests-9"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1084,8 +1088,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
+  class E017,W184,T426 doing
   class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,W181,T419,T420,T421,W182,T422,T423,T424 done
-  class W184,T426,W185,T428,W186,T429,W187,T430,T431,W183,T425 todo
+  class W185,T428,W186,T429,W187,T430,T431,W188,T432,T433,W183,T425 todo
   class T403,T418 pruned
 ```
