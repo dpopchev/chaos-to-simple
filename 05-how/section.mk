@@ -62,10 +62,13 @@ $(BUILD)/05-how/ports-code.txt: 05-how/section.mk scripts/paths.py scripts/utils
 ARTIFACTS += $(BUILD)/05-how/pyright.txt
 
 $(BUILD)/05-how/pyright.txt: 05-how/section.mk 05-how/s05_how/fakes.py 05-how/s05_how/ports.py \
-    05-how/tests/test_ports.py
+    05-how/tests/test_ports.py 05-how/s05_how/warehouse_adapter.py \
+    05-how/tests/test_warehouse_adapter.py
 	@mkdir -p $(@D)
 	@tmp=$$(mktemp); \
-	if ! $(RUN) pyright 05-how/s05_how/fakes.py 05-how/tests/test_ports.py > $$tmp 2>&1; then \
+	if ! $(RUN) pyright 05-how/s05_how/fakes.py 05-how/tests/test_ports.py \
+	    05-how/s05_how/warehouse_adapter.py 05-how/tests/test_warehouse_adapter.py \
+	    > $$tmp 2>&1; then \
 	  cat $$tmp; rm -f $$tmp; echo "pyright: the fakes are not accepted" >&2; exit 1; \
 	fi; \
 	grep -E '^[0-9]+ errors?, ' $$tmp | sed -E 's/ +$$//' > $@; \
