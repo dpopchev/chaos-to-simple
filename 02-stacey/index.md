@@ -33,7 +33,7 @@ words, each with a test.
 
 Free shipping from 50. Of what?
 
-\vspace{-9pt}
+\vspace{-6pt}
 
 
 :::: {.columns}
@@ -73,11 +73,8 @@ Free shipping from 50. Of what?
 ::::
 
 
-\begingroup\footnotesize\textit{one function, one reading: the code picked R1 and nobody chose}\par\endgroup
-\vspace{-22pt}
-
 \noindent\rule{\linewidth}{0.4pt}
-\vspace{-17pt}
+\vspace{-20pt}
 
 \actor{dev}
 
@@ -85,6 +82,7 @@ Free shipping from 50. Of what?
 ```
 
 ::: notes
+One function, one reading: the code picked R1 and nobody chose.
 The rule is the Who diagonal of the next frame: stakeholders above it, developers below.
 Both positions are reasonable: marketing counts the subtotal, logistics counts only the
 discounted goods, and each is right for its own work. Neither is a How problem, so no test
