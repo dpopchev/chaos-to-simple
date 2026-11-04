@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-195 > T-453   | blocked: 0 | todo roots: 10 | done: 658 | pruned: 8
+open path: W-195 > T-465   | blocked: 0 | todo roots: 10 | done: 659 | pruned: 8
 
 ## Tree
 
 ```text
-W-195  bug    [doing]    (standalone) 02 matrix: one flat collaboration wedge, its label along the Who line, Chaos and stakeholders decide relabelled   (filed during T-437) -- T-453 [doing]   <- ACTIVE LEAF, T-465 [todo], T-466 [todo]
+W-195  bug    [doing]    (standalone) 02 matrix: one flat collaboration wedge, its label along the Who line, Chaos and stakeholders decide relabelled   (filed during T-437) -- T-453 [done], T-465 [doing]   <- ACTIVE LEAF, T-466 [todo]
 W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [todo]
 W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
 W-198  bug    [todo]     (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small   (filed during T-441) -- T-456 [todo]
@@ -1162,8 +1162,8 @@ closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md 
 ```mermaid
 flowchart TD
   W195["W-195 bug doing, standalone: 02 matrix: one flat collaboration wedge, its label along the Who line, Chaos and stakeholders decide relabelled"]
-  W195 --> T453["T-453 doing: Place the label along the Who line past the Chaos arc -> stacey.collaboration_label -- ACTIVE LEAF"]
-  W195 --> T465["T-465 todo: Draw one flat wedge from the origin -> stacey.collaboration_wedge"]
+  W195 --> T453["T-453 done: Place the label along the Who line past the Chaos arc -> stacey.collaboration_label"]
+  W195 --> T465["T-465 doing: Draw one flat wedge from the origin -> stacey.collaboration_wedge -- ACTIVE LEAF"]
   W195 --> T466["T-466 todo: Relabel Chaos and stand stakeholders decide upright -> zones.csv, labels.csv, stacey.who_above_anchor"]
   W196["W-196 bug todo, standalone: 05 promise figure: the Payment provider label runs over its icon"]
   W196 --> T454["T-454 todo: Fit the step label beside its icon -> scripts/utils/promise.py"]
@@ -1190,6 +1190,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W195,T453 doing
-  class T465,T466,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
+  class W195,T465 doing
+  class T453 done
+  class T466,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
