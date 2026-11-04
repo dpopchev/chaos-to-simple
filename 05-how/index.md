@@ -52,15 +52,12 @@ The exchange is proposed story material, not a transcript. The Fulfilment owner 
 ## Rules belong together because they answer the same business question {paths=512}
 
 
-![](build/05-how/cohesion.png){height=42%}
-
-these rules belong together because we discuss and change them together, not because they contain similar Python; cohesion is the name for that
+![](build/05-how/cohesion.png){width=95%}
 
 \thread{3}
 
-\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
-
 ::: notes
+These rules belong together because we change them together, not because the Python looks alike; cohesion is the name for that.
 The coupon-then-member decision (q2) is the short illustration: two rules in one pricing calculation, answering one business question.
 The groups are candidate model boundaries the departments helped discover, not boundaries a department defines.
 :::
@@ -82,8 +79,12 @@ The groups are candidate model boundaries the departments helped discover, not b
 :::
 ::::
 
-\begingroup\footnotesize Reserved: the warehouse set the items aside for this order for 15 minutes; the shell depends on Reserved | OutOfStock, never on the JSON; reserve before charge is written in the shell, the type does not enforce it\par\endgroup
+\begingroup\footnotesize Reserved: set aside for this order for 15 minutes; the shell reads Reserved | OutOfStock, never the JSON; reserve-before-charge lives in the shell\par\endgroup
 
-we still depend on the warehouse; we no longer need its language everywhere in checkout
+::: notes
+We still depend on the warehouse; we no longer need its language everywhere in checkout.
+:::
 
 \thread{4}
+
+\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
