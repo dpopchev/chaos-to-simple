@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018   | blocked: 0 | todo roots: 10 | done: 657 | pruned: 8
+open path: E-018   | blocked: 0 | todo roots: 11 | done: 657 | pruned: 8
 
 ## Tree
 
@@ -22,6 +22,7 @@ W-202  bug    [todo]     (standalone) 06 evidence cards: the customer outcome li
 W-203  bug    [todo]     (standalone) 06 offer frame: the responsibilities picture reads small stacked above price()   (filed during T-448) -- T-461 [todo]
 W-204  bug    [todo]     (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet   (filed during T-449) -- T-462 [todo]
 W-205  bug    [todo]     (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code   (filed during T-451) -- T-463 [todo]
+W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
 ```
 
 ## Closed
@@ -1172,6 +1173,8 @@ flowchart TD
   W204 --> T462["T-462 todo: Bring the factor into the diff -> 06-simple/s06_simple/member15.py and 06-simple/section.mk"]
   W205["W-205 bug todo, standalone: 06 rehearsal frame: the two highlighted pictures read illegibly small above the code"]
   W205 --> T463["T-463 todo: Use the compact pictures on the rehearsal frame -> 06-simple/index.md"]
+  W206["W-206 bug todo, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
+  W206 --> T464["T-464 todo: Use one compact picture on the seventh frame -> 06-simple/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -1179,5 +1182,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E018 doing
   class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452,W200,T458 done
-  class W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463 todo
+  class W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
