@@ -43,6 +43,13 @@
 % Both texts come verbatim from data/lines.csv; make lines checks that they are verbatim.
 \newcommand{\theline}[2]{\vfill{\color{gray}#1}\par\textbf{#2}}
 
+% The thread: \thread{k} prints the five stages in grey, the k-th in bold (W-191).
+\newcommand{\threadstage}[3]{\ifnum#1=#2 \textbf{#3}\else #3\fi}
+\newcommand{\thread}[1]{{\footnotesize\color{gray}%
+  \threadstage{#1}{1}{business feedback} -> \threadstage{#1}{2}{decision} ->
+  \threadstage{#1}{3}{responsible home} -> \threadstage{#1}{4}{contract} ->
+  \threadstage{#1}{5}{evidence}\par}}
+
 % Actors: \actor{key} draws a box in the actor's colour with its pictogram and label. The
 % pictograms are Font Awesome 7 Free Solid through fontspec (W-053); where the font is
 % missing the glyph is empty and the labelled box stands alone.
@@ -63,12 +70,14 @@
 % believed line of the section, both from build/00-frontmatter/beats.tex.
 \input{build/00-frontmatter/beats.tex}
 \AtBeginSection{%
+  \ifcsname strip@\thesection\endcsname
   \begin{frame}{\insertsection}%
     \centering
     \includegraphics[width=0.9\textwidth]{\csname strip@\thesection\endcsname}%
     \vfill
     {\color{gray}I believed: \csname believed@\thesection\endcsname}%
   \end{frame}%
+  \fi
 }
 
 % Two code sizes, set once: highlighted code and diffs at \snippetsize, text exhibits at
