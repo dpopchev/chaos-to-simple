@@ -170,6 +170,9 @@ doctor: ## Report the deck toolchain and the fonts
 	done
 	$(call log_done,toolchain reported)
 
+# Escape the sed replacement specials: backslash, ampersand and the slash delimiter.
+sed_escape = $(subst /,\/,$(subst &,\&,$(subst \,\\,$(1))))
+
 .PHONY: new
 new: ## Scaffold a section, SECTION=NN-name TITLE="Section title"
 	@if [ -z "$(SECTION)" ]; then \
@@ -180,7 +183,8 @@ new: ## Scaffold a section, SECTION=NN-name TITLE="Section title"
 	fi
 	@mkdir -p $(SECTION)
 	@cp templates/section/README.md templates/section/index.md $(SECTION)/
-	@sed -i.bak 's/{{SECTION}}/$(SECTION)/g; s/{{TITLE}}/$(TITLE)/g' $(SECTION)/README.md $(SECTION)/index.md
+	@sed -i.bak 's/{{SECTION}}/$(call sed_escape,$(SECTION))/g; s/{{TITLE}}/$(call sed_escape,$(TITLE))/g' \
+	  $(SECTION)/README.md $(SECTION)/index.md
 	@rm -f $(SECTION)/*.bak
 	$(call log_done,$(SECTION) scaffolded; register its tests dir in pyproject when it gets code)
 
