@@ -1,8 +1,17 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 632 | pruned: 8
+open path: E-018   | blocked: 0 | todo roots: 0 | done: 632 | pruned: 8
 
 ## Tree
+
+```text
+E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
+  W-190  issue  [todo]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [todo], T-436 [todo], T-437 [todo]
+  W-191  issue  [todo]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [todo], T-439 [todo], T-440 [todo], T-441 [todo]
+  W-192  issue  [todo]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [todo], T-443 [todo], T-444 [todo], T-445 [todo]
+  W-193  issue  [todo]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [todo], T-447 [todo], T-448 [todo]
+  W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
+```
 
 ## Closed
 
@@ -1106,9 +1115,35 @@ closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md 
 ## Diagram
 ```mermaid
 flowchart TD
+  E018["E-018 doing: Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)"]
+  E018 --> W190["W-190 issue todo: 02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside"]
+  W190 --> T435["T-435 todo: Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector"]
+  W190 --> T436["T-436 todo: Move the label into the band -> stacey.collaboration_label and draw"]
+  W190 --> T437["T-437 todo: Describe the band and verify the pages -> 02-stacey/README.md and 00-frontmatter/index.md"]
+  E018 --> W191["W-191 issue todo: 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames"]
+  W191 --> T438["T-438 todo: Draw the two sequences -> scripts/utils/promise.py and build/05-how/promise.png"]
+  W191 --> T439["T-439 todo: Render the policies and the exchange -> scripts.paths policies, data/actors.csv and build/05-how/policies.txt, bubble-0.txt, bubble-1.txt"]
+  W191 --> T440["T-440 todo: Open the backup section and the thread macro -> 08-backup/index.md, 00-frontmatter/preamble.tex and data/budget.csv"]
+  W191 --> T441["T-441 todo: Write the promise and policies frames -> 05-how/index.md and 05-how/README.md"]
+  E018 --> W192["W-192 issue todo: 05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded"]
+  W192 --> T442["T-442 todo: Draw the cohesion groups -> scripts/utils/cohesion.py, data/contexts.csv and build/05-how/cohesion.png"]
+  W192 --> T443["T-443 todo: Write the warehouse adapter -> 05-how/s05_how/warehouse_adapter.py and 05-how/tests/test_warehouse_adapter.py"]
+  W192 --> T444["T-444 todo: Draw the shell between the core and the providers -> figures.seam and build/05-how/ports.png"]
+  W192 --> T445["T-445 todo: Write the cohesion and boundary frames and the 05 line -> 05-how/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md and data/budget.csv"]
+  E018 --> W193["W-193 issue todo: 06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup"]
+  W193 --> T446["T-446 todo: Draw the responsibilities picture -> scripts/utils/responsibilities.py and build/06-simple/responsibilities.png with its highlight variants"]
+  W193 --> T447["T-447 todo: Render the evidence cards -> scripts.paths cards and build/06-simple/cards.txt"]
+  W193 --> T448["T-448 todo: Write the offer and evidence frames and move the mechanisms -> 06-simple/index.md, 08-backup/index.md, scripts/utils/test_counter_plan.py, README.md and data/budget.csv"]
+  E018 --> W194["W-194 issue todo: 06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count"]
+  W194 --> T449["T-449 todo: Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff"]
+  W194 --> T450["T-450 todo: Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py"]
+  W194 --> T451["T-451 todo: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv"]
+  W194 --> T452["T-452 todo: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, README.md and data/budget.csv"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class E018 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452 todo
 ```
