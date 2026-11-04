@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-213   | blocked: 0 | todo roots: 0 | done: 695 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 696 | pruned: 9
 
 ## Tree
-
-```text
-W-213  bug    [doing]    (standalone) the include checks read snippet, cap, start-line and end-line only in that order   (filed during T-472) -- T-474 [done]
-```
 
 ## Closed
 
@@ -1253,16 +1249,18 @@ closed 2026-11-04 -- outcome: Given 06-simple/index.md's other_gateway.py includ
 
 - T-472 [done] Honour start-line/end-line in the include checks -> scripts/utils/widths.py, scripts/utils/lengths.py
 
+### W-213 bug [done] (standalone) the include checks read snippet, cap, start-line and end-line only in that order
+
+closed 2026-11-04 -- outcome: Given an include written with start-line, end-line and cap in any order, When make lengths and make widths, Then each attribute applies as written. -- ledger: ledgers/W-213.md
+
+- T-474 [done] Parse include attributes in any order -> scripts/utils/widths.py
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W213["W-213 bug doing, standalone: the include checks read snippet, cap, start-line and end-line only in that order"]
-  W213 --> T474["T-474 done: Parse include attributes in any order -> scripts/utils/widths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W213 doing
-  class T474 done
 ```
