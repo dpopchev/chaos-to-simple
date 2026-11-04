@@ -52,7 +52,9 @@ The exchange is proposed story material, not a transcript. The Fulfilment owner 
 ## Rules belong together because they answer the same business question {paths=512}
 
 
-![](build/05-how/cohesion.png){width=95%}
+![](build/05-how/cohesion.png){width=88%}
+
+\begingroup\footnotesize Rules that change together stay together; cohesion is the name for that\par\endgroup
 
 \thread{3}
 
@@ -74,7 +76,7 @@ The groups are candidate model boundaries the departments helped discover, not b
 :::
 ::: {.column width="45%"}
 
-![](build/05-how/ports.png){height=45%}
+![](build/05-how/ports.png){width=100%}
 
 :::
 ::::
