@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-196   | blocked: 0 | todo roots: 9 | done: 663 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 9 | done: 664 | pruned: 8
 
 ## Tree
 
 ```text
-W-196  bug    [doing]    (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [done]
 W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
 W-198  bug    [todo]     (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small   (filed during T-441) -- T-456 [todo]
 W-199  bug    [todo]     (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [todo]
@@ -1165,11 +1164,15 @@ closed 2026-11-04 -- outcome: Given the deck, When make build/02-stacey/stacey-0
 - T-465 [done] Draw one flat wedge from the origin -> stacey.collaboration_wedge
 - T-466 [done] Relabel Chaos and stand stakeholders decide upright -> zones.csv, labels.csv, stacey.who_above_anchor
 
+### W-196 bug [done] (standalone) 05 promise figure: the Payment provider label runs over its icon
+
+closed 2026-11-04 -- outcome: Given the deck, When make build/05-how/promise.png, Then every step box shows its icon and its full actor label with no overlap. -- ledger: ledgers/W-196.md
+
+- T-454 [done] Fit the step label beside its icon -> scripts/utils/promise.py
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W196["W-196 bug doing, standalone: 05 promise figure: the Payment provider label runs over its icon"]
-  W196 --> T454["T-454 done: Fit the step label beside its icon -> scripts/utils/promise.py"]
   W197["W-197 bug todo, standalone: make new turns an ampersand in TITLE into the placeholder text"]
   W197 --> T455["T-455 todo: Escape the title for sed -> mk/deck.mk new recipe"]
   W198["W-198 bug todo, standalone: 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small"]
@@ -1193,7 +1196,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W196 doing
-  class T454 done
   class W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
