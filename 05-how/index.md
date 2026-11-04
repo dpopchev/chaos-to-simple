@@ -1,12 +1,12 @@
 # 05 Seam: who decides, what is promised, what belongs together
 
-## The price was correct, but the promise to the customer was not kept {paths=512}
+## The price was right, but the customer promise was broken {paths=512}
 
 
 ```{.text include=05-how/data/incident.txt}
 ```
 
-![](build/05-how/promise.png){height=38%}
+![](build/05-how/promise.png){height=45%}
 
 the red test, as evidence: reserve before charge (q5)
 
