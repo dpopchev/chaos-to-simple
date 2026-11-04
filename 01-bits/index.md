@@ -311,7 +311,7 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
 :::
 
-## Finance traced 6,070 EUR of missing shipping to orders the coupon took under 50 EUR {paths=64}
+## Finance counted 1,214 parcels under 50 EUR shipped free, 6,070 EUR short of the carrier's bill {paths=64}
 
 
 ```{.text include=01-bits/data/incident.txt cap=8}
@@ -344,7 +344,7 @@ or more before it. Last the bold line, the condition: the threshold read the car
 coupon, so a rule decided it, not the customers.
 :::
 
-## Finance's R2 test expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
+## The breakdown's order expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
 
 from the breakdown: 1,214 free parcels, each with the coupon, the cart at 50 EUR or more before it, the goods under 50 after it; one of them: 55 EUR of books, the coupon, domestic
 
