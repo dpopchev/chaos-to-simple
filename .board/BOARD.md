@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-193 > T-448   | blocked: 0 | todo roots: 7 | done: 650 | pruned: 8
+open path: E-018 > W-193   | blocked: 0 | todo roots: 7 | done: 651 | pruned: 8
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retol
   W-190  issue  [done]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [done], T-436 [done], T-437 [done]
   W-191  issue  [done]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
   W-192  issue  [done]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
-  W-193  issue  [doing]    06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [done], T-447 [done], T-448 [doing]   <- ACTIVE LEAF
+  W-193  issue  [doing]    06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [done], T-447 [done], T-448 [done]
   W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
   W-200  bug    [done]     05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445) -- T-458 [done]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
@@ -1141,7 +1141,7 @@ flowchart TD
   E018 --> W193["W-193 issue doing: 06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup"]
   W193 --> T446["T-446 done: Draw the responsibilities picture -> scripts/utils/responsibilities.py and build/06-simple/responsibilities.png with its highlight variants"]
   W193 --> T447["T-447 done: Render the evidence cards -> scripts.paths cards and build/06-simple/cards.txt"]
-  W193 --> T448["T-448 doing: Write the offer and evidence frames and move the mechanisms -> 06-simple/index.md, 08-backup/index.md, scripts/utils/test_counter_plan.py, README.md and data/budget.csv -- ACTIVE LEAF"]
+  W193 --> T448["T-448 done: Write the offer and evidence frames and move the mechanisms -> 06-simple/index.md, 08-backup/index.md, scripts/utils/test_counter_plan.py, README.md and data/budget.csv"]
   E018 --> W194["W-194 issue todo: 06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count"]
   W194 --> T449["T-449 todo: Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff"]
   W194 --> T450["T-450 todo: Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py"]
@@ -1168,7 +1168,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018,W193,T448 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,T446,T447,W200,T458 done
+  class E018,W193 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,T446,T447,T448,W200,T458 done
   class W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460 todo
 ```
