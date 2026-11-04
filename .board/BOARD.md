@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 4 | done: 680 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 5 | done: 680 | pruned: 8
 
 ## Tree
 
@@ -9,6 +9,7 @@ W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping hig
 W-207  bug    [todo]     (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [todo]
 W-208  bug    [todo]     (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [todo]
 W-209  bug    [todo]     (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [todo]
+W-210  bug    [todo]     (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [todo]
 ```
 
 ## Closed
@@ -1224,10 +1225,12 @@ flowchart TD
   W208 --> T468["T-468 todo: Draw the seam labels at slide size -> scripts/utils/figures.py seam"]
   W209["W-209 bug todo, standalone: data/README.md lists stale incidents.csv columns"]
   W209 --> T469["T-469 todo: List the current incidents.csv columns -> data/README.md"]
+  W210["W-210 bug todo, standalone: 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows"]
+  W210 --> T470["T-470 todo: Split the rehearsal frame into one frame per rehearsal -> 06-simple/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W206,T464,W207,T467,W208,T468,W209,T469 todo
+  class W206,T464,W207,T467,W208,T468,W209,T469,W210,T470 todo
 ```
