@@ -1,34 +1,27 @@
 # 05-how: complicated on the How
 
-Beat: the code's own decisions, and where multiplication hides. Coupling is a flag across
-a boundary (x), cohesion keeps bits that change together in one place (+), mutable state
-adds bits nobody wrote down, and Command Query Separation draws the seam between the
-pure core and the effectful shell.
+Beat: the broken promise, who decides, then the code's own decisions, and where multiplication
+hides. Coupling is a flag across a boundary (x), cohesion keeps bits that change together in one
+place (+), mutable state adds bits nobody wrote down, and Command Query Separation draws the seam
+between the pure core and the effectful shell.
 
 | | |
 |---|---|
 | Minutes | 6 |
 | Footer counter | stays at `512`; the seam is drawn, nothing is on either side yet |
-| Owns | `s05_how/oo_checkout.py` (the counter-example), `ports.py` (result sum types and Protocols), `fakes.py` (test doubles, one bit each), `tests/` |
+| Owns | `data/promise.csv`, `data/bubbles.csv`, the promise and policies artifacts (`build/05-how/promise.png`, `policies.txt`, `bubble-0.txt`, `bubble-1.txt`), `s05_how/oo_checkout.py` (the counter-example), `ports.py` (result sum types and Protocols), `fakes.py` (test doubles, one bit each), `tests/` |
 | Uses | `s04_what` (Money, Coupon, the constants). Upstream only: 04 never imports this. |
 | Produces | `build/05-how/imports.txt` and `pyright.txt` |
 | Downstream | 06 imports `ports` and `fakes` |
 
 ## Slides
 
-- [x] I3: the incident, then the test against `checkout_v4` (`snippet=i3`) over its captured run
-  (`build/05-how/i3-run.txt`), captioned 'support raised the flag, the test points at the shell:
-  reserve before charge (q5)'
-- [x] The bit nobody wrote down: `snippet=order-bit`, the order test before the class
-- [x] Past me reached for a class: `snippet=oo`, captioned 'same bug, pricing edition: the order
-  hidden in state'
-- [x] Command Query Separation draws the seam: two definitions, `snippet=types`, the refrain
-- [x] A sum type per answer and a Protocol per port: `snippet=results` beside `snippet=fakes`
-  over the pyright line that accepts the fakes (`build/05-how/pyright.txt`)
-- [x] The ports, as a picture
-- [x] Dependencies point inward: the import counts of `build/05-how/imports.txt`, measured from
-  the files
-- [x] A boundary that passes values adds paths: the moves table, with the line glued at its foot
+- [x] The promise: `data/incident.txt`, `build/05-how/promise.png`, the I3 run line as evidence
+  ('the red test, as evidence: reserve before charge (q5)'), thread 1
+- [x] The policies: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
+  question on releasing a reservation after a declined payment, thread 2
+- [ ] The seam: each effect answers with a value, reserve first (`build/05-how/ports.png`, v5 diff)
+- [ ] The contract: a Protocol per port and the fakes over the pyright line that accepts them
 
 ## Live
 

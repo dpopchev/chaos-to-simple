@@ -1,4 +1,55 @@
-# 05 Seam: decoupling, cohesion, FP vs OO, CQS
+# 05 Seam: who decides, what is promised, what belongs together
+
+## The price was correct, but the promise to the customer was not kept {paths=512}
+
+
+```{.text include=05-how/data/incident.txt}
+```
+
+![](build/05-how/promise.png){height=38%}
+
+the red test, as evidence: reserve before charge (q5)
+
+```{.text include=build/05-how/i3-run.txt}
+```
+
+\thread{1}
+
+::: notes
+We now agree how to calculate the order. But a correct total is not the same as an order we can fulfil.
+I had treated these as three technical calls. The business saw one promise: an accepted order must mean something.
+:::
+
+## Providers report facts, and the shop decides what they mean {paths=512}
+
+
+```{.text .speakers include=build/05-how/policies.txt}
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{.text include=build/05-how/bubble-0.txt}
+```
+
+:::
+::: {.column width="50%"}
+
+```{.text include=build/05-how/bubble-1.txt}
+```
+
+:::
+::::
+
+bounced is a provider outcome; keeping an accepted order is the shop's policy; open: release the reservation after a declined payment, not in the shell yet
+
+\thread{2}
+
+::: notes
+The exchange is proposed story material, not a transcript. The Fulfilment owner consulted Logistics, Finance and Support before writing the three policies down.
+:::
+
+\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
 
 ## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
 
@@ -25,24 +76,3 @@ above the first match every line is a value; below it three answers, reserve fir
 The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
 The diff is only the seam, so the picture and the code say the same thing.
 :::
-
-## I3 charged cards for missing stock because charge ran before reserve {paths=512}
-
-
-```{.text include=05-how/data/incident.txt}
-```
-
-```{.python include=05-how/tests/test_i3.py snippet=i3}
-```
-
-```{.text include=build/05-how/i3-run.txt}
-```
-
-support raised the flag, the test points at the shell: reserve before charge (q5)
-
-::: notes
-I3 comes first, before any design word. Support raised the flag: cards charged for parcels the warehouse did not have.
-The test writes the rule down against checkout v4, and the run under it shows the order the code happened to take: charge, then reserve.
-:::
-
-\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
