@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-201   | blocked: 0 | todo roots: 6 | done: 671 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 6 | done: 672 | pruned: 8
 
 ## Tree
 
 ```text
-W-201  bug    [doing]    (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small   (filed during T-458) -- T-459 [done]
 W-202  bug    [todo]     (standalone) 06 evidence cards: the customer outcome line repeats the incident's decision, not what the customer sees   (filed during T-447) -- T-460 [todo]
 W-203  bug    [todo]     (standalone) 06 offer frame: the responsibilities picture reads small stacked above price()   (filed during T-448) -- T-461 [todo]
 W-204  bug    [todo]     (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet   (filed during T-449) -- T-462 [todo]
@@ -1186,11 +1185,15 @@ closed 2026-11-04 -- outcome: Given 05-how/data/roles.csv, When make build/05-ho
 
 - T-457 [done] Add the two role icons -> scripts/utils/icons.py ICONS
 
+### W-201 bug [done] (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small
+
+closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 39 shows a one-line takeaway with the word cohesion under the figure and page 40's seam picture labels are legible at 110 dpi, make overflow green. -- ledger: ledgers/W-201.md
+
+- T-459 [done] Restore the cohesion takeaway and enlarge the seam picture -> 05-how/index.md frames 3 and 4
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W201["W-201 bug doing, standalone: 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small"]
-  W201 --> T459["T-459 done: Restore the cohesion takeaway and enlarge the seam picture -> 05-how/index.md frames 3 and 4"]
   W202["W-202 bug todo, standalone: 06 evidence cards: the customer outcome line repeats the incident's decision, not what the customer sees"]
   W202 --> T460["T-460 todo: Add the customer outcome per incident -> data/incidents.csv and scripts/utils/cards.py"]
   W203["W-203 bug todo, standalone: 06 offer frame: the responsibilities picture reads small stacked above price()"]
@@ -1208,7 +1211,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W201 doing
-  class T459 done
   class W202,T460,W203,T461,W204,T462,W205,T463,W206,T464,W207,T467 todo
 ```
