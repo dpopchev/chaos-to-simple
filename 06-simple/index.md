@@ -39,44 +39,33 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 512 became 72: 64 core paths plus 8 shell worlds, nothing deleted, every decision moved to the place that owns it.
 :::
 
-## The next conversation tells us whether the boundaries are useful {paths=72}
+## A new discount needs only pricing to agree {paths=72}
 
-\footnotesize who needs to agree, what changes, which contract stays stable?
-
-:::: {.columns}
-::: {.column width="44%"}
-
-\footnotesize Marketing changes the member discount
-
-![](build/06-simple/responsibilities-offer-pricing.png){width=58%}
+![](build/06-simple/responsibilities-offer-pricing.png){width=70%}
 
 ```{.diff include=build/06-simple/member15.diff cap=10}
 ```
 
 \footnotesize shipping eligibility may move; shipping applies its own rule to the new value, unchanged
 
+::: notes
+Marketing changes the member discount: pricing and marketing agree; shipping applies its own rule to the new value; the factor changes, the signature and the contract stay.
 :::
-::: {.column width="52%"}
 
-\footnotesize Operations changes the payment provider
+## A new payment provider leaves the core alone {paths=72}
 
-![](build/06-simple/responsibilities-offer-payment.png){width=58%}
+![](build/06-simple/responsibilities-offer-payment.png){width=70%}
 
-```{.python include=06-simple/s06_simple/other_gateway.py snippet=gateway cap=14}
+```{.python include=06-simple/s06_simple/other_gateway.py cap=23 start-line=24 end-line=28}
 ```
 
-```{.text include=build/06-simple/pyright.txt}
-```
+\vspace{-0.4em}
 
-:::
-::::
-
-\footnotesize we reduced unnecessary coordination, not business relationships
+\scriptsize we reduced unnecessary coordination, not business relationships
 
 \thread{4}
 
 ::: notes
-Marketing changes the member discount: pricing and marketing agree; shipping applies its own rule to the new value; the factor changes, the signature and the contract stay.
 Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
 :::
 
