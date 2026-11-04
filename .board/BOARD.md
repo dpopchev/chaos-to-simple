@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-198   | blocked: 0 | todo roots: 7 | done: 667 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 7 | done: 668 | pruned: 8
 
 ## Tree
 
 ```text
-W-198  bug    [doing]    (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small   (filed during T-441) -- T-456 [done]
 W-199  bug    [todo]     (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [todo]
 W-201  bug    [todo]     (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small   (filed during T-458) -- T-459 [todo]
 W-202  bug    [todo]     (standalone) 06 evidence cards: the customer outcome line repeats the incident's decision, not what the customer sees   (filed during T-447) -- T-460 [todo]
@@ -1175,11 +1174,15 @@ closed 2026-11-04 -- outcome: Given a scratch copy of the repository, When make 
 
 - T-455 [done] Escape the title for sed -> mk/deck.mk new recipe
 
+### W-198 bug [done] (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small
+
+closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 37's title fits one line and the promise figure stands at 45 percent height or more with make overflow green. -- ledger: ledgers/W-198.md
+
+- T-456 [done] Shorten the title and enlarge the figure -> 05-how/index.md frame 1
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W198["W-198 bug doing, standalone: 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small"]
-  W198 --> T456["T-456 done: Shorten the title and enlarge the figure -> 05-how/index.md frame 1"]
   W199["W-199 bug todo, standalone: The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead"]
   W199 --> T457["T-457 todo: Add the two role icons -> scripts/utils/icons.py ICONS"]
   W201["W-201 bug todo, standalone: 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small"]
@@ -1199,7 +1202,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W198 doing
-  class T456 done
   class W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
