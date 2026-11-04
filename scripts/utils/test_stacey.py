@@ -120,6 +120,18 @@ def test_collaboration_sector_stays_inside_the_chaos_arc() -> None:
 
 
 @pytest.mark.model
+def test_collaboration_label_sits_inside_the_chaos_band() -> None:
+    x, y, _ = stacey.collaboration_label(ZONES)
+    radius = math.hypot(x, y)
+    half = stacey.collaboration_half_angle(radius, ZONES)
+    inside = (
+        ZONES[-1].r_min < radius < 1.0,
+        abs(math.degrees(math.atan2(y, x)) - 45) <= half,
+    )
+    assert inside == (True, True)
+
+
+@pytest.mark.model
 def test_zones_items_lists_four_bands() -> None:
     assert stacey.zones_items(ZONES).count(r"\textbf") == 4
 
