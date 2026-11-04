@@ -1,33 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-017   | blocked: 0 | todo roots: 0 | done: 631 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 0 | done: 632 | pruned: 8
 
 ## Tree
-
-```text
-E-017         [doing]    The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how
-  W-169  issue  [done]     one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua -- T-384 [done], T-385 [done], T-386 [done]
-  W-170  issue  [done]     measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff -- T-387 [done], T-388 [done], T-389 [done], T-390 [done]
-  W-171  issue  [done]     every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone -- T-391 [done], T-392 [done], T-393 [done], T-394 [done]
-  W-172  issue  [done]     exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert -- T-395 [done], T-396 [done], T-397 [done]
-  W-173  issue  [done]     01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition -- T-398 [done], T-399 [done], T-400 [done], T-401 [done]
-  W-174  issue  [done]     01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions -- T-402 [done], T-403 [pruned]   [pruned: its Check grep -c 'one of them' could not fail: page 19 already holds 'every one of them'; refiled with a specific Check], T-404 [done], T-427 [done]
-  W-175  issue  [done]     01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19 -- T-405 [done], T-406 [done]
-  W-176  issue  [done]     horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie -- T-407 [done], T-408 [done], T-409 [done]
-  W-177  issue  [done]     00 business map (page 3): the shop taller, each department box its icon and its requests inside -- T-410 [done], T-411 [done], T-412 [done]
-  W-178  issue  [done]     00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos -- T-413 [done], T-414 [done]
-  W-179  issue  [done]     icons at their labels' height in the actor boxes and the figure chips -- T-415 [done], T-416 [done]
-  W-180  issue  [done]     05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath -- T-417 [done], T-418 [pruned]   [pruned: T-417's near-square figure fills page 41's left column at height=60% down to the caption, level with the diff; 65 to 75% fail the 3pt slack gate, so height=75% is neither needed nor possible]
-  W-181  issue  [done]     05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured -- T-419 [done], T-420 [done], T-421 [done]
-  W-182  issue  [done]     06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured -- T-422 [done], T-423 [done], T-424 [done]
-  W-183  issue  [done]     build/05-how/tests-9.txt is built and in the manifest but no slide shows it   (filed during T-393) -- T-425 [done]
-  W-184  bug    [done]     02 page 22: the Marketing badge overlaps the question line after the docstrings   (filed during T-397) -- T-426 [done]
-  W-185  bug    [done]     00 page 3: the requests inside the department boxes read too small at slide size   (filed during T-411) -- T-428 [done]
-  W-186  bug    [done]     05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size   (filed during T-421) -- T-429 [done]
-  W-187  bug    [done]     05 page 43: the import table is tiny in an empty frame and counts money as a context   (filed during T-421) -- T-430 [done], T-431 [done]
-  W-188  bug    [done]     06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny   (filed during T-424) -- T-432 [done], T-433 [done]
-  W-189  issue  [done]     01 titles (pages 16, 17): what finance counted, the breakdown's order -- T-434 [done]
-```
 
 ## Closed
 
@@ -921,6 +896,124 @@ closed 2026-11-03 -- outcome: make talk builds a 53-page deck with one snippet s
 - T-381 [done] Shape the stage-3 board wide and short -> scripts/utils/board.py figure_size
 - T-382 [done] Show the board at full width -> 03-chaos/index.md page 29 width=100%
 
+### E-017 [done] The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how
+
+closed 2026-11-04 -- outcome: make talk builds a 57-page deck in which every code exhibit shares page 41's look and heading shape, the tests speak through docstrings, page 16 argues from finance's figures, every bar chart is horizontal, the maps, the icons and the seam figure are redrawn as reviewed, and 05 and 06 each gain two frames on decoupling and cohesion, make check green. -- ledger: ledgers/E-017.md
+
+#### W-169 issue [done] one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua
+
+- T-384 [done] Render the heading line grey -> preamble.tex headbg and diffs.lua line 1
+- T-385 [done] Route the storyboard through diffs.lua -> story.lua keeps the request box only
+- T-386 [done] Retire the row-shade macros -> preamble.tex without diffaddbg, diffdelbg, diffscope, storyhead, addbg, delbg
+
+#### W-170 issue [done] measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff
+
+- T-387 [done] Head each storyboard view with the tally shape -> storyboard.step_view and suite_view
+- T-388 [done] Lead every stage diff with its def row -> stagediff.snippet_diff scope row
+- T-389 [done] Build the two tallies -> paths.py tally-code and tally with lines
+- T-390 [done] Read a heading from a built file -> include-code-files.lua heading-file=
+
+#### W-171 issue [done] every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone
+
+- T-391 [done] Head the 01 and 02 test exhibits -> 01-bits/section.mk, 02-stacey/section.mk tests tallies and the fences
+- T-392 [done] Head the 04 exhibits -> 04-what/section.mk and index.md
+- T-393 [done] Head the 05 exhibits -> 05-how/section.mk and index.md
+- T-394 [done] Head the 06 exhibits -> 06-simple/section.mk and index.md
+
+#### W-172 issue [done] exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert
+
+- T-395 [done] Docstring the 01 and 02 exhibit tests -> test_chaos.py, test_memo_orders.py, test_readings.py
+- T-396 [done] Docstring the 04, 05 and 06 exhibit tests -> test_checkout_stages.py, test_oo_order.py, test_shell.py
+- T-397 [done] Keep the frames within their caps -> index.md cap= values and make lengths
+
+#### W-173 issue [done] 01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition
+
+- T-398 [done] Rewrite the memo as finance's figures -> 01-bits/data/incident.txt
+- T-399 [done] Draw the weeks as horizontal stacked bars with finance's legend -> finance.draw and LEGEND
+- T-400 [done] Source the breakdown and add the cart column -> finance.cues and october.csv
+- T-401 [done] Lay page 16 out -> 01-bits/index.md page 16
+
+#### W-174 issue [done] 01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions
+
+- T-402 [done] Quote the breakdown's order in the bug test -> test_planted_bug.py docstring
+- T-403 [pruned] Open page 17 on the order it takes -> 01-bits/index.md page 17   [pruned: its Check grep -c 'one of them' could not fail: page 19 already holds 'every one of them'; refiled with a specific Check]
+- T-404 [done] Name the two conditions on page 18 -> 01-bits/index.md page 18 and the TestMemoOrders docstring
+- T-427 [done] Open page 17 on the order it takes -> 01-bits/index.md page 17 led by the breakdown's order
+
+#### W-175 issue [done] 01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19
+
+- T-405 [done] Write the cyclomatic footer -> 01-bits/index.md page 6 and 01-bits/README.md
+- T-406 [done] Label each grid with its tested share -> coverage_view.panel_label and grid_growth
+
+#### W-176 issue [done] horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie
+
+- T-407 [done] Flip the stacked bar -> paths.stacked_bar with barh
+- T-408 [done] Refuse a vertical bar or a pie in the helpers -> scripts/utils/test_charts.py
+- T-409 [done] Fit pages 48 and 49 -> 06-simple/index.md image sizes
+
+#### W-177 issue [done] 00 business map (page 3): the shop taller, each department box its icon and its requests inside
+
+- T-410 [done] Put the requests inside an icon-only department box -> stage.business_map
+- T-411 [done] Raise the shop -> stage.SHOP_H, positions and the figure size
+- T-412 [done] Update the page 3 notes -> 00-frontmatter/index.md
+
+#### W-178 issue [done] 00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos
+
+- T-413 [done] Widen the band from the Simple edge -> stacey.collaboration_half_width
+- T-414 [done] Draw no polygon where the width is zero -> stacey.collaboration_polygons and draw
+
+#### W-179 issue [done] icons at their labels' height in the actor boxes and the figure chips
+
+- T-415 [done] Scale the actor glyph to the label -> preamble.tex \iconfont
+- T-416 [done] Set one icon size per label size in the figures -> icons.icon_size and its callers
+
+#### W-180 issue [done] 05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath
+
+- T-417 [done] Style the core box by its kind and square the figure -> figures.seam
+- T-418 [pruned] Move the caption under the figure -> 05-how/index.md page 41   [pruned: T-417's near-square figure fills page 41's left column at height=60% down to the caption, level with the diff; 65 to 75% fail the 3pt slack gate, so height=75% is neither needed nor possible]
+
+#### W-181 issue [done] 05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured
+
+- T-419 [done] Measure the import directions -> scripts/utils/imports.py and build/05-how/imports.txt
+- T-420 [done] Capture pyright accepting the fakes -> build/05-how/pyright.txt
+- T-421 [done] Write the two frames -> 05-how/index.md, data/budget.csv 05 at 8, 05-how/README.md
+
+#### W-182 issue [done] 06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured
+
+- T-422 [done] Count the ifs and matches per module -> scripts/utils/imports.py decision_rows and build/06-simple/ifs.txt
+- T-423 [done] Write the contract frame -> 06-simple/index.md before 'Moving the pure part out'
+- T-424 [done] Write the measured-ifs frame and the budget -> 06-simple/index.md after the worlds frame, data/budget.csv 06 at 8, 06-simple/README.md
+
+#### W-183 issue [done] build/05-how/tests-9.txt is built and in the manifest but no slide shows it   (filed during T-393)
+
+- T-425 [done] Remove the unused tests-9 rule -> 05-how/section.mk and data/artifacts.csv without tests-9
+
+#### W-184 bug [done] 02 page 22: the Marketing badge overlaps the question line after the docstrings   (filed during T-397)
+
+- T-426 [done] Free the question line -> 02-stacey/index.md page 22 without the italic caption
+
+#### W-185 bug [done] 00 page 3: the requests inside the department boxes read too small at slide size   (filed during T-411)
+
+- T-428 [done] Fit the map to the frame -> stage.business_map figure shape and 00-frontmatter/index.md page 3 by width
+
+#### W-186 bug [done] 05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size   (filed during T-421)
+
+- T-429 [done] Show two fakes at the deck's size -> fakes.py snippet and 05-how/index.md page 41 without fvset
+
+#### W-187 bug [done] 05 page 43: the import table is tiny in an empty frame and counts money as a context   (filed during T-421)
+
+- T-430 [done] Count the three contexts only -> imports.import_rows without money
+- T-431 [done] Draw the import directions -> imports.import_figure and page 43 by width
+
+#### W-188 bug [done] 06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny   (filed during T-424)
+
+- T-432 [done] Chart the decisions per module -> imports.decision_chart and build/06-simple/ifs.png
+- T-433 [done] Retitle and redraw page 50 -> 06-simple/index.md with the chart and the import figure
+
+#### W-189 issue [done] 01 titles (pages 16, 17): what finance counted, the breakdown's order
+
+- T-434 [done] Retitle pages 16 and 17 -> 01-bits/index.md with the two new frame titles
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -1013,85 +1106,9 @@ closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md 
 ## Diagram
 ```mermaid
 flowchart TD
-  E017["E-017 doing: The second 2026-11-03 review: page 41's snippet look everywhere, horizontal bars, the maps and icons at slide size, finance's own figures, the seam's how"]
-  E017 --> W169["W-169 issue done: one snippet renderer: page 41's look for every diff, a grey heading, the storyboard through diffs.lua"]
-  W169 --> T384["T-384 done: Render the heading line grey -> preamble.tex headbg and diffs.lua line 1"]
-  W169 --> T385["T-385 done: Route the storyboard through diffs.lua -> story.lua keeps the request box only"]
-  W169 --> T386["T-386 done: Retire the row-shade macros -> preamble.tex without diffaddbg, diffdelbg, diffscope, storyhead, addbg, delbg"]
-  E017 --> W170["W-170 issue done: measured headings: 'name vN: P policies, N paths, L lines' over code, 'tests vN: K tests, L lines' over tests, the def row on every diff"]
-  W170 --> T387["T-387 done: Head each storyboard view with the tally shape -> storyboard.step_view and suite_view"]
-  W170 --> T388["T-388 done: Lead every stage diff with its def row -> stagediff.snippet_diff scope row"]
-  W170 --> T389["T-389 done: Build the two tallies -> paths.py tally-code and tally with lines"]
-  W170 --> T390["T-390 done: Read a heading from a built file -> include-code-files.lua heading-file="]
-  E017 --> W171["W-171 issue done: every exhibit of 01, 02, 04, 05 and 06 under its measured heading, the tally blocks gone"]
-  W171 --> T391["T-391 done: Head the 01 and 02 test exhibits -> 01-bits/section.mk, 02-stacey/section.mk tests tallies and the fences"]
-  W171 --> T392["T-392 done: Head the 04 exhibits -> 04-what/section.mk and index.md"]
-  W171 --> T393["T-393 done: Head the 05 exhibits -> 05-how/section.mk and index.md"]
-  W171 --> T394["T-394 done: Head the 06 exhibits -> 06-simple/section.mk and index.md"]
-  E017 --> W172["W-172 issue done: exhibit tests: a docstring with the expectation and its source, no arithmetic comment beside the assert"]
-  W172 --> T395["T-395 done: Docstring the 01 and 02 exhibit tests -> test_chaos.py, test_memo_orders.py, test_readings.py"]
-  W172 --> T396["T-396 done: Docstring the 04, 05 and 06 exhibit tests -> test_checkout_stages.py, test_oo_order.py, test_shell.py"]
-  W172 --> T397["T-397 done: Keep the frames within their caps -> index.md cap= values and make lengths"]
-  E017 --> W173["W-173 issue done: 01 finance (page 16): the memo as finance's figures, a horizontal stack with finance's legend, engineering's breakdown pinpointing the condition"]
-  W173 --> T398["T-398 done: Rewrite the memo as finance's figures -> 01-bits/data/incident.txt"]
-  W173 --> T399["T-399 done: Draw the weeks as horizontal stacked bars with finance's legend -> finance.draw and LEGEND"]
-  W173 --> T400["T-400 done: Source the breakdown and add the cart column -> finance.cues and october.csv"]
-  W173 --> T401["T-401 done: Lay page 16 out -> 01-bits/index.md page 16"]
-  E017 --> W174["W-174 issue done: 01 lineage (pages 17, 18): the bug test takes its order from the breakdown, the memo frame names its two conditions"]
-  W174 --> T402["T-402 done: Quote the breakdown's order in the bug test -> test_planted_bug.py docstring"]
-  W174 --> T403["T-403 pruned: Open page 17 on the order it takes -> 01-bits/index.md page 17"]
-  W174 --> T404["T-404 done: Name the two conditions on page 18 -> 01-bits/index.md page 18 and the TestMemoOrders docstring"]
-  W174 --> T427["T-427 done: Open page 17 on the order it takes -> 01-bits/index.md page 17 led by the breakdown's order"]
-  E017 --> W175["W-175 issue done: 01 counting: the cyclomatic footer on page 6, the tested share under every grid on page 19"]
-  W175 --> T405["T-405 done: Write the cyclomatic footer -> 01-bits/index.md page 6 and 01-bits/README.md"]
-  W175 --> T406["T-406 done: Label each grid with its tested share -> coverage_view.panel_label and grid_growth"]
-  E017 --> W176["W-176 issue done: horizontal bars everywhere: the two stacked charts flipped, a test refusing a vertical bar or a pie"]
-  W176 --> T407["T-407 done: Flip the stacked bar -> paths.stacked_bar with barh"]
-  W176 --> T408["T-408 done: Refuse a vertical bar or a pie in the helpers -> scripts/utils/test_charts.py"]
-  W176 --> T409["T-409 done: Fit pages 48 and 49 -> 06-simple/index.md image sizes"]
-  E017 --> W177["W-177 issue done: 00 business map (page 3): the shop taller, each department box its icon and its requests inside"]
-  W177 --> T410["T-410 done: Put the requests inside an icon-only department box -> stage.business_map"]
-  W177 --> T411["T-411 done: Raise the shop -> stage.SHOP_H, positions and the figure size"]
-  W177 --> T412["T-412 done: Update the page 3 notes -> 00-frontmatter/index.md"]
-  E017 --> W178["W-178 issue done: 00 matrix (page 4): the collaboration band none in Simple, widening through Complicated and Complex to its widest in Chaos"]
-  W178 --> T413["T-413 done: Widen the band from the Simple edge -> stacey.collaboration_half_width"]
-  W178 --> T414["T-414 done: Draw no polygon where the width is zero -> stacey.collaboration_polygons and draw"]
-  E017 --> W179["W-179 issue done: icons at their labels' height in the actor boxes and the figure chips"]
-  W179 --> T415["T-415 done: Scale the actor glyph to the label -> preamble.tex \iconfont"]
-  W179 --> T416["T-416 done: Set one icon size per label size in the figures -> icons.icon_size and its callers"]
-  E017 --> W180["W-180 issue done: 05 seam figure (page 41): the core box in the core kind, the figure near-square, the caption beneath"]
-  W180 --> T417["T-417 done: Style the core box by its kind and square the figure -> figures.seam"]
-  W180 --> T418["T-418 pruned: Move the caption under the figure -> 05-how/index.md page 41"]
-  E017 --> W181["W-181 issue done: 05 seam, two frames: the fakes satisfy the ports under pyright, the import directions measured"]
-  W181 --> T419["T-419 done: Measure the import directions -> scripts/utils/imports.py and build/05-how/imports.txt"]
-  W181 --> T420["T-420 done: Capture pyright accepting the fakes -> build/05-how/pyright.txt"]
-  W181 --> T421["T-421 done: Write the two frames -> 05-how/index.md, data/budget.csv 05 at 8, 05-how/README.md"]
-  E017 --> W182["W-182 issue done: 06 core and shell, two frames: Request and Priced as the seam's data contract, the ifs and matches per module measured"]
-  W182 --> T422["T-422 done: Count the ifs and matches per module -> scripts/utils/imports.py decision_rows and build/06-simple/ifs.txt"]
-  W182 --> T423["T-423 done: Write the contract frame -> 06-simple/index.md before 'Moving the pure part out'"]
-  W182 --> T424["T-424 done: Write the measured-ifs frame and the budget -> 06-simple/index.md after the worlds frame, data/budget.csv 06 at 8, 06-simple/README.md"]
-  E017 --> W183["W-183 issue done: build/05-how/tests-9.txt is built and in the manifest but no slide shows it"]
-  W183 --> T425["T-425 done: Remove the unused tests-9 rule -> 05-how/section.mk and data/artifacts.csv without tests-9"]
-  E017 --> W184["W-184 bug done: 02 page 22: the Marketing badge overlaps the question line after the docstrings"]
-  W184 --> T426["T-426 done: Free the question line -> 02-stacey/index.md page 22 without the italic caption"]
-  E017 --> W185["W-185 bug done: 00 page 3: the requests inside the department boxes read too small at slide size"]
-  W185 --> T428["T-428 done: Fit the map to the frame -> stage.business_map figure shape and 00-frontmatter/index.md page 3 by width"]
-  E017 --> W186["W-186 bug done: 05 page 41: a per-slide fvset shrinks the fakes below the deck's snippet size"]
-  W186 --> T429["T-429 done: Show two fakes at the deck's size -> fakes.py snippet and 05-how/index.md page 41 without fvset"]
-  E017 --> W187["W-187 bug done: 05 page 43: the import table is tiny in an empty frame and counts money as a context"]
-  W187 --> T430["T-430 done: Count the three contexts only -> imports.import_rows without money"]
-  W187 --> T431["T-431 done: Draw the import directions -> imports.import_figure and page 43 by width"]
-  E017 --> W188["W-188 bug done: 06 page 50: the title counts six ifs where the files hold five and a match, the tables tiny"]
-  W188 --> T432["T-432 done: Chart the decisions per module -> imports.decision_chart and build/06-simple/ifs.png"]
-  W188 --> T433["T-433 done: Retitle and redraw page 50 -> 06-simple/index.md with the chart and the import figure"]
-  E017 --> W189["W-189 issue done: 01 titles (pages 16, 17): what finance counted, the breakdown's order"]
-  W189 --> T434["T-434 done: Retitle pages 16 and 17 -> 01-bits/index.md with the two new frame titles"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E017 doing
-  class W169,T384,T385,T386,W170,T387,T388,T389,T390,W171,T391,T392,T393,T394,W172,T395,T396,T397,W173,T398,T399,T400,T401,W174,T402,T404,T427,W175,T405,T406,W176,T407,T408,T409,W177,T410,T411,T412,W178,T413,T414,W179,T415,T416,W180,T417,W181,T419,T420,T421,W182,T422,T423,T424,W183,T425,W184,T426,W185,T428,W186,T429,W187,T430,T431,W188,T432,T433,W189,T434 done
-  class T403,T418 pruned
 ```

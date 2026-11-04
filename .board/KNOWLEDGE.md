@@ -17,7 +17,6 @@
 - 2026-11-02 E-012: standing: a title or label drawn by matplotlib lives in a PNG, so gs txtwrite of the PDF never finds it -> a criterion run verifies figure text by a gs render of the page, or by the function that writes it supersedes: E-012#1
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 - 2026-11-03 E-016: standing: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv supersedes: E-016#1
-- 2026-11-04 T-403: fact: the red: 0 note above is wrong, the Check prints 1 at 9920a05 from 01-bits/index.md:412 'every one of them' -> the Action's lead adds a second 'one of them' line, so the frozen Check would print 2 and cannot pass
 - 2026-11-04 W-170: standing: the tests heading counts the matched test files, fixtures included (developer, 2026-11-04) -> page 15 reads 'tests v6: 2 tests, 34 lines' supersedes: W-170#1
 - 2026-11-04 W-173: standing: page 16 is titled with what finance counted, W-189 (developer, 2026-11-04) -> the memo, the chart and the title draw no conclusion about the code supersedes: W-173#1
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
@@ -32,24 +31,7 @@
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
-- 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
-- 2026-11-04 E-017: W-183 joins E-017 as AC15; W-189 (the page 16 and 17 titles) joins as AC16; tag a release once both land and the root closes
-- 2026-11-04 W-170: keep the file count: the tests heading counts the matched test files, fixtures included (resolves W-170#1)
-- 2026-11-04 W-173: retitle page 16 to what finance counted (resolves W-173#1); filed as W-189
-- 2026-11-04 W-174: retitle page 17 to credit the breakdown's order (resolves W-174#1); filed as W-189
-- 2026-11-04 W-176: leave page 49's epilogue chart as it is (resolves W-176#1)
+- none recorded
 
 ## Deviations
-- 2026-11-03 E-017: T-388 Action amended: the def row and its --- add two rows to v5.diff and left page 41 under 3pt slack; T-388 now also moves page 41's file caption under the figure (the caption half of T-418, done early; T-418 keeps the height=75% change); Check unchanged
-- 2026-11-03 E-017: T-390 Action amended at close: the page 15 fence edit was described without naming 01-bits/index.md, so the scope gate refused; Check unchanged
-- 2026-11-03 E-017: T-392, T-393, T-394 Actions amended before start: they named artifacts.csv without its data/ path, which the scope gate would refuse; Checks unchanged
-- 2026-11-03 E-017: T-395 Action amended at close: the r1/r2 docstrings left page 22 at -1pt slack, the lane tightened its spacing in 02-stacey/index.md, not named; Check unchanged
-- 2026-11-03 E-017: T-395 Action amended at its block: storyboard.step_test rebuilds the two-tests snippet per step, so the docstrings name the order and its source, emitted by step_test too; storyboard.py and test_storyboard.py join its files; Check unchanged
-- 2026-11-03 E-017: T-395 and T-396 Actions amended before W-172 starts: W-172's criterion greps every exhibit test, and test_planted_bug.py, test_two_ifs.py and test_worlds.py carried assert comments no Task named; Checks unchanged
-- 2026-11-04 E-017: AC15 (W-183, the unused tests-9 rule) and AC16 (W-189, the page 16 and 17 titles) added at the close by the developer's answers of 2026-11-04; W-183 re-parented from standalone
-- 2026-11-04 E-017: T-397 Action amended at close: its brief said index.md without paths; page 22's spacing in 02-stacey/index.md was rebalanced after the -20pt vspace overlapped the bubble; Check unchanged
-- 2026-11-04 E-017: T-403 pruned and refiled as T-427: its frozen Check matched page 19's 'every one of them' and could never print 1; T-427 checks 'one of them: 55 EUR', same Action
-- 2026-11-04 E-017: T-418 pruned: the near-square seam figure fills its column at the existing height=60%; 75% overflows page 41
-- 2026-11-04 E-017: T-421 and T-423 Actions amended before start: their heading rules and manifest rows named section.mk and artifacts.csv without paths; Checks unchanged
-- 2026-11-04 E-017: T-429 Action amended at its block: two fakes still left page 41 9pt short; the frame drops the results snippet page 40 already shows; data/artifacts.csv joins its files; Check unchanged
-- 2026-11-04 E-017: T-433 Action amended at its block: the import figure's fixed layout held only the 05 modules; a layout computed from the edges, in scripts/utils/imports.py with its test, joins T-433's files; Check unchanged
+- none recorded
