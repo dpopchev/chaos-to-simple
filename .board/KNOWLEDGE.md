@@ -45,3 +45,4 @@
 - 2026-11-04 E-017: T-403 pruned and refiled as T-427: its frozen Check matched page 19's 'every one of them' and could never print 1; T-427 checks 'one of them: 55 EUR', same Action
 - 2026-11-04 E-017: T-418 pruned: the near-square seam figure fills its column at the existing height=60%; 75% overflows page 41
 - 2026-11-04 E-017: T-421 and T-423 Actions amended before start: their heading rules and manifest rows named section.mk and artifacts.csv without paths; Checks unchanged
+- 2026-11-04 E-017: T-429 Action amended at its block: two fakes still left page 41 9pt short; the frame drops the results snippet page 40 already shows; data/artifacts.csv joins its files; Check unchanged
