@@ -1,9 +1,9 @@
-context,kind,label,color,owner
-pricing,core,Pricing,7B3F9E,marketing;loyalty
-shipping,supporting,Shipping,1B4F72,logistics
-fulfilment,supporting,Order fulfilment,5D6D7E,shop
-tax,generic,Tax,1E8449,accounting
-payment,generic,Payment provider,D55E00,payment
-warehouse,generic,Warehouse system,56B4E9,warehouse
-mail,generic,Mail delivery,F0E442,mailer
-tangled,tangled,One function,BDBDBD,
+context,kind,label,color,owner,question,result
+pricing,core,Pricing,7B3F9E,marketing;loyalty,What do the goods cost after the agreed promotions?,discounted goods
+shipping,supporting,Shipping,1B4F72,logistics,What delivery charge applies to those goods?,shipping fee
+fulfilment,supporting,Order fulfilment,5D6D7E,shop,"When may we accept the order, and what happens when an action fails?",Accepted | Rejected
+tax,generic,Tax,1E8449,accounting,What total follows from the applicable tax treatment?,total with VAT
+payment,generic,Payment provider,D55E00,payment,,
+warehouse,generic,Warehouse system,56B4E9,warehouse,,
+mail,generic,Mail delivery,F0E442,mailer,,
+tangled,tangled,One function,BDBDBD,,,

@@ -3,6 +3,7 @@
 python -m scripts.figures agenda --out build/00-frontmatter/agenda.png
 python -m scripts.figures board --stage 3 --out build/03-chaos/board.png
 python -m scripts.figures business-map --out build/00-frontmatter/business-map.png
+python -m scripts.figures cohesion --out build/05-how/cohesion.png
 python -m scripts.figures colorcode --out build/04-what/colorcode.png
 python -m scripts.figures counting --out build/01-bits/counting.png
 python -m scripts.figures coverage-view --out build/01-bits/coverage-view.png
@@ -27,6 +28,8 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from scripts.utils.board import board, board_rows, example_tests, headers
+from scripts.utils.cohesion import draw as draw_cohesion
+from scripts.utils.cohesion import groups as cohesion_groups
 from scripts.utils.colorcode import colorcode, owned_lines
 from scripts.utils.counting import counting_figure
 from scripts.utils.coverage_view import BITS, draw, grid_growth, load_tested
@@ -65,6 +68,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "agenda",
         "board",
         "business-map",
+        "cohesion",
         "colorcode",
         "counting",
         "coverage-view",
@@ -86,6 +90,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--rules", type=Path, default=Path("data/rules.csv"), help="moves: rules")
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"), help="seam: cast")
     parser.add_argument("--actors", type=Path, default=Path("data/actors.csv"), help="actors")
+    parser.add_argument(
+        "--roles", type=Path, default=Path("05-how/data/roles.csv"), help="cohesion: roles"
+    )
     parser.add_argument(
         "--questions", type=Path, default=Path("data/questions.csv"), help="journey: questions"
     )
@@ -120,6 +127,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             load_rules(args.rules), load_questions(args.questions), example_tests(args.examples)
         )
         board(rows, args.stage, args.out, args.tests, headers(load_route(args.route)))
+        return 0
+    if args.what == "cohesion":
+        owners = {**load_actors(args.actors), **load_actors(args.roles)}
+        draw_cohesion(cohesion_groups(load_rules(args.rules), load_contexts(), owners), args.out)
         return 0
     if args.what == "colorcode":
         source = args.source.read_text(encoding="ascii")

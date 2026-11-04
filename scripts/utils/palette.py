@@ -38,6 +38,8 @@ class Context:
     label: str
     color: str
     owner: str
+    question: str = ""
+    result: str = ""
 
 
 @dataclass(frozen=True)
@@ -79,7 +81,13 @@ def load_contexts(path: Path = CONTEXTS_CSV) -> dict[str, Context]:
     with path.open(newline="", encoding="ascii") as fh:
         return {
             row["context"]: Context(
-                row["context"], row["kind"], row["label"], row["color"], row["owner"]
+                row["context"],
+                row["kind"],
+                row["label"],
+                row["color"],
+                row["owner"],
+                row.get("question") or "",
+                row.get("result") or "",
             )
             for row in csv.DictReader(fh)
         }

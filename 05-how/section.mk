@@ -107,6 +107,13 @@ $(BUILD)/05-how/promise.png: $(PALETTE) 05-how/data/promise.csv scripts/figures.
 	@$(RUN) python -m scripts.figures promise --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/cohesion.png
+
+$(BUILD)/05-how/cohesion.png: $(PALETTE) data/rules.csv data/contexts.csv 05-how/data/roles.csv \
+    scripts/figures.py scripts/utils/cohesion.py
+	@$(RUN) python -m scripts.figures cohesion --out $@
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/05-how/policies.txt
 
 $(BUILD)/05-how/policies.txt: data/rules.csv data/questions.csv data/cast.csv data/actors.csv \
