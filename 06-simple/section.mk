@@ -73,7 +73,7 @@ $(BUILD)/06-simple/pyright.txt: 06-simple/section.mk 06-simple/s06_simple/other_
 
 ARTIFACTS += $(BUILD)/06-simple/responsibilities.png $(BUILD)/06-simple/responsibilities-offer.png \
     $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-$(n).png) \
-    $(foreach n,pricing payment,$(BUILD)/06-simple/responsibilities-offer-$(n).png)
+    $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-offer-$(n).png)
 
 $(BUILD)/06-simple/responsibilities.png: $(PALETTE) $(RULES) scripts/figures.py \
     scripts/utils/responsibilities.py scripts/utils/style.py

@@ -100,12 +100,10 @@ for this example we change the delivery-charge policy for a digital-only order
 :::
 ::: {.column width="38%"}
 
-![](build/06-simple/responsibilities-shipping.png){width=56%}
+![](build/06-simple/responsibilities-offer-shipping.png){width=100%}
 
 :::
 ::::
-
-![](build/06-simple/responsibilities.png){width=14%}
 
 \thread{5}
 
@@ -114,6 +112,6 @@ for this example we change the delivery-charge policy for a digital-only order
 ::: notes
 Marketing's seventh request, digital books: it has a place to start, shipping, and it is not a licence to skip discovery.
 For this example we change the delivery-charge policy for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
-The small diff is the shipping change; the full picture comes last.
+The small diff is the shipping change; the compact picture shows its highlight; the full picture is build/06-simple/responsibilities.png.
 I no longer ask only where to put the next if. I ask whose decision it is, what information it needs, and what else it is allowed to change.
 :::
