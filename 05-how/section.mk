@@ -113,7 +113,7 @@ $(BUILD)/05-how/promise.png: $(PALETTE) 05-how/data/promise.csv scripts/figures.
 ARTIFACTS += $(BUILD)/05-how/cohesion.png
 
 $(BUILD)/05-how/cohesion.png: $(PALETTE) data/rules.csv data/contexts.csv 05-how/data/roles.csv \
-    scripts/figures.py scripts/utils/cohesion.py
+    scripts/figures.py scripts/utils/cohesion.py scripts/utils/icons.py
 	@$(RUN) python -m scripts.figures cohesion --out $@
 	$(call log_done,$@ written)
 
