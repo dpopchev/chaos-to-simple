@@ -22,8 +22,10 @@ DEPARTMENT_W, DEPARTMENT_MARGIN = 4.3, 0.1
 DEPARTMENT_X, PROVIDER_X, CUSTOMER_Y = -5.4, 5.9, SHOP_H / 2 + 1.5
 WRAP = 22
 LEGEND_Y = -SHOP_H / 2 - 0.65
-REQUEST_WRAP = 36
-LINE_STEP = 0.34
+REQUEST_WRAP = 28
+REQUEST_FONT = 12
+LINE_STEP = 0.44
+FIGSIZE_MAP = (12.8, 6.0)
 
 
 def department_box_height(lines: int) -> float:
@@ -364,7 +366,7 @@ def business_map(
     font = icon_file()
     shape = "round,pad=0.05,rounding_size=0.15"
     generic = kind_style("generic")
-    fig, ax = plt.subplots(figsize=(11.5, 7.4), dpi=style.DPI)
+    fig, ax = plt.subplots(figsize=FIGSIZE_MAP, dpi=style.DPI)
     for key, actor in actors.items():
         x, y = spots[key]
         is_shop = actor.kind == "dev"
@@ -441,7 +443,7 @@ def business_map(
                 request_block,
                 ha="left",
                 va="center",
-                fontsize=10,
+                fontsize=REQUEST_FONT,
                 color=ink,
                 zorder=4,
             )

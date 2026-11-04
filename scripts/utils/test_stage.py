@@ -11,6 +11,7 @@ from scripts.utils.paths import load_cast, load_incidents, load_rules
 from scripts.utils.stacey import load_zones
 from scripts.utils.stage import (
     BOX_H,
+    FIGSIZE_MAP,
     GREY,
     SHOP_H,
     agenda_strip,
@@ -68,6 +69,12 @@ def test_departments_fit_inside_the_shop_height() -> None:
     top = spots[first][1] + heights[first] / 2
     bottom = spots[last][1] - heights[last] / 2
     assert -SHOP_H / 2 <= bottom < top <= SHOP_H / 2
+
+
+@pytest.mark.model
+def test_map_figure_is_wider_than_tall() -> None:
+    width, height = FIGSIZE_MAP
+    assert width >= 2 * height - 0.1
 
 
 @pytest.mark.model

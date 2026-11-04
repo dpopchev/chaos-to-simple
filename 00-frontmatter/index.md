@@ -13,7 +13,7 @@ starts at ? and each section sets it as it goes.
 
 Every arrow becomes a line in one function.
 
-![](build/00-frontmatter/business-map.png){height=80%}
+![](build/00-frontmatter/business-map.png){width=100%}
 
 ::: notes
 Name the nine parts before anyone reads the picture: the customer, the shop, the four
