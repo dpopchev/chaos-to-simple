@@ -12,6 +12,7 @@ from scripts.utils.icons import (
     FONT_AWESOME,
     ICONS,
     NERD,
+    ROLE_ICONS,
     ROUTE_ICONS,
     FontMissingError,
     UnknownIconError,
@@ -35,7 +36,12 @@ def test_icon_size_is_the_label_size_scaled() -> None:
 
 @pytest.mark.model
 def test_icons_cover_the_actor_and_route_icons() -> None:
-    assert set(ICONS) == {*ACTOR_ICONS, *ROUTE_ICONS}
+    assert set(ICONS) == {*ACTOR_ICONS, *ROUTE_ICONS, *ROLE_ICONS}
+
+
+@pytest.mark.model
+def test_role_icon_clipboard_check_has_a_glyph() -> None:
+    assert len(glyph("clipboard-check", FONT_AWESOME)) == 1
 
 
 @pytest.mark.model

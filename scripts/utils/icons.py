@@ -58,6 +58,8 @@ ROUTE_ICONS = (
     "flag-checkered",
 )
 
+ROLE_ICONS = ("clipboard-check", "headset")
+
 # home and cut are Font Awesome 5 names; Font Awesome 7 and Nerd Fonts call them house
 # and scissors; Nerd Fonts keeps code-branch as fa-code_fork.
 ICONS: dict[str, Codepoints] = {
@@ -78,6 +80,8 @@ ICONS: dict[str, Codepoints] = {
     "cut": Codepoints(0xF0C4, 0xF0C4),
     "layer-group": Codepoints(0xF5FD, 0xEEA8),
     "flag-checkered": Codepoints(0xF11E, 0xF11E),
+    "clipboard-check": Codepoints(0xF46C, 0xED7A),
+    "headset": Codepoints(0xF590, 0xEE59),
 }
 
 # The face of each family that holds the icons.
