@@ -8,7 +8,9 @@ from decimal import Decimal
 from s04_what.money import Money, eur
 from s04_what.pricing import COUPON_VALUE, Coupon
 
+# [snippet: member15-factor]
 MEMBER_FACTOR = Decimal("0.85")
+# [/snippet]
 
 
 # [snippet: member15]

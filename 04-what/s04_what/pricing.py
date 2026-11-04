@@ -13,7 +13,9 @@ from decimal import Decimal
 from s04_what.money import Money, eur
 
 COUPON_VALUE = eur(10)
+# [snippet: member-factor]
 MEMBER_FACTOR = Decimal("0.90")
+# [/snippet]
 
 
 # [snippet: coupon]

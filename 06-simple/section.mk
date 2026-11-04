@@ -52,7 +52,7 @@ ARTIFACTS += $(BUILD)/06-simple/member15.diff
 
 $(BUILD)/06-simple/member15.diff: $(PALETTE) 04-what/s04_what/pricing.py 06-simple/s06_simple/member15.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk
 	@$(RUN) python -m scripts.paths diff --from 04-what/s04_what/pricing.py --to 06-simple/s06_simple/member15.py \
-		--snippet discounted --to-snippet member15 --compact \
+		--snippet member-factor --to-snippet member15-factor --compact \
 		--label-from 'discount 10%' --label-to 'discount 15%' --out $@
 	$(call log_done,$@ written)
 
