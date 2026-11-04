@@ -35,3 +35,4 @@
 
 ## Deviations
 - 2026-11-04 E-018: T-439, T-441 Actions amended: Support and Fulfilment live in 05-how/data/roles.csv for the 05 bubbles only; role rows in data/actors.csv break the business map and four tests; the slides name them in plain text; Checks unchanged
+- 2026-11-04 E-018: W-200 filed under E-018: W-192's run found 05 not ending on its line and two figures small; started before W-193 since it touches the same frames
