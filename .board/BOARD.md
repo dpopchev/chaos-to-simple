@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-210 > T-470   | blocked: 0 | todo roots: 1 | done: 688 | pruned: 8
+open path: W-210   | blocked: 0 | todo roots: 1 | done: 689 | pruned: 8
 
 ## Tree
 
 ```text
-W-210  bug    [doing]    (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [doing]   <- ACTIVE LEAF
+W-210  bug    [doing]    (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [done]
 W-211  bug    [todo]     (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [todo]
 ```
 
@@ -1239,7 +1239,7 @@ closed 2026-11-04 -- outcome: Given the repository, When grep the incidents.csv 
 ```mermaid
 flowchart TD
   W210["W-210 bug doing, standalone: 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows"]
-  W210 --> T470["T-470 doing: Split the rehearsal frame into one frame per rehearsal -> 06-simple/index.md -- ACTIVE LEAF"]
+  W210 --> T470["T-470 done: Split the rehearsal frame into one frame per rehearsal -> 06-simple/index.md"]
   W211["W-211 bug todo, standalone: 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps"]
   W211 --> T471["T-471 todo: Shorten the title and widen the picture column -> 06-simple/index.md seventh frame"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1247,6 +1247,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W210,T470 doing
+  class W210 doing
+  class T470 done
   class W211,T471 todo
 ```
