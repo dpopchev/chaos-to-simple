@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-209   | blocked: 0 | todo roots: 2 | done: 687 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 2 | done: 688 | pruned: 8
 
 ## Tree
 
 ```text
-W-209  bug    [doing]    (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [done]
 W-210  bug    [todo]     (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [todo]
 W-211  bug    [todo]     (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [todo]
 ```
@@ -1230,11 +1229,15 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 40's sea
 
 - T-468 [done] Draw the seam labels at slide size -> scripts/utils/figures.py seam
 
+### W-209 bug [done] (standalone) data/README.md lists stale incidents.csv columns
+
+closed 2026-11-04 -- outcome: Given the repository, When grep the incidents.csv row of data/README.md, Then it lists the columns of head -1 data/incidents.csv, bit and customer_outcome included. -- ledger: ledgers/W-209.md
+
+- T-469 [done] List the current incidents.csv columns -> data/README.md
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W209["W-209 bug doing, standalone: data/README.md lists stale incidents.csv columns"]
-  W209 --> T469["T-469 done: List the current incidents.csv columns -> data/README.md"]
   W210["W-210 bug todo, standalone: 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows"]
   W210 --> T470["T-470 todo: Split the rehearsal frame into one frame per rehearsal -> 06-simple/index.md"]
   W211["W-211 bug todo, standalone: 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps"]
@@ -1244,7 +1247,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W209 doing
-  class T469 done
   class W210,T470,W211,T471 todo
 ```
