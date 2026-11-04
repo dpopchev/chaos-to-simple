@@ -12,6 +12,7 @@ python -m scripts.figures grid-growth --out build/01-bits/grid-growth.png
 python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures grid-panels --rules data/rules.csv --out build/03-chaos/grid-9.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
+python -m scripts.figures promise --out build/05-how/promise.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
 python -m scripts.figures stacey --highlight 02 --out build/02-stacey/stacey-02.png
@@ -48,6 +49,8 @@ from scripts.utils.paths import (
     load_incidents,
     load_rules,
 )
+from scripts.utils.promise import draw as draw_promise
+from scripts.utils.promise import load_steps
 from scripts.utils.retro import load_questions
 from scripts.utils.stacey import draw as draw_stacey
 from scripts.utils.stacey import load_labels, load_spots, load_zones
@@ -72,6 +75,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "grid-image",
         "grid-panels",
         "moves",
+        "promise",
         "seam",
         "journey",
         "stacey",
@@ -105,6 +109,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--room", type=int, default=None, help="doubling: the room's week")
     parser.add_argument("--stage", type=int, default=6, help="board: the stage 3, 4, 5 or 6")
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
+    parser.add_argument(
+        "--promise", type=Path, default=Path("05-how/data/promise.csv"), help="promise: steps"
+    )
     parser.add_argument("--tests", type=Path, default=Path("06-simple/tests"), help="board: tests")
     args = parser.parse_args(argv)
 
@@ -168,6 +175,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "moves":
         moves_figure(args.out, moves(load_rules(args.rules)))
+        return 0
+    if args.what == "promise":
+        draw_promise(load_steps(args.promise), args.out, args.actors)
         return 0
     if args.what == "business-map":
         business_map(

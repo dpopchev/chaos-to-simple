@@ -1,0 +1,7 @@
+row,step,actor,words
+customer,1,payment,charged
+customer,2,warehouse,out of stock
+customer,3,customer,"refund, six working days"
+room,1,warehouse,reserve
+room,2,payment,charge
+room,3,mailer,confirm

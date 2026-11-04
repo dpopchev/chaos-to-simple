@@ -101,6 +101,12 @@ $(BUILD)/05-how/fakes-code.txt: 05-how/section.mk scripts/paths.py scripts/utils
 		--source 05-how/s05_how/fakes.py --snippet fakes --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/promise.png
+
+$(BUILD)/05-how/promise.png: $(PALETTE) 05-how/data/promise.csv scripts/figures.py scripts/utils/promise.py
+	@$(RUN) python -m scripts.figures promise --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/05-how/ports.png: $(PALETTE) data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)
