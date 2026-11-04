@@ -32,8 +32,7 @@
 - 2026-11-04 W-210: open: T-470 trimmed to fit the 70 percent pictures: the payment frame shows other_gateway.py lines 24-28 only, its pyright block moved to the notes, the Marketing and Operations names moved to the notes, and the pricing frame has no thread line; keep or restore at the close
 
 ## Decisions
-- 2026-11-04 W-211: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-04)
-- 2026-11-04 W-211: split: the seventh frame becomes two -- the diff and its context on one, the shipping picture at 70 percent or more on the next; data/budget.csv 06 rises from 5 to 6 frames (developer, 2026-11-04)
+- none recorded
 
 ## Deviations
 - none recorded
