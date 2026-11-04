@@ -79,6 +79,22 @@ $(BUILD)/06-simple/worlds-code.txt: 06-simple/section.mk scripts/paths.py script
 		--source 06-simple/s06_simple/worlds.py --snippet eight --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/06-simple/ifs.txt $(BUILD)/06-simple/imports.txt
+
+$(BUILD)/06-simple/ifs.txt: 06-simple/section.mk scripts/paths.py scripts/utils/imports.py \
+    04-what/s04_what/pricing.py 04-what/s04_what/shipping.py 04-what/s04_what/tax.py \
+    06-simple/s06_simple/core.py 06-simple/s06_simple/shell.py
+	@$(RUN) python -m scripts.paths ifs --source 04-what/s04_what/pricing.py \
+		--source 04-what/s04_what/shipping.py --source 04-what/s04_what/tax.py \
+		--source 06-simple/s06_simple/core.py --source 06-simple/s06_simple/shell.py --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/imports.txt: 06-simple/section.mk scripts/paths.py scripts/utils/imports.py \
+    06-simple/s06_simple/core.py 06-simple/s06_simple/shell.py
+	@$(RUN) python -m scripts.paths imports --source 06-simple/s06_simple/core.py \
+		--source 06-simple/s06_simple/shell.py --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/06-simple/pytest-core-summary.txt: $(BUILD)/06-simple/pytest-core.txt 06-simple/section.mk
 	@tail -n 4 $< > $@
 	$(call log_done,$@ written)

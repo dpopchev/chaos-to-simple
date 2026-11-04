@@ -23,6 +23,7 @@
     python -m scripts.paths tally-code --name F --version 7 --policies 6 --paths 64 \\
         --source FILE --snippet S --out F.txt
     python -m scripts.paths imports --source FILE [--source FILE ...] --out F.txt
+    python -m scripts.paths ifs --source FILE [--source FILE ...] --out F.txt
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
@@ -43,7 +44,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
-from scripts.utils.imports import import_rows, import_table
+from scripts.utils.imports import decision_rows, decision_table, import_rows, import_table
 from scripts.utils.palette import load_actors, load_contexts
 from scripts.utils.paths import (
     bars_from_rules,
@@ -146,6 +147,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "tally",
             "tally-code",
             "imports",
+            "ifs",
             "diff",
         ],
     )
@@ -200,6 +202,16 @@ def main(argv: Sequence[str] | None = None) -> int:
         rows = [import_rows(path.stem, path.read_text(encoding="ascii")) for path in args.source]
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(import_table(rows), encoding="ascii")
+        return 0
+
+    if args.what == "ifs":
+        if args.out is None or not args.source:
+            parser.error("ifs needs --source (repeatable) and --out")
+        found = decision_rows(
+            [(path.stem, path.read_text(encoding="ascii")) for path in args.source]
+        )
+        args.out.parent.mkdir(parents=True, exist_ok=True)
+        args.out.write_text(decision_table(found), encoding="ascii")
         return 0
 
     if args.what == "chart":

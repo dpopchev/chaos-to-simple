@@ -6,14 +6,28 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.imports import ImportRow, import_rows, import_table
+from scripts.utils.imports import (
+    DecisionRow,
+    ImportRow,
+    decision_rows,
+    import_rows,
+    import_table,
+)
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTEXTS = ("pricing", "shipping", "tax")
+CORE = "06-simple/s06_simple/core.py"
+SHELL = "06-simple/s06_simple/shell.py"
 
 
 def _row(source: str) -> ImportRow:
     return import_rows(source, (ROOT / source).read_text(encoding="ascii"))
+
+
+def _decisions(*sources: str) -> tuple[DecisionRow, ...]:
+    return decision_rows(
+        [(Path(source).stem, (ROOT / source).read_text(encoding="ascii")) for source in sources]
+    )
 
 
 @pytest.mark.view
@@ -38,3 +52,14 @@ def test_import_table_aligns_one_row_per_module() -> None:
         "tax                 1      0     0\n"
         "checkout_v5         8      9     0\n"
     )
+
+
+@pytest.mark.view
+def test_shell_has_no_if_and_three_matches() -> None:
+    assert _decisions(SHELL) == (DecisionRow("shell", 0, 3),)
+
+
+@pytest.mark.view
+def test_the_six_ifs_live_in_the_three_contexts() -> None:
+    sources = [*(f"04-what/s04_what/{name}.py" for name in CONTEXTS), CORE]
+    assert [row.ifs for row in _decisions(*sources)] == [2, 2, 1, 0]

@@ -40,6 +40,40 @@ def import_rows(name: str, text: str) -> ImportRow:
     )
 
 
+@dataclass(frozen=True)
+class DecisionRow:
+    module: str
+    ifs: int
+    matches: int
+
+
+def decision_rows(sources: Sequence[tuple[str, str]]) -> tuple[DecisionRow, ...]:
+    """Return the if and match statements per (name, text); a conditional expression is none."""
+    rows: list[DecisionRow] = []
+    for name, text in sources:
+        nodes = list(ast.walk(ast.parse(text)))
+        rows.append(
+            DecisionRow(
+                name,
+                sum(isinstance(node, ast.If) for node in nodes),
+                sum(isinstance(node, ast.Match) for node in nodes),
+            )
+        )
+    return tuple(rows)
+
+
+def decision_table(rows: Sequence[DecisionRow]) -> str:
+    """Render 'module ifs matches' aligned, one row per file in the given order."""
+    heads = ("module", "ifs", "matches")
+    width = max(len(heads[0]), *(len(row.module) for row in rows))
+    lines = [f"{heads[0]:<{width}}  {heads[1]}  {heads[2]}"]
+    for row in rows:
+        counts = (row.ifs, row.matches)
+        cells = "  ".join(f"{n:>{len(head)}}" for n, head in zip(counts, heads[1:], strict=True))
+        lines.append(f"{row.module:<{width}}  {cells}")
+    return "\n".join(lines) + "\n"
+
+
 def import_table(rows: Sequence[ImportRow]) -> str:
     """Render 'module contexts ports core' aligned, one row per file in the given order."""
     width = max(len(_HEADS[0]), *(len(row.module) for row in rows))
