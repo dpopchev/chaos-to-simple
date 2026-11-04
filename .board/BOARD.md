@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 3 | done: 686 | pruned: 8
+open path: W-209 > T-469   | blocked: 0 | todo roots: 2 | done: 686 | pruned: 8
 
 ## Tree
 
 ```text
-W-209  bug    [todo]     (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [todo]
+W-209  bug    [doing]    (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [doing]   <- ACTIVE LEAF
 W-210  bug    [todo]     (standalone) 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows   (filed during T-463) -- T-470 [todo]
 W-211  bug    [todo]     (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [todo]
 ```
@@ -1233,8 +1233,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 40's sea
 ## Diagram
 ```mermaid
 flowchart TD
-  W209["W-209 bug todo, standalone: data/README.md lists stale incidents.csv columns"]
-  W209 --> T469["T-469 todo: List the current incidents.csv columns -> data/README.md"]
+  W209["W-209 bug doing, standalone: data/README.md lists stale incidents.csv columns"]
+  W209 --> T469["T-469 doing: List the current incidents.csv columns -> data/README.md -- ACTIVE LEAF"]
   W210["W-210 bug todo, standalone: 06 rehearsal frame: the compact pictures stay illegible at the widest width overflow allows"]
   W210 --> T470["T-470 todo: Split the rehearsal frame into one frame per rehearsal -> 06-simple/index.md"]
   W211["W-211 bug todo, standalone: 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps"]
@@ -1244,5 +1244,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W209,T469,W210,T470,W211,T471 todo
+  class W209,T469 doing
+  class W210,T470,W211,T471 todo
 ```
