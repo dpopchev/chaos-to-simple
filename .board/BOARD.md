@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-192   | blocked: 0 | todo roots: 5 | done: 645 | pruned: 8
+open path: E-018   | blocked: 0 | todo roots: 5 | done: 646 | pruned: 8
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-018 > W-192   | blocked: 0 | todo roots: 5 | done: 645 | pruned: 8
 E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
   W-190  issue  [done]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [done], T-436 [done], T-437 [done]
   W-191  issue  [done]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
-  W-192  issue  [doing]    05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
+  W-192  issue  [done]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
   W-193  issue  [todo]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [todo], T-447 [todo], T-448 [todo]
   W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
@@ -1130,7 +1130,7 @@ flowchart TD
   W191 --> T439["T-439 done: Render the policies and the exchange -> scripts.paths policies, data/actors.csv and build/05-how/policies.txt, bubble-0.txt, bubble-1.txt"]
   W191 --> T440["T-440 done: Open the backup section and the thread macro -> 08-backup/index.md, 00-frontmatter/preamble.tex and data/budget.csv"]
   W191 --> T441["T-441 done: Write the promise and policies frames -> 05-how/index.md and 05-how/README.md"]
-  E018 --> W192["W-192 issue doing: 05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded"]
+  E018 --> W192["W-192 issue done: 05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded"]
   W192 --> T442["T-442 done: Draw the cohesion groups -> scripts/utils/cohesion.py, data/contexts.csv and build/05-how/cohesion.png"]
   W192 --> T443["T-443 done: Write the warehouse adapter -> 05-how/s05_how/warehouse_adapter.py and 05-how/tests/test_warehouse_adapter.py"]
   W192 --> T444["T-444 done: Draw the shell between the core and the providers -> figures.seam and build/05-how/ports.png"]
@@ -1159,7 +1159,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018,W192 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,T442,T443,T444,T445 done
+  class E018 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445 done
   class W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457 todo
 ```
