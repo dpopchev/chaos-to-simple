@@ -21,6 +21,7 @@
 - 2026-11-04 W-173: standing: page 16 is titled with what finance counted, W-189 (developer, 2026-11-04) -> the memo, the chart and the title draw no conclusion about the code supersedes: W-173#1
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
 - 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
+- 2026-11-04 W-195: T-453: fact: collaboration_label keeps an unused zones parameter (del zones, stacey.py:149) -> drop it with the next change to the label
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
