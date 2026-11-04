@@ -29,9 +29,9 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
+- 2026-11-04 W-210: open: T-470 trimmed to fit the 70 percent pictures: the payment frame shows other_gateway.py lines 24-28 only, its pyright block moved to the notes, the Marketing and Operations names moved to the notes, and the pricing frame has no thread line; keep or restore at the close
 
 ## Decisions
-- 2026-11-04 W-210: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-04)
 - 2026-11-04 W-211: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-04)
 
 ## Deviations
