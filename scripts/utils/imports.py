@@ -140,6 +140,37 @@ def decision_rows(sources: Sequence[tuple[str, str]]) -> tuple[DecisionRow, ...]
     return tuple(rows)
 
 
+def decision_chart(rows: Sequence[DecisionRow], out: Path) -> None:
+    """Draw one horizontal stacked bar per module, ifs then matches, the count on each segment."""
+    style.apply()
+    fig, ax = plt.subplots(figsize=(6.0, 3.6), dpi=style.DPI)
+    names = [row.module for row in rows]
+    series = (
+        ("ifs", [row.ifs for row in rows], palette.colour_of("pricing")),
+        ("matches", [row.matches for row in rows], palette.colour_of("shipping")),
+    )
+    left = [0] * len(rows)
+    for label, counts, colour in series:
+        bars = ax.barh(names, counts, left=left, color=colour, edgecolor="white", label=label)
+        ax.bar_label(
+            bars,
+            labels=[str(n) if n else "" for n in counts],
+            label_type="center",
+            color="white",
+            fontsize=16,
+        )
+        left = [a + b for a, b in zip(left, counts, strict=True)]
+    ax.invert_yaxis()
+    ax.set_xticks([])
+    ax.set_xlim(0, max(left) + 0.5)
+    ax.tick_params(axis="y", labelsize=16, length=0)
+    ax.spines["left"].set_visible(False)
+    ax.spines["bottom"].set_visible(False)
+    ax.legend(loc="lower right", fontsize=14, frameon=False)
+    fig.tight_layout()
+    style.save(fig, out)
+
+
 def decision_table(rows: Sequence[DecisionRow]) -> str:
     """Render 'module ifs matches' aligned, one row per file in the given order."""
     heads = ("module", "ifs", "matches")

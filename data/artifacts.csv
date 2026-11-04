@@ -114,6 +114,7 @@ build/06-simple/pytest-core-summary.txt,txt,tail -n 4 pytest-core.txt
 build/06-simple/request.txt,txt,scripts.paths tally-code --name Request
 build/06-simple/outcome.txt,txt,scripts.paths tally-code --name Outcome
 build/06-simple/ifs.txt,txt,scripts.paths ifs
+build/06-simple/ifs.png,png,scripts.paths ifs-chart
 build/06-simple/imports.txt,txt,scripts.paths imports
 build/06-simple/epilogue.txt,txt,scripts.paths epilogue
 build/06-simple/epilogue.png,png,scripts.paths epilogue-chart

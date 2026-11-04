@@ -9,6 +9,7 @@ import pytest
 from scripts.utils.imports import (
     DecisionRow,
     ImportRow,
+    decision_chart,
     decision_rows,
     import_edges,
     import_rows,
@@ -70,6 +71,13 @@ def test_import_table_aligns_one_row_per_module() -> None:
 @pytest.mark.view
 def test_shell_has_no_if_and_three_matches() -> None:
     assert _decisions(SHELL) == (DecisionRow("shell", 0, 3),)
+
+
+@pytest.mark.view
+def test_decision_chart_writes_a_png(tmp_path: Path) -> None:
+    out = tmp_path / "ifs.png"
+    decision_chart([DecisionRow("pricing", 2, 0), DecisionRow("shell", 0, 3)], out)
+    assert out.read_bytes()[:8] == b"\x89PNG\r\n\x1a\n"
 
 
 @pytest.mark.view

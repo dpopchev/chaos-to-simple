@@ -25,6 +25,7 @@
     python -m scripts.paths imports --source FILE [--source FILE ...] --out F.txt
     python -m scripts.paths imports-figure --source FILE [--source FILE ...] --out F.png
     python -m scripts.paths ifs --source FILE [--source FILE ...] --out F.txt
+    python -m scripts.paths ifs-chart --source FILE [--source FILE ...] --out F.png
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
@@ -46,6 +47,7 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from scripts.utils.imports import (
+    decision_chart,
     decision_rows,
     decision_table,
     import_edges,
@@ -157,6 +159,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "imports",
             "imports-figure",
             "ifs",
+            "ifs-chart",
             "diff",
         ],
     )
@@ -230,6 +233,15 @@ def main(argv: Sequence[str] | None = None) -> int:
         )
         args.out.parent.mkdir(parents=True, exist_ok=True)
         args.out.write_text(decision_table(found), encoding="ascii")
+        return 0
+
+    if args.what == "ifs-chart":
+        if args.out is None or not args.source:
+            parser.error("ifs-chart needs --source (repeatable) and --out")
+        decision_chart(
+            decision_rows([(path.stem, path.read_text(encoding="ascii")) for path in args.source]),
+            args.out,
+        )
         return 0
 
     if args.what == "chart":

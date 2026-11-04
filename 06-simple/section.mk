@@ -93,7 +93,15 @@ $(BUILD)/06-simple/outcome.txt: 06-simple/section.mk scripts/paths.py scripts/ut
 		--source 06-simple/s06_simple/shell.py --snippet outcome --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/06-simple/ifs.txt $(BUILD)/06-simple/imports.txt
+ARTIFACTS += $(BUILD)/06-simple/ifs.txt $(BUILD)/06-simple/imports.txt $(BUILD)/06-simple/ifs.png
+
+$(BUILD)/06-simple/ifs.png: $(PALETTE) 06-simple/section.mk scripts/paths.py scripts/utils/imports.py \
+    04-what/s04_what/pricing.py 04-what/s04_what/shipping.py 04-what/s04_what/tax.py \
+    06-simple/s06_simple/core.py 06-simple/s06_simple/shell.py
+	@$(RUN) python -m scripts.paths ifs-chart --source 04-what/s04_what/pricing.py \
+		--source 04-what/s04_what/shipping.py --source 04-what/s04_what/tax.py \
+		--source 06-simple/s06_simple/core.py --source 06-simple/s06_simple/shell.py --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/06-simple/ifs.txt: 06-simple/section.mk scripts/paths.py scripts/utils/imports.py \
     04-what/s04_what/pricing.py 04-what/s04_what/shipping.py 04-what/s04_what/tax.py \
