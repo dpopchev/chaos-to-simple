@@ -11,7 +11,7 @@ pure core and the effectful shell.
 | Footer counter | stays at `512`; the seam is drawn, nothing is on either side yet |
 | Owns | `s05_how/oo_checkout.py` (the counter-example), `ports.py` (result sum types and Protocols), `fakes.py` (test doubles, one bit each), `tests/` |
 | Uses | `s04_what` (Money, Coupon, the constants). Upstream only: 04 never imports this. |
-| Produces | nothing; no `section.mk` |
+| Produces | `build/05-how/imports.txt` and `pyright.txt` |
 | Downstream | 06 imports `ports` and `fakes` |
 
 ## Slides

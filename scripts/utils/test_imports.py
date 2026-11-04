@@ -32,8 +32,13 @@ def _decisions(*sources: str) -> tuple[DecisionRow, ...]:
 
 @pytest.mark.view
 def test_import_rows_reads_a_from_import() -> None:
-    text = "from s04_what.money import Money, eur\nfrom s05_how.ports import Sent\nimport os\n"
+    text = "from s04_what.pricing import Money, eur\nfrom s05_how.ports import Sent\nimport os\n"
     assert import_rows("x", text) == ImportRow("x", 2, 1, 0)
+
+
+@pytest.mark.view
+def test_money_is_not_a_context() -> None:
+    assert _row("05-how/s05_how/ports.py").from_contexts == 0
 
 
 @pytest.mark.view

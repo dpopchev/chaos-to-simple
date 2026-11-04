@@ -1,4 +1,7 @@
-"""Count, per source file, the names imported from the contexts, the ports and the core."""
+"""Count, per source file, the names imported from the contexts, the ports and the core.
+
+The contexts are pricing, shipping and tax; s04_what.money is a shared value type, not one.
+"""
 
 from __future__ import annotations
 
@@ -6,7 +9,7 @@ import ast
 from collections.abc import Sequence
 from dataclasses import dataclass
 
-_CONTEXTS = "s04_what"
+_CONTEXTS = ("s04_what.pricing", "s04_what.shipping", "s04_what.tax")
 _PORTS = "s05_how.ports"
 _CORE = "s06_simple.core"
 _HEADS = ("module", "contexts", "ports", "core")
@@ -20,15 +23,15 @@ class ImportRow:
     from_core: int
 
 
-def _names_from(tree: ast.AST, package: str) -> int:
-    """Return how many names the from-imports of package (or its submodules) bring in."""
+def _names_from(tree: ast.AST, *packages: str) -> int:
+    """Return how many names the from-imports of the packages (or their submodules) bring in."""
     return sum(
         len(node.names)
         for node in ast.walk(tree)
         if isinstance(node, ast.ImportFrom)
         and node.level == 0
         and node.module is not None
-        and (node.module == package or node.module.startswith(package + "."))
+        and any(node.module == p or node.module.startswith(p + ".") for p in packages)
     )
 
 
@@ -36,7 +39,7 @@ def import_rows(name: str, text: str) -> ImportRow:
     """Return the import counts of one source text, read with ast."""
     tree = ast.parse(text)
     return ImportRow(
-        name, _names_from(tree, _CONTEXTS), _names_from(tree, _PORTS), _names_from(tree, _CORE)
+        name, _names_from(tree, *_CONTEXTS), _names_from(tree, _PORTS), _names_from(tree, _CORE)
     )
 
 
