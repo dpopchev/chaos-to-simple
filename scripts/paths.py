@@ -37,6 +37,8 @@
         [--name F --version N --policies P --paths N] --out F.diff
     python -m scripts.paths wounds --incidents data/incidents.csv
     python -m scripts.paths postmortem --incidents data/incidents.csv --out F.txt
+    python -m scripts.paths cards --incidents data/incidents.csv --examples data/examples.csv \\
+        --wounds build/06-simple/wounds.txt --out build/06-simple/cards.txt
     python -m scripts.paths chart--rules data/rules.csv --out build/06-simple/paths.png
 """
 
@@ -48,6 +50,7 @@ import sys
 from collections.abc import Sequence
 from pathlib import Path
 
+from scripts.utils.cards import cards_text, read_text, write_text
 from scripts.utils.imports import (
     decision_chart,
     decision_rows,
@@ -154,6 +157,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "next",
             "wounds",
             "postmortem",
+            "cards",
             "retro",
             "policies",
             "storyboard",
@@ -195,6 +199,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         "--wrap", type=int, default=34, help="storyboard, bubbles: bubble column width, 0 = none"
     )
     parser.add_argument("--incidents", type=Path, default=Path("data/incidents.csv"))
+    parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
+    parser.add_argument("--wounds", type=Path, default=Path("build/06-simple/wounds.txt"))
     parser.add_argument("--cast", type=Path, default=Path("data/cast.csv"))
     parser.add_argument(
         "--source", type=Path, action="append", default=[], help="a source file; imports repeats it"
@@ -246,6 +252,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             decision_rows([(path.stem, path.read_text(encoding="ascii")) for path in args.source]),
             args.out,
         )
+        return 0
+
+    if args.what == "cards":
+        if args.out is None:
+            parser.error("cards needs --out")
+        try:
+            text = cards_text(
+                read_text(args.incidents), read_text(args.examples), read_text(args.wounds)
+            )
+        except ValueError as error:
+            parser.error(str(error))
+        write_text(args.out, text)
         return 0
 
     if args.what == "chart":
