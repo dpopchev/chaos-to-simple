@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-194 > T-451   | blocked: 0 | todo roots: 9 | done: 654 | pruned: 8
+open path: E-018 > W-194 > T-452   | blocked: 0 | todo roots: 9 | done: 655 | pruned: 8
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retol
   W-191  issue  [done]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
   W-192  issue  [done]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
   W-193  issue  [done]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [done], T-447 [done], T-448 [done]
-  W-194  issue  [doing]    06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [done], T-450 [done], T-451 [doing]   <- ACTIVE LEAF, T-452 [todo]
+  W-194  issue  [doing]    06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [done], T-450 [done], T-451 [done], T-452 [doing]   <- ACTIVE LEAF
   W-200  bug    [done]     05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445) -- T-458 [done]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
 W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [todo]
@@ -1147,8 +1147,8 @@ flowchart TD
   E018 --> W194["W-194 issue doing: 06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count"]
   W194 --> T449["T-449 done: Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff"]
   W194 --> T450["T-450 done: Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py"]
-  W194 --> T451["T-451 doing: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv -- ACTIVE LEAF"]
-  W194 --> T452["T-452 todo: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, 00-frontmatter/preamble.tex, README.md and data/budget.csv"]
+  W194 --> T451["T-451 done: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv"]
+  W194 --> T452["T-452 doing: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, 00-frontmatter/preamble.tex, README.md and data/budget.csv -- ACTIVE LEAF"]
   E018 --> W200["W-200 bug done: 05: the section does not end on its line, and the cohesion and seam figures read small at slide size"]
   W200 --> T458["T-458 done: Make room for the line and the figures -> 05-how/index.md frames 3 and 4"]
   W195["W-195 bug todo, standalone: 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23"]
@@ -1174,7 +1174,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018,W194,T451 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,T449,T450,W200,T458 done
-  class T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462 todo
+  class E018,W194,T452 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,T449,T450,T451,W200,T458 done
+  class W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462 todo
 ```
