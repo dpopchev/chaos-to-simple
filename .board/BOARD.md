@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018   | blocked: 0 | todo roots: 5 | done: 648 | pruned: 8
+open path: E-018   | blocked: 0 | todo roots: 6 | done: 648 | pruned: 8
 
 ## Tree
 
@@ -17,6 +17,7 @@ W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider la
 W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
 W-198  bug    [todo]     (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small   (filed during T-441) -- T-456 [todo]
 W-199  bug    [todo]     (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [todo]
+W-201  bug    [todo]     (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small   (filed during T-458) -- T-459 [todo]
 ```
 
 ## Closed
@@ -1157,6 +1158,8 @@ flowchart TD
   W198 --> T456["T-456 todo: Shorten the title and enlarge the figure -> 05-how/index.md frame 1"]
   W199["W-199 bug todo, standalone: The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead"]
   W199 --> T457["T-457 todo: Add the two role icons -> scripts/utils/icons.py ICONS"]
+  W201["W-201 bug todo, standalone: 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small"]
+  W201 --> T459["T-459 todo: Restore the cohesion takeaway and enlarge the seam picture -> 05-how/index.md frames 3 and 4"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -1164,5 +1167,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E018 doing
   class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W200,T458 done
-  class W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457 todo
+  class W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459 todo
 ```
