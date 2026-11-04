@@ -42,7 +42,7 @@ made no distinction between them.
 
 \footnotesize
 
-- The Who line: stakeholders decide above it, developers below; the grey band is collaboration, widest at Chaos.
+- The Who line: stakeholders decide above it, developers below; the grey band is collaboration: none in Simple, most of Chaos.
 - The arrows: the talk's movement, 01 to 06.
 
 :::
@@ -52,5 +52,5 @@ made no distinction between them.
 Read the matrix from the origin: both axes start certain. The arrows are the route of the talk,
 from 01 to 06, and the footer counter is still ? until each section sets it. The agenda strip
 returns on the section pages. The grey band is collaboration: none in Simple, where the Who line
-stands alone, and widening through Complicated and Complex to its widest in Chaos.
+stands alone, and widening through Complicated and Complex to most of Chaos.
 :::

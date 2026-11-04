@@ -37,6 +37,12 @@ The diagonal y = x is labelled Who (`data/labels.csv`): above it stakeholders de
 agree, below it developers decide. The route puts 01 and 02 above the diagonal, 03 on it,
 and 04 to 06 below it.
 
+The collaboration band: none in Simple, the share of the half quadrant at each band's outer
+edge rising 0, 25, 55 and 85 percent (`COLLABORATION_SHARES` of `scripts/utils/stacey.py`),
+so the grey sides follow the band arcs and the word collaboration sits inside the Chaos
+sector. The point: only Simple has a clear boundary; everywhere else the work is
+collaboration, growing with complexity.
+
 ## Sources
 
 The candidate sources and what each states are in `data/boom-sources.md` (W-061).
