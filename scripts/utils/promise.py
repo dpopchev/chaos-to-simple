@@ -16,6 +16,14 @@ TITLES = {"customer": "what the customer got", "room": "what the room agreed, q5
 ROWS = ("customer", "room")
 BOX_W, BOX_H, PITCH = 2.4, 1.1, 3.4
 INCIDENT = "black"
+LABEL_FONT = 11.0
+LABEL_W = 80.0  # points between the icon and the box's right edge
+EM_PER_CHAR = 0.6
+
+
+def label_size(label: str, box_width: float) -> float:
+    """Return the font size in points at which the label fits box_width, capped at LABEL_FONT."""
+    return min(LABEL_FONT, box_width / (EM_PER_CHAR * len(label)))
 
 
 @dataclass(frozen=True)
@@ -86,13 +94,14 @@ def draw(steps: Sequence[Step], out: Path, actors: Path = ACTORS_CSV) -> Path:
                     color=ink,
                     zorder=4,
                 )
+            label = palette[s.actor].label
             ax.text(
-                x + 0.2,
+                x - 0.45,
                 y,
-                palette[s.actor].label,
-                ha="center",
+                label,
+                ha="left",
                 va="center",
-                fontsize=11,
+                fontsize=label_size(label, LABEL_W),
                 fontweight="bold",
                 color=ink,
                 zorder=4,

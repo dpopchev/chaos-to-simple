@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from scripts.utils.promise import draw, load_steps, swapped_pair
+from scripts.utils.promise import LABEL_FONT, LABEL_W, draw, label_size, load_steps, swapped_pair
 
 ROOT = Path(__file__).resolve().parents[2]
 CSV = ROOT / "05-how" / "data" / "promise.csv"
@@ -20,6 +20,11 @@ def test_promise_load_steps_reads_six_steps() -> None:
 @pytest.mark.model
 def test_promise_swapped_pair_is_one_and_two() -> None:
     assert swapped_pair(load_steps(CSV)) == (1, 2)
+
+
+@pytest.mark.model
+def test_promise_label_fits_payment_provider() -> None:
+    assert label_size("Payment provider", LABEL_W) < LABEL_FONT
 
 
 @pytest.mark.edge
