@@ -17,14 +17,20 @@ SNIPPET_POINTS = 5
 _HEADING = re.compile(r"^## (?P<title>.*?)(?:\s*\{[^}]*\})?\s*$")
 _COLUMN = re.compile(r'\.column\s+width="(?P<pct>\d+(?:\.\d+)?)%"')
 _CLOSE = re.compile(r"^:{3,}\s*$")
-INCLUDE = re.compile(
-    r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?:\s+snippet=(?P<snippet>[\w-]+))?"
-    r"(?:\s+cap=(?P<cap>\d+))?(?:\s+start-line=(?P<start>\d+))?(?:\s+end-line=(?P<end>\d+))?"
-)
+INCLUDE = re.compile(r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?P<attrs>[^}]*)")
+_ATTRIBUTE = re.compile(r"\s+(?P<name>snippet|cap|start-line|end-line)=(?P<value>[\w-]+)")
 _TEXT_FENCE = re.compile(r"^```\{[^}]*\.text\b")
 
 
 _STEP_MARKER = re.compile(r"\s*# \[step: \d\]\s*$")
+
+
+def include_attributes(include: re.Match[str]) -> dict[str, str]:
+    """Map the attributes after an include's path (snippet, cap, start-line, end-line) by name.
+
+    Any order; an attribute the include does not write is absent.
+    """
+    return {m.group("name"): m.group("value") for m in _ATTRIBUTE.finditer(include.group("attrs"))}
 
 
 def read_include(root: Path, path: str, strict: bool) -> str:
@@ -93,9 +99,10 @@ def too_wide(
         include = INCLUDE.match(line)
         if include:
             text = strip_step_markers(read(include.group("path")))
-            if include.group("snippet"):
-                text = snippet_text(text, include.group("snippet"))
-            text = line_range(text, include.group("start"), include.group("end"))
+            attrs = include_attributes(include)
+            if "snippet" in attrs:
+                text = snippet_text(text, attrs["snippet"])
+            text = line_range(text, attrs.get("start-line"), attrs.get("end-line"))
             points = EXHIBIT_POINTS if _TEXT_FENCE.match(line) else SNIPPET_POINTS
             budget = int(full * percent / 100 * BASE_POINTS / points)
             found.extend(

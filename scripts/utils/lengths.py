@@ -4,7 +4,13 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from scripts.utils.widths import INCLUDE, line_range, snippet_text, strip_step_markers
+from scripts.utils.widths import (
+    INCLUDE,
+    include_attributes,
+    line_range,
+    snippet_text,
+    strip_step_markers,
+)
 
 _HEADING_PREFIX = "## "
 
@@ -26,12 +32,13 @@ def too_long(
         if not include:
             continue
         text = strip_step_markers(read(include.group("path")))
-        snippet = include.group("snippet")
+        attrs = include_attributes(include)
+        snippet = attrs.get("snippet")
         if snippet:
             text = snippet_text(text, snippet)
-        text = line_range(text, include.group("start"), include.group("end"))
+        text = line_range(text, attrs.get("start-line"), attrs.get("end-line"))
         count = sum(1 for row in text.splitlines() if row.strip())
-        limit = int(include.group("cap") or cap)
+        limit = int(attrs.get("cap") or cap)
         if count > limit:
             where = f"{include.group('path')}:{snippet}" if snippet else include.group("path")
             found.append(f"{name} {heading}: {count} > {limit}: {where}")
