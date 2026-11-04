@@ -107,6 +107,22 @@ $(BUILD)/05-how/promise.png: $(PALETTE) 05-how/data/promise.csv scripts/figures.
 	@$(RUN) python -m scripts.figures promise --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/policies.txt
+
+$(BUILD)/05-how/policies.txt: data/rules.csv data/questions.csv data/cast.csv data/actors.csv \
+    scripts/paths.py scripts/utils/policies.py
+	@$(RUN) python -m scripts.paths policies --rules data/rules.csv \
+		--questions data/questions.csv --cast data/cast.csv --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(foreach k,0 1,$(BUILD)/05-how/bubble-$(k).txt)
+
+$(foreach k,0 1,$(BUILD)/05-how/bubble-$(k).txt) &: $(PALETTE) 05-how/data/bubbles.csv \
+    05-how/data/roles.csv scripts/paths.py scripts/utils/storyboard.py
+	@$(RUN) python -m scripts.paths bubbles --bubbles 05-how/data/bubbles.csv \
+		--actors 05-how/data/roles.csv --out $(BUILD)/05-how
+	$(call log_done,$(BUILD)/05-how bubbles written)
+
 $(BUILD)/05-how/ports.png: $(PALETTE) data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

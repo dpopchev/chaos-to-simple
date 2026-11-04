@@ -1,0 +1,3 @@
+step,week,when,actor,words,tag
+0,0,,support,"Did the order fail, or did only its confirmation fail?",
+1,0,,fulfilment,The order is accepted. The failed notification is a separate problem.,

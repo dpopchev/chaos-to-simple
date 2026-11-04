@@ -29,6 +29,8 @@
     python -m scripts.paths retro--questions data/questions.csv --out build/03-chaos/retro.txt
     python -m scripts.paths retro --only q3 --questions data/questions.csv \\
         --out build/04-what/dispute.txt
+    python -m scripts.paths policies --rules data/rules.csv --questions data/questions.csv \\
+        --cast data/cast.csv --out build/05-how/policies.txt
     python -m scripts.paths diff --from A.py --to B.py --snippet S [--to-snippet T]
         [--start TEXT] [--added-only] [--compact] [--hide PATTERN]
         [--label-from A --label-to B] [--no-scope] \\
@@ -74,6 +76,7 @@ from scripts.utils.paths import (
     stacked_bar,
     wounds_selector,
 )
+from scripts.utils.policies import policies_table
 from scripts.utils.retro import load_questions, question_card, retro_table
 from scripts.utils.stagediff import snippet_diff
 from scripts.utils.storyboard import (
@@ -152,6 +155,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             "wounds",
             "postmortem",
             "retro",
+            "policies",
             "storyboard",
             "bubbles",
             "tally",
@@ -335,6 +339,10 @@ def main(argv: Sequence[str] | None = None) -> int:
             text = retro_table(questions, load_rules(args.rules), load_contexts())
         else:
             text = question_card(next(q for q in questions if q.id == args.only))
+    elif args.what == "policies":
+        text = policies_table(
+            load_rules(args.rules), load_questions(args.questions), load_cast(args.cast)
+        )
     elif args.what == "wounds":
         text = wounds_selector(load_incidents(args.incidents)) + "\n"
     elif args.what == "postmortem":
