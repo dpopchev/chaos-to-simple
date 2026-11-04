@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 7 | done: 674 | pruned: 8
+open path: W-203 > T-461   | blocked: 0 | todo roots: 6 | done: 674 | pruned: 8
 
 ## Tree
 
 ```text
-W-203  bug    [todo]     (standalone) 06 offer frame: the responsibilities picture reads small stacked above price()   (filed during T-448) -- T-461 [todo]
+W-203  bug    [doing]    (standalone) 06 offer frame: the responsibilities picture reads small stacked above price()   (filed during T-448) -- T-461 [doing]   <- ACTIVE LEAF
 W-204  bug    [todo]     (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet   (filed during T-449) -- T-462 [todo]
 W-205  bug    [todo]     (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code   (filed during T-451) -- T-463 [todo]
 W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
@@ -1201,8 +1201,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make build/06-simple/cards.tx
 ## Diagram
 ```mermaid
 flowchart TD
-  W203["W-203 bug todo, standalone: 06 offer frame: the responsibilities picture reads small stacked above price()"]
-  W203 --> T461["T-461 todo: Draw a taller offer picture -> scripts/utils/responsibilities.py and 06-simple/index.md frame 1"]
+  W203["W-203 bug doing, standalone: 06 offer frame: the responsibilities picture reads small stacked above price()"]
+  W203 --> T461["T-461 doing: Draw a taller offer picture -> scripts/utils/responsibilities.py and 06-simple/index.md frame 1 -- ACTIVE LEAF"]
   W204["W-204 bug todo, standalone: 06 member15 diff shows no changed line: the factor sits outside the snippet"]
   W204 --> T462["T-462 todo: Bring the factor into the diff -> 06-simple/s06_simple/member15.py and 06-simple/section.mk"]
   W205["W-205 bug todo, standalone: 06 rehearsal frame: the two highlighted pictures read illegibly small above the code"]
@@ -1220,5 +1220,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W203,T461,W204,T462,W205,T463,W206,T464,W207,T467,W208,T468,W209,T469 todo
+  class W203,T461 doing
+  class W204,T462,W205,T463,W206,T464,W207,T467,W208,T468,W209,T469 todo
 ```
