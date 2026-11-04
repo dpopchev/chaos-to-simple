@@ -67,26 +67,19 @@ The groups are candidate model boundaries the departments helped discover, not b
 ## A boundary is an agreement about what the other side must know {paths=512}
 
 
-:::: {.columns}
-::: {.column width="55%"}
-
 ```{.python include=05-how/s05_how/warehouse_adapter.py snippet=adapter cap=16}
 ```
 
-:::
-::: {.column width="45%"}
-
-![](build/05-how/ports.png){width=100%}
-
-:::
-::::
-
 \begingroup\footnotesize Reserved: set aside for this order for 15 minutes; the shell reads Reserved | OutOfStock, never the JSON; reserve-before-charge lives in the shell\par\endgroup
+
+\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
+
+## What crosses the seam between the shop and warehouse
+
+![](build/05-how/ports.png){width=70%}
 
 ::: notes
 We still depend on the warehouse; we no longer need its language everywhere in checkout.
 :::
 
 \thread{4}
-
-\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
