@@ -14,6 +14,8 @@ python -m scripts.figures grid-image --out build/01-bits/grid.png
 python -m scripts.figures grid-panels --rules data/rules.csv --out build/03-chaos/grid-9.png
 python -m scripts.figures moves --rules data/rules.csv --out build/04-what/moves.png
 python -m scripts.figures promise --out build/05-how/promise.png
+python -m scripts.figures responsibilities --out build/06-simple/responsibilities.png
+python -m scripts.figures responsibilities --highlight pricing --out build/06-simple/r-pricing.png
 python -m scripts.figures seam --rules data/rules.csv --out build/05-how/ports.png
 python -m scripts.figures stacey --out build/02-stacey/stacey.png
 python -m scripts.figures stacey --highlight 02 --out build/02-stacey/stacey-02.png
@@ -54,6 +56,7 @@ from scripts.utils.paths import (
 )
 from scripts.utils.promise import draw as draw_promise
 from scripts.utils.promise import load_steps
+from scripts.utils.responsibilities import draw as draw_responsibilities
 from scripts.utils.retro import load_questions
 from scripts.utils.stacey import draw as draw_stacey
 from scripts.utils.stacey import load_labels, load_spots, load_zones
@@ -80,6 +83,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         "grid-panels",
         "moves",
         "promise",
+        "responsibilities",
         "seam",
         "journey",
         "stacey",
@@ -100,7 +104,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--incidents", type=Path, default=Path("data/incidents.csv"), help="agenda: incidents"
     )
-    parser.add_argument("--highlight", help="agenda, stacey: the section whose stop stands out")
+    parser.add_argument(
+        "--highlight",
+        help="agenda, stacey: the section whose stop stands out; responsibilities: the box",
+    )
     parser.add_argument("--plain", action="store_true", help="stacey: bands and names only")
     parser.add_argument("--arrows", action="store_true", help="stacey: arrows between the stops")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
@@ -189,6 +196,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "promise":
         draw_promise(load_steps(args.promise), args.out, args.actors)
+        return 0
+    if args.what == "responsibilities":
+        draw_responsibilities(args.out, args.highlight)
         return 0
     if args.what == "business-map":
         business_map(

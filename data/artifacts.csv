@@ -103,6 +103,10 @@ build/05-how/board.png,png,scripts.figures board --stage 05
 build/05-how/i3-run.txt,txt,pytest 05-how/tests/test_i3.py
 build/05-how/promise.png,png,scripts.figures promise
 build/05-how/cohesion.png,png,scripts.figures cohesion
+build/06-simple/responsibilities.png,png,scripts.figures responsibilities
+build/06-simple/responsibilities-pricing.png,png,scripts.figures responsibilities --highlight pricing
+build/06-simple/responsibilities-payment.png,png,scripts.figures responsibilities --highlight payment
+build/06-simple/responsibilities-shipping.png,png,scripts.figures responsibilities --highlight shipping
 build/06-simple/pytest-core.txt,txt,pytest
 build/06-simple/wounds.txt,txt,pytest -rp -k
 build/06-simple/postmortem.txt,txt,scripts.paths postmortem
