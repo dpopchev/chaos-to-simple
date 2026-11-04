@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 9 | done: 664 | pruned: 8
+open path: W-197 > T-455   | blocked: 0 | todo roots: 8 | done: 664 | pruned: 8
 
 ## Tree
 
 ```text
-W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
+W-197  bug    [doing]    (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [doing]   <- ACTIVE LEAF
 W-198  bug    [todo]     (standalone) 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small   (filed during T-441) -- T-456 [todo]
 W-199  bug    [todo]     (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [todo]
 W-201  bug    [todo]     (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small   (filed during T-458) -- T-459 [todo]
@@ -1173,8 +1173,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make build/05-how/promise.png
 ## Diagram
 ```mermaid
 flowchart TD
-  W197["W-197 bug todo, standalone: make new turns an ampersand in TITLE into the placeholder text"]
-  W197 --> T455["T-455 todo: Escape the title for sed -> mk/deck.mk new recipe"]
+  W197["W-197 bug doing, standalone: make new turns an ampersand in TITLE into the placeholder text"]
+  W197 --> T455["T-455 doing: Escape the title for sed -> mk/deck.mk new recipe -- ACTIVE LEAF"]
   W198["W-198 bug todo, standalone: 05 promise frame: the two-line title runs onto the exhibit and the promise figure reads small"]
   W198 --> T456["T-456 todo: Shorten the title and enlarge the figure -> 05-how/index.md frame 1"]
   W199["W-199 bug todo, standalone: The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead"]
@@ -1196,5 +1196,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
+  class W197,T455 doing
+  class W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
