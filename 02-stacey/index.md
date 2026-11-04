@@ -109,9 +109,9 @@ agree the What first.
 
 ::: notes
 Read the matrix from the origin: both axes start certain. The x axis is the How, the y axis
-the What. The bands Simple, Complicated, Complex and Chaos (BOOM) follow the distance from the
-origin. The diagonal is labelled Who: above it stakeholders decide and agree, below it
+the What. The bands Simple, Complicated, Complex and Chaos follow the distance from the
+origin. The diagonal is labelled Who: above it stakeholders decide, below it
 developers decide. 01 and 02 sit above the diagonal, 03 is on the line, and 04 to 06 sit below.
 02 is highlighted, in the Complex band above the line: joint venture; no boundary; nobody can
-say how long. The grey band is collaboration: none in Simple, most of Chaos, so only Simple has a clear boundary. The dispute is a decision for the room, section 03, not a test to write.
+say how long. The grey wedge is collaboration: one flat wedge from the origin, half of each side of the Who line, so only Simple has a clear boundary. The dispute is a decision for the room, section 03, not a test to write.
 :::

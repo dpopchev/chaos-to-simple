@@ -106,6 +106,11 @@ def test_collaboration_label_rides_the_who_line_past_the_chaos_arc() -> None:
 
 
 @pytest.mark.model
+def test_who_above_text_stands_upright_at_the_top_of_the_y_axis() -> None:
+    assert stacey.who_above_anchor() == (0.03, 1.0, 90)
+
+
+@pytest.mark.model
 def test_zones_items_lists_four_bands() -> None:
     assert stacey.zones_items(ZONES).count(r"\textbf") == 4
 

@@ -151,6 +151,11 @@ def collaboration_label(zones: Sequence[Zone]) -> tuple[float, float, float]:
     return (LABEL_RADIUS + LABEL_OFFSET) * root, (LABEL_RADIUS - LABEL_OFFSET) * root, 45.0
 
 
+def who_above_anchor() -> tuple[float, float, int]:
+    """Return the (x, y, rotation) of the above-the-Who text: upright, top of the y axis."""
+    return 0.03, 1.0, 90
+
+
 def tex_escape(text: str) -> str:
     """Escape the LaTeX specials the zone texts can hold."""
     return "".join(
@@ -231,7 +236,18 @@ def draw(
             zorder=3,
         )
     above, below = corner_texts(labels)
-    ax.text(0.02, LIMIT - 0.02, above, ha="left", va="top", fontsize=13, color="dimgrey", zorder=6)
+    ax_x, ax_y, ax_rot = who_above_anchor()
+    ax.text(
+        ax_x,
+        ax_y,
+        above,
+        ha="left",
+        va="top",
+        fontsize=13,
+        color="dimgrey",
+        rotation=ax_rot,
+        zorder=6,
+    )
     ax.text(
         LIMIT - 0.02, 0.02, below, ha="right", va="bottom", fontsize=13, color="dimgrey", zorder=6
     )

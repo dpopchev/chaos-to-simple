@@ -27,21 +27,18 @@ distance from the origin (`data/zones.csv`):
 | Simple | 0.00 to 0.25 | clear boundary; clear responsibility; a plan works | clear boundary; clear responsibility; a plan works |
 | Complicated | 0.25 to 0.50 | tangled requirements; clear technology: experts agree the What | clear requirements; hard technology: experts settle the How |
 | Complex | 0.50 to 0.75 | move down: decide the What first | move down: settle the How first |
-| Chaos (BOOM) | 0.75 and beyond | joint venture; no boundary; nobody can say how long | joint venture; no boundary; nobody can say how long |
+| Chaos | 0.75 and beyond | joint venture; no boundary; nobody can say how long | joint venture; no boundary; nobody can say how long |
 
-Each band's name is drawn inside its arc, above its above-the-diagonal text; the Chaos
-(BOOM) name is followed by the quote. Nothing is drawn under the x axis but its label; the
-below column of `zones.csv` is kept for the notes, not drawn.
+Each band's name is drawn inside its arc. Nothing is drawn under the x axis but its label;
+the below column of `zones.csv` is kept for the notes, not drawn.
 
-The diagonal y = x is labelled Who (`data/labels.csv`): above it stakeholders decide and
-agree, below it developers decide. The route puts 01 and 02 above the diagonal, 03 on it,
+The diagonal y = x is labelled Who (`data/labels.csv`): above it stakeholders decide (the
+text stands upright at the top of the y axis), below it developers decide. The route puts 01 and 02 above the diagonal, 03 on it,
 and 04 to 06 below it.
 
-The collaboration band: none in Simple, the share of the half quadrant at each band's outer
-edge rising 0, 25, 55 and 85 percent (`COLLABORATION_SHARES` of `scripts/utils/stacey.py`),
-so the grey sides follow the band arcs and the word collaboration sits inside the Chaos
-sector. The point: only Simple has a clear boundary; everywhere else the work is
-collaboration, growing with complexity.
+The collaboration wedge: one flat grey wedge from the origin, half of each side of the Who
+line (22.5 to 67.5 degrees), with the word collaboration along the Who line from the Chaos
+arc. The point: only Simple has a clear boundary; everywhere else the work is collaboration.
 
 ## Sources
 

@@ -2,4 +2,4 @@ zone,r_min,r_max,label,above,below
 simple,0.00,0.25,Simple,clear boundary; clear responsibility; a plan works,clear boundary; clear responsibility; a plan works
 complicated,0.25,0.50,Complicated,tangled requirements; clear technology: experts agree the What,clear requirements; hard technology: experts settle the How
 complex,0.50,0.75,Complex,move down: decide the What first,move down: settle the How first
-boom,0.75,1.00,Chaos (BOOM),joint venture; no boundary; nobody can say how long,joint venture; no boundary; nobody can say how long
+boom,0.75,1.00,Chaos,joint venture; no boundary; nobody can say how long,joint venture; no boundary; nobody can say how long
