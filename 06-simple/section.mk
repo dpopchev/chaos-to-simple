@@ -56,6 +56,21 @@ $(BUILD)/06-simple/member15.diff: $(PALETTE) 04-what/s04_what/pricing.py 06-simp
 		--label-from 'discount 10%' --label-to 'discount 15%' --out $@
 	$(call log_done,$@ written)
 
+# The gateway swap's acceptance: pyright must exit 0 over the other gateway and its test.
+ARTIFACTS += $(BUILD)/06-simple/pyright.txt
+
+$(BUILD)/06-simple/pyright.txt: 06-simple/section.mk 06-simple/s06_simple/other_gateway.py \
+    05-how/s05_how/ports.py 06-simple/tests/test_other_gateway.py
+	@mkdir -p $(@D)
+	@tmp=$$(mktemp); \
+	if ! $(RUN) pyright 06-simple/s06_simple/other_gateway.py \
+	    06-simple/tests/test_other_gateway.py > $$tmp 2>&1; then \
+	  cat $$tmp; rm -f $$tmp; echo "pyright: the other gateway is not accepted" >&2; exit 1; \
+	fi; \
+	grep -E '^[0-9]+ errors?, ' $$tmp | sed -E 's/ +$$//' > $@; \
+	rm -f $$tmp
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/06-simple/responsibilities.png \
     $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-$(n).png)
 
