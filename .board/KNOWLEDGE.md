@@ -21,6 +21,7 @@
 - 2026-11-04 W-173: standing: page 16 is titled with what finance counted, W-189 (developer, 2026-11-04) -> the memo, the chart and the title draw no conclusion about the code supersedes: W-173#1
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
 - 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
+- 2026-11-04 W-210: standing: the developer keeps T-470's trims (2026-11-04): pages 44-45 show other_gateway.py lines 24-28 only, the pyright block and the Marketing and Operations names live in the speaker notes, the pricing frame has no thread line -> no restore item supersedes: W-210#1
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -29,7 +30,6 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
-- 2026-11-04 W-210: open: T-470 trimmed to fit the 70 percent pictures: the payment frame shows other_gateway.py lines 24-28 only, its pyright block moved to the notes, the Marketing and Operations names moved to the notes, and the pricing frame has no thread line; keep or restore at the close
 
 ## Decisions
 - none recorded
