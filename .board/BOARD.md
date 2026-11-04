@@ -1147,7 +1147,7 @@ flowchart TD
   W194 --> T449["T-449 todo: Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff"]
   W194 --> T450["T-450 todo: Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py"]
   W194 --> T451["T-451 todo: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv"]
-  W194 --> T452["T-452 todo: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, README.md and data/budget.csv"]
+  W194 --> T452["T-452 todo: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, 00-frontmatter/preamble.tex, README.md and data/budget.csv"]
   E018 --> W200["W-200 bug done: 05: the section does not end on its line, and the cohesion and seam figures read small at slide size"]
   W200 --> T458["T-458 done: Make room for the line and the figures -> 05-how/index.md frames 3 and 4"]
   W195["W-195 bug todo, standalone: 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23"]
