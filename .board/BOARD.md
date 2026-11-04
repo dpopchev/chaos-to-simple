@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018   | blocked: 0 | todo roots: 0 | done: 632 | pruned: 8
+open path: E-018 > W-190 > T-435   | blocked: 0 | todo roots: 0 | done: 632 | pruned: 8
 
 ## Tree
 
 ```text
 E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
-  W-190  issue  [todo]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [todo], T-436 [todo], T-437 [todo]
+  W-190  issue  [doing]    02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [doing]   <- ACTIVE LEAF, T-436 [todo], T-437 [todo]
   W-191  issue  [todo]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [todo], T-439 [todo], T-440 [todo], T-441 [todo]
   W-192  issue  [todo]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [todo], T-443 [todo], T-444 [todo], T-445 [todo]
   W-193  issue  [todo]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [todo], T-447 [todo], T-448 [todo]
@@ -1116,8 +1116,8 @@ closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md 
 ```mermaid
 flowchart TD
   E018["E-018 doing: Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)"]
-  E018 --> W190["W-190 issue todo: 02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside"]
-  W190 --> T435["T-435 todo: Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector"]
+  E018 --> W190["W-190 issue doing: 02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside"]
+  W190 --> T435["T-435 doing: Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector -- ACTIVE LEAF"]
   W190 --> T436["T-436 todo: Move the label into the band -> stacey.collaboration_label and draw"]
   W190 --> T437["T-437 todo: Describe the band and verify the pages -> 02-stacey/README.md and 00-frontmatter/index.md"]
   E018 --> W191["W-191 issue todo: 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames"]
@@ -1144,6 +1144,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452 todo
+  class E018,W190,T435 doing
+  class T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452 todo
 ```
