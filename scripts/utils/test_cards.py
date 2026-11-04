@@ -6,10 +6,10 @@ import pytest
 
 from scripts.utils.cards import cards_text
 
-INCIDENTS = """id,closed_by,decision,bit
-I1,test_free_shipping,the threshold reads the value,b2
-I2,rules.csv b2,"logistics owns the rule, decided in the room",b2
-I3,TestOutOfStockRejects,reserve before charge,s1
+INCIDENTS = """id,closed_by,decision,customer_outcome,bit
+I1,test_free_shipping,the threshold reads the value,pays 5 EUR shipping,b2
+I2,rules.csv b2,"logistics owns the rule, decided in the room",one answer whoever asks,b2
+I3,TestOutOfStockRejects,reserve before charge,told the order is rejected,s1
 """
 EXAMPLES = """scope,bit,name,given,then
 core,b2,free_shipping,goods 55,shipping 5
@@ -27,6 +27,16 @@ def test_cards_three_cards_lead_with_the_example() -> None:
         "agreed example: goods 55 -> shipping 5",
         "agreed example: goods 55 -> shipping 5",
         "agreed example: a priced order -> Rejected",
+    ]
+
+
+@pytest.mark.model
+def test_cards_outcome_reads_the_customer_column() -> None:
+    cards = cards_text(INCIDENTS, EXAMPLES, WOUNDS).split("\n\n")
+    assert [c.splitlines()[1] for c in cards] == [
+        "customer outcome: pays 5 EUR shipping",
+        "customer outcome: one answer whoever asks",
+        "customer outcome: told the order is rejected",
     ]
 
 

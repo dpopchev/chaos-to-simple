@@ -25,6 +25,7 @@ class Closure:
 
     closed_by: str
     decision: str
+    customer_outcome: str
     bit: str
 
 
@@ -42,7 +43,9 @@ def write_text(path: Path, text: str) -> None:
 def parse_closures(text: str) -> tuple[Closure, ...]:
     """Return the incidents of a csv text in order."""
     rows = csv.DictReader(io.StringIO(text))
-    return tuple(Closure(r["closed_by"], r["decision"], r["bit"]) for r in rows)
+    return tuple(
+        Closure(r["closed_by"], r["decision"], r["customer_outcome"], r["bit"]) for r in rows
+    )
 
 
 def parse_examples(text: str) -> tuple[Example, ...]:
@@ -102,7 +105,7 @@ def cards_text(incidents: str, examples: str, wounds: str) -> str:
             "\n".join(
                 (
                     f"agreed example: {example.given} -> {example.then}",
-                    f"customer outcome: {closure.decision}",
+                    f"customer outcome: {closure.customer_outcome}",
                     _last_line(closure, wounds),
                 )
             )
