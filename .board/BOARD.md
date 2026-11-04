@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-191   | blocked: 0 | todo roots: 3 | done: 640 | pruned: 8
+open path: E-018   | blocked: 0 | todo roots: 3 | done: 641 | pruned: 8
 
 ## Tree
 
 ```text
 E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
   W-190  issue  [done]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [done], T-436 [done], T-437 [done]
-  W-191  issue  [doing]    05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
+  W-191  issue  [done]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
   W-192  issue  [todo]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [todo], T-443 [todo], T-444 [todo], T-445 [todo]
   W-193  issue  [todo]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [todo], T-447 [todo], T-448 [todo]
   W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
@@ -1123,7 +1123,7 @@ flowchart TD
   W190 --> T435["T-435 done: Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector"]
   W190 --> T436["T-436 done: Move the label into the band -> stacey.collaboration_label and draw"]
   W190 --> T437["T-437 done: Describe the band and verify the pages -> 02-stacey/README.md and 00-frontmatter/index.md"]
-  E018 --> W191["W-191 issue doing: 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames"]
+  E018 --> W191["W-191 issue done: 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames"]
   W191 --> T438["T-438 done: Draw the two sequences -> scripts/utils/promise.py and build/05-how/promise.png"]
   W191 --> T439["T-439 done: Render the policies and the exchange -> scripts.paths policies, data/actors.csv and build/05-how/policies.txt, bubble-0.txt, bubble-1.txt"]
   W191 --> T440["T-440 done: Open the backup section and the thread macro -> 08-backup/index.md, 00-frontmatter/preamble.tex and data/budget.csv"]
@@ -1153,7 +1153,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018,W191 doing
-  class W190,T435,T436,T437,T438,T439,T440,T441 done
+  class E018 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441 done
   class W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455 todo
 ```
