@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-204   | blocked: 0 | todo roots: 5 | done: 677 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 5 | done: 678 | pruned: 8
 
 ## Tree
 
 ```text
-W-204  bug    [doing]    (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet   (filed during T-449) -- T-462 [done]
 W-205  bug    [todo]     (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code   (filed during T-451) -- T-463 [todo]
 W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
 W-207  bug    [todo]     (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [todo]
@@ -1203,11 +1202,15 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 42's pic
 
 - T-461 [done] Draw a taller offer picture -> scripts/utils/responsibilities.py and 06-simple/index.md frame 1
 
+### W-204 bug [done] (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet
+
+closed 2026-11-04 -- outcome: Given the deck, When make build/06-simple/member15.diff, Then the diff holds a removed MEMBER_FACTOR 0.90 line and an added MEMBER_FACTOR 0.85 line. -- ledger: ledgers/W-204.md
+
+- T-462 [done] Bring the factor into the diff -> 06-simple/s06_simple/member15.py and 06-simple/section.mk
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W204["W-204 bug doing, standalone: 06 member15 diff shows no changed line: the factor sits outside the snippet"]
-  W204 --> T462["T-462 done: Bring the factor into the diff -> 06-simple/s06_simple/member15.py and 06-simple/section.mk"]
   W205["W-205 bug todo, standalone: 06 rehearsal frame: the two highlighted pictures read illegibly small above the code"]
   W205 --> T463["T-463 todo: Use the compact pictures on the rehearsal frame -> 06-simple/index.md"]
   W206["W-206 bug todo, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
@@ -1223,7 +1226,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W204 doing
-  class T462 done
   class W205,T463,W206,T464,W207,T467,W208,T468,W209,T469 todo
 ```
