@@ -89,6 +89,22 @@ $(BUILD)/05-how/imports.txt: 05-how/section.mk scripts/paths.py scripts/utils/im
 		--source 05-how/s05_how/ports.py --source 05-how/s05_how/checkout_v5.py --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/results-code.txt
+
+$(BUILD)/05-how/results-code.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    05-how/s05_how/ports.py
+	@$(RUN) python -m scripts.paths tally-code --name results --version 9 --policies 3 --paths 8 \
+		--source 05-how/s05_how/ports.py --snippet results --out $@
+	$(call log_done,$@ written)
+
+ARTIFACTS += $(BUILD)/05-how/fakes-code.txt
+
+$(BUILD)/05-how/fakes-code.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    05-how/s05_how/fakes.py
+	@$(RUN) python -m scripts.paths tally-code --name fakes --version 9 --policies 3 --paths 8 \
+		--source 05-how/s05_how/fakes.py --snippet fakes --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/05-how/ports.png: $(PALETTE) data/rules.csv data/cast.csv scripts/figures.py scripts/utils/figures.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures seam --rules data/rules.csv --cast data/cast.csv --out $@
 	$(call log_done,$@ written)

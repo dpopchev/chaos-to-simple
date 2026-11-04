@@ -23,7 +23,11 @@ pure core and the effectful shell.
 - [x] Past me reached for a class: `snippet=oo`, captioned 'same bug, pricing edition: the order
   hidden in state'
 - [x] Command Query Separation draws the seam: two definitions, `snippet=types`, the refrain
+- [x] A sum type per answer and a Protocol per port: `snippet=results` beside `snippet=fakes`
+  over the pyright line that accepts the fakes (`build/05-how/pyright.txt`)
 - [x] The ports, as a picture
+- [x] Dependencies point inward: the import counts of `build/05-how/imports.txt`, measured from
+  the files
 - [x] A boundary that passes values adds paths: the moves table, with the line glued at its foot
 
 ## Live

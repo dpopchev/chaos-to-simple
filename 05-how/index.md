@@ -78,6 +78,34 @@ Command query separation: a query asks, a command answers with a value, never bo
 Every answer is a value the caller can match on, so the order stops living in state.
 :::
 
+## A sum type per answer and a Protocol per port: the fakes satisfy them with no inheritance, pyright says so {paths=512}
+
+\fvset{fontsize=\fontsize{4.7}{5.5}\selectfont}
+
+:::: {.columns}
+::: {.column width="45%"}
+
+```{.python heading-file=build/05-how/results-code.txt include=05-how/s05_how/ports.py snippet=results cap=22}
+```
+
+```{.text heading="uv run pyright fakes.py test_ports.py" include=build/05-how/pyright.txt}
+```
+
+:::
+::: {.column width="55%"}
+
+```{.python heading-file=build/05-how/fakes-code.txt include=05-how/s05_how/fakes.py snippet=fakes cap=28}
+```
+
+:::
+::::
+
+::: notes
+Each answer is its own type: Charged or Declined, Reserved or OutOfStock, Sent or Bounced.
+A fake is a plain class with the same method. It never inherits from the port, and pyright accepts it anyway: zero errors.
+The test doubles carry one bit each, so a shell test can enumerate the world.
+:::
+
 ## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
 
 
@@ -102,6 +130,18 @@ above the first match every line is a value; below it three answers, reserve fir
 ::: notes
 The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
 The diff is only the seam, so the picture and the code say the same thing.
+:::
+
+## Dependencies point inward: the shell imports the ports and the contexts, no context imports a port {paths=512}
+
+```{.text heading="names imported, counted from the files" include=build/05-how/imports.txt}
+```
+
+the What does not know the world: a context returns a value and asks nothing
+
+::: notes
+The table is counted from the import lines of the files, never typed.
+The shell imports the ports and the contexts. The contexts import neither the ports nor the shell: zero under ports on every context row.
 :::
 
 ## Passing values across a boundary adds paths you can count, passing flags multiplies them {paths=512}
