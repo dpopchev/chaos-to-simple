@@ -18,6 +18,10 @@
 - 2026-11-02 W-092: standing: the developer keeps the matrix at 85% with the line beside it (Decision on E-010) -> AC4 reads 'glued beside it' supersedes: W-092#2
 - 2026-11-03 E-016: standing: M1/M2 (footer glyph, CODE/WAREHOUSE fallbacks) not reproduced: gs txtwrite of build/talk.pdf at a65a774 finds no such text, FA7 Solid resolves -> a talk machine without the font swaps code to terminal, warehouse to boxes in actors.csv supersedes: E-016#1
 - 2026-11-04 T-403: fact: the red: 0 note above is wrong, the Check prints 1 at 9920a05 from 01-bits/index.md:412 'every one of them' -> the Action's lead adds a second 'one of them' line, so the frozen Check would print 2 and cannot pass
+- 2026-11-04 W-170: standing: the tests heading counts the matched test files, fixtures included (developer, 2026-11-04) -> page 15 reads 'tests v6: 2 tests, 34 lines' supersedes: W-170#1
+- 2026-11-04 W-173: standing: page 16 is titled with what finance counted, W-189 (developer, 2026-11-04) -> the memo, the chart and the title draw no conclusion about the code supersedes: W-173#1
+- 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
+- 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -26,10 +30,6 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
-- 2026-11-03 W-170: open: the tests heading counts every non-blank line of the matched test files (page 15: 34 lines of test_chaos.py), not the snippet shown; count the snippet instead, or keep the file count
-- 2026-11-04 W-173: open: page 16's title 'Finance traced 6,070 EUR ... to orders the coupon took under 50 EUR' draws the conclusion the memo no longer does; retitle to what finance counted, or keep
-- 2026-11-04 W-174: open: page 17's title 'Finance's R2 test expects 60.00 and gets 54.00' credits finance with a test now built from engineering's breakdown; retitle with page 16's, or keep
-- 2026-11-04 W-176: open: page 49's epilogue chart reads small in its 40% column and its labels are black on the dark shipping and fulfilment blue; widen the column or flip the ink, or keep
 
 ## Decisions
 - 2026-11-03 E-017: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 14 hours) (developer, 2026-11-03)
