@@ -69,7 +69,7 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
 :::
 
-## The seventh request has a place to start, not a licence to skip discovery {paths=72}
+## The seventh request has a place to start {paths=72}
 
 \vspace{0.6em}
 
@@ -80,27 +80,26 @@ for this example we change the delivery-charge policy for a digital-only order
 
 \begingroup\scriptsize separate decisions, not shown: mixed baskets, gift wrap on a digital item, stock reservation, digital delivery, tax treatment\par\endgroup
 
-:::: {.columns}
-::: {.column width="58%"}
-
 ```{.diff include=build/06-simple/seventh.diff cap=12}
 ```
 
+::: notes
+Marketing's seventh request, digital books: it has a place to start, shipping.
+For this example we change the delivery-charge policy for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
+The small diff is the shipping change; the next frame shows its highlight.
 :::
-::: {.column width="38%"}
 
-![](build/06-simple/responsibilities-offer-shipping.png){width=100%}
+## A place to start is not a licence to skip the discovery {paths=72}
 
-:::
-::::
+![](build/06-simple/responsibilities-offer-shipping.png){width=70%}
+
+\vspace{-0.4em}
 
 \thread{5}
 
 \theline{One more if is cheap}{Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start.}
 
 ::: notes
-Marketing's seventh request, digital books: it has a place to start, shipping, and it is not a licence to skip discovery.
-For this example we change the delivery-charge policy for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
-The small diff is the shipping change; the compact picture shows its highlight; the full picture is build/06-simple/responsibilities.png.
+The compact picture shows the highlighted shipping box; the full picture is build/06-simple/responsibilities.png.
 I no longer ask only where to put the next if. I ask whose decision it is, what information it needs, and what else it is allowed to change.
 :::
