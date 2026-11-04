@@ -13,11 +13,13 @@ Beat: put the bits where they belong, count again. 64 core paths tested by enume
 
 ## Slides
 
-Six slides, each with speaker notes.
+Eight slides, each with speaker notes.
 
+- [x] The contract: `snippet=request` (core.py's `Request`, `Priced`) beside `snippet=outcome` (shell.py's `Outcome`), the line "values in, values out"
 - [x] Cut along the seam: `snippet=price` (core.py) beside `build/06-simple/seam.diff` (checkout v5 -> shell)
 - [x] Sixty-four paths, three invariants: 192 tests: `snippet=from-bits` over `build/06-simple/pytest-core-summary.txt`
 - [x] Eight worlds, four outcomes: `snippet=eight` (worlds.py) beside `build/06-simple/worlds.txt`
+- [x] Six ifs in three contexts, none in the core or the shell: `build/06-simple/ifs.txt` beside `build/06-simple/imports.txt`
 - [x] The wounds close by name: `build/06-simple/postmortem.txt` over `build/06-simple/wounds.txt`
 - [x] The number: the chart, `build/data/splits.txt` and the line "No decision is ever deleted, only moved"
 - [x] Epilogue: marketing's seventh if, the bubble on top, then two columns; the glued line sits under them

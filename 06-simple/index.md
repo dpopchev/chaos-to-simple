@@ -89,6 +89,30 @@ Eight shell worlds collapse to four outcomes.
 No charge when stock is gone, no mail when the card is refused.
 :::
 
+## Six ifs live in three contexts and none in the core or the shell, which holds three matches at the edge {paths=512}
+
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{.text heading="ifs and matches per module, counted with ast" include=build/06-simple/ifs.txt}
+```
+
+:::
+::: {.column width="50%"}
+
+```{.text heading="names imported per module, counted with ast" include=build/06-simple/imports.txt}
+```
+
+:::
+::::
+
+cohesion: a rule changes in one module; decoupling: the shell imports the core and the ports, the core imports no port
+
+::: notes
+Six ifs live in the three contexts: pricing two, shipping two, tax one. core.py and shell.py hold none; the shell keeps its three matches at the edge. Live demo: git grep -n 'if ' 06-simple/s06_simple/shell.py returns only the docstring that states the house rule.
+:::
+
 ## I1 and I3 each close by name as a test, and the seam keeps both from returning {paths=512}
 
 

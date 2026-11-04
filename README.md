@@ -21,7 +21,7 @@ build/                   artifacts; make clean removes it; never tracked
 local/                   scratch, env, secrets; never tracked
 ```
 
-The built deck, `build/talk.pdf`, is 50 pages: 43 content frames, counted by
+The built deck, `build/talk.pdf`, is 57 pages: 50 content frames, counted by
 `data/budget.csv`, and the title and other pages the build adds.
 
 Each section directory holds:
