@@ -48,7 +48,7 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 
 \footnotesize Marketing changes the member discount
 
-![](build/06-simple/responsibilities-pricing.png){width=64%}
+![](build/06-simple/responsibilities-offer-pricing.png){width=58%}
 
 ```{.diff include=build/06-simple/member15.diff cap=10}
 ```
@@ -60,7 +60,7 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 
 \footnotesize Operations changes the payment provider
 
-![](build/06-simple/responsibilities-payment.png){width=64%}
+![](build/06-simple/responsibilities-offer-payment.png){width=58%}
 
 ```{.python include=06-simple/s06_simple/other_gateway.py snippet=gateway cap=14}
 ```

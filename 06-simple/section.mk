@@ -72,7 +72,8 @@ $(BUILD)/06-simple/pyright.txt: 06-simple/section.mk 06-simple/s06_simple/other_
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/06-simple/responsibilities.png $(BUILD)/06-simple/responsibilities-offer.png \
-    $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-$(n).png)
+    $(foreach n,pricing payment shipping,$(BUILD)/06-simple/responsibilities-$(n).png) \
+    $(foreach n,pricing payment,$(BUILD)/06-simple/responsibilities-offer-$(n).png)
 
 $(BUILD)/06-simple/responsibilities.png: $(PALETTE) $(RULES) scripts/figures.py \
     scripts/utils/responsibilities.py scripts/utils/style.py
@@ -87,6 +88,11 @@ $(BUILD)/06-simple/responsibilities-offer.png: $(PALETTE) $(RULES) scripts/figur
 $(BUILD)/06-simple/responsibilities-%.png:$(PALETTE) $(RULES) scripts/figures.py \
     scripts/utils/responsibilities.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures responsibilities --highlight $* --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/responsibilities-offer-%.png: $(PALETTE) $(RULES) scripts/figures.py \
+    scripts/utils/responsibilities.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures responsibilities --compact --highlight $* --out $@
 	$(call log_done,$@ written)
 
 ARTIFACTS += $(BUILD)/06-simple/seam.diff $(BUILD)/06-simple/pytest-core-summary.txt
