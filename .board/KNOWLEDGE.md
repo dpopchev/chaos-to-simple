@@ -31,10 +31,7 @@
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
-- 2026-11-04 E-018: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 11 hours) (developer, 2026-11-04)
+- none recorded
 
 ## Deviations
-- 2026-11-04 E-018: T-439, T-441 Actions amended: Support and Fulfilment live in 05-how/data/roles.csv for the 05 bubbles only; role rows in data/actors.csv break the business map and four tests; the slides name them in plain text; Checks unchanged
-- 2026-11-04 E-018: T-448 Action amended: the evidence frame heads cards.txt with the I1-I3 headlines, since cards.txt names no incident; the outcome wording filed standalone as W-202
-- 2026-11-04 E-018: T-452 amended before start: 08 gets a plain section divider (no agenda strip), the page that makes the outcome's 63 pages; the guard of T-440 drew none
-- 2026-11-04 E-018: W-200 filed under E-018: W-192's run found 05 not ending on its line and two figures small; started before W-193 since it touches the same frames
+- none recorded

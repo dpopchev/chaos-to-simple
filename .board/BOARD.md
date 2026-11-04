@@ -1,17 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018   | blocked: 0 | todo roots: 11 | done: 657 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 11 | done: 658 | pruned: 8
 
 ## Tree
 
 ```text
-E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
-  W-190  issue  [done]     02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside -- T-435 [done], T-436 [done], T-437 [done]
-  W-191  issue  [done]     05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames -- T-438 [done], T-439 [done], T-440 [done], T-441 [done]
-  W-192  issue  [done]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
-  W-193  issue  [done]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [done], T-447 [done], T-448 [done]
-  W-194  issue  [done]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [done], T-450 [done], T-451 [done], T-452 [done]
-  W-200  bug    [done]     05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445) -- T-458 [done]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
 W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [todo]
 W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
@@ -1035,6 +1028,47 @@ closed 2026-11-04 -- outcome: make talk builds a 57-page deck in which every cod
 
 - T-434 [done] Retitle pages 16 and 17 -> 01-bits/index.md with the two new frame titles
 
+### E-018 [done] Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)
+
+closed 2026-11-04 -- outcome: make talk builds a 63-page deck: the matrix band curved and labelled, 05 and 06 four main-story frames each (12 minutes together) under the thread annotation business feedback -> decision -> responsible home -> contract -> evidence, an 08-backup section of 13 mechanism frames after the thank-you, make check green. -- ledger: ledgers/E-018.md
+
+#### W-190 issue [done] 02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside
+
+- T-435 [done] Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector
+- T-436 [done] Move the label into the band -> stacey.collaboration_label and draw
+- T-437 [done] Describe the band and verify the pages -> 02-stacey/README.md and 00-frontmatter/index.md
+
+#### W-191 issue [done] 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames
+
+- T-438 [done] Draw the two sequences -> scripts/utils/promise.py and build/05-how/promise.png
+- T-439 [done] Render the policies and the exchange -> scripts.paths policies, data/actors.csv and build/05-how/policies.txt, bubble-0.txt, bubble-1.txt
+- T-440 [done] Open the backup section and the thread macro -> 08-backup/index.md, 00-frontmatter/preamble.tex and data/budget.csv
+- T-441 [done] Write the promise and policies frames -> 05-how/index.md and 05-how/README.md
+
+#### W-192 issue [done] 05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded
+
+- T-442 [done] Draw the cohesion groups -> scripts/utils/cohesion.py, data/contexts.csv and build/05-how/cohesion.png
+- T-443 [done] Write the warehouse adapter -> 05-how/s05_how/warehouse_adapter.py and 05-how/tests/test_warehouse_adapter.py
+- T-444 [done] Draw the shell between the core and the providers -> figures.seam and build/05-how/ports.png
+- T-445 [done] Write the cohesion and boundary frames and the 05 line -> 05-how/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md and data/budget.csv
+
+#### W-193 issue [done] 06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup
+
+- T-446 [done] Draw the responsibilities picture -> scripts/utils/responsibilities.py and build/06-simple/responsibilities.png with its highlight variants
+- T-447 [done] Render the evidence cards -> scripts.paths cards and build/06-simple/cards.txt
+- T-448 [done] Write the offer and evidence frames and move the mechanisms -> 06-simple/index.md, 08-backup/index.md, scripts/utils/test_counter_plan.py, README.md and data/budget.csv
+
+#### W-194 issue [done] 06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count
+
+- T-449 [done] Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff
+- T-450 [done] Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py
+- T-451 [done] Write the rehearsal frame -> 06-simple/index.md and data/budget.csv
+- T-452 [done] Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, 00-frontmatter/preamble.tex, README.md and data/budget.csv
+
+#### W-200 bug [done] 05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445)
+
+- T-458 [done] Make room for the line and the figures -> 05-how/index.md frames 3 and 4
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -1127,32 +1161,6 @@ closed 2026-11-03 -- outcome: Given the deck, When grep -c BGN 04-what/index.md 
 ## Diagram
 ```mermaid
 flowchart TD
-  E018["E-018 doing: Deck v6: the collaboration band curved, 05 and 06 retold as the discovery of responsibilities and the proof that they make change safer (the 2026-11-04 review)"]
-  E018 --> W190["W-190 issue done: 02 matrix: the collaboration band as arc-bounded sectors, none in Simple to 85 percent in Chaos, labelled inside"]
-  W190 --> T435["T-435 done: Replace the width by an angle -> stacey.collaboration_half_angle and collaboration_sector"]
-  W190 --> T436["T-436 done: Move the label into the band -> stacey.collaboration_label and draw"]
-  W190 --> T437["T-437 done: Describe the band and verify the pages -> 02-stacey/README.md and 00-frontmatter/index.md"]
-  E018 --> W191["W-191 issue done: 05 frames 1-2: the promise and the policies, the thread annotation, and 08-backup seeded with the six 05 mechanism frames"]
-  W191 --> T438["T-438 done: Draw the two sequences -> scripts/utils/promise.py and build/05-how/promise.png"]
-  W191 --> T439["T-439 done: Render the policies and the exchange -> scripts.paths policies, data/actors.csv and build/05-how/policies.txt, bubble-0.txt, bubble-1.txt"]
-  W191 --> T440["T-440 done: Open the backup section and the thread macro -> 08-backup/index.md, 00-frontmatter/preamble.tex and data/budget.csv"]
-  W191 --> T441["T-441 done: Write the promise and policies frames -> 05-how/index.md and 05-how/README.md"]
-  E018 --> W192["W-192 issue done: 05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded"]
-  W192 --> T442["T-442 done: Draw the cohesion groups -> scripts/utils/cohesion.py, data/contexts.csv and build/05-how/cohesion.png"]
-  W192 --> T443["T-443 done: Write the warehouse adapter -> 05-how/s05_how/warehouse_adapter.py and 05-how/tests/test_warehouse_adapter.py"]
-  W192 --> T444["T-444 done: Draw the shell between the core and the providers -> figures.seam and build/05-how/ports.png"]
-  W192 --> T445["T-445 done: Write the cohesion and boundary frames and the 05 line -> 05-how/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md and data/budget.csv"]
-  E018 --> W193["W-193 issue done: 06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup"]
-  W193 --> T446["T-446 done: Draw the responsibilities picture -> scripts/utils/responsibilities.py and build/06-simple/responsibilities.png with its highlight variants"]
-  W193 --> T447["T-447 done: Render the evidence cards -> scripts.paths cards and build/06-simple/cards.txt"]
-  W193 --> T448["T-448 done: Write the offer and evidence frames and move the mechanisms -> 06-simple/index.md, 08-backup/index.md, scripts/utils/test_counter_plan.py, README.md and data/budget.csv"]
-  E018 --> W194["W-194 issue done: 06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count"]
-  W194 --> T449["T-449 done: Rehearse the member discount -> 06-simple/s06_simple/member15.py, 06-simple/tests/test_member15.py and build/06-simple/member15.diff"]
-  W194 --> T450["T-450 done: Rehearse the gateway swap -> 06-simple/s06_simple/other_gateway.py and 06-simple/tests/test_other_gateway.py"]
-  W194 --> T451["T-451 done: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv"]
-  W194 --> T452["T-452 done: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, 00-frontmatter/preamble.tex, README.md and data/budget.csv"]
-  E018 --> W200["W-200 bug done: 05: the section does not end on its line, and the cohesion and seam figures read small at slide size"]
-  W200 --> T458["T-458 done: Make room for the line and the figures -> 05-how/index.md frames 3 and 4"]
   W195["W-195 bug todo, standalone: 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23"]
   W195 --> T453["T-453 todo: Keep the label clear of the band name -> stacey.collaboration_label"]
   W196["W-196 bug todo, standalone: 05 promise figure: the Payment provider label runs over its icon"]
@@ -1180,7 +1188,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452,W200,T458 done
   class W195,T453,W196,T454,W197,T455,W198,T456,W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
