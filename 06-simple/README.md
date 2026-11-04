@@ -1,7 +1,8 @@
 # 06-simple: functional core, imperative shell
 
-Beat: put the bits where they belong, count again. 64 core paths tested by enumeration,
-8 shell configurations tested with fakes, 72 to reason about instead of 512.
+Beat: the responsibilities make a change safer. Calculate the offer apart from carrying
+out the order, then the evidence the business recognizes: 64 core paths, 8 shell worlds,
+72 to reason about instead of 512.
 
 | | |
 |---|---|
@@ -9,20 +10,16 @@ Beat: put the bits where they belong, count again. 64 core paths tested by enume
 | Footer counter | `512` on entry, `72` on the last slide |
 | Owns | `s06_simple/core.py` (`Request`, `Priced`, `price`), `shell.py` (`checkout`, `Accepted | Rejected`), `worlds.py` (`world`, `rows`, `table`: the measured eight worlds), `tests/` (64 paths, 10 green cards, 8 worlds, 4 shell cards) |
 | Uses | `s04_what` (the contexts), `s05_how` (ports and fakes), `data/examples.csv` (test names are pinned to it) |
-| Produces | `build/06-simple/pytest-core.txt`, `build/06-simple/seventh.diff`, `build/06-simple/paths.png` (stacked bar: 512, 64 + 8, 4 + 8 + 2 + 8) via `section.mk` |
+| Produces | `build/06-simple/responsibilities.png`, `price.txt`, `cards.txt`, `seventh.diff`, `build/data/splits.txt` via `section.mk`; the five mechanism frames (Request / Priced, 192 tests, eight worlds, ifs and imports, 512 to 72 chart) sit in 08-backup |
 
 ## Slides
 
-Eight slides, each with speaker notes.
+Four planned frames (W-193 writes the first two, W-194 the rest), each with speaker notes.
 
-- [x] The contract: `snippet=request` (core.py's `Request`, `Priced`) beside `snippet=outcome` (shell.py's `Outcome`), the line "values in, values out"
-- [x] Cut along the seam: `snippet=price` (core.py) beside `build/06-simple/seam.diff` (checkout v5 -> shell)
-- [x] Sixty-four paths, three invariants: 192 tests: `snippet=from-bits` over `build/06-simple/pytest-core-summary.txt`
-- [x] Eight worlds, four outcomes: `snippet=eight` (worlds.py) beside `build/06-simple/worlds.txt`
-- [x] Six ifs in three contexts, none in the core or the shell: `build/06-simple/ifs.txt` beside `build/06-simple/imports.txt`
-- [x] The wounds close by name: `build/06-simple/postmortem.txt` over `build/06-simple/wounds.txt`
-- [x] The number: the chart, `build/data/splits.txt` and the line "No decision is ever deleted, only moved"
-- [x] Epilogue: marketing's seventh if, the bubble on top, then two columns; the glued line sits under them
+- [x] The offer: `build/06-simple/responsibilities.png` beside `snippet=price` (core.py), the line "the team can discuss and exercise pricing without ..."
+- [x] The evidence: `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
+- [ ] The seventh if, rewritten by W-194
+- [ ] The close, by W-194
 
 ## Live
 

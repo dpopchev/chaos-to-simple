@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TITLE = re.compile(r"^## (.*?) \{paths=(\?|\d+)\}$", re.MULTILINE)
 ROUTE = list(csv.DictReader((ROOT / "data/route.csv").read_text(encoding="ascii").splitlines()))
 COUNTER = {row["section"]: row["counter"] for row in ROUTE}
-NUMBER = "The split cuts 512 paths to 72 while branch coverage stays at 100% as before"
+NUMBER = "The business can recognize its promises in the evidence, and the counter falls to 72"
 
 
 def index_text(section: str) -> str:
@@ -82,6 +82,6 @@ def test_the_core_title_counts_the_invariant_tests() -> None:
     source = (ROOT / "06-simple/tests/test_core_paths.py").read_text(encoding="utf-8")
     body = source.split("class TestEveryCorePath:")[1]
     measured = 64 * len(re.findall(r"^    def test_", body, re.MULTILINE))
-    titles = [t for t, _ in frames("06") if t.startswith("Every one of 64 paths")]
+    titles = [t for t, _ in frames("08") if t.startswith("Every one of 64 paths")]
     expected = f"Every one of 64 paths holds three invariants, so the core runs {measured} tests"
     assert titles == [expected]

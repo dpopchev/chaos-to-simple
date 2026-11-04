@@ -120,4 +120,4 @@ Overrides go on the command line, for example `make PANDOC=/opt/pandoc/bin/pando
 The footer counter plan, pinned by `scripts/utils/test_counter_plan.py`: 01 opens
 1, 2, 4, 8, 16, 32, 64; each section ends at its `data/route.csv` counter and never
 falls inside it (06 aside); 03's room frames carry 64 until The honest count reveals
-512; 06's frames carry 512 until The number reveals 72.
+512; 06's frames carry 512 until the evidence frame reveals 72.
