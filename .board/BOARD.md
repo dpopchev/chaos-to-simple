@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-200 > T-458   | blocked: 0 | todo roots: 5 | done: 646 | pruned: 8
+open path: E-018 > W-200   | blocked: 0 | todo roots: 5 | done: 647 | pruned: 8
 
 ## Tree
 
@@ -11,7 +11,7 @@ E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retol
   W-192  issue  [done]     05 frames 3-4: the cohesion groups and one boundary, the seam picture with its shell, the 05 line reworded -- T-442 [done], T-443 [done], T-444 [done], T-445 [done]
   W-193  issue  [todo]     06 frames 1-2: the offer / carry-out picture with price(), the evidence cards, the five 06 mechanism frames in the backup -- T-446 [todo], T-447 [todo], T-448 [todo]
   W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
-  W-200  bug    [doing]    05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445) -- T-458 [doing]   <- ACTIVE LEAF
+  W-200  bug    [doing]    05: the section does not end on its line, and the cohesion and seam figures read small at slide size   (filed during T-445) -- T-458 [done]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
 W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [todo]
 W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
@@ -1146,7 +1146,7 @@ flowchart TD
   W194 --> T451["T-451 todo: Write the rehearsal frame -> 06-simple/index.md and data/budget.csv"]
   W194 --> T452["T-452 todo: Narrow the seventh request and reword the 06 line -> 06-simple/index.md, data/lines.csv, 07-close/index.md, 08-backup/index.md, README.md and data/budget.csv"]
   E018 --> W200["W-200 bug doing: 05: the section does not end on its line, and the cohesion and seam figures read small at slide size"]
-  W200 --> T458["T-458 doing: Make room for the line and the figures -> 05-how/index.md frames 3 and 4 -- ACTIVE LEAF"]
+  W200 --> T458["T-458 done: Make room for the line and the figures -> 05-how/index.md frames 3 and 4"]
   W195["W-195 bug todo, standalone: 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23"]
   W195 --> T453["T-453 todo: Keep the label clear of the band name -> stacey.collaboration_label"]
   W196["W-196 bug todo, standalone: 05 promise figure: the Payment provider label runs over its icon"]
@@ -1162,7 +1162,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E018,W200,T458 doing
-  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445 done
+  class E018,W200 doing
+  class W190,T435,T436,T437,W191,T438,T439,T440,T441,W192,T442,T443,T444,T445,T458 done
   class W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455,W198,T456,W199,T457 todo
 ```
