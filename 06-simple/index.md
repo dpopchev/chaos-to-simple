@@ -80,38 +80,40 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
 :::
 
-## Marketing's seventh if lands in shipping and costs 8 paths {paths=72}
+## The seventh request has a place to start, not a licence to skip discovery {paths=72}
 
+\vspace{0.6em}
 
 ```{.text include=01-bits/data/squeeze.txt}
 ```
 
+for this example we change the delivery-charge policy for a digital-only order
+
+\begingroup\scriptsize separate decisions, not shown: mixed baskets, gift wrap on a digital item, stock reservation, digital delivery, tax treatment\par\endgroup
+
 :::: {.columns}
-::: {.column width="60%"}
+::: {.column width="58%"}
 
-
-```{.diff include=build/06-simple/seventh.diff cap=18}
-```
-
-\begingroup\footnotesize 06-simple/s06_simple/seventh.py in shipping; tested by test_seventh.py\par\endgroup
-
-```{.text include=build/06-simple/epilogue.txt}
+```{.diff include=build/06-simple/seventh.diff cap=12}
 ```
 
 :::
-::: {.column width="40%"}
+::: {.column width="38%"}
 
-![](build/06-simple/epilogue.png){width=100%}
+![](build/06-simple/responsibilities-shipping.png){width=56%}
 
 :::
 ::::
 
-\footnotesize the seventh if is a supporting change, and a supporting change should be cheap; it was not, until the split
+![](build/06-simple/responsibilities.png){width=14%}
 
-\theline{One more if is cheap}{Decisions in the core, effects in the shell. The next if costs 8, not 512.}
+\thread{5}
+
+\theline{One more if is cheap}{Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start.}
 
 ::: notes
-Marketing's seventh if lands in shipping, one bit in one context: +8, not +512.
-The core stays untouched, the new decision sits in one place with its own tests.
-The shipping context is supporting, so +8 is what a supporting change should cost.
+Marketing's seventh request, digital books: it has a place to start, shipping, and it is not a licence to skip discovery.
+For this example we change the delivery-charge policy for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
+The small diff is the shipping change; the full picture comes last.
+I no longer ask only where to put the next if. I ask whose decision it is, what information it needs, and what else it is allowed to change.
 :::

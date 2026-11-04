@@ -246,3 +246,16 @@ No decision is ever deleted, only moved
 512 against 72: branch coverage was 100% before and after.
 Nothing was deleted, every decision only moved to the place that owns it.
 :::
+
+## The seventh if costs 8 paths in the contexts and 512 in one function, under the same assumptions {paths=72}
+
+```{.text include=build/06-simple/epilogue.txt}
+```
+
+![](build/06-simple/epilogue.png){width=60%}
+
+\footnotesize assumes each context tested alone against its contract and the shell against fakes; the integration checks are separate; the payoff is clearer ownership and local reasoning, not a guaranteed cut in effort
+
+::: notes
+The same seventh if, counted three ways: one function doubles to 1024 (+512), core and shell add 64, contexts and shell add 8.
+:::

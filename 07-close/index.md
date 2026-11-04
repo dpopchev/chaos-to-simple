@@ -7,7 +7,7 @@
 - Counting makes it worse -> You cannot shrink a count you have not made. The bigger number is the first good news.
 - Naming is cosmetics -> Every if was somebody's sentence. Write it down, give it a home, pass values between homes.
 - A boundary is a technical choice -> A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.
-- One more if is cheap -> Decisions in the core, effects in the shell. The next if costs 8, not 512.
+- One more if is cheap -> Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start.
 
 ::: notes
 read the learned column only

@@ -18,8 +18,8 @@ Four planned frames (W-193 writes the first two, W-194 the rest), each with spea
 
 - [x] The offer: `build/06-simple/responsibilities.png` beside `snippet=price` (core.py), the line "the team can discuss and exercise pricing without ..."
 - [x] The evidence: `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
-- [ ] The seventh if, rewritten by W-194
-- [ ] The close, by W-194
+- [x] The change rehearsal: the member discount diff and the gateway swap on the muted pictures
+- [x] The seventh request, narrowed to the delivery-charge policy for a digital-only order, ending on the 06 line
 
 ## Live
 
@@ -35,6 +35,7 @@ Four planned frames (W-193 writes the first two, W-194 the rest), each with spea
 
 ## Open
 
+- The epilogue arithmetic (512 -> 1024, +64, +8) moved to the 13th frame of 08-backup.
 - Compensation (release the reservation on a declined payment): a bit in the shell, a
   Friday post, not a slide.
 - Hypothesis for the core instead of `range(64)`: same count, stronger invariants.

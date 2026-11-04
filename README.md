@@ -4,7 +4,8 @@ Slides and tested code for the DEV.BG Python user group talk on 2026-11-05:
 "Python: From chaos to simple, one bit at a time, or what I should have known from
 the start". One checkout example goes from six tangled ifs (64 paths, 100% branch
 coverage, one planted bug) to a functional core and an imperative shell
-(64 + 8 = 72 paths instead of 512). `make` builds a single PDF with pandoc; every
+(64 + 8 = 72 paths instead of 512) and ends asking whose decision the next if is, what it
+needs to know and what else it may change. `make` builds a single PDF with pandoc; every
 code snippet on a slide is included from a file that the tests run.
 
 ## Layout
@@ -21,7 +22,7 @@ build/                   artifacts; make clean removes it; never tracked
 local/                   scratch, env, secrets; never tracked
 ```
 
-The built deck, `build/talk.pdf`, is 57 pages: 50 content frames, counted by
+The built deck, `build/talk.pdf`, is 63 pages: 55 content frames, counted by
 `data/budget.csv`, and the title and other pages the build adds.
 
 Each section directory holds:
