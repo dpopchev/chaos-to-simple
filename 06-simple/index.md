@@ -56,7 +56,7 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 
 ![](build/06-simple/responsibilities-offer-payment.png){width=70%}
 
-```{.python include=06-simple/s06_simple/other_gateway.py cap=23 start-line=24 end-line=28}
+```{.python include=06-simple/s06_simple/other_gateway.py start-line=24 end-line=28}
 ```
 
 \vspace{-0.4em}

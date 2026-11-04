@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from scripts.utils.widths import INCLUDE, snippet_text, strip_step_markers
+from scripts.utils.widths import INCLUDE, line_range, snippet_text, strip_step_markers
 
 _HEADING_PREFIX = "## "
 
@@ -29,6 +29,7 @@ def too_long(
         snippet = include.group("snippet")
         if snippet:
             text = snippet_text(text, snippet)
+        text = line_range(text, include.group("start"), include.group("end"))
         count = sum(1 for row in text.splitlines() if row.strip())
         limit = int(include.group("cap") or cap)
         if count > limit:

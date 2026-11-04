@@ -18,7 +18,8 @@ _HEADING = re.compile(r"^## (?P<title>.*?)(?:\s*\{[^}]*\})?\s*$")
 _COLUMN = re.compile(r'\.column\s+width="(?P<pct>\d+(?:\.\d+)?)%"')
 _CLOSE = re.compile(r"^:{3,}\s*$")
 INCLUDE = re.compile(
-    r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?:\s+snippet=(?P<snippet>[\w-]+))?(?:\s+cap=(?P<cap>\d+))?"
+    r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?:\s+snippet=(?P<snippet>[\w-]+))?"
+    r"(?:\s+cap=(?P<cap>\d+))?(?:\s+start-line=(?P<start>\d+))?(?:\s+end-line=(?P<end>\d+))?"
 )
 _TEXT_FENCE = re.compile(r"^```\{[^}]*\.text\b")
 
@@ -60,6 +61,14 @@ def snippet_text(text: str, name: str) -> str:
     return textwrap.dedent("\n".join(out))
 
 
+def line_range(text: str, start: str | None, end: str | None) -> str:
+    """Keep the 1-based inclusive start-line..end-line of text, as the filter does."""
+    rows = text.splitlines()
+    first = int(start) - 1 if start else 0
+    last = int(end) if end else len(rows)
+    return "\n".join(rows[first:last])
+
+
 def too_wide(
     index_md: str, read: Callable[[str], str], full: int, name: str = "index.md"
 ) -> tuple[str, ...]:
@@ -86,6 +95,7 @@ def too_wide(
             text = strip_step_markers(read(include.group("path")))
             if include.group("snippet"):
                 text = snippet_text(text, include.group("snippet"))
+            text = line_range(text, include.group("start"), include.group("end"))
             points = EXHIBIT_POINTS if _TEXT_FENCE.match(line) else SNIPPET_POINTS
             budget = int(full * percent / 100 * BASE_POINTS / points)
             found.extend(

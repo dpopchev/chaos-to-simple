@@ -46,6 +46,12 @@ def test_lengths_skips_a_missing_include(
 
 
 @pytest.mark.view
+def test_start_line_end_line_counts_only_the_range() -> None:
+    texts = {"a.py": "".join(f"l{n}\n" for n in range(1, 11))}
+    assert too_long(_slide(" cap=3 start-line=3 end-line=5"), texts.__getitem__, 3) == ()
+
+
+@pytest.mark.view
 def test_too_long_honours_the_include_cap() -> None:
     texts = {"a.py": BLOCK}
     assert too_long(_slide(" cap=4"), texts.__getitem__, 3) == ()
