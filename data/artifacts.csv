@@ -115,6 +115,7 @@ build/06-simple/paths.png,png,scripts.paths chart
 build/06-simple/worlds.txt,txt,python -m s06_simple.worlds
 build/06-simple/seventh.diff,diff,scripts.paths diff --compact
 build/06-simple/seam.diff,diff,scripts.paths diff --compact
+build/06-simple/member15.diff,diff,scripts.paths diff --compact
 build/06-simple/price.txt,txt,scripts.paths tally-code --name price
 build/06-simple/shell.txt,txt,scripts.paths tally-code --name checkout
 build/06-simple/tests-core.txt,txt,scripts.paths tally --version 10 --only test_core_paths
