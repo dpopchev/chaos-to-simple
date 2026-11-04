@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-018 > W-191 > T-441   | blocked: 0 | todo roots: 2 | done: 639 | pruned: 8
+open path: E-018 > W-191 > T-441   | blocked: 0 | todo roots: 3 | done: 639 | pruned: 8
 
 ## Tree
 
@@ -13,6 +13,7 @@ E-018         [doing]    Deck v6: the collaboration band curved, 05 and 06 retol
   W-194  issue  [todo]     06 frames 3-4: the change rehearsal and the seventh request narrowed, the 06 line reworded, README at the new page count -- T-449 [todo], T-450 [todo], T-451 [todo], T-452 [todo]
 W-195  bug    [todo]     (standalone) 02 matrix: the collaboration label crosses the Chaos (BOOM) band name on pages 4 and 23   (filed during T-437) -- T-453 [todo]
 W-196  bug    [todo]     (standalone) 05 promise figure: the Payment provider label runs over its icon   (filed during T-438) -- T-454 [todo]
+W-197  bug    [todo]     (standalone) make new turns an ampersand in TITLE into the placeholder text   (filed during T-440) -- T-455 [todo]
 ```
 
 ## Closed
@@ -1145,6 +1146,8 @@ flowchart TD
   W195 --> T453["T-453 todo: Keep the label clear of the band name -> stacey.collaboration_label"]
   W196["W-196 bug todo, standalone: 05 promise figure: the Payment provider label runs over its icon"]
   W196 --> T454["T-454 todo: Fit the step label beside its icon -> scripts/utils/promise.py"]
+  W197["W-197 bug todo, standalone: make new turns an ampersand in TITLE into the placeholder text"]
+  W197 --> T455["T-455 todo: Escape the title for sed -> mk/deck.mk new recipe"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -1152,5 +1155,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E018,W191,T441 doing
   class W190,T435,T436,T437,T438,T439,T440 done
-  class W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454 todo
+  class W192,T442,T443,T444,T445,W193,T446,T447,T448,W194,T449,T450,T451,T452,W195,T453,W196,T454,W197,T455 todo
 ```
