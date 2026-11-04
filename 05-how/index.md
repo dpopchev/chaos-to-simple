@@ -131,6 +131,8 @@ The diff is only the seam, so the picture and the code say the same thing.
 
 ## Dependencies point inward: the shell imports the ports and the contexts, no context imports a port {paths=512}
 
+![](build/05-how/imports.png){width=90%}
+
 ```{.text heading="names imported, counted from the files" include=build/05-how/imports.txt}
 ```
 

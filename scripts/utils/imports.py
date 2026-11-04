@@ -8,6 +8,12 @@ from __future__ import annotations
 import ast
 from collections.abc import Sequence
 from dataclasses import dataclass
+from pathlib import Path
+
+import matplotlib.pyplot as plt
+from matplotlib.patches import FancyBboxPatch
+
+from scripts.utils import palette, style
 
 _CONTEXTS = ("s04_what.pricing", "s04_what.shipping", "s04_what.tax")
 _PORTS = "s05_how.ports"
@@ -41,6 +47,75 @@ def import_rows(name: str, text: str) -> ImportRow:
     return ImportRow(
         name, _names_from(tree, *_CONTEXTS), _names_from(tree, _PORTS), _names_from(tree, _CORE)
     )
+
+
+def import_edges(sources: Sequence[tuple[str, str]]) -> tuple[tuple[str, str], ...]:
+    """Return (importer, imported) per (name, text): a context by its name, the ports as 'ports'."""
+    targets = {**{c: c.rsplit(".", 1)[1] for c in _CONTEXTS}, _PORTS: "ports"}
+    edges: list[tuple[str, str]] = []
+    for name, text in sources:
+        for node in ast.walk(ast.parse(text)):
+            if not isinstance(node, ast.ImportFrom) or node.level != 0 or node.module is None:
+                continue
+            for package, target in targets.items():
+                edge = (name, target)
+                if node.module.startswith(package) and edge not in edges:
+                    edges.append(edge)
+    return tuple(edges)
+
+
+_BOX_W = 3.2
+_BOX_H = 0.68
+_LAYOUT = {
+    "pricing": (0.0, 2.0),
+    "shipping": (0.0, 1.0),
+    "tax": (0.0, 0.0),
+    "checkout_v5": (6.0, 1.0),
+    "ports": (12.0, 1.0),
+}
+
+
+def import_figure(edges: Sequence[tuple[str, str]], out: Path) -> None:
+    """Draw the modules as boxes and one arrow per (importer, imported) edge into out."""
+    style.apply()
+    fig, ax = plt.subplots(figsize=(10.0, 2.7), dpi=style.DPI)
+    for name, (x, y) in _LAYOUT.items():
+        shell = name == "checkout_v5"
+        fill = "white" if shell else palette.colour_of("fulfilment" if name == "ports" else name)
+        ax.add_patch(
+            FancyBboxPatch(
+                (x - _BOX_W / 2, y - _BOX_H / 2),
+                _BOX_W,
+                _BOX_H,
+                boxstyle="round,pad=0.05",
+                facecolor=fill,
+                edgecolor="black",
+                linewidth=2.0 if shell else 0.0,
+            )
+        )
+        ax.text(
+            x,
+            y,
+            name,
+            ha="center",
+            va="center",
+            fontsize=18,
+            color="black" if shell else "white",
+        )
+    for importer, imported in edges:
+        (x0, y0), (x1, y1) = _LAYOUT[importer], _LAYOUT[imported]
+        sign = 1 if x1 > x0 else -1
+        ax.annotate(
+            "",
+            (x1 - sign * (_BOX_W / 2 + 0.1), y1),
+            (x0 + sign * (_BOX_W / 2 + 0.1), y0),
+            arrowprops={"arrowstyle": "-|>", "color": "black", "linewidth": 2.0},
+        )
+    ax.set_xlim(-1.8, 13.8)
+    ax.set_ylim(-0.55, 2.55)
+    ax.axis("off")
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.99, bottom=0.01)
+    style.save(fig, out)
 
 
 @dataclass(frozen=True)

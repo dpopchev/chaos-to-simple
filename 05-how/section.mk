@@ -89,6 +89,17 @@ $(BUILD)/05-how/imports.txt: 05-how/section.mk scripts/paths.py scripts/utils/im
 		--source 05-how/s05_how/ports.py --source 05-how/s05_how/checkout_v5.py --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/05-how/imports.png
+
+$(BUILD)/05-how/imports.png: 05-how/section.mk scripts/paths.py scripts/utils/imports.py \
+    scripts/utils/style.py scripts/utils/palette.py data/contexts.csv \
+    04-what/s04_what/pricing.py 04-what/s04_what/shipping.py 04-what/s04_what/tax.py \
+    05-how/s05_how/ports.py 05-how/s05_how/checkout_v5.py
+	@$(RUN) python -m scripts.paths imports-figure --source 04-what/s04_what/pricing.py \
+		--source 04-what/s04_what/shipping.py --source 04-what/s04_what/tax.py \
+		--source 05-how/s05_how/ports.py --source 05-how/s05_how/checkout_v5.py --out $@
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/05-how/fakes-code.txt
 
 $(BUILD)/05-how/fakes-code.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \

@@ -10,6 +10,7 @@ from scripts.utils.imports import (
     DecisionRow,
     ImportRow,
     decision_rows,
+    import_edges,
     import_rows,
     import_table,
 )
@@ -39,6 +40,13 @@ def test_import_rows_reads_a_from_import() -> None:
 @pytest.mark.view
 def test_money_is_not_a_context() -> None:
     assert _row("05-how/s05_how/ports.py").from_contexts == 0
+
+
+@pytest.mark.view
+def test_no_edge_from_a_context_to_the_ports() -> None:
+    names = (*(f"04-what/s04_what/{name}.py" for name in CONTEXTS), "05-how/s05_how/ports.py")
+    sources = [(Path(name).stem, (ROOT / name).read_text(encoding="ascii")) for name in names]
+    assert [edge for edge in import_edges(sources) if edge[1] == "ports"] == []
 
 
 @pytest.mark.view
