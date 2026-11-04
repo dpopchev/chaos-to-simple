@@ -1,5 +1,29 @@
 # 06 Core and shell: functional core, imperative shell
 
+## Request carries every decision in and Priced every result out, so the core never sees a port and the shell never sees a rule {paths=512}
+
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{.python heading-file=build/06-simple/request.txt include=06-simple/s06_simple/core.py snippet=request cap=18}
+```
+
+:::
+::: {.column width="50%"}
+
+```{.python heading-file=build/06-simple/outcome.txt include=06-simple/s06_simple/shell.py snippet=outcome cap=12}
+```
+
+:::
+::::
+
+values in, values out: the seam passes data, never a flag and never an effect
+
+::: notes
+Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port, the shell never sees a rule. Outcome is the shell's own answer, Accepted or Rejected, a value too.
+:::
+
 ## Moving the pure part out into price cuts along the seam and changes nothing else {paths=512}
 
 

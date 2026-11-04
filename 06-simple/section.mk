@@ -79,6 +79,20 @@ $(BUILD)/06-simple/worlds-code.txt: 06-simple/section.mk scripts/paths.py script
 		--source 06-simple/s06_simple/worlds.py --snippet eight --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/06-simple/request.txt $(BUILD)/06-simple/outcome.txt
+
+$(BUILD)/06-simple/request.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    06-simple/s06_simple/core.py
+	@$(RUN) python -m scripts.paths tally-code --name Request --version 10 --policies 6 --paths 64 \
+		--source 06-simple/s06_simple/core.py --snippet request --out $@
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/outcome.txt: 06-simple/section.mk scripts/paths.py scripts/utils/storyboard.py \
+    06-simple/s06_simple/shell.py
+	@$(RUN) python -m scripts.paths tally-code --name Outcome --version 10 --policies 3 --paths 8 \
+		--source 06-simple/s06_simple/shell.py --snippet outcome --out $@
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/06-simple/ifs.txt $(BUILD)/06-simple/imports.txt
 
 $(BUILD)/06-simple/ifs.txt: 06-simple/section.mk scripts/paths.py scripts/utils/imports.py \

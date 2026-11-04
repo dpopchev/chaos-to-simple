@@ -111,6 +111,8 @@ build/06-simple/shell.txt,txt,scripts.paths tally-code --name checkout
 build/06-simple/tests-core.txt,txt,scripts.paths tally --version 10 --only test_core_paths
 build/06-simple/worlds-code.txt,txt,scripts.paths tally-code --name world
 build/06-simple/pytest-core-summary.txt,txt,tail -n 4 pytest-core.txt
+build/06-simple/request.txt,txt,scripts.paths tally-code --name Request
+build/06-simple/outcome.txt,txt,scripts.paths tally-code --name Outcome
 build/06-simple/ifs.txt,txt,scripts.paths ifs
 build/06-simple/imports.txt,txt,scripts.paths imports
 build/06-simple/epilogue.txt,txt,scripts.paths epilogue
