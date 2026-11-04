@@ -31,7 +31,7 @@
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
-- none recorded
+- 2026-11-04 W-195: collaboration is one flat wedge from the origin, 22.5 to 67.5 degrees; its word runs along the Who line from the Chaos arc; Chaos drops BOOM; stakeholders decide drops and agree and stands upright atop the y axis (developer)
 
 ## Deviations
 - none recorded
