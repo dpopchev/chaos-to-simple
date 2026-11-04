@@ -21,7 +21,6 @@
 - 2026-11-04 W-173: standing: page 16 is titled with what finance counted, W-189 (developer, 2026-11-04) -> the memo, the chart and the title draw no conclusion about the code supersedes: W-173#1
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
 - 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
-- 2026-11-04 W-195: T-453: fact: collaboration_label keeps an unused zones parameter (del zones, stacey.py:149) -> drop it with the next change to the label
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -32,7 +31,7 @@
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 
 ## Decisions
-- 2026-11-04 W-195: collaboration is one flat wedge from the origin, 22.5 to 67.5 degrees; its word runs along the Who line from the Chaos arc; Chaos drops BOOM; stakeholders decide drops and agree and stands upright atop the y axis (developer)
+- none recorded
 
 ## Deviations
 - none recorded
