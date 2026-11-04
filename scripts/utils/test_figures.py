@@ -24,6 +24,7 @@ from scripts.utils.figures import (
     question_ids,
     seam,
     seam_boxes,
+    seam_columns,
     tree,
 )
 from scripts.utils.palette import load_actors, load_contexts
@@ -70,6 +71,12 @@ def test_seam_box_colour_is_the_actor_colour() -> None:
     assert seam_boxes(ports) == ("#D55E00", "#56B4E9", "#F0E442")
 
 
+@pytest.mark.model
+def test_seam_shell_box_sits_between_the_core_and_the_providers() -> None:
+    core, shell, providers = seam_columns()
+    assert core < shell < providers
+
+
 @pytest.mark.edge
 def test_seam_writes_a_png(tmp_path: Path) -> None:
     out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV)))
@@ -77,12 +84,12 @@ def test_seam_writes_a_png(tmp_path: Path) -> None:
 
 
 @pytest.mark.edge
-def test_seam_is_near_square(tmp_path: Path) -> None:
+def test_seam_is_three_columns_wide(tmp_path: Path) -> None:
     from matplotlib.image import imread
 
     out = seam(tmp_path / "seam.png", ports_of(load_rules(RULES_CSV), load_cast(CAST_CSV)))
     height, width = imread(out).shape[:2]
-    assert 0.9 <= width / height <= 1.25
+    assert 1.5 <= width / height <= 1.8
 
 
 @pytest.mark.edge

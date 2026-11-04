@@ -198,12 +198,20 @@ def icon_file() -> Path | None:
 
 
 def seam_figsize() -> tuple[float, float]:
-    """Return the seam figure's size in inches: near-square to fill its slide column."""
-    return (6.0, 5.4)
+    """Return the seam figure's size in inches: three columns wide, as tall as before."""
+    return (9.0, 5.4)
+
+
+CORE_W, SHELL_W = 3.6, 4.6
+
+
+def seam_columns() -> tuple[float, float, float]:
+    """Return the left x of the core, shell and provider columns, left to right."""
+    return (0.2, 6.6, 15.0)
 
 
 def seam(out: Path, ports: Sequence[Port]) -> Path:
-    """Draw the core box, a port box per Port, and each answer's sum type on its arrow."""
+    """Draw core, shell and a port box per Port; the shell talks to the core and the providers."""
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.font_manager import FontProperties
@@ -212,15 +220,17 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     n = len(ports)
     gap = 1.8
     mid = (n - 1) * gap / 2
-    core_right, port_left, port_w, port_h = 3.4, 7.2, 3.2, 0.9
+    core_left, shell_left, port_left = seam_columns()
+    core_right, shell_right = core_left + CORE_W, shell_left + SHELL_W
+    port_w, port_h = 4.2, 0.9
     colour = context_colour("fulfilment")
     shape = "round,pad=0.05,rounding_size=0.15"
     core = kind_style("core")
     fig, ax = plt.subplots(figsize=seam_figsize(), dpi=style.DPI)
     ax.add_patch(
         FancyBboxPatch(
-            (0.2, mid - 1.6),
-            3.2,
+            (core_left, mid - 1.6),
+            CORE_W,
             3.2,
             boxstyle=shape,
             facecolor=core.face,
@@ -228,7 +238,49 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
             linewidth=3,
         )
     )
-    ax.text(1.8, mid, "core: pure rules", ha="center", va="center", fontsize=14, color="black")
+    ax.text(
+        core_left + CORE_W / 2,
+        mid,
+        "calculate the offer\npure rules: price()",
+        ha="center",
+        va="center",
+        fontsize=12,
+        color="black",
+    )
+    ax.add_patch(
+        FancyBboxPatch(
+            (shell_left, mid - 2.2),
+            SHELL_W,
+            4.4,
+            boxstyle=shape,
+            facecolor=colour,
+            edgecolor="none",
+        )
+    )
+    ax.text(
+        shell_left + SHELL_W / 2,
+        mid,
+        "carry out the order\nreserve, charge, confirm",
+        ha="center",
+        va="center",
+        fontsize=12,
+        color=label_ink(colour),
+    )
+    ax.annotate(
+        "",
+        (core_right + 0.1, mid),
+        (shell_left - 0.1, mid),
+        arrowprops={"arrowstyle": "<|-|>", "color": colour, "linewidth": 1.8},
+    )
+    ax.text(
+        (core_right + shell_left) / 2,
+        mid + 0.12,
+        "Request / Priced",
+        ha="center",
+        va="bottom",
+        fontsize=10,
+        style="italic",
+    )
     faces = seam_boxes(ports)
     font = icon_file()
     for row, (port, face) in enumerate(zip(ports, faces, strict=True)):
@@ -255,7 +307,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
                 color=ink,
             )
         ax.text(
-            port_left + port_w / 2 + (0.2 if font is not None else 0.0),
+            port_left + port_w / 2 + (0.3 if font is not None else 0.0),
             y,
             port.context,
             ha="center",
@@ -265,20 +317,20 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
         )
         ax.annotate(
             "",
-            (core_right + 0.15, y),
+            (shell_right + 0.15, y),
             (port_left - 0.1, y),
             arrowprops={"arrowstyle": "-|>", "color": colour, "linewidth": 1.8},
         )
         ax.text(
-            (core_right + port_left) / 2,
+            (shell_right + port_left) / 2,
             y + 0.12,
             port.code,
             ha="center",
             va="bottom",
-            fontsize=12,
+            fontsize=10,
             style="italic",
         )
-    ax.set_xlim(0, 10.6)
+    ax.set_xlim(0, 19.4)
     ax.set_ylim(-1.0, 2 * mid + 1.0)
     ax.axis("off")
     fig.tight_layout()
