@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 5 | done: 680 | pruned: 8
+open path: W-206 > T-464   | blocked: 0 | todo roots: 4 | done: 680 | pruned: 8
 
 ## Tree
 
 ```text
-W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
+W-206  bug    [doing]    (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [doing]   <- ACTIVE LEAF
 W-207  bug    [todo]     (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [todo]
 W-208  bug    [todo]     (standalone) 05 seam picture labels unreadable at slide size on page 40   (filed during T-459) -- T-468 [todo]
 W-209  bug    [todo]     (standalone) data/README.md lists stale incidents.csv columns   (filed during T-460) -- T-469 [todo]
@@ -1217,8 +1217,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then the rehearsal
 ## Diagram
 ```mermaid
 flowchart TD
-  W206["W-206 bug todo, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
-  W206 --> T464["T-464 todo: Use one compact picture on the seventh frame -> 06-simple/index.md"]
+  W206["W-206 bug doing, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
+  W206 --> T464["T-464 doing: Use one compact picture on the seventh frame -> 06-simple/index.md -- ACTIVE LEAF"]
   W207["W-207 bug todo, standalone: 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes"]
   W207 --> T467["T-467 todo: List icons.py as a prerequisite of the cohesion figure -> 05-how/section.mk"]
   W208["W-208 bug todo, standalone: 05 seam picture labels unreadable at slide size on page 40"]
@@ -1232,5 +1232,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W206,T464,W207,T467,W208,T468,W209,T469,W210,T470 todo
+  class W206,T464 doing
+  class W207,T467,W208,T468,W209,T469,W210,T470 todo
 ```
