@@ -1,8 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 0 | done: 694 | pruned: 9
+open path: W-213 > T-474   | blocked: 0 | todo roots: 0 | done: 694 | pruned: 9
 
 ## Tree
+
+```text
+W-213  bug    [doing]    (standalone) the include checks read snippet, cap, start-line and end-line only in that order   (filed during T-472) -- T-474 [doing]   <- ACTIVE LEAF
+```
 
 ## Closed
 
@@ -1252,9 +1256,12 @@ closed 2026-11-04 -- outcome: Given 06-simple/index.md's other_gateway.py includ
 ## Diagram
 ```mermaid
 flowchart TD
+  W213["W-213 bug doing, standalone: the include checks read snippet, cap, start-line and end-line only in that order"]
+  W213 --> T474["T-474 doing: Parse include attributes in any order -> scripts/utils/widths.py -- ACTIVE LEAF"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
+  class W213,T474 doing
 ```
