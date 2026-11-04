@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-212   | blocked: 0 | todo roots: 0 | done: 693 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 694 | pruned: 9
 
 ## Tree
-
-```text
-W-212  bug    [doing]    (standalone) make lengths and make widths count a whole included file despite start-line/end-line   (filed during T-470) -- T-472 [done]
-```
 
 ## Closed
 
@@ -1247,16 +1243,18 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 45's tit
 - T-471 [pruned] Shorten the title and widen the picture column -> 06-simple/index.md seventh frame   [pruned: superseded by the split Decision on W-211: no one-frame layout passes make widths and make overflow (c2f64c9, 7681b27)]
 - T-473 [done] Split the seventh frame into two -> 06-simple/index.md, data/budget.csv
 
+### W-212 bug [done] (standalone) make lengths and make widths count a whole included file despite start-line/end-line
+
+closed 2026-11-04 -- outcome: Given 06-simple/index.md's other_gateway.py include with start-line=24 end-line=28 and no cap, When make check, Then make lengths and make widths pass on the 5 shown lines. -- ledger: ledgers/W-212.md
+
+- T-472 [done] Honour start-line/end-line in the include checks -> scripts/utils/widths.py, scripts/utils/lengths.py
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W212["W-212 bug doing, standalone: make lengths and make widths count a whole included file despite start-line/end-line"]
-  W212 --> T472["T-472 done: Honour start-line/end-line in the include checks -> scripts/utils/widths.py, scripts/utils/lengths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W212 doing
-  class T472 done
 ```
