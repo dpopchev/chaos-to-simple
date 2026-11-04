@@ -89,7 +89,6 @@ build/04-what/moves.png,png,scripts.figures moves
 build/04-what/board.png,png,scripts.figures board --stage 04
 build/05-how/ports.png,png,scripts.figures seam
 build/05-how/v5.diff,diff,scripts.paths diff --compact
-build/05-how/tests-9.txt,txt,scripts.paths tally --version 9
 build/05-how/tests-order.txt,txt,scripts.paths tally --version 8 --only test_oo_order
 build/05-how/oo.txt,txt,scripts.paths tally-code --name Checkout
 build/05-how/ports-code.txt,txt,scripts.paths tally-code --name ports

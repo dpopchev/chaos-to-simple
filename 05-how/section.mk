@@ -34,13 +34,6 @@ $(BUILD)/05-how/v5.diff: $(PALETTE) 04-what/s04_what/checkout_v4.py 05-how/s05_h
 		--name checkout --version 9 --policies 9 --paths 512 --out $@
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/05-how/tests-9.txt
-
-$(BUILD)/05-how/tests-9.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
-    $(wildcard 05-how/tests/*.py)
-	@$(RUN) python -m scripts.paths tally --version 9 --tests-dir 05-how/tests --out $@
-	$(call log_done,$@ written)
-
 ARTIFACTS += $(BUILD)/05-how/tests-order.txt
 
 $(BUILD)/05-how/tests-order.txt: 05-how/section.mk scripts/paths.py scripts/utils/storyboard.py \
