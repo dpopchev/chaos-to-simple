@@ -84,6 +84,32 @@ A fake is a plain class with the same method. It never inherits from the port, a
 The test doubles carry one bit each, so a shell test can enumerate the world.
 :::
 
+## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
+
+
+:::: {.columns}
+::: {.column width="45%"}
+
+![](build/05-how/ports.png){height=60%}
+
+\begingroup\footnotesize 05-how/s05_how/checkout_v5.py in fulfilment; tested by test_checkout_v5.py and test_i3.py\par\endgroup
+
+:::
+::: {.column width="55%"}
+
+```{.diff include=build/05-how/v5.diff cap=28}
+```
+
+:::
+::::
+
+above the first match every line is a value; below it three answers, reserve first: that is the seam
+
+::: notes
+The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
+The diff is only the seam, so the picture and the code say the same thing.
+:::
+
 ## Dependencies point inward: the shell imports the ports and the contexts, no context imports a port {paths=512}
 
 ![](build/05-how/imports.png){width=90%}

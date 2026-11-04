@@ -49,30 +49,41 @@ bounced is a provider outcome; keeping an accepted order is the shop's policy; o
 The exchange is proposed story material, not a transcript. The Fulfilment owner consulted Logistics, Finance and Support before writing the three policies down.
 :::
 
-\theline{A class will keep it tidy}{A method that does and tells hides a bit. Separate asking from doing; make every answer a value.}
+## Rules belong together because they answer the same business question {paths=512}
 
-## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
+
+![](build/05-how/cohesion.png){height=42%}
+
+these rules belong together because we discuss and change them together, not because they contain similar Python; cohesion is the name for that
+
+\thread{3}
+
+\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
+
+::: notes
+The coupon-then-member decision (q2) is the short illustration: two rules in one pricing calculation, answering one business question.
+The groups are candidate model boundaries the departments helped discover, not boundaries a department defines.
+:::
+
+## A boundary is an agreement about what the other side must know {paths=512}
 
 
 :::: {.columns}
-::: {.column width="45%"}
-
-![](build/05-how/ports.png){height=60%}
-
-\begingroup\footnotesize 05-how/s05_how/checkout_v5.py in fulfilment; tested by test_checkout_v5.py and test_i3.py\par\endgroup
-
-:::
 ::: {.column width="55%"}
 
-```{.diff include=build/05-how/v5.diff cap=28}
+```{.python include=05-how/s05_how/warehouse_adapter.py snippet=adapter cap=16}
 ```
+
+:::
+::: {.column width="45%"}
+
+![](build/05-how/ports.png){height=45%}
 
 :::
 ::::
 
-above the first match every line is a value; below it three answers, reserve first: that is the seam
+\begingroup\footnotesize Reserved: the warehouse set the items aside for this order for 15 minutes; the shell depends on Reserved | OutOfStock, never on the JSON; reserve before charge is written in the shell, the type does not enforce it\par\endgroup
 
-::: notes
-The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every answer is matched.
-The diff is only the seam, so the picture and the code say the same thing.
-:::
+we still depend on the warehouse; we no longer need its language everywhere in checkout
+
+\thread{4}
