@@ -202,12 +202,17 @@ def seam_figsize() -> tuple[float, float]:
     return (9.0, 5.4)
 
 
-CORE_W, SHELL_W = 3.6, 4.6
+CORE_W, SHELL_W = 3.7, 5.0
+
+
+def seam_label_size() -> int:
+    """Return the seam figure's label font size in points: slide size in its 45 percent column."""
+    return 16
 
 
 def seam_columns() -> tuple[float, float, float]:
     """Return the left x of the core, shell and provider columns, left to right."""
-    return (0.2, 6.6, 15.0)
+    return (0.2, 6.6, 15.4)
 
 
 def seam(out: Path, ports: Sequence[Port]) -> Path:
@@ -218,6 +223,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     from matplotlib.patches import FancyBboxPatch
 
     n = len(ports)
+    size = seam_label_size()
     gap = 1.8
     mid = (n - 1) * gap / 2
     core_left, shell_left, port_left = seam_columns()
@@ -241,10 +247,10 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     ax.text(
         core_left + CORE_W / 2,
         mid,
-        "calculate the offer\npure rules: price()",
+        "calculate\nthe offer\npure rules:\nprice()",
         ha="center",
         va="center",
-        fontsize=12,
+        fontsize=size,
         color="black",
     )
     ax.add_patch(
@@ -260,10 +266,10 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     ax.text(
         shell_left + SHELL_W / 2,
         mid,
-        "carry out the order\nreserve, charge, confirm",
+        "carry out\nthe order\nreserve, charge,\nconfirm",
         ha="center",
         va="center",
-        fontsize=12,
+        fontsize=size,
         color=label_ink(colour),
     )
     ax.annotate(
@@ -275,10 +281,10 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
     ax.text(
         (core_right + shell_left) / 2,
         mid + 0.12,
-        "Request / Priced",
+        "Request /\nPriced",
         ha="center",
         va="bottom",
-        fontsize=10,
+        fontsize=size,
         style="italic",
     )
     faces = seam_boxes(ports)
@@ -309,10 +315,10 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
         ax.text(
             port_left + port_w / 2 + (0.3 if font is not None else 0.0),
             y,
-            port.context,
+            port.context.replace(" ", "\n"),
             ha="center",
             va="center",
-            fontsize=16 if font is None else 12,
+            fontsize=size,
             color=ink,
         )
         ax.annotate(
@@ -324,13 +330,13 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
         ax.text(
             (shell_right + port_left) / 2,
             y + 0.12,
-            port.code,
+            port.code.replace("| ", "|\n"),
             ha="center",
             va="bottom",
-            fontsize=10,
+            fontsize=size,
             style="italic",
         )
-    ax.set_xlim(0, 19.4)
+    ax.set_xlim(0, 19.8)
     ax.set_ylim(-1.0, 2 * mid + 1.0)
     ax.axis("off")
     fig.tight_layout()

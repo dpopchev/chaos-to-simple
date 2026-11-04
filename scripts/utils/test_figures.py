@@ -25,6 +25,7 @@ from scripts.utils.figures import (
     seam,
     seam_boxes,
     seam_columns,
+    seam_label_size,
     tree,
 )
 from scripts.utils.palette import load_actors, load_contexts
@@ -75,6 +76,11 @@ def test_seam_box_colour_is_the_actor_colour() -> None:
 def test_seam_shell_box_sits_between_the_core_and_the_providers() -> None:
     core, shell, providers = seam_columns()
     assert core < shell < providers
+
+
+@pytest.mark.model
+def test_seam_labels_are_slide_size() -> None:
+    assert seam_label_size() >= 16
 
 
 @pytest.mark.edge
