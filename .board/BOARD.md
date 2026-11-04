@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 7 | done: 668 | pruned: 8
+open path: W-199 > T-457   | blocked: 0 | todo roots: 6 | done: 668 | pruned: 8
 
 ## Tree
 
 ```text
-W-199  bug    [todo]     (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [todo]
+W-199  bug    [doing]    (standalone) The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead   (filed during T-442) -- T-457 [doing]   <- ACTIVE LEAF
 W-201  bug    [todo]     (standalone) 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small   (filed during T-458) -- T-459 [todo]
 W-202  bug    [todo]     (standalone) 06 evidence cards: the customer outcome line repeats the incident's decision, not what the customer sees   (filed during T-447) -- T-460 [todo]
 W-203  bug    [todo]     (standalone) 06 offer frame: the responsibilities picture reads small stacked above price()   (filed during T-448) -- T-461 [todo]
@@ -1183,8 +1183,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then page 37's tit
 ## Diagram
 ```mermaid
 flowchart TD
-  W199["W-199 bug todo, standalone: The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead"]
-  W199 --> T457["T-457 todo: Add the two role icons -> scripts/utils/icons.py ICONS"]
+  W199["W-199 bug doing, standalone: The Fulfilment role's clipboard-check icon is missing from icons.py, so the cohesion figure draws its name instead"]
+  W199 --> T457["T-457 doing: Add the two role icons -> scripts/utils/icons.py ICONS -- ACTIVE LEAF"]
   W201["W-201 bug todo, standalone: 05 frames 3 and 4: the takeaways and the word cohesion live only in the notes, and the seam picture reads small"]
   W201 --> T459["T-459 todo: Restore the cohesion takeaway and enlarge the seam picture -> 05-how/index.md frames 3 and 4"]
   W202["W-202 bug todo, standalone: 06 evidence cards: the customer outcome line repeats the incident's decision, not what the customer sees"]
@@ -1202,5 +1202,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W199,T457,W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
+  class W199,T457 doing
+  class W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
 ```
