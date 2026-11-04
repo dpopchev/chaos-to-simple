@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-211 > T-471   | blocked: 0 | todo roots: 1 | done: 690 | pruned: 8
+open path: W-211   | blocked: 0 | todo roots: 1 | done: 691 | pruned: 9
 
 ## Tree
 
 ```text
-W-211  bug    [doing]    (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [doing]   <- ACTIVE LEAF
+W-211  bug    [doing]    (standalone) 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps   (filed during T-464) -- T-471 [pruned]   [pruned: superseded by the split Decision on W-211: no one-frame layout passes make widths and make overflow (c2f64c9, 7681b27)], T-473 [done]
 W-212  bug    [todo]     (standalone) make lengths and make widths count a whole included file despite start-line/end-line   (filed during T-470) -- T-472 [todo]
 ```
 
@@ -1245,7 +1245,8 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then each rehearsa
 ```mermaid
 flowchart TD
   W211["W-211 bug doing, standalone: 06 seventh frame: the shipping picture stays illegible in its 38 percent column and the title wraps"]
-  W211 --> T471["T-471 doing: Shorten the title and widen the picture column -> 06-simple/index.md seventh frame -- ACTIVE LEAF"]
+  W211 --> T471["T-471 pruned: Shorten the title and widen the picture column -> 06-simple/index.md seventh frame"]
+  W211 --> T473["T-473 done: Split the seventh frame into two -> 06-simple/index.md, data/budget.csv"]
   W212["W-212 bug todo, standalone: make lengths and make widths count a whole included file despite start-line/end-line"]
   W212 --> T472["T-472 todo: Honour start-line/end-line in the include checks -> scripts/utils/widths.py, scripts/utils/lengths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1253,6 +1254,8 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W211,T471 doing
+  class W211 doing
+  class T473 done
   class W212,T472 todo
+  class T471 pruned
 ```

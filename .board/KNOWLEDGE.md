@@ -33,6 +33,7 @@
 
 ## Decisions
 - 2026-11-04 W-211: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-04)
+- 2026-11-04 W-211: split: the seventh frame becomes two -- the diff and its context on one, the shipping picture at 70 percent or more on the next; data/budget.csv 06 rises from 5 to 6 frames (developer, 2026-11-04)
 
 ## Deviations
 - none recorded
