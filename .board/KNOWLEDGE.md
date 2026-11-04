@@ -34,4 +34,4 @@
 - 2026-11-04 E-018: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 11 hours) (developer, 2026-11-04)
 
 ## Deviations
-- none recorded
+- 2026-11-04 E-018: T-439, T-441 Actions amended: Support and Fulfilment live in 05-how/data/roles.csv for the 05 bubbles only; role rows in data/actors.csv break the business map and four tests; the slides name them in plain text; Checks unchanged
