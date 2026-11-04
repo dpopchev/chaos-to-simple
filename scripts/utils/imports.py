@@ -166,7 +166,7 @@ def decision_chart(rows: Sequence[DecisionRow], out: Path) -> None:
     ax.tick_params(axis="y", labelsize=16, length=0)
     ax.spines["left"].set_visible(False)
     ax.spines["bottom"].set_visible(False)
-    ax.legend(loc="lower right", fontsize=14, frameon=False)
+    ax.legend(loc="upper right", fontsize=14, frameon=False)
     fig.tight_layout()
     style.save(fig, out)
 
