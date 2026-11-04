@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 6 | done: 670 | pruned: 8
+open path: none   | blocked: 0 | todo roots: 7 | done: 670 | pruned: 8
 
 ## Tree
 
@@ -11,6 +11,7 @@ W-203  bug    [todo]     (standalone) 06 offer frame: the responsibilities pictu
 W-204  bug    [todo]     (standalone) 06 member15 diff shows no changed line: the factor sits outside the snippet   (filed during T-449) -- T-462 [todo]
 W-205  bug    [todo]     (standalone) 06 rehearsal frame: the two highlighted pictures read illegibly small above the code   (filed during T-451) -- T-463 [todo]
 W-206  bug    [todo]     (standalone) 06 seventh-request frame: the shipping highlight and the full picture read illegibly small   (filed during T-452) -- T-464 [todo]
+W-207  bug    [todo]     (standalone) 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes   (filed during T-457) -- T-467 [todo]
 ```
 
 ## Closed
@@ -1200,10 +1201,12 @@ flowchart TD
   W205 --> T463["T-463 todo: Use the compact pictures on the rehearsal frame -> 06-simple/index.md"]
   W206["W-206 bug todo, standalone: 06 seventh-request frame: the shipping highlight and the full picture read illegibly small"]
   W206 --> T464["T-464 todo: Use one compact picture on the seventh frame -> 06-simple/index.md"]
+  W207["W-207 bug todo, standalone: 05 cohesion figure is not rebuilt when scripts/utils/icons.py changes"]
+  W207 --> T467["T-467 todo: List icons.py as a prerequisite of the cohesion figure -> 05-how/section.mk"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464 todo
+  class W201,T459,W202,T460,W203,T461,W204,T462,W205,T463,W206,T464,W207,T467 todo
 ```
