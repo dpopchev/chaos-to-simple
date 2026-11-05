@@ -99,6 +99,7 @@ build/05-how/imports.txt,txt,scripts.paths imports
 build/05-how/imports.png,png,scripts.paths imports-figure
 build/05-how/board.png,png,scripts.figures board --stage 05
 build/05-how/i3-run.txt,txt,pytest 05-how/tests/test_i3.py
+build/05-how/i3-green.txt,txt,pytest -k test_out_of_stock
 build/05-how/promise.png,png,scripts.figures promise
 build/05-how/cohesion.png,png,scripts.figures cohesion
 build/06-simple/responsibilities.png,png,scripts.figures responsibilities

@@ -19,6 +19,22 @@ $(BUILD)/05-how/i3-run.txt: 05-how/tests/test_i3.py 04-what/s04_what/checkout_v4
 	rm -f $$tmp
 	$(call log_done,$@ written)
 
+# The green run: the two out-of-stock tests against checkout_v5 must pass (status 0); the passed
+# line stays, without the timing.
+ARTIFACTS += $(BUILD)/05-how/i3-green.txt
+
+$(BUILD)/05-how/i3-green.txt: 05-how/section.mk 05-how/s05_how/checkout_v5.py \
+    05-how/tests/test_checkout_v5.py
+	@mkdir -p $(@D)
+	@log=$$(mktemp); status=0; \
+	$(RUN) pytest 05-how/tests/test_checkout_v5.py -q --no-header -p no:cacheprovider \
+	  -k 'test_out_of_stock_rejects or test_out_of_stock_charges_nothing' > $$log 2>&1 || status=$$?; \
+	if [ $$status -ne 0 ]; then cat $$log; rm -f $$log; \
+	  echo "i3-green: pytest exited $$status, expected 0 (v5 passes)" >&2; exit 1; fi; \
+	grep -E '^[0-9]+ passed' $$log | sed -E 's/, [0-9]+ (deselected|warnings?)//g; s/ in [0-9.]+s$$//' > $@; \
+	rm -f $$log
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/05-how/board.png
 
 $(BUILD)/05-how/board.png: $(PALETTE) data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py

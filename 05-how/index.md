@@ -6,18 +6,32 @@
 ```{.text include=05-how/data/incident.txt}
 ```
 
-![](build/05-how/promise.png){height=43%}
+:::: {.columns}
+::: {.column width="50%"}
 
-the red test, as evidence: reserve before charge (q5)
+red, then green: q5 was decided in the room and not yet in the code when the refunds hit; the full diff is in the backup
 
-```{.text include=build/05-how/i3-run.txt}
+```{.python include=build/05-how/i3-run.txt}
 ```
+
+:::
+::: {.column width="50%"}
+
+```{.python heading="the fix, in the shell (v5): reserve first, every answer a value" include=05-how/s05_how/checkout_v5.py start-line=56 end-line=60}
+```
+
+```{.text heading="the regression, green against v5" include=build/05-how/i3-green.txt}
+```
+
+:::
+::::
 
 \thread{1}
 
 ::: notes
 We now agree how to calculate the order. But a correct total is not the same as an order we can fulfil.
 I had treated these as three technical calls. The business saw one promise: an accepted order must mean something.
+The promise picture (reserve before charge) is in the README; the code says it here.
 :::
 
 ## Providers report facts; the shop decides what they mean, three policies owned by Fulfilment {paths=512}

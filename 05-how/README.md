@@ -16,8 +16,9 @@ between the pure core and the effectful shell.
 
 ## Slides
 
-- [x] A correct price did not guarantee a fulfilled order: `data/incident.txt`, `build/05-how/promise.png`, the I3 run line as evidence
-  ('the red test, as evidence: reserve before charge (q5)'), thread 1
+- [x] A correct price did not guarantee a fulfilled order: `data/incident.txt`, the full I3 run as evidence
+  ('red, then green: q5 was decided in the room and not yet in the code when the refunds hit'),
+  the v5 inventory match (`checkout_v5.py` lines 56-60) and `build/05-how/i3-green.txt`, thread 1
 - [x] Providers report facts; the shop decides what they mean, three policies owned by Fulfilment: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
   question on releasing a reservation after a declined payment, thread 2
 - [x] Rules answering the same business question belong together: four questions, four homes: the rule cards grouped by the business question each answers
