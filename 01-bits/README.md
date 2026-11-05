@@ -64,8 +64,8 @@ campaign on time, one if at a time.
 - [x] 9. I was ready to ship on the strength of two tests (paths=64): the dev and marketing bubbles over the question "How many tests would make you sure?"
 - [x] 10. Two tests cover every branch but only 2 of 64 combinations (paths=64): the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
 - [x] 11. 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill (paths=64): `finance.png` titled with the October totals, marketing's squeeze bubble as the last line
-- [x] 12. One coupon order exposes the untested threshold: 60.00 expected, 54.00 paid (paths=64): the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
-- [x] 13. The coupon boundary order fails while the memo's other three orders pass (paths=64): the `memo-orders` snippet of `test_memo_orders.py` beside `memo-run.txt` (three passed, the coupon order at 55 EUR failed)
+- [x] 12. The 55 EUR order fails Logistics' expected price: 60.00 expected, 54.00 paid (paths=64): the RED moment label, the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
+- [x] 13. The coupon boundary order fails while the memo's other three orders pass (paths=64): the `memo-orders` snippet of `test_memo_orders.py` beside `memo-run.txt` (three passed, the coupon order at 55 EUR failed); the caption names the four boundary orders, not the full grid
 - [x] 14. Branch coverage counts edges, not combinations: two tests cover 2 of 64 paths (paths=64): `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
 
 ## Live

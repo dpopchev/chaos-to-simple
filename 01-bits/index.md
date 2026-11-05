@@ -96,6 +96,7 @@ before the policies, not after them.
 ::::
 
 ::: notes
+One breath: the request aloud, the + line, the footer.
 Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first policy
 request adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
 the marketing line aloud and ask who thinks it is a small change. The diffs show the change
@@ -128,7 +129,7 @@ alone, the scope row above it.
 ::::
 
 ::: notes
-The loyalty program asked for 10 percent off for members, after the coupon. The second
+One breath: the request aloud, the + line, the footer. The loyalty program asked for 10 percent off for members, after the coupon. The second
 policy request adds a decision about membership, so the footer doubles to 4 paths. Read
 the loyalty line aloud and point out that the two discounts now stack. The diffs show the
 change alone, the scope row above it.
@@ -159,8 +160,10 @@ change alone, the scope row above it.
 :::
 ::::
 
+\footnotesize subtotal is the cart total captured at step 0, before any discount; the threshold reads it
+
 ::: notes
-Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
+One breath: the request aloud, the + line, the footer. Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
 postage. The third policy request adds a threshold on the subtotal, so the footer doubles
 to 8 paths. Read the logistics line aloud and ask the room why the carts are left. The
 diffs show the change alone, the scope row above it.
@@ -191,8 +194,10 @@ diffs show the change alone, the scope row above it.
 :::
 ::::
 
+\footnotesize the international fee is set first; the free-shipping line then zeroes it for the test's 50-plus cart, so the total stands
+
 ::: notes
-Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
+One breath: the request aloud, the + line, the footer. Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
 The fourth policy request sends a second destination down its own path, so the footer
 doubles to 16 paths. Read the second logistics line aloud and say that the shipping rules
 now branch twice. The diffs show the change alone, the scope row above it.
@@ -224,7 +229,7 @@ now branch twice. The diffs show the change alone, the scope row above it.
 ::::
 
 ::: notes
-Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
+One breath: the request aloud, the + line, the footer. Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
 request adds an optional extra to the total, so the footer doubles to 32 paths. Read the
 marketing line aloud, the one that promised just one more. The diffs show the change alone,
 the scope row above it.
@@ -256,7 +261,7 @@ the scope row above it.
 ::::
 
 ::: notes
-Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
+One breath: the request aloud, the + line, the footer. Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
 policy request adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
 line aloud. The diffs show the change alone, the scope row above it.
 :::
@@ -344,7 +349,9 @@ or more before it. Last the bold line, the condition: the threshold read the car
 coupon, so a rule decided it, not the customers.
 :::
 
-## One coupon order exposes the untested threshold: 60.00 expected, 54.00 paid {paths=64}
+## The 55 EUR order fails Logistics' expected price: 60.00 expected, 54.00 paid {paths=64}
+
+\moment{RED}{a test exposes the question: the expected total is Logistics' proposal, not yet the agreed rule}
 
 from the breakdown: 1,214 free parcels, each with the coupon, the cart at 50 EUR or more before it, the goods under 50 after it; one of them: 55 EUR of books, the coupon, domestic
 
@@ -364,7 +371,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 
 ## The coupon boundary order fails while the memo's other three orders pass {paths=64}
 
-the memo's two conditions: the coupon x the cart at 50 EUR before it, one order per cell
+the memo's four boundary orders, with or without the coupon, the cart under or over 50; not the full grid: the coupon-and-under-50 cell is not in the memo
 
 :::: {.columns}
 ::: {.column width="62%"}
