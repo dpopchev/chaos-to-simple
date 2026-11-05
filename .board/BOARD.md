@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-019 > W-217 > T-481   | blocked: 0 | todo roots: 1 | done: 705 | pruned: 9
+open path: E-019 > W-217   | blocked: 0 | todo roots: 1 | done: 706 | pruned: 9
 
 ## Tree
 
 ```text
 E-019         [doing]    Action titles v2: the 2026-11-05 framework audit landed -- claim-led titles, their companion edits, the storyline read aloud
   W-216  issue  [done]     00 and 01: the opening and the bits retitled (pages 2-19) -- T-478 [done], T-479 [done]
-  W-217  issue  [doing]    02 and 03: the map and the room retitled (pages 20-29) -- T-480 [done], T-481 [doing]   <- ACTIVE LEAF
+  W-217  issue  [doing]    02 and 03: the map and the room retitled (pages 20-29) -- T-480 [done], T-481 [done]
   W-218  issue  [todo]     04 and 05: the homes and the seam retitled (pages 30-41) -- T-482 [todo], T-483 [todo]
   W-219  issue  [todo]     06 and 07: core and shell and the close retitled (pages 42-52) -- T-484 [todo], T-485 [todo], T-486 [todo]
   W-220  issue  [todo]     08: the backup retitled with its captions aligned (pages 53-66) -- T-487 [todo], T-488 [todo]
@@ -1287,7 +1287,7 @@ flowchart TD
   W216 --> T479["T-479 done: Retitle the bits -> 01-bits/index.md and scripts/utils/test_counter_plan.py"]
   E019 --> W217["W-217 issue doing: 02 and 03: the map and the room retitled (pages 20-29)"]
   W217 --> T480["T-480 done: Retitle the map -> 02-stacey/index.md"]
-  W217 --> T481["T-481 doing: Retitle the room -> 03-chaos/index.md and scripts/utils/test_counter_plan.py -- ACTIVE LEAF"]
+  W217 --> T481["T-481 done: Retitle the room -> 03-chaos/index.md and scripts/utils/test_counter_plan.py"]
   E019 --> W218["W-218 issue todo: 04 and 05: the homes and the seam retitled (pages 30-41)"]
   W218 --> T482["T-482 todo: Retitle the homes -> 04-what/index.md"]
   W218 --> T483["T-483 todo: Retitle the seam -> 05-how/index.md"]
@@ -1305,7 +1305,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E019,W217,T481 doing
-  class W216,T478,T479,T480 done
+  class E019,W217 doing
+  class W216,T478,T479,T480,T481 done
   class W218,T482,T483,W219,T484,T485,T486,W220,T487,T488,W221,T489 todo
 ```
