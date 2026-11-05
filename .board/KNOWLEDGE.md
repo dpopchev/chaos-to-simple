@@ -42,3 +42,4 @@
 
 ## Deviations
 - 2026-11-05 E-020: T-494 landed the merged 02 frame tighter than its Action, forced by make overflow (76pt over): scriptsize table with terse cells, no rule, WHICH TEST beside the dev bubble; 02 minutes stay 3 (Action said 2); Check unchanged
+- 2026-11-05 E-020: T-507: the digital frame's columns are 42/58, not the brief's 48/52, because make widths refused the 96-char seventh.diff signature; the red run keeps the bare assert line; Check unchanged
