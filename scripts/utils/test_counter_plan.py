@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[2]
 TITLE = re.compile(r"^## (.*?) \{paths=(\?|\d+)\}$", re.MULTILINE)
 ROUTE = list(csv.DictReader((ROOT / "data/route.csv").read_text(encoding="ascii").splitlines()))
 COUNTER = {row["section"]: row["counter"] for row in ROUTE}
-NUMBER = "The business can recognize its promises in the evidence, and the counter falls to 72"
+NUMBER = "Agreed promises now have concrete examples and traceable evidence"
 
 
 def index_text(section: str) -> str:

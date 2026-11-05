@@ -1,6 +1,6 @@
-# 06 Core and shell: the responsibilities make a change safer
+# 06 Core and shell: clear responsibilities make the next change easier to contain
 
-## Calculate the offer without carrying out the order: price() {paths=512}
+## We calculate the offer without carrying out the order {paths=512}
 
 
 ![](build/06-simple/responsibilities-offer.png){width=54%}
@@ -18,7 +18,7 @@ Core subdomain (business differentiation) is not functional core (computation wi
 The shell has its own obligations: acceptance, rejection and sequencing.
 :::
 
-## The business can recognize its promises in the evidence, and the counter falls to 72 {paths=72}
+## Agreed promises now have concrete examples and traceable evidence {paths=72}
 
 \footnotesize I1 shipping eligibility uses the discounted goods; I2 the disputed reading has a decision and an owner; I3 unavailable stock prevents payment
 
@@ -41,7 +41,7 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 512 became 72: 64 core paths plus 8 shell worlds, nothing deleted, every decision moved to the place that owns it.
 :::
 
-## A new discount needs only pricing to agree {paths=72}
+## Raising the member discount to 15% leaves shipping untouched {paths=72}
 
 ![](build/06-simple/responsibilities-offer-pricing.png){width=70%}
 
@@ -54,7 +54,7 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 Marketing changes the member discount: pricing and marketing agree; shipping applies its own rule to the new value; the factor changes, the signature and the contract stay.
 :::
 
-## A new payment provider leaves the core alone {paths=72}
+## A stable payment contract lets us replace the provider {paths=72}
 
 ![](build/06-simple/responsibilities-offer-payment.png){width=70%}
 
@@ -71,7 +71,7 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
 :::
 
-## The seventh request has a place to start {paths=72}
+## The digital-only delivery charge lands in shipping as a fourth bit, 16 paths {paths=72}
 
 \vspace{0.6em}
 
@@ -91,7 +91,7 @@ For this example we change the delivery-charge policy for a digital-only order; 
 The small diff is the shipping change; the next frame shows its highlight.
 :::
 
-## A place to start is not a licence to skip the discovery {paths=72}
+## The next if starts with ownership and discovery {paths=72}
 
 ![](build/06-simple/responsibilities-offer-shipping.png){width=70%}
 
