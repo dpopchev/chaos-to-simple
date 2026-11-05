@@ -36,7 +36,6 @@
 - 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
-- 2026-11-05 W-229: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-05)
 - 2026-11-05 W-232: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 1 hours) (developer, 2026-11-05)
 
 ## Deviations

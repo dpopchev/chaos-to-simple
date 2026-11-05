@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-229   | blocked: 0 | todo roots: 3 | done: 752 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 3 | done: 753 | pruned: 9
 
 ## Tree
 
 ```text
-W-229  issue  [doing]    (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [done]
 W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
 W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
 W-232  bug    [todo]     (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow   (filed during T-505) -- T-516 [todo]
@@ -1359,11 +1358,15 @@ closed 2026-11-05 -- outcome: Given E-019 landed, When grep -n 'thirteen' 01-bit
 
 - T-489 [done] Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md
 
+### W-229 issue [done] (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back
+
+closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command grep -o 'grid-9.png){width=[0-9]*%' 03-chaos/index.md follows, Then it prints grid-9.png){width=60%. -- ledger: ledgers/W-229.md
+
+- T-513 [done] Grow the honest-count grid -> 03-chaos/index.md
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W229["W-229 issue doing, standalone: 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back"]
-  W229 --> T513["T-513 done: Grow the honest-count grid -> 03-chaos/index.md"]
   W230["W-230 issue todo, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
   W230 --> T514["T-514 todo: Split the evidence frame -> 06-simple/index.md"]
   W231["W-231 bug todo, standalone: make widths passes an include with no class that renders at body size and clips"]
@@ -1375,7 +1378,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W229 doing
-  class T513 done
   class W230,T514,W231,T515,W232,T516 todo
 ```
