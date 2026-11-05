@@ -1,40 +1,18 @@
 # 02 Map: the failing test exposes a business disagreement
 
-## Free shipping from 50 has two plausible meanings {paths=64}
-
-Logistics, week 6: "Free shipping from 50."
-
-The code: `if subtotal >= Decimal(50):`. Finance's test: expects 60.00, gets 54.00.
-
-\begingroup\footnotesize
-
-| reading | the threshold reads | 55 EUR with the coupon | said by |
-|---|---|---|---|
-| R1 the cart before the coupon | 55, ships free | pays 54.00 | marketing: more customers qualify |
-| R2 the goods after the coupon | 45, pays 5 | pays 60.00 | logistics: what they pay for |
-
-\endgroup
-
-\begingroup\footnotesize\textit{both readings fit the sentence; the code picked one; nobody chose}\par\endgroup
-
-::: notes
-The bridge from the badge to the two voices. The badge said 64 paths and finance's test failed
-on one of them: 60.00 expected, 54.00 got, on a 55 EUR order with the coupon. Engineering reads
-the code: the condition tests the subtotal, read before the coupon. Then the sentence from week
-6, "Free shipping from 50", and asks what 50 is of. Two answers fit. The cart before the coupon
-is 55, so it ships free and pays 54.00: marketing's reading. The goods after the coupon are 45,
-so the customer pays 5 and the total is 60.00: logistics' reading. Both fit the sentence; the
-code picked the first and nobody chose. The next frame lets each of them say so in their own
-words, each with a test.
-:::
-
 ## Marketing and Logistics disagree about what the customer should pay {paths=64}
 
+\begingroup\scriptsize
 
-Free shipping from 50. Of what?
+| reading | the threshold reads | 55 EUR, coupon | said by |
+|---|---|---|---|
+| R1 cart before coupon | 55, ships free | pays 54.00 | marketing |
+| R2 goods after coupon | 45, pays 5 | pays 60.00 | logistics |
 
-\vspace{-6pt}
+one order: 55 EUR of books, the AUTUMN coupon, domestic; both fit the sentence, the code picked one, nobody chose\vspace{-3pt}
 
+
+\endgroup
 
 :::: {.columns}
 ::: {.column width="47%"}
@@ -53,7 +31,7 @@ Free shipping from 50. Of what?
 :::
 ::::
 
-\vspace{4pt}
+\vspace{6pt}
 
 :::: {.columns}
 ::: {.column width="47%"}
@@ -72,16 +50,31 @@ Free shipping from 50. Of what?
 :::
 ::::
 
+\vspace{6pt}
 
-\noindent\rule{\linewidth}{0.4pt}
-\vspace{-20pt}
+:::: {.columns}
+::: {.column width="47%"}
 
 \actor{dev}
 
 ```{.text include=build/02-stacey/bubble-2.txt}
 ```
 
+:::
+::: {.column width="53%"}
+
+\moment{WHICH TEST}{two stakeholders, one order, two expected totals: which test do I write?}
+
+:::
+::::
+
 ::: notes
+The bridge from the badge to the two voices. The badge said 64 paths and finance's test failed
+on one of them: 60.00 expected, 54.00 got, on a 55 EUR order with the coupon. The code tests the
+subtotal, read before the coupon. Two readings of "Free shipping from 50" fit: the cart before
+the coupon is 55 and ships free (54.00, marketing); the goods after the coupon are 45 and pay 5
+(60.00, logistics). Both fit the sentence; the code picked the first and nobody chose.
+
 One function, one reading: the code picked R1 and nobody chose.
 The rule is the Who diagonal of the next frame: stakeholders above it, developers below.
 Both positions are reasonable: marketing counts the subtotal, logistics counts only the

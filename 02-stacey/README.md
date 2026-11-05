@@ -5,7 +5,7 @@ two axes; each later section is one move on the map.
 
 | | |
 |---|---|
-| Minutes | 3 (3 frames) |
+| Minutes | 3 (2 frames) |
 | Footer counter | stays at `64` |
 | Owns | the Stacey figure is drawn by `scripts/figures.py stacey`, declared in `02-stacey/section.mk`; `02-stacey/tests/test_readings.py` holds the R1 and R2 tests (snippets `r1`, `r2`) run against `s01_bits.chaos` |
 | Uses | nothing |
@@ -13,8 +13,7 @@ two axes; each later section is one move on the map.
 
 ## Slides
 
-- [x] Free shipping from 50 has two plausible meanings: the sentence, the code's condition, finance's test and the two-readings table (the cart before or after the coupon)
-- [x] Marketing and Logistics disagree about what the customer should pay: the question, the R1 Marketing and R2 Logistics bubbles, the line 'one function, one reading: the code picked R1 and nobody chose', a rule, the dev bubble below
+- [x] Marketing and Logistics disagree about what the customer should pay: the two-readings table (the cart before or after the coupon) with the one-order line, the R1 Marketing and R2 Logistics bubbles with the call-and-assert snippets, a rule, `\moment{WHICH TEST}`, the dev bubble below
 - [x] Stakeholders must choose the rule before developers can fix it: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
 
 ## The matrix

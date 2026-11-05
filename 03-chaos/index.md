@@ -31,8 +31,9 @@ Reading plan: read the Logistics first line aloud, then the Marketing answer; sk
 'Who reads the log?'; then the silence, and let the room hear it.
 :::
 
-## Each of the six questions gains a decision and a subdomain {paths=64}
+## Every question gains a rule and an owner: q3 after the discount, Logistics {paths=64}
 
+\moment{AGREED}{q3 decided in the room: the threshold reads the goods after the discount; Logistics owns the rule}
 
 ```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
 ```
