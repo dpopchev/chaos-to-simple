@@ -50,16 +50,13 @@ discount, not before it: the rule came last, after the code had already picked o
 ## Three provider outcomes join the six rules: nine bits, 512 configurations, not 64 {paths=512}
 
 
-![](build/03-chaos/grid-9.png){width=40%}
+![](build/03-chaos/grid-9.png){width=60%}
 
-\footnotesize same six bits; each outcome of the three effects doubles the grid: 512 modeled configurations, kinds as the map named them; a failed reservation stops the charge and the mail, so fewer paths run than configurations exist
-
-```{.text include=build/data/counts.txt}
-```
+\footnotesize same six bits; each outcome of the three effects doubles the grid: 512 modeled configurations, kinds as the map named them; fewer paths run than configurations exist
 
 ::: notes
 The grid you saw in 01 was one of eight. The four framed panels are the ones where the
-stock is gone. The number is now true: 2^9 = 512. The bigger number is the first good news.
+stock is gone. The number is now true: 2^9 = 512 modeled configurations, 64 + 8 = 72 split. The bigger number is the first good news.
 The right side is the plain matrix of 03, arrows from 01: the What is agreed, the How is open.
 :::
 
