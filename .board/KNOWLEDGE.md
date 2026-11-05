@@ -42,4 +42,4 @@
 - 2026-11-05 E-019: titles count paths, the footer's word, never scenarios or combinations; page 15 keeps combinations because its caption does (developer, 2026-11-05)
 
 ## Deviations
-- none recorded
+- 2026-11-05 E-019: T-483 Action amended: page 37 takes the developer's draft 'A correct price did not guarantee a fulfilled order' (one line); the lengthened title wrapped and failed make overflow (slack under 3pt) at 8c55449; Check unchanged; the blocked hand-back re-spawned one model up
