@@ -1,11 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-230   | blocked: 0 | todo roots: 1 | done: 756 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 1 | done: 757 | pruned: 9
 
 ## Tree
 
 ```text
-W-230  issue  [doing]    (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [done]
 W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
 ```
 
@@ -1363,6 +1362,12 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command gr
 
 - T-513 [done] Grow the honest-count grid -> 03-chaos/index.md
 
+### W-230 issue [done] (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof
+
+closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command grep -o 'row-b2.png){width=[0-9]*%' 06-simple/index.md follows, Then it prints row-b2.png){width=100%. -- ledger: ledgers/W-230.md
+
+- T-514 [done] Split the evidence frame -> 06-simple/index.md
+
 ### W-232 bug [done] (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow
 
 closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command grep -c 'Overfull .hbox' local/state/overflow/talk.log follows, Then it prints 0. -- ledger: ledgers/W-232.md
@@ -1372,8 +1377,6 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command gr
 ## Diagram
 ```mermaid
 flowchart TD
-  W230["W-230 issue doing, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
-  W230 --> T514["T-514 done: Split the evidence frame -> 06-simple/index.md"]
   W231["W-231 bug todo, standalone: make widths passes an include with no class that renders at body size and clips"]
   W231 --> T515["T-515 todo: Measure classless includes at body size -> scripts/utils/widths.py and scripts/utils/test_widths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1381,7 +1384,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W230 doing
-  class T514 done
   class W231,T515 todo
 ```
