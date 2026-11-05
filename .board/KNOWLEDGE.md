@@ -30,9 +30,16 @@
 - 2026-11-02 E-007: open: the pasted manifest named mmdc for journey, moves and ports; filed as scripts.figures; one word switches W-062's journey Task to Mermaid now that mmdc is installed
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
+- 2026-11-05 E-019: open: page 6 explains the arithmetic before any exhibit, against evidence before explanation; storyboard_ok pins the order and the talk is today -> left as is; a later root may move it after page 15
+- 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
-- none recorded
+- 2026-11-05 E-019: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 3 hours) (developer, 2026-11-05)
+- 2026-11-05 E-019: page 51 is a ten-word question and page 52 keeps its thank-you title: no gate exemption (developer, 2026-11-05)
+- 2026-11-05 E-019: page 60 gains the shipping_fee contract line under the moves table; page 64 keeps its chart label, its caption and title name core.py as the composition function (developer, 2026-11-05)
+- 2026-11-05 E-019: the 2026-11-05 action-title framework governs every title (entity, verb, quantified delta, driver; standalone, precision, traceability; no label, no unproven cause); the eight-word gate E-012#d7 stands, a short draft is lengthened with its metric or driver (developer, 2026-11-05)
+- 2026-11-05 E-019: the two 00 frames take action titles, superseding W-119's topic-title rule for them; section pages keep E-012 AC17's form NN Label: claim, the more specific of the two drafted claims per page (developer, 2026-11-05)
+- 2026-11-05 E-019: titles count paths, the footer's word, never scenarios or combinations; page 15 keeps combinations because its caption does (developer, 2026-11-05)
 
 ## Deviations
 - none recorded
