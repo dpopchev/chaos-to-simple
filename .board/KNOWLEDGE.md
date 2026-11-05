@@ -37,4 +37,4 @@
 - none recorded
 
 ## Deviations
-- 2026-11-05 W-221: T-489 dispatched at sonnet, medium: its Output is .md only (haiku by the dispatch rule) but mapping eight Slides checklists onto the current titles needs every index.md read, the E-012#v13 precedent
+- none recorded

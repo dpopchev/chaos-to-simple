@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-221   | blocked: 0 | todo roots: 0 | done: 719 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 720 | pruned: 9
 
 ## Tree
-
-```text
-W-221  issue  [doing]    (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides -- T-489 [done]
-```
 
 ## Closed
 
@@ -1302,16 +1298,18 @@ closed 2026-11-05 -- outcome: Given the deck at main, When make talk builds it a
 - T-476 [done] Set the text exhibits at the exhibit size -> 00-frontmatter/filters/text-exhibits.lua and the five frames re-fitted
 - T-477 [done] Retire the dead verbatim hook -> 00-frontmatter/preamble.tex without AtBeginEnvironment{verbatim}
 
+### W-221 issue [done] (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides
+
+closed 2026-11-05 -- outcome: Given E-019 landed, When grep -n 'thirteen' 01-bits/README.md runs, Then it prints nothing and each NN-*/README.md Slides entry names a title its index.md carries. -- ledger: ledgers/W-221.md
+
+- T-489 [done] Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W221["W-221 issue doing, standalone: section READMEs: the slide lists name retired titles and 01 counts thirteen slides"]
-  W221 --> T489["T-489 done: Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W221 doing
-  class T489 done
 ```
