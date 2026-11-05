@@ -1,6 +1,6 @@
-# 08 Backup: the mechanisms behind the seam, for the Q&A
+# 08 Backup: the mechanisms and the evidence behind the seam
 
-## The call order is a bit nobody wrote down, giving 45 against 44 from the same inputs {paths=512}
+## Changing the call order changes the price: 45 against 44 {paths=512}
 
 ```{.python heading-file=build/05-how/tests-order.txt include=05-how/tests/test_oo_order.py snippet=order-bit}
 ```
@@ -12,7 +12,7 @@ The call order is a bit nobody wrote down: 45 against 44 from the same inputs.
 Live demo: make test K=TestCallOrder. The first test follows the rule, the second one differs.
 :::
 
-## A class hid the call order in its state, the same bug as I3 in pricing {paths=512}
+## This mutable checkout leaves discount order to its callers {paths=512}
 
 ```{.python heading-file=build/05-how/oo.txt include=05-how/s05_how/oo_checkout.py snippet=oo}
 ```
@@ -27,7 +27,7 @@ Each method reads and changes the same fields, and the call sequence became a bi
 It is the same bug as I3, pricing edition.
 :::
 
-## Command Query Separation draws the seam by making every answer a value {paths=512}
+## Explicit outcome values make the three effects easier to handle and match {paths=512}
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -59,7 +59,7 @@ Command query separation: a query asks, a command answers with a value, never bo
 Every answer is a value the caller can match on, so the order stops living in state.
 :::
 
-## A sum type per answer and a Protocol per port: the fakes satisfy them with no inheritance, pyright says so {paths=512}
+## Protocols accept compatible fakes without inheritance: pyright reports zero errors {paths=512}
 
 :::: {.columns}
 ::: {.column width="55%"}
@@ -84,7 +84,7 @@ A fake is a plain class with the same method. It never inherits from the port, a
 The test doubles carry one bit each, so a shell test can enumerate the world.
 :::
 
-## Each effect answers with a value, so reserve runs first and every answer is matched {paths=512}
+## Stock reservation must succeed before payment is attempted {paths=512}
 
 
 :::: {.columns}
@@ -110,7 +110,7 @@ The ports picture sits beside the v4-to-v5 diff. Reserve goes first, and every a
 The diff is only the seam, so the picture and the code say the same thing.
 :::
 
-## Dependencies point inward: the shell imports the ports and the contexts, no context imports a port {paths=512}
+## Pricing, shipping and tax import no provider port; only the shell does {paths=512}
 
 ![](build/05-how/imports.png){width=88%}
 
@@ -124,7 +124,7 @@ The table is counted from the import lines of the files, never typed.
 The shell imports the ports and the contexts. The contexts import neither the ports nor the shell: zero under ports on every context row.
 :::
 
-## Passing values across a boundary adds paths you can count, passing flags multiplies them {paths=512}
+## Explicit contracts limit the knowledge crossing each boundary {paths=512}
 
 \footnotesize
 
@@ -142,7 +142,7 @@ The moves table: each move adds a path or hides one.
 Guard clauses and sum types add paths you can count; flags and mutable state hide them.
 :::
 
-## Request carries every decision in and Priced every result out, so the core never sees a port and the shell never sees a rule {paths=512}
+## Values carry inputs and results across the calculation boundary {paths=512}
 
 
 :::: {.columns}
@@ -166,7 +166,7 @@ values in, values out: the seam passes data, never a flag and never an effect
 Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port, the shell never sees a rule. Outcome is the shell's own answer, Accepted or Rejected, a value too.
 :::
 
-## Every one of 64 paths holds three invariants, so the core runs 192 tests {paths=512}
+## Three invariants check 64 configurations in 192 test cases {paths=512}
 
 
 ```{.python heading-file=build/06-simple/tests-core.txt include=06-simple/tests/test_core_paths.py snippet=from-bits}
@@ -182,7 +182,7 @@ The core has no if of its own, every bit stays where it was named.
 64 paths, one test each, three invariants per path, and the count is measured.
 :::
 
-## Eight shell worlds collapse to four outcomes, with no charge when stock is gone {paths=512}
+## Eight test worlds produce four explicit order outcomes {paths=512}
 
 
 :::: {.columns}
@@ -209,7 +209,7 @@ Eight shell worlds collapse to four outcomes.
 No charge when stock is gone, no mail when the card is refused.
 :::
 
-## Five ifs and one match live in three contexts, none in the core, and the shell holds three matches at the edge {paths=512}
+## Pricing, shipping and tax hold every decision of the functional core, core.py only composes {paths=512}
 
 
 :::: {.columns}
@@ -231,7 +231,7 @@ cohesion: a rule changes in one module; decoupling: the shell imports the core a
 Five ifs and one match live in the three contexts: pricing two ifs, shipping two ifs and a match over the Zone sum type, tax one if. core.py holds none; shell.py holds no if and keeps its three matches at the edge. The right figure draws the imports: the shell imports the core and the ports, the core imports the three contexts, no context imports a port. Live demo: git grep -n 'if ' 06-simple/s06_simple/shell.py returns only the docstring that states the house rule.
 :::
 
-## The split cuts 512 paths to 72 while branch coverage stays at 100% as before {paths=72}
+## The split leaves 72 local paths instead of 512, with integration checked separately {paths=72}
 
 ![](build/06-simple/paths.png){width=72%}
 
@@ -247,7 +247,7 @@ No decision is ever deleted, only moved
 Nothing was deleted, every decision only moved to the place that owns it.
 :::
 
-## The seventh if costs 8 paths in the contexts and 512 in one function, under the same assumptions {paths=72}
+## The seventh decision adds 8 local paths in shipping, against 512 in one function {paths=72}
 
 ```{.text include=build/06-simple/epilogue.txt}
 ```
