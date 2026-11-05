@@ -1,4 +1,4 @@
-## The route of the talk: eight stops, three incidents, one counter {paths=?}
+## Business decisions lead checkout from tangled rules to clear responsibilities {paths=?}
 
 ![](build/00-frontmatter/agenda-00.png){width=90%}
 
@@ -9,9 +9,7 @@ three incidents we will meet on the way. The footer counter, the number of code 
 starts at ? and each section sets it as it goes.
 :::
 
-## The business map {paths=?}
-
-Every arrow becomes a line in one function.
+## Every request and every provider answer lands in one checkout function {paths=?}
 
 ![](build/00-frontmatter/business-map.png){width=100%}
 
@@ -28,7 +26,7 @@ is the shape of the teams, and the arrows are the calls the code makes. The func
 made no distinction between them.
 :::
 
-## The map of the talk {paths=?}
+## Agreement on the What and certainty on the How guide each move {paths=?}
 
 :::: {.columns align=center}
 ::: {.column width="58%"}
