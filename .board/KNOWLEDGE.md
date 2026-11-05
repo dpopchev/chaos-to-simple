@@ -41,4 +41,4 @@
 - 2026-11-05 E-020: vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; a title says configurations where no path runs (28, 47), paths where one does; the footer keeps 'paths to reason about' (developer, 2026-11-05) supersedes: E-019#d2
 
 ## Deviations
-- none recorded
+- 2026-11-05 E-020: T-494 landed the merged 02 frame tighter than its Action, forced by make overflow (76pt over): scriptsize table with terse cells, no rule, WHICH TEST beside the dev bubble; 02 minutes stay 3 (Action said 2); Check unchanged
