@@ -23,6 +23,9 @@ STAGES = {3: 2, 4: 3, 5: 4, 6: 5}
 ROOM_SUFFIXES = ("\nraised", ": sentence")
 HEADER_SECTIONS = ("03", "03", "04", "05", "06")
 WIDTHS = (0.07, 0.38, 0.13, 0.2, 0.22)
+# One row drawn alone: a wide short figure, and the type size of each column (tests 10).
+ROW_SIZE = (12.0, 1.9)
+ROW_TYPE = (13, 14, 13, 12, 10)
 TEST_FUNCTION = re.compile(r"^(?:def (test_\w+)\(|class (Test\w+)[(:])", re.MULTILINE)
 
 
@@ -112,11 +115,24 @@ def figure_size(stage: int) -> tuple[float, float]:
 
 
 def board(
-    rows: Sequence[BoardRow], stage: int, out: Path, tests_dir: Path, heads: Sequence[str]
+    rows: Sequence[BoardRow],
+    stage: int,
+    out: Path,
+    tests_dir: Path,
+    heads: Sequence[str],
+    row: str | None = None,
 ) -> Path:
-    """Draw the board at stage 3, 4, 5 or 6; hidden columns stay empty grey cells."""
+    """Draw the board at stage 3, 4, 5 or 6; hidden columns stay empty grey cells.
+
+    With row set to a bit, draw the header and that one row, in larger type.
+    """
     if stage not in STAGES:
         raise ValueError(f"unknown stage {stage}; expected one of {tuple(STAGES)}")
+    single = row is not None
+    if single:
+        rows = tuple(r for r in rows if r.bit == row)
+        if not rows:
+            raise ValueError(f"unknown row {row}; no board row has that bit")
     style.apply()
     import matplotlib.pyplot as plt
     from matplotlib.patches import Rectangle
@@ -124,7 +140,8 @@ def board(
     shown = STAGES[stage]
     grey = colour_of("tangled")
     missing = set(missing_of(rows, tests_dir))
-    fig, ax = plt.subplots(figsize=figure_size(stage), dpi=style.DPI)
+    size_in = ROW_SIZE if single else figure_size(stage)
+    fig, ax = plt.subplots(figsize=size_in, dpi=style.DPI)
     widths = column_widths(stage, len(COLUMNS))
     edges = [sum(widths[:i]) for i in range(len(widths) + 1)]
     height = 1.0 / (len(rows) + 1)
@@ -159,21 +176,25 @@ def board(
         ink = "white" if col < shown else "dimgray"
         narrow = stage == 3 and col >= shown
         size = 6 if narrow else (10 if stage == 3 else 12)
+        size = 12 if single and not narrow else size
         cell(col, 0, header_text(col, stage, heads), head, size, ink)
-    for line, row in enumerate(rows, start=1):
+    for line, item in enumerate(rows, start=1):
         texts = (
-            row.room,
-            textwrap.fill(row.sentence, 96 if stage == 3 else 40),
-            label_of(row.home) if row.home in HOMES else row.home,
-            textwrap.fill(row.code, 30, break_long_words=False),
-            "\n".join(row.tests),
+            item.room,
+            textwrap.fill(item.sentence, 96 if stage == 3 and not single else 40),
+            label_of(item.home) if item.home in HOMES else item.home,
+            textwrap.fill(item.code, 30, break_long_words=False),
+            "\n".join(item.tests),
         )
-        home_fill = colour_of(row.home)
-        test_fill = colour_of("payment" if missing.intersection(row.tests) else "accounting")
+        home_fill = colour_of(item.home)
+        test_fill = colour_of("payment" if missing.intersection(item.tests) else "accounting")
         fills = (colour_of("fulfilment"), None, home_fill, None, test_fill)
         for col, text in enumerate(texts):
             if col >= shown:
                 cell(col, line, "", None, 9, "white")
+            elif single:
+                ink = "black" if fills[col] is None else "white"
+                cell(col, line, text, fills[col], ROW_TYPE[col], ink)
             elif fills[col] is None:
                 size = 13 if stage == 3 else 12
                 cell(col, line, text, None, size if col == 1 else 10, "black")

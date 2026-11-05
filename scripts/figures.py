@@ -128,6 +128,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--room", type=int, default=None, help="doubling: the room's week")
     parser.add_argument("--stage", type=int, default=6, help="board: the stage 3, 4, 5 or 6")
+    parser.add_argument("--row", default=None, help="board: draw one row, by its bit")
     parser.add_argument("--examples", type=Path, default=Path("data/examples.csv"))
     parser.add_argument(
         "--promise", type=Path, default=Path("05-how/data/promise.csv"), help="promise: steps"
@@ -139,7 +140,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         rows = board_rows(
             load_rules(args.rules), load_questions(args.questions), example_tests(args.examples)
         )
-        board(rows, args.stage, args.out, args.tests, headers(load_route(args.route)))
+        heads = headers(load_route(args.route))
+        board(rows, args.stage, args.out, args.tests, heads, row=args.row)
         return 0
     if args.what == "cohesion":
         owners = {**load_actors(args.actors), **load_actors(args.roles)}

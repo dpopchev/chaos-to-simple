@@ -102,6 +102,18 @@ def test_board_writes_a_png_at_each_stage(tmp_path: Path, stage: int) -> None:
     assert out.read_bytes().startswith(PNG_MAGIC)
 
 
+@pytest.mark.edge
+def test_row_b2_at_stage_6_writes_a_png(tmp_path: Path) -> None:
+    out = board(rows(), 6, tmp_path / "row.png", TESTS, route_headers(), row="b2")
+    assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.model
+def test_row_with_an_unknown_bit_raises(tmp_path: Path) -> None:
+    with pytest.raises(ValueError, match="zz"):
+        board(rows(), 6, tmp_path / "row.png", TESTS, route_headers(), row="zz")
+
+
 @pytest.mark.model
 def test_board_refuses_an_unknown_stage(tmp_path: Path) -> None:
     with pytest.raises(ValueError, match="unknown stage"):
