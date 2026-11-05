@@ -1,18 +1,8 @@
 # 04 Homes: the business decisions suggest the structure
 
-## Tracing each line to who asked for it reveals candidate policy boundaries {paths=512}
-
-![](build/04-what/colorcode.png){height=80%}
-
-::: notes
-Every line is coloured by who asked for it and by the context that owns it.
-The colours show where each if comes from before anyone reads its name.
-The right bar is the home, and the legend names its kind: core, supporting or generic.
-This is how the code will move, one home at a time.
-:::
-
 ## Reading the discounted goods, not the cart, fixes the 55 EUR coupon order {paths=512}
 
+\moment{GREEN}{the agreed example passes: test\_i1\_example\_pays\_shipping against checkout\_fixed}
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -39,8 +29,20 @@ The threshold now reads the discounted goods, so I1 closes.
 The diff is the whole fix: the condition now reads the discounted goods, a different value, and the rest of the function stays as it was.
 :::
 
+## Tracing each line to who asked for it reveals candidate policy boundaries {paths=512}
+
+![](build/04-what/colorcode.png){height=80%}
+
+::: notes
+Every line is coloured by who asked for it and by the context that owns it.
+The colours show where each if comes from before anyone reads its name.
+The right bar is the home, and the legend names its kind: core, supporting or generic.
+This is how the code will move, one home at a time.
+:::
+
 ## Shipping owns eligibility and applies the threshold to the discounted goods {paths=512}
 
+\moment{REFACTOR}{shipping\_fee extracted under a green test; the 55 EUR regression stays green}
 
 ```{.text include=build/04-what/dispute.txt}
 ```
@@ -55,6 +57,9 @@ The diff is the whole fix: the condition now reads the discounted goods, a diffe
 ::: {.column width="48%"}
 
 ```{.python include=04-what/tests/test_shipping.py snippet=fee-tests heading-file=build/04-what/tests-fee.txt}
+```
+
+```{.text heading="the 55 EUR regression, after the extraction" include=build/04-what/fix-run.txt}
 ```
 
 :::
