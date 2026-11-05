@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-235 > T-519   | blocked: 0 | todo roots: 1 | done: 763 | pruned: 9
+open path: W-235   | blocked: 0 | todo roots: 1 | done: 764 | pruned: 9
 
 ## Tree
 
 ```text
-W-235  issue  [doing]    (standalone) The close shows the full subdomain map just before Q&A -- T-519 [doing]   <- ACTIVE LEAF
+W-235  issue  [doing]    (standalone) The close shows the full subdomain map just before Q&A -- T-519 [done]
 W-236  issue  [todo]     (standalone) The Q&A frame shows the two post series as bold hashtags -- T-520 [todo]
 ```
 
@@ -1397,7 +1397,7 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and gs txtwrit
 ```mermaid
 flowchart TD
   W235["W-235 issue doing, standalone: The close shows the full subdomain map just before Q&A"]
-  W235 --> T519["T-519 doing: Restore the full map before Q&A -> 07-close/index.md -- ACTIVE LEAF"]
+  W235 --> T519["T-519 done: Restore the full map before Q&A -> 07-close/index.md"]
   W236["W-236 issue todo, standalone: The Q&A frame shows the two post series as bold hashtags"]
   W236 --> T520["T-520 todo: Bold the series hashtags -> 07-close/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1405,6 +1405,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W235,T519 doing
+  class W235 doing
+  class T519 done
   class W236,T520 todo
 ```
