@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-020 > W-226 > T-504   | blocked: 0 | todo roots: 1 | done: 740 | pruned: 9
+open path: E-020 > W-226 > T-504   | blocked: 0 | todo roots: 2 | done: 740 | pruned: 9
 
 ## Tree
 
@@ -14,6 +14,7 @@ E-020         [doing]    Deck v5: the 2026-11-05 storyline review -- the problem
   W-227  issue  [todo]     05: the second learning loop closes -- the reserve-first fix and its green regression where the incident is told, the seam's claims tightened, the arrows standardized -- T-505 [todo], T-506 [todo], T-509 [todo]
   W-228  issue  [todo]     the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened -- T-510 [todo], T-511 [todo], T-512 [todo]
 W-229  issue  [todo]     (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [todo]
+W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
 ```
 
 ## Closed
@@ -1352,6 +1353,8 @@ flowchart TD
   W228 --> T512["T-512 todo: Shorten the six learned lines and make the joke recur -> data/lines.csv and the seven frames carrying them"]
   W229["W-229 issue todo, standalone: 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back"]
   W229 --> T513["T-513 todo: Grow the honest-count grid -> 03-chaos/index.md"]
+  W230["W-230 issue todo, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
+  W230 --> T514["T-514 todo: Split the evidence frame -> 06-simple/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -1359,5 +1362,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E020,W226,T504 doing
   class W222,T490,T491,T492,W223,T493,T494,T495,T507,W224,T496,T497,T498,W225,T499,T500,T501,T508,T502,T503 done
-  class W227,T505,T506,T509,W228,T510,T511,T512,W229,T513 todo
+  class W227,T505,T506,T509,W228,T510,T511,T512,W229,T513,W230,T514 todo
 ```
