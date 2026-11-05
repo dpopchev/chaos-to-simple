@@ -32,7 +32,7 @@
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 - 2026-11-05 E-019: open: page 6 explains the arithmetic before any exhibit, against evidence before explanation; storyboard_ok pins the order and the talk is today -> left as is; a later root may move it after page 15
-- 2026-11-05 E-020: open: build/04-what/board.png and build/05-how/board.png are built by their section.mk rules and included by no frame -> remove the two rules and manifest rows, or show the stages, at the close
+- 2026-11-05 E-020: open: build/04-what/board.png, build/05-how/board.png and, since T-505, build/05-how/promise.png are built and shown by no frame -> remove the rules and rows, or show them, at the close supersedes: E-020#1
 - 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
@@ -42,4 +42,5 @@
 - 2026-11-05 E-020: vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; a title says configurations where no path runs (28, 47), paths where one does; the footer keeps 'paths to reason about' (developer, 2026-11-05) supersedes: E-019#d2
 
 ## Deviations
+- 2026-11-05 E-020: T-505 Action amended after a blocked hand-back: the promise figure leaves the incident frame, the red run and the fix go side by side; Check unchanged; re-spawned one model up
 - 2026-11-05 E-020: overflow trims, Checks unchanged: T-494 terse 02 table; T-496-T-503 figures/captions shrunk; T-507 cols 42/58; T-497 07=3 frames; W-229, W-230 filed supersedes: E-020#v1, E-020#v2, E-020#v3, E-020#v4, E-020#v5, E-020#v6, E-020#v7, E-020#v8, E-020#v9
