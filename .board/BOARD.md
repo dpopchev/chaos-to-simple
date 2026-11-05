@@ -1,18 +1,10 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-020   | blocked: 0 | todo roots: 4 | done: 750 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 4 | done: 751 | pruned: 9
 
 ## Tree
 
 ```text
-E-020         [doing]    Deck v5: the 2026-11-05 storyline review -- the problem before the map, the TDD rhythm labelled, the patterns named, the counts qualified, one row as the proof, the author on the stage
-  W-222  issue  [done]     00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement -- T-490 [done], T-491 [done], T-492 [done]
-  W-223  issue  [done]     01 to 06: the one example runs RED, WHICH TEST, AGREED, GREEN and REFACTOR, each moment labelled; the seventh request runs red then green -- T-493 [done], T-494 [done], T-495 [done], T-507 [done]
-  W-224  issue  [done]     06 and 07: the patterns get their names once; the close lands on one page with the links and the call to action -- T-496 [done], T-497 [done], T-498 [done]
-  W-225  issue  [done]     01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence -- T-499 [done], T-500 [done], T-501 [done], T-508 [done]
-  W-226  issue  [done]     03 to 08: the free-shipping row evolves on the frames; the full board moves to the backup -- T-502 [done], T-503 [done], T-504 [done]
-  W-227  issue  [done]     05: the second learning loop closes -- the reserve-first fix and its green regression where the incident is told, the seam's claims tightened, the arrows standardized -- T-505 [done], T-506 [done], T-509 [done]
-  W-228  issue  [done]     the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened -- T-510 [done], T-511 [done], T-512 [done]
 W-229  issue  [todo]     (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [todo]
 W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
 W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
@@ -1100,6 +1092,54 @@ closed 2026-11-05 -- outcome: make talk writes build/talk.pdf at 66 pages, green
 - T-487 [done] Retitle the backup -> 08-backup/index.md and scripts/utils/test_counter_plan.py
 - T-488 [done] Align the backup captions -> 08-backup/index.md
 
+### E-020 [done] Deck v5: the 2026-11-05 storyline review -- the problem before the map, the TDD rhythm labelled, the patterns named, the counts qualified, one row as the proof, the author on the stage
+
+closed 2026-11-05 -- outcome: make talk writes build/talk.pdf (about 64 pages), make check green, read in the rhythm example -> disagreement -> agreement -> failing test -> fix -> refactor -> next change, in one vocabulary, the patterns named after the decisions, the author and both links on the stage. -- ledger: ledgers/E-020.md
+
+#### W-222 issue [done] 00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement
+
+- T-490 [done] Record the review -> docs/deck-v5.md
+- T-491 [done] Draw the checkout undivided -> scripts/utils/stage.py and scripts/utils/test_stage.py
+- T-492 [done] Put the author and the checkout before the route -> 00-frontmatter/index.md and 08-backup/index.md
+
+#### W-223 issue [done] 01 to 06: the one example runs RED, WHICH TEST, AGREED, GREEN and REFACTOR, each moment labelled; the seventh request runs red then green
+
+- T-493 [done] Add the moment macro and the RED frame -> 00-frontmatter/preamble.tex and 01-bits/index.md
+- T-494 [done] Label which test and the agreement -> 02-stacey/index.md and 03-chaos/index.md
+- T-495 [done] Open 04 on GREEN and protect the refactor -> 04-what/index.md
+- T-507 [done] Run the seventh request red then green -> 06-simple/tests/test_seventh.py and 06-simple/index.md
+
+#### W-224 issue [done] 06 and 07: the patterns get their names once; the close lands on one page with the links and the call to action
+
+- T-496 [done] Name the patterns once -> 06-simple/index.md and 07-close/index.md
+- T-497 [done] Land the close on one page -> 07-close/index.md
+- T-498 [done] Show the shipping outcome move while its code stands -> 06-simple/tests/test_member15.py and 06-simple/index.md
+
+#### W-225 issue [done] 01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence
+
+- T-499 [done] Move the arithmetic after the evidence and merge the grid frames -> 01-bits/index.md and scripts/utils/test_counter_plan.py
+- T-500 [done] Qualify the counts where no path runs -> 01-bits/index.md, 03-chaos/index.md and 06-simple/index.md
+- T-501 [done] Fix the backup's badges and captions -> scripts/utils/storyboard.py, 05-how/s05_how/oo_checkout.py and 08-backup/index.md
+- T-508 [done] Shorten the room transcript and date it -> 03-chaos/data/room.txt and 03-chaos/index.md
+
+#### W-226 issue [done] 03 to 08: the free-shipping row evolves on the frames; the full board moves to the backup
+
+- T-502 [done] Draw one board row -> scripts/utils/board.py and scripts/utils/test_board.py
+- T-503 [done] Follow the free-shipping row -> 04-what/index.md, 06-simple/index.md and 03-chaos/index.md
+- T-504 [done] Move the full board to the backup -> 08-backup/section.mk and 08-backup/index.md
+
+#### W-227 issue [done] 05: the second learning loop closes -- the reserve-first fix and its green regression where the incident is told, the seam's claims tightened, the arrows standardized
+
+- T-505 [done] Show the reserve-first fix where the incident is told -> 05-how/index.md
+- T-506 [done] Tighten the seam's claims -> 05-how/index.md
+- T-509 [done] Draw calls solid and outcomes dashed -> scripts/utils/figures.py and scripts/utils/test_figures.py
+
+#### W-228 issue [done] the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened
+
+- T-510 [done] Say rules in the generated headings -> scripts/utils/storyboard.py and scripts/utils/test_storyboard.py
+- T-511 [done] Use the four terms on the frames -> the nine index.md files
+- T-512 [done] Shorten the six learned lines and make the joke recur -> data/lines.csv and the seven frames carrying them
+
 ### W-003 bug [done] (standalone) Slide artifacts carry a PytestConfigWarning about stats_file
 
 closed 2026-10-30 -- outcome: Given a clean build/, When make deliverable runs, Then build/06-simple/pytest.txt holds no PytestConfigWarning line. -- ledger: ledgers/W-003.md
@@ -1322,37 +1362,6 @@ closed 2026-11-05 -- outcome: Given E-019 landed, When grep -n 'thirteen' 01-bit
 ## Diagram
 ```mermaid
 flowchart TD
-  E020["E-020 doing: Deck v5: the 2026-11-05 storyline review -- the problem before the map, the TDD rhythm labelled, the patterns named, the counts qualified, one row as the proof, the author on the stage"]
-  E020 --> W222["W-222 issue done: 00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement"]
-  W222 --> T490["T-490 done: Record the review -> docs/deck-v5.md"]
-  W222 --> T491["T-491 done: Draw the checkout undivided -> scripts/utils/stage.py and scripts/utils/test_stage.py"]
-  W222 --> T492["T-492 done: Put the author and the checkout before the route -> 00-frontmatter/index.md and 08-backup/index.md"]
-  E020 --> W223["W-223 issue done: 01 to 06: the one example runs RED, WHICH TEST, AGREED, GREEN and REFACTOR, each moment labelled; the seventh request runs red then green"]
-  W223 --> T493["T-493 done: Add the moment macro and the RED frame -> 00-frontmatter/preamble.tex and 01-bits/index.md"]
-  W223 --> T494["T-494 done: Label which test and the agreement -> 02-stacey/index.md and 03-chaos/index.md"]
-  W223 --> T495["T-495 done: Open 04 on GREEN and protect the refactor -> 04-what/index.md"]
-  W223 --> T507["T-507 done: Run the seventh request red then green -> 06-simple/tests/test_seventh.py and 06-simple/index.md"]
-  E020 --> W224["W-224 issue done: 06 and 07: the patterns get their names once; the close lands on one page with the links and the call to action"]
-  W224 --> T496["T-496 done: Name the patterns once -> 06-simple/index.md and 07-close/index.md"]
-  W224 --> T497["T-497 done: Land the close on one page -> 07-close/index.md"]
-  W224 --> T498["T-498 done: Show the shipping outcome move while its code stands -> 06-simple/tests/test_member15.py and 06-simple/index.md"]
-  E020 --> W225["W-225 issue done: 01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence"]
-  W225 --> T499["T-499 done: Move the arithmetic after the evidence and merge the grid frames -> 01-bits/index.md and scripts/utils/test_counter_plan.py"]
-  W225 --> T500["T-500 done: Qualify the counts where no path runs -> 01-bits/index.md, 03-chaos/index.md and 06-simple/index.md"]
-  W225 --> T501["T-501 done: Fix the backup's badges and captions -> scripts/utils/storyboard.py, 05-how/s05_how/oo_checkout.py and 08-backup/index.md"]
-  W225 --> T508["T-508 done: Shorten the room transcript and date it -> 03-chaos/data/room.txt and 03-chaos/index.md"]
-  E020 --> W226["W-226 issue done: 03 to 08: the free-shipping row evolves on the frames; the full board moves to the backup"]
-  W226 --> T502["T-502 done: Draw one board row -> scripts/utils/board.py and scripts/utils/test_board.py"]
-  W226 --> T503["T-503 done: Follow the free-shipping row -> 04-what/index.md, 06-simple/index.md and 03-chaos/index.md"]
-  W226 --> T504["T-504 done: Move the full board to the backup -> 08-backup/section.mk and 08-backup/index.md"]
-  E020 --> W227["W-227 issue done: 05: the second learning loop closes -- the reserve-first fix and its green regression where the incident is told, the seam's claims tightened, the arrows standardized"]
-  W227 --> T505["T-505 done: Show the reserve-first fix where the incident is told -> 05-how/index.md"]
-  W227 --> T506["T-506 done: Tighten the seam's claims -> 05-how/index.md"]
-  W227 --> T509["T-509 done: Draw calls solid and outcomes dashed -> scripts/utils/figures.py and scripts/utils/test_figures.py"]
-  E020 --> W228["W-228 issue done: the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened"]
-  W228 --> T510["T-510 done: Say rules in the generated headings -> scripts/utils/storyboard.py and scripts/utils/test_storyboard.py"]
-  W228 --> T511["T-511 done: Use the four terms on the frames -> the nine index.md files"]
-  W228 --> T512["T-512 done: Shorten the six learned lines and make the joke recur -> data/lines.csv and the seven frames carrying them"]
   W229["W-229 issue todo, standalone: 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back"]
   W229 --> T513["T-513 todo: Grow the honest-count grid -> 03-chaos/index.md"]
   W230["W-230 issue todo, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
@@ -1366,7 +1375,5 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E020 doing
-  class W222,T490,T491,T492,W223,T493,T494,T495,T507,W224,T496,T497,T498,W225,T499,T500,T501,T508,W226,T502,T503,T504,W227,T505,T506,T509,W228,T510,T511,T512 done
   class W229,T513,W230,T514,W231,T515,W232,T516 todo
 ```

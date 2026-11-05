@@ -22,7 +22,7 @@
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
 - 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
 - 2026-11-04 W-210: standing: the developer keeps T-470's trims (2026-11-04): pages 44-45 show other_gateway.py lines 24-28 only, the pyright block and the Marketing and Operations names live in the speaker notes, the pricing frame has no thread line -> no restore item supersedes: W-210#1
-- 2026-11-05 E-020: fact: in the agent shell grep is a function running ugrep, whose output across several files is unordered -> a criterion whose Then is an order across files is run with command grep (GNU grep 3.12)
+- 2026-11-05 E-020: standing: in the agent shell grep is a function running ugrep, whose output across several files is unordered -> a criterion whose Then is an order across files is run with command grep (GNU grep 3.12) supersedes: E-020#2
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
@@ -36,12 +36,7 @@
 - 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
-- 2026-11-05 E-020: burn hours stay 6 as written; the goal sets the stop (developer) supersedes: E-020#d3
-- 2026-11-05 E-020: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-05)
-- 2026-11-05 E-020: second review adopted whole: overview and arithmetic to the backup, 21/22 merged, room.txt at 12 lines and dated, the seventh request red then green, I3 green in 05, arrows standardized, learned lines shortened; W-227 kept; 8-13 keep their frames (developer, 2026-11-05)
-- 2026-11-05 E-020: vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; a title says configurations where no path runs (28, 47), paths where one does; the footer keeps 'paths to reason about' (developer, 2026-11-05) supersedes: E-019#d2
+- none recorded
 
 ## Deviations
-- 2026-11-05 E-020: T-505 Action amended after a blocked hand-back: the promise figure leaves the incident frame, the red run and the fix go side by side; Check unchanged; re-spawned one model up
-- 2026-11-05 E-020: T-510 Output widened to 01-bits/tests/test_chaos.py after a blocked hand-back: its two narrator docstrings are the exhibit step_test pins; Check unchanged; re-spawned one model up
-- 2026-11-05 E-020: overflow trims, Checks unchanged: T-494 terse 02 table; T-496-T-503 figures/captions shrunk; T-507 cols 42/58; T-497 07=3 frames; W-229, W-230 filed supersedes: E-020#v1, E-020#v2, E-020#v3, E-020#v4, E-020#v5, E-020#v6, E-020#v7, E-020#v8, E-020#v9
+- none recorded
