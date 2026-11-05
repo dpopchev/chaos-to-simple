@@ -22,20 +22,27 @@ The shell has its own obligations: acceptance, rejection and sequencing.
 
 \footnotesize I1 shipping eligibility uses the discounted goods; I2 the disputed reading has a decision and an owner; I3 unavailable stock prevents payment
 
-![](build/06-simple/row-b2.png){width=55%}
-
-```{.text include=build/06-simple/cards.txt}
-```
+![](build/06-simple/row-b2.png){width=100%}
 
 \vspace{-4pt}
 
 \footnotesize 72 = 64 + 8 and 22 = 4 + 8 + 2 + 8 are local decomposition counts: each home tested alone against its contract, the shell against fakes, the integration checks separate
 
+::: notes
+512 became 72: 64 core paths plus 8 shell worlds, nothing deleted, every decision moved to the place that owns it.
+:::
+
+## Three agreed examples now carry a passing check or a recorded owner {paths=72}
+
+```{.text include=build/06-simple/cards.txt}
+```
+
+\footnotesize two examples now have named regression checks; the dispute has a recorded decision and owner
+
 \thread{5}
 
 ::: notes
 Each card reads agreed example, customer outcome, passing check; I2 closes by a decision with its owner.
-512 became 72: 64 core paths plus 8 shell worlds, nothing deleted, every decision moved to the place that owns it.
 :::
 
 ## A pricing change to 15% leaves the shipping code unchanged {paths=72}
