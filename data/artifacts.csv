@@ -1,8 +1,7 @@
 path,kind,producer
 build/00-frontmatter/actors.tex,tex,scripts.actors_tex
 build/00-frontmatter/beats.tex,tex,scripts.beats_tex
-build/00-frontmatter/zones.tex,tex,scripts.zones_tex
-build/00-frontmatter/business-map.png,png,scripts.figures stage business-map
+build/08-backup/zones.tex,tex,scripts.zones_tex
 build/00-frontmatter/business-map-undivided.png,png,scripts.figures business-map --undivided
 build/00-frontmatter/agenda.png,png,scripts.figures stage agenda
 build/00-frontmatter/agenda-00.png,png,scripts.figures agenda --highlight 00
@@ -60,7 +59,7 @@ build/01-bits/doubling.png,png,scripts.figures doubling
 build/01-bits/doubling.txt,txt,scripts.paths doubling
 build/01-bits/next.txt,txt,scripts.paths next
 build/02-stacey/stacey.png,png,scripts.figures stacey
-build/00-frontmatter/stacey-overview.png,png,scripts.figures stacey --arrows
+build/08-backup/stacey-overview.png,png,scripts.figures stacey --arrows
 build/02-stacey/stacey-01.png,png,scripts.figures stacey --highlight 01
 build/02-stacey/stacey-02.png,png,scripts.figures stacey --highlight 02
 build/02-stacey/stacey-03.png,png,scripts.figures stacey --highlight 03

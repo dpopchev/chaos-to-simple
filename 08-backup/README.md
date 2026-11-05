@@ -6,12 +6,13 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 |---|---|
 | Minutes | 0 |
 | Footer counter | `512` on entry, `512` on exit |
-| Owns | the thirteen mechanism frames, six moved from `05-how/index.md` |
+| Owns | the Stacey overview frame (moved from 00) and the thirteen mechanism frames, six moved from `05-how/index.md` |
 | Uses | the artifacts of `05-how/section.mk` and the exhibits under `05-how/` |
-| Produces | nothing |
+| Produces | `build/08-backup/stacey-overview.png` and `build/08-backup/zones.tex` (`section.mk`) |
 
 ## Slides
 
+- [x] Agreement on the What and certainty on the How guide each move: the Stacey overview with its zone definitions, moved whole from 00
 - [x] Changing the call order changes the price: 45 against 44, from the same inputs
 - [x] This mutable checkout leaves discount order to its callers: a class hid the call order in its state, the same bug as I3 in pricing
 - [x] Explicit outcome values make the three effects easier to handle and match: Command Query Separation draws the seam by making every answer a value

@@ -18,7 +18,7 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `filters/story.lua` | renders the request box only (a `.request` Div); a storyboard `.diff .python` block goes through `diffs.lua` like every diff | the request box changes |
 | `filters/speakers.lua` | turns a `.speakers` block into a Verbatim with each actor label (full or first word) in its colour from `data/actors.csv`; `highlight=q3` sets that row bold; sized `\exhibitsize` (`\scriptsize`, text exhibits) | the colouring or the size changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
-| `index.md` | the opening: the business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
+| `index.md` | the opening: who is talking, the undivided business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
 
 ## How a slide pulls code
 
@@ -77,5 +77,5 @@ Decision: Font Awesome 7 Free Solid serves both renderers: fontspec in lualatex,
 - Given `make slides`, when the deck opens, then the title slide shows title, subtitle,
   author, institute and date, and the footer reads `paths to reason about: ?`.
 - Given `make talk`, when frame 00 opens, then the business map shows the nine named
-  parts and the agenda strip shows eight stops with I1, I2 and I3 marked, and each
+  parts undivided and the agenda strip shows eight stops with I1, I2 and I3 marked, and each
   frame carries its speaker notes.

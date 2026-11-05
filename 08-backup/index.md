@@ -1,5 +1,32 @@
 # 08 Backup: the mechanisms and the evidence behind the seam
 
+## Agreement on the What and certainty on the How guide each move {paths=64}
+
+:::: {.columns align=center}
+::: {.column width="58%"}
+
+![](build/08-backup/stacey-overview.png){height=80%}
+
+:::
+::: {.column width="42%"}
+
+\input{build/08-backup/zones.tex}
+
+\footnotesize
+
+- The Who line: stakeholders decide above it, developers below; the grey band is collaboration: none in Simple, most of Chaos.
+- The arrows: the talk's movement, 01 to 06.
+
+:::
+::::
+
+::: notes
+Read the matrix from the origin: both axes start certain. The arrows are the route of the talk,
+from 01 to 06, and the footer counter is still ? until each section sets it. The agenda strip
+returns on the section pages. The grey band is collaboration: none in Simple, where the Who line
+stands alone, and widening through Complicated and Complex to most of Chaos.
+:::
+
 ## Changing the call order changes the price: 45 against 44 {paths=512}
 
 ```{.python heading-file=build/05-how/tests-order.txt include=05-how/tests/test_oo_order.py snippet=order-bit}
