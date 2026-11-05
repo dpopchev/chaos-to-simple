@@ -16,7 +16,7 @@ out the order, then the evidence the business recognizes: 64 core paths, 8 shell
 
 Six frames, each with speaker notes.
 
-- [x] We calculate the offer without carrying out the order: `build/06-simple/responsibilities.png` beside `snippet=price` (core.py), the line "the team can discuss and exercise pricing without ..."
+- [x] We calculate the offer without carrying out the order: `build/06-simple/responsibilities.png` beside `snippet=price` (core.py), the caption "this has a name: functional core, imperative shell -- the team exercises pricing without ..."
 - [x] Agreed promises now have concrete examples and traceable evidence: `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
 - [x] Raising the member discount to 15% leaves shipping untouched: the change rehearsal, the member discount diff on the muted pictures
 - [x] A stable payment contract lets us replace the provider: the change rehearsal, the gateway swap on the muted pictures

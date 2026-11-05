@@ -13,6 +13,23 @@
 read the learned column only
 :::
 
+## These choices already have names: shared language, functional core, command-query separation {paths=72}
+
+\begingroup\footnotesize
+
+| what we did | its name | what it does not claim |
+|---|---|---|
+| one sentence per rule, one owner per home | domain-driven design: ubiquitous language, bounded contexts | a full strategic design; these are candidate boundaries |
+| calculation apart from effects | functional core, imperative shell | DDD's core subdomain: that one is pricing |
+| the offer apart from placing the order | command-query separation: a query answers, a command acts and reports | a CQRS architecture: one store here, no read model |
+
+the names came after the decisions; the two earlier talks (DDD, CQRS and TDD) are the long version
+\endgroup
+
+::: notes
+Name them once, now that the room has seen the decisions.
+:::
+
 ## The post series revisits this checkout one section at a time; bring yours {paths=72}
 
 - \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}

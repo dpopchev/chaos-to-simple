@@ -3,12 +3,12 @@
 ## We calculate the offer without carrying out the order {paths=512}
 
 
-![](build/06-simple/responsibilities-offer.png){width=54%}
+![](build/06-simple/responsibilities-offer.png){width=42%}
 
 ```{.python heading-file=build/06-simple/price.txt include=06-simple/s06_simple/core.py snippet=price}
 ```
 
-\footnotesize the team can discuss and exercise pricing without taking money, reserving stock or sending a message
+\footnotesize this has a name: functional core, imperative shell -- the team exercises pricing without taking money, reserving stock or sending a message; DDD's core subdomain is a different core: pricing is one, and the supporting shipping rule lives in the functional core too
 
 \thread{3}
 

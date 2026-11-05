@@ -13,6 +13,7 @@ Beat: three lines to take home, where to read more, prepared answers.
 ## Slides
 
 - [x] Six beliefs gave way: better boundaries begin with better business questions: one frame, the learned column read aloud
+- [x] These choices already have names: shared language, functional core, command-query separation: a three-column table (what we did, its name, what it does not claim) and the line that the names came after the decisions
 - [x] The post series revisits this checkout one section at a time; bring yours: the LinkedIn link on one line, the post series, the invitation to reach out
 - [x] Q&A: where is the next hidden decision in your checkout?: two columns, the three bullets left and board.png right; the repository link is on the frame; the notes hold six prepared answers and two live demos (make test K=TestCallOrder; grid.png, then make test K=two_ifs)
 - [x] Thank you to the audience for the questions and to DEV.BG for the stage: the questions, DEV.BG and the Python user group
