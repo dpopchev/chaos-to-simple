@@ -1,6 +1,6 @@
-# 05 Seam: who decides, what is promised, what belongs together
+# 05 Seam: the boundary protects a business promise
 
-## The price was right, but the customer promise was broken {paths=512}
+## A correct price did not guarantee a parcel: 41 customers paid for missing stock {paths=512}
 
 
 ```{.text include=05-how/data/incident.txt}
@@ -20,7 +20,7 @@ We now agree how to calculate the order. But a correct total is not the same as 
 I had treated these as three technical calls. The business saw one promise: an accepted order must mean something.
 :::
 
-## Providers report facts, and the shop decides what they mean {paths=512}
+## Providers report facts; the shop decides what they mean, three policies owned by Fulfilment {paths=512}
 
 
 ```{.text .speakers include=build/05-how/policies.txt}
@@ -49,7 +49,7 @@ bounced is a provider outcome; keeping an accepted order is the shop's policy; o
 The exchange is proposed story material, not a transcript. The Fulfilment owner consulted Logistics, Finance and Support before writing the three policies down.
 :::
 
-## Rules belong together because they answer the same business question {paths=512}
+## Rules answering the same business question belong together: four questions, four homes {paths=512}
 
 
 ![](build/05-how/cohesion.png){width=88%}
@@ -64,7 +64,7 @@ The coupon-then-member decision (q2) is the short illustration: two rules in one
 The groups are candidate model boundaries the departments helped discover, not boundaries a department defines.
 :::
 
-## A boundary is an agreement about what the other side must know {paths=512}
+## The warehouse contract defines Reserved as a 15-minute hold {paths=512}
 
 
 ```{.python include=05-how/s05_how/warehouse_adapter.py snippet=adapter cap=16}
@@ -74,7 +74,7 @@ The groups are candidate model boundaries the departments helped discover, not b
 
 \theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
 
-## What crosses the seam between the shop and warehouse
+## The shell connects pure calculations to real-world commitments {paths=512}
 
 ![](build/05-how/ports.png){width=70%}
 
