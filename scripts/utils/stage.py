@@ -349,11 +349,16 @@ def inner_bands(
 
 
 def business_map(
-    actors: Mapping[str, Actor], cast: Sequence[CastRow], rules: Sequence[Rule], out: Path
+    actors: Mapping[str, Actor],
+    cast: Sequence[CastRow],
+    rules: Sequence[Rule],
+    out: Path,
+    undivided: bool = False,
 ) -> Path:
     """Draw the business map: a box and pictogram per actor, an edge with its words to the shop.
 
     The shop is the outlined core; a department asks, a provider is called and answers back.
+    With undivided the shop holds one tangled 'checkout()' band and the kind legend is left out.
     """
     style.apply()
     import matplotlib.pyplot as plt
@@ -458,8 +463,22 @@ def business_map(
                 color=ink,
                 zorder=4,
             )
-    bands = inner_bands(load_contexts(), actors)
+    bands = () if undivided else inner_bands(load_contexts(), actors)
     top = SHOP_H / 2 - 0.85
+    if undivided:
+        cy = top - BAND_H / 2
+        ax.add_patch(
+            FancyBboxPatch(
+                (-SHOP_W / 2 + 0.2, cy - BAND_H / 2),
+                SHOP_W - 0.4,
+                BAND_H,
+                boxstyle="round,pad=0.02,rounding_size=0.08",
+                facecolor=colour_of("tangled"),
+                edgecolor="none",
+                zorder=4,
+            )
+        )
+        ax.text(0, cy, "checkout()", ha="center", va="center", fontsize=12, zorder=5)
     for i, (ctx, owners) in enumerate(bands):
         kind = kind_style(ctx.kind)
         cy = top - BAND_H / 2 - i * (BAND_H + BAND_GAP)
@@ -515,7 +534,7 @@ def business_map(
                 zorder=6,
             )
             left += cw + 0.1
-    for i, (text, kind_name) in enumerate(map_legend()):
+    for i, (text, kind_name) in enumerate(() if undivided else map_legend()):
         kind = kind_style(kind_name)
         lx = -7.4 + i * 5.0
         ax.add_patch(

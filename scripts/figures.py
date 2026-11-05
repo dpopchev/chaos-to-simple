@@ -111,6 +111,9 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument(
         "--compact", action="store_true", help="responsibilities: taller, larger type"
     )
+    parser.add_argument(
+        "--undivided", action="store_true", help="business-map: one checkout() band, no homes"
+    )
     parser.add_argument("--plain", action="store_true", help="stacey: bands and names only")
     parser.add_argument("--arrows", action="store_true", help="stacey: arrows between the stops")
     parser.add_argument("--zones", type=Path, default=Path("02-stacey/data/zones.csv"))
@@ -205,7 +208,11 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
     if args.what == "business-map":
         business_map(
-            load_actors(args.actors), load_cast(args.cast), load_rules(args.rules), args.out
+            load_actors(args.actors),
+            load_cast(args.cast),
+            load_rules(args.rules),
+            args.out,
+            args.undivided,
         )
         return 0
     if args.what == "agenda":

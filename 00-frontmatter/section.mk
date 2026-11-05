@@ -23,6 +23,12 @@ $(BUILD)/00-frontmatter/business-map.png: $(PALETTE) scripts/figures.py scripts/
 	@$(RUN) python -m scripts.figures business-map --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/00-frontmatter/business-map-undivided.png
+
+$(BUILD)/00-frontmatter/business-map-undivided.png: $(PALETTE) scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/style.py data/actors.csv data/cast.csv data/rules.csv
+	@$(RUN) python -m scripts.figures business-map --undivided --out $@
+	$(call log_done,$@ written)
+
 $(BUILD)/00-frontmatter/actors.tex: $(PALETTE) scripts/actors_tex.py scripts/utils/icons.py
 	@$(RUN) python -m scripts.actors_tex --out $@
 	$(call log_done,$@ written)

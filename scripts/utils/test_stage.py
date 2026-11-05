@@ -99,6 +99,18 @@ def test_business_map_writes_a_png(tmp_path: Path) -> None:
 
 
 @pytest.mark.edge
+def test_undivided_map_writes_a_png(tmp_path: Path) -> None:
+    out = business_map(
+        load_actors(),
+        load_cast(DATA / "cast.csv"),
+        load_rules(DATA / "rules.csv"),
+        tmp_path / "undivided.png",
+        undivided=True,
+    )
+    assert out.read_bytes().startswith(PNG_MAGIC)
+
+
+@pytest.mark.edge
 def test_load_route_reads_eight_stops_in_order() -> None:
     assert [s.section for s in load_route(DATA / "route.csv")] == [f"0{i}" for i in range(8)]
 
