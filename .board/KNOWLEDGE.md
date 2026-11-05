@@ -22,6 +22,7 @@
 - 2026-11-04 W-174: standing: page 17 is titled with the breakdown's order, W-189 (developer, 2026-11-04) -> no title credits finance with a test supersedes: W-174#1
 - 2026-11-04 W-176: standing: page 49's epilogue chart stays in its 40% column with its ink as drawn (developer, 2026-11-04) -> no change supersedes: W-176#1
 - 2026-11-04 W-210: standing: the developer keeps T-470's trims (2026-11-04): pages 44-45 show other_gateway.py lines 24-28 only, the pyright block and the Marketing and Operations names live in the speaker notes, the pricing frame has no thread line -> no restore item supersedes: W-210#1
+- 2026-11-05 E-020: fact: in the agent shell grep is a function running ugrep, whose output across several files is unordered -> a criterion whose Then is an order across files is run with command grep (GNU grep 3.12)
 
 ## Open questions
 - 2026-11-02 E-007: open: cast.csv keeps words beside bubbles.csv words (the request as logged against the chat line); one home if they drift
