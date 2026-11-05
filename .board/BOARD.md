@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-019 > W-216 > T-478   | blocked: 0 | todo roots: 1 | done: 701 | pruned: 9
+open path: E-019 > W-216 > T-479   | blocked: 0 | todo roots: 1 | done: 702 | pruned: 9
 
 ## Tree
 
 ```text
 E-019         [doing]    Action titles v2: the 2026-11-05 framework audit landed -- claim-led titles, their companion edits, the storyline read aloud
-  W-216  issue  [doing]    00 and 01: the opening and the bits retitled (pages 2-19) -- T-478 [doing]   <- ACTIVE LEAF, T-479 [todo]
+  W-216  issue  [doing]    00 and 01: the opening and the bits retitled (pages 2-19) -- T-478 [done], T-479 [doing]   <- ACTIVE LEAF
   W-217  issue  [todo]     02 and 03: the map and the room retitled (pages 20-29) -- T-480 [todo], T-481 [todo]
   W-218  issue  [todo]     04 and 05: the homes and the seam retitled (pages 30-41) -- T-482 [todo], T-483 [todo]
   W-219  issue  [todo]     06 and 07: core and shell and the close retitled (pages 42-52) -- T-484 [todo], T-485 [todo], T-486 [todo]
@@ -1283,8 +1283,8 @@ closed 2026-11-05 -- outcome: Given the deck at main, When make talk builds it a
 flowchart TD
   E019["E-019 doing: Action titles v2: the 2026-11-05 framework audit landed -- claim-led titles, their companion edits, the storyline read aloud"]
   E019 --> W216["W-216 issue doing: 00 and 01: the opening and the bits retitled (pages 2-19)"]
-  W216 --> T478["T-478 doing: Retitle the opening -> 00-frontmatter/index.md -- ACTIVE LEAF"]
-  W216 --> T479["T-479 todo: Retitle the bits -> 01-bits/index.md and scripts/utils/test_counter_plan.py"]
+  W216 --> T478["T-478 done: Retitle the opening -> 00-frontmatter/index.md"]
+  W216 --> T479["T-479 doing: Retitle the bits -> 01-bits/index.md and scripts/utils/test_counter_plan.py -- ACTIVE LEAF"]
   E019 --> W217["W-217 issue todo: 02 and 03: the map and the room retitled (pages 20-29)"]
   W217 --> T480["T-480 todo: Retitle the map -> 02-stacey/index.md"]
   W217 --> T481["T-481 todo: Retitle the room -> 03-chaos/index.md and scripts/utils/test_counter_plan.py"]
@@ -1305,6 +1305,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E019,W216,T478 doing
-  class T479,W217,T480,T481,W218,T482,T483,W219,T484,T485,T486,W220,T487,T488,W221,T489 todo
+  class E019,W216,T479 doing
+  class T478 done
+  class W217,T480,T481,W218,T482,T483,W219,T484,T485,T486,W220,T487,T488,W221,T489 todo
 ```
