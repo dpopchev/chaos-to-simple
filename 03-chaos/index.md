@@ -19,10 +19,10 @@ Each drop is a place where the rule was not written down yet.
 ## The room surfaces three unwritten rules and three unhandled provider answers {paths=64}
 
 
-```{.text .speakers include=03-chaos/data/room.txt cap=18}
+```{.text .speakers include=03-chaos/data/room.txt cap=12}
 ```
 
-the clashes in bold; the outcome: six questions, each with an owner, the action table of the next frame
+the clashes in bold; the shop's calendar: week 16, five days after the memo; the outcome: six questions, each with an owner, the decisions of the next frame
 
 ::: notes
 Dev is silent until the end of the chat; the other four departments carry the argument.
