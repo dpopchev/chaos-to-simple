@@ -14,6 +14,7 @@ Beat: six learned lines, the names, then one Q&A page with the links, the call t
 
 - [x] Six beliefs gave way: we made the rules explicit together and tests protected each step: one frame, the learned column read aloud, then the bold compass line
 - [x] These choices already have names: shared language, functional core, command-query separation: a three-column table (what we did, its name, what it does not claim) and the line that the names came after the decisions
+- [x] Every request now has a home: core pricing, supporting shipping and fulfilment, generic tax: the full business map just before Q&A, the three kinds named in the notes
 - [x] Q&A: where is the next hidden decision in your checkout?: two columns, left the repository and LinkedIn links (each with its line), the invitation to bring a checkout and the two earlier talks, right the thanks to the audience, DEV.BG and the Python user group; the notes hold six prepared answers, two live demos (make test K=TestCallOrder; grid.png, then make test K=two_ifs) and the stop line
 
 ## Done when

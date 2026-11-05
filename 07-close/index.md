@@ -32,6 +32,17 @@ the names came after the decisions; the two earlier talks (DDD, CQRS and TDD) ar
 Name them once, now that the room has seen the decisions.
 :::
 
+## Every request now has a home: core pricing, supporting shipping and fulfilment, generic tax {paths=72}
+
+![](build/00-frontmatter/business-map.png){width=100%}
+
+::: notes
+The same map as the opening, now with its homes. Core and supporting take the left
+arrows: pricing is core, shipping and fulfilment are supporting. The right arrows are
+generic capabilities (payment, warehouse, mail), and tax is a bought rule kept in-house.
+The function made no distinction between the three kinds; the split did.
+:::
+
 ## Q&A: where is the next hidden decision in your checkout? {paths=72}
 
 :::::: {.columns}

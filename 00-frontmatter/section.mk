@@ -8,6 +8,12 @@ $(BUILD)/00-frontmatter/beats.tex: $(PALETTE) scripts/beats_tex.py scripts/utils
 	@$(RUN) python -m scripts.beats_tex --lines data/lines.csv --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/00-frontmatter/business-map.png
+
+$(BUILD)/00-frontmatter/business-map.png: $(PALETTE) scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/style.py data/actors.csv data/cast.csv data/rules.csv
+	@$(RUN) python -m scripts.figures business-map --out $@
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/00-frontmatter/business-map-undivided.png
 
 $(BUILD)/00-frontmatter/business-map-undivided.png: $(PALETTE) scripts/figures.py scripts/utils/stage.py scripts/utils/figures.py scripts/utils/style.py data/actors.csv data/cast.csv data/rules.csv
