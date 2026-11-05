@@ -1,6 +1,6 @@
-# 01 Bits: six policies, 64 paths
+# 01 Bits: six decisions outgrow the confidence of two tests
 
-## A policy is one bit and every bit doubles the paths: count them before you trust a badge {paths=?}
+## Decisions multiply paths while branch counts only add: 64 paths against 7 branches {paths=?}
 
 ::::: {.columns}
 :::: {.column width="58%"}
@@ -38,7 +38,7 @@ Compare with the cyclomatic number: it adds, decisions + 1 = 7 tests for the bra
 bits multiply into 64 combinations.
 :::
 
-## Three calls, two tests and no policy make the plain checkout one path {paths=1}
+## We begin with one checkout flow and two tests: one path {paths=1}
 
 ::: {.request}
 \actor{customer}
@@ -70,7 +70,7 @@ the footer still reads 1 path. Read the customer's line aloud, then say that the
 before the policies, not after them.
 :::
 
-## The autumn coupon adds the first bit, so the checkout now has 2 paths {paths=2}
+## The coupon adds a decision without adding a test: 2 paths {paths=2}
 
 
 ::: {.request}
@@ -102,7 +102,7 @@ the marketing line aloud and ask who thinks it is a small change. The diffs show
 alone, the scope row above it.
 :::
 
-## The member discount stacks on the coupon and doubles the checkout to 4 paths {paths=4}
+## Member pricing depends on the coupon coming first: 4 paths, two tests {paths=4}
 
 
 ::: {.request}
@@ -134,7 +134,7 @@ the loyalty line aloud and point out that the two discounts now stack. The diffs
 change alone, the scope row above it.
 :::
 
-## Free shipping from 50 EUR adds a third bit and the checkout reaches 8 paths {paths=8}
+## Free shipping adds a threshold decision to checkout: 8 paths, two tests {paths=8}
 
 
 ::: {.request}
@@ -166,7 +166,7 @@ to 8 paths. Read the logistics line aloud and ask the room why the carts are lef
 diffs show the change alone, the scope row above it.
 :::
 
-## Shipping abroad adds a fourth bit and the checkout reaches 16 paths {paths=16}
+## International delivery changes the code, not the test total: 16 paths {paths=16}
 
 
 ::: {.request}
@@ -198,7 +198,7 @@ doubles to 16 paths. Read the second logistics line aloud and say that the shipp
 now branch twice. The diffs show the change alone, the scope row above it.
 :::
 
-## Gift wrap, promised as just one more change, brings the checkout to 32 paths {paths=32}
+## Gift wrap becomes another exception for checkout to manage: 32 paths, two tests {paths=32}
 
 
 ::: {.request}
@@ -230,7 +230,7 @@ marketing line aloud, the one that promised just one more. The diffs show the ch
 the scope row above it.
 :::
 
-## No VAT for companies adds the sixth bit and the checkout reaches 64 paths {paths=64}
+## VAT status completes the six decisions: 64 paths, still two tests {paths=64}
 
 
 ::: {.request}
@@ -261,7 +261,7 @@ policy request adds the VAT rate, so the footer doubles to 64 paths. Read the ac
 line aloud. The diffs show the change alone, the scope row above it.
 :::
 
-## Six policies done and 64 paths live, so how many tests would make you sure? {paths=64}
+## I was ready to ship on the strength of two tests {paths=64}
 
 \actor{dev}
 
@@ -284,7 +284,7 @@ line aloud. The diffs show the change alone, the scope row above it.
 Read the dev and marketing lines aloud, then ask the chat the question and pause.
 :::
 
-## Two tests reach 100% branch coverage yet run only 2 of 64 combinations {paths=64}
+## Two tests cover every branch but only 2 of 64 combinations {paths=64}
 
 
 :::: {.columns}
@@ -311,7 +311,7 @@ Branch coverage counts twelve edges, and both tests take every edge, so the repo
 100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
 :::
 
-## Finance counted 1,214 parcels under 50 EUR shipped free, 6,070 EUR short of the carrier's bill {paths=64}
+## 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill {paths=64}
 
 
 ```{.text include=01-bits/data/incident.txt cap=8}
@@ -344,7 +344,7 @@ or more before it. Last the bold line, the condition: the threshold read the car
 coupon, so a rule decided it, not the customers.
 :::
 
-## The breakdown's order expects 60.00 and gets 54.00, a path no test of ours ran {paths=64}
+## One coupon order exposes the untested threshold: 60.00 expected, 54.00 paid {paths=64}
 
 from the breakdown: 1,214 free parcels, each with the coupon, the cart at 50 EUR or more before it, the goods under 50 after it; one of them: 55 EUR of books, the coupon, domestic
 
@@ -362,7 +362,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 60.00. The threshold reads the subtotal, not the discounted goods.
 :::
 
-## Four orders the memo implies: three pass, the coupon order under 60 does not {paths=64}
+## The coupon boundary order fails while the memo's other three orders pass {paths=64}
 
 the memo's two conditions: the coupon x the cart at 50 EUR before it, one order per cell
 
@@ -387,7 +387,7 @@ only the coupon order with the cart over 50 and the goods under 50 takes the pat
 Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.
 :::
 
-## The badge is 100% branch coverage, it counts edges while every new policy doubles the combinations {paths=64}
+## Branch coverage counts edges, not combinations: two tests cover 2 of 64 paths {paths=64}
 
 :::: {.columns}
 ::: {.column width="50%"}
