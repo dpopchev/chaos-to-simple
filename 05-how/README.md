@@ -19,11 +19,11 @@ between the pure core and the effectful shell.
 - [x] A correct price did not guarantee a fulfilled order: `data/incident.txt`, the full I3 run as evidence
   ('red, then green: q5 was decided in the room and not yet in the code when the refunds hit'),
   the v5 inventory match (`checkout_v5.py` lines 56-60) and `build/05-how/i3-green.txt`, thread 1
-- [x] Providers report facts; the shop decides what they mean, three policies owned by Fulfilment: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
+- [x] Providers report facts; Fulfilment decides what the shop does with each answer: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
   question on releasing a reservation after a declined payment, thread 2
 - [x] Rules answering the same business question belong together: four questions, four homes: the rule cards grouped by the business question each answers
   (`build/05-how/cohesion.png`), thread 3
-- [x] The warehouse contract defines Reserved as a 15-minute hold: the warehouse adapter snippet beside the seam picture with the shell
+- [x] Reserved must mean a 15-minute hold, not just a status word: the warehouse adapter snippet beside the seam picture with the shell
   (`build/05-how/ports.png`), thread 4
 - [x] The shell connects pure calculations to real-world commitments: the seam picture with the shell, ending on the 05 line
 - [x] The v5 seam frame and the Protocol-and-fakes frame live in 08-backup

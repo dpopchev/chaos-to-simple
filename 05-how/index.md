@@ -34,7 +34,7 @@ I had treated these as three technical calls. The business saw one promise: an a
 The promise picture (reserve before charge) is in the README; the code says it here.
 :::
 
-## Providers report facts; the shop decides what they mean, three policies owned by Fulfilment {paths=512}
+## Providers report facts; Fulfilment decides what the shop does with each answer {paths=512}
 
 
 ```{.text .speakers include=build/05-how/policies.txt}
@@ -66,9 +66,9 @@ The exchange is proposed story material, not a transcript. The Fulfilment owner 
 ## Rules answering the same business question belong together: four questions, four homes {paths=512}
 
 
-![](build/05-how/cohesion.png){width=88%}
+![](build/05-how/cohesion.png){width=80%}
 
-\begingroup\footnotesize Rules that change together stay together; cohesion is the name for that\par\endgroup
+\begingroup\footnotesize Rules that change together stay together; cohesion is the name for that -- candidate boundaries the departments helped discover, not bounded contexts proven\par\endgroup
 
 \thread{3}
 
@@ -78,13 +78,13 @@ The coupon-then-member decision (q2) is the short illustration: two rules in one
 The groups are candidate model boundaries the departments helped discover, not boundaries a department defines.
 :::
 
-## The warehouse contract defines Reserved as a 15-minute hold {paths=512}
+## Reserved must mean a 15-minute hold, not just a status word {paths=512}
 
 
 ```{.python include=05-how/s05_how/warehouse_adapter.py snippet=adapter cap=16}
 ```
 
-\begingroup\footnotesize Reserved: set aside for this order for 15 minutes; the shell reads Reserved | OutOfStock, never the JSON; reserve-before-charge lives in the shell\par\endgroup
+\begingroup\footnotesize Reserved: the adapter asks for a 15-minute hold and reads Reserved | OutOfStock, never the JSON; whether the provider honours the hold is a check this talk does not have; reserve-before-charge lives in the shell\par\endgroup
 
 \theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
 
