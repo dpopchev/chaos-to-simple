@@ -42,12 +42,4 @@
 - 2026-11-05 E-020: vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; a title says configurations where no path runs (28, 47), paths where one does; the footer keeps 'paths to reason about' (developer, 2026-11-05) supersedes: E-019#d2
 
 ## Deviations
-- 2026-11-05 E-020: T-494 landed the merged 02 frame tighter than its Action, forced by make overflow (76pt over): scriptsize table with terse cells, no rule, WHICH TEST beside the dev bubble; 02 minutes stay 3 (Action said 2); Check unchanged
-- 2026-11-05 E-020: T-496: 06's offer figure shrank from 54% to 42% width to keep 3pt slack under the longer FC/IS caption; caption verbatim; Check unchanged
-- 2026-11-05 E-020: T-497: 07 holds three frames (beliefs, names, the Q&A landing page); the brief's '07 becomes 4' miscounted, so data/budget.csv reads 07,3,3; Check unchanged
-- 2026-11-05 E-020: T-498: test_member15.py already existed, so the crossing test joined it; the test passed on its first run (both discount functions existed), the red was the frame without it; the pricing figure shrank 70% -> 40% for overflow; Check unchanged
-- 2026-11-05 E-020: T-499: the memo frame's caption shortened to 'the memo's four boundary orders, not the full grid' to keep 3pt slack once the 01 line joined it; still a selection, not a 2x2; Check unchanged
-- 2026-11-05 E-020: T-500: 03's honest-count grid fits at width 40%, not the brief's 70% (overflow 16pt at 50-70% under the two-line title, three-line caption and counts block); Check unchanged; a larger grid filed standalone
-- 2026-11-05 E-020: T-501: CQS comment on its own line above apply_coupon; the 72 split figure 72% -> 64% for overflow; Check unchanged
-- 2026-11-05 E-020: T-503: b2 row 70% on 04, 55% on 06 for overflow; two captions to notes; W-230 filed to enlarge
-- 2026-11-05 E-020: T-507: the digital frame's columns are 42/58, not the brief's 48/52, because make widths refused the 96-char seventh.diff signature; the red run keeps the bare assert line; Check unchanged
+- 2026-11-05 E-020: overflow trims, Checks unchanged: T-494 terse 02 table; T-496-T-503 figures/captions shrunk; T-507 cols 42/58; T-497 07=3 frames; W-229, W-230 filed supersedes: E-020#v1, E-020#v2, E-020#v3, E-020#v4, E-020#v5, E-020#v6, E-020#v7, E-020#v8, E-020#v9
