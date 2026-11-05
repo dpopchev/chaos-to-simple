@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 718 | pruned: 9
+open path: W-221 > T-489   | blocked: 0 | todo roots: 0 | done: 718 | pruned: 9
 
 ## Tree
 
 ```text
-W-221  issue  [todo]     (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides -- T-489 [todo]
+W-221  issue  [doing]    (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides -- T-489 [doing]   <- ACTIVE LEAF
 ```
 
 ## Closed
@@ -1305,12 +1305,12 @@ closed 2026-11-05 -- outcome: Given the deck at main, When make talk builds it a
 ## Diagram
 ```mermaid
 flowchart TD
-  W221["W-221 issue todo, standalone: section READMEs: the slide lists name retired titles and 01 counts thirteen slides"]
-  W221 --> T489["T-489 todo: Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md"]
+  W221["W-221 issue doing, standalone: section READMEs: the slide lists name retired titles and 01 counts thirteen slides"]
+  W221 --> T489["T-489 doing: Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md -- ACTIVE LEAF"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W221,T489 todo
+  class W221,T489 doing
 ```
