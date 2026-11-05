@@ -1,6 +1,6 @@
 # 05 Seam: the boundary protects a business promise
 
-## A correct price did not guarantee a parcel: 41 customers paid for missing stock {paths=512}
+## A correct price did not guarantee a fulfilled order {paths=512}
 
 
 ```{.text include=05-how/data/incident.txt}
