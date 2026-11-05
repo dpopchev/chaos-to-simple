@@ -60,7 +60,6 @@ build/02-stacey/stacey.png,png,scripts.figures stacey
 build/08-backup/stacey-overview.png,png,scripts.figures stacey --arrows
 build/02-stacey/stacey-01.png,png,scripts.figures stacey --highlight 01
 build/02-stacey/stacey-02.png,png,scripts.figures stacey --highlight 02
-build/02-stacey/stacey-03.png,png,scripts.figures stacey --highlight 03
 build/02-stacey/stacey-04.png,png,scripts.figures stacey --highlight 04
 build/02-stacey/stacey-05.png,png,scripts.figures stacey --highlight 05
 build/02-stacey/stacey-06.png,png,scripts.figures stacey --highlight 06

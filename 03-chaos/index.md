@@ -47,28 +47,15 @@ Monday. The code decided for them, and that is incident I2. The room decided aft
 discount, not before it: the rule came last, after the code had already picked one side.
 :::
 
-## Three provider answers join the six policies: nine bits, 512 paths, not 64 {paths=512}
+## Three provider outcomes join the six rules: nine bits, 512 configurations, not 64 {paths=512}
 
 
-:::: {.columns}
-::: {.column width="62%"}
+![](build/03-chaos/grid-9.png){width=40%}
 
-![](build/03-chaos/grid-9.png){width=82%}
-
-\footnotesize same six bits; each answer of the three effects doubles the grid; the two tests still sit in one panel; kinds as the map named them
+\footnotesize same six bits; each outcome of the three effects doubles the grid: 512 modeled configurations, kinds as the map named them; a failed reservation stops the charge and the mail, so fewer paths run than configurations exist
 
 ```{.text include=build/data/counts.txt}
 ```
-
-:::
-::: {.column width="38%"}
-
-![](build/02-stacey/stacey-03.png){width=100%}
-
-\footnotesize the What agreed in the room, the How is now the question: 512 paths
-
-:::
-::::
 
 ::: notes
 The grid you saw in 01 was one of eight. The four framed panels are the ones where the

@@ -207,6 +207,8 @@ the scope row above it.
 ```
 :::
 
+\footnotesize this shop's rule, simplified: b5 reads 1 when a VAT ID is present (exempt), 0 when the 20\% applies
+
 :::: {.columns}
 ::: {.column width="45%"}
 

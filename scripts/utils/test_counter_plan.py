@@ -73,7 +73,7 @@ def test_the_simple_frames_before_the_number_carry_512() -> None:
 
 @pytest.mark.view
 def test_the_room_frames_before_the_honest_count_carry_64() -> None:
-    title = "Three provider answers join the six policies: nine bits, 512 paths, not 64"
+    title = "Three provider outcomes join the six rules: nine bits, 512 configurations, not 64"
     assert before("03", title) == [64, 64, 64]
 
 

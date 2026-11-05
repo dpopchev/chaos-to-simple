@@ -74,14 +74,16 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
 :::
 
-## The digital-only delivery charge lands in shipping as a fourth bit, 16 paths {paths=72}
+## Digital-only orders add one delivery-charge rule to shipping: a fourth bit {paths=72}
 
 \vspace{0.6em}
 
 ```{.text include=01-bits/data/squeeze.txt}
 ```
 
-for this example we change the delivery-charge policy for a digital-only order
+\footnotesize the request came in week 15 of the shop's calendar, before the incident; it waited until the rules had homes
+
+for this example we change the delivery-charge rule for a digital-only order: 16 input configurations in shipping; the early return collapses the paths that run
 
 \begingroup\scriptsize separate decisions, not shown: mixed baskets, gift wrap on a digital item, stock reservation, digital delivery, tax treatment\par\endgroup
 
