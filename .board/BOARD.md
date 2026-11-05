@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-020 > W-225 > T-499   | blocked: 0 | todo roots: 0 | done: 733 | pruned: 9
+open path: E-020 > W-225 > T-500   | blocked: 0 | todo roots: 0 | done: 734 | pruned: 9
 
 ## Tree
 
@@ -9,7 +9,7 @@ E-020         [doing]    Deck v5: the 2026-11-05 storyline review -- the problem
   W-222  issue  [done]     00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement -- T-490 [done], T-491 [done], T-492 [done]
   W-223  issue  [done]     01 to 06: the one example runs RED, WHICH TEST, AGREED, GREEN and REFACTOR, each moment labelled; the seventh request runs red then green -- T-493 [done], T-494 [done], T-495 [done], T-507 [done]
   W-224  issue  [done]     06 and 07: the patterns get their names once; the close lands on one page with the links and the call to action -- T-496 [done], T-497 [done], T-498 [done]
-  W-225  issue  [doing]    01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence -- T-499 [doing]   <- ACTIVE LEAF, T-500 [todo], T-501 [todo], T-508 [todo]
+  W-225  issue  [doing]    01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence -- T-499 [done], T-500 [doing]   <- ACTIVE LEAF, T-501 [todo], T-508 [todo]
   W-226  issue  [todo]     03 to 08: the free-shipping row evolves on the frames; the full board moves to the backup -- T-502 [todo], T-503 [todo], T-504 [todo]
   W-227  issue  [todo]     05: the second learning loop closes -- the reserve-first fix and its green regression where the incident is told, the seam's claims tightened, the arrows standardized -- T-505 [todo], T-506 [todo], T-509 [todo]
   W-228  issue  [todo]     the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened -- T-510 [todo], T-511 [todo], T-512 [todo]
@@ -1333,8 +1333,8 @@ flowchart TD
   W224 --> T497["T-497 done: Land the close on one page -> 07-close/index.md"]
   W224 --> T498["T-498 done: Show the shipping outcome move while its code stands -> 06-simple/tests/test_member15.py and 06-simple/index.md"]
   E020 --> W225["W-225 issue doing: 01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence"]
-  W225 --> T499["T-499 doing: Move the arithmetic after the evidence and merge the grid frames -> 01-bits/index.md and scripts/utils/test_counter_plan.py -- ACTIVE LEAF"]
-  W225 --> T500["T-500 todo: Qualify the counts where no path runs -> 01-bits/index.md, 03-chaos/index.md and 06-simple/index.md"]
+  W225 --> T499["T-499 done: Move the arithmetic after the evidence and merge the grid frames -> 01-bits/index.md and scripts/utils/test_counter_plan.py"]
+  W225 --> T500["T-500 doing: Qualify the counts where no path runs -> 01-bits/index.md, 03-chaos/index.md and 06-simple/index.md -- ACTIVE LEAF"]
   W225 --> T501["T-501 todo: Fix the backup's badges and captions -> scripts/utils/storyboard.py, 05-how/s05_how/oo_checkout.py and 08-backup/index.md"]
   W225 --> T508["T-508 todo: Shorten the room transcript and date it -> 03-chaos/data/room.txt and 03-chaos/index.md"]
   E020 --> W226["W-226 issue todo: 03 to 08: the free-shipping row evolves on the frames; the full board moves to the backup"]
@@ -1354,7 +1354,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E020,W225,T499 doing
-  class W222,T490,T491,T492,W223,T493,T494,T495,T507,W224,T496,T497,T498 done
-  class T500,T501,T508,W226,T502,T503,T504,W227,T505,T506,T509,W228,T510,T511,T512 todo
+  class E020,W225,T500 doing
+  class W222,T490,T491,T492,W223,T493,T494,T495,T507,W224,T496,T497,T498,T499 done
+  class T501,T508,W226,T502,T503,T504,W227,T505,T506,T509,W228,T510,T511,T512 todo
 ```
