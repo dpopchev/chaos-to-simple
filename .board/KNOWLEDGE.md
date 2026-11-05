@@ -43,3 +43,4 @@
 
 ## Deviations
 - 2026-11-05 E-019: T-483 Action amended: page 37 takes the developer's draft 'A correct price did not guarantee a fulfilled order' (one line); the lengthened title wrapped and failed make overflow (slack under 3pt) at 8c55449; Check unchanged; the blocked hand-back re-spawned one model up
+- 2026-11-05 E-019: T-485 Action amended: page 45 reads 'Raising the member discount to 15% leaves shipping untouched' (one line); the 69-character title wrapped and failed make overflow (slack under 3pt); Check unchanged; the blocked hand-back re-spawned one model up
