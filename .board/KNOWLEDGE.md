@@ -36,7 +36,7 @@
 - 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
-- 2026-11-05 E-020: burn hours: board burn writes once and the Decision says 6; the developer pastes the goal with the stop they want for the 23 Tasks, 8 suggested (developer, 2026-11-05)
+- 2026-11-05 E-020: burn hours stay 6 as written; the goal sets the stop (developer) supersedes: E-020#d3
 - 2026-11-05 E-020: burn: the re-aim and the next pick are the coordinator's until every work item is done with its criterion verified, or pruned; a developer moment prints [HALT] and ends the goal (stop after 6 hours) (developer, 2026-11-05)
 - 2026-11-05 E-020: second review adopted whole: overview and arithmetic to the backup, 21/22 merged, room.txt at 12 lines and dated, the seventh request red then green, I3 green in 05, arrows standardized, learned lines shortened; W-227 kept; 8-13 keep their frames (developer, 2026-11-05)
 - 2026-11-05 E-020: vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; a title says configurations where no path runs (28, 47), paths where one does; the footer keeps 'paths to reason about' (developer, 2026-11-05) supersedes: E-019#d2
@@ -49,4 +49,5 @@
 - 2026-11-05 E-020: T-499: the memo frame's caption shortened to 'the memo's four boundary orders, not the full grid' to keep 3pt slack once the 01 line joined it; still a selection, not a 2x2; Check unchanged
 - 2026-11-05 E-020: T-500: 03's honest-count grid fits at width 40%, not the brief's 70% (overflow 16pt at 50-70% under the two-line title, three-line caption and counts block); Check unchanged; a larger grid filed standalone
 - 2026-11-05 E-020: T-501: CQS comment on its own line above apply_coupon; the 72 split figure 72% -> 64% for overflow; Check unchanged
+- 2026-11-05 E-020: T-503: b2 row 70% on 04, 55% on 06 for overflow; two captions to notes; W-230 filed to enlarge
 - 2026-11-05 E-020: T-507: the digital frame's columns are 42/58, not the brief's 48/52, because make widths refused the 96-char seventh.diff signature; the red run keeps the bare assert line; Check unchanged
