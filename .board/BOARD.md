@@ -1,12 +1,12 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-020 > W-222   | blocked: 0 | todo roots: 0 | done: 723 | pruned: 9
+open path: E-020   | blocked: 0 | todo roots: 0 | done: 724 | pruned: 9
 
 ## Tree
 
 ```text
 E-020         [doing]    Deck v5: the 2026-11-05 storyline review -- the problem before the map, the TDD rhythm labelled, the patterns named, the counts qualified, one row as the proof, the author on the stage
-  W-222  issue  [doing]    00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement -- T-490 [done], T-491 [done], T-492 [done]
+  W-222  issue  [done]     00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement -- T-490 [done], T-491 [done], T-492 [done]
   W-223  issue  [todo]     01 to 06: the one example runs RED, WHICH TEST, AGREED, GREEN and REFACTOR, each moment labelled; the seventh request runs red then green -- T-493 [todo], T-494 [todo], T-495 [todo], T-507 [todo]
   W-224  issue  [todo]     06 and 07: the patterns get their names once; the close lands on one page with the links and the call to action -- T-496 [todo], T-497 [todo], T-498 [todo]
   W-225  issue  [todo]     01, 03, 06 and 08: the counts say configurations and local scenarios where no path runs; the arithmetic follows the evidence -- T-499 [todo], T-500 [todo], T-501 [todo], T-508 [todo]
@@ -1319,7 +1319,7 @@ closed 2026-11-05 -- outcome: Given E-019 landed, When grep -n 'thirteen' 01-bit
 ```mermaid
 flowchart TD
   E020["E-020 doing: Deck v5: the 2026-11-05 storyline review -- the problem before the map, the TDD rhythm labelled, the patterns named, the counts qualified, one row as the proof, the author on the stage"]
-  E020 --> W222["W-222 issue doing: 00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement"]
+  E020 --> W222["W-222 issue done: 00 and 02: the author and the undivided checkout open the talk; the map's legend waits for the disagreement"]
   W222 --> T490["T-490 done: Record the review -> docs/deck-v5.md"]
   W222 --> T491["T-491 done: Draw the checkout undivided -> scripts/utils/stage.py and scripts/utils/test_stage.py"]
   W222 --> T492["T-492 done: Put the author and the checkout before the route -> 00-frontmatter/index.md and 08-backup/index.md"]
@@ -1354,7 +1354,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E020,W222 doing
-  class T490,T491,T492 done
+  class E020 doing
+  class W222,T490,T491,T492 done
   class W223,T493,T494,T495,T507,W224,T496,T497,T498,W225,T499,T500,T501,T508,W226,T502,T503,T504,W227,T505,T506,T509,W228,T510,T511,T512 todo
 ```
