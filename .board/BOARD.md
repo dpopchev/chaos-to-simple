@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-234 > T-518   | blocked: 0 | todo roots: 0 | done: 761 | pruned: 9
+open path: W-234   | blocked: 0 | todo roots: 0 | done: 762 | pruned: 9
 
 ## Tree
 
 ```text
-W-234  issue  [doing]    (standalone) The opening introduces paths right after the business-decisions lead -- T-518 [doing]   <- ACTIVE LEAF
+W-234  issue  [doing]    (standalone) The opening introduces paths right after the business-decisions lead -- T-518 [done]
 ```
 
 ## Closed
@@ -1390,11 +1390,12 @@ closed 2026-11-05 -- outcome: Given a classless include whose heading value hold
 ```mermaid
 flowchart TD
   W234["W-234 issue doing, standalone: The opening introduces paths right after the business-decisions lead"]
-  W234 --> T518["T-518 doing: Reorder the opening -> 00-frontmatter/index.md and 08-backup/index.md -- ACTIVE LEAF"]
+  W234 --> T518["T-518 done: Reorder the opening -> 00-frontmatter/index.md and 08-backup/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W234,T518 doing
+  class W234 doing
+  class T518 done
 ```
