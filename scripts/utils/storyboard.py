@@ -12,8 +12,6 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 
-from scripts.utils.board import TEST_FUNCTION
-
 STEPS = 7
 TODAY = date(2026, 11, 5)
 CENT = Decimal("0.01")
@@ -23,6 +21,7 @@ _ASIDE = re.compile(r"  # .*$")
 _HEADERS = ("---", "+++", "@@")
 _BREAK = re.compile(r" (?:and|or) ")
 _COMMA = re.compile(r", ")
+_TEST_DEF = re.compile(r"^\s*def (test_\w+)\(", re.MULTILINE)
 _DEF = re.compile(r"(?P<head>\s*def \w+)\(.*\)(?P<tail>[^()]*:)$")
 
 VIEW_WIDTH = 91
@@ -154,9 +153,8 @@ def tests_tally(version: int, tests: int, lines: int) -> str:
 
 
 def count_tests(texts: Iterable[str]) -> int:
-    """Return how many distinct test functions and classes the test file texts define."""
-    found = (name for text in texts for pair in TEST_FUNCTION.findall(text) for name in pair)
-    return len({name for name in found if name})
+    """Return how many distinct 'def test_' functions, methods included, the texts define."""
+    return len({name for text in texts for name in _TEST_DEF.findall(text)})
 
 
 def code_length(source: str, n: int) -> int:

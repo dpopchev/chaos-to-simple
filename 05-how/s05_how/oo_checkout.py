@@ -15,7 +15,8 @@ from s04_what.pricing import COUPON_VALUE, MEMBER_FACTOR, Coupon
 
 # [snippet: oo]
 class Checkout:
-    def apply_coupon(self) -> bool:  # a command that also answers: CQS broken
+    # a command whose answer depends on what ran before: the order hides in self.total
+    def apply_coupon(self) -> bool:
         if self.coupon is not None and self.coupon.is_valid_on(self.today):
             self.total = self.total - COUPON_VALUE
             return True

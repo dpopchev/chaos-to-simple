@@ -106,7 +106,7 @@ the seam: where asking ends and doing begins
 :::
 ::: {.column width="50%"}
 
-```{.python heading-file=build/05-how/ports-code.txt include=05-how/s05_how/ports.py snippet=ports}
+```{.python heading="the ports" include=05-how/s05_how/ports.py snippet=ports}
 ```
 
 :::
@@ -186,7 +186,7 @@ The table is counted from the import lines of the files, never typed.
 The shell imports the ports and the contexts. The contexts import neither the ports nor the shell: zero under ports on every context row.
 :::
 
-## Explicit contracts limit the knowledge crossing each boundary {paths=512}
+## Shipping receives the discounted goods, never pricing's internal choices {paths=512}
 
 \footnotesize
 
@@ -199,7 +199,7 @@ The shell imports the ports and the contexts. The contexts import neither the po
 | mutable state read in a later step | hidden x | `self.total`, 45 against 44 |
 | `try`/`except` around I/O inside the rules | hidden x | the log nobody reads (I3) |
 
-contract: shipping_fee(discounted_goods, zone, gift_wrap) -> Money, so shipping learns the discounted goods, never the coupon -- the concrete contract the title 'Explicit contracts limit the knowledge crossing each boundary' claims; the frame is already \footnotesize from line 129.
+contract: shipping_fee(discounted_goods, zone, gift_wrap) -> Money, so shipping learns the discounted goods, never the coupon
 
 ::: notes
 The moves table: each move adds a path or hides one.
@@ -224,7 +224,7 @@ Guard clauses and sum types add paths you can count; flags and mutable state hid
 :::
 ::::
 
-values in, values out: the seam passes data, never a flag and never an effect
+values in, values out: explicit data across the seam, no hidden mutable state, no I/O
 
 ::: notes
 Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port; the shell sequences the effects and handles their failures, policies of its own. Outcome is the shell's own answer, Accepted or Rejected, a value too.
@@ -236,7 +236,7 @@ Request holds every decision the core needs: the skus, the coupon, the member fl
 ```{.python heading-file=build/06-simple/tests-core.txt include=06-simple/tests/test_core_paths.py snippet=from-bits}
 ```
 
-06-simple/tests/test_core_paths.py: 64 paths x 3 invariants, tested by itself; the other two invariants in the file
+06-simple/tests/test_core_paths.py: 64 paths x 3 invariants (discounts never add; shipping is free iff the discounted goods reach 50; VAT never reduces the total), tested by itself
 
 ```{.text include=build/06-simple/pytest-core-summary.txt}
 ```
@@ -297,14 +297,14 @@ Five ifs and one match live in the three contexts: pricing two ifs, shipping two
 
 ## The split leaves 72 local paths instead of 512, with integration checked separately {paths=72}
 
-![](build/06-simple/paths.png){width=72%}
+![](build/06-simple/paths.png){width=64%}
 
 ```{.text include=build/data/splits.txt}
 ```
 
 No decision is ever deleted, only moved
 
-\footnotesize assumes each context tested alone against its contract and the shell against fakes; the integration checks are separate; the payoff is clearer ownership and local reasoning, not a guaranteed cut in effort
+\footnotesize assumes each context tested alone against its contract and the shell against fakes; the integration checks are separate; the payoff is clearer ownership and local reasoning, not a guaranteed cut in effort; the bars are modeled scenario sets per home, not end-to-end executions
 
 ::: notes
 512 against 72: branch coverage was 100% before and after.
@@ -318,7 +318,7 @@ Nothing was deleted, every decision only moved to the place that owns it.
 
 ![](build/06-simple/epilogue.png){width=60%}
 
-\footnotesize assumes each context tested alone against its contract and the shell against fakes; the integration checks are separate; the payoff is clearer ownership and local reasoning, not a guaranteed cut in effort
+\footnotesize assumes each context tested alone against its contract and the shell against fakes; the integration checks are separate; the payoff is clearer ownership and local reasoning, not a guaranteed cut in effort; three baselines, counted apart: 512 one function, 72 core and shell, 22 contexts and shell
 
 ::: notes
 The same seventh if, counted three ways: one function doubles to 1024 (+512), core and shell add 64, contexts and shell add 8.

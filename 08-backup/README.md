@@ -20,7 +20,7 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 - [x] Protocols accept compatible fakes without inheritance: pyright reports zero errors (a sum type per answer, a Protocol per port, the fakes)
 - [x] Stock reservation must succeed before payment is attempted
 - [x] Pricing, shipping and tax import no provider port; only the shell does: the import counts, dependencies point inward
-- [x] Explicit contracts limit the knowledge crossing each boundary
+- [x] Shipping receives the discounted goods, never pricing's internal choices: the moves table and the shipping_fee contract
 - [x] Values carry inputs and results across the calculation boundary: the moves table
 - [x] Three invariants check 64 configurations in 192 test cases
 - [x] Eight test worlds produce four explicit order outcomes

@@ -193,6 +193,12 @@ def test_tally_counts_tests_dir(tmp_path: Path) -> None:
 
 
 @pytest.mark.view
+def test_count_tests_counts_methods_in_a_class() -> None:
+    text = "class TestOrder:\n    def test_a(self): pass\n    def test_b(self): pass\n"
+    assert count_tests([text]) == 2
+
+
+@pytest.mark.view
 def test_bubble_head_carries_the_tag() -> None:
     row = BubbleRow(0, 0, "", "marketing", "Of the cart.", "R1")
     assert bubble(row, {"marketing": "Marketing"}) == "R1 Marketing\nOf the cart.\n"
