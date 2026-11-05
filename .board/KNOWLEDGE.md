@@ -48,4 +48,5 @@
 - 2026-11-05 E-020: T-498: test_member15.py already existed, so the crossing test joined it; the test passed on its first run (both discount functions existed), the red was the frame without it; the pricing figure shrank 70% -> 40% for overflow; Check unchanged
 - 2026-11-05 E-020: T-499: the memo frame's caption shortened to 'the memo's four boundary orders, not the full grid' to keep 3pt slack once the 01 line joined it; still a selection, not a 2x2; Check unchanged
 - 2026-11-05 E-020: T-500: 03's honest-count grid fits at width 40%, not the brief's 70% (overflow 16pt at 50-70% under the two-line title, three-line caption and counts block); Check unchanged; a larger grid filed standalone
+- 2026-11-05 E-020: T-501: CQS comment on its own line above apply_coupon; the 72 split figure 72% -> 64% for overflow; Check unchanged
 - 2026-11-05 E-020: T-507: the digital frame's columns are 42/58, not the brief's 48/52, because make widths refused the 96-char seventh.diff signature; the red run keeps the bare assert line; Check unchanged
