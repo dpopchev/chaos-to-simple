@@ -1,13 +1,13 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-232 > T-516   | blocked: 0 | todo roots: 2 | done: 753 | pruned: 9
+open path: W-232   | blocked: 0 | todo roots: 2 | done: 754 | pruned: 9
 
 ## Tree
 
 ```text
 W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
 W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
-W-232  bug    [doing]    (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow   (filed during T-505) -- T-516 [doing]   <- ACTIVE LEAF
+W-232  bug    [doing]    (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow   (filed during T-505) -- T-516 [done]
 ```
 
 ## Closed
@@ -1372,12 +1372,13 @@ flowchart TD
   W231["W-231 bug todo, standalone: make widths passes an include with no class that renders at body size and clips"]
   W231 --> T515["T-515 todo: Measure classless includes at body size -> scripts/utils/widths.py and scripts/utils/test_widths.py"]
   W232["W-232 bug doing, standalone: 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow"]
-  W232 --> T516["T-516 doing: Shorten the fix heading -> 05-how/index.md -- ACTIVE LEAF"]
+  W232 --> T516["T-516 done: Shorten the fix heading -> 05-how/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W232,T516 doing
+  class W232 doing
+  class T516 done
   class W230,T514,W231,T515 todo
 ```
