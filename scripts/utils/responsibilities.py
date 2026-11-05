@@ -5,9 +5,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
+from typing import Literal
 
 from scripts.utils import style
-from scripts.utils.figures import icon_file, label_ink
+from scripts.utils.figures import arrow_style, icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph
 from scripts.utils.palette import (
     Actor,
@@ -147,7 +148,14 @@ def draw(out: Path, highlight: str | None = None, compact: bool = False) -> Path
             )
         )
 
-    def arrow(x0: float, x1: float, y: float, touches: tuple[str, ...], words: str) -> None:
+    def arrow(
+        x0: float,
+        x1: float,
+        y: float,
+        touches: tuple[str, ...],
+        words: str,
+        kind: Literal["call", "outcome"] = "call",
+    ) -> None:
         bold = highlight in touches
         kept = highlight is None or bold
         ax.annotate(
@@ -155,7 +163,7 @@ def draw(out: Path, highlight: str | None = None, compact: bool = False) -> Path
             (x1, y),
             (x0, y),
             arrowprops={
-                "arrowstyle": "-|>",
+                **arrow_style(kind),
                 "color": "black" if bold else "dimgrey",
                 "linewidth": 5.0 if bold else 2.0,
                 "alpha": 1.0 if kept else FADED,
@@ -245,7 +253,7 @@ def draw(out: Path, highlight: str | None = None, compact: bool = False) -> Path
         )
 
     arrow(0.1, fx - 0.05, MID_Y, offer, "Request")
-    arrow(fx + fw + 0.05, shell_x0 - 0.05, MID_Y, (*offer, order), CORE_CONTRACT)
+    arrow(fx + fw + 0.05, shell_x0 - 0.05, MID_Y, (*offer, order), CORE_CONTRACT, "outcome")
     ax.text(
         provider_x + provider_w / 2, 7.0, OUTSIDE_TITLE, ha="center", fontsize=title_font,
         fontweight="bold",

@@ -31,6 +31,12 @@ from scripts.utils.paths import CastRow, Rule
 from scripts.utils.retro import Question
 
 
+def arrow_style(kind: Literal["call", "outcome"]) -> dict[str, object]:
+    """Return the arrowprops of a call (solid) or a returned outcome (dashed)."""
+    base: dict[str, object] = {"arrowstyle": "-|>"}
+    return base if kind == "call" else {**base, "linestyle": "dashed"}
+
+
 @dataclass(frozen=True)
 class JourneyStep:
     """One step of Maria's order: the actor who acts, what it does, the bit it decides."""
@@ -325,7 +331,7 @@ def seam(out: Path, ports: Sequence[Port]) -> Path:
             "",
             (shell_right + 0.15, y),
             (port_left - 0.1, y),
-            arrowprops={"arrowstyle": "-|>", "color": colour, "linewidth": 1.8},
+            arrowprops={**arrow_style("outcome"), "color": colour, "linewidth": 1.8},
         )
         ax.text(
             (shell_right + port_left) / 2,

@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from scripts.utils import style
-from scripts.utils.figures import icon_file, label_ink
+from scripts.utils.figures import arrow_style, icon_file, label_ink
 from scripts.utils.icons import FONT_AWESOME, glyph, icon_size
 from scripts.utils.palette import Actor, Context, colour_of, kind_style, load_contexts
 from scripts.utils.paths import CastRow, Incident, Rule
@@ -397,16 +397,16 @@ def business_map(
                 tail = (x, y - h / 2 - 0.1)
                 head = (x, SHOP_H / 2 + 0.1)
             arrow = {
-                "arrowstyle": "-|>",
                 "color": actor_colour if key != "mailer" else "dimgrey",
                 "linewidth": 2.0,
                 "shrinkA": 0,
                 "shrinkB": 0,
             }
-            ax.annotate("", head, tail, arrowprops=arrow, zorder=1)
+            answer = arrow_style("outcome" if both else "call")
+            ax.annotate("", head, tail, arrowprops={**arrow, **answer}, zorder=1)
             if both:
                 call = ((tail[0], y - lift), (head[0], y - lift))
-                ax.annotate("", *call, arrowprops=arrow, zorder=1)
+                ax.annotate("", *call, arrowprops={**arrow, **arrow_style("call")}, zorder=1)
             if not is_department:
                 ax.text(
                     (tail[0] + head[0]) / 2 + (0.15 if not side else 0.0),

@@ -12,6 +12,7 @@ from scripts.utils.figures import (
     JOURNEY,
     TREE_LEAVES,
     JourneyStep,
+    arrow_style,
     axis_ticks,
     band_groups,
     caption_lines,
@@ -163,6 +164,14 @@ def test_journey_captions_fit_the_box() -> None:
 @pytest.mark.model
 def test_journey_legend_names_the_scoring() -> None:
     assert "scored in the retro" in journey_legend()
+
+
+@pytest.mark.model
+def test_outcome_arrows_are_dashed_and_calls_solid() -> None:
+    assert (arrow_style("outcome").get("linestyle"), arrow_style("call").get("linestyle")) == (
+        "dashed",
+        None,
+    )
 
 
 @pytest.mark.model
