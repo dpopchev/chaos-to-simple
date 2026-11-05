@@ -1,6 +1,6 @@
-# 03 Room: from chaos to complex
+# 03 Room: shared examples turn hidden assumptions into explicit decisions
 
-## The mood of one order drops at six questions, each a rule nobody wrote down {paths=64}
+## Replaying one order reveals six unanswered business questions {paths=64}
 
 \begingroup\footnotesize finance traced 6,070 EUR to orders like this one, so the room replayed one order and scored each step: who decided this?\par\endgroup
 
@@ -16,7 +16,7 @@ It drops at every step that raised a question, q1 to q6, in the order the room a
 Each drop is a place where the rule was not written down yet.
 :::
 
-## Four departments carry the argument in one room while dev stays silent to the end {paths=64}
+## The room surfaces three unwritten rules and three unhandled provider answers {paths=64}
 
 
 ```{.text .speakers include=03-chaos/data/room.txt cap=18}
@@ -31,7 +31,7 @@ Reading plan: read the Logistics first line aloud, then the Marketing answer; sk
 'Who reads the log?'; then the silence, and let the room hear it.
 :::
 
-## The retro names six business decisions, two core and four in supporting subdomains {paths=64}
+## Each of the six questions gains a decision and a subdomain {paths=64}
 
 
 ```{.text .speakers highlight=q3 include=build/03-chaos/retro.txt cap=18}
@@ -46,7 +46,7 @@ Monday. The code decided for them, and that is incident I2. The room decided aft
 discount, not before it: the rule came last, after the code had already picked one side.
 :::
 
-## Counting the nine decisions honestly gives 512 paths, not 64, the first good news {paths=512}
+## Three provider answers join the six policies: nine bits, 512 paths, not 64 {paths=512}
 
 
 :::: {.columns}
@@ -75,7 +75,7 @@ stock is gone. The number is now true: 2^9 = 512. The bigger number is the first
 The right side is the plain matrix of 03, arrows from 01: the What is agreed, the How is open.
 :::
 
-## Nine decisions came out of the room, and each moves to a home, none deleted {paths=512}
+## Every one of the nine decisions is kept and moves to a responsible home {paths=512}
 
 ![](build/03-chaos/board.png){width=100%}
 
