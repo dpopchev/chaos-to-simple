@@ -13,9 +13,9 @@ two axes; each later section is one move on the map.
 
 ## Slides
 
-- [x] Engineering reads one sentence two ways: the cart before or after the coupon: the sentence, the code's condition, finance's test and the two-readings table
-- [x] I wanted to write a test: the question, the R1 Marketing and R2 Logistics bubbles, the line 'one function, one reading: the code picked R1 and nobody chose', a rule, the dev bubble below
-- [x] Above the line: a decision, not a test: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
+- [x] Free shipping from 50 has two plausible meanings: the sentence, the code's condition, finance's test and the two-readings table (the cart before or after the coupon)
+- [x] Marketing and Logistics disagree about what the customer should pay: the question, the R1 Marketing and R2 Logistics bubbles, the line 'one function, one reading: the code picked R1 and nobody chose', a rule, the dev bubble below
+- [x] Stakeholders must choose the rule before developers can fix it: `stacey-02.png` at 85% height, with the line glued at its foot: check whether the What is agreed
 
 ## The matrix
 

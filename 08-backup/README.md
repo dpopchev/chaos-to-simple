@@ -6,18 +6,25 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 |---|---|
 | Minutes | 0 |
 | Footer counter | `512` on entry, `512` on exit |
-| Owns | the six mechanism frames moved from `05-how/index.md` |
+| Owns | the thirteen mechanism frames, six moved from `05-how/index.md` |
 | Uses | the artifacts of `05-how/section.mk` and the exhibits under `05-how/` |
 | Produces | nothing |
 
 ## Slides
 
-- [x] The call order is a bit nobody wrote down: 45 against 44 from the same inputs
-- [x] A class hid the call order in its state, the same bug as I3 in pricing
-- [x] Command Query Separation draws the seam by making every answer a value
-- [x] A sum type per answer and a Protocol per port, the fakes and pyright
-- [x] Dependencies point inward: the import counts
-- [x] Passing values across a boundary: the moves table
+- [x] Changing the call order changes the price: 45 against 44, from the same inputs
+- [x] This mutable checkout leaves discount order to its callers: a class hid the call order in its state, the same bug as I3 in pricing
+- [x] Explicit outcome values make the three effects easier to handle and match: Command Query Separation draws the seam by making every answer a value
+- [x] Protocols accept compatible fakes without inheritance: pyright reports zero errors (a sum type per answer, a Protocol per port, the fakes)
+- [x] Stock reservation must succeed before payment is attempted
+- [x] Pricing, shipping and tax import no provider port; only the shell does: the import counts, dependencies point inward
+- [x] Explicit contracts limit the knowledge crossing each boundary
+- [x] Values carry inputs and results across the calculation boundary: the moves table
+- [x] Three invariants check 64 configurations in 192 test cases
+- [x] Eight test worlds produce four explicit order outcomes
+- [x] Pricing, shipping and tax hold every decision of the functional core, core.py only composes
+- [x] The split leaves 72 local paths instead of 512, with integration checked separately
+- [x] The seventh decision adds 8 local paths in shipping, against 512 in one function
 
 ## Done when
 

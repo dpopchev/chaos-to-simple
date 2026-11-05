@@ -13,11 +13,11 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 
 ## Slides
 
-- [x] The journey of one order: `build/03-chaos/diagrams/journey.png`
-- [x] The room: the chat log, `03-chaos/data/room.txt`
-- [x] The retro: the six questions as a table, `build/03-chaos/retro.txt`
-- [x] The honest count (frame 4): `build/03-chaos/grid-9.png`, `build/03-chaos/doubling-512.png`, `build/data/counts.txt`
-- [x] Nine decisions, none deleted, all moved: `build/03-chaos/board.png`, the `\theline` at its foot
+- [x] Replaying one order reveals six unanswered business questions: the journey of one order, `build/03-chaos/diagrams/journey.png`
+- [x] The room surfaces three unwritten rules and three unhandled provider answers: the chat log, `03-chaos/data/room.txt`
+- [x] Each of the six questions gains a decision and a subdomain: the retro, the six questions as a table, `build/03-chaos/retro.txt`
+- [x] Three provider answers join the six policies: nine bits, 512 paths, not 64 (frame 4): `build/03-chaos/grid-9.png`, `build/03-chaos/doubling-512.png`, `build/data/counts.txt`
+- [x] Every one of the nine decisions is kept and moves to a responsible home: `build/03-chaos/board.png`, the `\theline` at its foot
 
 ## Live
 

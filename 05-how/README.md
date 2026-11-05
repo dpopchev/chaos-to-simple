@@ -16,14 +16,15 @@ between the pure core and the effectful shell.
 
 ## Slides
 
-- [x] The promise: `data/incident.txt`, `build/05-how/promise.png`, the I3 run line as evidence
+- [x] A correct price did not guarantee a fulfilled order: `data/incident.txt`, `build/05-how/promise.png`, the I3 run line as evidence
   ('the red test, as evidence: reserve before charge (q5)'), thread 1
-- [x] The policies: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
+- [x] Providers report facts; the shop decides what they mean, three policies owned by Fulfilment: `build/05-how/policies.txt` and the Support and Fulfilment bubbles, the open
   question on releasing a reservation after a declined payment, thread 2
-- [x] Cohesion: the rule cards grouped by the business question each answers
+- [x] Rules answering the same business question belong together: four questions, four homes: the rule cards grouped by the business question each answers
   (`build/05-how/cohesion.png`), thread 3
-- [x] The boundary: the warehouse adapter snippet beside the seam picture with the shell
-  (`build/05-how/ports.png`), thread 4, and the 05 line
+- [x] The warehouse contract defines Reserved as a 15-minute hold: the warehouse adapter snippet beside the seam picture with the shell
+  (`build/05-how/ports.png`), thread 4
+- [x] The shell connects pure calculations to real-world commitments: the seam picture with the shell, ending on the 05 line
 - [x] The v5 seam frame and the Protocol-and-fakes frame live in 08-backup
 
 ## Live

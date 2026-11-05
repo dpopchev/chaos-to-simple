@@ -14,11 +14,11 @@ place; contracts between contexts are values, never flags.
 
 ## Slides
 
-- [x] Color-coded, the ifs get names: `colorcode.png`, legend headed 'who asked' and 'home'
-- [x] The first fix: `fix.diff`, captioned 'one name: discounted goods, a value pricing returns -- the first boundary'
-- [x] The dispute closes: `dispute.txt` (the q3 card), `snippet=fee`, captioned 'the rule belongs to shipping, Zone is a sum type: the checker counts that bit'; the Live demo sits in its notes (no Zone frame)
-- [x] Bounded contexts: every bit has a home: `checkout_v4.py` `snippet=checkout` as plain code under 'checkout_fixed.py -> checkout_v4.py', beside the four context lines with faces
-- [x] Bounded contexts, the moves: the contract line under moves.png, glued to the frame
+- [x] Tracing each line to who asked for it reveals candidate policy boundaries: the color-coded ifs, `colorcode.png`, legend headed 'who asked' and 'home'
+- [x] Reading the discounted goods, not the cart, fixes the 55 EUR coupon order: the first fix, `fix.diff`, captioned 'one name: discounted goods, a value pricing returns -- the first boundary'
+- [x] Shipping owns eligibility and applies the threshold to the discounted goods: the dispute closes, `dispute.txt` (the q3 card), `snippet=fee`, captioned 'the rule belongs to shipping, Zone is a sum type: the checker counts that bit'; the Live demo sits in its notes (no Zone frame)
+- [x] Checkout delegates its calculations to pricing, shipping and tax, effects still inline: `checkout_v4.py` `snippet=checkout` as plain code under 'checkout_fixed.py -> checkout_v4.py', beside the four context lines with faces
+- [x] The map gives all nine decisions a home: 2 core, 6 supporting, 1 generic: the bounded contexts, the moves, the contract line under moves.png, glued to the frame
 
 ## Live
 
