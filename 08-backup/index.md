@@ -137,6 +137,8 @@ The shell imports the ports and the contexts. The contexts import neither the po
 | mutable state read in a later step | hidden x | `self.total`, 45 against 44 |
 | `try`/`except` around I/O inside the rules | hidden x | the log nobody reads (I3) |
 
+contract: shipping_fee(discounted_goods, zone, gift_wrap) -> Money, so shipping learns the discounted goods, never the coupon -- the concrete contract the title 'Explicit contracts limit the knowledge crossing each boundary' claims; the frame is already \footnotesize from line 129.
+
 ::: notes
 The moves table: each move adds a path or hides one.
 Guard clauses and sum types add paths you can count; flags and mutable state hide them.
@@ -163,7 +165,7 @@ Guard clauses and sum types add paths you can count; flags and mutable state hid
 values in, values out: the seam passes data, never a flag and never an effect
 
 ::: notes
-Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port, the shell never sees a rule. Outcome is the shell's own answer, Accepted or Rejected, a value too.
+Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port; the shell sequences the effects and handles their failures, policies of its own. Outcome is the shell's own answer, Accepted or Rejected, a value too.
 :::
 
 ## Three invariants check 64 configurations in 192 test cases {paths=512}
@@ -225,7 +227,7 @@ No charge when stock is gone, no mail when the card is refused.
 :::
 ::::
 
-cohesion: a rule changes in one module; decoupling: the shell imports the core and the ports, the core imports no port
+cohesion: a rule changes in one module; decoupling: the shell imports core.py and the ports; core.py composes the three contexts and imports no port
 
 ::: notes
 Five ifs and one match live in the three contexts: pricing two ifs, shipping two ifs and a match over the Zone sum type, tax one if. core.py holds none; shell.py holds no if and keeps its three matches at the edge. The right figure draws the imports: the shell imports the core and the ports, the core imports the three contexts, no context imports a port. Live demo: git grep -n 'if ' 06-simple/s06_simple/shell.py returns only the docstring that states the house rule.
