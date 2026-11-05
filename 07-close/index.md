@@ -30,31 +30,24 @@ the names came after the decisions; the two earlier talks (DDD, CQRS and TDD) ar
 Name them once, now that the room has seen the decisions.
 :::
 
-## The post series revisits this checkout one section at a time; bring yours {paths=72}
-
-- \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}
-- the CraftsmansDay and JourneymansDay post series: one section at a time
-- reach out with your own checkout: we go over your specific problem
-
-::: notes
-- The posts take one section at a time; the series is the long version of tonight.
-- Bring a function of your own: we count its paths together.
-:::
-
 ## Q&A: where is the next hidden decision in your checkout? {paths=72}
 
 :::::: {.columns}
-::: {.column width="45%"}
-
-- \mbox{\footnotesize\url{github.com/dpopchev/chaos-to-simple}}\
-  slides, every snippet tested, 64 + 8 tests to run yourself
-- The Friday posts: one section at a time, starting with the arithmetic
-- The two earlier talks: metaprogramming; DDD, CQRS and TDD
-
-:::
 ::: {.column width="55%"}
 
-![](build/07-close/board.png){height=70%}
+- \mbox{\footnotesize\url{github.com/dpopchev/chaos-to-simple}}\
+  slides, every snippet tested; make test runs them all
+- \mbox{\footnotesize\url{linkedin.com/in/dimitar-popchev-b87074142}}\
+  the CraftsmansDay and JourneymansDay post series: one section at a time
+- bring your checkout: reach out and we go over your story
+- the two earlier talks: metaprogramming; DDD, CQRS and TDD
+
+:::
+::: {.column width="45%"}
+
+\vfill
+
+thank you: to you, for the questions; to DEV.BG and the Python user group, for the stage
 
 :::
 ::::::
@@ -68,13 +61,5 @@ Name them once, now that the room has seen the decisions.
 - "Where does the digital-books if go": replay the chat answer.
 - Live demo 1: make test K=TestCallOrder, for 45 against 44.
 - Live demo 2: show build/01-bits/grid.png, then make test K=two_ifs.
-:::
-
-## Thank you to the audience for the questions and to DEV.BG for the stage {paths=72}
-
-- to you, for the questions
-- to DEV.BG and the Python user group, for the stage
-
-::: notes
-Stop here; leave the slide up while people leave.
+- Stop here; leave the slide up while people leave.
 :::
