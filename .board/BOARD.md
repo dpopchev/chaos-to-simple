@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 4 | done: 751 | pruned: 9
+open path: W-229 > T-513   | blocked: 0 | todo roots: 3 | done: 751 | pruned: 9
 
 ## Tree
 
 ```text
-W-229  issue  [todo]     (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [todo]
+W-229  issue  [doing]    (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [doing]   <- ACTIVE LEAF
 W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
 W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
 W-232  bug    [todo]     (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow   (filed during T-505) -- T-516 [todo]
@@ -1362,8 +1362,8 @@ closed 2026-11-05 -- outcome: Given E-019 landed, When grep -n 'thirteen' 01-bit
 ## Diagram
 ```mermaid
 flowchart TD
-  W229["W-229 issue todo, standalone: 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back"]
-  W229 --> T513["T-513 todo: Grow the honest-count grid -> 03-chaos/index.md"]
+  W229["W-229 issue doing, standalone: 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back"]
+  W229 --> T513["T-513 doing: Grow the honest-count grid -> 03-chaos/index.md -- ACTIVE LEAF"]
   W230["W-230 issue todo, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
   W230 --> T514["T-514 todo: Split the evidence frame -> 06-simple/index.md"]
   W231["W-231 bug todo, standalone: make widths passes an include with no class that renders at body size and clips"]
@@ -1375,5 +1375,6 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W229,T513,W230,T514,W231,T515,W232,T516 todo
+  class W229,T513 doing
+  class W230,T514,W231,T515,W232,T516 todo
 ```
