@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-234   | blocked: 0 | todo roots: 0 | done: 762 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 763 | pruned: 9
 
 ## Tree
-
-```text
-W-234  issue  [doing]    (standalone) The opening introduces paths right after the business-decisions lead -- T-518 [done]
-```
 
 ## Closed
 
@@ -1386,16 +1382,18 @@ closed 2026-11-05 -- outcome: Given a classless include whose heading value hold
 
 - T-517 [done] Ignore quoted values in the classless fence test -> scripts/utils/widths.py and scripts/utils/test_widths.py
 
+### W-234 issue [done] (standalone) The opening introduces paths right after the business-decisions lead
+
+closed 2026-11-05 -- outcome: Given the deck, When make talk runs and gs txtwrite of pages 3 and 4 of build/talk.pdf follows, Then page 3 reads 'Business decisions lead' and page 4 reads 'Six rules add up'. -- ledger: ledgers/W-234.md
+
+- T-518 [done] Reorder the opening -> 00-frontmatter/index.md and 08-backup/index.md
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W234["W-234 issue doing, standalone: The opening introduces paths right after the business-decisions lead"]
-  W234 --> T518["T-518 done: Reorder the opening -> 00-frontmatter/index.md and 08-backup/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W234 doing
-  class T518 done
 ```
