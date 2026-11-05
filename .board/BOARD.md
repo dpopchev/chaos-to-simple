@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-020 > W-227 > T-506   | blocked: 0 | todo roots: 2 | done: 743 | pruned: 9
+open path: E-020 > W-227 > T-506   | blocked: 0 | todo roots: 4 | done: 743 | pruned: 9
 
 ## Tree
 
@@ -15,6 +15,8 @@ E-020         [doing]    Deck v5: the 2026-11-05 storyline review -- the problem
   W-228  issue  [todo]     the deck speaks one vocabulary: business rules, decisions, provider outcomes, configurations; 'just one more if' stays the joke; the six learned lines shortened -- T-510 [todo], T-511 [todo], T-512 [todo]
 W-229  issue  [todo]     (standalone) 03's honest-count frame shows its 512 grid at 40% width, too small to read from the back   (filed during T-500) -- T-513 [todo]
 W-230  issue  [todo]     (standalone) 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof   (filed during T-503) -- T-514 [todo]
+W-231  bug    [todo]     (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [todo]
+W-232  bug    [todo]     (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow   (filed during T-505) -- T-516 [todo]
 ```
 
 ## Closed
@@ -1355,6 +1357,10 @@ flowchart TD
   W229 --> T513["T-513 todo: Grow the honest-count grid -> 03-chaos/index.md"]
   W230["W-230 issue todo, standalone: 06's evidence frame shows the free-shipping row at 55% width, too small to serve as the main proof"]
   W230 --> T514["T-514 todo: Split the evidence frame -> 06-simple/index.md"]
+  W231["W-231 bug todo, standalone: make widths passes an include with no class that renders at body size and clips"]
+  W231 --> T515["T-515 todo: Measure classless includes at body size -> scripts/utils/widths.py and scripts/utils/test_widths.py"]
+  W232["W-232 bug todo, standalone: 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow"]
+  W232 --> T516["T-516 todo: Shorten the fix heading -> 05-how/index.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
@@ -1362,5 +1368,5 @@ flowchart TD
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
   class E020,W227,T506 doing
   class W222,T490,T491,T492,W223,T493,T494,T495,T507,W224,T496,T497,T498,W225,T499,T500,T501,T508,W226,T502,T503,T504,T505 done
-  class T509,W228,T510,T511,T512,W229,T513,W230,T514 todo
+  class T509,W228,T510,T511,T512,W229,T513,W230,T514,W231,T515,W232,T516 todo
 ```
