@@ -69,7 +69,7 @@ The right side is the plain matrix of 03, arrows from 01: the What is agreed, th
 
 \footnotesize a starting inventory: nine rows, nine bits, 2^9 = 512; home, contract and evidence fill in over 04 to 06
 
-\theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
+\theline{Counting makes it worse}{You cannot shrink a count you have not made; the bigger number is the first good news.}
 
 ::: notes
 Nine decisions came out of the room, one row each on the board. Each one has a sentence and a home.

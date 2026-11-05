@@ -360,7 +360,7 @@ the memo's four boundary orders, not the full grid
 
 only the coupon order with the cart over 50 and the goods under 50 takes the path no test of ours ran
 
-\theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.}
+\theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the configurations before you trust the badge.}
 
 ::: notes
 Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.

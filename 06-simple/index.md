@@ -123,7 +123,7 @@ The small diff is the shipping change; the next frame shows its highlight.
 
 \thread{5}
 
-\theline{One more if is cheap}{Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start.}
+\theline{One more if is cheap}{It was never just one more if: it was another business rule to understand. Ask whose decision it is, what it needs to know, what else it may change.}
 
 ::: notes
 The compact picture shows the highlighted shipping box; the full picture is build/06-simple/responsibilities.png.

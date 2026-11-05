@@ -114,4 +114,4 @@ Tax is generic: kept in-house and adapted at the shell, with the payment, wareho
 None of the nine decisions is deleted: each has a new home and stays on the record.
 :::
 
-\theline{Naming is cosmetics}{Every if was somebody's sentence. Write it down, give it a home, pass values between homes.}
+\theline{Naming is cosmetics}{Every if was somebody's rule. Write it down, give it a home, pass values between homes.}

@@ -86,7 +86,7 @@ The groups are candidate model boundaries the departments helped discover, not b
 
 \begingroup\footnotesize Reserved: the adapter asks for a 15-minute hold and reads Reserved | OutOfStock, never the JSON; whether the provider honours the hold is a check this talk does not have; reserve-before-charge lives in the shell\par\endgroup
 
-\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.}
+\theline{A boundary is a technical choice}{A boundary is an agreement about what the other side must know: providers report outcomes, the shop decides.}
 
 ## The shell connects pure calculations to real-world commitments {paths=512}
 

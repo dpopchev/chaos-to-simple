@@ -1,7 +1,7 @@
 section,believed,learned
-01-bits,A green badge means tested,"Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge."
+01-bits,A green badge means tested,"Coverage counts edges; bugs live in combinations. Count the configurations before you trust the badge."
 02-stacey,A bug is fixed with a test,"Before fixing the How, check whether the What is agreed."
-03-chaos,Counting makes it worse,"You cannot shrink a count you have not made. The bigger number is the first good news."
-04-what,Naming is cosmetics,"Every if was somebody's sentence. Write it down, give it a home, pass values between homes."
-05-how,A boundary is a technical choice,"A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean."
-06-simple,One more if is cheap,"Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start."
+03-chaos,Counting makes it worse,"You cannot shrink a count you have not made; the bigger number is the first good news."
+04-what,Naming is cosmetics,"Every if was somebody's rule. Write it down, give it a home, pass values between homes."
+05-how,A boundary is a technical choice,"A boundary is an agreement about what the other side must know: providers report outcomes, the shop decides."
+06-simple,One more if is cheap,"It was never just one more if: it was another business rule to understand. Ask whose decision it is, what it needs to know, what else it may change."

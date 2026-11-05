@@ -1,13 +1,15 @@
-## Six beliefs gave way: better boundaries begin with better business questions {paths=72}
+## Six beliefs gave way: we made the rules explicit together and tests protected each step {paths=72}
 
 \small
 
-- A green badge means tested -> Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.
+- A green badge means tested -> Coverage counts edges; bugs live in combinations. Count the configurations before you trust the badge.
 - A bug is fixed with a test -> Before fixing the How, check whether the What is agreed.
-- Counting makes it worse -> You cannot shrink a count you have not made. The bigger number is the first good news.
-- Naming is cosmetics -> Every if was somebody's sentence. Write it down, give it a home, pass values between homes.
-- A boundary is a technical choice -> A boundary is an agreement about what the other side must know: providers report facts, the shop decides what they mean.
-- One more if is cheap -> Ask whose decision it is, what it needs to know and what else it may change; then the next if has a place to start.
+- Counting makes it worse -> You cannot shrink a count you have not made; the bigger number is the first good news.
+- Naming is cosmetics -> Every if was somebody's rule. Write it down, give it a home, pass values between homes.
+- A boundary is a technical choice -> A boundary is an agreement about what the other side must know: providers report outcomes, the shop decides.
+- One more if is cheap -> It was never just one more if: it was another business rule to understand. Ask whose decision it is, what it needs to know, what else it may change.
+
+**We made the business rules explicit together, used tests to protect each step, and discovered useful boundaries along the way.**
 
 ::: notes
 read the learned column only
