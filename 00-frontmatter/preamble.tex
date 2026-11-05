@@ -87,11 +87,11 @@
   \fi
 }
 
-% Two code sizes, set once: highlighted code and diffs at \snippetsize, text exhibits at
-% \exhibitsize. The filters pass them to Verbatim as fontsize=; the fvset default covers the rest.
+% Two code sizes, set once: code and diffs at \snippetsize (Shaded and diffs.lua), text exhibits
+% at \exhibitsize (text-exhibits.lua and speakers.lua). The filters pass them to Verbatim as
+% fontsize=; the fvset default covers the rest.
 \usepackage{etoolbox}
 \newcommand{\snippetsize}{\tiny}
 \newcommand{\exhibitsize}{\scriptsize}
 \AtBeginEnvironment{Shaded}{\snippetsize}
-\AtBeginEnvironment{verbatim}{\exhibitsize}
 \fvset{fontsize=\snippetsize}
