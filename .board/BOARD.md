@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-019 > W-218 > T-482   | blocked: 0 | todo roots: 1 | done: 707 | pruned: 9
+open path: E-019 > W-218 > T-483   | blocked: 0 | todo roots: 1 | done: 708 | pruned: 9
 
 ## Tree
 
@@ -8,7 +8,7 @@ open path: E-019 > W-218 > T-482   | blocked: 0 | todo roots: 1 | done: 707 | pr
 E-019         [doing]    Action titles v2: the 2026-11-05 framework audit landed -- claim-led titles, their companion edits, the storyline read aloud
   W-216  issue  [done]     00 and 01: the opening and the bits retitled (pages 2-19) -- T-478 [done], T-479 [done]
   W-217  issue  [done]     02 and 03: the map and the room retitled (pages 20-29) -- T-480 [done], T-481 [done]
-  W-218  issue  [doing]    04 and 05: the homes and the seam retitled (pages 30-41) -- T-482 [doing]   <- ACTIVE LEAF, T-483 [todo]
+  W-218  issue  [doing]    04 and 05: the homes and the seam retitled (pages 30-41) -- T-482 [done], T-483 [doing]   <- ACTIVE LEAF
   W-219  issue  [todo]     06 and 07: core and shell and the close retitled (pages 42-52) -- T-484 [todo], T-485 [todo], T-486 [todo]
   W-220  issue  [todo]     08: the backup retitled with its captions aligned (pages 53-66) -- T-487 [todo], T-488 [todo]
 W-221  issue  [todo]     (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides -- T-489 [todo]
@@ -1289,8 +1289,8 @@ flowchart TD
   W217 --> T480["T-480 done: Retitle the map -> 02-stacey/index.md"]
   W217 --> T481["T-481 done: Retitle the room -> 03-chaos/index.md and scripts/utils/test_counter_plan.py"]
   E019 --> W218["W-218 issue doing: 04 and 05: the homes and the seam retitled (pages 30-41)"]
-  W218 --> T482["T-482 doing: Retitle the homes -> 04-what/index.md -- ACTIVE LEAF"]
-  W218 --> T483["T-483 todo: Retitle the seam -> 05-how/index.md"]
+  W218 --> T482["T-482 done: Retitle the homes -> 04-what/index.md"]
+  W218 --> T483["T-483 doing: Retitle the seam -> 05-how/index.md -- ACTIVE LEAF"]
   E019 --> W219["W-219 issue todo: 06 and 07: core and shell and the close retitled (pages 42-52)"]
   W219 --> T484["T-484 todo: Count the evidence cards honestly -> 06-simple/index.md lines 30 and 35"]
   W219 --> T485["T-485 todo: Retitle core and shell -> 06-simple/index.md and scripts/utils/test_counter_plan.py"]
@@ -1305,7 +1305,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E019,W218,T482 doing
-  class W216,T478,T479,W217,T480,T481 done
-  class T483,W219,T484,T485,T486,W220,T487,T488,W221,T489 todo
+  class E019,W218,T483 doing
+  class W216,T478,T479,W217,T480,T481,T482 done
+  class W219,T484,T485,T486,W220,T487,T488,W221,T489 todo
 ```
