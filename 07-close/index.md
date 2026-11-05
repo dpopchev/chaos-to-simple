@@ -51,7 +51,7 @@ The function made no distinction between the three kinds; the split did.
 - \mbox{\footnotesize\url{github.com/dpopchev/chaos-to-simple}}\
   slides, every snippet tested; make test runs them all
 - \mbox{\footnotesize\url{linkedin.com/in/dimitar-popchev-b87074142}}\
-  the CraftsmansDay and JourneymansDay post series: one section at a time
+  the **#CraftsmansDay** and **#JourneymansDay** post series: one section at a time
 - bring your checkout: reach out and we go over your story
 - the two earlier talks: metaprogramming; DDD, CQRS and TDD
 
