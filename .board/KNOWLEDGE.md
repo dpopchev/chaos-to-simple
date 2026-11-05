@@ -31,6 +31,7 @@
 - 2026-11-03 W-159: open: the map's policy bullets (fontsize 9) read small at slide size; a larger size or fewer words is the developer's call at the close
 - 2026-11-03 W-160: open: T-361 no longer draws the Brooks 9x quote under Chaos (02-stacey/README.md Decision) and leaves draw's plain parameter unused; restore the quote or retire it at the close
 - 2026-11-05 E-019: open: page 6 explains the arithmetic before any exhibit, against evidence before explanation; storyboard_ok pins the order and the talk is today -> left as is; a later root may move it after page 15
+- 2026-11-05 E-020: open: build/04-what/board.png and build/05-how/board.png are built by their section.mk rules and included by no frame -> remove the two rules and manifest rows, or show the stages, at the close
 - 2026-11-05 W-215: open: since 3abfb44 the 34 text exhibits render on the frame background, without the grey Shaded box they had at tiny (page 16 at 160 dpi); keep plain or restore a grey box in text-exhibits.lua is the developer's call
 
 ## Decisions
