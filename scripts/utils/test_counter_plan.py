@@ -82,6 +82,7 @@ def test_the_core_title_counts_the_invariant_tests() -> None:
     source = (ROOT / "06-simple/tests/test_core_paths.py").read_text(encoding="utf-8")
     body = source.split("class TestEveryCorePath:")[1]
     measured = 64 * len(re.findall(r"^    def test_", body, re.MULTILINE))
-    titles = [t for t, _ in frames("08") if t.startswith("Three invariants check 64 configurations")]
+    prefix = "Three invariants check 64 configurations"
+    titles = [t for t, _ in frames("08") if t.startswith(prefix)]
     expected = f"Three invariants check 64 configurations in {measured} test cases"
     assert titles == [expected]
