@@ -1,6 +1,6 @@
-# 02 Map: Stacey matrix, agreement on the What, certainty on the How
+# 02 Map: the failing test exposes a business disagreement
 
-## Engineering reads one sentence two ways: the cart before or after the coupon {paths=64}
+## Free shipping from 50 has two plausible meanings {paths=64}
 
 Logistics, week 6: "Free shipping from 50."
 
@@ -28,7 +28,7 @@ code picked the first and nobody chose. The next frame lets each of them say so 
 words, each with a test.
 :::
 
-## Marketing and logistics read free shipping differently, so no test settles it {paths=64}
+## Marketing and Logistics disagree about what the customer should pay {paths=64}
 
 
 Free shipping from 50. Of what?
@@ -91,7 +91,7 @@ the room decides, not a test. The developer's question comes before anyone agree
 agree the What first.
 :::
 
-## The shipping dispute sits above the line: a decision for the room, not a test {paths=64}
+## Stakeholders must choose the rule before developers can fix it {paths=64}
 
 :::: {.columns align=bottom}
 ::: {.column width="62%"}
