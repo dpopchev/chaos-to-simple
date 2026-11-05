@@ -20,6 +20,8 @@ _CLOSE = re.compile(r"^:{3,}\s*$")
 INCLUDE = re.compile(r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?P<attrs>[^}]*)")
 _ATTRIBUTE = re.compile(r"\s+(?P<name>snippet|cap|start-line|end-line)=(?P<value>[\w-]+)")
 _TEXT_FENCE = re.compile(r"^```\{[^}]*\.text\b")
+# A fence with no class renders as plain verbatim at body size, not at \snippetsize.
+_CLASSLESS_FENCE = re.compile(r"^```\{(?![^}]*\s\.\w)(?!\.)[^}]*\}")
 
 
 _STEP_MARKER = re.compile(r"\s*# \[step: \d\]\s*$")
@@ -103,7 +105,12 @@ def too_wide(
             if "snippet" in attrs:
                 text = snippet_text(text, attrs["snippet"])
             text = line_range(text, attrs.get("start-line"), attrs.get("end-line"))
-            points = EXHIBIT_POINTS if _TEXT_FENCE.match(line) else SNIPPET_POINTS
+            if _TEXT_FENCE.match(line):
+                points = EXHIBIT_POINTS
+            elif _CLASSLESS_FENCE.match(line):
+                points = BASE_POINTS
+            else:
+                points = SNIPPET_POINTS
             budget = int(full * percent / 100 * BASE_POINTS / points)
             found.extend(
                 f"{name} {heading}: {len(row)} > {budget}: {row}"

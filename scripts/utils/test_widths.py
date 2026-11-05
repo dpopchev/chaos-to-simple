@@ -50,6 +50,15 @@ def test_too_wide_budgets_a_code_block_at_the_snippet_size() -> None:
 
 
 @pytest.mark.view
+def test_a_classless_include_is_measured_at_body_size() -> None:
+    texts = {"a.py": "x" * 53 + "\n"}
+    slide = SLIDE.replace("{.python include=a.py}", "{include=a.py}")
+    assert too_wide(slide, texts.__getitem__, 104) == (
+        f"index.md Beside a figure: 53 > 52: {'x' * 53}",
+    )
+
+
+@pytest.mark.view
 def test_too_wide_names_a_line_past_its_column() -> None:
     texts = {"a.py": "short\n" + "x" * 90 + "\n"}
     assert too_wide(SLIDE, texts.__getitem__, 104) == (
