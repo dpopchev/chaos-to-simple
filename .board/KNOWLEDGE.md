@@ -43,4 +43,5 @@
 
 ## Deviations
 - 2026-11-05 E-020: T-505 Action amended after a blocked hand-back: the promise figure leaves the incident frame, the red run and the fix go side by side; Check unchanged; re-spawned one model up
+- 2026-11-05 E-020: T-510 Output widened to 01-bits/tests/test_chaos.py after a blocked hand-back: its two narrator docstrings are the exhibit step_test pins; Check unchanged; re-spawned one model up
 - 2026-11-05 E-020: overflow trims, Checks unchanged: T-494 terse 02 table; T-496-T-503 figures/captions shrunk; T-507 cols 42/58; T-497 07=3 frames; W-229, W-230 filed supersedes: E-020#v1, E-020#v2, E-020#v3, E-020#v4, E-020#v5, E-020#v6, E-020#v7, E-020#v8, E-020#v9
