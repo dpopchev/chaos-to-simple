@@ -18,7 +18,7 @@ belongs to one section. It is the only directory allowed to know the list of sec
 | `filters/story.lua` | renders the request box only (a `.request` Div); a storyboard `.diff .python` block goes through `diffs.lua` like every diff | the request box changes |
 | `filters/speakers.lua` | turns a `.speakers` block into a Verbatim with each actor label (full or first word) in its colour from `data/actors.csv`; `highlight=q3` sets that row bold; sized `\exhibitsize` (`\scriptsize`, text exhibits) | the colouring or the size changes |
 | `filters/paths-footer.lua` | turns `## Title {paths=64}` into the footer counter | never |
-| `index.md` | the opening: who is talking, the undivided business map and the agenda strip, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
+| `index.md` | the opening, four frames: who is talking, the agenda strip, the six-rules counting frame (its image built by `08-backup/section.mk`) and the undivided business map, each with its speaker notes; the title slide comes from `meta.yaml` | the opening changes |
 
 ## How a slide pulls code
 

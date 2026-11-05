@@ -6,13 +6,12 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 |---|---|
 | Minutes | 0 |
 | Footer counter | `512` on entry, `512` on exit |
-| Owns | the Stacey overview frame (moved from 00) and the sixteen frames of `08-backup/index.md`: the thirteen mechanism frames, six moved from `05-how/index.md` |
+| Owns | the Stacey overview frame (moved from 00) and the fifteen frames of `08-backup/index.md`: the twelve mechanism frames, six moved from `05-how/index.md` |
 | Uses | the artifacts of `05-how/section.mk` and the exhibits under `05-how/`; `data/rules.csv`, `data/questions.csv` and `data/examples.csv` for the board |
 | Produces | `build/08-backup/stacey-overview.png`, `build/08-backup/zones.tex`, `build/08-backup/counting.png` and `build/08-backup/board.png` (`section.mk`) |
 
 ## Slides
 
-- [x] Six rules add up to 7 for McCabe and multiply to 64 configurations: the sum and the product of the six ifs, moved from 01
 - [x] Agreement on the What and certainty on the How guide each move: the Stacey overview with its zone definitions, moved whole from 00
 - [x] Changing the call order changes the price: 45 against 44, from the same inputs
 - [x] This mutable checkout leaves discount order to its callers: a class hid the call order in its state, the same bug as I3 in pricing
