@@ -1,11 +1,11 @@
 # Board -- chaos-to-simple
 record: local
-open path: none   | blocked: 0 | todo roots: 1 | done: 698 | pruned: 9
+open path: W-215 > T-476   | blocked: 0 | todo roots: 0 | done: 698 | pruned: 9
 
 ## Tree
 
 ```text
-W-215  bug    [todo]     (standalone) Text exhibits render at tiny: pandoc 3.11 wraps .text in Shaded, the verbatim hook never fires -- T-476 [todo], T-477 [todo]
+W-215  bug    [doing]    (standalone) Text exhibits render at tiny: pandoc 3.11 wraps .text in Shaded, the verbatim hook never fires -- T-476 [doing]   <- ACTIVE LEAF, T-477 [todo]
 ```
 
 ## Closed
@@ -1268,13 +1268,14 @@ closed 2026-11-04 -- outcome: Given the deck, When make talk, Then the seam pict
 ## Diagram
 ```mermaid
 flowchart TD
-  W215["W-215 bug todo, standalone: Text exhibits render at tiny: pandoc 3.11 wraps .text in Shaded, the verbatim hook never fires"]
-  W215 --> T476["T-476 todo: Set the text exhibits at the exhibit size -> 00-frontmatter/filters/text-exhibits.lua and the five frames re-fitted"]
+  W215["W-215 bug doing, standalone: Text exhibits render at tiny: pandoc 3.11 wraps .text in Shaded, the verbatim hook never fires"]
+  W215 --> T476["T-476 doing: Set the text exhibits at the exhibit size -> 00-frontmatter/filters/text-exhibits.lua and the five frames re-fitted -- ACTIVE LEAF"]
   W215 --> T477["T-477 todo: Retire the dead verbatim hook -> 00-frontmatter/preamble.tex without AtBeginEnvironment{verbatim}"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W215,T476,T477 todo
+  class W215,T476 doing
+  class T477 todo
 ```
