@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-233   | blocked: 0 | todo roots: 0 | done: 760 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 761 | pruned: 9
 
 ## Tree
-
-```text
-W-233  bug    [doing]    (standalone) make widths reads a classless include as classed when an attribute value holds a space-dot-word   (filed during T-515) -- T-517 [done]
-```
 
 ## Closed
 
@@ -1380,16 +1376,18 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command gr
 
 - T-516 [done] Shorten the fix heading -> 05-how/index.md
 
+### W-233 bug [done] (standalone) make widths reads a classless include as classed when an attribute value holds a space-dot-word
+
+closed 2026-11-05 -- outcome: Given a classless include whose heading value holds ' .x' and whose line overflows its body-size column, When make widths runs, Then it names that line. -- ledger: ledgers/W-233.md
+
+- T-517 [done] Ignore quoted values in the classless fence test -> scripts/utils/widths.py and scripts/utils/test_widths.py
+
 ## Diagram
 ```mermaid
 flowchart TD
-  W233["W-233 bug doing, standalone: make widths reads a classless include as classed when an attribute value holds a space-dot-word"]
-  W233 --> T517["T-517 done: Ignore quoted values in the classless fence test -> scripts/utils/widths.py and scripts/utils/test_widths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W233 doing
-  class T517 done
 ```
