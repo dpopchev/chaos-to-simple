@@ -17,7 +17,7 @@ red, then green: q5 was decided in the room and not yet in the code when the ref
 :::
 ::: {.column width="50%"}
 
-```{.python heading="the fix, in the shell (v5): reserve first, every answer a value" include=05-how/s05_how/checkout_v5.py start-line=56 end-line=60}
+```{.python heading="the fix (v5): reserve first, every answer a value" include=05-how/s05_how/checkout_v5.py start-line=56 end-line=60}
 ```
 
 ```{.text heading="the regression, green against v5" include=build/05-how/i3-green.txt}
