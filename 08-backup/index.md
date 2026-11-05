@@ -28,7 +28,7 @@
 cyclomatic complexity adds: decisions + 1 = 7 (McCabe, 1976), the basis paths a branch suite walks; the rules multiply: 2^6 = 64 input configurations, one per combination of the six conditions; the same six ifs, one sum and one product
 
 ::: notes
-The arithmetic, for the Q&A. Every policy request is one bit, and every bit doubles the
+The arithmetic, for the Q&A. Every rule is one bit, and every bit doubles the
 configurations. Walk the diagram left to right: two sequential ifs multiply, 2 x 2, into four
 configurations, bits 00 to 11; the if/elif adds, 2 + 1, into three; the general form is the
 product of each block's alternatives. Compare with the cyclomatic number: it adds, decisions + 1
@@ -141,7 +141,7 @@ Every answer is a value the caller can match on, so the order stops living in st
 ::::
 
 ::: notes
-Each answer is its own type: Charged or Declined, Reserved or OutOfStock, Sent or Bounced.
+Each outcome is its own type: Charged or Declined, Reserved or OutOfStock, Sent or Bounced.
 A fake is a plain class with the same method. It never inherits from the port, and pyright accepts it anyway: zero errors.
 The test doubles carry one bit each, so a shell test can enumerate the world.
 :::
@@ -227,7 +227,7 @@ Guard clauses and sum types add paths you can count; flags and mutable state hid
 values in, values out: explicit data across the seam, no hidden mutable state, no I/O
 
 ::: notes
-Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port; the shell sequences the effects and handles their failures, policies of its own. Outcome is the shell's own answer, Accepted or Rejected, a value too.
+Request holds every decision the core needs: the skus, the coupon, the member flag, the zone, the VAT id. Priced holds every result that comes back out: goods, shipping, total. The core never sees a port; the shell sequences the effects and handles their failures, rules of its own. Outcome is the shell's own answer, Accepted or Rejected, a value too.
 :::
 
 ## Three invariants check 64 configurations in 192 test cases {paths=512}

@@ -1,4 +1,4 @@
-# 01 Bits: six decisions outgrow the confidence of two tests
+# 01 Bits: six business rules outgrow the confidence of two tests
 
 ## We begin with one checkout flow and two tests: one path {paths=1}
 
@@ -26,13 +26,13 @@
 
 ::: notes
 The customer asked for the plain checkout: pick the books, pay, get them shipped. The left
-column is the skeleton with the three calls and no policy, so the footer reads 1 path. The
+column is the skeleton with the three calls and no rule, so the footer reads 1 path. The
 right column is the tests, a regular order and an empty cart; both pass on the one path, so
 the footer still reads 1 path. Read the customer's line aloud, then say that the tests come
-before the policies, not after them.
+before the rules, not after them.
 :::
 
-## The coupon adds a decision without adding a test: 2 paths {paths=2}
+## The coupon adds a rule without adding a test: 2 paths {paths=2}
 
 
 ::: {.request}
@@ -59,8 +59,8 @@ before the policies, not after them.
 
 ::: notes
 One breath: the request aloud, the + line, the footer.
-Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first policy
-request adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
+Marketing asked for the autumn coupon: 10 EUR off with the code AUTUMN. The first rule, the coupon,
+adds a coupon that is valid until a date, so the footer doubles to 2 paths. Read
 the marketing line aloud and ask who thinks it is a small change. The diffs show the change
 alone, the scope row above it.
 :::
@@ -92,12 +92,12 @@ alone, the scope row above it.
 
 ::: notes
 One breath: the request aloud, the + line, the footer. The loyalty program asked for 10 percent off for members, after the coupon. The second
-policy request adds a decision about membership, so the footer doubles to 4 paths. Read
+rule, membership, adds a discount for members, so the footer doubles to 4 paths. Read
 the loyalty line aloud and point out that the two discounts now stack. The diffs show the
 change alone, the scope row above it.
 :::
 
-## Free shipping adds a threshold decision to checkout: 8 paths, two tests {paths=8}
+## Free shipping adds a threshold rule to checkout: 8 paths, two tests {paths=8}
 
 
 ::: {.request}
@@ -126,7 +126,7 @@ change alone, the scope row above it.
 
 ::: notes
 One breath: the request aloud, the + line, the footer. Logistics asked for free shipping from 50 EUR, because carts are left over 5 EUR of
-postage. The third policy request adds a threshold on the subtotal, so the footer doubles
+postage. The third rule, free shipping, adds a threshold on the subtotal, so the footer doubles
 to 8 paths. Read the logistics line aloud and ask the room why the carts are left. The
 diffs show the change alone, the scope row above it.
 :::
@@ -160,7 +160,7 @@ diffs show the change alone, the scope row above it.
 
 ::: notes
 One breath: the request aloud, the + line, the footer. Logistics adds the rate abroad: 20 EUR, not 5, because every parcel to Vienna loses money.
-The fourth policy request sends a second destination down its own path, so the footer
+The fourth rule, international delivery, sends a second destination down its own path, so the footer
 doubles to 16 paths. Read the second logistics line aloud and say that the shipping rules
 now branch twice. The diffs show the change alone, the scope row above it.
 :::
@@ -191,13 +191,13 @@ now branch twice. The diffs show the change alone, the scope row above it.
 ::::
 
 ::: notes
-One breath: the request aloud, the + line, the footer. Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth policy
-request adds an optional extra to the total, so the footer doubles to 32 paths. Read the
+One breath: the request aloud, the + line, the footer. Marketing asked for gift wrap at 3 EUR, with just one more change. The fifth rule,
+gift wrap, adds an optional extra to the total, so the footer doubles to 32 paths. Read the
 marketing line aloud, the one that promised just one more. The diffs show the change alone,
 the scope row above it.
 :::
 
-## VAT status completes the six decisions: 64 paths, still two tests {paths=64}
+## VAT status completes the six rules: 64 paths, still two tests {paths=64}
 
 
 ::: {.request}
@@ -226,7 +226,7 @@ the scope row above it.
 
 ::: notes
 One breath: the request aloud, the + line, the footer. Accounting asked for no VAT on companies with a VAT ID, and legal says this week. The sixth
-policy request adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
+rule, VAT, adds the VAT rate, so the footer doubles to 64 paths. Read the accounting
 line aloud. The diffs show the change alone, the scope row above it.
 :::
 

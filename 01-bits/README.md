@@ -54,12 +54,12 @@ campaign on time, one if at a time.
 ## Slides
 
 - [x] 1. We begin with one checkout flow and two tests: one path (paths=1): the customer's bubble full width, then `step-0.diff` beside `test-0.diff`
-- [x] 2. The coupon adds a decision without adding a test: 2 paths (paths=2): marketing's AUTUMN coupon, `tally-1.txt` over `step-1.diff`
+- [x] 2. The coupon adds a rule without adding a test: 2 paths (paths=2): marketing's AUTUMN coupon, `tally-1.txt` over `step-1.diff`
 - [x] 3. Member pricing depends on the coupon coming first: 4 paths, two tests (paths=4): the loyalty program's member discount, `tally-2.txt` over `step-2.diff`
-- [x] 4. Free shipping adds a threshold decision to checkout: 8 paths, two tests (paths=8): free shipping from 50 EUR, `tally-3.txt` over `step-3.diff`
+- [x] 4. Free shipping adds a threshold rule to checkout: 8 paths, two tests (paths=8): free shipping from 50 EUR, `tally-3.txt` over `step-3.diff`
 - [x] 5. International delivery changes the code, not the test total: 16 paths (paths=16): shipping abroad at 20 EUR, `tally-4.txt` over `step-4.diff`
 - [x] 6. Gift wrap becomes another exception for checkout to manage: 32 paths, two tests (paths=32): gift wrap at 3 EUR, `tally-5.txt` over `step-5.diff`
-- [x] 7. VAT status completes the six decisions: 64 paths, still two tests (paths=64): the VAT ID rule, the accounting bubble beside `tally-6.txt` over `step-6.diff`
+- [x] 7. VAT status completes the six rules: 64 paths, still two tests (paths=64): the VAT ID rule, the accounting bubble beside `tally-6.txt` over `step-6.diff`
 - [x] 8. I was ready to ship on the strength of two tests (paths=64): the dev and marketing bubbles over the question "How many tests would make you sure?"
 - [x] 9. Two tests cover every branch but only 2 of 64 combinations (paths=64): the two `test_chaos` tests beside `grid.png`, the caption and `coverage-summary.txt`
 - [x] 10. 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill (paths=64): `finance.png` titled with the October totals, marketing's squeeze bubble as the last line

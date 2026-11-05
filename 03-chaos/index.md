@@ -11,12 +11,12 @@ One order, one afternoon. Maria buys two books and the coupon goes to Sofia, who
 order for her. Follow the order left to right: the cart, the coupon, the free-shipping line,
 the member discount, the payment, the warehouse, the mail.
 The line is how sure the room was. In the retro the room replayed Maria's order step by step
-and scored each step: an unwritten rule costs 1, an unhandled answer of an effect costs 2.
+and scored each step: an unwritten rule costs 1, an unhandled provider outcome costs 2.
 It drops at every step that raised a question, q1 to q6, in the order the room asked them.
 Each drop is a place where the rule was not written down yet.
 :::
 
-## The room surfaces three unwritten rules and three unhandled provider answers {paths=64}
+## The room surfaces three unwritten rules and three unhandled provider outcomes {paths=64}
 
 
 ```{.text .speakers include=03-chaos/data/room.txt cap=12}

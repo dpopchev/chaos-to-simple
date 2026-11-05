@@ -21,7 +21,7 @@ Thirty seconds. The quote is the whole talk in one sentence: the five ifs were n
 Then the customer's problem, next frame.
 :::
 
-## Every request and every provider answer lands in one checkout function {paths=?}
+## Every request and every provider outcome lands in one checkout function {paths=?}
 
 ![](build/00-frontmatter/business-map-undivided.png){width=100%}
 

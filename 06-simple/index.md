@@ -68,7 +68,7 @@ Marketing changes the member discount: pricing and marketing agree; shipping app
 \thread{4}
 
 ::: notes
-Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's answer to Charged | Declined and pyright stays at zero errors.
+Operations changes the payment provider: operations and the shell owner agree; the core, pricing and shipping are untouched; the adapter maps the provider's outcome to Charged | Declined and pyright stays at zero errors.
 :::
 
 ## Digital-only orders add one delivery-charge rule to shipping: a fourth bit {paths=72}
@@ -111,7 +111,7 @@ for this example we change the delivery-charge rule for a digital-only order: 16
 
 ::: notes
 Marketing's seventh request, digital books: it has a place to start, shipping.
-For this example we change the delivery-charge policy for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
+For this example we change the delivery-charge rule for a digital-only order; mixed baskets, gift wrap on a digital item, stock reservation, digital delivery and tax treatment are separate decisions, not shown.
 The small diff is the shipping change; the next frame shows its highlight.
 :::
 

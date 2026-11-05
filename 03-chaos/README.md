@@ -14,7 +14,7 @@ find the three bits hiding behind the effects; the honest count is 9 bits, 512 p
 ## Slides
 
 - [x] Replaying one order reveals six unanswered business questions: the journey of one order, `build/03-chaos/diagrams/journey.png`
-- [x] The room surfaces three unwritten rules and three unhandled provider answers: the chat log in 12 lines, dated week 16, Tue 2026-11-10, `03-chaos/data/room.txt`
+- [x] The room surfaces three unwritten rules and three unhandled provider outcomes: the chat log in 12 lines, dated week 16, Tue 2026-11-10, `03-chaos/data/room.txt`
 - [x] Every question gains a rule and an owner: q3 after the discount, Logistics: the `\moment{AGREED}` line, the retro, the six questions as a table, `build/03-chaos/retro.txt`
 - [x] Three provider outcomes join the six rules: nine bits, 512 configurations, not 64 (frame 4): `build/03-chaos/grid-9.png`, `build/data/counts.txt`
 - [x] Every hidden decision is now on the board: nine sentences, their homes still to come: `build/03-chaos/board.png` as a starting inventory, the `\theline` at its foot
