@@ -1,6 +1,6 @@
-# 04 Homes: one language, bounded contexts
+# 04 Homes: the business decisions suggest the structure
 
-## Coloring every line by who asked for it shows which context each if belongs to {paths=512}
+## Tracing each line to who asked for it reveals candidate policy boundaries {paths=512}
 
 ![](build/04-what/colorcode.png){height=80%}
 
@@ -11,7 +11,7 @@ The right bar is the home, and the legend names its kind: core, supporting or ge
 This is how the code will move, one home at a time.
 :::
 
-## One renamed value, the discounted goods, closes I1 and draws the first boundary {paths=512}
+## Reading the discounted goods, not the cart, fixes the 55 EUR coupon order {paths=512}
 
 
 :::: {.columns}
@@ -36,10 +36,10 @@ q3 fixed: the threshold reads the discounted goods, a value pricing returns, the
 
 ::: notes
 The threshold now reads the discounted goods, so I1 closes.
-The diff is the whole fix: one name changes, and the rest of the function stays as it was.
+The diff is the whole fix: the condition now reads the discounted goods, a different value, and the rest of the function stays as it was.
 :::
 
-## Shipping owns the dispute's rule and a sum type lets the checker count its bit {paths=512}
+## Shipping owns eligibility and applies the threshold to the discounted goods {paths=512}
 
 
 ```{.text include=build/04-what/dispute.txt}
@@ -69,7 +69,7 @@ Zone has two states, so the type is a sum and not a flag: a state with no case i
 Live: delete the INTERNATIONAL case in base_fee and run uv run pyright: the type checker counts the bit. Put it back.
 :::
 
-## Each bit now has a home in pricing, shipping, tax or shell, named by who asked {paths=512}
+## Checkout delegates its calculations to pricing, shipping and tax, effects still inline {paths=512}
 
 
 :::: {.columns}
@@ -100,7 +100,7 @@ Every bit has a home and a face: each context names the people who asked for its
 The file is checkout_v4.py if anyone asks; the deck counts versions.
 :::
 
-## All nine decisions moved home: core and supporting the What, generic adapted at the shell {paths=512}
+## The map gives all nine decisions a home: 2 core, 6 supporting, 1 generic {paths=512}
 
 ![](build/04-what/moves.png){width=80%}
 
