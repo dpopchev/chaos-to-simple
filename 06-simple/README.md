@@ -17,7 +17,7 @@ out the order, then the evidence the business recognizes: 64 core paths, 8 shell
 Six frames, each with speaker notes.
 
 - [x] We calculate the offer without carrying out the order: `build/06-simple/responsibilities.png` beside `snippet=price` (core.py), the caption "this has a name: functional core, imperative shell -- the team exercises pricing without ..."
-- [x] Agreed promises now have concrete examples and traceable evidence: `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
+- [x] Agreed promises now have concrete examples and traceable evidence: `build/06-simple/row-b2.png` (the free-shipping row with its evidence), `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
 - [x] A pricing change to 15% leaves the shipping code unchanged: the change rehearsal, the member discount diff on the muted pictures, then `snippet=crossing` (`tests/test_member15.py`): the 57 EUR member order ships free at 10% and pays 5 at 15%
 - [x] A stable payment contract lets us replace the provider: the change rehearsal, the gateway swap on the muted pictures
 - [x] Digital-only orders add one delivery-charge rule to shipping: a fourth bit: the seventh request, dated week 15 of the shop's calendar and narrowed to the delivery-charge rule for a digital-only order, run RED (`seventh-red.txt`: the agreed example against the shipped fee, a strict xfail in `tests/test_seventh.py`) then GREEN (`seventh-green.txt`) beside `seventh.diff`

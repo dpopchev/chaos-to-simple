@@ -63,11 +63,11 @@ stock is gone. The number is now true: 2^9 = 512. The bigger number is the first
 The right side is the plain matrix of 03, arrows from 01: the What is agreed, the How is open.
 :::
 
-## Every one of the nine decisions is kept and moves to a responsible home {paths=512}
+## Every hidden decision is now on the board: nine sentences, their homes still to come {paths=512}
 
 ![](build/03-chaos/board.png){width=100%}
 
-\footnotesize nine rows, nine bits: 2^9 = 512 until every row has a home
+\footnotesize a starting inventory: nine rows, nine bits, 2^9 = 512; home, contract and evidence fill in over 04 to 06
 
 \theline{Counting makes it worse}{You cannot shrink a count you have not made. The bigger number is the first good news.}
 

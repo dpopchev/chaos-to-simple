@@ -71,7 +71,8 @@ build/03-chaos/retro.txt,txt,scripts.paths retro
 build/05-how/policies.txt,txt,scripts.paths policies
 build/05-how/bubble-0.txt,txt,scripts.paths bubbles
 build/05-how/bubble-1.txt,txt,scripts.paths bubbles
-build/04-what/dispute.txt,txt,scripts.paths retro --only q3
+build/04-what/row-b2.png,png,scripts.figures board --stage 04 --row b2
+build/06-simple/row-b2.png,png,scripts.figures board --stage 06 --row b2
 build/03-chaos/grid-9.png,png,scripts.figures grid-panels
 build/03-chaos/doubling-512.png,png,scripts.figures doubling --room
 build/03-chaos/board.png,png,scripts.figures board --stage 03

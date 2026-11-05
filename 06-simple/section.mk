@@ -34,6 +34,12 @@ $(BUILD)/06-simple/paths.png: $(PALETTE) $(RULES) scripts/paths.py scripts/utils
 	@$(RUN) python -m scripts.paths chart --rules $(RULES) --out $@
 	$(call log_done,$@ written)
 
+ARTIFACTS += $(BUILD)/06-simple/row-b2.png
+
+$(BUILD)/06-simple/row-b2.png: $(PALETTE) data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures board --stage 6 --row b2 --out $@
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/06-simple/seventh.diff $(BUILD)/06-simple/worlds.txt
 
 $(BUILD)/06-simple/worlds.txt: $(wildcard 04-what/s04_what/*.py) $(wildcard 05-how/s05_how/*.py) \

@@ -73,8 +73,8 @@ $(BUILD)/04-what/fix-run.txt: 04-what/section.mk 04-what/s04_what/checkout_fixed
 	rm -f $$log
 	$(call log_done,$@ written)
 
-ARTIFACTS += $(BUILD)/04-what/dispute.txt
+ARTIFACTS += $(BUILD)/04-what/row-b2.png
 
-$(BUILD)/04-what/dispute.txt: $(PALETTE) data/questions.csv data/rules.csv data/contexts.csv scripts/paths.py scripts/utils/retro.py scripts/utils/paths.py
-	@$(RUN) python -m scripts.paths retro --only q3 --questions data/questions.csv --rules data/rules.csv --out $@
+$(BUILD)/04-what/row-b2.png: $(PALETTE) data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures board --stage 4 --row b2 --out $@
 	$(call log_done,$@ written)

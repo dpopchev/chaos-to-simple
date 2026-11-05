@@ -44,8 +44,7 @@ This is how the code will move, one home at a time.
 
 \moment{REFACTOR}{shipping\_fee extracted under a green test; the 55 EUR regression stays green}
 
-```{.text include=build/04-what/dispute.txt}
-```
+![](build/04-what/row-b2.png){width=70%}
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -64,8 +63,6 @@ This is how the code will move, one home at a time.
 
 :::
 ::::
-
-the rule belongs to shipping, Zone is a sum type: the checker counts that bit
 
 ::: notes
 The sentence decided in the room is now a value. coupon.is_valid_on(today), in pricing.py, is the q1 sentence.
@@ -105,11 +102,11 @@ Every bit has a home and a face: each context names the people who asked for its
 The file is checkout_v4.py if anyone asks; the deck counts versions.
 :::
 
-## The map gives all nine decisions a home: 2 core, 6 supporting, 1 generic {paths=512}
+## Each business question now has a responsible home: pricing, shipping, fulfilment, tax {paths=512}
 
 ![](build/04-what/moves.png){width=80%}
 
-core and supporting: the What, in three homes; generic: adapted at the shell
+core and supporting: the What, in three homes; tax is generic by business classification and computed in the functional core; the provider ports are adapted at the shell
 
 ::: notes
 Pricing is the core; shipping and fulfilment are supporting, so the What spans three homes.

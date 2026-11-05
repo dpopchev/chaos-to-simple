@@ -22,17 +22,14 @@ The shell has its own obligations: acceptance, rejection and sequencing.
 
 \footnotesize I1 shipping eligibility uses the discounted goods; I2 the disputed reading has a decision and an owner; I3 unavailable stock prevents payment
 
+![](build/06-simple/row-b2.png){width=55%}
+
 ```{.text include=build/06-simple/cards.txt}
 ```
 
 \vspace{-4pt}
 
-\footnotesize 64 core paths, 8 shell worlds, 2 named regression checks and 1 recorded decision
-
-```{.text include=build/data/splits.txt}
-```
-
-two examples now have named regression checks; the dispute has a recorded decision and owner
+\footnotesize 72 = 64 + 8 and 22 = 4 + 8 + 2 + 8 are local decomposition counts: each home tested alone against its contract, the shell against fakes, the integration checks separate
 
 \thread{5}
 
