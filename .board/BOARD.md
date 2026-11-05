@@ -1,12 +1,8 @@
 # Board -- chaos-to-simple
 record: local
-open path: W-231   | blocked: 0 | todo roots: 0 | done: 758 | pruned: 9
+open path: none   | blocked: 0 | todo roots: 0 | done: 759 | pruned: 9
 
 ## Tree
-
-```text
-W-231  bug    [doing]    (standalone) make widths passes an include with no class that renders at body size and clips   (filed during T-505) -- T-515 [done]
-```
 
 ## Closed
 
@@ -1368,6 +1364,12 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command gr
 
 - T-514 [done] Split the evidence frame -> 06-simple/index.md
 
+### W-231 bug [done] (standalone) make widths passes an include with no class that renders at body size and clips
+
+closed 2026-11-05 -- outcome: Given an include with no class whose line overflows its column, When make widths runs, Then it names that line. -- ledger: ledgers/W-231.md
+
+- T-515 [done] Measure classless includes at body size -> scripts/utils/widths.py and scripts/utils/test_widths.py
+
 ### W-232 bug [done] (standalone) 05's incident frame: the fix heading runs 10pt past its column (Overfull hbox), unseen by make overflow
 
 closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command grep -c 'Overfull .hbox' local/state/overflow/talk.log follows, Then it prints 0. -- ledger: ledgers/W-232.md
@@ -1377,13 +1379,9 @@ closed 2026-11-05 -- outcome: Given the deck, When make talk runs and command gr
 ## Diagram
 ```mermaid
 flowchart TD
-  W231["W-231 bug doing, standalone: make widths passes an include with no class that renders at body size and clips"]
-  W231 --> T515["T-515 done: Measure classless includes at body size -> scripts/utils/widths.py and scripts/utils/test_widths.py"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
   classDef blocked fill:#ffe3e3,stroke:#c92a2a,color:#000;
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class W231 doing
-  class T515 done
 ```
