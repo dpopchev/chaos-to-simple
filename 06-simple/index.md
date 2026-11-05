@@ -27,12 +27,12 @@ The shell has its own obligations: acceptance, rejection and sequencing.
 
 \vspace{-4pt}
 
-\footnotesize 64 core paths, 8 shell worlds, 3 named regression checks
+\footnotesize 64 core paths, 8 shell worlds, 2 named regression checks and 1 recorded decision
 
 ```{.text include=build/data/splits.txt}
 ```
 
-the tests now record promises the business recognizes; these examples now have named regression checks
+two examples now have named regression checks; the dispute has a recorded decision and owner
 
 \thread{5}
 
