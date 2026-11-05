@@ -82,8 +82,30 @@ for this example we change the delivery-charge policy for a digital-only order
 
 \begingroup\scriptsize separate decisions, not shown: mixed baskets, gift wrap on a digital item, stock reservation, digital delivery, tax treatment\par\endgroup
 
+::::: {.columns}
+:::: {.column width="42%"}
+
+\moment{RED}{the agreed example, a digital-only order ships free, fails against the shipped fee}
+
+```{.python heading="the agreed example" include=06-simple/tests/test_seventh.py snippet=seventh-red}
+```
+
+```{.text include=build/06-simple/seventh-red.txt}
+```
+
+::::
+:::: {.column width="58%"}
+
 ```{.diff include=build/06-simple/seventh.diff cap=12}
 ```
+
+\moment{GREEN}{the rule lands in shipping; the example passes}
+
+```{.text include=build/06-simple/seventh-green.txt}
+```
+
+::::
+:::::
 
 ::: notes
 Marketing's seventh request, digital books: it has a place to start, shipping.

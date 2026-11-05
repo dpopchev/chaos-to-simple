@@ -10,8 +10,21 @@ from s04_what.shipping import shipping_fee as shipped_fee
 from s06_simple.seventh import shipping_fee
 
 
+@pytest.mark.xfail(strict=True, reason="the shipped fee has no digital rule")
+# [snippet: seventh-red]
+def test_digital_order_against_the_shipped_fee() -> None:
+    assert shipped_fee(eur(20), Zone.DOMESTIC, False) == eur(0)
+
+
+# [/snippet]
+
+
+# [snippet: seventh-green]
 def test_digital_ships_free() -> None:
     assert shipping_fee(eur(20), Zone.INTERNATIONAL, True, True) == eur(0)
+
+
+# [/snippet]
 
 
 @pytest.mark.parametrize("bits", range(16), ids=lambda b: f"{b:04b}")

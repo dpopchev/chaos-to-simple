@@ -48,6 +48,34 @@ $(BUILD)/06-simple/seventh.diff: $(PALETTE) 04-what/s04_what/shipping.py 06-simp
 		--name shipping_fee --version 11 --policies 4 --paths 16 --compact --out $@
 	$(call log_done,$@ written)
 
+# The seventh request's two runs: the agreed example fails against the shipped fee (status 1),
+# then passes against the new rule (status 0); the timings are dropped.
+ARTIFACTS += $(BUILD)/06-simple/seventh-red.txt $(BUILD)/06-simple/seventh-green.txt
+
+$(BUILD)/06-simple/seventh-red.txt: 06-simple/section.mk 06-simple/tests/test_seventh.py \
+    04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py
+	@mkdir -p $(@D)
+	@tmp=$$(mktemp); status=0; \
+	$(RUN) pytest 06-simple/tests/test_seventh.py --runxfail -q --no-header -p no:cacheprovider \
+	  -k test_digital_order_against_the_shipped_fee > $$tmp 2>&1 || status=$$?; \
+	if [ "$$status" -ne 1 ]; then cat $$tmp; rm -f $$tmp; \
+	  echo "seventh-red: expected pytest status 1 (one failed test), got $$status" >&2; exit 1; fi; \
+	grep -E '^E +(Assertion|assert)|^[0-9]+ failed' $$tmp | sed -E 's/^E +(AssertionError: )?//; s/, [0-9]+ (deselected|warnings?)//g; s/ in [0-9.]+s.*$$//' > $@; \
+	rm -f $$tmp
+	$(call log_done,$@ written)
+
+$(BUILD)/06-simple/seventh-green.txt: 06-simple/section.mk 06-simple/tests/test_seventh.py \
+    04-what/s04_what/shipping.py 06-simple/s06_simple/seventh.py
+	@mkdir -p $(@D)
+	@tmp=$$(mktemp); status=0; \
+	$(RUN) pytest 06-simple/tests/test_seventh.py -q --no-header -p no:cacheprovider \
+	  -k test_digital_ships_free > $$tmp 2>&1 || status=$$?; \
+	if [ "$$status" -ne 0 ]; then cat $$tmp; rm -f $$tmp; \
+	  echo "seventh-green: pytest exited $$status, expected 0 (the rule passes)" >&2; exit 1; fi; \
+	grep -E '^[0-9]+ passed' $$tmp | sed -E 's/, [0-9]+ (deselected|warnings?)//g; s/ in [0-9.]+s$$//' > $@; \
+	rm -f $$tmp
+	$(call log_done,$@ written)
+
 ARTIFACTS += $(BUILD)/06-simple/member15.diff
 
 $(BUILD)/06-simple/member15.diff: $(PALETTE) 04-what/s04_what/pricing.py 06-simple/s06_simple/member15.py scripts/paths.py scripts/utils/stagediff.py 06-simple/section.mk

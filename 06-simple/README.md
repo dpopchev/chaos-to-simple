@@ -20,7 +20,7 @@ Six frames, each with speaker notes.
 - [x] Agreed promises now have concrete examples and traceable evidence: `build/06-simple/cards.txt` (I1, I2, I3) and `build/data/splits.txt`, the counter reveals 72
 - [x] Raising the member discount to 15% leaves shipping untouched: the change rehearsal, the member discount diff on the muted pictures
 - [x] A stable payment contract lets us replace the provider: the change rehearsal, the gateway swap on the muted pictures
-- [x] The digital-only delivery charge lands in shipping as a fourth bit, 16 paths: the seventh request, narrowed to the delivery-charge policy for a digital-only order
+- [x] The digital-only delivery charge lands in shipping as a fourth bit, 16 paths: the seventh request, narrowed to the delivery-charge policy for a digital-only order, run RED (`seventh-red.txt`: the agreed example against the shipped fee, a strict xfail in `tests/test_seventh.py`) then GREEN (`seventh-green.txt`) beside `seventh.diff`
 - [x] The next if starts with ownership and discovery: the closing frame, ending on the 06 line
 
 ## Live
