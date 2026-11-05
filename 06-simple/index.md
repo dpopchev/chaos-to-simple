@@ -41,14 +41,17 @@ Each card reads agreed example, customer outcome, passing check; I2 closes by a 
 512 became 72: 64 core paths plus 8 shell worlds, nothing deleted, every decision moved to the place that owns it.
 :::
 
-## Raising the member discount to 15% leaves shipping untouched {paths=72}
+## A pricing change to 15% leaves the shipping code unchanged {paths=72}
 
-![](build/06-simple/responsibilities-offer-pricing.png){width=70%}
+![](build/06-simple/responsibilities-offer-pricing.png){width=40%}
 
 ```{.diff include=build/06-simple/member15.diff cap=10}
 ```
 
-\footnotesize shipping eligibility may move; shipping applies its own rule to the new value, unchanged
+```{.python heading="the same order, two discounts" include=06-simple/tests/test_member15.py snippet=crossing}
+```
+
+\footnotesize shipping's rule did not change; its input did: the 57 EUR member order ships free at 10% and pays 5 at 15%
 
 ::: notes
 Marketing changes the member discount: pricing and marketing agree; shipping applies its own rule to the new value; the factor changes, the signature and the contract stay.
