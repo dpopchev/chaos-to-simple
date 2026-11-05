@@ -6,7 +6,7 @@
 ```{.text include=05-how/data/incident.txt}
 ```
 
-![](build/05-how/promise.png){height=45%}
+![](build/05-how/promise.png){height=43%}
 
 the red test, as evidence: reserve before charge (q5)
 

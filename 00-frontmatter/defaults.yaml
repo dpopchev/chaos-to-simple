@@ -13,6 +13,7 @@ filters:
   - 00-frontmatter/filters/story.lua
   - 00-frontmatter/filters/diffs.lua
   - 00-frontmatter/filters/speakers.lua
+  - 00-frontmatter/filters/text-exhibits.lua
   - 00-frontmatter/filters/paths-footer.lua
 resource-path:
   - .

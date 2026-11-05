@@ -25,6 +25,8 @@ The shell has its own obligations: acceptance, rejection and sequencing.
 ```{.text include=build/06-simple/cards.txt}
 ```
 
+\vspace{-4pt}
+
 \footnotesize 64 core paths, 8 shell worlds, 3 named regression checks
 
 ```{.text include=build/data/splits.txt}

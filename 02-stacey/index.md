@@ -53,7 +53,7 @@ Free shipping from 50. Of what?
 :::
 ::::
 
-\vspace{6pt}
+\vspace{4pt}
 
 :::: {.columns}
 ::: {.column width="47%"}
