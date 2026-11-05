@@ -173,7 +173,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     )
     parser.add_argument("--name", default=None, help="tally-code, diff: the function's name")
     parser.add_argument("--version", type=int, default=None, help="tally: the checkout version")
-    parser.add_argument("--policies", type=int, default=None, help="tally: the policy count")
+    parser.add_argument("--policies", type=int, default=None, help="tally: the rule count")
     parser.add_argument("--paths", type=int, default=None, help="tally: the path count")
     parser.add_argument(
         "--tests-dir", type=Path, action="append", default=[], help="tally: a tests dir (repeat)"

@@ -110,7 +110,7 @@ def _view(heading: str, before: list[str], after: list[str], n: int) -> str:
 def step_view(source: str, n: int) -> str:
     """Return the checkout at step n: a heading, then the scope row and the +/- rows.
 
-    The heading is 'checkout vN: N policies, <2**N> paths, L lines' ('1 policy' for N = 1).
+    The heading is 'checkout vN: N rules, <2**N> paths, L lines' ('1 rule' for N = 1).
     Step 0 is every row as +.
     """
     heading = code_tally("checkout", n, n, 2**n, code_length(source, n))
@@ -140,10 +140,10 @@ def step_diff(source: str, n: int) -> str:
     return "\n".join(body) + "\n"
 
 
-def code_tally(name: str, version: int, policies: int, paths: int, lines: int) -> str:
-    """Return '<name> v<version>: P policies, N paths, L lines' ('1 policy' at 1)."""
-    noun = "policy" if policies == 1 else "policies"
-    return f"{name} v{version}: {policies} {noun}, {paths} paths, {lines} lines"
+def code_tally(name: str, version: int, rules: int, paths: int, lines: int) -> str:
+    """Return '<name> v<version>: P rules, N paths, L lines' ('1 rule' at 1)."""
+    noun = "rule" if rules == 1 else "rules"
+    return f"{name} v{version}: {rules} {noun}, {paths} paths, {lines} lines"
 
 
 def tests_tally(version: int, tests: int, lines: int) -> str:
@@ -208,14 +208,14 @@ def step_test(source: str, n: int) -> str:
     regular = run_checkout(source, n, everything=False).quantize(CENT)
     head = [
         "def test_regular_order() -> None:",
-        '    """The customer: one 40 EUR book, domestic, no policy asked for."""',
+        '    """The customer: one 40 EUR book, domestic, no rule asked for."""',
         '    order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")',
         "    total = checkout(order, TODAY, charge, reserve, send)",
         f'    assert total == Decimal("{regular}")',
         "",
         "",
         "def test_order_with_everything() -> None:",
-        '    """Every policy on: coupon, member, abroad, gift wrap, VAT ID."""',
+        '    """Every rule on: coupon, member, abroad, gift wrap, VAT ID."""',
         "    order = Order(",
         '        lines=[Line("book", Decimal(60)), Line("pen", Decimal(40))],',
         '        email="a@example.com",',

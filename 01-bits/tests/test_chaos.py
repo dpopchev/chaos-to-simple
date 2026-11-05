@@ -29,14 +29,14 @@ def send(email: str, total: Decimal) -> None:
 
 # [snippet: two-tests]
 def test_regular_order() -> None:
-    """The customer: one 40 EUR book, domestic, no policy asked for."""
+    """The customer: one 40 EUR book, domestic, no rule asked for."""
     order = Order(lines=[Line("book", Decimal(40))], email="a@example.com")
     total = checkout(order, TODAY, charge, reserve, send)
     assert total == Decimal("54.00")
 
 
 def test_order_with_everything() -> None:
-    """Every policy on: coupon, member, abroad, gift wrap, VAT ID."""
+    """Every rule on: coupon, member, abroad, gift wrap, VAT ID."""
     order = Order(
         lines=[Line("book", Decimal(60)), Line("pen", Decimal(40))],
         email="a@example.com",

@@ -94,13 +94,23 @@ def test_step_view_keeps_only_the_scope_and_the_changes() -> None:
 
 
 @pytest.mark.view
-def test_step_view_heading_says_policy_for_one() -> None:
-    assert step_view(SOURCE, 1).splitlines()[0] == "checkout v1: 1 policy, 2 paths, 11 lines"
+def test_step_view_heading_says_rule_for_one() -> None:
+    assert step_view(SOURCE, 1).splitlines()[0] == "checkout v1: 1 rule, 2 paths, 11 lines"
 
 
 @pytest.mark.view
-def test_step_view_heading_counts_policies_paths_and_lines() -> None:
-    assert step_view(SOURCE, 6).splitlines()[0] == "checkout v6: 6 policies, 64 paths, 22 lines"
+def test_step_view_heading_counts_rules_paths_and_lines() -> None:
+    assert step_view(SOURCE, 6).splitlines()[0] == "checkout v6: 6 rules, 64 paths, 22 lines"
+
+
+@pytest.mark.view
+def test_step_test_regular_docstring_says_no_rule_asked_for() -> None:
+    assert "domestic, no rule asked for." in step_test(SOURCE, 0)
+
+
+@pytest.mark.view
+def test_step_test_everything_docstring_lists_every_rule() -> None:
+    assert "Every rule on: coupon, member, abroad, gift wrap, VAT ID." in step_test(SOURCE, 0)
 
 
 @pytest.mark.view
@@ -175,7 +185,7 @@ def test_bubble_stays_on_one_line() -> None:
 
 @pytest.mark.view
 def test_code_tally_names_the_function() -> None:
-    assert code_tally("price", 3, 1, 2, 9) == "price v3: 1 policy, 2 paths, 9 lines"
+    assert code_tally("price", 3, 1, 2, 9) == "price v3: 1 rule, 2 paths, 9 lines"
 
 
 @pytest.mark.view
