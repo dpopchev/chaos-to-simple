@@ -1,7 +1,11 @@
 # 08-backup -- the Stacey overview of the backup is drawn in Python, so the frame shows a built figure.
 # A plain `#` keeps it out of make help.
 ARTIFACTS += $(BUILD)/08-backup/stacey-overview.png $(BUILD)/08-backup/zones.tex
-ARTIFACTS += $(BUILD)/08-backup/counting.png
+ARTIFACTS += $(BUILD)/08-backup/counting.png $(BUILD)/08-backup/board.png
+
+$(BUILD)/08-backup/board.png: $(PALETTE) data/rules.csv data/questions.csv data/examples.csv $(wildcard 06-simple/tests/*.py) scripts/figures.py scripts/utils/board.py scripts/utils/style.py
+	@$(RUN) python -m scripts.figures board --stage 6 --out $@
+	$(call log_done,$@ written)
 
 $(BUILD)/08-backup/counting.png: $(PALETTE) scripts/figures.py scripts/utils/counting.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures counting --out $@

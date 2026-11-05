@@ -323,3 +323,13 @@ Nothing was deleted, every decision only moved to the place that owns it.
 ::: notes
 The same seventh if, counted three ways: one function doubles to 1024 (+512), core and shell add 64, contexts and shell add 8.
 :::
+
+## Every decision keeps its sentence, home, contract and green test on the board {paths=72}
+
+![](build/08-backup/board.png){width=72%}
+
+\footnotesize the completed board: reference material for the Q&A; the free-shipping row told the story
+
+::: notes
+On request: any row, read across.
+:::

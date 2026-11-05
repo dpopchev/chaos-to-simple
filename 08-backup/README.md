@@ -6,9 +6,9 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 |---|---|
 | Minutes | 0 |
 | Footer counter | `512` on entry, `512` on exit |
-| Owns | the Stacey overview frame (moved from 00) and the thirteen mechanism frames, six moved from `05-how/index.md` |
-| Uses | the artifacts of `05-how/section.mk` and the exhibits under `05-how/` |
-| Produces | `build/08-backup/stacey-overview.png`, `build/08-backup/zones.tex` and `build/08-backup/counting.png` (`section.mk`) |
+| Owns | the Stacey overview frame (moved from 00) and the sixteen frames of `08-backup/index.md`: the thirteen mechanism frames, six moved from `05-how/index.md` |
+| Uses | the artifacts of `05-how/section.mk` and the exhibits under `05-how/`; `data/rules.csv`, `data/questions.csv` and `data/examples.csv` for the board |
+| Produces | `build/08-backup/stacey-overview.png`, `build/08-backup/zones.tex`, `build/08-backup/counting.png` and `build/08-backup/board.png` (`section.mk`) |
 
 ## Slides
 
@@ -27,6 +27,7 @@ Beat: backup frames shown only on request during the Q&A; minutes 0.
 - [x] Pricing, shipping and tax hold every decision of the functional core, core.py only composes
 - [x] The split leaves 72 local paths instead of 512, with integration checked separately
 - [x] The seventh decision adds 8 local paths in shipping, against 512 in one function
+- [x] Every decision keeps its sentence, home, contract and green test on the board: the completed board, reference for the Q&A
 
 ## Done when
 

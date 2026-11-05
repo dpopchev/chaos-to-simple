@@ -130,4 +130,4 @@ build/06-simple/imports.txt,txt,scripts.paths imports
 build/06-simple/imports.png,png,scripts.paths imports-figure
 build/06-simple/epilogue.txt,txt,scripts.paths epilogue
 build/06-simple/epilogue.png,png,scripts.paths epilogue-chart
-build/07-close/board.png,png,scripts.figures board --stage 06
+build/08-backup/board.png,png,scripts.figures board --stage 06
