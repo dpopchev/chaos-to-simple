@@ -46,4 +46,5 @@
 - 2026-11-05 E-020: T-496: 06's offer figure shrank from 54% to 42% width to keep 3pt slack under the longer FC/IS caption; caption verbatim; Check unchanged
 - 2026-11-05 E-020: T-497: 07 holds three frames (beliefs, names, the Q&A landing page); the brief's '07 becomes 4' miscounted, so data/budget.csv reads 07,3,3; Check unchanged
 - 2026-11-05 E-020: T-498: test_member15.py already existed, so the crossing test joined it; the test passed on its first run (both discount functions existed), the red was the frame without it; the pricing figure shrank 70% -> 40% for overflow; Check unchanged
+- 2026-11-05 E-020: T-499: the memo frame's caption shortened to 'the memo's four boundary orders, not the full grid' to keep 3pt slack once the 01 line joined it; still a selection, not a 2x2; Check unchanged
 - 2026-11-05 E-020: T-507: the digital frame's columns are 42/58, not the brief's 48/52, because make widths refused the 96-char seventh.diff signature; the red run keeps the bare assert line; Check unchanged
