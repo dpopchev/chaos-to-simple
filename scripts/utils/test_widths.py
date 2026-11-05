@@ -59,6 +59,15 @@ def test_a_classless_include_is_measured_at_body_size() -> None:
 
 
 @pytest.mark.view
+def test_a_quoted_dot_word_does_not_make_an_include_classed() -> None:
+    texts = {"a.py": "x" * 60 + "\n"}
+    slide = SLIDE.replace("{.python include=a.py}", '{heading="run it, then .x" include=a.py}')
+    assert too_wide(slide, texts.__getitem__, 104) == (
+        f"index.md Beside a figure: 60 > 52: {'x' * 60}",
+    )
+
+
+@pytest.mark.view
 def test_too_wide_names_a_line_past_its_column() -> None:
     texts = {"a.py": "short\n" + "x" * 90 + "\n"}
     assert too_wide(SLIDE, texts.__getitem__, 104) == (

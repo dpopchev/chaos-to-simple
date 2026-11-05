@@ -21,7 +21,8 @@ INCLUDE = re.compile(r"^```\{[^}]*\binclude=(?P<path>[^\s}]+)(?P<attrs>[^}]*)")
 _ATTRIBUTE = re.compile(r"\s+(?P<name>snippet|cap|start-line|end-line)=(?P<value>[\w-]+)")
 _TEXT_FENCE = re.compile(r"^```\{[^}]*\.text\b")
 # A fence with no class renders as plain verbatim at body size, not at \snippetsize.
-_CLASSLESS_FENCE = re.compile(r"^```\{(?![^}]*\s\.\w)(?!\.)[^}]*\}")
+# Quoted attribute values are skipped whole, so a ' .x' inside one is not a class.
+_CLASSLESS_FENCE = re.compile(r'^```\{(?!(?:[^}"]|"[^"]*")*\s\.\w)(?!\.)[^}]*\}')
 
 
 _STEP_MARKER = re.compile(r"\s*# \[step: \d\]\s*$")
