@@ -1,4 +1,4 @@
-## Six beliefs I held at the start each gave way to the lesson I should have known {paths=72}
+## Six beliefs gave way: better boundaries begin with better business questions {paths=72}
 
 \small
 
@@ -13,7 +13,7 @@
 read the learned column only
 :::
 
-## Follow the series one section at a time, then bring your own checkout to review {paths=72}
+## The post series revisits this checkout one section at a time; bring yours {paths=72}
 
 - \mbox{\footnotesize\url{linkedin.com/in/dpopchev}}
 - the CraftsmansDay and JourneymansDay post series: one section at a time
@@ -24,7 +24,7 @@ read the learned column only
 - Bring a function of your own: we count its paths together.
 :::
 
-## Q&A: ask anything about the tests, the repository, the posts or the earlier talks {paths=72}
+## Q&A: where is the next hidden decision in your checkout? {paths=72}
 
 :::::: {.columns}
 ::: {.column width="45%"}
