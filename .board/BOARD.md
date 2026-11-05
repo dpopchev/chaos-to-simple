@@ -1,6 +1,6 @@
 # Board -- chaos-to-simple
 record: local
-open path: E-019 > W-220 > T-488   | blocked: 0 | todo roots: 1 | done: 715 | pruned: 9
+open path: E-019 > W-220   | blocked: 0 | todo roots: 1 | done: 716 | pruned: 9
 
 ## Tree
 
@@ -10,7 +10,7 @@ E-019         [doing]    Action titles v2: the 2026-11-05 framework audit landed
   W-217  issue  [done]     02 and 03: the map and the room retitled (pages 20-29) -- T-480 [done], T-481 [done]
   W-218  issue  [done]     04 and 05: the homes and the seam retitled (pages 30-41) -- T-482 [done], T-483 [done]
   W-219  issue  [done]     06 and 07: core and shell and the close retitled (pages 42-52) -- T-484 [done], T-485 [done], T-486 [done]
-  W-220  issue  [doing]    08: the backup retitled with its captions aligned (pages 53-66) -- T-487 [done], T-488 [doing]   <- ACTIVE LEAF
+  W-220  issue  [doing]    08: the backup retitled with its captions aligned (pages 53-66) -- T-487 [done], T-488 [done]
 W-221  issue  [todo]     (standalone) section READMEs: the slide lists name retired titles and 01 counts thirteen slides -- T-489 [todo]
 ```
 
@@ -1297,7 +1297,7 @@ flowchart TD
   W219 --> T486["T-486 done: Retitle the close -> 07-close/index.md"]
   E019 --> W220["W-220 issue doing: 08: the backup retitled with its captions aligned (pages 53-66)"]
   W220 --> T487["T-487 done: Retitle the backup -> 08-backup/index.md and scripts/utils/test_counter_plan.py"]
-  W220 --> T488["T-488 doing: Align the backup captions -> 08-backup/index.md -- ACTIVE LEAF"]
+  W220 --> T488["T-488 done: Align the backup captions -> 08-backup/index.md"]
   W221["W-221 issue todo, standalone: section READMEs: the slide lists name retired titles and 01 counts thirteen slides"]
   W221 --> T489["T-489 todo: Refresh the slide lists -> 01-bits/README.md .. 08-backup/README.md"]
   classDef doing fill:#fff3bf,stroke:#b58900,color:#000;
@@ -1305,7 +1305,7 @@ flowchart TD
   classDef done fill:#e6ffed,stroke:#2b8a3e,color:#000;
   classDef todo fill:#f8f9fa,stroke:#868e96,color:#000;
   classDef pruned fill:#f1f3f5,stroke:#adb5bd,color:#000;
-  class E019,W220,T488 doing
-  class W216,T478,T479,W217,T480,T481,W218,T482,T483,W219,T484,T485,T486,T487 done
+  class E019,W220 doing
+  class W216,T478,T479,W217,T480,T481,W218,T482,T483,W219,T484,T485,T486,T487,T488 done
   class W221,T489 todo
 ```
