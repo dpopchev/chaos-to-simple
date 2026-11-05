@@ -1,0 +1,192 @@
+# Deck v5: the reviews of 2026-11-05
+
+Source: the developer's two pasted reviews of 2026-11-05 against the 66-page deck at 6399fec, v0.16.1; the plan they became is E-020; the blocks below are the reviews' text, verbatim.
+
+## Priorities
+
+```text
+ould prioritize these changes:
+Start with the problem before explaining the maps. Slide 3 already shows the named responsibilities that the story is supposed to discover, while slide 4 introduces a substantial framework before the concrete checkout example. I would introduce the simple checkout or the shipping incident first, then bring in the map when the disagreement makes it useful.
+Make the existing TDD sequence unmistakable. You already have the failing example on slide 17, competing expectations on 22, agreement on 27, the fix on 32, and extraction on 33. Label and connect those moments explicitly: a test exposes the question; the people agree the answer; the test then protects the refactor. That is more compelling than simply showing an increasing test count.
+Give the pattern discovery a short, explicit conclusion. Functional Core / Imperative Shell is visible on slide 43, but the main deck's explicit DDD/CQRS/TDD reference is to earlier talks on slide 51. I would add a brief "These choices already have names" moment: shared language and ownership support the DDD lesson; separating calculation from effects demonstrates FC/IS; separating an offer from placing an order introduces command/query separation, but does not by itself establish a full CQRS design.
+Keep the arithmetic subordinate to the lesson. The financial figures reconcile, and the appendix already qualifies the local-count comparisons. The problem is terminology: configurations, execution paths, local cases, and test counts are not interchangeable. In particular, the digital early return on slide 47 does not create a distinct execution path for every Boolean input configuration. Bring the appendix's qualification into the main explanation.
+Enlarge the evidence instead of adding more. Several short code snippets occupy little space, while the workshop transcript and ownership tables demand extensive reading. The completed decision-to-contract-to-test board appears on slide 51, where it is too small and too late to serve as the main proof. Show one important row evolving through the story; keep the complete board as reference material.
+```
+
+## Per slide
+
+```text
+action titles are generally strong: they usually state a conclusion rather than name a topic. The main improvements are shorter wording and tighter claims. For example, slide 45 should promise that the shipping code stays unchanged, not imply that shipping outcomes cannot change when the discount changes.
+Opening slides 1-4
+1 KEEP -- Current: Python: From chaos to simple, one bit at a time or what I should have known from the start. The reflective cover suits the personal learning story; begin aloud with the customer's problem, and label the dated case as illustrative if it is reconstructed.
+2 TRIM / MOVE -- Current: Business decisions lead checkout from tangled rules to clear responsibilities. The roadmap offers orientation but introduces categories, incidents and counts before the audience has met an order; move it after the hook and keep only the current stop prominent.
+3 KEEP TITLE / FIX VISUAL -- Current: Every request and every provider answer lands in one checkout function. The incoming requests support the title, but the already-named Pricing, Shipping, Fulfilment and Tax areas reveal the solution early; begin with an undivided checkout and reveal the homes later.
+4 MOVE -- Current: Agreement on the What and certainty on the How guide each move. Suggested: A disputed rule needs an agreed example. The What/How/Who map is explanatory, not measured data, and demands substantial decoding; introduce it after the disagreement or keep it in backup, and remove the implication that simple work needs no collaboration.
+Bits: confidence and the shipping incedent; slided 5-19
+5 KEEP BRIEF -- Current: 01 Bits: six decisions outgrow the confidence of two tests. The challenged belief gives the chapter a purpose; use the roadmap as a quick signpost rather than explaining its full legend again.
+6 FIX -- Current: Decisions multiply paths while branch counts only add: 64 paths against 7 branches. Suggested: Branch coverage can miss policy combinations. The flow sketches are relevant, but McCabe's schematic value of 7 is not seven branches or a required branch-coverage test count; anchor the lesson in the two-test coverage example and defer the detailed arithmetic.
+7 KEEP / ENLARGE -- Current: We begin with one checkout flow and two tests: one path. The customer request and straight-line checkout establish a useful baseline; enlarge the essential calculation and effect calls, and rename the second test so its docstring does not anticipate features not yet requested.
+8 KEEP -- Current: The coupon adds a decision without adding a test: 2 paths. The request, changed expectation and coupon condition form a clear miniature story; use this as a representative feature change rather than making every later request equally detailed.
+9 KEEP -- Current: Member pricing depends on the coupon coming first: 4 paths, two tests. The 'after the coupon' sentence and changed total establish a meaningful order dependency; preserve that sentence and refer back to it when discussing shared rules and mutable call order.
+10 FIX EVIDENCE -- Current: Free shipping adds a threshold decision to checkout: 8 paths, two tests. The isolated diff hides where subtotal is captured; show enough surrounding code to establish that the snapshot precedes the discounts, consistent with the full listing and later fix.
+11 TRIM / CLARIFY -- Current: International delivery changes the code, not the test total: 16 paths. The unchanged test total is a useful observation, but the snippet must show that the international base fee is set before free-shipping eligibility overrides it; otherwise the unchanged result appears inconsistent.
+12 TRIM -- Current: Gift wrap becomes another exception for checkout to manage: 32 paths, two tests. The gift-wrap request supports the headline and matters to the later shipping contract; keep the fee-after-free-shipping interaction, but present this as a quick build rather than another full explanation.
+13 TRIM / QUALIFY -- Current: VAT status completes the six decisions: 64 paths, still two tests. The VAT change completes the example's policy set; label it as this simplified shop's rule, and define whether the tax bit means VAT-ID presence or the opposite if-condition outcome.
+14 KEEP -- Current: I was ready to ship on the strength of two tests. The developer's confidence and the next small request create a natural audience pause; ask what the tests establish, not only how many tests would feel sufficient.
+15 KEEP / SIMPLIFY -- Current: Two tests cover every branch but only 2 of 64 combinations. The displayed coverage result and configuration grid directly support the conclusion; enlarge those, reduce the full test listing, and define the grid as configuration flags rather than inconsistent branch-condition bits.
+16 KEEP / FOCUS -- Current: 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill. The memo, chart and table reconcile to the stated shipping gap; present it as an unexplained shortfall until the rule is agreed, emphasize the headline over the weekly detail, and label the table's project weeks.
+17 CLARIFY -- Current: One coupon order exposes the untested threshold: 60.00 expected, 54.00 paid. Suggested: The 55 EUR order fails Logistics' expected price. The failing example is strong evidence, but its expected total is still disputed at this point; label it RED and a proposed business expectation, then bring the competing interpretation close to it.
+18 FIX EVIDENCE -- Current: The coupon boundary order fails while the memo's other three orders pass. The four totals are coherent boundary examples, but they are not the stated complete coupon-by-original-cart matrix: the coupon-present, below-threshold cell is missing; relabel the selection or repair the matrix.
+19 MERGE -- Current: Branch coverage counts edges, not combinations: two tests cover 2 of 64 paths. Suggested: Two green tests leave most modeled combinations unexplored. The grids reinforce the coverage lesson but repeat slide 15; keep one enlarged visual, use a consistent bit convention, and avoid implying that all bugs arise only from Boolean combinations.
+02 Map: the disputed rule; slided 20-23
+20 TRIM -- Current: 02 Map: the failing test exposes a business disagreement. The title provides exactly the right bridge from symptom to disagreement; retain the bridge without letting another full roadmap interrupt the failing-example sequence.
+21 KEEP / MERGE -- Current: Free shipping from 50 has two plausible meanings. The same order, two meanings and two totals make the ambiguity easy to understand; combine this compact comparison with the stakeholder voices on slide 22 instead of fully presenting both versions.
+22 KEEP / SIMPLIFY -- Current: Marketing and Logistics disagree about what the customer should pay. This is the central collaboration scene; show one shared input, the two stakeholder expectations and 'Which test do I write?', rather than two nearly identical full test bodies.
+23 KEEP / TRIM -- Current: Stakeholders must choose the rule before developers can fix it. The conclusion follows from the conflict; keep the ownership decision, reduce the repeated map, and describe developers as helping expose consequences rather than merely receiving a handoff.
+03 Room: shared decsiions; slides 24-29
+24 TRIM -- Current: 03 Room: shared examples turn hidden assumptions into explicit decisions. Shared examples are the chapter's real purpose; lead with the disputed order and let the larger count emerge as a discovery rather than making counting the reason for the conversation.
+25 SIMPLIFY -- Current: Replaying one order reveals six unanswered business questions. The order journey usefully connects the open questions, but the certainty curve uses illustrative workshop scoring; label it as a sketch and reveal questions through the conversation rather than treating it as measured confidence.
+26 FIX / SHORTEN -- Current: The room surfaces three unwritten rules and three unhandled provider answers. The dialogue makes collaboration tangible; shorten it, reconcile the workshop date with the cover date, distinguish missing shared agreement from earlier written requests, and explain why coupon expiry remains unresolved despite the shown date check.
+27 FOCUS -- Current: Each of the six questions gains a decision and a subdomain. Suggested: Every question gains a rule and an owner. The decision table contains the crucial resolution of the shipping dispute; foreground that row and move directly to the passing fix, while staging the other decisions instead of introducing the full subdomain taxonomy at once.
+28 FIX / SIMPLIFY -- Current: Three provider answers join the six policies: nine bits, 512 paths, not 64. Suggested: Provider failures add scenarios the pricing tests never exercised. The provider worlds reveal a real blind spot, but the grid, count table and map compete for attention; label the product as modeled configurations, since earlier failures prevent some later outcomes from being observed.
+29 ALIGN TITLE WITH EVIDENCE -- Current: Every one of the nine decisions is kept and moves to a responsible home. Suggested: Every hidden decision is now on the board. The board currently contains sentences while the later columns remain blank; present it as a starting inventory and follow one row through ownership, contract and evidence instead of claiming the destination is already demonstrated.
+04 Homes: extractin responsibilites; slided 30-35
+30 TRIM / REORDER -- Current: 04 Homes: the business decisions suggest the structure. The business-first claim is useful; place this signpost after the agreed fix is green, so the extraction reads as a protected refactor rather than another unexplained redesign.
+31 KEEP / ZOOM -- Current: Tracing each line to who asked for it reveals candidate policy boundaries. The full listing reveals the stale subtotal and candidate responsibilities, but the code and legends are small; zoom the relevant lines and group by business questions rather than department membership alone.
+32 KEEP / MOVE EARLIER -- Current: Reading the discounted goods, not the cart, fixes the 55 EUR coupon order. The code change and passing regression directly prove the headline; place them beside the agreement on slide 27, label the moment GREEN, and explain or remove the competing code-badge and footer counting scopes.
+33 KEEP -- Current: Shipping owns eligibility and applies the threshold to the discounted goods. The input contract and focused examples support Shipping's ownership; explicitly show the existing regression remaining green while extracting the function, without claiming these examples exhaust every value or combination.
+34 KEEP / SIMPLIFY -- Current: Checkout delegates its calculations to pricing, shipping and tax, effects still inline. This is an honest intermediate milestone: calculations have moved but effects remain inline; display the important calls and state that the fulfilment decision is not yet implemented.
+35 FIX -- Current: The map gives all nine decisions a home: 2 core, 6 supporting, 1 generic. Suggested: Each business question now has a responsible home. The ownership map is useful, but 'generic: adapted at the shell' conflicts with generic Tax being calculated in the functional core; separate business classification from technical placement and define the two meanings of core.
+05 Seam protecting the order; slides 36-41
+36 KEEP BRIEF -- Current: 05 Seam: the boundary protects a business promise. The business-promise framing is strong; bridge quickly from correct arithmetic to the fact that an order can still be accepted unsafely.
+37 KEEP / CONNECT -- Current: A correct price did not guarantee a fulfilled order. The customer harm and failing call-order assertion earn the boundary discussion; clarify whether this is a flashback motivating the earlier decision or unfinished implementation, then show a short fix from slide 58.
+38 TIGHTEN -- Current: Providers report facts; the shop decides what they mean, three policies owned by Fulfilment. Suggested: Providers report facts; Fulfilment decides the response. The outcome-versus-policy table and support exchange are central evidence; preserve the explicit reservation-release limitation and emphasize one complete failure-handling example.
+39 KEEP / ENLARGE -- Current: Rules answering the same business question belong together: four questions, four homes. Grouping by business question is stronger evidence than stakeholder colors alone; label the homes directly, enlarge their contracts, and describe them as candidate boundaries rather than automatically proven bounded contexts.
+40 FOCUS -- Current: The warehouse contract defines Reserved as a 15-minute hold. Suggested: Reserved must mean a hold, not just a status. The semantic promise matters more than the HTTP details; distinguish requesting a 15-minute hold from verifying that the provider honors it, and keep detailed adapter code in backup.
+41 KEEP / MERGE -- Current: The shell connects pure calculations to real-world commitments. The simple seam diagram supports the title well; use it as a build into slide 43 and keep call arrows and returned-outcome arrows consistent across every reuse.
+06 COre and shell: testing the next change; slided 42-48
+42 TRIM -- Current: 06 Core and shell: clear responsibilities make the next change easier to contain. The change-containment promise fits the final act; shorten the divider and avoid presenting the 72 count before its local-scenario definition has been explained.
+43 KEEP / ENLARGE -- Current: We calculate the offer without carrying out the order. The pure price function and architecture diagram clearly demonstrate Functional Core / Imperative Shell; name that result, distinguish it from DDD's core subdomain, and do not treat it alone as proof of CQRS.
+44 KEEP / CLARIFY -- Current: Agreed promises now have concrete examples and traceable evidence. The evidence rows correctly distinguish regression checks from a recorded decision; keep that distinction, bring forward the separate-integration caveat, and explain that 72 and 22 are different local decomposition counts.
+45 TIGHTEN -- Current: Raising the member discount to 15% leaves shipping untouched. Suggested: A pricing change leaves shipping code unchanged. The highlighted coefficient change supports code locality, not unchanged shipping behavior; retain the eligibility caveat and add a threshold-crossing composition example with a short red/green check.
+46 KEEP / QUALIFY -- Current: A stable payment contract lets us replace the provider. The adapter illustrates containment of a representation change; stable semantics need a compatibility test or an explicit assumption, not only matching result types, and the outcome-arrow convention must stay consistent.
+47 FIX -- Current: The digital-only delivery charge lands in shipping as a fourth bit, 16 paths. Suggested: Digital-only orders add one delivery-charge rule. Keep the explicit scope exclusions; call 16 the input configurations rather than executed paths, show the new test and necessary input wiring, and reconcile the request date and stale baseline footer.
+48 KEEP -- Current: The next if starts with ownership and discovery. The ownership questions make a useful final habit; connect the new request back to example, agreement, test and refactor rather than suggesting the new argument requires no caller or contract changes.
+Closing; slideds 49-52
+49 TRIM -- Current: Six beliefs gave way: better boundaries begin with better business questions. The belief reversals fit the personal story but repeat long explanations; reduce them to memorable lessons and briefly name the patterns already encountered without starting a new acronym lecture.
+50 MERGE -- Current: The post series revisits this checkout one section at a time; bring yours. The resources and invitation support follow-through, but this is another ending before Q&A and thanks; combine the closing material into one clear landing.
+51 FIX / REPOSITION EVIDENCE -- Current: Q&A: where is the next hidden decision in your checkout? The audience question works; replace the ambiguous '64 + 8 tests' wording, bring one enlarged completed traceability row forward near slide 44, and put the full board in backup rather than beside Q&A.
+52 MERGE -- Current: Thank you to the audience for the questions and to DEV.BG for the stage. The acknowledgement is appropriate and needs no forced action title; combine it with the closing question and resources unless the host needs a separate thank-you screen.
+Backup slides
+53 KEEP -- Current: 08 Backup: the mechanisms and the evidence behind the seam. The divider clearly separates the appendix from the main talk; use the following material on demand rather than presenting it as another sequential act.
+54 FIX BADGE -- Current: Changing the call order changes the price: 45 against 44. The two examples make call-order sensitivity concrete; correct the '1 test' badge and keep the conclusion scoped to this mutable API rather than objects in general.
+55 FIX ANNOTATION -- Current: This mutable checkout leaves discount order to its callers. Temporal coupling is the demonstrated problem; remove or qualify the strict CQS comment about returning a Boolean so it does not contradict the outcome-returning commands endorsed on slide 56.
+56 KEEP / CLARIFY -- Current: Explicit outcome values make the three effects easier to handle and match. The explicit result types support the title; state that commands return outcomes in this design, reconcile the CQS terminology, and remove unexplained path counts from type declarations.
+57 KEEP IN BACKUP -- Current: Protocols accept compatible fakes without inheritance: pyright reports zero errors. The displayed checker result supports structural type compatibility, not behavioral equivalence with real providers; preserve that distinction and use one fake if promoting the example.
+58 PROMOTE A SHORT EXCERPT -- Current: Stock reservation must succeed before payment is attempted. The early returns and reserve-before-charge sequence are the missing implementation payoff for the main incident; show a small excerpt there and keep the full diff and disclosed limitations here.
+59 KEEP IN BACKUP -- Current: Pricing, shipping and tax import no provider port; only the shell does. The dependency evidence supports isolation from provider ports; retain the imported-name counting unit and avoid treating absence of these imports as a complete proof of purity.
+60 FIX OR CUT -- Current: Explicit contracts limit the knowledge crossing each boundary. Suggested: Pass discounted goods, not pricing's internal choices. The concrete contract is useful, but subtotal is not a flag and the arithmetic heuristics are underdefined; remove the visible line-129 drafting note and keep one clear before/after knowledge comparison.
+61 FIX CAPTION -- Current: Values carry inputs and results across the calculation boundary. The explicit data types support the title, but 'never a flag' conflicts with legitimate Boolean fields on this slide; describe explicit data with no hidden mutable state or I/O instead.
+62 KEEP / COMPLETE LABELS -- Current: Three invariants check 64 configurations in 192 test cases. The title correctly separates configurations from test cases; name the other invariants, standardize the badges and avoid implying that the enumeration covers every monetary, date or integration boundary.
+63 KEEP / REUSE THE DISTINCTION -- Current: Eight test worlds produce four explicit order outcomes. The eight configured worlds and four order outcomes make short-circuit behavior clear; bring this distinction into the earlier counting explanation, retaining the difference between attempts and successful effects.
+64 KEEP IN BACKUP -- Current: Pricing, shipping and tax hold every decision of the functional core, core.py only composes. The chart and dependency diagram support where calculations and effects live; explain the color change to ifs versus matches and do not turn decision counts into proof of strategic boundaries or integration independence.
+65 CLARIFY -- Current: The split leaves 72 local paths instead of 512, with integration checked separately. Suggested: Test local scenarios; check integration separately. The arithmetic and the explicit integration/effort caveat are useful; promote the caveat into the main talk and label the bars as modeled scenario sets rather than disappearing end-to-end execution paths.
+66 CLARIFY -- Current: The seventh decision adds 8 local paths in shipping, against 512 in one function. Suggested: One shipping rule expands its local scenario matrix. The three growth comparisons use valid but different baselines; keep them separate, preserve the integration caveat, and update or label the old footer rather than presenting +8 as a guaranteed testing-effort saving.
+Bottom line: keep the story; simplify the route. Make the recurring rhythm visible: example -> disagreement -> agreement -> failing test -> fix -> refactor -> next change. Name the patterns after the audience understands the decisions.
+```
+
+## The developer's asks
+
+```text
+Promote the githubg materials: https://github.com/dpopchev/chaos-to-simple.git
+Promote me linkedin.com/in/dimitar-popchev-b87074142
+Call for action contact if anyone wants to go over their story
+Make a who I am slide
+System type engineer, as defined in 1968 NATO conference by Kinslow, i.e. "...given five problems...will come back and announce that these aren't the real problems, and will eventually propose a solution to the single problem which underlies the original five."
+Engineering Manager past 2 years developing automation flows impacting the global semiconductor industyr (GlobalFoundries) Inspired to go over all the Stacey Matrix and apply Agile
+review the remarks and create an burn ready epic makeing next incremenat of the talk
+```
+
+## The second review: vocabulary
+
+```text
+update the epic with this additional reamraks about 'if' mentions with remarks following
+I'd use "business rules" as the main term, and keep "just one more if" as the recurring joke. It is concrete, accessible, and fits your progression from conversation to tests to design.
+Requirements is too broad: a requirement might introduce several rules, constraints or interactions.
+Policies is valid, but more abstract. Useful when discussing ownership: "Shipping owns the delivery-charge policy."
+Business rules makes the everyday meaning clear: "What have we agreed the system should do?"
+Distinguish the question from its answer
+For example:
+Business decision: "Should free shipping depend on the amount before or after discounts?"
+Business rule: "Shipping is free when the discounted goods reach the threshold."
+Code condition: discounted_goods >= FREE_SHIPPING_FROM
+That distinction supports your storyline: collaboration resolves the decision; a rule records the agreement; tests make it executable; code implements it.
+Suggested recurring line
+"It was never just one more if. It was another business rule we needed to understand."
+One important exception: "payment declined" is an outcome, not a rule. "A declined payment rejects the order" is the business rule.
+So I would use:
+Business rules in the story.
+Decisions and ownership in the collaboration discussion.
+Modeled conditions and configurations in the counting slides, rather than treating every rule as one bit.
+```
+
+## The second review: priorities
+
+```text
+adopt the suggested changes below to the existing epic to make it burn at one go
+Make these changes in priority order. Keep the checkout story; make collaboration and TDD more visible than the counting machinery.
+First: strengthen the story
+Connect the existing TDD sequence. Bring these moments together: 17: failing example -> 22: competing expectations -> 27: agreement -> 32: passing fix -> 33: refactor. Label the stages explicitly, and show the same regression staying green during extraction.
+Start with the concrete checkout, not the framework. Move the detailed What/How map on slide 4 and arithmetic on slide 6 to backup. On slide 3, hide the final Pricing/Shipping/Fulfilment/Tax divisions so the audience discovers them with you.
+Complete the second learning loop. After the fulfilment incident on slide 37, show a short excerpt from slide 58 that reserves before charging, then the regression evidence from slide 44. Clarify whether this incident motivated the earlier workshop decision or exposes a decision not yet implemented.
+Make the next change demonstrate the method again. For the digital-only delivery charge on slide 47, show the agreed example and failing test before the new condition, then the passing result. Preserve the explicit exclusions: this change does not solve mixed baskets, digital fulfilment or tax.
+Second: make the terminology and payoff precise
+Use consistent vocabulary throughout.
+Business rules for agreed behavior.
+Decisions for questions the people must resolve.
+Provider outcomes for facts returned by external systems.
+Configurations for the modeled combinations.
+Keep "just one more if" as the recurring joke, not the technical measurement.
+Add a brief "We have rediscovered..." moment near the conclusion. Name Functional Core / Imperative Shell after showing the calculation/effect boundary; connect DDD to shared language, business ownership and candidate model boundaries. Call the asking-versus-doing distinction command/query separation unless you actually demonstrate separate CQRS read and write models.
+Correct the counting claims without discarding the illustration. Remove "7 branches" from slide 6; distinguish configurations from executed paths on slides 28 and 47; bring the separate-integration caveat from slide 65 into the main payoff on slide 44.
+Third: reduce reading and sharpen titles
+Compress repetition. Make slides 8-13 a brisk request-and-change sequence; combine the coverage explanations on 15/19 and the competing interpretations on 21/22. Keep the stakeholder voices and consequences, not every repeated code listing.
+Let each slide show the evidence for its headline. Enlarge the relevant code instead of displaying full functions. Shorten the workshop transcript on 26, foreground the shipping decision on 27, and carry one traceability row from slide 29 through to the evidence on 44; move the complete board from Q&A to backup.
+Shorten or qualify these action titles:
+27: "Every question gains a rule and an owner."
+38: "Providers report facts; Fulfilment decides the response."
+45: "A pricing change leaves shipping code unchanged."
+47: "Digital-only orders add one delivery-charge rule."
+Give the talk one ending. Reduce slide 49 to the central lessons, then combine resources, the audience question and thanks from slides 50-52.
+Correct before exporting
+Slide 10: Show that the stale subtotal is captured before discounts.
+Slide 18: Call these selected boundary examples, or repair the claimed complete matrix.
+Slides 26/47: Reconcile the workshop and digital-request dates with the story sequence.
+Architecture diagrams: Standardize call arrows versus returned-outcome arrows.
+Slides 51/54/62: Make test, scenario and configuration counts consistent.
+Slides 55-56: Reconcile the CQS explanation; 60: remove the drafting note; 61: replace "never a flag" with "explicit data, no hidden mutable state or I/O."
+Editing compass: "We made the business rules explicit together, used tests to protect each step, and discovered useful boundaries along the way."
+```
+
+## Plan
+
+E-020, Deck v5: the 2026-11-05 storyline review, burned down in one run as seven work items in burn order:
+
+- W-222: 00 and 02: the author and the undivided checkout before the route; the What/How overview to the backup.
+- W-223: 01 to 06: the TDD rhythm labelled; 21/22 merged; the seventh request red then green.
+- W-224: 06 and 07: the patterns named, the close on one page, the 15% crossing.
+- W-225: 01, 03, 06, 08: the counts qualified, the arithmetic to the backup, the room transcript shortened and dated.
+- W-226: 03 to 08: the free-shipping row, the full board in the backup.
+- W-227: 05: the reserve-first fix and its green regression, the claims tightened, the arrows standardized.
+- W-228: one vocabulary, the six learned lines shortened, the compass line.
+
+Decisions the developer took on 2026-11-05:
+
+- D1 (revised by the second review): a title says configurations where no path runs (28, 47) and paths where one does, superseding E-019#d2; the footer keeps 'paths to reason about'.
+- D2 (revised): the What/How overview and the arithmetic frames move whole to the backup.
+- D3: the GREEN fix opens 04 after its section page.
+- D4: the thank-you merges into the Q&A page.
+- D5: pages 15 and 19 merge into one grid frame, pages 21 and 22 into one disagreement frame.
+- D6: the eight-word title gate stands.
+- D7: the vocabulary -- business rules, decisions, provider outcomes, configurations, 'just one more if' the joke.
+- D8: slides 8-13 keep their frames (the storyboard counters are the spine the counter plan pins), the brisk pace lives in their notes.
