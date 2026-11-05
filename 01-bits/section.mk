@@ -8,8 +8,7 @@ STORY_FILES := $(foreach k,0 1 2 3 4 5 6,$(BUILD)/01-bits/step-$(k).diff) \
 ARTIFACTS += $(BUILD)/01-bits/coverage.txt $(BUILD)/01-bits/grid.txt $(BUILD)/01-bits/doubling.txt
 ARTIFACTS += $(BUILD)/01-bits/coverage-summary.txt $(STORY_FILES) $(BUILD)/01-bits/next.txt
 ARTIFACTS += $(BUILD)/01-bits/grid.png $(BUILD)/01-bits/doubling.png
-ARTIFACTS += $(BUILD)/01-bits/coverage-view.png $(BUILD)/01-bits/finance.png
-ARTIFACTS += $(BUILD)/01-bits/counting.png $(BUILD)/01-bits/grid-growth.png
+ARTIFACTS += $(BUILD)/01-bits/finance.png
 ARTIFACTS += $(BUILD)/01-bits/bug-run.txt $(BUILD)/01-bits/cues.txt
 ARTIFACTS += $(BUILD)/01-bits/memo-run.txt $(BUILD)/01-bits/tests-6.txt
 ARTIFACTS += $(BUILD)/01-bits/tests-bug.txt $(BUILD)/01-bits/tests-memo.txt
@@ -74,28 +73,14 @@ $(BUILD)/01-bits/cues.txt: 01-bits/data/october.csv scripts/figures.py scripts/u
 	@$(RUN) python -m scripts.figures finance-cues --october 01-bits/data/october.csv --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/01-bits/counting.png: $(PALETTE) scripts/figures.py scripts/utils/counting.py scripts/utils/style.py
-	@$(RUN) python -m scripts.figures counting --out $@
-	$(call log_done,$@ written)
-
 $(BUILD)/01-bits/grid.png: $(PALETTE) 01-bits/data/tested.csv scripts/figures.py scripts/utils/paths.py \
     scripts/utils/coverage_view.py scripts/utils/style.py
 	@$(RUN) python -m scripts.figures grid-image --tested 01-bits/data/tested.csv --out $@
 	$(call log_done,$@ written)
 
-$(BUILD)/01-bits/grid-growth.png: $(PALETTE) 01-bits/data/tested.csv scripts/figures.py \
-    scripts/utils/coverage_view.py scripts/utils/style.py
-	@$(RUN) python -m scripts.figures grid-growth --tested 01-bits/data/tested.csv --out $@
-	$(call log_done,$@ written)
-
 $(BUILD)/01-bits/doubling.png: $(PALETTE) data/cast.csv scripts/figures.py scripts/utils/paths.py \
     scripts/utils/style.py
 	@$(RUN) python -m scripts.figures doubling --cast data/cast.csv --out $@
-	$(call log_done,$@ written)
-
-$(BUILD)/01-bits/coverage-view.png: $(PALETTE) 01-bits/data/tested.csv scripts/figures.py \
-    scripts/utils/coverage_view.py scripts/utils/style.py
-	@$(RUN) python -m scripts.figures coverage-view --tested 01-bits/data/tested.csv --out $@
 	$(call log_done,$@ written)
 
 $(STORY_FILES) &: 01-bits/s01_bits/chaos.py 01-bits/data/bubbles.csv $(PALETTE) \

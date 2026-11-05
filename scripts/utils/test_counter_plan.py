@@ -52,7 +52,7 @@ def test_the_bits_section_opens_on_the_storyboard() -> None:
 @pytest.mark.view
 def test_the_checkout_done_frame_inherits_64() -> None:
     title = "I was ready to ship on the strength of two tests"
-    assert frames("01")[8] == (title, 64)
+    assert frames("01")[7] == (title, 64)
 
 
 @pytest.mark.view

@@ -13,7 +13,7 @@ campaign on time, one if at a time.
 
 ## Footer counter
 
-`?` on the opening "A policy is one bit" slide, then `1`, `2`, `4` .. `64` on the seven policy slides.
+1 to 64 on the seven storyboard frames, 64 to the end.
 
 ## Owns
 
@@ -24,7 +24,7 @@ campaign on time, one if at a time.
 - `tests/test_two_ifs.py`: the same two tests against the two-ifs zoom-in
 - `data/october.csv`: the four October weeks of expected and received shipping income
 - `tests/test_october.py`: pins its totals, 1,214 free orders and 6,070 EUR, and its calendar
-- `index.md`: the fourteen slides
+- `index.md`: the twelve slides
 
 ## Uses
 
@@ -53,20 +53,18 @@ campaign on time, one if at a time.
 
 ## Slides
 
-- [x] 1. Decisions multiply paths while branch counts only add: 64 paths against 7 branches (paths=?): the rule paths = 2^policies, the three counting lines, "the footer counts from here"
-- [x] 2. We begin with one checkout flow and two tests: one path (paths=1): the customer's bubble full width, then `step-0.diff` beside `test-0.diff`
-- [x] 3. The coupon adds a decision without adding a test: 2 paths (paths=2): marketing's AUTUMN coupon, `tally-1.txt` over `step-1.diff`
-- [x] 4. Member pricing depends on the coupon coming first: 4 paths, two tests (paths=4): the loyalty program's member discount, `tally-2.txt` over `step-2.diff`
-- [x] 5. Free shipping adds a threshold decision to checkout: 8 paths, two tests (paths=8): free shipping from 50 EUR, `tally-3.txt` over `step-3.diff`
-- [x] 6. International delivery changes the code, not the test total: 16 paths (paths=16): shipping abroad at 20 EUR, `tally-4.txt` over `step-4.diff`
-- [x] 7. Gift wrap becomes another exception for checkout to manage: 32 paths, two tests (paths=32): gift wrap at 3 EUR, `tally-5.txt` over `step-5.diff`
-- [x] 8. VAT status completes the six decisions: 64 paths, still two tests (paths=64): the VAT ID rule, the accounting bubble beside `tally-6.txt` over `step-6.diff`
-- [x] 9. I was ready to ship on the strength of two tests (paths=64): the dev and marketing bubbles over the question "How many tests would make you sure?"
-- [x] 10. Two tests cover every branch but only 2 of 64 combinations (paths=64): the two `test_chaos` tests beside `coverage-view.png`, `coverage-summary.txt` as the caption
-- [x] 11. 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill (paths=64): `finance.png` titled with the October totals, marketing's squeeze bubble as the last line
-- [x] 12. The 55 EUR order fails Logistics' expected price: 60.00 expected, 54.00 paid (paths=64): the RED moment label, the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
-- [x] 13. The coupon boundary order fails while the memo's other three orders pass (paths=64): the `memo-orders` snippet of `test_memo_orders.py` beside `memo-run.txt` (three passed, the coupon order at 55 EUR failed); the caption names the four boundary orders, not the full grid
-- [x] 14. Branch coverage counts edges, not combinations: two tests cover 2 of 64 paths (paths=64): `grid.png` beside `doubling.png`, the three counting lines, the `\theline`
+- [x] 1. We begin with one checkout flow and two tests: one path (paths=1): the customer's bubble full width, then `step-0.diff` beside `test-0.diff`
+- [x] 2. The coupon adds a decision without adding a test: 2 paths (paths=2): marketing's AUTUMN coupon, `tally-1.txt` over `step-1.diff`
+- [x] 3. Member pricing depends on the coupon coming first: 4 paths, two tests (paths=4): the loyalty program's member discount, `tally-2.txt` over `step-2.diff`
+- [x] 4. Free shipping adds a threshold decision to checkout: 8 paths, two tests (paths=8): free shipping from 50 EUR, `tally-3.txt` over `step-3.diff`
+- [x] 5. International delivery changes the code, not the test total: 16 paths (paths=16): shipping abroad at 20 EUR, `tally-4.txt` over `step-4.diff`
+- [x] 6. Gift wrap becomes another exception for checkout to manage: 32 paths, two tests (paths=32): gift wrap at 3 EUR, `tally-5.txt` over `step-5.diff`
+- [x] 7. VAT status completes the six decisions: 64 paths, still two tests (paths=64): the VAT ID rule, the accounting bubble beside `tally-6.txt` over `step-6.diff`
+- [x] 8. I was ready to ship on the strength of two tests (paths=64): the dev and marketing bubbles over the question "How many tests would make you sure?"
+- [x] 9. Two tests cover every branch but only 2 of 64 combinations (paths=64): the two `test_chaos` tests beside `grid.png`, the caption and `coverage-summary.txt`
+- [x] 10. 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill (paths=64): `finance.png` titled with the October totals, marketing's squeeze bubble as the last line
+- [x] 11. The 55 EUR order fails Logistics' expected price: 60.00 expected, 54.00 paid (paths=64): the RED moment label, the `bug` snippet of `test_planted_bug.py`, run live with `--runxfail`
+- [x] 12. The coupon boundary order fails while the memo's other three orders pass (paths=64): the `memo-orders` snippet of `test_memo_orders.py` beside `memo-run.txt` (three passed, the coupon order at 55 EUR failed); the caption names the four boundary orders, not the full grid; the `\theline`
 
 ## Live
 
@@ -84,7 +82,7 @@ campaign on time, one if at a time.
 - Given the planted bug test in `test_planted_bug.py`, when run normally, then the suite is green (xfail) and
   `--runxfail` shows 54.00 against 60.00.
 - Given the grid slide, when shown, then 000000 and 111111 can be pointed at.
-- Given `index.md`, when counted, then it holds fourteen `## ` slides.
+- Given `index.md`, when counted, then it holds twelve `## ` slides.
 
 ## Open
 

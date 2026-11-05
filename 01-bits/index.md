@@ -1,43 +1,5 @@
 # 01 Bits: six decisions outgrow the confidence of two tests
 
-## Decisions multiply paths while branch counts only add: 64 paths against 7 branches {paths=?}
-
-::::: {.columns}
-:::: {.column width="58%"}
-
-![](build/01-bits/counting.png){height=70%}
-
-::::
-:::: {.column width="42%"}
-
-\footnotesize
-
-**paths = 2^policies**
-
-| pattern | paths | rule |
-|---|---|---|
-| sequential ifs | 2 x 2 x 2 x 2 x 2 x 2 | each if doubles the paths |
-| if / elif / else | 2 + 1 | alternatives add, one branch is taken |
-| two ifs written as if/elif | 3, not 4 | the merged branch drops a path |
-
-::::
-:::::
-
-The footer counts from here.
-
-\footnotesize
-
-cyclomatic complexity (McCabe, 1976) adds: decisions + 1 = 7 here, the tests that walk every branch; the bits multiply: 2^6 = 64, the tests that walk every combination; the same six ifs, one sum and one product
-
-::: notes
-Say the rule once: every policy request is one bit, and every bit doubles the paths. Walk the
-diagram left to right: two sequential ifs multiply, 2 x 2, into four paths, bits 00 to 11; the
-if/elif adds, 2 + 1, into three paths; the general form is the product of each block's
-alternatives. Then say that the footer counts from here, starting at 1 for the plain checkout.
-Compare with the cyclomatic number: it adds, decisions + 1 = 7 tests for the branches, where the
-bits multiply into 64 combinations.
-:::
-
 ## We begin with one checkout flow and two tests: one path {paths=1}
 
 ::: {.request}
@@ -301,12 +263,16 @@ Read the dev and marketing lines aloud, then ask the chat the question and pause
 :::
 ::: {.column width="46%"}
 
-![](build/01-bits/coverage-view.png){height=60%}
+![](build/01-bits/grid.png){height=56%}
+
+\small
+
+bits read as the six conditions, left b5 to right b0
 
 :::
 ::::
 
-both values of every bit: 100% branch coverage, 2 of 64 combinations
+both values of every bit: 100% branch coverage, 2 of 64 combinations; the two tests sit in the corners, 000000 and 111111
 
 ```{.text include=build/01-bits/coverage-summary.txt}
 ```
@@ -314,6 +280,8 @@ both values of every bit: 100% branch coverage, 2 of 64 combinations
 ::: notes
 Branch coverage counts twelve edges, and both tests take every edge, so the report says
 100 percent. The grid shows what it did not count: 2 of 64 combinations ran.
+Point at 000000 and 111111 on the grid: the two tests, both green. Then point at 000101,
+the I1 path, red: the bug.
 :::
 
 ## 1,214 uncharged parcels leave a 6,070 EUR gap against the carrier's bill {paths=64}
@@ -371,7 +339,7 @@ bug test sits in its own file, marked xfail, so the suite stays green. Then
 
 ## The coupon boundary order fails while the memo's other three orders pass {paths=64}
 
-the memo's four boundary orders, with or without the coupon, the cart under or over 50; not the full grid: the coupon-and-under-50 cell is not in the memo
+the memo's four boundary orders, not the full grid
 
 :::: {.columns}
 ::: {.column width="62%"}
@@ -390,37 +358,8 @@ the memo's four boundary orders, with or without the coupon, the cart under or o
 
 only the coupon order with the cart over 50 and the goods under 50 takes the path no test of ours ran
 
-::: notes
-Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.
-:::
-
-## Branch coverage counts edges, not combinations: two tests cover 2 of 64 paths {paths=64}
-
-:::: {.columns}
-::: {.column width="50%"}
-
-![](build/01-bits/grid.png){height=56%}
-
-\small
-
-bits read as the six conditions, left b5 to right b0
-
-:::
-::: {.column width="50%"}
-
-![](build/01-bits/grid-growth.png){width=100%}
-
-\small
-
-every policy doubles the grid and halves the two tests' share; they stay in the corners, 000000 and 111111
-
-:::
-::::
-
 \theline{A green badge means tested}{Coverage counts edges; bugs live in combinations. Count the paths before you trust the badge.}
 
 ::: notes
-Point at 000000 and 111111 on the grid: the two tests, both green. Then point at 000101,
-the I1 path, red: the bug. Walk the strip from 1 cell to 64: each grid doubles, and the
-two tests stay in the corners of every one of them.
+Read the memo as a grid: with or without the coupon, under or over 50. Three corners pass; the fourth is finance's order, and it is the only one that fails. The plot said where to look; the tests say which order.
 :::

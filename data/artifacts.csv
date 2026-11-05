@@ -43,10 +43,9 @@ build/01-bits/bubble-7.txt,txt,scripts.paths storyboard
 build/01-bits/bubble-8.txt,txt,scripts.paths storyboard
 build/01-bits/coverage.txt,txt,pytest --cov
 build/01-bits/coverage-summary.txt,txt,grep over coverage.txt
-build/01-bits/coverage-view.png,png,scripts.figures coverage-view
 build/01-bits/finance.png,png,scripts.figures finance
 build/01-bits/cues.txt,txt,scripts.figures finance-cues
-build/01-bits/counting.png,png,scripts.figures counting
+build/08-backup/counting.png,png,scripts.figures counting
 build/01-bits/bug-run.txt,txt,pytest --runxfail
 build/01-bits/memo-run.txt,txt,pytest --runxfail
 build/01-bits/tests-6.txt,txt,scripts.paths tally --version 6
@@ -54,7 +53,6 @@ build/01-bits/tests-bug.txt,txt,scripts.paths tally --version 6 --only test_plan
 build/01-bits/tests-memo.txt,txt,scripts.paths tally --version 6 --only test_memo_orders
 build/02-stacey/tests-6.txt,txt,scripts.paths tally --version 6
 build/01-bits/grid.png,png,scripts.figures grid-image
-build/01-bits/grid-growth.png,png,scripts.figures grid-growth
 build/01-bits/doubling.png,png,scripts.figures doubling
 build/01-bits/doubling.txt,txt,scripts.paths doubling
 build/01-bits/next.txt,txt,scripts.paths next

@@ -1,5 +1,40 @@
 # 08 Backup: the mechanisms and the evidence behind the seam
 
+## Six rules add up to 7 for McCabe and multiply to 64 configurations {paths=64}
+
+::::: {.columns}
+:::: {.column width="58%"}
+
+![](build/08-backup/counting.png){height=70%}
+
+::::
+:::: {.column width="42%"}
+
+\footnotesize
+
+**configurations = 2^rules**
+
+| pattern | paths | rule |
+|---|---|---|
+| sequential ifs | 2 x 2 x 2 x 2 x 2 x 2 | each if doubles the paths |
+| if / elif / else | 2 + 1 | alternatives add, one branch is taken |
+| two ifs written as if/elif | 3, not 4 | the merged branch drops a path |
+
+::::
+:::::
+
+\footnotesize
+
+cyclomatic complexity adds: decisions + 1 = 7 (McCabe, 1976), the basis paths a branch suite walks; the rules multiply: 2^6 = 64 input configurations, one per combination of the six conditions; the same six ifs, one sum and one product
+
+::: notes
+The arithmetic, for the Q&A. Every policy request is one bit, and every bit doubles the
+configurations. Walk the diagram left to right: two sequential ifs multiply, 2 x 2, into four
+configurations, bits 00 to 11; the if/elif adds, 2 + 1, into three; the general form is the
+product of each block's alternatives. Compare with the cyclomatic number: it adds, decisions + 1
+= 7, the basis paths a branch suite walks, where the rules multiply into 64 configurations.
+:::
+
 ## Agreement on the What and certainty on the How guide each move {paths=64}
 
 :::: {.columns align=center}
